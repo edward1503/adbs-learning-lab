@@ -1,5 +1,5 @@
 import { DeploymentError, TARGET, inspectInput, requestKey } from './botkeep-client.mjs';
-import { responseShape } from './botkeep-response-shape.mjs';
+import { accessDiagnosis, responseShape } from './botkeep-response-shape.mjs';
 
 try {
   if (process.env.GITHUB_REPOSITORY !== 'edward1503/adbs-learning-lab' || process.env.GITHUB_REF !== 'refs/heads/main') {
@@ -24,8 +24,12 @@ try {
     if (text.length <= 1024 * 1024 && /application\/(?:[\w.+-]*\+)?json/i.test(mediaType)) {
       try { value = JSON.parse(text); } catch { /* Do not expose undecodable content. */ }
     }
-    console.log(JSON.stringify({ phase, httpStatus: response.status, mediaType,
-      structure: value === undefined ? [] : responseShape(value) }, null, 2));
+    const targetMetadata = phase === 'workload' && response.status === 200 ?
+      { workloadMatches: value?.id === TARGET.workload, staticRuntime: value?.runtime === 'static' } : undefined;
+    const structure = value === undefined ? [] : responseShape(value);
+    console.log(JSON.stringify({ phase, httpStatus: response.status, mediaType, targetMetadata,
+      errorMetadata: response.ok ? undefined : accessDiagnosis(value),
+      structure: phase === 'inspect' ? structure : structure.filter(row => row.path.split('[').length <= 2) }));
     return response.status;
   }
   await probe('capabilities', '/api/v1/developer/capabilities');
