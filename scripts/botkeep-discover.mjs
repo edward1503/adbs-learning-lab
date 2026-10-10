@@ -35,13 +35,18 @@ try {
     const structure = value === undefined ? [] : responseShape(value);
     console.log(JSON.stringify({ phase, httpStatus: response.status, mediaType, targetMetadata,
       errorMetadata: response.ok ? undefined : accessDiagnosis(value),
-      structure: ['inspect', 'source'].includes(phase) ? structure : structure.filter(row => row.path.split('[').length <= 2) }));
-    return response.status;
+      structure: ['inspect', 'source', 'operation'].includes(phase) ? structure : structure.filter(row => row.path.split('[').length <= 2) }));
+    return { status: response.status, value };
   }
   await probe('workload', `/api/v1/developer/workloads/${TARGET.workload}`);
-  await probe('source', `/api/v1/developer/workloads/${TARGET.workload}/github`);
-  const status = await probe('inspect', `/api/v1/developer/workloads/${TARGET.workload}/github/inspect`, 'POST', inspectInput());
-  if (status !== 200) process.exitCode = 1;
+  const source = await probe('source', `/api/v1/developer/workloads/${TARGET.workload}/github`);
+  if (source.status === 200 && typeof source.value?.operation?.id === 'string') {
+    const operation = await probe('operation', `/api/v1/developer/operations/${encodeURIComponent(source.value.operation.id)}`);
+    const phase = operation.value?.phase;
+    if (typeof phase === 'string' && /^[a-z][a-z_-]{0,24}$/.test(phase)) console.log(JSON.stringify({ phase: 'operation-state', observedPhase: phase }));
+  }
+  const inspected = await probe('inspect', `/api/v1/developer/workloads/${TARGET.workload}/github/inspect`, 'POST', inspectInput());
+  if (inspected.status !== 200) process.exitCode = 1;
 } catch (error) {
   const safe = error instanceof DeploymentError ? { code: error.code, status: error.status, message: error.message } :
     { code: 'DISCOVERY_FAILED', message: 'Discovery failed; raw error details are suppressed.' };
