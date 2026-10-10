@@ -57,7 +57,7 @@ try {
     }
   }
   for (const stage of ['inspect', 'sync']) {
-    const receipt = requestKey(stage, '1b6e2c0af420ecde6ba18984e6ab84a972589cbc', 'github-38075640486');
+    const receipt = requestKey(stage, '675dfdaf48166270787b43e03e5916b412563841', 'github-38076136478');
     const observed = await probe(`${stage}-receipt`, `/api/v1/developer/requests/${receipt}`);
     if (observed.status === 200) {
       const value = observed.value;
