@@ -1,0 +1,544 @@
+{
+  "lectureId": "lecture-20",
+  "topics": [
+    {
+      "id": "l20-topic-scheduler-locks",
+      "title": "QUERY SCHEDULER",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+      "pages": [
+        2,
+        6
+      ],
+      "questions": [
+        {
+          "id": "l20-scheduler-locks-q1",
+          "prompt": "Why can a scheduler not always wait until it knows every operation in a transaction before choosing a schedule?",
+          "options": [
+            "Applications may submit further queries while a transaction is running",
+            "Every transaction must declare all queries before BEGIN",
+            "Only COMMIT identifies the objects accessed",
+            "The lock manager can grant locks only after a query has finished"
+          ],
+          "answer": 0,
+          "explanation": "The protocol must make decisions online because the complete query sequence may not yet have been submitted. A transaction cannot be assumed to contain just one query.",
+          "pages": [
+            2
+          ]
+        },
+        {
+          "id": "l20-scheduler-locks-q2",
+          "prompt": "T1 holds S-lock(A). Which request from T2 is compatible?",
+          "options": [
+            "X-lock(A)",
+            "S-lock(A)",
+            "An immediate upgrade to X-lock(A) without waiting",
+            "An X-lock on all of A simply because T1 is reading"
+          ],
+          "answer": 1,
+          "explanation": "Shared locks are compatible with other shared locks. An exclusive lock conflicts with another transaction's S-lock or X-lock; one transaction's read does not authorize concurrent writes.",
+          "pages": [
+            4
+          ]
+        },
+        {
+          "id": "l20-scheduler-locks-q3",
+          "prompt": "T1 holds X-lock(A). What must T2 do to read A under the lecture's locking scheme?",
+          "options": [
+            "Read A, because S-locks are always compatible with X-locks",
+            "Acquire an X-lock alongside T1's X-lock",
+            "Wait until a compatible S-lock can be granted",
+            "Force T1 to downgrade immediately because reads have absolute priority"
+          ],
+          "answer": 2,
+          "explanation": "A read requires an S-lock, which conflicts with T1's X-lock. T2 cannot bypass locking merely because its operation is a read.",
+          "pages": [
+            3,
+            4
+          ]
+        },
+        {
+          "id": "l20-scheduler-locks-q4",
+          "prompt": "What does a lock manager normally do when a request conflicts with a currently held lock?",
+          "options": [
+            "Grant it immediately and replace compatibility checks with undo",
+            "Permanently reject every transaction containing a read",
+            "Automatically downgrade the holder's X-lock without considering its transaction",
+            "Block the request until it can be granted or the transaction is otherwise handled"
+          ],
+          "answer": 3,
+          "explanation": "The lock manager maintains a lock table and grants or blocks requests according to compatibility. It cannot make a conflicting request safe by arbitrarily downgrading a lock another transaction still needs.",
+          "pages": [
+            3,
+            4
+          ]
+        },
+        {
+          "id": "l20-scheduler-locks-q5",
+          "prompt": "Is acquiring a lock before each access and releasing it whenever convenient enough to guarantee serializability?",
+          "options": [
+            "No; a protocol such as 2PL is also needed",
+            "Yes, because each individual access is protected",
+            "Yes, if every transaction uses X-locks, however they are released",
+            "Yes, if the schedule contains only two transactions"
+          ],
+          "answer": 0,
+          "explanation": "Protecting individual operations still permits nonserializable interleavings. Two-phase locking adds restrictions on when locks may be acquired and released.",
+          "pages": [
+            5,
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l20-topic-two-phase",
+      "title": "TWO-PHASE LOCKING",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+      "pages": [
+        7,
+        10
+      ],
+      "questions": [
+        {
+          "id": "l20-two-phase-q1",
+          "prompt": "What may a transaction do in the growing phase of 2PL?",
+          "options": [
+            "Release locks but acquire no new ones",
+            "Acquire new locks without releasing any",
+            "Acquire and release locks in any interleaved order",
+            "Read data but perform no writes"
+          ],
+          "answer": 1,
+          "explanation": "The growing phase allows locks to accumulate. The first release begins the shrinking phase, ending the growing phase.",
+          "pages": [
+            7,
+            8
+          ]
+        },
+        {
+          "id": "l20-two-phase-q2",
+          "prompt": "T acquires S(A), acquires S(B), releases S(A), and then requests X(C). Where is 2PL violated?",
+          "options": [
+            "When two S-locks are acquired",
+            "When S(A) is released after reading",
+            "When X(C) is requested after a lock has been released",
+            "When three different objects are accessed"
+          ],
+          "answer": 2,
+          "explanation": "After the first release, 2PL forbids acquiring new locks. Neither the number of objects nor acquiring two shared locks is the problem.",
+          "pages": [
+            7,
+            9
+          ]
+        },
+        {
+          "id": "l20-two-phase-q3",
+          "prompt": "T holds S(A), releases a lock on B, and then upgrades S(A) to X(A). Does this follow 2PL?",
+          "options": [
+            "Yes, because T already held a lock on A",
+            "Yes, because an upgrade is not a lock on a new object",
+            "Yes, as long as T has not committed, even after releasing another lock",
+            "No; upgrading after the shrinking phase begins violates 2PL"
+          ],
+          "answer": 3,
+          "explanation": "Two-phase locking forbids both acquisition and upgrade after the growing phase. An existing S-lock does not permit a late upgrade.",
+          "pages": [
+            8,
+            9
+          ]
+        },
+        {
+          "id": "l20-two-phase-q4",
+          "prompt": "Which property does 2PL guarantee in the lecture?",
+          "options": [
+            "Conflict serializability",
+            "Deadlocks can never occur",
+            "No schedule can read uncommitted data",
+            "Every transaction finishes without aborting"
+          ],
+          "answer": 0,
+          "explanation": "Two-phase locking guarantees conflict-serializable schedules. Deadlocks and aborts can still occur, so the stronger absolute claims are false.",
+          "pages": [
+            10,
+            12
+          ]
+        },
+        {
+          "id": "l20-two-phase-q5",
+          "prompt": "Must every serializable schedule be allowed by 2PL?",
+          "options": [
+            "Yes, because the two concepts are identical",
+            "No; 2PL is sufficient but more restrictive than the set of serializable schedules",
+            "Only if transactions write data",
+            "No serializable schedule can use 2PL"
+          ],
+          "answer": 1,
+          "explanation": "Two-phase locking can reject a schedule that is nevertheless serializable. Guaranteeing safety does not mean permitting every safe schedule.",
+          "pages": [
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l20-topic-cascading",
+      "title": "2PL – CASCADING ABORTS",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+      "pages": [
+        11,
+        12
+      ],
+      "questions": [
+        {
+          "id": "l20-cascading-q1",
+          "prompt": "T1 releases X(A) before finishing. T2 reads A as written by T1, and T1 then aborts. Why might T2 also have to abort?",
+          "options": [
+            "T2 read only a committed value from T1",
+            "T2 merely started before T1 committed, without reading T1's data",
+            "T2 depended on an uncommitted value that is being withdrawn",
+            "Every transaction in the schedule must abort regardless of dependencies"
+          ],
+          "answer": 2,
+          "explanation": "Cascading aborts propagate through dependencies on uncommitted data. They do not affect a transaction merely because it uses the same CPU or database system.",
+          "pages": [
+            11
+          ]
+        },
+        {
+          "id": "l20-cascading-q2",
+          "prompt": "Can basic 2PL release a lock before COMMIT?",
+          "options": [
+            "No; every form of 2PL holds every lock until COMMIT",
+            "Only S-locks can be released; basic 2PL always retains every X-lock until the end",
+            "Yes, and it may then acquire any new locks before commit",
+            "Yes, during the shrinking phase"
+          ],
+          "answer": 3,
+          "explanation": "Basic 2PL requires two phases but does not require all locks to remain until completion. Holding locks until the end is the strict variant used in this lecture.",
+          "pages": [
+            7,
+            11,
+            12
+          ]
+        },
+        {
+          "id": "l20-cascading-q3",
+          "prompt": "Does conflict serializability alone guarantee the absence of dirty reads?",
+          "options": [
+            "No; serializability and handling uncommitted data are separate requirements",
+            "Yes; an acyclic graph forbids every read of uncommitted data",
+            "Yes, if there are only two transactions",
+            "No; every serializable schedule contains a dirty read"
+          ],
+          "answer": 0,
+          "explanation": "Basic 2PL can produce a conflict-serializable schedule that still reads before the writer commits. These properties must not be treated as identical.",
+          "pages": [
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "id": "l20-cascading-q4",
+          "prompt": "T2 reads T1's uncommitted data and commits before T1 aborts. What makes this especially dangerous?",
+          "options": [
+            "Only T1 needs undoing; T2's committed result is always valid",
+            "T2 has published a result that depends on a failed transaction",
+            "T2's commit automatically commits T1's data",
+            "Reordering the COMMIT statements on paper repairs all effects"
+          ],
+          "answer": 1,
+          "explanation": "T2's published result cannot be assumed valid after its source data is undone. T2's COMMIT does not repair the invalid dependency.",
+          "pages": [
+            11
+          ]
+        },
+        {
+          "id": "l20-cascading-q5",
+          "prompt": "Which method in the lecture prevents cascading aborts caused by reading uncommitted data?",
+          "options": [
+            "Release X-locks immediately after writes",
+            "Keep every S-lock but always release X-locks before commit",
+            "Use strict 2PL and hold locks until transaction completion",
+            "Require only an acyclic conflict graph, without considering commits"
+          ],
+          "answer": 2,
+          "explanation": "Retaining X-locks prevents other transactions from reading temporary values. Releasing them early creates the very dependency that can cause a cascade.",
+          "pages": [
+            12,
+            13,
+            14
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l20-topic-strict",
+      "title": "STRICT TWO-PHASE LOCKING",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+      "pages": [
+        13,
+        17
+      ],
+      "questions": [
+        {
+          "id": "l20-strict-q1",
+          "prompt": "Under this lecture's strict-2PL convention, when are locks released?",
+          "options": [
+            "Immediately after each read or write",
+            "As soon as the last lock has been acquired, even if work continues",
+            "As soon as another transaction requests them and waits",
+            "At the end of the transaction"
+          ],
+          "answer": 3,
+          "explanation": "The lecture's diagram retains all locks until transaction completion. Some sources call this convention rigorous 2PL, so use the explicitly stated definition.",
+          "pages": [
+            13,
+            14
+          ]
+        },
+        {
+          "id": "l20-strict-q2",
+          "prompt": "T1 transfers 6 units between A and B while T2 computes their total. What does holding both locks until T1 finishes achieve?",
+          "options": [
+            "T2 cannot observe a partially completed transfer",
+            "T2 is guaranteed to run before T1",
+            "Every SUM can run without S-locks",
+            "Every deadlock is automatically eliminated"
+          ],
+          "answer": 0,
+          "explanation": "T2 can read only after the required compatible locks are available. This does not force T2 to run first, and deadlocks with other transactions remain possible.",
+          "pages": [
+            15,
+            16,
+            17
+          ]
+        },
+        {
+          "id": "l20-strict-q3",
+          "prompt": "T1 aborts while holding X(A) until completion. Why is undo generally simpler than after releasing the lock early?",
+          "options": [
+            "The lock stores the before-image and replaces the log",
+            "No other transaction has overwritten A through T1's lock",
+            "Aborted transactions never need data-page restoration",
+            "Keeping a lock automatically makes every data page NO-STEAL"
+          ],
+          "answer": 1,
+          "explanation": "Retaining the X-lock protects the object during rollback. The lock itself does not replace the log or other recovery information.",
+          "pages": [
+            14
+          ]
+        },
+        {
+          "id": "l20-strict-q4",
+          "prompt": "Does strict 2PL prevent T1 from holding A while waiting for B and T2 from holding B while waiting for A?",
+          "options": [
+            "Yes; keeping locks longer eliminates every waiting cycle",
+            "Yes, if both transactions use X-locks",
+            "No; deadlock is still possible",
+            "No, because strict 2PL does not guarantee serializability"
+          ],
+          "answer": 2,
+          "explanation": "Strictness prevents dependencies on uncommitted data but does not itself solve deadlock. Strict 2PL still guarantees conflict serializability.",
+          "pages": [
+            13,
+            18
+          ]
+        },
+        {
+          "id": "l20-strict-q5",
+          "prompt": "Which sequence follows the lecture's strict-2PL convention?",
+          "options": [
+            "Acquire X(A), write, release it, then acquire X(B)",
+            "Acquire S(A), read, release it, and continue until commit",
+            "Acquire X(A), write, and release it before commit so others can read temporary data",
+            "Acquire S(A), acquire X(B), perform the work, commit, and release both locks"
+          ],
+          "answer": 3,
+          "explanation": "Retaining the locks until completion matches the lecture's convention. Early release of S-locks may fit another definition of strictness, but it does not fit this one.",
+          "pages": [
+            13,
+            17
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l20-topic-deadlock-detection",
+      "title": "DEADLOCK DETECTION",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+      "pages": [
+        18,
+        22
+      ],
+      "questions": [
+        {
+          "id": "l20-deadlock-detection-q1",
+          "prompt": "When does a waits-for graph contain T1→T2?",
+          "options": [
+            "T1 is waiting for a lock held by T2",
+            "T1 committed before T2",
+            "T1 reads the same table as T2 without waiting",
+            "T1 has an earlier timestamp than T2, regardless of locks"
+          ],
+          "answer": 0,
+          "explanation": "A waits-for edge represents a current wait. A precedence edge instead represents the order of conflicting operations that have occurred.",
+          "pages": [
+            20
+          ]
+        },
+        {
+          "id": "l20-deadlock-detection-q2",
+          "prompt": "T1 holds X(A) and waits for B; T2 holds X(B) and waits for A. What does the waits-for graph contain?",
+          "options": [
+            "Only T1→T2",
+            "The cycle T1→T2→T1",
+            "No edges, because each lock has only one holder",
+            "Only an A→B edge between objects"
+          ],
+          "answer": 1,
+          "explanation": "Each transaction waits for the other, producing two edges between transaction vertices. The graph's vertices are not the objects A and B.",
+          "pages": [
+            18,
+            20
+          ]
+        },
+        {
+          "id": "l20-deadlock-detection-q3",
+          "prompt": "How does the lecture break a deadlock once it is detected?",
+          "options": [
+            "Grant an X-lock even though its current holder has not released it",
+            "Change priorities while leaving the waiting cycle intact",
+            "Select a victim, roll it back, and release its locks",
+            "Wait until all transactions in the cycle commit on their own"
+          ],
+          "answer": 2,
+          "explanation": "Aborting a victim breaks at least one waiting dependency. Ignoring lock compatibility would sacrifice correctness.",
+          "pages": [
+            22
+          ]
+        },
+        {
+          "id": "l20-deadlock-detection-q4",
+          "prompt": "Why consider the number of previous restarts when choosing a deadlock victim?",
+          "options": [
+            "To make the newest transaction always win regardless of cost",
+            "To preferentially abort the same victim on every retry",
+            "To ignore the locks already held by a transaction",
+            "To avoid repeatedly aborting one transaction and starving it"
+          ],
+          "answer": 3,
+          "explanation": "Victim selection should avoid repeatedly penalizing the same transaction. Restart counts help with fairness; they do not replace recovery or query processing.",
+          "pages": [
+            22
+          ]
+        },
+        {
+          "id": "l20-deadlock-detection-q5",
+          "prompt": "What is the trade-off in checking for deadlocks more frequently?",
+          "options": [
+            "Earlier detection requires more checking overhead",
+            "More frequent checks always reduce CPU cost",
+            "Cycles are guaranteed never to form",
+            "Victim selection is no longer needed when a cycle exists"
+          ],
+          "answer": 0,
+          "explanation": "Detection reacts to cycles and has a computational cost. Frequent checking is not the same as preventing every deadlock.",
+          "pages": [
+            20,
+            22
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l20-topic-deadlock-prevention",
+      "title": "DEADLOCK PREVENTION",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+      "pages": [
+        23,
+        27
+      ],
+      "questions": [
+        {
+          "id": "l20-deadlock-prevention-q1",
+          "prompt": "Under wait-die, an older transaction requests a lock held by a younger transaction. What happens?",
+          "options": [
+            "The older transaction immediately aborts",
+            "The older transaction waits",
+            "The younger transaction is immediately aborted",
+            "Both transactions hold the X-lock"
+          ],
+          "answer": 1,
+          "explanation": "Wait-die lets an older requester wait for a younger holder. Only a younger requester facing an older holder aborts; do not confuse this with wound-wait.",
+          "pages": [
+            24
+          ]
+        },
+        {
+          "id": "l20-deadlock-prevention-q2",
+          "prompt": "Under wait-die, a younger transaction requests a lock held by an older transaction. What happens?",
+          "options": [
+            "The older transaction aborts",
+            "The younger transaction always waits",
+            "The younger transaction aborts",
+            "The older transaction releases its lock without rollback"
+          ],
+          "answer": 2,
+          "explanation": "The younger requester must die. Allowing it to wait would violate wait-die's permitted direction of waiting.",
+          "pages": [
+            24,
+            26
+          ]
+        },
+        {
+          "id": "l20-deadlock-prevention-q3",
+          "prompt": "Under wound-wait, an older transaction requests a lock held by a younger transaction. What happens?",
+          "options": [
+            "The older transaction always waits",
+            "The older transaction aborts",
+            "Both wait for one another without choosing a victim",
+            "The younger lock holder is aborted"
+          ],
+          "answer": 3,
+          "explanation": "In wound-wait, the older transaction wounds the younger one. This differs from wait-die, where the older requester waits.",
+          "pages": [
+            24,
+            26
+          ]
+        },
+        {
+          "id": "l20-deadlock-prevention-q4",
+          "prompt": "Under wound-wait, a younger transaction requests a lock held by an older transaction. What happens?",
+          "options": [
+            "The younger transaction waits",
+            "The younger transaction aborts the older one",
+            "The older transaction must always abort",
+            "Both abort regardless of age"
+          ],
+          "answer": 0,
+          "explanation": "Wound-wait allows younger transactions to wait for older ones. A younger requester cannot wound an older holder.",
+          "pages": [
+            24,
+            26
+          ]
+        },
+        {
+          "id": "l20-deadlock-prevention-q5",
+          "prompt": "Why retain a transaction's original timestamp when it restarts?",
+          "options": [
+            "To make it the youngest transaction after every retry",
+            "To preserve its age priority and reduce starvation across retries",
+            "To allow waiting edges to reverse direction freely after restart",
+            "To let it ignore lock compatibility after its first abort"
+          ],
+          "answer": 1,
+          "explanation": "Assigning a fresh timestamp on every retry could leave a transaction perpetually young and disadvantaged. Keeping its timestamp preserves the protocol's age-based priority.",
+          "pages": [
+            27
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+[
+  {
+    "id": "lecture-13",
+    "lecture": 13,
+    "title": "Query Evaluation: Processing Models",
+    "short": "One tuple, one batch, or the whole result?",
+    "group": "04 · Query execution",
+    "time": 25,
+    "lead": "Compare how operators pass individual tuples, batches, or complete intermediate results to one another.",
+    "goals": [
+      "Trace open, next, and close calls in the iterator model",
+      "Explain the state maintained by a selection, heap scan, and nested-loop join",
+      "Identify blocking operations such as sorting and hash-table construction",
+      "Explain pipelining, LIMIT, and iterator overhead"
+    ],
+    "sections": [
+      {
+        "id": "l13-s1",
+        "title": "Iterators give operators a shared interface",
+        "html": "<p>In the iterator model, operators share three operations: open() initializes their processing state, next() returns one tuple or EOF to signal the end of the input, and close() releases their resources. This common interface lets a parent operator request tuples from a child without needing to know whether that child is a heap scan or a complex join. Calls travel down from the root, and tuples are returned upward.</p><p><strong>Original worked trace:</strong> Scan contains [2,7,4,9], Filter keeps x&gt;5, and Project calculates x×10. On the first call to root.next(), Filter requests 2 and discards it, then requests 7 and returns it. Project returns 70. On the second call, Filter discards 4 and keeps 9, so Project returns 90. The third call returns EOF.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>One parent next() call may invoke the child’s next() method several times.</b> A filter must keep requesting input until it finds a qualifying tuple or reaches EOF.</p></aside><p class=\"source-note\">Related source material: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=2\" target=\"_blank\" rel=\"noopener\">PDF pages 2–6</a>. The numerical examples and exercises in this section are original supplementary material.</p>"
+      },
+      {
+        "id": "l13-s2",
+        "title": "State and blocking boundaries",
+        "html": "<p>A heap scan remembers its current page and slot. A nested-loop join remembers the current outer tuple and its position in the inner input. When the inner input is exhausted, the join restarts it and advances to the next outer tuple. A sort must inspect all of an unordered input before it knows the smallest item. An external sort may create runs during open() and merge them during next(). A hash join must finish building its hash table before it probes that table.</p><p>Pipelining passes results to the next operator as they become available, rather than writing and then rereading the whole intermediate result. It often reduces intermediate writes and the delay before the first output tuple. A blocking operator, such as a sort, still has to complete a preparatory phase before returning results.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>LIMIT 1 above a sort may still require reading the entire input.</b> To determine the first row in global order, the sort must consider rows that have not yet been read. A left-deep plan shape does not remove this blocking requirement.</p></aside><p class=\"source-note\">Related source material: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=7\" target=\"_blank\" rel=\"noopener\">PDF pages 7–13</a>. The numerical examples and exercises in this section are original supplementary material.</p>"
+      },
+      {
+        "id": "l13-s3",
+        "title": "Vectorization and materialization",
+        "html": "<p><strong>Original worked example:</strong> pass 100,000 tuples through 3 operators, with no operator reducing the tuple count. Tuple-at-a-time processing needs approximately 100,000×3=300,000 calls to pass tuples. With 1,000 tuples per batch, each operator processes only 100 batches, giving approximately 100×3=300 batch-passing calls. This count excludes EOF calls. If a filter is present, the number of later batches also depends on its output.</p><p>Batch processing spreads the cost of a call over many tuples, supports tight processing loops, and may use SIMD to process several values at once. Materialization instead retains an operator’s entire output before moving to the next step. This can improve locality by accessing nearby data in memory, but a large intermediate result puts pressure on RAM and I/O. Iterators, batches, and materialization are execution choices; each must preserve the result required by the query.</p><p class=\"source-note\">Related source material: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=14\" target=\"_blank\" rel=\"noopener\">PDF pages 14–18</a>. The numerical examples and exercises in this section are original supplementary material.</p>"
+      },
+      {
+        "id": "l13-s4",
+        "title": "Exercise: identify the pipeline segments",
+        "html": "<p>Consider Scan → Filter → Sort → Project → LIMIT 2. Which segments can stream their tuples to the next operator? Where can processing stop early and release resources?</p><details><summary>Show the solution</summary><p>Scan→Filter can stream. Sort blocks the first result until it has prepared enough data. After that, Sort→Project→LIMIT can stream. Once it has received 2 rows, LIMIT can stop requesting further tuples and call close() down the tree. Any temporary runs still need to be cleaned up. A top-k algorithm is an additional optimization outside this example; do not silently assume it is being used.</p></details><p class=\"source-note\">Related source material: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=9\" target=\"_blank\" rel=\"noopener\">PDF pages 9–13</a>. The numerical examples and exercises in this section are original supplementary material.</p>"
+      }
+    ],
+    "quiz": {
+      "question": "Can one Filter.next() call invoke child.next() more than once?",
+      "options": [
+        "Yes, to discard tuples that do not satisfy the predicate",
+        "No, it always calls the child exactly once",
+        "Only when the child is an index"
+      ],
+      "answer": 0,
+      "explanation": "The filter continues reading input until it finds a qualifying tuple or reaches EOF."
+    },
+    "source": {
+      "summary": "The full official PDF has been reviewed. Coverage includes the open/next/close iterator interface and composability; selection, heap-scan, and nested-loop state; blocking sorts and hash builds; pipelining, LIMIT, and iterator overhead; vectorized batch and SIMD processing; and materialization, execution direction, and workload trade-offs. The explanations and calculations are original teaching material rather than reproductions of the slides.",
+      "links": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=1",
+          "label": "Official PDF, pages 1–18"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=2",
+          "label": "PDF pages 2–9"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=10",
+          "label": "PDF pages 10–14"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=15",
+          "label": "PDF pages 15–18"
+        }
+      ]
+    },
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf",
+      "verified": true,
+      "verifiedPages": "1–18",
+      "topics": [
+        "Iterator open/next/close and composability",
+        "Selection, heap scan, nested-loop state",
+        "Blocking sort and hash build",
+        "Pipelining, LIMIT and iterator overhead",
+        "Vectorised batch/SIMD model",
+        "Materialisation, execution direction and workload trade-offs"
+      ],
+      "limitations": []
+    },
+    "lab": "relational"
+  }
+]

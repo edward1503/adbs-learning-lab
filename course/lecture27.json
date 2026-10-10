@@ -1,0 +1,106 @@
+[
+  {
+    "id": "lecture-27",
+    "lecture": 27,
+    "title": "NoSQL: choosing a model for the system requirements",
+    "short": "Partitioning · replication · CAP · data models",
+    "group": "08 · Distributed systems",
+    "time": 25,
+    "lead": "A product name cannot answer the essential questions: how fresh must the data be, how will the application access it, and how should the system handle failures?",
+    "goals": [
+      "Distinguish sharding from replication.",
+      "Explain the trade-off during a network partition.",
+      "Compare key-value, document, column-family, and graph data models."
+    ],
+    "sections": [
+      {
+        "id": "l27-s1",
+        "title": "Separate two design decisions",
+        "html": "<p>Sharding divides the data; replication creates copies of the data. A system can use both. A flexible schema does not mean the data has no structure. Structural checks may instead be performed by application code or configured validation rules.</p><p>NoSQL describes a family of approaches. The label does not imply that every NoSQL system lacks transactions or that every relational database is unable to scale. Examine a system's specific guarantees rather than relying on the SQL or NoSQL label.</p><p class=\"source-note\">Source: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=1\" target=\"_blank\" rel=\"noopener\">PDF pages 1–8</a>. The examples and explanations on this learning page were written independently for this learning companion.</p>"
+      },
+      {
+        "id": "l27-s2",
+        "title": "A network partition and a stale read",
+        "html": "<p>Two regions, E and W, both store a price of 50. The connection between them fails, leaving no path for exchanging information. This is a <strong>network partition</strong>, even though the nodes themselves are still running. E accepts a write that changes the price to 60 and reports success. After that write completes, a user in W starts reading the price.</p><ul><li>If W returns the old price of 50, the system violates <strong>linearizability</strong>. The write completed before the read began, so the read must return 60, assuming there are no later writes.</li><li>If W waits for information from E, an indefinitely long partition may prevent the request from ever completing successfully. Rejecting the request also fails to provide availability in the CAP sense.</li></ul><p>In CAP, <strong>C</strong> means linearizability: operations appear to execute against a single copy and respect real-time ordering. <strong>A</strong> requires every request to a non-failing node eventually to receive a valid result. It does not merely mean responding quickly or returning an error code. During a partition, a system cannot guarantee both C and A for every possible execution.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>CAP concerns the guarantees a system can provide when communication is disrupted by a partition.</b> It is not a rule that lets a system freely choose any two of three properties at all times. CAP consistency also differs from ACID consistency, which concerns data invariants.</p></aside><p>In this example, neither E nor W has failed. The problem is that W lacks information about a write that has already succeeded. Waiting for communication to recover can preserve C, but cannot guarantee A if the partition never ends.</p><p class=\"source-note\">Source: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=9\" target=\"_blank\" rel=\"noopener\">PDF pages 9–11</a>. The examples and explanations on this learning page were written independently for this learning companion.</p><p class=\"source-note\">CAP clarification: <a href=\"https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer6.pdf#page=2\" target=\"_blank\" rel=\"noopener\">Gilbert &amp; Lynch, original definitions and theorem</a>.</p>"
+      },
+      {
+        "id": "l27-s3",
+        "title": "BASE and application requirements",
+        "html": "<p>Eventual consistency means that replicas eventually converge if no new updates occur and data exchange eventually succeeds. It does not promise that every read immediately after a write will see the new value.</p><p>Consider the application requirements: an article's view count can often lag by a few seconds, while selling the same last available seat to two customers is usually unacceptable. For a shopping cart, the system needs an explicit merge policy. If two locations each add a different item, should the merged cart retain both? The word “eventual” does not specify how conflicts are resolved.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>Eventual consistency promises convergence under appropriate conditions.</b> By itself, it does not promise immediate visibility of the latest write, a bound on convergence time, or a particular rule for merging concurrent updates.</p></aside><p class=\"source-note\">Source: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=11\" target=\"_blank\" rel=\"noopener\">PDF pages 11–14</a>. The examples and explanations on this learning page were written independently for this learning companion.</p>"
+      },
+      {
+        "id": "l27-s4",
+        "title": "Four models and the questions they answer",
+        "html": "<ul><li><strong>Key-value:</strong> Retrieve a blob using a session ID. This works well when the exact key is known.</li><li><strong>Document:</strong> Store products with varying attributes and arrays, and filter on fields inside each document.</li><li><strong>Column-family:</strong> Organize many sparse fields around keys and access patterns. Do not confuse this model with columnar storage for OLAP.</li><li><strong>Graph:</strong> Represent people, accounts, and relationships, and query paths, connections, or patterns between them.</li></ul><p>Consider this JSON example: <code>{\"sku\":\"P7\",\"tags\":[\"blue\",\"small\"],\"spec\":{\"weight\":2}}</code>. Nested objects and arrays differ from a flat table, but they can be mapped to relations. The trade-offs involve access patterns, updates, and constraints.</p><p class=\"source-note\">Source: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=12\" target=\"_blank\" rel=\"noopener\">PDF pages 12–19</a>. The examples and explanations on this learning page were written independently for this learning companion.</p>"
+      },
+      {
+        "id": "l27-s5",
+        "title": "Practice choosing a design",
+        "html": "<p>A shop has a frequently changing product catalog, a checkout process that requires consistent inventory, and a relationship-based recommendation system. These three workloads do not have to use the same data model. Write down their requirements separately: catalog lookups and filtering, atomic reservations, and graph traversal.</p><p>A good answer explains the cost of synchronizing the components rather than merely naming three products. The popularity chart in the PDF is a snapshot from March 2026. It is neither a performance benchmark nor a current recommendation. GQL, Cypher, and SPARQL represent graph-query language families; the choice should match the actual data model.</p><p class=\"source-note\">Source: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=18\" target=\"_blank\" rel=\"noopener\">PDF pages 18–21</a>. The examples and explanations on this learning page were written independently for this learning companion.</p>"
+      }
+    ],
+    "quiz": {
+      "question": "Two replicas cannot communicate, and one has acknowledged a new write. What is the problem if a later read at the other replica immediately returns the old value?",
+      "options": [
+        "It definitely violates durability.",
+        "It does not preserve linearizable consistency.",
+        "It loses the schema.",
+        "It cannot be a NoSQL system."
+      ],
+      "answer": 1,
+      "explanation": "A read that starts after a successful write but returns the old value does not satisfy linearizability. This is the central trade-off illustrated by CAP."
+    },
+    "source": {
+      "summary": "Lecture 27 covers the motivation for NoSQL, sharding and replication, CAP and BASE, data models, and workload-driven choices. This learning material also explains how to interpret simplified CAP diagrams carefully.",
+      "links": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=1",
+          "label": "PDF pages 1–8"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=9",
+          "label": "PDF pages 9–11"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=11",
+          "label": "PDF pages 11–14"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=12",
+          "label": "PDF pages 12–19"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=18",
+          "label": "PDF pages 18–21"
+        },
+        {
+          "url": "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer6.pdf#page=2",
+          "label": "Gilbert & Lynch: CAP definitions and theorem, PDF pages 2–4"
+        }
+      ]
+    },
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+      "verified": true,
+      "verifiedPages": "1–21",
+      "topics": [
+        "NoSQL motivation",
+        "sharding",
+        "replication",
+        "CAP",
+        "ACID versus CAP consistency",
+        "BASE",
+        "key-value",
+        "document/JSON",
+        "column-family",
+        "graph queries",
+        "workload choice"
+      ],
+      "limitations": [
+        "The PDF simplifies the CAP diagram and its description of availability; this lesson provides a more precise interpretation.",
+        "The popularity chart is a historical snapshot from the PDF and is not presented as current data."
+      ]
+    },
+    "lab": "distributed"
+  }
+]

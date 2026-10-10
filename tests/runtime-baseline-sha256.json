@@ -1,0 +1,18 @@
+{
+  "app.js": "5cd9cbc502c81beac1a64226dfebfb86e532aa8452e62ebab6c96372c489c780",
+  "labs/core.js": "1b2c3cf9c2bb83d50babf77ae7171ec2454f30fa04bf1894e08b99da4ff58793",
+  "labs/labs.css": "091d4151335d77a0e0af9da3e3fde74517066d85e9ae0b947554f891a7916f42",
+  "labs/relational.js": "1ae0de7d380de8a2d9fbaed0b85fa240e173c63a75b19d2189a9dbe660785f78",
+  "labs/sql-worker.js": "c643d0c3a4956d5bc40f497122977b746e47fc00edff63715024251d4fa3eb6b",
+  "labs/sql.css": "e210f6aa552aa6c2b8a7bbb4455844af17c459262e8c84cf102eec0f96297983",
+  "labs/sql.js": "3602d4181a7217d62c15be888212808a074cdc3255c67f9e31a6afe01118f457",
+  "labs/systems.js": "7cda14ab014a80a65c7955ae282ccb6ae59c7010cadb1b82c3de95c1ddffa31a",
+  "quiz-data.js": "3e8ef624700174164c6289a4f55cc8ba965afeeb77df1aab695de74a006907ea",
+  "quiz.js": "3c0e259a0b22b6e59acce93c90eeacacbfdd529a3a65161aeb887738fc9930b6",
+  "styles.css": "7d78182565574bddffcffc5139e13d0d7a81ffeb5cf33e70f7113affecc62092",
+  "vendor/noto-serif-LICENSE.txt": "cee9892f9f0cc8fe882c9e9537ee6a89621d86ee7ceaf70b02e2b2b1c25c061a",
+  "vendor/noto-serif-vietnamese.ttf": "eb290a28a5e9a1081f9a1d0c2505a9043ded2e514da46a99b00e196bb250f4f6",
+  "vendor/sql-js-LICENSE.txt": "4cd382dc173e01b2718e7fe1c17a1d06141e759ca5e1605d307c12fcfd402903",
+  "vendor/sql-wasm.js": "694ca5b36aa3e6e71f417819d7df390b65343665fcfa5c69015ca33d93d291b3",
+  "vendor/sql-wasm.wasm": "0734155c83e493983d1f2ff5b09a4fab6e35a32e9449c7e4e545756439f62d73"
+}

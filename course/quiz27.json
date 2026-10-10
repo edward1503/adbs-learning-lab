@@ -1,0 +1,1392 @@
+{
+  "lectureId": "lecture-27",
+  "topics": [
+    {
+      "id": "l27-motivation",
+      "title": "NoSQL Motivation",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+      "pages": [
+        2,
+        2
+      ],
+      "questions": [
+        {
+          "id": "l27-motivation-q1",
+          "prompt": "According to the lecture, which Web 2.0 workload characteristic motivated NoSQL?",
+          "options": [
+            "Large volumes of real-time operations with sudden spikes in demand",
+            "Only offline OLAP queries with a stable workload",
+            "Data volumes are always small, but every table requires complex joins",
+            "Only one client writes sequentially on one machine"
+          ],
+          "answer": 0,
+          "explanation": "Large-scale applications need to handle heavy, variable OLTP workloads; this is not an assumption of a small, fixed workload.",
+          "pages": [
+            2
+          ]
+        },
+        {
+          "id": "l27-motivation-q2",
+          "prompt": "Why can multi-node transactions be difficult to scale?",
+          "options": [
+            "The relational model forbids data from residing on multiple machines",
+            "Coordination costs between nodes, such as those in 2PC",
+            "SQL cannot express a transaction with multiple operations",
+            "Adding replicas always reduces commit costs to zero"
+          ],
+          "answer": 1,
+          "explanation": "Coordination before commit introduces overhead at scale; the problem is not a prohibition on distribution in the relational model.",
+          "pages": [
+            2
+          ]
+        },
+        {
+          "id": "l27-motivation-q3",
+          "prompt": "Why does replication make consistency harder to maintain?",
+          "options": [
+            "Each replica automatically knows every write even without communication",
+            "Sharding automatically gives every replica the same update order",
+            "Copies need synchronization while the network can fail",
+            "Adding copies completely eliminates coordination costs"
+          ],
+          "answer": 2,
+          "explanation": "Keeping replicas synchronized requires communication and coordination; network failures make the trade-offs more apparent.",
+          "pages": [
+            2
+          ]
+        },
+        {
+          "id": "l27-motivation-q4",
+          "prompt": "In the motivation for NoSQL, what kind of work does OLTP refer to?",
+          "options": [
+            "Only scanning the entire history to produce offline reports",
+            "Only optimizing schemas for tables that are never updated",
+            "Only batch analytics with no user interaction",
+            "Many online transactional operations"
+          ],
+          "answer": 3,
+          "explanation": "The slide emphasizes high-volume, real-time data operations; OLTP should not be confused with OLAP.",
+          "pages": [
+            2
+          ]
+        },
+        {
+          "id": "l27-motivation-q5",
+          "prompt": "What reasonable conclusion follows from the RDBMS scaling difficulties in the slides?",
+          "options": [
+            "Consistency and coordination costs must be weighed against the workload",
+            "An RDBMS absolutely cannot run on multiple nodes",
+            "Every scale-out application must abandon all transactions",
+            "NoSQL is always faster, regardless of queries and guarantees"
+          ],
+          "answer": 0,
+          "explanation": "The motivation concerns trade-offs at scale; it does not prove that one model is always superior.",
+          "pages": [
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l27-partition-scaling",
+      "title": "Scaling through Partitioning",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+      "pages": [
+        3,
+        3
+      ],
+      "questions": [
+        {
+          "id": "l27-partition-scaling-q1",
+          "prompt": "How does partitioning, or sharding, help a system scale?",
+          "options": [
+            "By placing a complete copy of the same data on every machine",
+            "By distributing data and requests across multiple machines",
+            "By keeping all data on one machine and adding only clients",
+            "By routing every request through one shard containing the whole database"
+          ],
+          "answer": 1,
+          "explanation": "Sharding divides data; making complete copies is replication, which is a different technique.",
+          "pages": [
+            3
+          ]
+        },
+        {
+          "id": "l27-partition-scaling-q2",
+          "prompt": "Why can partitioning make access faster?",
+          "options": [
+            "Every query automatically avoids I/O and network communication",
+            "Every machine always holds the complete database in RAM",
+            "Each machine's portion of the data may fit in main memory",
+            "Cross-shard joins automatically become local operations"
+          ],
+          "answer": 2,
+          "explanation": "Dividing data reduces the local working set; fitting in RAM is a possible benefit, not an absolute guarantee.",
+          "pages": [
+            3
+          ]
+        },
+        {
+          "id": "l27-partition-scaling-q3",
+          "prompt": "In a partition-only configuration, what advantage does a write affecting just one shard have?",
+          "options": [
+            "No concurrent writes need concurrency control",
+            "Every multi-shard transaction is automatically atomic",
+            "Every write must synchronize the same row across all shards",
+            "Multiple copies of that row do not need updating"
+          ],
+          "answer": 3,
+          "explanation": "The slide contrasts writing one data copy with replication costs; cross-shard transactions remain difficult.",
+          "pages": [
+            3
+          ]
+        },
+        {
+          "id": "l27-partition-scaling-q4",
+          "prompt": "What disadvantage can affect a read query spanning several shards?",
+          "options": [
+            "Higher latency from accessing multiple machines",
+            "It always requires only one local RAM access",
+            "It cannot produce a complete result even when every shard is working",
+            "Every read automatically forces the shards to contain identical data"
+          ],
+          "answer": 0,
+          "explanation": "Fan-out and coordination can make distributed reads more expensive; that does not make complete results impossible.",
+          "pages": [
+            3
+          ]
+        },
+        {
+          "id": "l27-partition-scaling-q5",
+          "prompt": "When reads and writes run concurrently across multiple machines, what challenge does the slide identify?",
+          "options": [
+            "Partitioning automatically removes all read–write conflicts",
+            "Concurrency control is needed across the participating machines",
+            "Giving shards different names is enough to ensure isolation",
+            "Independent shards automatically make every multi-shard transaction serializable"
+          ],
+          "answer": 1,
+          "explanation": "The slide illustrates the need for locks on the machines; partitioning does not automatically resolve concurrency issues.",
+          "pages": [
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l27-replica-scaling",
+      "title": "Scaling through Replication",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+      "pages": [
+        4,
+        4
+      ],
+      "questions": [
+        {
+          "id": "l27-replica-scaling-q1",
+          "prompt": "How does replication support read throughput?",
+          "options": [
+            "By requiring every replica to forward reads to a single primary in every configuration",
+            "By dividing a row's columns into disjoint replicas",
+            "By distributing read queries among replicas",
+            "By discarding repeated reads of the same key without returning results"
+          ],
+          "answer": 2,
+          "explanation": "Multiple copies can share the read workload; this is not achieved by dropping requests.",
+          "pages": [
+            4
+          ]
+        },
+        {
+          "id": "l27-replica-scaling-q2",
+          "prompt": "If one machine fails, what benefit can a working replica provide?",
+          "options": [
+            "Automatically undo every incorrect logical update already copied to replicas",
+            "Guarantee that concurrent writes can never conflict",
+            "Completely eliminate the need for recovery after failures",
+            "Continue serving data from a copy"
+          ],
+          "answer": 3,
+          "explanation": "Replication supports fault tolerance, but does not automatically resolve every failure or conflict.",
+          "pages": [
+            4
+          ]
+        },
+        {
+          "id": "l27-replica-scaling-q3",
+          "prompt": "Why are writes often more expensive with replication?",
+          "options": [
+            "Changes must be propagated to replicas to maintain consistency",
+            "A write always changes only one copy, and the others automatically know its value",
+            "Every additional replica proportionally reduces the bytes written",
+            "Replication turns every write into a read-only operation"
+          ],
+          "answer": 0,
+          "explanation": "More copies increase synchronization work; how and when synchronization happens depends on the system.",
+          "pages": [
+            4
+          ]
+        },
+        {
+          "id": "l27-replica-scaling-q4",
+          "prompt": "What is a stale read?",
+          "options": [
+            "Reading the latest value from a more distant replica",
+            "Reading an old version from a replica that has not received an update",
+            "Reading a row that violates a schema constraint",
+            "Reading the same value again even after confirming that the replica is fully up to date"
+          ],
+          "answer": 1,
+          "explanation": "Synchronization delay can cause a replica to return an old value; staleness is not simply a missing query filter.",
+          "pages": [
+            4
+          ]
+        },
+        {
+          "id": "l27-replica-scaling-q5",
+          "prompt": "Which statement correctly distinguishes partitioning and replication in the lecture?",
+          "options": [
+            "Partitioning always stores the whole database on every machine",
+            "Replication always makes writes cheaper than a single copy",
+            "Partitioning divides data and load; replication adds copies to distribute reads and tolerate failures",
+            "The two techniques cannot coexist in one system"
+          ],
+          "answer": 2,
+          "explanation": "The replication slide says each partition may have multiple replicas, so the techniques can be combined.",
+          "pages": [
+            3,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l27-principles",
+      "title": "NoSQL: Core Principles",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+      "pages": [
+        5,
+        6
+      ],
+      "questions": [
+        {
+          "id": "l27-principles-q1",
+          "prompt": "How is NoSQL understood in this lecture?",
+          "options": [
+            "A ban on every query language with SQL syntax",
+            "Eliminating durability requirements in every system",
+            "Replacing RDBMSs for every workload",
+            "Not Only SQL, complementing RDBMSs"
+          ],
+          "answer": 3,
+          "explanation": "The lecture emphasizes complementing RDBMSs rather than replacing them universally.",
+          "pages": [
+            5
+          ]
+        },
+        {
+          "id": "l27-principles-q2",
+          "prompt": "What does a flexible schema allow?",
+          "options": [
+            "Documents can have different sets of fields",
+            "Every document must lack fields and structure",
+            "Applications never need validation",
+            "Every document must have the same fields even when its data differs"
+          ],
+          "answer": 0,
+          "explanation": "Not requiring a fixed schema upfront does not mean applications can dispense with data validation.",
+          "pages": [
+            6
+          ]
+        },
+        {
+          "id": "l27-principles-q3",
+          "prompt": "What is horizontal scaling?",
+          "options": [
+            "Replacing one machine with a machine that has more RAM and CPU capacity",
+            "Adding machines to the system to share the load",
+            "Only increasing the number of indexes on one machine",
+            "Only increasing the buffer-pool size on the current machine"
+          ],
+          "answer": 1,
+          "explanation": "Scaling out adds machines; increasing the capacity of one machine is scaling up.",
+          "pages": [
+            6
+          ]
+        },
+        {
+          "id": "l27-principles-q4",
+          "prompt": "Why can simple data models and operations make distribution easier?",
+          "options": [
+            "They guarantee that every complex analytical query needs no coordination",
+            "Every simple operation automatically has strong consistency during a network partition",
+            "They reduce the complexity of coordinating operations",
+            "They allow all rules for handling concurrent writes to be discarded"
+          ],
+          "answer": 2,
+          "explanation": "Restricted operations are often easier to distribute and coordinate, but may reduce support for complex queries.",
+          "pages": [
+            6
+          ]
+        },
+        {
+          "id": "l27-principles-q5",
+          "prompt": "What broad NoSQL trade-off does the slide describe?",
+          "options": [
+            "Always providing stronger ACID guarantees at no cost",
+            "Supporting only scale-up and fixed schemas",
+            "Every NoSQL system forbids multi-operation transactions",
+            "Prioritizing scale and performance, potentially trading off consistency and complex analytics"
+          ],
+          "answer": 3,
+          "explanation": "This describes a general direction of trade-offs; it does not claim that every NoSQL product forbids ACID.",
+          "pages": [
+            5,
+            21
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l27-acid",
+      "title": "Recap: ACID in Relational DBMS",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+      "pages": [
+        8,
+        8
+      ],
+      "questions": [
+        {
+          "id": "l27-acid-q1",
+          "prompt": "A transaction contains two changes. After failure recovery completes, only one of its changes remains applied. Which property is violated?",
+          "options": [
+            "Atomicity",
+            "Durability, because all uncommitted changes must survive",
+            "Isolation, because atomicity concerns only replicas",
+            "CAP consistency, because every failure is a network partition"
+          ],
+          "answer": 0,
+          "explanation": "Atomicity requires all operations or none of them; durability concerns effects after commit.",
+          "pages": [
+            8
+          ]
+        },
+        {
+          "id": "l27-acid-q2",
+          "prompt": "A transaction commits but loses its effects after a failure. Which property is violated?",
+          "options": [
+            "Isolation, because the transaction ran alone",
+            "Durability",
+            "Atomicity, solely because the transaction had multiple operations",
+            "Availability, because all committed data must always be in RAM"
+          ],
+          "answer": 1,
+          "explanation": "Durability ensures that committed effects survive failures; isolation concerns concurrent execution.",
+          "pages": [
+            8
+          ]
+        },
+        {
+          "id": "l27-acid-q3",
+          "prompt": "What does isolation describe in the recap?",
+          "options": [
+            "Every transaction must run on a separate physical machine",
+            "Every replica must receive every write at exactly the same time",
+            "Transactions are protected from inappropriate effects of concurrent transactions",
+            "Data only needs to be valid before the transaction starts"
+          ],
+          "answer": 2,
+          "explanation": "Isolation is a transaction-execution guarantee; it neither requires separate machines nor means the same thing as CAP consistency.",
+          "pages": [
+            8
+          ]
+        },
+        {
+          "id": "l27-acid-q4",
+          "prompt": "What does consistency in ACID primarily mean?",
+          "options": [
+            "Every replica read sees the latest write in real time",
+            "Every request must complete during a network partition",
+            "Every table must have the same columns and data types",
+            "Correct transactions preserve the database's validity constraints"
+          ],
+          "answer": 3,
+          "explanation": "ACID's C concerns validity and constraints; CAP's C has the different meaning of linearizability.",
+          "pages": [
+            8,
+            9
+          ]
+        },
+        {
+          "id": "l27-acid-q5",
+          "prompt": "A transaction commits all its changes durably, but makes the number of seats sold exceed the stated capacity. Which property has not been ensured?",
+          "options": [
+            "Durability, because every commit must automatically preserve business constraints",
+            "ACID consistency, because a data invariant is violated",
+            "Atomicity, because durable commit always means only part of a transaction was applied",
+            "Isolation, because any invalid data proves that transactions ran concurrently"
+          ],
+          "answer": 1,
+          "explanation": "A transaction can be all-or-nothing and durable yet violate an invariant if its logic or constraint checks are wrong. Atomicity does not replace ACID consistency.",
+          "pages": [
+            8
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l27-cap",
+      "title": "CAP Theorem",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+      "pages": [
+        9,
+        10
+      ],
+      "questions": [
+        {
+          "id": "l27-cap-q1",
+          "prompt": "What limitation does CAP identify during a network partition?",
+          "options": [
+            "Consistency and availability are impossible together even when the network is working normally",
+            "Linearizable consistency and availability cannot both be guaranteed for every request",
+            "Durability must always be abandoned when there are multiple replicas",
+            "Enough replicas guarantee both consistency and availability under every partition"
+          ],
+          "answer": 1,
+          "explanation": "During a network partition, C and A must be traded off; the slide's triangle should not be read as a free choice among three independent features.",
+          "pages": [
+            9,
+            10
+          ]
+        },
+        {
+          "id": "l27-cap-q2",
+          "prompt": "How does CAP consistency differ from ACID consistency?",
+          "options": [
+            "Both concepts require only foreign-key constraints",
+            "CAP's C requires only a fixed schema on every node",
+            "CAP concerns a read/write history consistent with real-time order; ACID concerns data constraints",
+            "ACID's C means that every replica always responds with the same value"
+          ],
+          "answer": 2,
+          "explanation": "CAP's C is commonly formalized as linearizability; ACID's C means preserving invariants.",
+          "pages": [
+            9
+          ]
+        },
+        {
+          "id": "l27-cap-q3",
+          "prompt": "A write of x=2 completes at A. The network separates A from B, where x=1 remains. What trade-off does a subsequent read at B face?",
+          "options": [
+            "Returning x=1 preserves linearizability because B has not received the write",
+            "B is guaranteed to know x=2 without information from A",
+            "Adding replicas on both sides eliminates the trade-off in every case",
+            "Returning x=1 may preserve service but loses linearizable consistency"
+          ],
+          "answer": 3,
+          "explanation": "Preserving linearizable consistency may force B to reject the request or wait, sacrificing availability; returning the old value cannot preserve linearizability in this scenario.",
+          "pages": [
+            9,
+            10
+          ]
+        },
+        {
+          "id": "l27-cap-q4",
+          "prompt": "Does immediately returning an \"unavailable\" error to every request during a partition demonstrate CAP availability?",
+          "options": [
+            "No, valid operations must complete; arbitrary errors do not count as serving them",
+            "Yes, every error response counts as a successfully served operation",
+            "Yes, as long as the node still accepts TCP connections",
+            "Yes, CAP availability means only monthly uptime percentage"
+          ],
+          "answer": 0,
+          "explanation": "The slide oversimplifies A. The formal definition requires a valid response from a non-failing node; refusing service with an error is insufficient.",
+          "pages": [
+            9
+          ]
+        },
+        {
+          "id": "l27-cap-q5",
+          "prompt": "Which statement corrects a mechanical \"pick two\" reading of the CAP triangle?",
+          "options": [
+            "A CP system must reject requests even when the network has no failures",
+            "Without a network partition, a system can provide both consistency and availability",
+            "An AP system cannot provide any correct result",
+            "Partition tolerance means only splitting tables to increase capacity"
+          ],
+          "answer": 1,
+          "explanation": "A network partition is a communication break, not sharding; the CAP trade-off becomes decisive when that break occurs.",
+          "pages": [
+            9,
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l27-base",
+      "title": "NoSQL Paradigm: BASE",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+      "pages": [
+        11,
+        11
+      ],
+      "questions": [
+        {
+          "id": "l27-base-q1",
+          "prompt": "What does Basically Available emphasize?",
+          "options": [
+            "Every read always sees the latest write immediately",
+            "All replicas must synchronize before serving any request",
+            "Trying to continue serving requests despite failures, possibly returning data that is not yet up to date",
+            "Availability exists only when there are no failures"
+          ],
+          "answer": 2,
+          "explanation": "BASE favors continued service; it does not mean immediate strong consistency.",
+          "pages": [
+            11
+          ]
+        },
+        {
+          "id": "l27-base-q2",
+          "prompt": "What does Soft State most closely mean?",
+          "options": [
+            "All data must be deleted after every read",
+            "Replicas are always identical, so synchronization is unnecessary",
+            "State can change only when a client submits a new write",
+            "State may change as replicas synchronize even without a new client update"
+          ],
+          "answer": 3,
+          "explanation": "Internal synchronization can change a replica without a new user write.",
+          "pages": [
+            11
+          ]
+        },
+        {
+          "id": "l27-base-q3",
+          "prompt": "What does eventual consistency promise when no new updates occur and synchronization can make progress?",
+          "options": [
+            "Replicas eventually converge",
+            "Every read immediately after a write sees the latest value",
+            "Every transaction is automatically serializable",
+            "Replicas may remain different forever even without new writes and while synchronization progresses"
+          ],
+          "answer": 0,
+          "explanation": "Eventual convergence differs from immediate consistency; update propagation and reconciliation must be able to make progress.",
+          "pages": [
+            11
+          ]
+        },
+        {
+          "id": "l27-base-q4",
+          "prompt": "A read after a write returns an old value, while later reads return the new value. Does this necessarily violate eventual consistency?",
+          "options": [
+            "Yes, eventual consistency means immediate synchronization",
+            "No, the replica may not yet have converged at the first read",
+            "Yes, because BASE forbids every stale read",
+            "No, because eventual consistency does not require later convergence"
+          ],
+          "answer": 1,
+          "explanation": "Temporary stale reads can be acceptable, but permanent disagreement cannot be described as convergence.",
+          "pages": [
+            11
+          ]
+        },
+        {
+          "id": "l27-base-q5",
+          "prompt": "Does BASE mean \"no correctness requirements at all\"?",
+          "options": [
+            "Yes, every read may return an arbitrary value",
+            "Yes, any write may be lost even if durability was promised",
+            "No, service and convergence requirements still follow the system's model",
+            "Yes, applications need not consider the consistency level"
+          ],
+          "answer": 2,
+          "explanation": "Relaxing when consistency is achieved does not mean abandoning every guarantee; applications must understand the consistency level provided.",
+          "pages": [
+            11
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l27-taxonomy",
+      "title": "Taxonomy of NoSQL Systems",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+      "pages": [
+        12,
+        13
+      ],
+      "questions": [
+        {
+          "id": "l27-taxonomy-q1",
+          "prompt": "Which model treats values as opaque and usually accesses them by key?",
+          "options": [
+            "A key-value store",
+            "A document store with nested-field queries",
+            "A property graph optimized for edge traversal",
+            "A relational store that queries attributes using SQL"
+          ],
+          "answer": 0,
+          "explanation": "In the basic key-value model, the engine does not query a value's internal structure as a document store does.",
+          "pages": [
+            12
+          ]
+        },
+        {
+          "id": "l27-taxonomy-q2",
+          "prompt": "Which type best fits user profiles with flexible fields that must be filtered by field values?",
+          "options": [
+            "A basic opaque key-value store with only get/put/del",
+            "A document store",
+            "A graph store, solely because a document has many fields",
+            "A column-family store, solely because field names are column names"
+          ],
+          "answer": 1,
+          "explanation": "A document store understands structure and supports field queries; an opaque value does not automatically provide that capability.",
+          "pages": [
+            12
+          ]
+        },
+        {
+          "id": "l27-taxonomy-q3",
+          "prompt": "Which product–category pairing matches the slide?",
+          "options": [
+            "HBase — graph database",
+            "Neo4j — basic opaque key-value store",
+            "MongoDB — document store",
+            "Memcached — column-family store"
+          ],
+          "answer": 2,
+          "explanation": "The slide lists MongoDB under documents, HBase under column-family, Neo4j under graphs, and Memcached under key-value.",
+          "pages": [
+            12,
+            13
+          ]
+        },
+        {
+          "id": "l27-taxonomy-q4",
+          "prompt": "Which category is associated with caching and session storage?",
+          "options": [
+            "Graph stores, because every session is a path",
+            "Document stores, because every cache requires nested-field queries",
+            "Column-family stores, because sessions always require sparse tables with many columns",
+            "Key-value stores"
+          ],
+          "answer": 3,
+          "explanation": "Fast key-based lookups fit caches and sessions; graph traversal addresses a different kind of query.",
+          "pages": [
+            12
+          ]
+        },
+        {
+          "id": "l27-taxonomy-q5",
+          "prompt": "What is the key distinction between document stores and basic key-value stores in the slide?",
+          "options": [
+            "Document stores allow queries inside structured values",
+            "Documents never use keys to identify data",
+            "Basic key-value stores must support queries on every nested field",
+            "Documents require the same fixed schema as relational tables"
+          ],
+          "answer": 0,
+          "explanation": "Both can store objects, but a document engine understands the fields inside them.",
+          "pages": [
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l27-taxonomy-cont",
+      "title": "Taxonomy of NoSQL Systems (Cont.)",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+      "pages": [
+        13,
+        13
+      ],
+      "questions": [
+        {
+          "id": "l27-taxonomy-cont-q1",
+          "prompt": "Which type does the slide associate with wide, sparse tables and column families?",
+          "options": [
+            "Column-family stores",
+            "Property graphs with directed edges",
+            "Opaque key-value stores that read only whole values",
+            "Document stores, solely because documents can have optional fields"
+          ],
+          "answer": 0,
+          "explanation": "Cassandra and HBase are the slide's examples of wide-column or column-family systems.",
+          "pages": [
+            13
+          ]
+        },
+        {
+          "id": "l27-taxonomy-cont-q2",
+          "prompt": "Data linking people to friends of friends, with multi-step relationship queries, fits most naturally with which model?",
+          "options": [
+            "A basic opaque key-value store with no traversal operations",
+            "A graph database",
+            "A column-family store, solely because each person has many attributes",
+            "A document store, because every relationship automatically becomes an edge"
+          ],
+          "answer": 1,
+          "explanation": "Graphs represent nodes and edges and optimize traversal, making them suitable for highly connected data.",
+          "pages": [
+            13
+          ]
+        },
+        {
+          "id": "l27-taxonomy-cont-q3",
+          "prompt": "Are a column-family store and an analytical column-store automatically the same concept?",
+          "options": [
+            "Yes, all column-based storage systems share Cassandra's model and API",
+            "Yes, column-family is just another name for a columnar OLAP layout",
+            "No, one is a wide-column/column-family model; the other is a column-oriented storage organization",
+            "No, because column-family stores do not organize data into columns"
+          ],
+          "answer": 2,
+          "explanation": "The word \"column\" does not make the models and APIs identical; the slide classifies column-family systems within NoSQL.",
+          "pages": [
+            13
+          ]
+        },
+        {
+          "id": "l27-taxonomy-cont-q4",
+          "prompt": "Which type does the slide list for log processing and time-series data?",
+          "options": [
+            "Graph databases, because logs always require shortest paths",
+            "Basic key-value stores, because a time series has only one key",
+            "Document stores, because every time series requires a nested object",
+            "Column-family stores"
+          ],
+          "answer": 3,
+          "explanation": "The slide lists both use cases for column-family stores; choosing a particular product still depends on the workload.",
+          "pages": [
+            13
+          ]
+        },
+        {
+          "id": "l27-taxonomy-cont-q5",
+          "prompt": "Which combination of data and task best fits a graph database?",
+          "options": [
+            "Multi-party transaction relationships and finding suspicious link patterns for fraud detection",
+            "Retrieving only a session by a unique key",
+            "Incrementing only a counter unrelated to other objects",
+            "Reading only a whole blob without considering relationships"
+          ],
+          "answer": 0,
+          "explanation": "Fraud detection can exploit link structure and pattern matching; a simple lookup does not require a graph.",
+          "pages": [
+            13
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l27-key-value",
+      "title": "Key-Value Stores",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+      "pages": [
+        14,
+        14
+      ],
+      "questions": [
+        {
+          "id": "l27-key-value-q1",
+          "prompt": "Which basic operations does the lecture use for the key-value model?",
+          "options": [
+            "get(key), put(key,value), del(key)",
+            "JOIN, GROUP BY, and path queries as mandatory basic operations",
+            "Only full scans, with no key-based get operation",
+            "Only nested-field queries, with no put operation for values"
+          ],
+          "answer": 0,
+          "explanation": "This is a simple key-value model; specific products may extend it, but those extensions should not be confused with the basic model.",
+          "pages": [
+            14
+          ]
+        },
+        {
+          "id": "l27-key-value-q2",
+          "prompt": "What does an \"opaque\" value mean in this model?",
+          "options": [
+            "The value must be a simple integer",
+            "The basic engine provides no operation for querying the value's internal contents",
+            "The value cannot contain complex objects or lists",
+            "Clients cannot retrieve the value and can read only the key"
+          ],
+          "answer": 1,
+          "explanation": "A value can be complex but is treated as a single unit by the engine; clients can still retrieve it with get.",
+          "pages": [
+            14
+          ]
+        },
+        {
+          "id": "l27-key-value-q3",
+          "prompt": "With a server selected by h(k), what is the hash function used for?",
+          "options": [
+            "Sorting keys into a global order",
+            "Automatically querying every nested field in the value",
+            "Choosing where to store key k",
+            "Ensuring that every server has a complete copy of every key"
+          ],
+          "answer": 2,
+          "explanation": "h(k) is a partition mapping; it is not inherently a security function or an internal-content query.",
+          "pages": [
+            14
+          ]
+        },
+        {
+          "id": "l27-key-value-q4",
+          "prompt": "Storing key k at h1(k), h2(k), and h3(k) illustrates what?",
+          "options": [
+            "Vertical partitioning of the value's attributes",
+            "A hash join among three independent relations",
+            "Three different logical values that must use the same key",
+            "Multiway replication"
+          ],
+          "answer": 3,
+          "explanation": "These locations hold replicas of the same key; updates must be propagated among them.",
+          "pages": [
+            14
+          ]
+        },
+        {
+          "id": "l27-key-value-q5",
+          "prompt": "What might an application observe when it reads an unsynchronized replica immediately after put?",
+          "options": [
+            "The old value for the same key",
+            "It is guaranteed to see the latest write even though the replica has not received it",
+            "The read is guaranteed to block until every replica synchronizes",
+            "The key is guaranteed to be absent even though the replica still has an older version"
+          ],
+          "answer": 0,
+          "explanation": "This is a stale read that the application must handle according to the system's consistency model.",
+          "pages": [
+            14
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l27-documents",
+      "title": "Document Stores",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+      "pages": [
+        15,
+        15
+      ],
+      "questions": [
+        {
+          "id": "l27-documents-q1",
+          "prompt": "What is a document in a document store?",
+          "options": [
+            "Only a binary office file whose fields cannot be queried",
+            "Structured data that can represent complex objects",
+            "Only a text string without internal structure",
+            "Only a schema definition containing no actual data"
+          ],
+          "answer": 1,
+          "explanation": "A document is not limited to an office file; it is a structured data object.",
+          "pages": [
+            15
+          ]
+        },
+        {
+          "id": "l27-documents-q2",
+          "prompt": "What advantage does a document store have over storing a flight list as an opaque value?",
+          "options": [
+            "No document needs an identifier or key",
+            "Every field is automatically joined with every other document",
+            "Fields inside the data can be queried",
+            "Documents do not allow nested structures"
+          ],
+          "answer": 2,
+          "explanation": "A document store understands the structure and supports field queries, rather than only retrieving an entire blob by key.",
+          "pages": [
+            15
+          ]
+        },
+        {
+          "id": "l27-documents-q3",
+          "prompt": "What does db.users.find({age: {$gt: 25}}) select?",
+          "options": [
+            "Documents whose age equals 25",
+            "Documents whose age is greater than or equal to 25",
+            "Documents whose age is less than 25",
+            "Documents in users whose age is greater than 25"
+          ],
+          "answer": 3,
+          "explanation": "$gt means greater than and excludes the value 25.",
+          "pages": [
+            15
+          ]
+        },
+        {
+          "id": "l27-documents-q4",
+          "prompt": "Which formats does the slide identify for representing structured data?",
+          "options": [
+            "JSON, Protobuf, or XML",
+            "Only opaque binary blobs with no described structure",
+            "Only a scalar key with no value",
+            "Only flat tables with fixed SQL schemas"
+          ],
+          "answer": 0,
+          "explanation": "The slide shows several structured formats; documents are not synonymous with JSON alone.",
+          "pages": [
+            15
+          ]
+        },
+        {
+          "id": "l27-documents-q5",
+          "prompt": "A document has address.city nested inside address. What important capability does a document store provide?",
+          "options": [
+            "It always requires retrieving the whole collection and filtering at the client",
+            "Querying nested fields",
+            "Only document-key lookups, with no field queries",
+            "It requires splitting every nested field into a separate database"
+          ],
+          "answer": 1,
+          "explanation": "Nested-field queries are a reason to store structured values instead of opaque blobs.",
+          "pages": [
+            15
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l27-json",
+      "title": "JSON: Semi-Structured Data Model",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+      "pages": [
+        16,
+        17
+      ],
+      "questions": [
+        {
+          "id": "l27-json-q1",
+          "prompt": "What are the two core JSON structures in the slide?",
+          "options": [
+            "Tables and mandatory foreign keys",
+            "Rows and pages with a fixed physical layout",
+            "Objects and arrays",
+            "Nodes and edges with mandatory graph identifiers"
+          ],
+          "answer": 2,
+          "explanation": "JSON objects contain key-value pairs, while arrays are ordered lists.",
+          "pages": [
+            16
+          ]
+        },
+        {
+          "id": "l27-json-q2",
+          "prompt": "Which statement about a JSON array is correct?",
+          "options": [
+            "It is an unordered set of values",
+            "It can contain only scalars, not objects or arrays",
+            "Every element must follow the same predefined SQL-table schema",
+            "It is an ordered list of values"
+          ],
+          "answer": 3,
+          "explanation": "An array is ordered and can contain nested objects or arrays; the slide does not restrict it to a set of scalar values.",
+          "pages": [
+            16
+          ]
+        },
+        {
+          "id": "l27-json-q3",
+          "prompt": "What does self-describing JSON mean in the slide's comparison?",
+          "options": [
+            "Field names and structure accompany the data, supporting schema flexibility",
+            "Applications do not need agreed field meanings or validation",
+            "Every document automatically has an identical schema",
+            "JSON automatically provides ACID transactions"
+          ],
+          "answer": 0,
+          "explanation": "Describing its own structure does not remove the need for agreed meanings or validation.",
+          "pages": [
+            17
+          ]
+        },
+        {
+          "id": "l27-json-q4",
+          "prompt": "In the slide's comparison, how is JSON structure typically visualized?",
+          "options": [
+            "Only a flat table with fixed mandatory columns",
+            "A tree of nested objects and arrays",
+            "Only a set of scalars with no nesting",
+            "Only an arbitrary graph with direct edges like a property graph"
+          ],
+          "answer": 1,
+          "explanation": "The semi-structured model supports flexibility and nesting, unlike the illustrated flat relational table.",
+          "pages": [
+            16,
+            17
+          ]
+        },
+        {
+          "id": "l27-json-q5",
+          "prompt": "According to the lecture, which statement about JSON and relational database systems is correct?",
+          "options": [
+            "JSON can be stored only in NoSQL systems",
+            "JSON data cannot be queried using SQL",
+            "RDBMSs can support storing and querying JSON through SQL extensions",
+            "JSON itself forbids all join queries"
+          ],
+          "answer": 2,
+          "explanation": "The slide notes that RDBMSs support JSON; a data format does not uniquely determine the DBMS family.",
+          "pages": [
+            17,
+            21
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l27-graphs",
+      "title": "Graph Databases",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+      "pages": [
+        18,
+        18
+      ],
+      "questions": [
+        {
+          "id": "l27-graphs-q1",
+          "prompt": "What does a node in a property graph usually represent?",
+          "options": [
+            "A physical replica of the entire graph",
+            "A relationship between two entities",
+            "Only a scalar property with no entity",
+            "An entity such as a person or product"
+          ],
+          "answer": 3,
+          "explanation": "A node is an entity in the data domain; it does not necessarily mean a computer node in a distributed system.",
+          "pages": [
+            18
+          ]
+        },
+        {
+          "id": "l27-graphs-q2",
+          "prompt": "What does an edge usually represent?",
+          "options": [
+            "A relationship between entities",
+            "A scalar property of the database itself",
+            "A replica of the edge's source node",
+            "An independent set of fields with no relationship meaning"
+          ],
+          "answer": 0,
+          "explanation": "An edge describes a relationship such as friends_with or bought, allowing traversal along the link.",
+          "pages": [
+            18
+          ]
+        },
+        {
+          "id": "l27-graphs-q3",
+          "prompt": "According to the slide, where can properties be stored?",
+          "options": [
+            "Only on nodes, never on edges",
+            "On nodes and edges",
+            "Only on edges; nodes have no properties",
+            "Only on the database-wide schema, never on individual entities"
+          ],
+          "answer": 1,
+          "explanation": "Properties can describe both entities and relationships, such as the time of a transaction.",
+          "pages": [
+            18
+          ]
+        },
+        {
+          "id": "l27-graphs-q4",
+          "prompt": "What is the core strength of graph databases in the lecture?",
+          "options": [
+            "Always being optimal for every aggregate that scans all data",
+            "Only looking up opaque values by key without considering relationships",
+            "Traversal and pattern matching",
+            "Storing only flat properties without supporting patterns"
+          ],
+          "answer": 2,
+          "explanation": "Graph databases optimize paths and relationship patterns; the lecture does not claim they are best for every workload.",
+          "pages": [
+            18
+          ]
+        },
+        {
+          "id": "l27-graphs-q5",
+          "prompt": "Which example naturally illustrates nodes, an edge, and a property?",
+          "options": [
+            "Person A and product B are properties, while the purchase date is the only node",
+            "The purchase must be a node, and every entity must be an edge",
+            "The purchase date is a replica, while A and B are physical partitions",
+            "Person A —bought→ product B, with the purchase date on the edge"
+          ],
+          "answer": 3,
+          "explanation": "A/B are entities, bought is a relationship, and the purchase date is a property of that relationship.",
+          "pages": [
+            18
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l27-graph-languages",
+      "title": "Graph Query Languages",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+      "pages": [
+        19,
+        19
+      ],
+      "questions": [
+        {
+          "id": "l27-graph-languages-q1",
+          "prompt": "A \"friends of friends\" query usually belongs to which category?",
+          "options": [
+            "Pattern matching or relationship traversal",
+            "Only a single-key lookup without considering relationships",
+            "Only projection of fields from one document",
+            "Only GROUP BY on attributes without following edges"
+          ],
+          "answer": 0,
+          "explanation": "It follows relationships across multiple nodes; graph query languages express such patterns.",
+          "pages": [
+            19
+          ]
+        },
+        {
+          "id": "l27-graph-languages-q2",
+          "prompt": "A shortest-path query is an example of which category?",
+          "options": [
+            "Only an equality lookup on a key",
+            "A path query",
+            "Only projection of node attributes without considering edges",
+            "Only counting data replicas"
+          ],
+          "answer": 1,
+          "explanation": "Path queries examine routes, connectivity, or path lengths, rather than just looking up one key.",
+          "pages": [
+            19
+          ]
+        },
+        {
+          "id": "l27-graph-languages-q3",
+          "prompt": "In the pattern (p)-[:DRIVES]->(car), what does the arrow represent?",
+          "options": [
+            "An undirected relationship, because the arrow has no meaning",
+            "A comparison that p is greater than car in key order",
+            "A directed relationship from p to car",
+            "Assigning car as a copy of p"
+          ],
+          "answer": 2,
+          "explanation": "The notation represents a directed edge labeled DRIVES, not an algebraic comparison.",
+          "pages": [
+            19
+          ]
+        },
+        {
+          "id": "l27-graph-languages-q4",
+          "prompt": "Which system does the slide associate with Cypher?",
+          "options": [
+            "Cassandra",
+            "HBase",
+            "Memcached",
+            "Neo4j"
+          ],
+          "answer": 3,
+          "explanation": "The slide identifies Cypher as used by Neo4j; it does not make that association for the other products.",
+          "pages": [
+            19
+          ]
+        },
+        {
+          "id": "l27-graph-languages-q5",
+          "prompt": "Which language–context pairing matches the slide?",
+          "options": [
+            "SPARQL — RDF/semantic web",
+            "SPARQL — only opaque key-value lookups",
+            "SQL/PGQ — only physical partition management, with no graph queries",
+            "GQL — a JSON storage format rather than a query language"
+          ],
+          "answer": 0,
+          "explanation": "SPARQL is used for RDF; SQL/PGQ extends SQL with property-graph querying.",
+          "pages": [
+            19
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l27-ranking",
+      "title": "Ranking of DBMS Technologies 2026",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+      "pages": [
+        20,
+        20
+      ],
+      "questions": [
+        {
+          "id": "l27-ranking-q1",
+          "prompt": "Which signals primarily underpin the ranking shown in the slide?",
+          "options": [
+            "Only latency benchmarks on one standard workload",
+            "Mentions, searches, jobs, and online activity",
+            "Only transaction throughput on identical hardware",
+            "Only proofs of each system's consistency levels"
+          ],
+          "answer": 1,
+          "explanation": "The note identifies popularity signals; the ranking should not be read as a controlled performance comparison.",
+          "pages": [
+            20
+          ]
+        },
+        {
+          "id": "l27-ranking-q2",
+          "prompt": "In the slide's March 2026 snapshot, which system ranks first?",
+          "options": [
+            "MongoDB",
+            "Redis",
+            "Oracle",
+            "Apache Cassandra"
+          ],
+          "answer": 2,
+          "explanation": "This is a fact about the March 2026 snapshot, not a claim about the current ranking.",
+          "pages": [
+            20
+          ]
+        },
+        {
+          "id": "l27-ranking-q3",
+          "prompt": "Why does a high ranking not automatically prove that a DBMS fits a workload?",
+          "options": [
+            "A high ranking guarantees the lowest latency for every query",
+            "A low ranking proves that the system lacks transactions",
+            "Every workload has the same query and consistency requirements",
+            "Popularity does not directly measure every technical requirement of a workload"
+          ],
+          "answer": 3,
+          "explanation": "Queries, consistency, and scaling must be considered; popularity does not replace evaluating requirements.",
+          "pages": [
+            20,
+            21
+          ]
+        },
+        {
+          "id": "l27-ranking-q4",
+          "prompt": "In the slide's table, what main model labels are assigned to MongoDB?",
+          "options": [
+            "Document, Multi-model",
+            "Graph, Multi-model",
+            "Relational only",
+            "Key-value only"
+          ],
+          "answer": 0,
+          "explanation": "The snapshot says Document, Multi-model; a primary model label should not be interpreted as support for only one model.",
+          "pages": [
+            20
+          ]
+        },
+        {
+          "id": "l27-ranking-q5",
+          "prompt": "Can the table be used to conclude that every DBMS belongs to exactly one data model?",
+          "options": [
+            "Yes, a product can support only one model",
+            "No, many entries are labeled Multi-model",
+            "Yes, the ranking excludes every multi-model system",
+            "No, because the table does not classify data models at all"
+          ],
+          "answer": 1,
+          "explanation": "Multi-model labels show that categories can overlap; one product name does not imply one exclusive model.",
+          "pages": [
+            20
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l27-sql-nosql",
+      "title": "SQL vs NoSQL",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+      "pages": [
+        21,
+        21
+      ],
+      "questions": [
+        {
+          "id": "l27-sql-nosql-q1",
+          "prompt": "What should be considered first for a workload needing strong ACID guarantees, complex ad-hoc joins, and a stable schema?",
+          "options": [
+            "An opaque key-value store regardless of transaction and query capabilities",
+            "Only a non-durable cache because it has high throughput",
+            "RDBMS/SQL",
+            "A graph database regardless of whether the data needs traversal"
+          ],
+          "answer": 2,
+          "explanation": "The slide suggests SQL for this combination of requirements; the final choice still requires evaluating a specific system.",
+          "pages": [
+            21
+          ]
+        },
+        {
+          "id": "l27-sql-nosql-q2",
+          "prompt": "A catalog frequently changes its fields and needs scale-out and high write throughput. What should be considered?",
+          "options": [
+            "No SQL system can possibly store this data",
+            "Only a single-machine system with a permanently fixed schema",
+            "Always abandoning durability to obtain write throughput",
+            "A NoSQL system that fits the required data model and guarantees"
+          ],
+          "answer": 3,
+          "explanation": "The slide suggests NoSQL for schema flexibility and scale; it does not prove that SQL is entirely infeasible.",
+          "pages": [
+            21
+          ]
+        },
+        {
+          "id": "l27-sql-nosql-q3",
+          "prompt": "Which statement reflects the blurring boundary between SQL and NoSQL?",
+          "options": [
+            "RDBMSs support JSON, and some NoSQL systems support ACID transactions",
+            "Every SQL system has abandoned transactions to support JSON",
+            "Every NoSQL system forbids ACID transactions",
+            "JSON prevents SQL from querying fields"
+          ],
+          "answer": 0,
+          "explanation": "The slide notes PostgreSQL's JSON support and MongoDB's transactions; labels do not determine the complete feature set.",
+          "pages": [
+            21
+          ]
+        },
+        {
+          "id": "l27-sql-nosql-q4",
+          "prompt": "What capability does distributed SQL illustrate in the slide?",
+          "options": [
+            "Overcoming CAP to guarantee consistency and availability under every network partition",
+            "Combining scaling with strong consistency",
+            "Only scaling up one machine without supporting replicas",
+            "Scaling by abandoning all transactions"
+          ],
+          "answer": 1,
+          "explanation": "Distributed SQL broadens the available choices, but does not invalidate CAP's limits during a network partition.",
+          "pages": [
+            9,
+            21
+          ]
+        },
+        {
+          "id": "l27-sql-nosql-q5",
+          "prompt": "What principle for choosing a system concludes the lecture?",
+          "options": [
+            "Always choose the system at the top of the popularity ranking",
+            "Always choose NoSQL regardless of transaction requirements",
+            "Choose based on the workload and actual trade-offs",
+            "Always choose SQL regardless of queries and data model"
+          ],
+          "answer": 2,
+          "explanation": "The lecture concludes that tools should be chosen for the workload, not for hype or a technology label alone.",
+          "pages": [
+            21
+          ]
+        }
+      ]
+    }
+  ]
+}

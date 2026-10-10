@@ -1,0 +1,697 @@
+{
+  "lectureId": "lecture-17",
+  "topics": [
+    {
+      "id": "l17-cost-estimation",
+      "title": "Cost Estimation",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf",
+      "pages": [
+        2,
+        3
+      ],
+      "questions": [
+        {
+          "id": "l17-cost-estimation-q1",
+          "prompt": "Why does an optimizer need each plan node's output cardinality?",
+          "options": [
+            "Output cardinality always equals the operator's I/O count",
+            "It becomes an input-size estimate for costing parent operators",
+            "The root's output count alone determines every input size",
+            "Every parent preserves its child's row count"
+          ],
+          "answer": 1,
+          "explanation": "Downstream work depends on intermediate results. A small final output does not imply that all preceding steps are cheap.",
+          "pages": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "l17-cost-estimation-q2",
+          "prompt": "What does a System R-style cost model, I/O + CPU-factor×tuples, combine?",
+          "options": [
+            "Only directly measured wall-clock time",
+            "Only the number of index levels",
+            "Disk access and estimated tuple-processing work",
+            "Only the number of output pages"
+          ],
+          "answer": 2,
+          "explanation": "This is a weighted cost model, not an exact measurement of the eventual runtime.",
+          "pages": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "l17-cost-estimation-q3",
+          "prompt": "What can happen if a child's output is underestimated by a factor of 100?",
+          "options": [
+            "Only the final output estimate changes; plan decisions are unaffected",
+            "The parent is guaranteed to do less work because the estimate is small",
+            "Nothing changes as long as the logical semantics are correct",
+            "The parent may choose a poor join or memory strategy because its expected input is too small"
+          ],
+          "answer": 3,
+          "explanation": "Correct semantics do not guarantee accurate estimates. Cardinality errors propagate into parent costs and can change plan choices.",
+          "pages": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "l17-cost-estimation-q4",
+          "prompt": "Must two join plans with the same final cardinality have the same cost?",
+          "options": [
+            "No; their intermediate sizes and algorithms can differ",
+            "Yes; cost depends only on the final row count",
+            "Yes; the same join predicate guarantees equal intermediate costs",
+            "They can differ only if DISTINCT is required"
+          ],
+          "answer": 0,
+          "explanation": "The work performed before producing the final result can differ greatly. Final output size alone does not determine cost.",
+          "pages": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "l17-cost-estimation-q5",
+          "prompt": "Which pair of inputs matters when costing a physical operator?",
+          "options": [
+            "Only the logical operator name, without its implementation",
+            "Input-size estimates and a cost formula appropriate to the implementation",
+            "Only the final SELECT column names",
+            "Only the cardinality of the largest table"
+          ],
+          "answer": 1,
+          "explanation": "Hash, merge, and nested-loop implementations have different cost formulas. Each must be evaluated with the relevant input sizes.",
+          "pages": [
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l17-statistics-and-catalogs",
+      "title": "Statistics and Catalogs",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf",
+      "pages": [
+        4,
+        6
+      ],
+      "questions": [
+        {
+          "id": "l17-statistics-and-catalogs-q1",
+          "prompt": "What does NKeys(A) represent in this model?",
+          "options": [
+            "The number of bytes per A value",
+            "The number of pages in the index root",
+            "The number of distinct A values",
+            "The total number of rows, including duplicates"
+          ],
+          "answer": 2,
+          "explanation": "Distinct-value count differs from tuple count. Confusing them gives an incorrect equality-selectivity estimate.",
+          "pages": [
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "id": "l17-statistics-and-catalogs-q2",
+          "prompt": "A table has 10,000 tuples on 100 pages. Which statistic determines basic heap-scan I/O?",
+          "options": [
+            "NTuples=10,000 treated as page reads",
+            "NKeys of the output column",
+            "Index height, even though no index is used",
+            "NPages=100"
+          ],
+          "answer": 3,
+          "explanation": "A heap scan's I/O is measured in pages. It does not normally require a separate I/O for each tuple.",
+          "pages": [
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "id": "l17-statistics-and-catalogs-q3",
+          "prompt": "Why is refreshing statistics useful after a bulk load changes the distribution?",
+          "options": [
+            "Old estimates may no longer reflect the new cardinality or distribution",
+            "Refreshing automatically adds every needed index",
+            "Refreshing makes all values uniformly distributed",
+            "It repairs incorrect query semantics"
+          ],
+          "answer": 0,
+          "explanation": "Statistics support planning. Refreshing them does not make the data uniform or create indexes.",
+          "pages": [
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "id": "l17-statistics-and-catalogs-q4",
+          "prompt": "A selection produces 2,000 rows from 10,000 input rows. What is its selectivity?",
+          "options": [
+            "2,000",
+            "0.2",
+            "5",
+            "0.8"
+          ],
+          "answer": 1,
+          "explanation": "Selectivity=output/input=0.2. For a selection, this fraction lies between 0 and 1.",
+          "pages": [
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "id": "l17-statistics-and-catalogs-q5",
+          "prompt": "What does the phrase 'highly selective predicate' usually mean?",
+          "options": [
+            "Its numerical selectivity is close to 1",
+            "It uses an index even though it retains most rows",
+            "It retains a small fraction of rows",
+            "It contains many conjuncts, regardless of combined selectivity"
+          ],
+          "answer": 2,
+          "explanation": "The wording can be counterintuitive: a highly selective predicate usually has a small numerical selectivity s.",
+          "pages": [
+            4,
+            5,
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l17-selections-complex-predicates",
+      "title": "Selections - Complex Predicates",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf",
+      "pages": [
+        7,
+        9
+      ],
+      "questions": [
+        {
+          "id": "l17-selections-complex-predicates-q1",
+          "prompt": "A has 20 uniformly distributed distinct values, and c belongs to its domain. What is the estimate for sel(A=c)?",
+          "options": [
+            "0.2",
+            "0.95",
+            "20",
+            "0.05"
+          ],
+          "answer": 3,
+          "explanation": "1/20=0.05. The distinct-value count is the denominator, not the selectivity itself.",
+          "pages": [
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "id": "l17-selections-complex-predicates-q2",
+          "prompt": "Integer A is uniform from 10 through 29, inclusive. What is sel(A>24)?",
+          "options": [
+            "0.25",
+            "5/19",
+            "0.30",
+            "0.20"
+          ],
+          "answer": 0,
+          "explanation": "The 5 values 25..29 qualify out of 20 possible values. Including both endpoints adds 1 when counting the domain.",
+          "pages": [
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "id": "l17-selections-complex-predicates-q3",
+          "prompt": "P has selectivity 0.2 and Q has selectivity 0.3. They are independent and have no NULLs. What is the selectivity of P AND Q?",
+          "options": [
+            "0.1",
+            "0.06",
+            "0.5",
+            "0.44"
+          ],
+          "answer": 1,
+          "explanation": "For independent predicates, AND multiplies 0.2 × 0.3. The value 0.44 is the OR estimate; 0.5 ignores the overlap.",
+          "pages": [
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "id": "l17-selections-complex-predicates-q4",
+          "prompt": "P and Q have selectivities 0.2 and 0.3, are independent, and have no NULLs. What is the selectivity of P OR Q?",
+          "options": [
+            "0.5",
+            "0.94",
+            "0.44",
+            "0.06"
+          ],
+          "answer": 2,
+          "explanation": "OR = 0.2 + 0.3 − 0.2 × 0.3 = 0.44. The value 0.5 double-counts the overlap; 0.06 is AND under independence.",
+          "pages": [
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "id": "l17-selections-complex-predicates-q5",
+          "prompt": "P has selectivity 0.15 and has no NULLs. What is the selectivity of NOT P?",
+          "options": [
+            "0.15",
+            "1.15",
+            "0",
+            "0.85"
+          ],
+          "answer": 3,
+          "explanation": "The complement is 1−0.15. NULLs would require SQL's three-valued logic, which the question explicitly excludes.",
+          "pages": [
+            7,
+            8,
+            9
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l17-result-size-estimation-for-joins",
+      "title": "Result Size Estimation for Joins",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf",
+      "pages": [
+        10,
+        11
+      ],
+      "questions": [
+        {
+          "id": "l17-result-size-estimation-for-joins-q1",
+          "prompt": "S has 900 rows and a valid, non-null foreign key referencing R's unique key. How many rows does their inner join on that key produce?",
+          "options": [
+            "900",
+            "Always |R|×900",
+            "min(|R|,900)",
+            "Nothing can be inferred, even with the valid foreign key"
+          ],
+          "answer": 0,
+          "explanation": "Every S row has exactly one matching R row. Uniqueness and a valid non-null foreign key establish that result.",
+          "pages": [
+            10,
+            11
+          ]
+        },
+        {
+          "id": "l17-result-size-estimation-for-joins-q2",
+          "prompt": "With the same foreign key now nullable, 90 of S's 900 rows have NULL. All non-null references are valid. How many rows does the equality inner join return?",
+          "options": [
+            "0",
+            "810",
+            "900",
+            "90"
+          ],
+          "answer": 1,
+          "explanation": "NULL does not match using SQL equality. Each of the 810 non-null rows matches exactly one R row.",
+          "pages": [
+            10,
+            11
+          ]
+        },
+        {
+          "id": "l17-result-size-estimation-for-joins-q3",
+          "prompt": "Given |R|=600, |S|=900, V(R.a)=30, and V(S.a)=60, what is the equijoin-size estimate under uniformity and domain containment?",
+          "options": [
+            "540,000",
+            "1,500",
+            "9,000",
+            "18,000"
+          ],
+          "answer": 2,
+          "explanation": "600 × 900/max(30,60)=9,000. Using the smaller distinct-value count would double this estimate.",
+          "pages": [
+            10,
+            11
+          ]
+        },
+        {
+          "id": "l17-result-size-estimation-for-joins-q4",
+          "prompt": "Is dividing by max(VR,VS) exact for every data distribution?",
+          "options": [
+            "Yes, even when the domains are disjoint",
+            "Yes, as long as there are no NULLs",
+            "Yes, regardless of key skew",
+            "No; it relies on assumptions about uniformity and value overlap"
+          ],
+          "answer": 3,
+          "explanation": "Disjoint domains can give 0 matches, while skew can greatly change the result. The formula is an estimate based on assumptions.",
+          "pages": [
+            10,
+            11
+          ]
+        },
+        {
+          "id": "l17-result-size-estimation-for-joins-q5",
+          "prompt": "Why does viewing a join as a selection over R×S help estimate its result size?",
+          "options": [
+            "Start with candidate cardinality |R||S| and multiply by join selectivity",
+            "Every join must physically materialize R×S first",
+            "A join result cannot contain duplicates",
+            "Every join predicate has selectivity 1"
+          ],
+          "answer": 0,
+          "explanation": "This is a logical way to derive a cardinality estimate. It does not require physically materializing the Cartesian product.",
+          "pages": [
+            10,
+            11
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l17-missing-statistics-use-default-values",
+      "title": "Missing Statistics? Use Default Values",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf",
+      "pages": [
+        12,
+        14
+      ],
+      "questions": [
+        {
+          "id": "l17-missing-statistics-use-default-values-q1",
+          "prompt": "What kind of information is a default selectivity used when statistics are missing?",
+          "options": [
+            "A database constraint",
+            "A system fallback assumption",
+            "The actual measured frequency in that table",
+            "A guarantee from SQL semantics"
+          ],
+          "answer": 1,
+          "explanation": "A default supports planning when information is missing. It is not a measurement of the table's actual distribution.",
+          "pages": [
+            12,
+            13,
+            14
+          ]
+        },
+        {
+          "id": "l17-missing-statistics-use-default-values-q2",
+          "prompt": "Why should a default from PostgreSQL 13 not be treated as a universal constant across DBMSs and versions?",
+          "options": [
+            "SQL prohibits fallback estimates",
+            "Every version has identical source code",
+            "Defaults depend on implementation and version",
+            "Selectivity never uses numerical values"
+          ],
+          "answer": 2,
+          "explanation": "The slides illustrate a specific version. Its defaults are not a cross-system standard.",
+          "pages": [
+            12,
+            13,
+            14
+          ]
+        },
+        {
+          "id": "l17-missing-statistics-use-default-values-q3",
+          "prompt": "A has 5 distinct values, but one value occurs in 80% of rows. What does a uniform equality estimate predict?",
+          "options": [
+            "80% automatically, because the distinct count is sufficient",
+            "100% for every equality",
+            "0%, because skew makes estimation impossible",
+            "20%, which is wrong for the hot value occurring in 80% of rows"
+          ],
+          "answer": 3,
+          "explanation": "1/5=20% assumes uniformity. The distinct-value count alone does not identify which value is frequent.",
+          "pages": [
+            12,
+            13,
+            14
+          ]
+        },
+        {
+          "id": "l17-missing-statistics-use-default-values-q4",
+          "prompt": "What can reduce reliance on fallback estimates?",
+          "options": [
+            "Collect or refresh appropriate statistics",
+            "Add DISTINCT to force a lower estimate, even though it changes the query",
+            "Force every predicate's selectivity to 1",
+            "Use the same old default for every column regardless of distribution changes"
+          ],
+          "answer": 0,
+          "explanation": "Better statistics help the planner estimate the original query. Changing the query's meaning is not a valid way to repair an estimate.",
+          "pages": [
+            12,
+            13,
+            14
+          ]
+        },
+        {
+          "id": "l17-missing-statistics-use-default-values-q5",
+          "prompt": "A default estimate predicts very few rows, but the actual row count is high. What can result?",
+          "options": [
+            "The plan is guaranteed to return wrong answers",
+            "Many index probes or a join strategy that looked cheap may become expensive",
+            "The actual row count automatically falls to match the estimate",
+            "The equality predicate changes into a range"
+          ],
+          "answer": 1,
+          "explanation": "Cardinality errors usually affect performance. They do not themselves change the logical query or its correct result.",
+          "pages": [
+            12,
+            13,
+            14
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l17-equi-width-histograms",
+      "title": "Equi-Width Histograms",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf",
+      "pages": [
+        15,
+        20
+      ],
+      "questions": [
+        {
+          "id": "l17-equi-width-histograms-q1",
+          "prompt": "The integer domain 1..20 is divided into 4 equi-width buckets. What is each bucket's width?",
+          "options": [
+            "20",
+            "19/4",
+            "5",
+            "4"
+          ],
+          "answer": 2,
+          "explanation": "The inclusive domain contains 20 values, so the width is 20/4=5. Counting only 19 omits an endpoint.",
+          "pages": [
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ]
+        },
+        {
+          "id": "l17-equi-width-histograms-q2",
+          "prompt": "Bucket [6,10] contains 50 rows, uniformly distributed within the bucket. How many rows are estimated for A=8?",
+          "options": [
+            "50 rows",
+            "5 rows",
+            "25 rows",
+            "10 rows"
+          ],
+          "answer": 3,
+          "explanation": "50/5=10. The bucket total is shared among its values; it is not the frequency of every value.",
+          "pages": [
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ]
+        },
+        {
+          "id": "l17-equi-width-histograms-q3",
+          "prompt": "Buckets [1,5] and [6,10] contain 20 and 50 rows. Assuming uniformity within buckets, how many rows are estimated for A>8?",
+          "options": [
+            "20 rows",
+            "50 rows",
+            "30 rows",
+            "70 rows"
+          ],
+          "answer": 0,
+          "explanation": "Only 9 and 10 qualify: 2/5 × 50=20. The strict > condition excludes 8.",
+          "pages": [
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ]
+        },
+        {
+          "id": "l17-equi-width-histograms-q4",
+          "prompt": "Using the same two buckets and uniformity assumption, how many rows are estimated for A>=4?",
+          "options": [
+            "54 rows",
+            "58 rows",
+            "70 rows",
+            "50 rows"
+          ],
+          "answer": 1,
+          "explanation": "Values 4 and 5 contribute 2/5 × 20=8 rows. All 50 rows in bucket 6..10 qualify, giving 58 in total.",
+          "pages": [
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ]
+        },
+        {
+          "id": "l17-equi-width-histograms-q5",
+          "prompt": "What trade-off usually comes with adding histogram buckets?",
+          "options": [
+            "Metadata always decreases while resolution improves",
+            "The actual table cardinality changes",
+            "Better resolution requires more metadata",
+            "Any single bucket always describes the exact distribution"
+          ],
+          "answer": 2,
+          "explanation": "More buckets can reduce estimation error, but require more catalog space. They do not change the underlying data.",
+          "pages": [
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l17-equi-depth-histograms",
+      "title": "Equi-Depth Histograms",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf",
+      "pages": [
+        21,
+        26
+      ],
+      "questions": [
+        {
+          "id": "l17-equi-depth-histograms-q1",
+          "prompt": "Which quantity does an equi-depth histogram try to keep approximately equal across buckets?",
+          "options": [
+            "Domain width",
+            "The number of table pages used by each row",
+            "B+ tree height",
+            "The number of tuples in each bucket"
+          ],
+          "answer": 3,
+          "explanation": "Equi-width keeps interval width equal. Equi-depth instead aims for equal tuple counts, or depths.",
+          "pages": [
+            21,
+            22,
+            23,
+            24,
+            25,
+            26
+          ]
+        },
+        {
+          "id": "l17-equi-depth-histograms-q2",
+          "prompt": "A table has 120 rows divided into 4 ideal equi-depth buckets. What is each bucket's depth?",
+          "options": [
+            "30",
+            "4",
+            "120",
+            "480"
+          ],
+          "answer": 0,
+          "explanation": "120 / 4 = 30 rows per ideal bucket. The value 4 counts buckets, while 120 counts the whole table rather than one bucket.",
+          "pages": [
+            21,
+            22,
+            23,
+            24,
+            25,
+            26
+          ]
+        },
+        {
+          "id": "l17-equi-depth-histograms-q3",
+          "prompt": "An equi-depth bucket over integer values [11,13] contains 30 rows. Assuming uniformity within it, how many rows are estimated for equality to 12?",
+          "options": [
+            "15",
+            "10",
+            "30",
+            "3"
+          ],
+          "answer": 1,
+          "explanation": "There are three possible values, so 30/3=10. Other buckets may have different widths without changing this calculation.",
+          "pages": [
+            21,
+            22,
+            23,
+            24,
+            25,
+            26
+          ]
+        },
+        {
+          "id": "l17-equi-depth-histograms-q4",
+          "prompt": "Buckets [1,3] and [4,9] each contain 30 rows. Assuming uniformity within buckets, how many rows are estimated for A>6?",
+          "options": [
+            "45 rows",
+            "10 rows",
+            "15 rows",
+            "30 rows"
+          ],
+          "answer": 2,
+          "explanation": "Values 7,8,9 occupy 3/6 of the second bucket, giving 15 rows. Taking the entire bucket would overestimate the result.",
+          "pages": [
+            21,
+            22,
+            23,
+            24,
+            25,
+            26
+          ]
+        },
+        {
+          "id": "l17-equi-depth-histograms-q5",
+          "prompt": "Why does equi-depth adapt to dense regions of the data?",
+          "options": [
+            "It uses equal-width intervals regardless of frequency",
+            "It removes hot values to make every bucket look uniform",
+            "It guarantees accurate correlations between all columns",
+            "It uses narrower intervals to keep each bucket's row count approximately equal"
+          ],
+          "answer": 3,
+          "explanation": "Resolution is concentrated where more rows occur. A single-column histogram still cannot describe every correlation between columns.",
+          "pages": [
+            21,
+            22,
+            23,
+            24,
+            25,
+            26
+          ]
+        }
+      ]
+    }
+  ]
+}

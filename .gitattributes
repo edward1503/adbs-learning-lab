@@ -1,0 +1,6 @@
+* text=auto eol=lf
+*.wasm binary
+*.ttf binary
+*.png binary
+# Preserve the upstream font notice verbatim, including its line-end space.
+vendor/noto-serif-LICENSE.txt whitespace=-blank-at-eol

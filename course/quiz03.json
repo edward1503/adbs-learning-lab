@@ -1,0 +1,954 @@
+{
+  "lectureId": "lecture-03",
+  "topics": [
+    {
+      "id": "l03-topic-algebra",
+      "title": "RELATIONAL ALGEBRA AND SETS",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+      "pages": [
+        2,
+        7
+      ],
+      "questions": [
+        {
+          "id": "l03-algebra-q1",
+          "prompt": "What does closure mean in relational algebra?",
+          "options": [
+            "The output is always a number",
+            "Every query has only one operator",
+            "Every operator preserves the schema",
+            "The output is a relation that another operator can use"
+          ],
+          "answer": 3,
+          "explanation": "Returning relations enables composition. An operator such as projection can still change the schema.",
+          "pages": [
+            6
+          ]
+        },
+        {
+          "id": "l03-algebra-q2",
+          "prompt": "What is an important difference between pure RA and default SQL?",
+          "options": [
+            "RA uses sets; SQL normally uses bags",
+            "RA uses only strings; SQL uses only integers",
+            "RA requires sorting; SQL forbids it",
+            "RA has no joins"
+          ],
+          "answer": 0,
+          "explanation": "The difference concerns multiplicity, not numeric types or the existence of joins.",
+          "pages": [
+            7
+          ]
+        },
+        {
+          "id": "l03-algebra-q3",
+          "prompt": "How does a physical plan differ from a logical plan?",
+          "options": [
+            "A logical plan gives only the final result and contains no operators",
+            "A physical plan chooses specific execution algorithms",
+            "A physical plan may change query semantics to run faster",
+            "A logical plan already fixes every individual I/O"
+          ],
+          "answer": 1,
+          "explanation": "A logical operator describes a transformation. A physical operator chooses how to perform it while preserving its semantics.",
+          "pages": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "l03-algebra-q4",
+          "prompt": "Why can RA schema validity be checked before execution?",
+          "options": [
+            "The output schema is known only after every value has been examined",
+            "Operators always preserve the schema, so no check is needed",
+            "An operator’s input schemas determine its output schema",
+            "All relations must have the same schema"
+          ],
+          "answer": 2,
+          "explanation": "The typed structure supports static checks. It does not imply that all relations are schema-compatible.",
+          "pages": [
+            6
+          ]
+        },
+        {
+          "id": "l03-algebra-q5",
+          "prompt": "What is the main purpose of connecting calculus and algebra in this lecture?",
+          "options": [
+            "To prove that equivalent plans always have the same runtime",
+            "To guarantee that every query runs without I/O",
+            "To guarantee that every query needs only one operator",
+            "To connect declarative descriptions with operational transformations"
+          ],
+          "answer": 3,
+          "explanation": "Their connection in expressive power supports query compilation. It does not guarantee constant execution time.",
+          "pages": [
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l03-topic-selection",
+      "title": "SELECTION",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+      "pages": [
+        8,
+        8
+      ],
+      "questions": [
+        {
+          "id": "l03-selection-q1",
+          "prompt": "For R(x)={1,3,5}, what is σ x>2(R)?",
+          "options": [
+            "{3,5}",
+            "{1}",
+            "{1,3,5}",
+            "{2}"
+          ],
+          "answer": 0,
+          "explanation": "Selection retains tuples satisfying the predicate. It does not create the boundary value 2.",
+          "pages": [
+            8
+          ]
+        },
+        {
+          "id": "l03-selection-q2",
+          "prompt": "What does selection primarily affect?",
+          "options": [
+            "Multiplicity is multiplied by the number of conditions",
+            "Which rows are retained",
+            "Which columns are retained",
+            "Attribute names in the schema"
+          ],
+          "answer": 1,
+          "explanation": "Selection filters tuples while retaining the input schema. Projection selects columns.",
+          "pages": [
+            8
+          ]
+        },
+        {
+          "id": "l03-selection-q3",
+          "prompt": "For R(x,y)={(1,8),(3,4),(3,9)}, which rows satisfy x=3 AND y>5?",
+          "options": [
+            "{(1,8),(3,9)}",
+            "{(1,8)}",
+            "{(3,9)}",
+            "{(3,4),(3,9)}"
+          ],
+          "answer": 2,
+          "explanation": "AND requires both conditions to hold. Satisfying x=3 alone is insufficient.",
+          "pages": [
+            8
+          ]
+        },
+        {
+          "id": "l03-selection-q4",
+          "prompt": "For the same R, which rows satisfy x=1 OR y=4?",
+          "options": [
+            "{(1,8)}",
+            "{(3,4)}",
+            "No tuples",
+            "{(1,8),(3,4)}"
+          ],
+          "answer": 3,
+          "explanation": "OR requires at least one condition to be true, not both simultaneously.",
+          "pages": [
+            8
+          ]
+        },
+        {
+          "id": "l03-selection-q5",
+          "prompt": "Can selection increase the number of tuples in a set relation?",
+          "options": [
+            "No",
+            "Yes, if its predicate contains OR",
+            "Yes, if there are two conditions",
+            "Yes, if all columns are retained"
+          ],
+          "answer": 0,
+          "explanation": "Each input tuple is either retained once or discarded. OR does not multiply tuples.",
+          "pages": [
+            8
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l03-topic-projection",
+      "title": "PROJECTION",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+      "pages": [
+        9,
+        9
+      ],
+      "questions": [
+        {
+          "id": "l03-projection-q1",
+          "prompt": "For R(a,b)={(1,2),(1,3),(4,5)}, what is π a(R) in set RA?",
+          "options": [
+            "{(1,2),(4,5)}",
+            "{1,4}",
+            "{1,1,4}",
+            "{2,3,5}"
+          ],
+          "answer": 1,
+          "explanation": "Projection retains a, and set semantics eliminate duplicate tuples. SQL without DISTINCT can retain both occurrences of 1.",
+          "pages": [
+            9
+          ]
+        },
+        {
+          "id": "l03-projection-q2",
+          "prompt": "Must projection reduce the tuple count?",
+          "options": [
+            "Yes; exactly one row always remains",
+            "No; it always preserves duplicates like a bag",
+            "No; the projected values may remain distinct",
+            "Yes; at least one row must disappear"
+          ],
+          "answer": 2,
+          "explanation": "Projection can reduce or preserve cardinality. It need not make any two rows identical.",
+          "pages": [
+            9
+          ]
+        },
+        {
+          "id": "l03-projection-q3",
+          "prompt": "How many columns are in the output schema of π a,c applied to R(a,b,c)?",
+          "options": [
+            "3",
+            "1",
+            "The number of rows in R",
+            "2"
+          ],
+          "answer": 3,
+          "explanation": "The projection list contains two attributes. Input row count does not determine schema width.",
+          "pages": [
+            9
+          ]
+        },
+        {
+          "id": "l03-projection-q4",
+          "prompt": "When can SELECT a FROM R and π a(R) have different cardinalities?",
+          "options": [
+            "When several R tuples have the same a value",
+            "Only when R is empty",
+            "Only when a is negative",
+            "Never"
+          ],
+          "answer": 0,
+          "explanation": "SQL bag projection does not automatically eliminate duplicates; set projection does.",
+          "pages": [
+            9
+          ]
+        },
+        {
+          "id": "l03-projection-q5",
+          "prompt": "Why is duplicate elimination not considered free in a database system?",
+          "options": [
+            "Schema metadata always identifies every duplicate exactly",
+            "It takes work to identify and remove duplicate result tuples",
+            "SQL projection already eliminates all duplicates automatically",
+            "Dropping a column is sufficient to eliminate duplicates"
+          ],
+          "answer": 1,
+          "explanation": "Deduplication requires processing. This does not mean that the source data must be modified or deleted.",
+          "pages": [
+            9
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l03-topic-union",
+      "title": "UNION",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+      "pages": [
+        10,
+        10
+      ],
+      "questions": [
+        {
+          "id": "l03-union-q1",
+          "prompt": "For A={1,2} and B={2,3}, what is A∪B?",
+          "options": [
+            "{2}",
+            "{1,3}",
+            "{1,2,3}",
+            "{1,2,2,3}"
+          ],
+          "answer": 2,
+          "explanation": "Set union retains every value that appears, but does not retain a duplicate 2.",
+          "pages": [
+            10
+          ]
+        },
+        {
+          "id": "l03-union-q2",
+          "prompt": "What basic requirement must hold to union two relations?",
+          "options": [
+            "They must contain the same number of tuples",
+            "They must have no values in common",
+            "They must have identical indexes",
+            "They must have the same number of fields with compatible corresponding types"
+          ],
+          "answer": 3,
+          "explanation": "Schema compatibility concerns columns and types, not cardinality or indexes.",
+          "pages": [
+            10
+          ]
+        },
+        {
+          "id": "l03-union-q3",
+          "prompt": "For bags A=[1,2] and B=[2,3], how many rows does SQL UNION ALL return?",
+          "options": [
+            "4",
+            "3",
+            "2",
+            "1"
+          ],
+          "answer": 0,
+          "explanation": "UNION ALL preserves both inputs’ multiplicities. UNION performs duplicate elimination.",
+          "pages": [
+            10
+          ]
+        },
+        {
+          "id": "l03-union-q4",
+          "prompt": "Can A(a:int,b:text) and B(x:int) be unioned directly under the lecture’s rules?",
+          "options": [
+            "Yes, if x is renamed a",
+            "No; they have different numbers of fields",
+            "Yes, because their first fields are both int",
+            "Yes, if B has fewer rows"
+          ],
+          "answer": 1,
+          "explanation": "Renaming does not supply the missing field. Union requires equal schema width.",
+          "pages": [
+            10
+          ]
+        },
+        {
+          "id": "l03-union-q5",
+          "prompt": "How does set A∪A compare with A?",
+          "options": [
+            "It is always empty",
+            "It contains only one arbitrary tuple",
+            "It equals A",
+            "It has twice as many tuples"
+          ],
+          "answer": 2,
+          "explanation": "Set union is idempotent. Bag concatenation or UNION ALL would double multiplicities.",
+          "pages": [
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l03-topic-difference",
+      "title": "SET DIFFERENCE",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+      "pages": [
+        11,
+        11
+      ],
+      "questions": [
+        {
+          "id": "l03-difference-q1",
+          "prompt": "For A={1,2,4} and B={2,3}, what is A−B?",
+          "options": [
+            "{3}",
+            "{2}",
+            "{1,2,3,4}",
+            "{1,4}"
+          ],
+          "answer": 3,
+          "explanation": "Keep tuples in A that are not in B. The set {3} is B−A instead.",
+          "pages": [
+            11
+          ]
+        },
+        {
+          "id": "l03-difference-q2",
+          "prompt": "Is set difference commutative?",
+          "options": [
+            "No; A−B generally differs from B−A",
+            "Yes, like union",
+            "Yes, when values are integers",
+            "Yes, when the sets have equal size"
+          ],
+          "answer": 0,
+          "explanation": "The direction determines which input supplies retained tuples. Equal types or sizes do not make difference symmetric.",
+          "pages": [
+            11
+          ]
+        },
+        {
+          "id": "l03-difference-q3",
+          "prompt": "What is the result of A−A?",
+          "options": [
+            "An undefined schema",
+            "An empty relation with the same schema",
+            "A",
+            "One NULL tuple"
+          ],
+          "answer": 1,
+          "explanation": "Every A tuple is also in the subtracted set. No tuples remain, but the schema is still defined.",
+          "pages": [
+            11
+          ]
+        },
+        {
+          "id": "l03-difference-q4",
+          "prompt": "Which SQL operator does the deck associate with set difference?",
+          "options": [
+            "GROUP BY",
+            "INNER JOIN",
+            "EXCEPT",
+            "ORDER BY"
+          ],
+          "answer": 2,
+          "explanation": "EXCEPT expresses set difference. An inner join finds matching pairs rather than subtracting tuples.",
+          "pages": [
+            11
+          ]
+        },
+        {
+          "id": "l03-difference-q5",
+          "prompt": "For A={(1,a),(1,b)} and B={(1,a)}, what remains in A−B?",
+          "options": [
+            "No tuples",
+            "{(1,a)}",
+            "{(1,a),(1,b)}",
+            "{(1,b)}"
+          ],
+          "answer": 3,
+          "explanation": "Set comparison uses the whole tuple. Sharing the first field 1 does not remove every such tuple.",
+          "pages": [
+            11
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l03-topic-product",
+      "title": "CROSS PRODUCT",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+      "pages": [
+        12,
+        12
+      ],
+      "questions": [
+        {
+          "id": "l03-product-q1",
+          "prompt": "R has 4 tuples and S has 3. How many tuples are in R×S?",
+          "options": [
+            "12",
+            "7",
+            "4",
+            "3"
+          ],
+          "answer": 0,
+          "explanation": "Every R tuple combines with every S tuple, giving 4×3 rather than their sum.",
+          "pages": [
+            12
+          ]
+        },
+        {
+          "id": "l03-product-q2",
+          "prompt": "R has 5 tuples and S is empty. How many tuples are in their product?",
+          "options": [
+            "Undefined",
+            "0",
+            "5",
+            "1"
+          ],
+          "answer": 1,
+          "explanation": "No pairs exist when one input is empty: 5×0=0.",
+          "pages": [
+            12
+          ]
+        },
+        {
+          "id": "l03-product-q3",
+          "prompt": "R has 2 columns and S has 3. How many fields does their product contain before projection?",
+          "options": [
+            "3",
+            "2",
+            "5",
+            "6"
+          ],
+          "answer": 2,
+          "explanation": "The product combines both tuples’ fields, so column counts are added. Row-pair counts are multiplied.",
+          "pages": [
+            12
+          ]
+        },
+        {
+          "id": "l03-product-q4",
+          "prompt": "Does a product require union-compatible input schemas?",
+          "options": [
+            "Yes, just as union does",
+            "Yes; the inputs need equal tuple counts",
+            "Yes; at least one field name must be shared",
+            "No"
+          ],
+          "answer": 3,
+          "explanation": "A product can combine tuples with different schemas. Union compatibility is required for set operations such as union.",
+          "pages": [
+            12
+          ]
+        },
+        {
+          "id": "l03-product-q5",
+          "prompt": "For R(a)={1,2} and S(b)={x,y}, which tuples belong to their product?",
+          "options": [
+            "All of (1,x),(1,y),(2,x),(2,y)",
+            "Only (1,x),(2,y)",
+            "Only (1,y),(2,x)",
+            "Only (1,x)"
+          ],
+          "answer": 0,
+          "explanation": "A product creates every pair. It does not pair rows by matching positions.",
+          "pages": [
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l03-topic-rename",
+      "title": "RENAMING",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+      "pages": [
+        13,
+        13
+      ],
+      "questions": [
+        {
+          "id": "l03-rename-q1",
+          "prompt": "What does the rename operator change directly?",
+          "options": [
+            "The multiplicity of identical tuples",
+            "A relation name or attribute names",
+            "The value of the renamed field",
+            "The tuples retained by a predicate"
+          ],
+          "answer": 1,
+          "explanation": "Rename changes names. It neither changes data values nor filters rows.",
+          "pages": [
+            13
+          ]
+        },
+        {
+          "id": "l03-rename-q2",
+          "prompt": "Why are aliases useful when self-joining two copies of Employee?",
+          "options": [
+            "They automatically turn the self-join into a union",
+            "They ensure the two copies contain different data",
+            "They distinguish fields belonging to two different roles",
+            "They automatically remove pairs with identical ids"
+          ],
+          "answer": 2,
+          "explanation": "Two copies with the same schema need unambiguous references. Aliasing is neither deduplication nor indexing.",
+          "pages": [
+            13
+          ]
+        },
+        {
+          "id": "l03-rename-q3",
+          "prompt": "R(a,b)={(1,2)} is renamed so that a becomes x. What is the output?",
+          "options": [
+            "Schema (a,b), tuple (x,2)",
+            "Schema (x), tuple (1)",
+            "An empty relation",
+            "Schema (x,b), tuple (1,2)"
+          ],
+          "answer": 3,
+          "explanation": "Renaming an attribute preserves its values and the other columns. It does not turn the name into a data value.",
+          "pages": [
+            13
+          ]
+        },
+        {
+          "id": "l03-rename-q4",
+          "prompt": "R×S contains two fields named id. Which approach expresses them unambiguously?",
+          "options": [
+            "Rename them r_id and s_id",
+            "Immediately discard an arbitrary one",
+            "Automatically add the two ids together",
+            "Discard every tuple with nonmatching names"
+          ],
+          "answer": 0,
+          "explanation": "Rename removes ambiguity while retaining information. Projection or addition would be different transformations.",
+          "pages": [
+            12,
+            13
+          ]
+        },
+        {
+          "id": "l03-rename-q5",
+          "prompt": "Does renaming a set relation change its cardinality?",
+          "options": [
+            "Yes; renaming is equivalent to a self-product",
+            "No",
+            "Yes; it removes every tuple duplicated under the new name",
+            "Yes; every new name creates another tuple"
+          ],
+          "answer": 1,
+          "explanation": "Rename changes only schema or relation labels. Name length does not determine the tuple count.",
+          "pages": [
+            13
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l03-topic-intersection",
+      "title": "COMPOUND OPERATOR: INTERSECTION",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+      "pages": [
+        14,
+        14
+      ],
+      "questions": [
+        {
+          "id": "l03-intersection-q1",
+          "prompt": "For A={2,4,6} and B={1,4,6}, what is A∩B?",
+          "options": [
+            "{2}",
+            "{1}",
+            "{4,6}",
+            "{1,2,4,6}"
+          ],
+          "answer": 2,
+          "explanation": "Intersection retains shared tuples. Union retains every value appearing in either input.",
+          "pages": [
+            14
+          ]
+        },
+        {
+          "id": "l03-intersection-q2",
+          "prompt": "Which expression equals A∩B in set RA?",
+          "options": [
+            "A−B",
+            "A∪B",
+            "A×B",
+            "A−(A−B)"
+          ],
+          "answer": 3,
+          "explanation": "Removing from A everything that is not in B leaves their shared elements.",
+          "pages": [
+            14
+          ]
+        },
+        {
+          "id": "l03-intersection-q3",
+          "prompt": "If A∩B is empty, which statement is true?",
+          "options": [
+            "The relations have no identical tuples in common",
+            "At least one relation must be empty",
+            "The relations must have different column counts",
+            "A and B must have different types"
+          ],
+          "answer": 0,
+          "explanation": "Two nonempty sets can be disjoint. Their schemas must still satisfy compatibility requirements.",
+          "pages": [
+            14
+          ]
+        },
+        {
+          "id": "l03-intersection-q4",
+          "prompt": "Does intersection require schema compatibility, as union does?",
+          "options": [
+            "Only one shared column name is required",
+            "Yes",
+            "No; intersection examines only the first field",
+            "Only equal tuple counts are required, not compatible types"
+          ],
+          "answer": 1,
+          "explanation": "Corresponding tuple positions and types must be comparable. Row counts do not remove that requirement.",
+          "pages": [
+            14
+          ]
+        },
+        {
+          "id": "l03-intersection-q5",
+          "prompt": "What is A∩A?",
+          "options": [
+            "A×A",
+            "An arbitrary tuple from A",
+            "A",
+            "The empty set"
+          ],
+          "answer": 2,
+          "explanation": "Every tuple in A belongs to both inputs. Intersection does not select just one arbitrary tuple.",
+          "pages": [
+            14
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l03-topic-theta",
+      "title": "COMPOUND OPERATOR: JOIN / THETA JOIN",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+      "pages": [
+        15,
+        17
+      ],
+      "questions": [
+        {
+          "id": "l03-theta-q1",
+          "prompt": "Which expression is equivalent to a theta join?",
+          "options": [
+            "πθ(R∪S)",
+            "R−S",
+            "σθ(R∩S) for every schema",
+            "σθ(R×S)"
+          ],
+          "answer": 3,
+          "explanation": "Semantically, a theta join is a product followed by selection. The product need not be materialised physically.",
+          "pages": [
+            15
+          ]
+        },
+        {
+          "id": "l03-theta-q2",
+          "prompt": "Which kind of theta join is an equijoin?",
+          "options": [
+            "Its predicate is a conjunction of equalities",
+            "Its predicate can be any greater-than or less-than comparison",
+            "It necessarily joins all shared names and removes repeated columns",
+            "It must join only one primary key"
+          ],
+          "answer": 0,
+          "explanation": "An equijoin uses equality conditions. Removing shared columns characterises a natural join, not every equijoin.",
+          "pages": [
+            15
+          ]
+        },
+        {
+          "id": "l03-theta-q3",
+          "prompt": "For R(x)={1,3} and S(y)={2,4}, how many pairs satisfy theta condition x<y?",
+          "options": [
+            "1",
+            "3",
+            "2",
+            "4"
+          ],
+          "answer": 1,
+          "explanation": "The qualifying pairs are (1,2),(1,4),(3,4). The pair (3,2) fails.",
+          "pages": [
+            17
+          ]
+        },
+        {
+          "id": "l03-theta-q4",
+          "prompt": "What schema does a theta join have before projection?",
+          "options": [
+            "Always R’s schema",
+            "Always one Boolean column",
+            "The fields from both inputs, as in a product",
+            "Only the shared key columns"
+          ],
+          "answer": 2,
+          "explanation": "Selection over a product preserves the product schema. The predicate does not replace the output with one Boolean column.",
+          "pages": [
+            16,
+            17
+          ]
+        },
+        {
+          "id": "l03-theta-q5",
+          "prompt": "A self-join on ages={20,25,30} uses age_left<age_right. How many pairs result?",
+          "options": [
+            "6",
+            "9",
+            "0",
+            "3"
+          ],
+          "answer": 3,
+          "explanation": "The increasing pairs are (20,25),(20,30),(25,30). Reversed and equal-age pairs are excluded.",
+          "pages": [
+            17
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l03-topic-natural",
+      "title": "NATURAL JOIN",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+      "pages": [
+        18,
+        18
+      ],
+      "questions": [
+        {
+          "id": "l03-natural-q1",
+          "prompt": "What does a natural join remove compared with an equijoin on every shared name?",
+          "options": [
+            "One copy of each shared field",
+            "Every row with a repeated primary key",
+            "Every nonshared column",
+            "Every tuple containing a string"
+          ],
+          "answer": 0,
+          "explanation": "A natural join retains one column for each shared name. It does not remove the input-specific columns.",
+          "pages": [
+            18
+          ]
+        },
+        {
+          "id": "l03-natural-q2",
+          "prompt": "For R(a,b)={(1,7)} and S(b,c)={(7,x),(8,y)}, what does their natural join return?",
+          "options": [
+            "The empty set",
+            "{(1,7,x)}",
+            "{(1,7,x),(1,7,y)}",
+            "{(7,x)}"
+          ],
+          "answer": 1,
+          "explanation": "Only b=7 matches. The output contains a,b,c with one copy of b.",
+          "pages": [
+            18
+          ]
+        },
+        {
+          "id": "l03-natural-q3",
+          "prompt": "What is the output schema of the natural join of R(a,b) and S(b,c)?",
+          "options": [
+            "Only b",
+            "a,c",
+            "a,b,c",
+            "a,b,b,c"
+          ],
+          "answer": 2,
+          "explanation": "The shared name b appears once. Removing b entirely would also be incorrect.",
+          "pages": [
+            18
+          ]
+        },
+        {
+          "id": "l03-natural-q4",
+          "prompt": "If both relations share the names id and status, what does a natural join require?",
+          "options": [
+            "Only equal id values",
+            "Equal id values OR equal status values",
+            "Only compatible status types",
+            "Equal id values AND equal status values"
+          ],
+          "answer": 3,
+          "explanation": "Every shared field name participates in an equality condition, and those conditions are combined with AND.",
+          "pages": [
+            18
+          ]
+        },
+        {
+          "id": "l03-natural-q5",
+          "prompt": "R(a)={1,2} and S(b)={x,y} share no column names. What is the semantics of their natural join?",
+          "options": [
+            "A product containing four tuples",
+            "An empty relation",
+            "A union containing four values",
+            "Only two position-matched tuples"
+          ],
+          "answer": 0,
+          "explanation": "With no shared-name equalities to filter by, every pair satisfies the empty conjunction. This is a product, not a union.",
+          "pages": [
+            18
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l03-topic-extra",
+      "title": "EXTRA OPERATORS",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+      "pages": [
+        19,
+        19
+      ],
+      "questions": [
+        {
+          "id": "l03-extra-q1",
+          "prompt": "What does γ denote among the additional operators?",
+          "options": [
+            "Cartesian product",
+            "Grouping and aggregation",
+            "Tuple-by-tuple predicate selection",
+            "Attribute renaming"
+          ],
+          "answer": 1,
+          "explanation": "The operator γ expresses group-based computation. Product and rename have separate operators.",
+          "pages": [
+            19
+          ]
+        },
+        {
+          "id": "l03-extra-q2",
+          "prompt": "Under which semantics is a separate duplicate-elimination operator δ most clearly needed?",
+          "options": [
+            "Only when a relation has exactly one tuple",
+            "Only when every column is unique",
+            "Bag semantics",
+            "Set semantics, which already exclude duplicates"
+          ],
+          "answer": 2,
+          "explanation": "Bags contain multiplicities that can be removed. Sets already contain no duplicate tuples.",
+          "pages": [
+            19
+          ]
+        },
+        {
+          "id": "l03-extra-q3",
+          "prompt": "How does sorting differ from projection in purpose?",
+          "options": [
+            "Sorting always reduces the column count",
+            "Projection only specifies order",
+            "Both always remove duplicates",
+            "Sorting specifies order; projection selects fields"
+          ],
+          "answer": 3,
+          "explanation": "Sorting does not select columns. Equal output cardinalities do not make the two operations equivalent.",
+          "pages": [
+            19
+          ]
+        },
+        {
+          "id": "l03-extra-q4",
+          "prompt": "What values result from applying δ to the bag x=[2,2,5]?",
+          "options": [
+            "{2,5}",
+            "[2,2,5]",
+            "{2}",
+            "{5}"
+          ],
+          "answer": 0,
+          "explanation": "The operator δ removes the extra occurrence of 2 while preserving both distinct values.",
+          "pages": [
+            19
+          ]
+        },
+        {
+          "id": "l03-extra-q5",
+          "prompt": "Apply γ dept,COUNT(*) to a bag with dept=[CS,CS,Math], then retain groups with count>1. What is the output?",
+          "options": [
+            "(Math,1)",
+            "(CS,2)",
+            "(CS,CS)",
+            "(CS,1),(Math,1)"
+          ],
+          "answer": 1,
+          "explanation": "Grouping produces (CS,2) and (Math,1). The condition count>1 retains the CS group, not the two original CS rows.",
+          "pages": [
+            19
+          ]
+        }
+      ]
+    }
+  ]
+}

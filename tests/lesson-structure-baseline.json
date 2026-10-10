@@ -1,0 +1,1257 @@
+{
+  "lecture01.json": {
+    "id": "lecture-01",
+    "lecture": 1,
+    "time": 25,
+    "lab": null,
+    "sections": [
+      {
+        "id": "l1-1",
+        "links": []
+      },
+      {
+        "id": "l1-2",
+        "links": []
+      },
+      {
+        "id": "l1-3",
+        "links": []
+      },
+      {
+        "id": "l1-4",
+        "links": []
+      }
+    ],
+    "sourceURLs": [
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf#page=10",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf#page=21"
+    ],
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf",
+      "verified": true,
+      "verifiedPages": "1\u201336"
+    },
+    "quiz": {
+      "answer": 2,
+      "optionCount": 3
+    }
+  },
+  "lecture02.json": {
+    "id": "lecture-02",
+    "lecture": 2,
+    "time": 25,
+    "lab": "sql",
+    "sections": [
+      {
+        "id": "l2-1",
+        "links": []
+      },
+      {
+        "id": "l2-2",
+        "links": []
+      },
+      {
+        "id": "l2-3",
+        "links": []
+      },
+      {
+        "id": "l2-4",
+        "links": []
+      }
+    ],
+    "sourceURLs": [
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf#page=6",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf#page=13",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf#page=20"
+    ],
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+      "verified": true,
+      "verifiedPages": "1\u201329"
+    },
+    "quiz": {
+      "answer": 1,
+      "optionCount": 3
+    }
+  },
+  "lecture03.json": {
+    "id": "lecture-03",
+    "lecture": 3,
+    "time": 25,
+    "lab": "relational",
+    "sections": [
+      {
+        "id": "l3-1",
+        "links": []
+      },
+      {
+        "id": "l3-2",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf#page=7"
+        ]
+      },
+      {
+        "id": "l3-3",
+        "links": []
+      },
+      {
+        "id": "l3-4",
+        "links": []
+      }
+    ],
+    "sourceURLs": [
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf#page=2",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf#page=8",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf#page=19"
+    ],
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+      "verified": true,
+      "verifiedPages": "1\u201320"
+    },
+    "quiz": {
+      "answer": 1,
+      "optionCount": 3
+    }
+  },
+  "lecture04.json": {
+    "id": "lecture-04",
+    "lecture": 4,
+    "time": 25,
+    "lab": "storage",
+    "sections": [
+      {
+        "id": "l4-1",
+        "links": []
+      },
+      {
+        "id": "l4-2",
+        "links": []
+      },
+      {
+        "id": "l4-3",
+        "links": []
+      },
+      {
+        "id": "l4-4",
+        "links": []
+      }
+    ],
+    "sourceURLs": [
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf#page=2",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf#page=15",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf#page=24"
+    ],
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+      "verified": true,
+      "verifiedPages": "1\u201329"
+    },
+    "quiz": {
+      "answer": 1,
+      "optionCount": 3
+    }
+  },
+  "lecture05.json": {
+    "id": "lecture-05",
+    "lecture": 5,
+    "time": 25,
+    "lab": "buffer",
+    "sections": [
+      {
+        "id": "l5-1",
+        "links": []
+      },
+      {
+        "id": "l5-2",
+        "links": []
+      },
+      {
+        "id": "l5-3",
+        "links": []
+      },
+      {
+        "id": "l5-4",
+        "links": []
+      }
+    ],
+    "sourceURLs": [
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf#page=3",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf#page=13",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf#page=22"
+    ],
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+      "verified": true,
+      "verifiedPages": "1\u201335"
+    },
+    "quiz": {
+      "answer": 1,
+      "optionCount": 3
+    }
+  },
+  "lecture06.json": {
+    "id": "lecture-06",
+    "lecture": 6,
+    "time": 25,
+    "lab": "storage",
+    "sections": [
+      {
+        "id": "l6-1",
+        "links": []
+      },
+      {
+        "id": "l6-2",
+        "links": []
+      },
+      {
+        "id": "l6-3",
+        "links": []
+      },
+      {
+        "id": "l6-4",
+        "links": []
+      }
+    ],
+    "sourceURLs": [
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf#page=4",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf#page=11",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf#page=24"
+    ],
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf",
+      "verified": true,
+      "verifiedPages": "1\u201329"
+    },
+    "quiz": {
+      "answer": 1,
+      "optionCount": 3
+    }
+  },
+  "lecture07.json": {
+    "id": "lecture-07",
+    "lecture": 7,
+    "time": 25,
+    "lab": "storage",
+    "sections": [
+      {
+        "id": "l7-1",
+        "links": []
+      },
+      {
+        "id": "l7-2",
+        "links": []
+      },
+      {
+        "id": "l7-3",
+        "links": []
+      },
+      {
+        "id": "l7-4",
+        "links": []
+      }
+    ],
+    "sourceURLs": [
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf#page=2",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf#page=17",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf#page=21"
+    ],
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf",
+      "verified": true,
+      "verifiedPages": "1\u201328"
+    },
+    "quiz": {
+      "answer": 1,
+      "optionCount": 3
+    }
+  },
+  "lecture08.json": {
+    "id": "lecture-08",
+    "lecture": 8,
+    "time": 25,
+    "lab": "index",
+    "sections": [
+      {
+        "id": "l8-1",
+        "links": []
+      },
+      {
+        "id": "l8-2",
+        "links": []
+      },
+      {
+        "id": "l8-3",
+        "links": []
+      },
+      {
+        "id": "l8-4",
+        "links": []
+      }
+    ],
+    "sourceURLs": [
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations.pdf#page=5",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations.pdf#page=20",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations.pdf#page=30"
+    ],
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations.pdf",
+      "verified": true,
+      "verifiedPages": "1\u201334"
+    },
+    "quiz": {
+      "answer": 0,
+      "optionCount": 3
+    }
+  },
+  "lecture09.json": {
+    "id": "lecture-09",
+    "lecture": 9,
+    "time": 25,
+    "lab": "index",
+    "sections": [
+      {
+        "id": "l9-1",
+        "links": []
+      },
+      {
+        "id": "l9-2",
+        "links": []
+      },
+      {
+        "id": "l9-3",
+        "links": []
+      },
+      {
+        "id": "l9-4",
+        "links": []
+      }
+    ],
+    "sourceURLs": [
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf#page=2",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf#page=13",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf#page=21"
+    ],
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf",
+      "verified": true,
+      "verifiedPages": "1\u201330"
+    },
+    "quiz": {
+      "answer": 1,
+      "optionCount": 3
+    }
+  },
+  "lecture10.json": {
+    "id": "lecture-10",
+    "lecture": 10,
+    "time": 25,
+    "lab": "index",
+    "sections": [
+      {
+        "id": "l10-s1",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=2"
+        ]
+      },
+      {
+        "id": "l10-s2",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=7"
+        ]
+      },
+      {
+        "id": "l10-s3",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=13"
+        ]
+      },
+      {
+        "id": "l10-s4",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=15"
+        ]
+      }
+    ],
+    "sourceURLs": [
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=1",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=2",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=13",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=26"
+    ],
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+      "verified": true,
+      "verifiedPages": "1\u201326"
+    },
+    "quiz": {
+      "answer": 0,
+      "optionCount": 3
+    }
+  },
+  "lecture11.json": {
+    "id": "lecture-11",
+    "lecture": 11,
+    "time": 25,
+    "lab": "sorting",
+    "sections": [
+      {
+        "id": "l11-s1",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=2"
+        ]
+      },
+      {
+        "id": "l11-s2",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=12"
+        ]
+      },
+      {
+        "id": "l11-s3",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=19"
+        ]
+      },
+      {
+        "id": "l11-s4",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=18"
+        ]
+      }
+    ],
+    "sourceURLs": [
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=1",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=2",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=15",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=21"
+    ],
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+      "verified": true,
+      "verifiedPages": "1\u201332"
+    },
+    "quiz": {
+      "answer": 1,
+      "optionCount": 3
+    }
+  },
+  "lecture12.json": {
+    "id": "lecture-12",
+    "lecture": 12,
+    "time": 25,
+    "lab": "join-cost",
+    "sections": [
+      {
+        "id": "l12-s1",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=4"
+        ]
+      },
+      {
+        "id": "l12-s2",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=12"
+        ]
+      },
+      {
+        "id": "l12-s3",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=16"
+        ]
+      },
+      {
+        "id": "l12-s4",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=31"
+        ]
+      }
+    ],
+    "sourceURLs": [
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=1",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=2",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=16",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=34"
+    ],
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+      "verified": true,
+      "verifiedPages": "1\u201343"
+    },
+    "quiz": {
+      "answer": 2,
+      "optionCount": 3
+    }
+  },
+  "lecture13.json": {
+    "id": "lecture-13",
+    "lecture": 13,
+    "time": 25,
+    "lab": "relational",
+    "sections": [
+      {
+        "id": "l13-s1",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=2"
+        ]
+      },
+      {
+        "id": "l13-s2",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=7"
+        ]
+      },
+      {
+        "id": "l13-s3",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=14"
+        ]
+      },
+      {
+        "id": "l13-s4",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=9"
+        ]
+      }
+    ],
+    "sourceURLs": [
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=1",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=2",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=10",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=15"
+    ],
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf",
+      "verified": true,
+      "verifiedPages": "1\u201318"
+    },
+    "quiz": {
+      "answer": 0,
+      "optionCount": 3
+    }
+  },
+  "lecture14.json": {
+    "id": "lecture-14",
+    "lecture": 14,
+    "time": 25,
+    "lab": "relational",
+    "sections": [
+      {
+        "id": "l14-s1",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf#page=1"
+        ]
+      },
+      {
+        "id": "l14-s2",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf#page=4"
+        ]
+      },
+      {
+        "id": "l14-s3",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf#page=4"
+        ]
+      },
+      {
+        "id": "l14-s4",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf#page=4"
+        ]
+      }
+    ],
+    "sourceURLs": [
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf#page=1",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf#page=1",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf#page=3",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf#page=6"
+    ],
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf",
+      "verified": true,
+      "verifiedPages": "1\u20137"
+    },
+    "quiz": {
+      "answer": 1,
+      "optionCount": 3
+    }
+  },
+  "lecture15.json": {
+    "id": "lecture-15",
+    "lecture": 15,
+    "time": 25,
+    "lab": "join-cost",
+    "sections": [
+      {
+        "id": "l15-s1",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=3"
+        ]
+      },
+      {
+        "id": "l15-s2",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=14"
+        ]
+      },
+      {
+        "id": "l15-s3",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=25"
+        ]
+      },
+      {
+        "id": "l15-s4",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=39"
+        ]
+      }
+    ],
+    "sourceURLs": [
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=1",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=3",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=14",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=25",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=39"
+    ],
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf",
+      "verified": true,
+      "verifiedPages": "1\u201343"
+    },
+    "quiz": {
+      "answer": 1,
+      "optionCount": 3
+    }
+  },
+  "lecture16.json": {
+    "id": "lecture-16",
+    "lecture": 16,
+    "time": 25,
+    "lab": "index",
+    "sections": [
+      {
+        "id": "l16-s1",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=2"
+        ]
+      },
+      {
+        "id": "l16-s2",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=7"
+        ]
+      },
+      {
+        "id": "l16-s3",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=16"
+        ]
+      },
+      {
+        "id": "l16-s4",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=22"
+        ]
+      }
+    ],
+    "sourceURLs": [
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=1",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=2",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=8",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=17"
+    ],
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf",
+      "verified": true,
+      "verifiedPages": "1\u201323"
+    },
+    "quiz": {
+      "answer": 0,
+      "optionCount": 3
+    }
+  },
+  "lecture17.json": {
+    "id": "lecture-17",
+    "lecture": 17,
+    "time": 25,
+    "lab": "join-cost",
+    "sections": [
+      {
+        "id": "l17-s1",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=2"
+        ]
+      },
+      {
+        "id": "l17-s2",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=7"
+        ]
+      },
+      {
+        "id": "l17-s3",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=13"
+        ]
+      },
+      {
+        "id": "l17-s4",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=26"
+        ]
+      }
+    ],
+    "sourceURLs": [
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=1",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=2",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=13",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=21"
+    ],
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf",
+      "verified": true,
+      "verifiedPages": "1\u201326"
+    },
+    "quiz": {
+      "answer": 1,
+      "optionCount": 3
+    }
+  },
+  "lecture18.json": {
+    "id": "lecture-18",
+    "lecture": 18,
+    "time": 25,
+    "lab": "join-cost",
+    "sections": [
+      {
+        "id": "l18-s1",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=2"
+        ]
+      },
+      {
+        "id": "l18-s2",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=8"
+        ]
+      },
+      {
+        "id": "l18-s3",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=13"
+        ]
+      },
+      {
+        "id": "l18-s4",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=14"
+        ]
+      }
+    ],
+    "sourceURLs": [
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=1",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=2",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=8",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=20"
+    ],
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf",
+      "verified": true,
+      "verifiedPages": "1\u201324"
+    },
+    "quiz": {
+      "answer": 1,
+      "optionCount": 3
+    }
+  },
+  "lecture19.json": {
+    "id": "lecture-19",
+    "lecture": 19,
+    "time": 25,
+    "lab": "transactions",
+    "sections": [
+      {
+        "id": "l19-s1",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=1"
+        ]
+      },
+      {
+        "id": "l19-s2",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=18"
+        ]
+      },
+      {
+        "id": "l19-s3",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=27"
+        ]
+      },
+      {
+        "id": "l19-s4",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=29"
+        ]
+      },
+      {
+        "id": "l19-s5",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=43"
+        ]
+      }
+    ],
+    "sourceURLs": [
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=1",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=18",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=27",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=29",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=43"
+    ],
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+      "verified": true,
+      "verifiedPages": "1\u201348"
+    },
+    "quiz": {
+      "answer": 0,
+      "optionCount": 4
+    }
+  },
+  "lecture20.json": {
+    "id": "lecture-20",
+    "lecture": 20,
+    "time": 25,
+    "lab": "transactions",
+    "sections": [
+      {
+        "id": "l20-s1",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=2"
+        ]
+      },
+      {
+        "id": "l20-s2",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=3"
+        ]
+      },
+      {
+        "id": "l20-s3",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=18"
+        ]
+      },
+      {
+        "id": "l20-s4",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=23"
+        ]
+      },
+      {
+        "id": "l20-s5",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=7"
+        ]
+      }
+    ],
+    "sourceURLs": [
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=2",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=3",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=18",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=23",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=7"
+    ],
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+      "verified": true,
+      "verifiedPages": "1\u201328"
+    },
+    "quiz": {
+      "answer": 1,
+      "optionCount": 4
+    }
+  },
+  "lecture21.json": {
+    "id": "lecture-21",
+    "lecture": 21,
+    "time": 25,
+    "lab": "recovery",
+    "sections": [
+      {
+        "id": "l21-s1",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=2"
+        ]
+      },
+      {
+        "id": "l21-s2",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=18"
+        ]
+      },
+      {
+        "id": "l21-s3",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=18"
+        ]
+      },
+      {
+        "id": "l21-s4",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=25"
+        ]
+      },
+      {
+        "id": "l21-s5",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=3"
+        ]
+      }
+    ],
+    "sourceURLs": [
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=2",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=18",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=18",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=25",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=3"
+    ],
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+      "verified": true,
+      "verifiedPages": "1\u201327"
+    },
+    "quiz": {
+      "answer": 2,
+      "optionCount": 4
+    }
+  },
+  "lecture22.json": {
+    "id": "lecture-22",
+    "lecture": 22,
+    "time": 25,
+    "lab": "distributed",
+    "sections": [
+      {
+        "id": "l22-s1",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=3"
+        ]
+      },
+      {
+        "id": "l22-s2",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=21"
+        ]
+      },
+      {
+        "id": "l22-s3",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=32"
+        ]
+      },
+      {
+        "id": "l22-s4",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=47"
+        ]
+      },
+      {
+        "id": "l22-s5",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=55"
+        ]
+      }
+    ],
+    "sourceURLs": [
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=3",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=21",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=32",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=47",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=55"
+    ],
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+      "verified": true,
+      "verifiedPages": "1\u201357"
+    },
+    "quiz": {
+      "answer": 2,
+      "optionCount": 4
+    }
+  },
+  "lecture23.json": {
+    "id": "lecture-23",
+    "lecture": 23,
+    "time": 25,
+    "lab": "relational",
+    "sections": [
+      {
+        "id": "l23-s1",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=1"
+        ]
+      },
+      {
+        "id": "l23-s2",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=20"
+        ]
+      },
+      {
+        "id": "l23-s3",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=26"
+        ]
+      },
+      {
+        "id": "l23-s4",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=26"
+        ]
+      },
+      {
+        "id": "l23-s5",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=19"
+        ]
+      }
+    ],
+    "sourceURLs": [
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=1",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=20",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=26",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=26",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=19"
+    ],
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf",
+      "verified": true,
+      "verifiedPages": "1\u201333"
+    },
+    "quiz": {
+      "answer": 2,
+      "optionCount": 4
+    }
+  },
+  "lecture24.json": {
+    "id": "lecture-24",
+    "lecture": 24,
+    "time": 25,
+    "lab": "relational",
+    "sections": [
+      {
+        "id": "l24-s1",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=10"
+        ]
+      },
+      {
+        "id": "l24-s2",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=10"
+        ]
+      },
+      {
+        "id": "l24-s3",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=19"
+        ]
+      },
+      {
+        "id": "l24-s4",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=23"
+        ]
+      },
+      {
+        "id": "l24-s5",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=32"
+        ]
+      }
+    ],
+    "sourceURLs": [
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=10",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=10",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=19",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=23",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=32"
+    ],
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf",
+      "verified": true,
+      "verifiedPages": "1\u201337"
+    },
+    "quiz": {
+      "answer": 1,
+      "optionCount": 4
+    }
+  },
+  "lecture25.json": {
+    "id": "lecture-25",
+    "lecture": 25,
+    "time": 25,
+    "lab": "relational",
+    "sections": [
+      {
+        "id": "l25-s1",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=1"
+        ]
+      },
+      {
+        "id": "l25-s2",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=4"
+        ]
+      },
+      {
+        "id": "l25-s3",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=14"
+        ]
+      },
+      {
+        "id": "l25-s4",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=27"
+        ]
+      },
+      {
+        "id": "l25-s5",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=28"
+        ]
+      }
+    ],
+    "sourceURLs": [
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=1",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=4",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=14",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=27",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=28"
+    ],
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf",
+      "verified": true,
+      "verifiedPages": "1\u201337"
+    },
+    "quiz": {
+      "answer": 1,
+      "optionCount": 4
+    }
+  },
+  "lecture26.json": {
+    "id": "lecture-26",
+    "lecture": 26,
+    "time": 25,
+    "lab": "distributed",
+    "sections": [
+      {
+        "id": "l26-s1",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=1"
+        ]
+      },
+      {
+        "id": "l26-s2",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=12"
+        ]
+      },
+      {
+        "id": "l26-s3",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=20"
+        ]
+      },
+      {
+        "id": "l26-s4",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=27"
+        ]
+      },
+      {
+        "id": "l26-s5",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=43"
+        ]
+      }
+    ],
+    "sourceURLs": [
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=1",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=12",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=20",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=27",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=43"
+    ],
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+      "verified": true,
+      "verifiedPages": "1\u201345"
+    },
+    "quiz": {
+      "answer": 2,
+      "optionCount": 4
+    }
+  },
+  "lecture27.json": {
+    "id": "lecture-27",
+    "lecture": 27,
+    "time": 25,
+    "lab": "distributed",
+    "sections": [
+      {
+        "id": "l27-s1",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=1"
+        ]
+      },
+      {
+        "id": "l27-s2",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=9",
+          "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer6.pdf#page=2"
+        ]
+      },
+      {
+        "id": "l27-s3",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=11"
+        ]
+      },
+      {
+        "id": "l27-s4",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=12"
+        ]
+      },
+      {
+        "id": "l27-s5",
+        "links": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=18"
+        ]
+      }
+    ],
+    "sourceURLs": [
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=1",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=9",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=11",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=12",
+      "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=18",
+      "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer6.pdf#page=2"
+    ],
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+      "verified": true,
+      "verifiedPages": "1\u201321"
+    },
+    "quiz": {
+      "answer": 1,
+      "optionCount": 4
+    }
+  }
+}

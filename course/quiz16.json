@@ -1,0 +1,849 @@
+{
+  "lectureId": "lecture-16",
+  "topics": [
+    {
+      "id": "l16-sequential-scan",
+      "title": "Sequential Scan",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf",
+      "pages": [
+        2,
+        3
+      ],
+      "questions": [
+        {
+          "id": "l16-sequential-scan-q1",
+          "prompt": "A heap contains 100 pages, and a predicate has 1% selectivity. With no pruning or caching, how many pages does a sequential scan read?",
+          "options": [
+            "100",
+            "1",
+            "10",
+            "0"
+          ],
+          "answer": 0,
+          "explanation": "The scan must examine the heap to find matching rows. A small output does not automatically reduce the number of base pages read.",
+          "pages": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "l16-sequential-scan-q2",
+          "prompt": "A heap contains 100 pages, and selectivity is 20%. If row width and page packing stay unchanged, how many output pages are estimated?",
+          "options": [
+            "200",
+            "20",
+            "100",
+            "5"
+          ],
+          "answer": 1,
+          "explanation": "100 × 0.2=20 output pages. This is different from the 100 input pages that the scan reads.",
+          "pages": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "l16-sequential-scan-q3",
+          "prompt": "Can a sequential scan evaluate a predicate without using an index?",
+          "options": [
+            "Only equality on a unique key",
+            "Only if the input is sorted",
+            "Yes",
+            "No; every predicate requires an index"
+          ],
+          "answer": 2,
+          "explanation": "A scan checks the predicate directly on the rows. It is not restricted to predicates eligible for an index lookup.",
+          "pages": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "l16-sequential-scan-q4",
+          "prompt": "What must a scan cursor retain to resume scanning?",
+          "options": [
+            "Only the number of matches returned, with no scan position",
+            "Only the predicate, restarting the file at every next call",
+            "Only the first page, without tracking later pages",
+            "Its position among the pages and tuples examined"
+          ],
+          "answer": 3,
+          "explanation": "Tracking the current page and tuple is execution state. It lets the scan continue without restarting and is separate from planning state.",
+          "pages": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "l16-sequential-scan-q5",
+          "prompt": "Must an on-the-fly selection write every qualifying tuple to temporary disk storage?",
+          "options": [
+            "No",
+            "Yes; every selection must materialize its result",
+            "Yes; exactly one write per base page",
+            "Yes, even if the parent accepts a stream"
+          ],
+          "answer": 0,
+          "explanation": "A pipeline can pass tuples directly to its parent. An output-size estimate does not automatically imply an equivalent disk-write cost.",
+          "pages": [
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l16-index-scan",
+      "title": "Index Scan",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf",
+      "pages": [
+        4,
+        6
+      ],
+      "questions": [
+        {
+          "id": "l16-index-scan-q1",
+          "prompt": "What is needed to choose between age and dept indexes for a conjunction?",
+          "options": [
+            "Only which index was created first in the catalog",
+            "The selectivity and access/fetch costs of each path",
+            "Only which predicate appears first in WHERE",
+            "Only index height, ignoring cardinality and data-fetch cost"
+          ],
+          "answer": 1,
+          "explanation": "Candidate counts and locality determine the work required. The textual order of predicates is not enough to choose an access path.",
+          "pages": [
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "id": "l16-index-scan-q2",
+          "prompt": "The age predicate matches 2 rows, while dept matches 900. With other costs comparable, which path is worth considering first?",
+          "options": [
+            "Both indexes must always be scanned in full",
+            "Neither path is valid",
+            "Use the age index, then check dept as a residual predicate",
+            "Use the dept index because it matches more rows"
+          ],
+          "answer": 2,
+          "explanation": "Fewer candidates generally mean fewer data fetches under the stated comparable-cost assumption. The remaining dept condition still needs checking.",
+          "pages": [
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "id": "l16-index-scan-q3",
+          "prompt": "Which kind of predicate does a hash index directly support?",
+          "options": [
+            "Every range predicate",
+            "Ascending ORDER BY",
+            "Any LIKE prefix",
+            "Equality on the complete hash key"
+          ],
+          "answer": 3,
+          "explanation": "A hash key does not preserve order, so hashing does not directly support range lookup or ordered output.",
+          "pages": [
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "id": "l16-index-scan-q4",
+          "prompt": "With a suitable key, what does a B+ tree directly support in addition to equality?",
+          "options": [
+            "Range predicates",
+            "Every arbitrary function predicate, regardless of the key",
+            "Every Cartesian product at no cost",
+            "Every aggregation without reading entries"
+          ],
+          "answer": 0,
+          "explanation": "The ordered keys of a B+ tree support range access. They do not make every expression usable as an index search condition.",
+          "pages": [
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "id": "l16-index-scan-q5",
+          "prompt": "An age index handles age<30, but the query also requires country=UK. What else must happen?",
+          "options": [
+            "Automatically turn the age index into a hash index",
+            "Check country using the data or another suitable access method",
+            "Drop the country predicate",
+            "Assume country is correct for every candidate"
+          ],
+          "answer": 1,
+          "explanation": "Finding index candidates does not prove that the full WHERE condition holds. The residual country predicate must still be checked.",
+          "pages": [
+            4,
+            5,
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l16-search-key-and-ordering",
+      "title": "Search Key and Ordering",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf",
+      "pages": [
+        7,
+        15
+      ],
+      "questions": [
+        {
+          "id": "l16-search-key-and-ordering-q1",
+          "prompt": "For a B+ tree on (A,B), which predicate follows an equality prefix with a range?",
+          "options": [
+            "A>4 AND B=9, always as one exact interval",
+            "A≠4 AND B=9, always as one contiguous interval",
+            "A=4 AND B>9",
+            "B=9 with no restriction on A"
+          ],
+          "answer": 2,
+          "explanation": "Equality on A fixes one group of keys. The range on B then identifies a contiguous interval within that group.",
+          "pages": [
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        {
+          "id": "l16-search-key-and-ordering-q2",
+          "prompt": "Which sequence is correctly sorted by (A,B)?",
+          "options": [
+            "(2,1),(1,99),(2,8)",
+            "(2,8),(2,1),(1,99)",
+            "(1,99),(2,8),(2,1)",
+            "(1,99),(2,1),(2,8)"
+          ],
+          "answer": 3,
+          "explanation": "Compare A first, then B within each equal-A group. This is not a global sort on B alone.",
+          "pages": [
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        {
+          "id": "l16-search-key-and-ordering-q3",
+          "prompt": "For index (A,B,C), does A=2 AND B=3 AND C BETWEEN 5 AND 9 follow the prefix/range rule?",
+          "options": [
+            "Yes",
+            "No; only one equality condition is allowed",
+            "No; C is not the first column",
+            "Only a hash index can handle it"
+          ],
+          "answer": 0,
+          "explanation": "Equalities on the two leading columns are followed by a range on the next column. This fits the prefix/range rule.",
+          "pages": [
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        {
+          "id": "l16-search-key-and-ordering-q4",
+          "prompt": "For A>2 AND B=7 on index (A,B), what follows an index range scan on A?",
+          "options": [
+            "The index can never be read for this query",
+            "A residual check of B=7",
+            "Dropping B because it occurs in the index",
+            "Assuming that every visited row has B=7"
+          ],
+          "answer": 1,
+          "explanation": "The A range yields a broader set of candidates. B=7 does not define one exact contiguous range across all qualifying A groups, so it must still be checked.",
+          "pages": [
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        {
+          "id": "l16-search-key-and-ordering-q5",
+          "prompt": "For index (A,B) and a query restricted only by B=7, what is the limitation in the basic prefix-lookup model?",
+          "options": [
+            "B cannot be compared",
+            "The SQL query is invalid",
+            "There is no leading A bound to identify a narrow contiguous lookup range",
+            "B is absent from the index"
+          ],
+          "answer": 2,
+          "explanation": "B is in the key, but keys are ordered primarily by A. The missing element is a leading-prefix restriction, not the B column itself.",
+          "pages": [
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l16-index-only-scan",
+      "title": "Index-Only Scan",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf",
+      "pages": [
+        16,
+        16
+      ],
+      "questions": [
+        {
+          "id": "l16-index-only-scan-q1",
+          "prompt": "What is the central requirement for an index-only scan in the lecture's model?",
+          "options": [
+            "The index must be clustered",
+            "The table must contain only one row",
+            "All predicates must be true",
+            "The index contains the attributes needed by the query"
+          ],
+          "answer": 3,
+          "explanation": "Covering the needed columns can avoid access to full data records. Physical clustering is not required for that column-coverage benefit.",
+          "pages": [
+            16
+          ]
+        },
+        {
+          "id": "l16-index-only-scan-q2",
+          "prompt": "With index (dept,salary), where can SELECT dept,MIN(salary) GROUP BY dept obtain the required values?",
+          "options": [
+            "The index entries",
+            "Every complete heap row must be read",
+            "Only the root's first key for every department",
+            "Another hash index that does not contain salary"
+          ],
+          "answer": 0,
+          "explanation": "The index contains both dept and salary, so it provides the required values in this model. The root's first key alone does not represent all groups.",
+          "pages": [
+            16
+          ]
+        },
+        {
+          "id": "l16-index-only-scan-q3",
+          "prompt": "Does index (age,salary) cover SELECT name WHERE age=30 if name is absent from the index?",
+          "options": [
+            "Yes, if name is short",
+            "No",
+            "Yes, because age matches",
+            "Yes, because salary follows age"
+          ],
+          "answer": 1,
+          "explanation": "Covering the predicate is not enough. The output column name still has to be obtained from another source.",
+          "pages": [
+            16
+          ]
+        },
+        {
+          "id": "l16-index-only-scan-q4",
+          "prompt": "Why can an unclustered index-only scan still be fast?",
+          "options": [
+            "It automatically changes the table's physical clustering",
+            "It reads no index pages at all",
+            "It avoids following RIDs to fetch full data rows",
+            "It can process only unique keys"
+          ],
+          "answer": 2,
+          "explanation": "Avoiding data-record fetches removes their random-I/O penalty. Reading the index itself can still incur I/O.",
+          "pages": [
+            16
+          ]
+        },
+        {
+          "id": "l16-index-only-scan-q5",
+          "prompt": "A query needs A and B, but an index contains only A. Which change provides the required column coverage?",
+          "options": [
+            "Increase the buffer count while leaving B out of the index",
+            "Add B only to WHERE, not to the index",
+            "Use the A index and call the scan index-only despite fetching B from the heap",
+            "Use an index containing both A and B"
+          ],
+          "answer": 3,
+          "explanation": "The access path must provide B as well as A. More memory cannot supply a missing attribute, and omitting B would change the query.",
+          "pages": [
+            16
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l16-clustered-b-tree-scan",
+      "title": "Clustered B+ Tree Scan",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf",
+      "pages": [
+        17,
+        18
+      ],
+      "questions": [
+        {
+          "id": "l16-clustered-b-tree-scan-q1",
+          "prompt": "Traversal costs 3 I/Os; selectivity is 10%; the index has 100 leaf pages and the data has 1,000 pages. For variant B with full rows required, what is the clustered-scan estimate?",
+          "options": [
+            "113 I/Os",
+            "103 I/Os",
+            "1,103 I/Os",
+            "13 I/Os"
+          ],
+          "answer": 0,
+          "explanation": "3+0.1 × 100+0.1 × 1,000=113. The estimate includes both matching leaf pages and matching data pages.",
+          "pages": [
+            17,
+            18
+          ]
+        },
+        {
+          "id": "l16-clustered-b-tree-scan-q2",
+          "prompt": "Using the same figures, what is the estimate if the query is index-only in this model?",
+          "options": [
+            "3 I/Os",
+            "13 I/Os",
+            "113 I/Os",
+            "103 I/Os"
+          ],
+          "answer": 1,
+          "explanation": "There are 3 traversal I/Os plus 10 leaf-page reads, with no 100 data-page reads. Traversing to the first leaf alone does not read all matches.",
+          "pages": [
+            17,
+            18
+          ]
+        },
+        {
+          "id": "l16-clustered-b-tree-scan-q3",
+          "prompt": "Matching full rows occupy 40 contiguous data pages in clustered-key order. With no caching and index reads excluded, what is the ideal data-fetch cost?",
+          "options": [
+            "One read per matching tuple, regardless of packing",
+            "1 read for the entire range",
+            "40 reads",
+            "0, because clustered means cached"
+          ],
+          "answer": 2,
+          "explanation": "Clustered placement allows each matching data page to be read once. Clustering provides locality; it does not mean the data is already in RAM.",
+          "pages": [
+            17,
+            18
+          ]
+        },
+        {
+          "id": "l16-clustered-b-tree-scan-q4",
+          "prompt": "Two predicates retain the same 2,000 full rows. One uses a clustered-key range, the other an unclustered index with scattered rows. What is the clustered range's main advantage?",
+          "options": [
+            "It reduces the result to 1 row per key",
+            "It guarantees 0 traversal I/Os",
+            "It eliminates every residual predicate outside the search key",
+            "It can group matching rows onto fewer data pages and access them more sequentially"
+          ],
+          "answer": 3,
+          "explanation": "Clustering changes placement and access patterns. It neither changes result cardinality nor makes traversal free.",
+          "pages": [
+            17,
+            18
+          ]
+        },
+        {
+          "id": "l16-clustered-b-tree-scan-q5",
+          "prompt": "For a clustered scan using index variant B/C, when must data records still be read after matching leaf entries?",
+          "options": [
+            "When the query needs columns absent from the index",
+            "Always, even if the query needs only index columns",
+            "Never; clustered leaves contain full rows in every variant",
+            "Only for equality predicates, never for ranges"
+          ],
+          "answer": 0,
+          "explanation": "Variants B/C can store keys and RIDs instead of full rows. Missing columns require a data fetch; these variants must not be confused with variant A.",
+          "pages": [
+            17,
+            18
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l16-hash-index-scan",
+      "title": "Hash Index Scan",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf",
+      "pages": [
+        19,
+        19
+      ],
+      "questions": [
+        {
+          "id": "l16-hash-index-scan-q1",
+          "prompt": "Which predicate directly matches a hash index on (A,B)?",
+          "options": [
+            "A BETWEEN 2 AND 9",
+            "A=2 AND B=9",
+            "Only A=2",
+            "B>9"
+          ],
+          "answer": 1,
+          "explanation": "A composite hash lookup requires equality on the complete key. It does not have the B+ tree's leading-prefix lookup behavior.",
+          "pages": [
+            19
+          ]
+        },
+        {
+          "id": "l16-hash-index-scan-q2",
+          "prompt": "If a search key is not unique, what should happen after one match is found in its bucket?",
+          "options": [
+            "Stop at the first match as for a unique-key lookup",
+            "Scan only the primary page even if the bucket has overflow pages",
+            "Continue looking for the remaining matches",
+            "Return only the match with the smallest RID as a duplicate representative"
+          ],
+          "answer": 2,
+          "explanation": "A query on a nonunique key may need every matching row. Finding one match does not establish that the search is complete.",
+          "pages": [
+            19
+          ]
+        },
+        {
+          "id": "l16-hash-index-scan-q3",
+          "prompt": "If the key is unique and a match has been found, can the bucket search stop?",
+          "options": [
+            "No; the entire index must be scanned regardless of uniqueness",
+            "Only if the query has ORDER BY",
+            "No; a unique key always has duplicates",
+            "Yes"
+          ],
+          "answer": 3,
+          "explanation": "Uniqueness guarantees that there is no second match. The key of the entry found must still be checked exactly.",
+          "pages": [
+            19
+          ]
+        },
+        {
+          "id": "l16-hash-index-scan-q4",
+          "prompt": "A bucket has a primary page and 2 overflow pages. With no caching, how many pages does a full bucket scan read?",
+          "options": [
+            "3",
+            "2",
+            "1",
+            "0"
+          ],
+          "answer": 0,
+          "explanation": "The primary page counts as one page too. The overflow count alone is not the total number of pages in the bucket.",
+          "pages": [
+            19
+          ]
+        },
+        {
+          "id": "l16-hash-index-scan-q5",
+          "prompt": "Does locating a bucket by its hash remove the need to compare the exact key?",
+          "options": [
+            "Yes, if the hash is fast",
+            "No",
+            "Yes, if the bucket has many entries",
+            "Yes, if the key is an integer"
+          ],
+          "answer": 1,
+          "explanation": "Hash collisions can place different keys in the same bucket. The exact predicate must still be checked.",
+          "pages": [
+            19
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l16-multi-index-scan",
+      "title": "Multi-Index Scan",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf",
+      "pages": [
+        20,
+        21
+      ],
+      "questions": [
+        {
+          "id": "l16-multi-index-scan-q1",
+          "prompt": "How are RID sets combined for two indexed predicates connected by AND?",
+          "options": [
+            "Cartesian product",
+            "Concatenate the lists, keeping every element",
+            "Intersection",
+            "Union"
+          ],
+          "answer": 2,
+          "explanation": "AND requires a row to belong to both candidate sets. Union instead represents OR.",
+          "pages": [
+            20,
+            21
+          ]
+        },
+        {
+          "id": "l16-multi-index-scan-q2",
+          "prompt": "How are RID sets combined for two indexed predicates connected by OR?",
+          "options": [
+            "Intersection",
+            "Choose the smaller set",
+            "Take the complement of both sets",
+            "Union"
+          ],
+          "answer": 3,
+          "explanation": "OR retains rows satisfying at least one predicate. Overlapping RIDs should not cause the same physical row to be returned twice merely because it satisfies both predicates.",
+          "pages": [
+            20,
+            21
+          ]
+        },
+        {
+          "id": "l16-multi-index-scan-q3",
+          "prompt": "What is the AND result for RID sets {1,3,5} and {2,3,5,7}?",
+          "options": [
+            "{3,5}",
+            "{1,2,3,5,7}",
+            "{1,7}",
+            "{2,7}"
+          ],
+          "answer": 0,
+          "explanation": "The common IDs are 3 and 5. The union containing IDs from either set would be the OR result.",
+          "pages": [
+            20,
+            21
+          ]
+        },
+        {
+          "id": "l16-multi-index-scan-q4",
+          "prompt": "Indexes handle age and dept, but country is not indexed. What is needed after combining the RID sets?",
+          "options": [
+            "Change AND to OR",
+            "Fetch and check the residual country condition",
+            "Drop country",
+            "Assume country is independent and skip its check"
+          ],
+          "answer": 1,
+          "explanation": "An independence assumption used for estimation does not permit skipping an actual query predicate.",
+          "pages": [
+            20,
+            21
+          ]
+        },
+        {
+          "id": "l16-multi-index-scan-q5",
+          "prompt": "Is a multi-index scan always cheaper than a single-index scan?",
+          "options": [
+            "Yes, whenever the query uses AND",
+            "No, because a multi-index scan always gives incorrect results",
+            "No; extra index work may outweigh the reduction in data fetches",
+            "Yes; more indexes are always faster"
+          ],
+          "answer": 2,
+          "explanation": "The cost of combining index results must be weighed against fetch savings. A correct access path is not automatically the cheapest one.",
+          "pages": [
+            20,
+            21
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l16-practical-exercise-with-postgresql",
+      "title": "Practical Exercise with PostgreSQL",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf",
+      "pages": [
+        22,
+        23
+      ],
+      "questions": [
+        {
+          "id": "l16-practical-exercise-with-postgresql-q1",
+          "prompt": "What does a Bitmap Index Scan produce in the lecture's description?",
+          "options": [
+            "Fully projected rows that need no heap access",
+            "A tuple stream sorted by the query's output key",
+            "A bitmap with one bit per distinct search-key value rather than row positions",
+            "A bitmap identifying candidate row positions"
+          ],
+          "answer": 3,
+          "explanation": "The index step identifies candidate positions. The heap step then retrieves the required data rows.",
+          "pages": [
+            22,
+            23
+          ]
+        },
+        {
+          "id": "l16-practical-exercise-with-postgresql-q2",
+          "prompt": "How does a Bitmap Heap Scan use the bitmap?",
+          "options": [
+            "Fetch heap pages and rows, rechecking conditions when necessary",
+            "Traverse the B+ tree root to rebuild the candidate bitmap",
+            "Return only the bitmap to the client without fetching required columns",
+            "Fetch heap rows in index-key order even though the bitmap groups them by heap page"
+          ],
+          "answer": 0,
+          "explanation": "The bitmap organizes heap access around relevant pages. It identifies where to fetch data rather than replacing the data itself.",
+          "pages": [
+            22,
+            23
+          ]
+        },
+        {
+          "id": "l16-practical-exercise-with-postgresql-q3",
+          "prompt": "Why can bitmap access reduce random I/O?",
+          "options": [
+            "It replaces disk with unlimited RAM",
+            "It groups reads by heap page",
+            "It forces every row to have the same key",
+            "It never needs data pages"
+          ],
+          "answer": 1,
+          "explanation": "Page-oriented fetching exploits locality. It does not guarantee that data-page reads disappear.",
+          "pages": [
+            22,
+            23
+          ]
+        },
+        {
+          "id": "l16-practical-exercise-with-postgresql-q4",
+          "prompt": "What important distinction separates EXPLAIN ANALYZE from basic EXPLAIN?",
+          "options": [
+            "It only updates estimates without running the statement",
+            "It provides no actual execution measurements",
+            "It executes the statement to measure its execution",
+            "It runs the planner repeatedly but never the executor"
+          ],
+          "answer": 2,
+          "explanation": "ANALYZE executes the statement, so care is needed with data-changing commands. Basic EXPLAIN reports the estimated plan without executing it.",
+          "pages": [
+            22,
+            23
+          ]
+        },
+        {
+          "id": "l16-practical-exercise-with-postgresql-q5",
+          "prompt": "Which information is emphasized when the planner chooses sequential, index, or bitmap access?",
+          "options": [
+            "Only whether an index exists",
+            "Only index height, ignoring the number of matching rows",
+            "Only output row width, ignoring table pages and selectivity",
+            "Table size, row count, selectivity, and estimated cost"
+          ],
+          "answer": 3,
+          "explanation": "The existence of an index does not determine the chosen path. Row and cost estimates provide the basis for comparison.",
+          "pages": [
+            22,
+            23
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l16-unclustered-b-tree-scan",
+      "title": "Unclustered B+ Tree Scan",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf",
+      "pages": [
+        18,
+        18
+      ],
+      "questions": [
+        {
+          "id": "l16-unclustered-b-tree-scan-q1",
+          "prompt": "What causes random data I/O during an unclustered index scan?",
+          "options": [
+            "RIDs encountered in key order can point to scattered data pages",
+            "The leaf keys are unsorted",
+            "The index root contains duplicate copies of complete tables",
+            "A B+ tree does not support ranges"
+          ],
+          "answer": 0,
+          "explanation": "Index keys remain sorted, but the physical data placement does not follow that order.",
+          "pages": [
+            18
+          ]
+        },
+        {
+          "id": "l16-unclustered-b-tree-scan-q2",
+          "prompt": "There are 400 matches, each requiring a different uncached page. What is the data-fetch cost alone?",
+          "options": [
+            "0 reads",
+            "400 reads",
+            "1 read",
+            "As many reads as the tree height"
+          ],
+          "answer": 1,
+          "explanation": "Each matching RID points to a different page, giving 400 reads. Index traversal and leaf reads are additional costs.",
+          "pages": [
+            18
+          ]
+        },
+        {
+          "id": "l16-unclustered-b-tree-scan-q3",
+          "prompt": "There are 400 matches, but the index covers all needed columns. Ignoring visibility-specific details, are 400 heap fetches required?",
+          "options": [
+            "Yes, because every index entry is a data page",
+            "No, because the query no longer has a predicate",
+            "No; an index-only scan can avoid them",
+            "Yes; an unclustered scan must always fetch every RID"
+          ],
+          "answer": 2,
+          "explanation": "Coverage avoids looking up the missing fields in data records. It does not remove the query predicate.",
+          "pages": [
+            18
+          ]
+        },
+        {
+          "id": "l16-unclustered-b-tree-scan-q4",
+          "prompt": "Matching RIDs point to pages [8,2,8,3,2]. How many distinct pages need fetching when requests are grouped by page?",
+          "options": [
+            "5",
+            "2",
+            "8",
+            "3"
+          ],
+          "answer": 3,
+          "explanation": "The distinct pages are 2,3,8. Locality or reuse can avoid repeated visits; 5 is the number of matching records.",
+          "pages": [
+            18
+          ]
+        },
+        {
+          "id": "l16-unclustered-b-tree-scan-q5",
+          "prompt": "Why can a heap scan beat an unclustered index scan when a large fraction of rows qualifies?",
+          "options": [
+            "Many scattered fetches plus index work can cost more than a sequential scan",
+            "The query becomes logically invalid",
+            "The B+ tree loses its key ordering when many rows match",
+            "An index scan can never read more than one row"
+          ],
+          "answer": 0,
+          "explanation": "Many matches can make the access pattern expensive. They do not compromise the correctness of the index structure.",
+          "pages": [
+            18
+          ]
+        }
+      ]
+    }
+  ]
+}

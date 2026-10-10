@@ -1,0 +1,527 @@
+{
+  "lectureId": "lecture-05",
+  "topics": [
+    {
+      "id": "l05-topic-buffer-state",
+      "title": "BUFFER MANAGER STATE",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+      "pages": [
+        3,
+        8
+      ],
+      "questions": [
+        {
+          "id": "l05-buffer-state-q1",
+          "prompt": "What does one buffer-pool frame contain in the lecture’s model?",
+          "options": [
+            "A directory entry instead of page bytes",
+            "One page",
+            "Exactly one record, even if smaller than a page",
+            "An entire logical file regardless of size"
+          ],
+          "answer": 1,
+          "explanation": "A frame holds a page. That page may contain several records.",
+          "pages": [
+            3
+          ]
+        },
+        {
+          "id": "l05-buffer-state-q2",
+          "prompt": "May a frame with pinCount=2 be selected as a victim merely because it is very old?",
+          "options": [
+            "Yes, if it is clean",
+            "Yes, if it is dirty",
+            "No",
+            "Yes; LRU always prioritises age"
+          ],
+          "answer": 2,
+          "explanation": "A nonzero pin count forbids replacement in this model. Being clean does not make an in-use page safe to evict.",
+          "pages": [
+            6
+          ]
+        },
+        {
+          "id": "l05-buffer-state-q3",
+          "prompt": "What does the dirty flag indicate?",
+          "options": [
+            "At least one caller is currently using the page",
+            "The page was referenced during a recent CLOCK sweep",
+            "The page contains a record failing a predicate",
+            "The RAM page has modifications not yet reflected in its persistent copy"
+          ],
+          "answer": 3,
+          "explanation": "Dirty state tracks modifications. Access frequency and pinning use different metadata.",
+          "pages": [
+            6
+          ]
+        },
+        {
+          "id": "l05-buffer-state-q4",
+          "prompt": "Why maintain a hash table mapping PageId to a RAM frame?",
+          "options": [
+            "To locate cached pages quickly",
+            "To precompute every query result",
+            "To sort disk pages by search key",
+            "To replace all pin and dirty metadata"
+          ],
+          "answer": 0,
+          "explanation": "Frequent page lookups need to be fast. The mapping does not change relational data.",
+          "pages": [
+            7
+          ]
+        },
+        {
+          "id": "l05-buffer-state-q5",
+          "prompt": "Does unpinning a page down to pinCount=0 force immediate eviction?",
+          "options": [
+            "It can never be evicted again",
+            "No; it only becomes eligible for replacement",
+            "Yes; it is always removed immediately",
+            "Yes, if it was just read"
+          ],
+          "answer": 1,
+          "explanation": "With no current user, the page becomes eligible, but the policy may keep it for reuse.",
+          "pages": [
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l05-topic-pin-unpin",
+      "title": "PIN IMPLEMENTATION / UNPIN IMPLEMENTATION",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+      "pages": [
+        9,
+        11
+      ],
+      "questions": [
+        {
+          "id": "l05-pin-unpin-q1",
+          "prompt": "A cached page has pinCount=1. What happens when it is pinned again?",
+          "options": [
+            "The page is evicted immediately",
+            "Its dirty flag is always cleared",
+            "pinCount increases to 2 and the frame address is returned",
+            "The page must be read from disk and the count set to 0"
+          ],
+          "answer": 2,
+          "explanation": "A cache hit adds another user. It does not require rereading the page or erasing its dirty history.",
+          "pages": [
+            9
+          ]
+        },
+        {
+          "id": "l05-pin-unpin-q2",
+          "prompt": "If dirty=true, what is the new dirty flag after unpin(page,false)?",
+          "options": [
+            "false",
+            "Equal to pinCount",
+            "Undefined when cached",
+            "true"
+          ],
+          "answer": 3,
+          "explanation": "The update uses OR. A false argument cannot clear an earlier modification.",
+          "pages": [
+            10
+          ]
+        },
+        {
+          "id": "l05-pin-unpin-q3",
+          "prompt": "A cache miss selects an eligible dirty victim. What order is required?",
+          "options": [
+            "Write the victim, then read the new page into the frame",
+            "Overwrite the frame with the new page, then write the victim from those same bytes",
+            "Discard the victim without writing it",
+            "Only increase the victim’s pinCount"
+          ],
+          "answer": 0,
+          "explanation": "The modified contents must be preserved before the frame is overwritten. Reversing the order loses the bytes that need writing.",
+          "pages": [
+            9
+          ]
+        },
+        {
+          "id": "l05-pin-unpin-q4",
+          "prompt": "After a miss loads a new page, how does the pseudocode initialise pinCount and dirty?",
+          "options": [
+            "0 and false",
+            "1 and false",
+            "0 and true",
+            "1 and true"
+          ],
+          "answer": 1,
+          "explanation": "The caller has pinned the newly loaded page, and the freshly read contents have not been modified. A count of 0 would ignore that user.",
+          "pages": [
+            9
+          ]
+        },
+        {
+          "id": "l05-pin-unpin-q5",
+          "prompt": "If two callers pin the same page, does the buffer manager automatically prevent conflicting writes?",
+          "options": [
+            "Yes; the dirty flag makes every write atomic",
+            "Yes; a clean page forbids all writes",
+            "No; concurrency control coordinates writes",
+            "Yes; the pin count is an exclusive lock"
+          ],
+          "answer": 2,
+          "explanation": "Pinning protects against replacement. It does not replace concurrent-access control.",
+          "pages": [
+            11
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l05-topic-lru",
+      "title": "LEAST RECENTLY USED (LRU)",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+      "pages": [
+        13,
+        14
+      ],
+      "questions": [
+        {
+          "id": "l05-lru-q1",
+          "prompt": "In the deck’s LRU model, when is the latest-use time primarily recorded?",
+          "options": [
+            "Only when the page is first loaded, as in FIFO",
+            "Only when the page becomes dirty",
+            "Only when the page is flushed to disk",
+            "When the frame is unpinned"
+          ],
+          "answer": 3,
+          "explanation": "The model uses the time when use ends. It should not be silently changed to FIFO’s load-time rule.",
+          "pages": [
+            13
+          ]
+        },
+        {
+          "id": "l05-lru-q2",
+          "prompt": "A(pin=0,last=4), B(pin=1,last=1), C(pin=0,last=7). Which does LRU select?",
+          "options": [
+            "A",
+            "B",
+            "C",
+            "No frame"
+          ],
+          "answer": 0,
+          "explanation": "B is oldest but pinned. A is the oldest eligible frame.",
+          "pages": [
+            13
+          ]
+        },
+        {
+          "id": "l05-lru-q3",
+          "prompt": "Two frames start empty and receive A,B,A,C, with immediate unpinning after each request. How many misses occur?",
+          "options": [
+            "1",
+            "3",
+            "2",
+            "4"
+          ],
+          "answer": 1,
+          "explanation": "A and B miss; the second A hits and updates recency; C misses and replaces B.",
+          "pages": [
+            13
+          ]
+        },
+        {
+          "id": "l05-lru-q4",
+          "prompt": "Which management cost of exact LRU is mentioned in the lecture?",
+          "options": [
+            "Increasing page size after every replacement",
+            "Synchronising every table’s schema at each unpin",
+            "Finding or maintaining the frame with the oldest use time",
+            "Sorting all on-disk records at every hit"
+          ],
+          "answer": 2,
+          "explanation": "Maintaining recency order has overhead. This is not sorting the business data.",
+          "pages": [
+            14
+          ]
+        },
+        {
+          "id": "l05-lru-q5",
+          "prompt": "Do LRU and FIFO always select the same victim?",
+          "options": [
+            "Yes, because both use time",
+            "Yes, if the pages are clean",
+            "Yes, if frames hold integers",
+            "No; a hit changes recency without changing load time"
+          ],
+          "answer": 3,
+          "explanation": "Reaccessing a page changes its recency history. FIFO still uses its original arrival time.",
+          "pages": [
+            13,
+            14
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l05-topic-clock",
+      "title": "CLOCK REPLACEMENT POLICY",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+      "pages": [
+        15,
+        21
+      ],
+      "questions": [
+        {
+          "id": "l05-clock-q1",
+          "prompt": "What does CLOCK first do when it encounters an unpinned frame with ref=1?",
+          "options": [
+            "Clear ref to 0 and continue",
+            "Evict immediately regardless of ref",
+            "Increase the pin count and stop",
+            "Write every page in the pool"
+          ],
+          "answer": 0,
+          "explanation": "A page with ref=1 gets another chance. An eligible victim is unpinned and has ref=0 when examined.",
+          "pages": [
+            15
+          ]
+        },
+        {
+          "id": "l05-clock-q2",
+          "prompt": "May CLOCK select a pinned frame with ref=0 as a victim?",
+          "options": [
+            "Yes, if it is clean",
+            "No",
+            "Yes, because ref=0",
+            "Yes, after the hand completes a full revolution"
+          ],
+          "answer": 1,
+          "explanation": "pinCount=0 remains mandatory. The reference bit cannot override that safety condition.",
+          "pages": [
+            15
+          ]
+        },
+        {
+          "id": "l05-clock-q3",
+          "prompt": "A,B,C are all unpinned, with ref values 1,0,1. The hand starts at A. Which is the first victim?",
+          "options": [
+            "C",
+            "None",
+            "B",
+            "A"
+          ],
+          "answer": 2,
+          "explanation": "CLOCK clears A’s reference bit and moves on. B already has ref=0 and is selected.",
+          "pages": [
+            15
+          ]
+        },
+        {
+          "id": "l05-clock-q4",
+          "prompt": "When is the reference bit set in the lecture’s model?",
+          "options": [
+            "Only when the page is written back",
+            "Only when the pin count reaches 0 and the page is dirty",
+            "Only when CLOCK selects the page as a victim",
+            "When the pin count increases"
+          ],
+          "answer": 3,
+          "explanation": "The bit records page use. It does not depend on a particular SQL clause.",
+          "pages": [
+            15
+          ]
+        },
+        {
+          "id": "l05-clock-q5",
+          "prompt": "After a victim is replaced to serve a pin request, what is the correct state?",
+          "options": [
+            "The new page is pinned with ref=1, and the hand advances",
+            "The new page is unpinned with ref=0, and the hand never moves",
+            "The new page is dirty by default because it was read",
+            "The old page’s nonzero pin count is retained"
+          ],
+          "answer": 0,
+          "explanation": "The page is serving a caller, so it is pinned and referenced. Reading it does not automatically make it dirty.",
+          "pages": [
+            20,
+            21
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l05-topic-scan-policies",
+      "title": "REPLACEMENT POLICIES CAN FAIL / REPEATED SCAN",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+      "pages": [
+        22,
+        31
+      ],
+      "questions": [
+        {
+          "id": "l05-scan-policies-q1",
+          "prompt": "Three empty frames scan A,B,C twice using LRU and immediate unpinning. What is the total miss count?",
+          "options": [
+            "0",
+            "3",
+            "6",
+            "4"
+          ],
+          "answer": 1,
+          "explanation": "The working set fits in the pool. The first pass has three misses and the second consists entirely of hits.",
+          "pages": [
+            22,
+            24
+          ]
+        },
+        {
+          "id": "l05-scan-policies-q2",
+          "prompt": "Three empty frames scan A,B,C,D twice using LRU and immediate unpinning. What is the total miss count?",
+          "options": [
+            "5",
+            "3",
+            "8",
+            "4"
+          ],
+          "answer": 2,
+          "explanation": "Each page has been evicted before its next use. A working set just one page larger than the pool causes flooding.",
+          "pages": [
+            22,
+            27
+          ]
+        },
+        {
+          "id": "l05-scan-policies-q3",
+          "prompt": "Three frames contain A,B,C after a scan with immediate unpinning. Which page does MRU replace when loading D?",
+          "options": [
+            "A",
+            "B",
+            "No page can be replaced",
+            "C"
+          ],
+          "answer": 3,
+          "explanation": "C was used most recently. LRU would choose A in this state.",
+          "pages": [
+            28,
+            29
+          ]
+        },
+        {
+          "id": "l05-scan-policies-q4",
+          "prompt": "What additional information does LRU-K use beyond the most recent access?",
+          "options": [
+            "The history of the K most recent references",
+            "Only the time a page entered the pool, as in FIFO",
+            "Only the latest reference, discarding all older history",
+            "Only total access frequency, without K-th recency"
+          ],
+          "answer": 0,
+          "explanation": "It considers deeper reference history, rather than only a page’s dirty state or name.",
+          "pages": [
+            31
+          ]
+        },
+        {
+          "id": "l05-scan-policies-q5",
+          "prompt": "What do the LRU and MRU examples teach about different workloads?",
+          "options": [
+            "CLOCK does not need pin counts",
+            "Replacement effectiveness depends on the access pattern",
+            "MRU is better for every workload",
+            "LRU is always absolutely optimal"
+          ],
+          "answer": 1,
+          "explanation": "Sequential scans and repeated access to hot pages behave differently. Neither policy wins in every case.",
+          "pages": [
+            12,
+            31
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l05-topic-buffer-practice",
+      "title": "BUFFER MANAGEMENT IN PRACTICE / WHY NOT USE THE OS?",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+      "pages": [
+        32,
+        35
+      ],
+      "questions": [
+        {
+          "id": "l05-buffer-practice-q1",
+          "prompt": "Why can a priority hint from the execution engine be useful?",
+          "options": [
+            "It replaces the pinCount=0 requirement for eviction",
+            "It makes every page read require no I/O",
+            "The engine knows an operator’s upcoming access pattern",
+            "The engine knows every future access perfectly"
+          ],
+          "answer": 2,
+          "explanation": "Workload information can guide replacement. It does not guarantee an unlimited cache.",
+          "pages": [
+            32
+          ]
+        },
+        {
+          "id": "l05-buffer-practice-q2",
+          "prompt": "What are partitioned buffer pools?",
+          "options": [
+            "Complete copies of every table in each frame",
+            "One OS process per tuple",
+            "A requirement that data and index pages share exactly one frame",
+            "Separate pools for object groups such as tables, indexes, or logs"
+          ],
+          "answer": 3,
+          "explanation": "This partitions cache resources. It does not require copying all stored data.",
+          "pages": [
+            32
+          ]
+        },
+        {
+          "id": "l05-buffer-practice-q3",
+          "prompt": "Which two activities can prefetch overlap?",
+          "options": [
+            "I/O for upcoming pages and CPU processing of the current page",
+            "Flushing a page before any of its writes have occurred",
+            "Reading the whole database before any CPU work starts",
+            "Sorting records in RAM while eliminating all I/O"
+          ],
+          "answer": 0,
+          "explanation": "The goal is to reduce waiting by overlapping computation and I/O, not to change the schema.",
+          "pages": [
+            33
+          ]
+        },
+        {
+          "id": "l05-buffer-practice-q4",
+          "prompt": "Why does a DBMS want to control flush order?",
+          "options": [
+            "To ensure the optimiser never has to choose a plan",
+            "Recovery may require writes to occur in an appropriate order",
+            "To change tuple order in every SQL result",
+            "To eliminate all concurrency control"
+          ],
+          "answer": 1,
+          "explanation": "Durability and recovery depend on persistence order. Flushing must not change query results.",
+          "pages": [
+            34
+          ]
+        },
+        {
+          "id": "l05-buffer-practice-q5",
+          "prompt": "Is prefetching a very large number of pages guaranteed to be optimal?",
+          "options": [
+            "Yes; prefetch does not occupy buffer frames",
+            "Yes; speculative I/O uses no bandwidth",
+            "No; it can fetch unused pages and consume cache space",
+            "Yes; every prefetched page must be used immediately"
+          ],
+          "answer": 2,
+          "explanation": "This follows from the trade-off: incorrect predictions create I/O and cache pressure. Prefetching is not free.",
+          "pages": [
+            33
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+[
+  {
+    "id": "lecture-25",
+    "lecture": 25,
+    "title": "Acyclic Conjunctive Queries: Use the Tree Structure",
+    "short": "Hypergraph · GYO · semijoin",
+    "group": "07 · Conjunctive queries",
+    "time": 25,
+    "lead": "A query can be large yet easier to evaluate because the relationships between its variables have a useful structure.",
+    "goals": [
+      "Build a hypergraph from the query atoms",
+      "Check the running-intersection property and apply GYO reduction",
+      "Use bottom-up semijoins to answer a Boolean conjunctive query"
+    ],
+    "sections": [
+      {
+        "id": "l25-s1",
+        "title": "From atoms to hyperedges",
+        "html": "<p>Consider the atoms R(x,y), S(y,z), and T(z,w). Draw one node for each atom and connect them as R—S—T. The nodes containing y are adjacent, and so are the nodes containing z. We want this connectedness property to hold for every variable.</p><p>A <strong>join tree</strong> connects the atoms in a tree such that the nodes containing any given variable form a connected subtree. In other words, if a variable appears at two nodes, it must appear at every node on the path between them. This is the <strong>running-intersection property</strong>.</p><p>In the query hypergraph, each variable is a vertex, and the set of variables in each atom is a <strong>hyperedge</strong>. Do not replace a three-variable hyperedge with three two-variable edges: that substitution can change whether the structure is acyclic. Bounded treewidth and hypertree width are more general structural approaches introduced in the lecture.</p><p class=\"source-note\">Related source material: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=1\" target=\"_blank\" rel=\"noopener\">PDF pages 1–13</a>. The examples and solutions in this lesson are original supplementary material.</p>"
+      },
+      {
+        "id": "l25-s2",
+        "title": "Worked example: a chain and a triangle",
+        "html": "<p>In this example, a, b, c, and d are all variables. The query <code>Q() :- R(a,b), S(b,c), T(c,d)</code> has the join tree R—S—T. The nodes containing b are the adjacent R and S nodes; those containing c are the adjacent S and T nodes. Each of a and d occurs at only one node.</p><p>Replace T(c,d) with T(c,a), giving the triangle {a,b}, {b,c}, {c,a}. Every tree connecting the three atoms leaves one variable at both ends of a path while it is absent from the middle node. Therefore, no join tree exists. If we add U(a,b,c), we can instead place U at the center and connect each of the other three atoms to it. The running-intersection property then holds, so the new hypergraph is acyclic.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>Check the path of each variable in the proposed join tree.</b> Connecting all the atoms in a tree is not enough. A variable cannot appear at both ends of a path and disappear at an intermediate node.</p></aside><p class=\"source-note\">Related source material: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=4\" target=\"_blank\" rel=\"noopener\">PDF pages 4–13</a>. The examples and solutions in this lesson are original supplementary material.</p>"
+      },
+      {
+        "id": "l25-s3",
+        "title": "Apply GYO reduction by hand",
+        "html": "<p>Start with the chain {a,b}, {b,c}, {c,d}. Remove a and d because each belongs to only one edge. The remaining edges are {b}, {b,c}, and {c}. Remove the two contained edges {b} and {c}, leaving only {b,c}. Now remove b and c, followed by the empty edge. The entire hypergraph has disappeared, so it is acyclic.</p><p>For the triangle with two-variable edges, every variable belongs to two edges, and no edge is contained in another. Reduction gets stuck with a nonempty structure, so the hypergraph is cyclic. The reduction steps may be applied in different orders. Reducing the whole hypergraph to nothing establishes that the query is acyclic.</p><p class=\"source-note\">Related source material: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=14\" target=\"_blank\" rel=\"noopener\">PDF pages 14–26</a>. The examples and solutions in this lesson are original supplementary material.</p>"
+      },
+      {
+        "id": "l25-s4",
+        "title": "Yannakakis: remove tuples that cannot contribute to a result",
+        "html": "<p>Consider R(A,B)={(u,1),(v,2)}, S(B,C)={(1,k),(2,m)}, and T(C)={k}. The Boolean query asks whether R(A,B), S(B,C), and T(C) can all hold under one assignment.</p><p>A <strong>semijoin</strong> keeps left-hand tuples that match at least one right-hand tuple and returns only the left-hand columns. Thus S ⋉ T uses T to filter S.</p><ol><li>Choose R as the root of the join tree R—S—T.</li><li>Compute S ⋉ T. It keeps (1,k) and removes (2,m), because only k appears in T.</li><li>Compute R ⋉ S using the filtered S. It keeps (u,1) and removes (v,2).</li><li>A tuple remains at the root, so the answer is YES. One witness is the assignment A=u, B=1, C=k.</li></ol><p>In this pass from the leaves to the root, each semijoin checks whether a tuple can be extended into a complete match in the subtree below it. For a Boolean query with a valid join tree, a nonempty root after the bottom-up pass is enough to answer YES.</p><p class=\"source-note\">Related source material: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=27\" target=\"_blank\" rel=\"noopener\">PDF pages 27–36</a>. The examples and solutions in this lesson are original supplementary material.</p>"
+      },
+      {
+        "id": "l25-s5",
+        "title": "Why the tree structure matters",
+        "html": "<p>In a join tree, branches can share variables only through the paths connecting them. Therefore, the information that a tuple can be matched down each branch can be combined into one assignment satisfying the whole query. In a cycle, locally valid choices may turn out to be incompatible when the cycle closes.</p><p>Check the example by replacing T={k} with T={q}. The semijoin first makes S empty and then makes R empty, so the answer becomes NO. For a query that returns output tuples, do not claim that every answer can be printed in less time than the output size. The O(|D|·|Q|) bound, where |D| is the database size and |Q| is the query size, is used here for the decision or membership problem and the Boolean algorithm presented.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>Returning YES or NO is different from enumerating every answer.</b> A query may produce many output tuples. Printing them alone requires time proportional to the output size.</p></aside><p class=\"source-note\">Related source material: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=28\" target=\"_blank\" rel=\"noopener\">PDF pages 28–37</a>. The examples and solutions in this lesson are original supplementary material.</p>"
+      }
+    ],
+    "quiz": {
+      "question": "GYO reduction stops with the triangle {a,b}, {b,c}, {c,a}. What follows?",
+      "options": [
+        "It is acyclic because it has three edges",
+        "It is cyclic because reduction cannot eliminate the whole hypergraph",
+        "Every possible database must be tested",
+        "No query corresponds to this structure"
+      ],
+      "answer": 1,
+      "explanation": "No variable has degree at most 1, and no edge is contained in another. The nonempty structure left by GYO reduction establishes that the hypergraph is cyclic."
+    },
+    "source": {
+      "summary": "Lecture 25 introduces conjunctive-query graphs and hypergraphs, useful structural classes, join trees, GYO reduction, and Yannakakis’s algorithm for acyclic queries.",
+      "links": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=1",
+          "label": "PDF pages 1–13"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=4",
+          "label": "PDF pages 4–13"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=14",
+          "label": "PDF pages 14–26"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=27",
+          "label": "PDF pages 27–36"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=28",
+          "label": "PDF pages 28–37"
+        }
+      ]
+    },
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf",
+      "verified": true,
+      "verifiedPages": "1–37",
+      "topics": [
+        "graph/hypergraph",
+        "treewidth context",
+        "join tree",
+        "running intersection",
+        "GYO reduction",
+        "acyclicity",
+        "Yannakakis",
+        "semijoin",
+        "Boolean evaluation"
+      ],
+      "limitations": [
+        "The stated time bound does not include enumerating an arbitrarily large output. This lesson focuses on the decision problem."
+      ]
+    },
+    "lab": "relational"
+  }
+]

@@ -1,0 +1,90 @@
+[
+  {
+    "id": "lecture-15",
+    "lecture": 15,
+    "title": "Query Optimisation: Plan Space Example",
+    "short": "One query, several cost decisions",
+    "group": "05 · Query optimisation",
+    "time": 25,
+    "lead": "Start with a simple plan, then recalculate its cost after changing filters, join orientation, and materialization.",
+    "goals": [
+      "Recalculate the cost after each plan refinement",
+      "Distinguish the effects of selection pushdown on the outer and inner inputs",
+      "Compare both choices of outer and inner join input",
+      "Include the cost of materializing a filtered inner input"
+    ],
+    "sections": [
+      {
+        "id": "l15-s1",
+        "title": "An original practice problem",
+        "html": "<p><strong>Original practice problem:</strong> Orders occupies 600 pages and Customers occupies 200 pages. A filter keeps 2% of Orders, equivalent to 12 pages after the surviving tuples are packed together. Another filter keeps 25% of Customers, equivalent to 50 pages. There are B=8 buffer frames. The query joins on customer_id and returns only name. Both base tables are heap files, so filtering requires a full scan. Count only page I/O, excluding CPU work and final-output writes. Filtered output is pipelined directly into the join unless materialization is explicitly stated.</p><p>First try a page nested-loop join with Customers as the outer input:</p><ol><li>Without filtering, read the 200 Customer pages and scan all 600 Order pages for each one. The total is 200+200×600=120,200 I/Os.</li><li>Filter Customers first. Reading it still costs 200 I/Os, but its surviving tuples occupy only 50 packed outer pages. Orders is now scanned 50 times, giving 200+50×600=30,200 I/Os.</li><li>Add the Orders filter during each inner scan. Each scan must still read all 600 Order pages. Fewer rows survive the filter, but the cost remains 30,200 I/Os.</li></ol><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>Fewer rows after a filter do not necessarily mean fewer pages read.</b> If every inner scan still reads the base table, the 12 pages of filtered Orders output do not replace the 600 pages that must be scanned.</p></aside><p class=\"source-note\">Related source material: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=3\" target=\"_blank\" rel=\"noopener\">PDF pages 3–13</a>. The numerical examples and exercises in this section are original supplementary material.</p>"
+      },
+      {
+        "id": "l15-s2",
+        "title": "Reverse the inputs, then materialize",
+        "html": "<p>Reverse the join and use filtered Orders as the outer input. Scanning Orders costs 600 I/Os and produces 12 outer pages. Each outer page scans the 200-page Customers table, giving 600+12×200=3,000 I/Os.</p><p>Now materialize filtered Customers so that repeated scans can read its smaller temporary result:</p><ol><li>Read Customers for 200 I/Os, then write its 50-page temporary result for another 50 I/Os.</li><li>Scan Orders once for 600 I/Os, retaining 12 packed outer pages after filtering.</li><li>For each outer page, reread the 50 temporary pages. This costs 12×50=600 I/Os.</li></ol><p>The total is 600+200+50+12×50=1,450 I/Os. Alternatively, use Customers as the outer input and materialize filtered Orders. Read both base tables, write 12 temporary pages, then reread those 12 pages for each of the 50 outer pages. The cost is 200+600+12+50×12=1,412 I/Os.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>Separate base-table reads, temporary writes, and repeated temporary reads.</b> Materialization reduces repeated-scan costs, but it is not free: the temporary result must also be written.</p></aside><p class=\"source-note\">Related source material: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=14\" target=\"_blank\" rel=\"noopener\">PDF pages 14–24</a>. The numerical examples and exercises in this section are original supplementary material.</p>"
+      },
+      {
+        "id": "l15-s3",
+        "title": "Change the join algorithm and tuple width",
+        "html": "<p>Replace page nested loops with block nested loops. Of the 8 frames, reserve 1 for the inner input and 1 for output, leaving 6 frames for each outer block. Keep filtered Customers as the outer input and materialize the 12-page Orders result as above. The 50 outer pages need ceil(50/6)=9 blocks, each of which reads the 12-page inner result. Read both base tables for 200+600 I/Os, write 12 temporary pages, and reread them 9 times. The total is 200+600+12+ceil(50/6)×12=920 I/Os.</p><p>Projection can reduce memory requirements. If each 48-byte Orders tuple is reduced to its 8-byte customer_id, the 12 filtered pages shrink to approximately 12×8/48=2 pages, ignoring differences in page overhead and packing. Keep duplicate customer_id values: each surviving order must still contribute its matching output row. These 2 pages fit in the 6 outer frames. Scan Orders once and keep its keys in RAM, then scan Customers once to perform the join. No temporary write is needed, so the cost is 600+200=800 I/Os.</p><p>Sort-merge is another candidate, but its passes must be counted for each filtered input. If reading the base table has already been counted, pass 0 adds the run writes without charging the same input read again. Index nested loops counts outer tuples to determine the number of probes; narrower tuples do not by themselves reduce that number. Clustered selection may reduce the base pages read. An inner index is useful only if it supports the join key.</p><p class=\"source-note\">Related source material: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=25\" target=\"_blank\" rel=\"noopener\">PDF pages 25–42</a>. The numerical examples and exercises in this section are original supplementary material.</p>"
+      },
+      {
+        "id": "l15-s4",
+        "title": "Exercise: check the assumptions",
+        "html": "<p>Change the assumptions: filtered Orders contains 1,200 tuples on 12 pages, and clustered access retrieves them for 12 I/Os. Use each tuple to look up a unique key in Customers. The index is already in RAM, and each lookup needs just 1 I/O to read data. What is the total cost? Why might this still not be the best plan?</p><details><summary>Show the solution</summary><p>Read the outer input for 12 I/Os, then perform 1,200 lookups. The total is 12+1,200×1=1,212 I/Os. The plan that retains keys in RAM above costs only 800 I/Os under its stated assumptions. If only 30 outer tuples remain, there are far fewer lookups and the index join may win. The presence of an index is not enough to choose a plan: cardinality, or the number of tuples processed, also matters. This is an original exercise, separate from the Sailors/Reserves example in the PDF.</p></details><p class=\"source-note\">Related source material: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=39\" target=\"_blank\" rel=\"noopener\">PDF pages 39–43</a>. The numerical examples and exercises in this section are original supplementary material.</p>"
+      }
+    ],
+    "quiz": {
+      "question": "Does filtering an inner heap from 600 pages to 12 output pages automatically reduce each scan to 12 I/Os?",
+      "options": [
+        "Yes, always",
+        "No, if each scan still reads the 600-page heap",
+        "It depends only on the number of SELECT columns"
+      ],
+      "answer": 1,
+      "explanation": "Output size and the number of input pages that must be read are different quantities."
+    },
+    "source": {
+      "summary": "The full official PDF has been reviewed. Coverage includes repeated plan refinement; selection pushdown inside and outside nested loops; join orientation; materializing filtered inner input; sort-merge pass accounting; block nested loops and projection width; and clustered outer access with an indexed inner join. The explanations and calculations are original teaching material rather than reproductions of the slides.",
+      "links": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=1",
+          "label": "Official PDF, pages 1–43"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=3",
+          "label": "PDF pages 3–13"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=14",
+          "label": "PDF pages 14–24"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=25",
+          "label": "PDF pages 25–38"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=39",
+          "label": "PDF pages 39–43"
+        }
+      ]
+    },
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf",
+      "verified": true,
+      "verifiedPages": "1–43",
+      "topics": [
+        "Repeated plan refinement",
+        "Selection pushdown inside/outside nested loops",
+        "Join orientation",
+        "Materialising filtered inner input",
+        "Sort-merge pass accounting",
+        "Block nested loops, projection width",
+        "Clustered outer lookup and indexed inner join"
+      ],
+      "limitations": []
+    },
+    "lab": "join-cost"
+  }
+]

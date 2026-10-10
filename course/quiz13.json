@@ -1,0 +1,657 @@
+{
+  "lectureId": "lecture-13",
+  "topics": [
+    {
+      "id": "l13-iterator-model",
+      "title": "Iterator Model",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf",
+      "pages": [
+        2,
+        5
+      ],
+      "questions": [
+        {
+          "id": "l13-iterator-model-q1",
+          "prompt": "Which three operations form the iterator interface?",
+          "options": [
+            "init, execute-all, and free-result, passing only whole results",
+            "open, next, and close",
+            "read-page, write-page, and flush, replacing the operator lifecycle",
+            "build, probe, and repartition for every operator"
+          ],
+          "answer": 1,
+          "explanation": "The open/next/close interface controls an operator's lifecycle. Sorting, hashing, and joining are operations or algorithms implemented through such interfaces.",
+          "pages": [
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "id": "l13-iterator-model-q2",
+          "prompt": "How does next() indicate exhausted input in this model?",
+          "options": [
+            "Return a tuple containing only NULL fields, indistinguishable from real data",
+            "Restart the input automatically and return its first tuple again",
+            "Return an EOF/null marker",
+            "Repeat the final tuple until the caller closes the operator"
+          ],
+          "answer": 2,
+          "explanation": "A distinct end-of-input marker identifies exhaustion. An ordinary data value, such as a key of 0, must not be mistaken for EOF.",
+          "pages": [
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "id": "l13-iterator-model-q3",
+          "prompt": "Where does a tuple request begin in a pull-based iterator plan?",
+          "options": [
+            "Every leaf must materialise its entire result before the root can make any call",
+            "The root only calls open, after which all operators push every row automatically",
+            "The optimiser calls next on each operator instead of parent-child calls",
+            "At the root, with operators requesting tuples from their children as needed"
+          ],
+          "answer": 3,
+          "explanation": "Control flows down from the root, while tuples return upwards. The entire tree does not have to be materialised first.",
+          "pages": [
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "id": "l13-iterator-model-q4",
+          "prompt": "Why can different operators be composed flexibly?",
+          "options": [
+            "They share an interface even when their implementations differ",
+            "Every operator produces the same number of rows",
+            "Every operator is non-blocking",
+            "No operator maintains state"
+          ],
+          "answer": 0,
+          "explanation": "A common interface enables composition. Operators can still differ in their state and blocking behaviour.",
+          "pages": [
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "id": "l13-iterator-model-q5",
+          "prompt": "A LIMIT operator has received enough tuples. What still needs to happen?",
+          "options": [
+            "Skip close because EOF was not reached",
+            "Close the operators and release their resources",
+            "Fetch every remaining row before close is allowed",
+            "Close only the root, without cleaning up its children"
+          ],
+          "answer": 1,
+          "explanation": "Stopping early does not remove the responsibility to clean up resources. Closing an operator does not mean deleting its source data.",
+          "pages": [
+            2,
+            3,
+            4,
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l13-example-selection-p-on-the-fly",
+      "title": "Example: Selection σp (On-the-fly)",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf",
+      "pages": [
+        6,
+        6
+      ],
+      "questions": [
+        {
+          "id": "l13-example-selection-p-on-the-fly-q1",
+          "prompt": "A filter receives [3,8,4,9] and applies x>5. What does its first next() return?",
+          "options": [
+            "4",
+            "EOF",
+            "8",
+            "3"
+          ],
+          "answer": 2,
+          "explanation": "The filter skips 3 and returns 8. A single filter next() call may need several calls to its child.",
+          "pages": [
+            6
+          ]
+        },
+        {
+          "id": "l13-example-selection-p-on-the-fly-q2",
+          "prompt": "With input [3,8,4,9] and predicate x>5, which additional values are read to produce the second output?",
+          "options": [
+            "Only 4",
+            "3 and then 8 again",
+            "No more input is needed",
+            "4 and then 9"
+          ],
+          "answer": 3,
+          "explanation": "The child cursor is already after 8. The filter skips 4 and returns 9.",
+          "pages": [
+            6
+          ]
+        },
+        {
+          "id": "l13-example-selection-p-on-the-fly-q3",
+          "prompt": "If no tuple satisfies the predicate, what does filter.next() eventually do?",
+          "options": [
+            "Read until the child reports EOF, then return EOF",
+            "Return the final tuple even though it fails the predicate",
+            "Create a replacement NULL tuple",
+            "Loop forever as required by the interface"
+          ],
+          "answer": 0,
+          "explanation": "Selection does not invent a replacement row. When no qualifying tuple remains and the child is exhausted, it returns EOF.",
+          "pages": [
+            6
+          ]
+        },
+        {
+          "id": "l13-example-selection-p-on-the-fly-q4",
+          "prompt": "Which information must the example filter retain?",
+          "options": [
+            "A list of every plan considered by the optimiser",
+            "The predicate to test",
+            "The entire sorted input",
+            "A hash table containing every group"
+          ],
+          "answer": 1,
+          "explanation": "Streaming selection needs its predicate and operational state. It does not require materialising the input.",
+          "pages": [
+            6
+          ]
+        },
+        {
+          "id": "l13-example-selection-p-on-the-fly-q5",
+          "prompt": "What does adding a filter to a pipeline achieve?",
+          "options": [
+            "Change every tuple's key",
+            "Turn a false predicate into a true one",
+            "Remove rows before passing them to the parent",
+            "Guarantee that no input pages need to be read"
+          ],
+          "answer": 2,
+          "explanation": "Filtering can reduce downstream row counts. A heap scan may still need to read every page to test the predicate.",
+          "pages": [
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l13-example-heap-scan",
+      "title": "Example: Heap Scan",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf",
+      "pages": [
+        7,
+        7
+      ],
+      "questions": [
+        {
+          "id": "l13-example-heap-scan-q1",
+          "prompt": "Which position does a heap-scan iterator need to remember?",
+          "options": [
+            "Only how many tuples it has emitted, with no resumable location",
+            "Only the file handle, with no cursor between calls",
+            "The entire scan result so no positional state is needed",
+            "The current page and slot"
+          ],
+          "answer": 3,
+          "explanation": "A page-and-slot cursor lets the scan resume at the correct position between next() calls.",
+          "pages": [
+            7
+          ]
+        },
+        {
+          "id": "l13-example-heap-scan-q2",
+          "prompt": "The current page has no more slots, but another page remains. What should the scan do?",
+          "options": [
+            "Move to the next page and its first slot",
+            "Return EOF despite the remaining pages",
+            "Restart at the first page to avoid missing tuples",
+            "Keep the old slot index on the next page instead of starting at its first slot"
+          ],
+          "answer": 0,
+          "explanation": "Exhausting one page does not exhaust the relation. EOF is returned only when no more pages and records remain.",
+          "pages": [
+            7
+          ]
+        },
+        {
+          "id": "l13-example-heap-scan-q3",
+          "prompt": "What does open() normally do for a heap scan?",
+          "options": [
+            "Materialise the complete result before initialising a cursor",
+            "Open the heap and initialise the starting cursor",
+            "Return the first tuple directly instead of using next()",
+            "Sort the heap by predicate columns before every scan"
+          ],
+          "answer": 1,
+          "explanation": "The open() call prepares the scan. Tuples are subsequently returned through next().",
+          "pages": [
+            7
+          ]
+        },
+        {
+          "id": "l13-example-heap-scan-q4",
+          "prompt": "Three pages contain two tuples each. After four successful next() calls in a sequential scan starting at page 1, which page contains the next tuple?",
+          "options": [
+            "Page 2",
+            "The scan is already at EOF",
+            "Page 3",
+            "Page 1"
+          ],
+          "answer": 2,
+          "explanation": "Four tuples consume the first two pages. The fifth tuple is on page 3.",
+          "pages": [
+            7
+          ]
+        },
+        {
+          "id": "l13-example-heap-scan-q5",
+          "prompt": "What is the purpose of close() for a heap scan?",
+          "options": [
+            "Reset the cursor and keep the file handle open forever",
+            "Always write the complete output to a temporary file",
+            "Mark all scanned tuples as consumed and remove them from the base heap",
+            "Release the scan's handle and other resources"
+          ],
+          "answer": 3,
+          "explanation": "Closing cleans up the operator's resources. It does not delete the table or its records.",
+          "pages": [
+            7
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l13-example-nested-loops-join",
+      "title": "Example: Nested Loops Join",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf",
+      "pages": [
+        8,
+        8
+      ],
+      "questions": [
+        {
+          "id": "l13-example-nested-loops-join-q1",
+          "prompt": "Why must a nested-loop iterator retain the current outer tuple between next() calls?",
+          "options": [
+            "One outer tuple can have several inner matches",
+            "The outer input always contains exactly one row",
+            "Every call must sort the outer input again",
+            "To eliminate every duplicate"
+          ],
+          "answer": 0,
+          "explanation": "The outer tuple remains current while the inner input is examined. Several calls can therefore produce matches for that same outer tuple.",
+          "pages": [
+            8
+          ]
+        },
+        {
+          "id": "l13-example-nested-loops-join-q2",
+          "prompt": "The inner input reaches EOF, but outer tuples remain. What happens next?",
+          "options": [
+            "Return EOF immediately despite the remaining outer tuples",
+            "Reset the inner input and obtain the next outer tuple",
+            "Leave the inner input at EOF and advance only the outer input",
+            "Reset both inputs to the beginning, losing all progress"
+          ],
+          "answer": 1,
+          "explanation": "Each outer tuple must be compared with the inner input. Completing one inner scan does not complete the whole join.",
+          "pages": [
+            8
+          ]
+        },
+        {
+          "id": "l13-example-nested-loops-join-q3",
+          "prompt": "The outer input is [1,2] and the inner input is [2,2]. How many tuples does their equality join produce?",
+          "options": [
+            "3",
+            "4",
+            "2",
+            "1"
+          ],
+          "answer": 2,
+          "explanation": "Only the outer value 2 matches, and it matches both inner tuples. The outer value 1 has no match.",
+          "pages": [
+            8
+          ]
+        },
+        {
+          "id": "l13-example-nested-loops-join-q4",
+          "prompt": "After emitting one matching pair, where should the next call resume?",
+          "options": [
+            "Always reset both children",
+            "Always move immediately to the next outer tuple",
+            "Return the same pair again automatically",
+            "After the inner tuple just used, retaining the outer tuple while inner tuples remain"
+          ],
+          "answer": 3,
+          "explanation": "Continuing the inner scan preserves additional matches without emitting the same pair again.",
+          "pages": [
+            8
+          ]
+        },
+        {
+          "id": "l13-example-nested-loops-join-q5",
+          "prompt": "What must a join's close() do with its children?",
+          "options": [
+            "Close both children",
+            "Close only the outer child",
+            "Close the inner child only when the result is empty",
+            "Close neither child because the parent handles everything"
+          ],
+          "answer": 0,
+          "explanation": "Both inputs can hold resources that require cleanup. The join must propagate the close operation to its children.",
+          "pages": [
+            8
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l13-example-sort-2-pass",
+      "title": "Example: Sort (2-pass)",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf",
+      "pages": [
+        9,
+        13
+      ],
+      "questions": [
+        {
+          "id": "l13-example-sort-2-pass-q1",
+          "prompt": "Why is sorting blocking in the example model?",
+          "options": [
+            "Every next() call must sort the entire input again",
+            "It must consume the input to generate sorted runs before returning correctly ordered output",
+            "Sorting cannot implement an iterator interface",
+            "Every operator that reads disk pages must be blocking"
+          ],
+          "answer": 1,
+          "explanation": "A sort can expose next(), but preparation across the input creates a blocking boundary before output is available.",
+          "pages": [
+            9,
+            10,
+            11,
+            12,
+            13
+          ]
+        },
+        {
+          "id": "l13-example-sort-2-pass-q2",
+          "prompt": "During the merge phase of a two-pass sort iterator, what does next() select?",
+          "options": [
+            "The first run's tuples until that run is exhausted",
+            "The smallest tuple in just one run, ignoring all other run heads",
+            "The smallest tuple among the current run heads",
+            "The final tuple of each run, then concatenate runs by filename"
+          ],
+          "answer": 2,
+          "explanation": "Comparing the run heads preserves global ordering. Consuming complete runs one after another would not correctly merge them.",
+          "pages": [
+            9,
+            10,
+            11,
+            12,
+            13
+          ]
+        },
+        {
+          "id": "l13-example-sort-2-pass-q3",
+          "prompt": "What happens when one run's input buffer becomes empty?",
+          "options": [
+            "Return EOF immediately even if runs still contain tuples",
+            "Wait until all input buffers are empty before refilling them together",
+            "Repeat initial run generation for the whole input",
+            "Load the next page from that run if one remains"
+          ],
+          "answer": 3,
+          "explanation": "Refilling the buffer allows the merge to continue. Exhausting one page does not mean the whole sort has reached EOF.",
+          "pages": [
+            9,
+            10,
+            11,
+            12,
+            13
+          ]
+        },
+        {
+          "id": "l13-example-sort-2-pass-q4",
+          "prompt": "Does LIMIT 1 above this sort algorithm normally avoid reading the entire unsorted input?",
+          "options": [
+            "No",
+            "Yes, it always reads only one tuple",
+            "Yes, it reads only one page regardless of the data",
+            "Yes, LIMIT changes the meaning of ORDER BY"
+          ],
+          "answer": 0,
+          "explanation": "Determining the minimum requires examining the unsorted input in this algorithm. A different access path or algorithm cannot be assumed implicitly.",
+          "pages": [
+            9,
+            10,
+            11,
+            12,
+            13
+          ]
+        },
+        {
+          "id": "l13-example-sort-2-pass-q5",
+          "prompt": "Where does tuple-at-a-time iterator overhead commonly arise?",
+          "options": [
+            "Only disk I/O, with no in-memory overhead between operators",
+            "Many function calls and per-tuple, per-operator bookkeeping",
+            "Every next() call always copies the complete input",
+            "Every operator must repeat open and close for every tuple"
+          ],
+          "answer": 1,
+          "explanation": "Tuple-at-a-time processing introduces call overhead and can affect locality and branching. Its costs are not limited to disk I/O.",
+          "pages": [
+            9,
+            10,
+            11,
+            12,
+            13
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l13-vectorisation-model",
+      "title": "Vectorisation Model",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf",
+      "pages": [
+        14,
+        15
+      ],
+      "questions": [
+        {
+          "id": "l13-vectorisation-model-q1",
+          "prompt": "What does the vectorised model pass in each output exchange?",
+          "options": [
+            "The entire relation in one mandatory exchange",
+            "Exactly one tuple, like the basic iterator",
+            "A batch of tuples",
+            "Only a cardinality count instead of rows"
+          ],
+          "answer": 2,
+          "explanation": "A batch is an intermediate granularity between one tuple at a time and materialising an entire result.",
+          "pages": [
+            14,
+            15
+          ]
+        },
+        {
+          "id": "l13-vectorisation-model-q2",
+          "prompt": "There are 100,000 rows, a batch size of 1,000, and no filter. How many data batches are produced?",
+          "options": [
+            "1,000",
+            "100,000",
+            "10",
+            "100"
+          ],
+          "answer": 3,
+          "explanation": "There are 100,000/1,000=100 data batches. The value 1,000 is the batch size, not the batch count; any separate EOF call is excluded.",
+          "pages": [
+            14,
+            15
+          ]
+        },
+        {
+          "id": "l13-vectorisation-model-q3",
+          "prompt": "What is a main benefit of batching over tuple-at-a-time execution?",
+          "options": [
+            "Amortising call overhead across many tuples",
+            "Automatically reducing the logical number of rows",
+            "Guaranteeing sorted input",
+            "Eliminating all operator state"
+          ],
+          "answer": 0,
+          "explanation": "Batching reduces the number of calls per row. It does not itself change the result's meaning or cardinality.",
+          "pages": [
+            14,
+            15
+          ]
+        },
+        {
+          "id": "l13-vectorisation-model-q4",
+          "prompt": "How can SIMD be used in batch processing?",
+          "options": [
+            "Only by creating a separate thread for every tuple",
+            "Apply the same operation to multiple values in a batch",
+            "Omit predicate evaluation for the batch",
+            "Turn every operator into a sequential disk scan"
+          ],
+          "answer": 1,
+          "explanation": "Vectorised loops can create opportunities for SIMD. This does not mean every operator automatically becomes fully SIMD-compatible.",
+          "pages": [
+            14,
+            15
+          ]
+        },
+        {
+          "id": "l13-vectorisation-model-q5",
+          "prompt": "Must the best batch size be identical for every hardware platform and query?",
+          "options": [
+            "Yes, always one tuple",
+            "Yes, always one million tuples",
+            "No, locality, overhead, and query structure create trade-offs",
+            "Yes, always the entire table size"
+          ],
+          "answer": 2,
+          "explanation": "Batch-size selection depends on hardware and workload. No single value is universally optimal.",
+          "pages": [
+            14,
+            15
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l13-materialisation-model",
+      "title": "Materialisation Model",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf",
+      "pages": [
+        16,
+        18
+      ],
+      "questions": [
+        {
+          "id": "l13-materialisation-model-q1",
+          "prompt": "When does an operator pass output in the materialisation model?",
+          "options": [
+            "After every tuple, like a basic pull iterator",
+            "As soon as one small batch is available, even if much of the result remains",
+            "Only after the root requests individual child.next() calls",
+            "After processing and producing its complete output"
+          ],
+          "answer": 3,
+          "explanation": "Whole-result output distinguishes this model from single-tuple and batch-based exchanges.",
+          "pages": [
+            16,
+            17,
+            18
+          ]
+        },
+        {
+          "id": "l13-materialisation-model-q2",
+          "prompt": "Which processing direction do the slides describe for materialisation?",
+          "options": [
+            "Bottom-up",
+            "Top-down, pulling individual tuples from the root",
+            "Call next on all leaves simultaneously without respecting dependencies",
+            "Finish the root before processing its children"
+          ],
+          "answer": 0,
+          "explanation": "Children finish producing their results before their parent consumes them. Root-driven tuple pulling belongs to the iterator model.",
+          "pages": [
+            16,
+            17,
+            18
+          ]
+        },
+        {
+          "id": "l13-materialisation-model-q3",
+          "prompt": "What risk arises from a very large materialised intermediate result?",
+          "options": [
+            "It always improves first-row latency compared with streaming",
+            "Increased memory pressure and potentially substantial spilling or writes",
+            "It automatically shrinks to one row",
+            "It cannot have correct semantics"
+          ],
+          "answer": 1,
+          "explanation": "A large intermediate result can consume memory and incur I/O. Materialisation can still preserve query correctness.",
+          "pages": [
+            16,
+            17,
+            18
+          ]
+        },
+        {
+          "id": "l13-materialisation-model-q4",
+          "prompt": "Why can materialisation suit a workload involving only a few tuples?",
+          "options": [
+            "SQL ignores predicates in OLTP",
+            "The largest possible output is required",
+            "Small intermediates can benefit from locality and simple loops",
+            "Every OLTP query is required to use the same algorithm"
+          ],
+          "answer": 2,
+          "explanation": "The slides describe a workload-dependent trade-off. They do not require every OLTP engine to materialise every query.",
+          "pages": [
+            16,
+            17,
+            18
+          ]
+        },
+        {
+          "id": "l13-materialisation-model-q5",
+          "prompt": "Which description correctly matches the three models to their output granularity?",
+          "options": [
+            "Iterator: whole result; vectorised: tuple; materialisation: batch",
+            "All three always emit one tuple",
+            "All three always require sorted input",
+            "Iterator: tuple; vectorised: batch; materialisation: whole result"
+          ],
+          "answer": 3,
+          "explanation": "The models differ in the unit passed between operators. Output granularity should not be confused with processing direction.",
+          "pages": [
+            16,
+            17,
+            18
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,249 @@
+[
+  {
+    "id": "lecture-09",
+    "lecture": 9,
+    "title": "Tree indexing: ISAM and B+ trees",
+    "short": "Search, split, merge & invariants",
+    "group": "03 · Indexing",
+    "time": 25,
+    "lead": "Leaves store data entries. Internal nodes use separator keys to choose a search branch. The same value can appear in both places with different roles.",
+    "goals": [
+      "Use separators to find a leaf and scan a range",
+      "Simulate insertion and deletion using the order-d convention",
+      "Explain copy-up, push-up, and byte-based occupancy"
+    ],
+    "sections": [
+      {
+        "id": "l9-1",
+        "title": "The conceptual framework",
+        "html": "<p>ISAM keeps its internal-node structure fixed. When a leaf runs out of space, it adds an overflow page to hold extra entries. A B+ tree balances dynamically: all leaves are at the same depth, links connect leaves for ordered scans, and updates may split nodes, redistribute entries, or merge nodes.</p><p>Fanout is the number of children of a node. Under this lesson’s order-d convention, a non-root leaf contains d to 2d data entries. A non-root internal node contains d to 2d separator keys. It has one more child pointer than separator keys, giving d+1 to 2d+1 children. A separator is a boundary value used to choose a search branch. The root has exceptions to the minimum occupancy rule. The lesson also considers fanout, caching upper levels, practical deletion policies, occupancy with variable-length entries, prefix compression, and suffix truncation.</p>"
+      },
+      {
+        "id": "l9-2",
+        "title": "An original insertion: copying a leaf key upwards",
+        "html": "<p>Choose d=2, so each leaf holds at most 2d=4 entries. The root is currently the leaf [4,9,12,18]. Inserting 15 in order produces [4,9,12,15,18]. Its five entries exceed the leaf’s capacity.</p><ol><li>Split it into a left leaf [4,9] and a right leaf [12,15,18]. They contain two and three entries respectively, both within the permitted range from d=2 to 2d=4.</li><li>Create a new root with separator [12] and pointers to the two leaves. Keys &lt;12 go left; keys ≥12 go right.</li><li>Keep 12 in the right leaf. The copy of 12 in the root only selects the search branch. This operation is called copy-up.</li><li>Connect the leaves with next/prev links so an ordered scan can move between them.</li></ol><p>Searching for 15 follows the ≥12 branch and finds 15 in the right leaf. Searching for 10 follows the &lt;12 branch and finds no matching entry. To scan the inclusive range 8..16, start in the left leaf, retain 9, then follow its link to collect 12 and 15 from the right leaf. The result is [9,12,15].</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>Copy-up retains the data key in the leaf.</b> The root’s copy of 12 is used for routing. The leaf must retain 12 so that a scan through the leaves reads all the data entries.</p></aside><p><strong>A separate internal-node split with new data.</strong> An internal node temporarily contains keys [10,20,30,40,50] and six children. Push the middle separator, 30, up into the parent. The resulting internal nodes contain [10,20] and [40,50], with three children each. Unlike a leaf split, 30 no longer appears as a separator in either of those two nodes. Push-up moves a separator; it does not delete a data entry from a leaf.</p>"
+      },
+      {
+        "id": "l9-3",
+        "title": "An original deletion: redistribute, then merge",
+        "html": "<p>Start with the tree produced by the leaf split. Delete 4: the left leaf becomes [9], with only one entry, below the minimum d=2. The right leaf [12,15,18] has three entries, so it can lend one while retaining the required two. Move 12 to the left, producing [9,12] and [15,18]. Change the root separator from 12 to 15, the smallest key in the right leaf under this example’s convention.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>Redistributing a key also requires updating the parent’s separator.</b> If the root still stores 12, a search for 12 goes right even though the record has moved left. Valid leaf occupancy alone does not guarantee correct lookup.</p></aside><p>Now delete 9. The left leaf contains [12], while the right leaf has exactly two entries and cannot lend one without falling below its minimum. Merge the leaves into [12,15,18], which fits within the four-entry capacity. The root now has no separator and only one child, so replace the root with that leaf. The tree becomes one level shorter.</p><p>After each step, check the invariants: in this unique-key example, every data entry occurs exactly once in the leaves; all leaves have the same depth; separators divide key ranges correctly; and occupancy is valid apart from the root’s permitted exception. A tree that merely looks balanced may still route a lookup incorrectly.</p>"
+      },
+      {
+        "id": "l9-4",
+        "title": "ISAM, byte capacity, and an open exercise",
+        "html": "<p><strong>An original example.</strong> An ISAM leaf for the range [20,40) is full. Inserting 27,28,29 may create an overflow chain while leaving the root unchanged. Under the same workload, a B+ tree may change its structure through splitting. Its maintenance costs differ, but adding data does not necessarily increase its height.</p><p>With variable-length string keys, three long entries may fill a page that could hold ten short entries. In a byte-based simulation, set capacity=256 bytes and include key bytes, pointers, and the header. Do not automatically equate half of the entry count with half of the byte capacity. This is a modelling exercise, not a policy shared by every database engine.</p><details><summary>With fanout=100 and 1,000,000 leaf pages, how many edges connect the root to a leaf in an ideal full tree?</summary><p>log₁₀₀(1,000,000)=3 edges, giving 4 levels when both the root and the leaves are counted. Actual page I/O also depends on which levels are cached and what the leaf entries contain.</p></details>"
+      }
+    ],
+    "quiz": {
+      "question": "When the leaf [4,9,12,15,18] splits into [4,9] and [12,15,18], what happens to separator 12?",
+      "options": [
+        "It is removed from every leaf",
+        "It is copied into the parent and retained in the right leaf",
+        "It is retained only in the left leaf"
+      ],
+      "answer": 1,
+      "explanation": "Leaves store data entries. The parent’s copy is used for routing, so copy-up retains the original entry in the leaf."
+    },
+    "source": {
+      "summary": "ISAM and overflow; fanout; B+ tree search and invariants; leaf/inner splits; redistribution/merge; deletion practice; variable-length occupancy and key compression.",
+      "links": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf#page=2",
+          "label": "PDF pp. 2–12 / slides 2–12 · ISAM/fanout"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf#page=13",
+          "label": "PDF pp. 13–20 / slides 13–20 · B+ tree search and insertion"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf#page=21",
+          "label": "PDF pp. 21–29 / slides 21–29 · deletion and optimisations"
+        }
+      ]
+    },
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf",
+      "alternatePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing-2x2.pdf",
+      "verified": true,
+      "verifiedPages": "1–30",
+      "pdfPageCount": 30,
+      "topics": [
+        "Sorted/binary search",
+        "Multilevel index",
+        "ISAM overflow",
+        "Fanout",
+        "B+ invariants",
+        "Range leaf links",
+        "Leaf copy-up",
+        "Inner push-up",
+        "Redistribution",
+        "Merge/root collapse",
+        "Deletion in practice",
+        "Byte occupancy",
+        "Prefix/suffix compression"
+      ],
+      "limitations": [
+        "Order d is the lecture convention; other materials define order differently.",
+        "Tree simulator examples enforce textbook invariants, unlike some practical lazy-deletion policies."
+      ],
+      "week": 3,
+      "officialTitle": "Tree-Structured Indexing",
+      "weeklyPage": "https://opencourse.inf.ed.ac.uk/adbs/week-3",
+      "pageMap": [
+        {
+          "pdfPage": 1,
+          "printedSlide": null,
+          "heading": "Advanced Database Systems"
+        },
+        {
+          "pdfPage": 2,
+          "printedSlide": 2,
+          "heading": "S ORTED F ILES AND B INARY S EARCH"
+        },
+        {
+          "pdfPage": 3,
+          "printedSlide": 3,
+          "heading": "S ORTED F ILES AND B INARY S EARCH"
+        },
+        {
+          "pdfPage": 4,
+          "printedSlide": 4,
+          "heading": "T REE -S TRUCTURED I NDEXING"
+        },
+        {
+          "pdfPage": 5,
+          "printedSlide": 5,
+          "heading": "T REE -S TRUCTURED I NDEXING"
+        },
+        {
+          "pdfPage": 6,
+          "printedSlide": 6,
+          "heading": "ISAM: I NDEXED S EQUENTIAL A CCESS M ETHOD"
+        },
+        {
+          "pdfPage": 7,
+          "printedSlide": 7,
+          "heading": "ISAM: I NDEXED S EQUENTIAL A CCESS M ETHOD"
+        },
+        {
+          "pdfPage": 8,
+          "printedSlide": 8,
+          "heading": "E XAMPLE ISAM T REE"
+        },
+        {
+          "pdfPage": 9,
+          "printedSlide": 9,
+          "heading": "A FTER I NSERTING 23*, 48*, 41*, 42*…"
+        },
+        {
+          "pdfPage": 10,
+          "printedSlide": 10,
+          "heading": "… T HEN D ELETING 42*, 97*, 51*"
+        },
+        {
+          "pdfPage": 11,
+          "printedSlide": 11,
+          "heading": "C OMMENTS ON ISAM"
+        },
+        {
+          "pdfPage": 12,
+          "printedSlide": 12,
+          "heading": "ISAM VS . B INARY S EARCH"
+        },
+        {
+          "pdfPage": 13,
+          "printedSlide": 13,
+          "heading": "B+ T REE : M OST W IDELY U SED I NDEX"
+        },
+        {
+          "pdfPage": 14,
+          "printedSlide": 14,
+          "heading": "E XAMPLE B+ T REE"
+        },
+        {
+          "pdfPage": 15,
+          "printedSlide": 15,
+          "heading": "E XAMPLE B+ T REE"
+        },
+        {
+          "pdfPage": 16,
+          "printedSlide": 16,
+          "heading": "B+ T REES IN P RACTICE"
+        },
+        {
+          "pdfPage": 17,
+          "printedSlide": 17,
+          "heading": "I NSERTING A D ATA E NTRY"
+        },
+        {
+          "pdfPage": 18,
+          "printedSlide": 18,
+          "heading": "I NSERTING 8* INTO E XAMPLE B+ T REE"
+        },
+        {
+          "pdfPage": 19,
+          "printedSlide": 19,
+          "heading": "E XAMPLE B+ T REE A FTER I NSERTING 8*"
+        },
+        {
+          "pdfPage": 20,
+          "printedSlide": 20,
+          "heading": "R EDISTRIBUTION : I NSERTING 6*"
+        },
+        {
+          "pdfPage": 21,
+          "printedSlide": 21,
+          "heading": "D ELETING A D ATA E NTRY FROM A B+ T REE"
+        },
+        {
+          "pdfPage": 22,
+          "printedSlide": 22,
+          "heading": "D ELETING 19* AND 20*…"
+        },
+        {
+          "pdfPage": 23,
+          "printedSlide": 23,
+          "heading": "… A ND T HEN D ELETING 24*"
+        },
+        {
+          "pdfPage": 24,
+          "printedSlide": 24,
+          "heading": "… S TILL D ELETING 24* (M ERGE )"
+        },
+        {
+          "pdfPage": 25,
+          "printedSlide": 25,
+          "heading": "… S TILL D ELETING 24* (R EDISTRIBUTION )"
+        },
+        {
+          "pdfPage": 26,
+          "printedSlide": 26,
+          "heading": "B+ T REE : D ELETIONS"
+        },
+        {
+          "pdfPage": 27,
+          "printedSlide": 27,
+          "heading": "VARIABLE L ENGTH K EYS & R ECORDS"
+        },
+        {
+          "pdfPage": 28,
+          "printedSlide": 28,
+          "heading": "R EDEFINE O CCUPANCY I NVARIANT"
+        },
+        {
+          "pdfPage": 29,
+          "printedSlide": 29,
+          "heading": "O PTIMIZATIONS"
+        },
+        {
+          "pdfPage": 30,
+          "printedSlide": 30,
+          "heading": "S UMMARY"
+        }
+      ],
+      "alternateVerified": true,
+      "alternatePdfPageCount": 8
+    },
+    "lab": "index"
+  }
+]

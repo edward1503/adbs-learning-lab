@@ -1,0 +1,86 @@
+[
+  {
+    "id": "lecture-18",
+    "lecture": 18,
+    "title": "Query Optimisation: Searching",
+    "short": "Dynamic programming and interesting orders",
+    "group": "05 · Query optimisation",
+    "time": 25,
+    "lead": "Use dynamic programming to search for a plan while retaining subplans with useful output orders.",
+    "goals": [
+      "Enumerate and cost access paths for a single table",
+      "Explain why the number of join trees grows rapidly",
+      "Distinguish left-deep, bushy, and right-deep join trees",
+      "Understand the benefits and limits of cross-product pruning"
+    ],
+    "sections": [
+      {
+        "id": "l18-s1",
+        "title": "The search starts with a single table",
+        "html": "<p>Start with each base table: consider a heap scan and every index path that can support its predicates. Add the cost of testing remaining conditions (residual filtering) or removing duplicates when needed. Combining multiple tables also introduces choices of join order and join algorithm, so the number of candidates grows rapidly. The optimizer must limit its search to avoid taking too long.</p><p><strong>Original example:</strong> a table has 20,000 tuples on 200 data pages, and a suitable index has 20 leaf pages. A predicate retains 5% of the tuples. Ignore root-to-leaf traversal cost to focus on the subsequent reads:</p><ol><li>Assuming an appropriate distribution of index entries, read approximately 5% of the 20 leaf pages: 0.05×20=1 I/O.</li><li>With a clustered index, matching tuples are close together and occupy approximately 5% of the 200 data pages: 0.05×200=10 I/Os. The total is approximately 1+10=11 I/Os.</li><li>With an unclustered index, 0.05×20,000=1,000 tuples must be fetched. In a model where every fetch requires a data-page read, the total is 1+1,000=1,001 I/Os. A page may be read repeatedly; these are not 1,000 distinct pages.</li><li>A heap scan reads all 200 pages, costing 200 I/Os.</li></ol><p>In compact form, the calculations are clustered ≈0.05×(20+200)=11 and unclustered ≈0.05×(20+20,000)=1,001. The clustered estimate counts data pages; the unclustered estimate uses the number of tuples to estimate the number of fetches. Caching or grouping fetches by page can lower unclustered access cost relative to this model.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>Even at the same selectivity, clustering can change the best plan.</b> Count index-page reads and data fetches separately. Do not substitute tuple counts for page counts without stating the assumption that justifies it.</p></aside><p class=\"source-note\">Source topic: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=2\" target=\"_blank\" rel=\"noopener\">PDF pages 2–7</a>. The numerical examples and exercises in this section are original supplementary material.</p>"
+      },
+      {
+        "id": "l18-s2",
+        "title": "Left-deep trees: one way to limit the plan space",
+        "html": "<p>In a left-deep tree, the right input of every join is a base relation, while the left input can be the result of earlier joins. A right-deep tree reverses this arrangement, with base relations on the left. A bushy tree allows both inputs to be intermediate results. Considering only left-deep trees reduces the number of candidates and suits index nested-loop joins or pipelining, but it can exclude a good bushy plan. Blocking operators may still require materialisation.</p><p>In the join graph R—S—T, predicates connect R to S and S to T, but not R to T. The optimizer therefore often discards the candidate {R,T}, which creates a Cartesian product, and instead extends subsets {R,S} and {S,T}. This is a search-space heuristic, not a proof that a Cartesian product is always the slowest choice for every dataset.</p><p class=\"source-note\">Source topic: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=8\" target=\"_blank\" rel=\"noopener\">PDF pages 8–12</a>. The numerical examples and exercises in this section are original supplementary material.</p>"
+      },
+      {
+        "id": "l18-s3",
+        "title": "Dynamic programming must remember physical properties",
+        "html": "<p>Dynamic programming (DP) saves solutions to subproblems so they do not have to be recomputed:</p><ol><li>Pass 1: retain the necessary access plans for each base table.</li><li>Pass 2: add another table to each single-table set, comparing outer/inner choices and join algorithms.</li><li>Continue in the same way: in pass k, add one base relation to retained plans for subsets of k−1 tables. Here, k is the number of tables combined, not the number of data-reading passes.</li></ol><p><strong>Original example:</strong> two plans for {R,S} return the same result. Plan A costs 100 units but is unordered; plan B costs 125 and is already sorted by customer_id. The operator immediately above requires ORDER BY customer_id: adding a sort after A costs 80, while B needs no additional sort, costing 0. The totals are A=100+80=180 and B=125+0=125. Retaining only A because it is cheaper as a subplan would discard the better plan for the whole query.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>Retain plans with useful orders as well as the cheapest current plan.</b> An interesting order is an order that may let a later join, GROUP BY, or ORDER BY avoid sorting again.</p></aside><p>DP therefore retains the cheapest overall plan and the cheapest plan for each relevant interesting order. “Best” must be qualified by the output's physical properties, such as the key on which it is already sorted.</p><p class=\"source-note\">Source topic: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=13\" target=\"_blank\" rel=\"noopener\">PDF pages 13–23</a>. The numerical examples and exercises in this section are original supplementary material.</p>"
+      },
+      {
+        "id": "l18-s4",
+        "title": "Exercise: build a DP table",
+        "html": "<p>Suppose the retained plan for RS costs 40 and outputs 10 pages, while the plan for ST costs 30 and outputs 100 pages. Adding T to RS costs another 20; adding R to ST costs another 80. All costs use the same unit. Which plan should you choose? What if the required final order adds 50 to the first plan and 0 to the second?</p><details><summary>View the solution</summary><p>Without a final-order requirement, the RS route costs 40+20=60, less than the ST route's 30+80=110. With the required order, the first plan costs 60+50=110 and the second costs 110+0=110, so they tie. A cheaper subplan alone is not enough to decide: account for the operators above it and the output's physical properties. After choosing a join order, the total cost must still include any GROUP BY, aggregation, or sorting required by the query.</p></details><p class=\"source-note\">Source topic: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=14\" target=\"_blank\" rel=\"noopener\">PDF pages 14–24</a>. The numerical examples and exercises in this section are original supplementary material.</p>"
+      }
+    ],
+    "quiz": {
+      "question": "Why retain a more expensive subplan that already produces sorted output?",
+      "options": [
+        "Because sorted output is always better",
+        "Because it may avoid an expensive sort later",
+        "Because subplan cost does not matter"
+      ],
+      "answer": 1,
+      "explanation": "An interesting order can reduce the total plan cost by avoiding a later sort, even if that subplan costs more."
+    },
+    "source": {
+      "summary": "The complete official PDF was read. Topics covered: Single-table access enumeration and cost; Join-tree combinatorial growth; Left-deep versus bushy/right-deep; Cross-product pruning; Dynamic programming and optimal substructure; Interesting orders and property-aware retention; Final grouping/sorting cost. The explanations and calculations above are original teaching material, not reproductions of the slides.",
+      "links": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=1",
+          "label": "Official PDF, pages 1–24"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=2",
+          "label": "PDF pages 2–7"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=8",
+          "label": "PDF pages 8–19"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=20",
+          "label": "PDF pages 20–24"
+        }
+      ]
+    },
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf",
+      "verified": true,
+      "verifiedPages": "1–24",
+      "topics": [
+        "Single-table access enumeration and cost",
+        "Join-tree combinatorial growth",
+        "Left-deep versus bushy/right-deep",
+        "Cross-product pruning",
+        "Dynamic programming and optimal substructure",
+        "Interesting orders and property-aware retention",
+        "Final grouping/sorting cost"
+      ],
+      "limitations": []
+    },
+    "lab": "join-cost"
+  }
+]

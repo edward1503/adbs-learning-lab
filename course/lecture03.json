@@ -1,0 +1,198 @@
+[
+  {
+    "id": "lecture-03",
+    "lecture": 3,
+    "title": "Relational algebra: from questions to plans",
+    "short": "Selection, projection & composition",
+    "group": "01 · Foundations",
+    "time": 25,
+    "lead": "A compact expression can describe an entire query, but every operator needs a clear schema and semantics.",
+    "goals": [
+      "Evaluate relational operators on small datasets",
+      "Distinguish set projection from SQL bag projection",
+      "Turn a join question into an expression you can check"
+    ],
+    "sections": [
+      {
+        "id": "l3-1",
+        "title": "The conceptual framework",
+        "html": "<p>To answer “which products cost more than 25?”, we can combine a products table with a prices table, retain qualifying rows, and select the columns we need. Relational algebra (RA) gives names to operations like these. Each operator takes relations, table-shaped collections, and returns a relation, so one step’s result can become the next step’s input.</p><p>The lecture connects calculus, algebra, and query plans. The basic operations are selection, which retains rows; projection, which retains columns; rename; union; difference; and product, which combines every pair of rows. Intersection and joins can be built from them. Pure RA uses set semantics and does not retain duplicates. SQL normally uses bag semantics and can retain duplicates. The final slides also list aggregation, duplicate elimination, assignment, sorting, and division.</p>"
+      },
+      {
+        "id": "l3-2",
+        "title": "An original example: rows, columns, and joins",
+        "html": "<p>The example has two tables. R(pid,category) stores product identifiers and categories; S(pid,price) stores product identifiers and prices:</p><pre><code>R(pid, category)\n(11, tea)\n(12, tea)\n(13, cake)\n\nS(pid, price)\n(11, 20)\n(13, 35)\n(14, 50)</code></pre><p><strong>Keep the category column.</strong> Read R’s three rows and remove pid. The intermediate values are tea, tea, cake. The first two rows had different identifiers, but removing those identifiers makes both rows tea. Because a pure RA result is a set, retain one copy of each row: the final result is {tea,cake}.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>Projection in pure RA removes duplicate rows after selecting columns.</b> R has no fully identical rows, but removing pid can make two rows identical. SQL SELECT category retains tea, tea, cake; SELECT DISTINCT category removes duplicates.</p></aside><p>Only now introduce the notation: π category(R) = {tea,cake}. Read this as “project the category column from R”. The symbol π denotes projection, category specifies the column, and R is the input. Compare <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf#page=7\" target=\"_blank\" rel=\"noopener\">PDF pages 7–9</a> on set semantics, selection, and projection.</p><ul><li><strong>Keep qualifying rows.</strong> Examine each R row’s category and retain only tea: {(11,tea),(12,tea)}. Write σ category=tea(R); σ denotes selection, and its condition determines which rows survive.</li><li><strong>Combine every pair.</strong> Each R row combines with all three S rows, producing 3×3=9 tuples, including pairs whose identifiers do not match. Write R × S.</li><li><strong>Keep only pairs with the same pid.</strong> Among the nine pairs, only identifiers 11 and 13 match. The theta join R ⋈ R.pid=S.pid S returns columns (R.pid,category,S.pid,price) with rows (11,tea,11,20), (13,cake,13,35).</li><li><strong>Return the required columns.</strong> Remove both pid columns from the join result to obtain {(tea,20),(cake,35)}. Write π category,price(R ⋈ R.pid=S.pid S).</li></ul><p>Distinguish R.pid from S.pid in a theta join, a join with an explicit condition. A natural join automatically compares every shared column name, so adding a same-named column to both tables can change its join condition.</p>"
+      },
+      {
+        "id": "l3-3",
+        "title": "Two plans, one result: a data-based proof",
+        "html": "<p>We want the categories of products with price &gt; 25. <strong>Plan A:</strong> join R and S first, obtaining product 11 at price 20 and product 13 at price 35; the price filter keeps product 13. <strong>Plan B:</strong> filter S first, obtaining (13,35) and (14,50); joining with R keeps only identifier 13 because R has no identifier 14. Both plans then project category and return {cake}.</p><p>Expression A: π category(σ price&gt;25(R ⋈ R.pid=S.pid S)). Expression B: π category(R ⋈ R.pid=S.pid σ price&gt;25(S)). Read from the innermost operation outwards: input → join/filter → select columns. A produces two join rows and filters them down to one; B first filters S down to two rows and then produces one join row.</p><p><strong>Additional reasoning.</strong> The predicate, or filter condition, uses only S.price. Every S row with price ≤ 25 will be rejected regardless of the R row it joins with, so the condition can be checked early.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>Push a condition only into an input containing every column it needs.</b> If the condition needs both R and S, S alone lacks enough information to evaluate it. This argument applies to the example’s inner join; it must not be transferred unchanged to an outer join.</p></aside><p>This exercise practises proving that two plans are equivalent. Detailed optimisation rules appear in later lectures.</p>"
+      },
+      {
+        "id": "l3-4",
+        "title": "Set exercises and self-check",
+        "html": "<p>Let A(x)={1,2,4} and B(x)={2,3}. Compute their union, difference, and intersection before revealing the answer.</p><details><summary>Answer</summary><p>A∪B={1,2,3,4}; A−B={1,4}; A∩B={2}; A−(A−B)={2}. If two schemas have incompatible column counts or types, adjust the schemas before applying these set operations.</p></details><p>A deeper question: must π category(R) contain fewer rows than R? No. If all three categories are different, the row count stays unchanged. EXCEPT ALL is only named in the deck; a formula for each row’s multiplicity is not developed here.</p>"
+      }
+    ],
+    "quiz": {
+      "question": "If R has 3 rows and S has 4 rows, how many rows does R × S contain?",
+      "options": [
+        "7",
+        "12",
+        "At most 4"
+      ],
+      "answer": 1,
+      "explanation": "Each R row combines with every S row: 3×4=12. The Cartesian product has not yet applied a join condition; a later selection may reduce the number of pairs."
+    },
+    "source": {
+      "summary": "Query compilation and Codd’s theorem; compositional relational algebra, set semantics, core operators, joins and additional operators.",
+      "links": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf#page=2",
+          "label": "PDF pp. 2–7 / slides 2–7 · plans, calculus, and semantics"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf#page=8",
+          "label": "PDF pp. 8–18 / slides 8–18 · operators"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf#page=19",
+          "label": "PDF pp. 19–20 / slides 19–20 · additional operators"
+        }
+      ]
+    },
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+      "alternatePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra-2x2.pdf",
+      "verified": true,
+      "verifiedPages": "1–20",
+      "pdfPageCount": 20,
+      "topics": [
+        "Query execution",
+        "Calculus/RA",
+        "Codd theorem",
+        "Closure/types",
+        "Sets/bags",
+        "Selection",
+        "Projection",
+        "Union/difference",
+        "Product/rename",
+        "Intersection",
+        "Theta/equi/natural join",
+        "Extra operators"
+      ],
+      "limitations": [
+        "Division is listed, not developed.",
+        "Do not reproduce slide 11 erroneous S−R table."
+      ],
+      "week": 1,
+      "officialTitle": "Relational Algebra",
+      "weeklyPage": "https://opencourse.inf.ed.ac.uk/adbs/week-1",
+      "pageMap": [
+        {
+          "pdfPage": 1,
+          "printedSlide": null,
+          "heading": "Advanced Database Systems"
+        },
+        {
+          "pdfPage": 2,
+          "printedSlide": 2,
+          "heading": "Q UERY E XECUTION O VERVIEW"
+        },
+        {
+          "pdfPage": 3,
+          "printedSlide": 3,
+          "heading": "Q UERY E XECUTION O VERVIEW"
+        },
+        {
+          "pdfPage": 4,
+          "printedSlide": 4,
+          "heading": "R ELATIONAL Q UERY L ANGUAGES"
+        },
+        {
+          "pdfPage": 5,
+          "printedSlide": 5,
+          "heading": "C ODD ’ S T HEOREM"
+        },
+        {
+          "pdfPage": 6,
+          "printedSlide": 6,
+          "heading": "R ELATIONAL A LGEBRA"
+        },
+        {
+          "pdfPage": 7,
+          "printedSlide": 7,
+          "heading": "R ELATIONAL A LGEBRA AND S ETS"
+        },
+        {
+          "pdfPage": 8,
+          "printedSlide": 8,
+          "heading": "S ELECTION"
+        },
+        {
+          "pdfPage": 9,
+          "printedSlide": 9,
+          "heading": "P ROJECTION"
+        },
+        {
+          "pdfPage": 10,
+          "printedSlide": 10,
+          "heading": "U NION                 R     S                R∪S"
+        },
+        {
+          "pdfPage": 11,
+          "printedSlide": 11,
+          "heading": "S ET D IFFERENCE                        R     S       R –S       S"
+        },
+        {
+          "pdfPage": 12,
+          "printedSlide": 12,
+          "heading": "C ROSS P RODUCT"
+        },
+        {
+          "pdfPage": 13,
+          "printedSlide": 13,
+          "heading": "R ENAMING (⍴ = “rho”)"
+        },
+        {
+          "pdfPage": 14,
+          "printedSlide": 14,
+          "heading": "C OMPOUND O PERATOR : I NTERSECTION"
+        },
+        {
+          "pdfPage": 15,
+          "printedSlide": 15,
+          "heading": "C OMPOUND O PERATOR : J OIN"
+        },
+        {
+          "pdfPage": 16,
+          "printedSlide": 16,
+          "heading": "T HETA J OIN E XAMPLE"
+        },
+        {
+          "pdfPage": 17,
+          "printedSlide": 17,
+          "heading": "T HETA J OIN E XAMPLE 2"
+        },
+        {
+          "pdfPage": 18,
+          "printedSlide": 18,
+          "heading": "N ATURAL J OIN"
+        },
+        {
+          "pdfPage": 19,
+          "printedSlide": 19,
+          "heading": "E XTRA O PERATORS"
+        },
+        {
+          "pdfPage": 20,
+          "printedSlide": 20,
+          "heading": "S UMMARY"
+        }
+      ],
+      "alternateVerified": true,
+      "alternatePdfPageCount": 5
+    },
+    "lab": "relational"
+  }
+]

@@ -1,0 +1,704 @@
+{
+  "lectureId": "lecture-19",
+  "topics": [
+    {
+      "id": "l19-topic-transactions",
+      "title": "TRANSACTIONS",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+      "pages": [
+        4,
+        11
+      ],
+      "questions": [
+        {
+          "id": "l19-transactions-q1",
+          "prompt": "What defines a transaction in this lecture's read/write model?",
+          "options": [
+            "A sequence of operations that performs one logical task",
+            "Exactly one SELECT statement",
+            "Exactly one disk-page write",
+            "Every operation from DBMS startup to shutdown"
+          ],
+          "answer": 0,
+          "explanation": "One logical task can involve several statements. A transaction is not the same as one SELECT statement or one I/O operation.",
+          "pages": [
+            4,
+            9
+          ]
+        },
+        {
+          "id": "l19-transactions-q2",
+          "prompt": "T moves 3 items from warehouse A to B. After subtracting from A, T requests ROLLBACK. What should happen?",
+          "options": [
+            "Only the subtraction from A is retained",
+            "Both A and B return to their values before T",
+            "The system automatically adds to B and commits",
+            "Every change already in RAM is retained"
+          ],
+          "answer": 1,
+          "explanation": "Aborting must remove the effects of the entire transaction. Having written a change to RAM does not justify retaining it.",
+          "pages": [
+            5,
+            6
+          ]
+        },
+        {
+          "id": "l19-transactions-q3",
+          "prompt": "How does the DBMS primarily represent a transaction's computation?",
+          "options": [
+            "Every computation on a local variable is a database write",
+            "Only final changes matter, so all reads are ignored",
+            "As reads and writes of data objects",
+            "Only SQL updates count; SELECT statements are ignored"
+          ],
+          "answer": 2,
+          "explanation": "The abstraction represents database reads and writes. Local computation and real-world side effects do not automatically become recoverable database operations.",
+          "pages": [
+            8,
+            9
+          ]
+        },
+        {
+          "id": "l19-transactions-q4",
+          "prompt": "Why can interleaving improve throughput while a transaction waits for disk I/O?",
+          "options": [
+            "Each disk read becomes physically faster",
+            "It eliminates all data conflicts",
+            "It reduces the number of instructions in every transaction",
+            "The CPU can work on another transaction"
+          ],
+          "answer": 3,
+          "explanation": "Interleaving makes use of time spent waiting for resources. It does not change the physical speed of I/O or guarantee that conflicts disappear.",
+          "pages": [
+            10,
+            11
+          ]
+        },
+        {
+          "id": "l19-transactions-q5",
+          "prompt": "T has sent an email, and its database transaction then rolls back. Which conclusion is correct?",
+          "options": [
+            "Rolling back the database does not automatically recall the email",
+            "The email is always recalled together with the data changes",
+            "COMMIT is automatically executed to retain the email",
+            "Every DBMS records emails in its WAL"
+          ],
+          "answer": 0,
+          "explanation": "Sending an email is outside the database read/write model presented here. Database atomicity does not automatically extend to external email delivery.",
+          "pages": [
+            8
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l19-topic-acid",
+      "title": "TRANSACTION GUARANTEES: ACID",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+      "pages": [
+        12,
+        47
+      ],
+      "questions": [
+        {
+          "id": "l19-acid-q1",
+          "prompt": "After crash recovery completes, a transfer's debit remains but its corresponding credit is missing. Which property is directly violated?",
+          "options": [
+            "Durability, because the transaction definitely committed",
+            "Atomicity",
+            "Isolation between concurrent transactions",
+            "Consistency only at the level of a NOT NULL constraint"
+          ],
+          "answer": 1,
+          "explanation": "Retaining only part of a transaction's effects violates atomicity. Without knowing that the transaction committed, we cannot attribute the problem solely to durability.",
+          "pages": [
+            12,
+            13
+          ]
+        },
+        {
+          "id": "l19-acid-q2",
+          "prompt": "An application commits a transfer that incorrectly increases total stock by 2 units, even without concurrency. Who is primarily responsible for the logical error?",
+          "options": [
+            "Isolation automatically repairs the incorrect formula",
+            "Atomicity infers every undeclared invariant",
+            "The application must implement transactions that preserve the invariant",
+            "COMMIT guarantees that every business rule has been checked automatically"
+          ],
+          "answer": 2,
+          "explanation": "Transaction consistency depends on the application's logic. Isolation cannot repair a transaction that is already incorrect when run alone.",
+          "pages": [
+            15
+          ]
+        },
+        {
+          "id": "l19-acid-q3",
+          "prompt": "The user sees a successful COMMIT, but a crash loses an update that the system promised to preserve. Which property is violated?",
+          "options": [
+            "Isolation, because the read/write order changed",
+            "Atomicity, simply because the transaction contained several writes",
+            "Consistency, simply because a CHECK constraint was declared",
+            "Durability"
+          ],
+          "answer": 3,
+          "explanation": "Durability protects committed effects. Isolation concerns concurrent interactions rather than whether data survives a crash.",
+          "pages": [
+            47
+          ]
+        },
+        {
+          "id": "l19-acid-q4",
+          "prompt": "Two transactions are correct when run separately, but their interleaving reports an incorrect total. Which property requires concurrency control?",
+          "options": [
+            "Isolation",
+            "Durability, achieved by flushing every read",
+            "Atomicity without any control of interleaving",
+            "Only a separate CHECK constraint on each column"
+          ],
+          "answer": 0,
+          "explanation": "Isolation controls interleaving so transactions do not observe inappropriate intermediate states. Atomicity and log flushing alone do not determine a safe concurrent access order.",
+          "pages": [
+            16,
+            17
+          ]
+        },
+        {
+          "id": "l19-acid-q5",
+          "prompt": "How does logging support atomicity in the introductory explanation?",
+          "options": [
+            "It prevents every transaction from ever aborting",
+            "It retains enough information to undo an aborted transaction's effects",
+            "It stores only COMMIT records, with no update information",
+            "It replays aborted transactions' effects without undoing them"
+          ],
+          "answer": 1,
+          "explanation": "The log provides information for reversing changes. Atomicity does not mean that transactions can never fail.",
+          "pages": [
+            14
+          ]
+        },
+        {
+          "id": "l19-acid-q6",
+          "prompt": "Where does a transaction make its changes under the lecture's shadow-paging approach?",
+          "options": [
+            "It changes original pages and immediately exposes them to every transaction",
+            "It changes only log records; data pages are never updated",
+            "It changes copies of pages before publishing them at commit",
+            "It publishes copied pages before deciding whether to commit"
+          ],
+          "answer": 2,
+          "explanation": "Copy-on-write keeps changes on copied pages until they can be published. It does not modify the original pages in place and simply hope that no failure occurs.",
+          "pages": [
+            14
+          ]
+        },
+        {
+          "id": "l19-acid-q7",
+          "prompt": "What is the intuition behind pessimistic concurrency control?",
+          "options": [
+            "Run first and validate only at commit",
+            "Let reads ignore all uncommitted writes",
+            "Wait for a crash and use recovery instead of isolation",
+            "Prevent harmful conflicts before allowing operations to proceed"
+          ],
+          "answer": 3,
+          "explanation": "Pessimistic control manages access in advance. This can require waiting, rather than allowing every operation to proceed immediately.",
+          "pages": [
+            17
+          ]
+        },
+        {
+          "id": "l19-acid-q8",
+          "prompt": "What expectation motivates optimistic concurrency control?",
+          "options": [
+            "Conflicts are relatively rare and can be checked and handled afterward",
+            "Every change can be exposed immediately without validation",
+            "No transaction needs to roll back after it starts",
+            "All conflicts are prevented before every access"
+          ],
+          "answer": 0,
+          "explanation": "Optimistic methods typically record activity and validate it, rolling back when necessary. They do not eliminate the possibility of failure.",
+          "pages": [
+            17
+          ]
+        },
+        {
+          "id": "l19-acid-q9",
+          "prompt": "A database has CHECK quantity >= 0. A transaction satisfies this check but forgets to credit the receiving warehouse. What follows?",
+          "options": [
+            "This CHECK proves all business-level consistency requirements",
+            "Satisfying one constraint does not prove that all business invariants hold",
+            "Atomicity automatically supplies the missing addition",
+            "Durability automatically preserves the total-stock invariant"
+          ],
+          "answer": 1,
+          "explanation": "A constraint checks only the condition that was declared. Preserving total inventory is a separate invariant that the transaction must maintain.",
+          "pages": [
+            15
+          ]
+        },
+        {
+          "id": "l19-acid-q10",
+          "prompt": "Aborted transactions leave no changes, but committed transactions are lost after a crash. Which assessment is correct?",
+          "options": [
+            "All ACID properties hold because aborts work correctly",
+            "Only isolation fails",
+            "Atomicity may hold while durability fails",
+            "Atomicity and durability are the same property"
+          ],
+          "answer": 2,
+          "explanation": "Atomicity and durability address different requirements. Correctly handling an abort does not guarantee preservation of committed work.",
+          "pages": [
+            12,
+            13,
+            47
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l19-topic-schedules",
+      "title": "FORMAL PROPERTIES OF SCHEDULES",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+      "pages": [
+        18,
+        26
+      ],
+      "questions": [
+        {
+          "id": "l19-schedules-q1",
+          "prompt": "What must a valid schedule preserve within each transaction?",
+          "options": [
+            "The arrival order of all transactions",
+            "Every COMMIT must occur at the end of the entire system's schedule",
+            "The transaction's internal operation order",
+            "Transactions must never be interleaved"
+          ],
+          "answer": 2,
+          "explanation": "A schedule may interleave transactions, but it must preserve each transaction's program order. It need not be serial.",
+          "pages": [
+            24
+          ]
+        },
+        {
+          "id": "l19-schedules-q2",
+          "prompt": "What is a serial schedule?",
+          "options": [
+            "A schedule that always follows COMMIT order",
+            "A schedule that interleaves only reads",
+            "A schedule whose BEGIN and COMMIT orders match, even when operations interleave",
+            "A schedule that does not interleave operations from different transactions"
+          ],
+          "answer": 3,
+          "explanation": "A serial schedule runs transactions without interleaving them. It need not follow timestamp order or the order in which transactions arrived.",
+          "pages": [
+            25
+          ]
+        },
+        {
+          "id": "l19-schedules-q3",
+          "prompt": "Must a serializable schedule be serial?",
+          "options": [
+            "No; it may interleave operations while remaining equivalent to a serial order",
+            "Yes; no operations may be interleaved",
+            "Yes; BEGIN order must always match the complete execution order",
+            "No; every interleaved schedule is serializable"
+          ],
+          "answer": 0,
+          "explanation": "Serializability is an equivalence property, not a requirement to avoid interleaving. However, not every interleaving is serializable.",
+          "pages": [
+            25,
+            26
+          ]
+        },
+        {
+          "id": "l19-schedules-q4",
+          "prompt": "Initially A=30 and B=70. T1 moves 4 from A to B; T2 reads the total after the debit to A but before the credit to B. What total does T2 obtain?",
+          "options": [
+            "100",
+            "96",
+            "104",
+            "26"
+          ],
+          "answer": 1,
+          "explanation": "T2 reads 26 and 70, giving 96 rather than the total of 100 in either serial order. A correct final database state does not repair an incorrect answer already returned.",
+          "pages": [
+            18,
+            22,
+            23
+          ]
+        },
+        {
+          "id": "l19-schedules-q5",
+          "prompt": "T1 and T2 are submitted together. Does serializability promise that the equivalent serial order follows COMMIT order?",
+          "options": [
+            "Yes; COMMIT always determines the serial order",
+            "Yes; the shorter transaction always comes first",
+            "No; the schedule only needs to match a suitable serial order",
+            "No equivalent serial order is required at all"
+          ],
+          "answer": 2,
+          "explanation": "Serializability does not itself impose start-time or commit-time order. An equivalent serial order must nevertheless exist.",
+          "pages": [
+            19,
+            26
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l19-topic-conflicts",
+      "title": "CONFLICTING OPERATIONS",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+      "pages": [
+        27,
+        30
+      ],
+      "questions": [
+        {
+          "id": "l19-conflicts-q1",
+          "prompt": "Which pair of operations conflicts under the lecture's definition?",
+          "options": [
+            "R1(X) and R2(X)",
+            "W1(X) and R2(Y), where X differs from Y",
+            "R1(X) and W1(X)",
+            "R1(X) and W2(X)"
+          ],
+          "answer": 3,
+          "explanation": "Conflicting operations belong to different transactions, access the same object, and include at least one write. Two reads of X do not conflict.",
+          "pages": [
+            27
+          ]
+        },
+        {
+          "id": "l19-conflicts-q2",
+          "prompt": "T1 reads a price of 8. T2 changes it to 9 and commits; T1 then reads 9. What anomaly occurs?",
+          "options": [
+            "An unrepeatable read",
+            "A dirty read of T2's uncommitted value",
+            "A lost update caused by one write overwriting another",
+            "A dirty write in which T1 overwrites uncommitted data"
+          ],
+          "answer": 0,
+          "explanation": "T1 reads the same object twice and obtains different values. T2 has committed, so this example is not a dirty read.",
+          "pages": [
+            28
+          ]
+        },
+        {
+          "id": "l19-conflicts-q3",
+          "prompt": "T2 reads a price written by T1 before T1 aborts. What is the immediate problem?",
+          "options": [
+            "An unrepeatable read between two committed values",
+            "A dirty read",
+            "A lost update caused solely by two transactions writing simultaneously",
+            "A dirty write even though T2 has not written anything"
+          ],
+          "answer": 1,
+          "explanation": "T2 reads an uncommitted value that is later withdrawn. The read is dirty from the moment it occurs, regardless of whether T1 eventually commits or aborts; two read-only operations alone do not cause this anomaly.",
+          "pages": [
+            29
+          ]
+        },
+        {
+          "id": "l19-conflicts-q4",
+          "prompt": "T1 and T2 both read 9 available seats. Each subtracts 1 and writes 8. What result should the business operation produce?",
+          "options": [
+            "8, because two customers always count as one booking",
+            "9, because a write does not change a read",
+            "7; a result of 8 has lost one update",
+            "10, because concurrency adds a seat"
+          ],
+          "answer": 2,
+          "explanation": "Two bookings should reduce availability by two. Both transactions use the old value and overwrite one another, so 8 omits one decrement.",
+          "pages": [
+            27,
+            30
+          ]
+        },
+        {
+          "id": "l19-conflicts-q5",
+          "prompt": "T1 writes X and T2 writes Y, where X differs from Y. Do these two operations alone conflict?",
+          "options": [
+            "Yes, because both are writes",
+            "Yes, because belonging to different transactions is sufficient",
+            "Yes, if neither transaction has committed",
+            "No, because they access different objects"
+          ],
+          "answer": 3,
+          "explanation": "Different transactions are not sufficient for a conflict: the operations must also access the same object. Writes to independent objects do not conflict in this model.",
+          "pages": [
+            27
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l19-topic-conflict-serializable",
+      "title": "CONFLICT SERIALIZABLE SCHEDULES",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+      "pages": [
+        31,
+        39
+      ],
+      "questions": [
+        {
+          "id": "l19-conflict-serializable-q1",
+          "prompt": "What must two conflict-equivalent schedules preserve?",
+          "options": [
+            "The same operations and the order of every conflicting pair",
+            "Only the final values in one test database",
+            "Only the order of each object's final writes",
+            "Only BEGIN and COMMIT order"
+          ],
+          "answer": 0,
+          "explanation": "Conflict equivalence is a structural condition on operations. Matching final values in one test run is insufficient.",
+          "pages": [
+            32
+          ]
+        },
+        {
+          "id": "l19-conflict-serializable-q2",
+          "prompt": "Which adjacent operations can be swapped without changing conflict order?",
+          "options": [
+            "W1(A) and R2(A)",
+            "R1(A) and R2(A)",
+            "W1(A) and W2(A)",
+            "R1(A) and W2(A)"
+          ],
+          "answer": 1,
+          "explanation": "Two reads do not conflict. Every other pair accesses A and includes a write, so those operations cannot be freely exchanged.",
+          "pages": [
+            32,
+            33
+          ]
+        },
+        {
+          "id": "l19-conflict-serializable-q3",
+          "prompt": "Is R1(A), W1(A), R2(B), W2(B) conflict-serializable when A differs from B?",
+          "options": [
+            "No, because it contains two writes",
+            "No, because two transactions can be interleaved",
+            "Yes; the transactions access independent objects",
+            "Only if COMMIT order matches BEGIN order"
+          ],
+          "answer": 2,
+          "explanation": "No pair of operations conflicts across the two transactions, so either serial order is suitable. This structural conclusion does not depend on particular data values.",
+          "pages": [
+            27,
+            32
+          ]
+        },
+        {
+          "id": "l19-conflict-serializable-q4",
+          "prompt": "Can R1(A), R2(A), W1(A), W2(A) be conflict-equivalent to a serial schedule?",
+          "options": [
+            "Yes, because every read precedes every write",
+            "Yes, because there is only one object",
+            "No, because the two reads conflict with one another",
+            "No, because R1 before W2 and R2 before W1 impose opposite orders"
+          ],
+          "answer": 3,
+          "explanation": "R1→W2 requires T1 before T2, while R2→W1 requires T2 before T1. The reads do not conflict with each other; their conflicts with writes create the problem.",
+          "pages": [
+            38
+          ]
+        },
+        {
+          "id": "l19-conflict-serializable-q5",
+          "prompt": "What is proved by turning a schedule into a serial one using only swaps of adjacent nonconflicting operations?",
+          "options": [
+            "The schedule is conflict-serializable",
+            "The schedule cannot cause cascading aborts",
+            "The schedule is always recoverable, even with dirty reads",
+            "The schedule provides strict serializability in real-time order"
+          ],
+          "answer": 0,
+          "explanation": "These swaps preserve the order of every conflicting pair and therefore prove conflict serializability. They do not establish successful commits or real-time ordering.",
+          "pages": [
+            32,
+            37
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l19-topic-dependency",
+      "title": "DEPENDENCY GRAPHS",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+      "pages": [
+        40,
+        42
+      ],
+      "questions": [
+        {
+          "id": "l19-dependency-q1",
+          "prompt": "Which edge is created when W1(A) occurs before R2(A)?",
+          "options": [
+            "T2 → T1",
+            "T1 → T2",
+            "Both directions automatically",
+            "No edge, because the read occurs later"
+          ],
+          "answer": 1,
+          "explanation": "The edge points from the transaction performing the earlier conflicting operation to the one performing the later operation. Its direction is not determined simply by which transaction reads or writes.",
+          "pages": [
+            40
+          ]
+        },
+        {
+          "id": "l19-dependency-q2",
+          "prompt": "How can a serial order be obtained from an acyclic dependency graph?",
+          "options": [
+            "Sort by BEGIN order regardless of edges",
+            "Sort by decreasing number of writes",
+            "Use a topological sort",
+            "Sort by COMMIT order without checking edges"
+          ],
+          "answer": 2,
+          "explanation": "A topological order respects every before-and-after constraint in the graph. An arbitrary COMMIT order might violate an edge.",
+          "pages": [
+            40
+          ]
+        },
+        {
+          "id": "l19-dependency-q3",
+          "prompt": "The graph has T1→T2 and T2→T3, with no reverse edges. Which serial order is valid?",
+          "options": [
+            "T3,T2,T1",
+            "T2,T1,T3",
+            "T1,T3,T2",
+            "T1,T2,T3"
+          ],
+          "answer": 3,
+          "explanation": "The two edges require T1 before T2 before T3. A direct T1→T3 edge is unnecessary because the ordering follows transitively.",
+          "pages": [
+            40,
+            42
+          ]
+        },
+        {
+          "id": "l19-dependency-q4",
+          "prompt": "The graph has T1→T2, T2→T3, and T3→T1. What is the precise conclusion?",
+          "options": [
+            "The schedule is not conflict-serializable",
+            "The schedule is not serial because every graph edge forbids interleaving",
+            "The schedule can never be view-serializable",
+            "The schedule remains conflict-serializable if each transaction writes only one object"
+          ],
+          "answer": 0,
+          "explanation": "A cycle rules out conflict serializability. It does not automatically rule out weaker equivalence criteria such as view serializability.",
+          "pages": [
+            40,
+            41
+          ]
+        },
+        {
+          "id": "l19-dependency-q5",
+          "prompt": "T3 only reads Z, and no other transaction accesses Z. Can adding T3 create a new conflict cycle?",
+          "options": [
+            "Yes; every new transaction creates edges to existing transactions",
+            "No; T3 has no edges connecting it to the other transactions",
+            "Yes; reads within the same database always conflict",
+            "Yes, if T3 starts before T1 but commits after it"
+          ],
+          "answer": 1,
+          "explanation": "T3 has no conflicting access pair with another transaction, so it introduces no connecting edges. An earlier BEGIN or later COMMIT does not itself create a conflict edge.",
+          "pages": [
+            27,
+            40
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l19-topic-view",
+      "title": "VIEW SERIALIZABILITY",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+      "pages": [
+        43,
+        46
+      ],
+      "questions": [
+        {
+          "id": "l19-view-q1",
+          "prompt": "What must view equivalence preserve?",
+          "options": [
+            "The absolute order of every write, including blind writes",
+            "Only final writers, without preserving reads-from relationships",
+            "The source of each read and the final writer of each object",
+            "Only the set of values read in one sample database"
+          ],
+          "answer": 2,
+          "explanation": "View equivalence preserves reads-from relationships, reads of initial values, and final writers. Unlike conflict equivalence, it need not preserve the order of every conflicting pair.",
+          "pages": [
+            43
+          ]
+        },
+        {
+          "id": "l19-view-q2",
+          "prompt": "The schedule W1(A), W2(A), W1(A) contains no reads. Which serial order is view-equivalent to it?",
+          "options": [
+            "T1 followed by T2",
+            "No serial order can be equivalent",
+            "T1 alone, with T2 removed",
+            "T2 followed by T1"
+          ],
+          "answer": 3,
+          "explanation": "T1 is the final writer, and there are no reads to preserve. T2→T1 retains that final writer, whereas T1→T2 changes it.",
+          "pages": [
+            43,
+            45
+          ]
+        },
+        {
+          "id": "l19-view-q3",
+          "prompt": "Is every conflict-serializable schedule also view-serializable?",
+          "options": [
+            "Yes, in the lecture's model",
+            "No; the two classes are disjoint",
+            "Only when there are no blind writes",
+            "Only when every transaction commits in BEGIN order"
+          ],
+          "answer": 0,
+          "explanation": "Preserving every conflict order preserves the read relationships and final writers required by view equivalence. The reverse implication does not always hold because of blind writes.",
+          "pages": [
+            45,
+            46
+          ]
+        },
+        {
+          "id": "l19-view-q4",
+          "prompt": "A read sees A's initial value in S1 but a value written by T2 in S2. Are the schedules view-equivalent?",
+          "options": [
+            "Yes, if the numerical values happen to match in one execution",
+            "No, because the source of the read has changed",
+            "Yes, because the object name is the same",
+            "Yes, if COMMIT order is unchanged"
+          ],
+          "answer": 1,
+          "explanation": "View equivalence preserves where a read obtains its value, rather than merely requiring equal numbers in one particular database state.",
+          "pages": [
+            43
+          ]
+        },
+        {
+          "id": "l19-view-q5",
+          "prompt": "Why is conflict serializability often easier to check than view serializability?",
+          "options": [
+            "It permits more schedules than view serializability",
+            "It understands every business rule",
+            "It has an efficient acyclic-graph test",
+            "It does not require examining writes"
+          ],
+          "answer": 2,
+          "explanation": "The graph criterion provides an efficient test. Conflict serializability is the more restrictive class; it does not admit more schedules than view serializability.",
+          "pages": [
+            40,
+            46
+          ]
+        }
+      ]
+    }
+  ]
+}

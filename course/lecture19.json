@@ -1,0 +1,96 @@
+[
+  {
+    "id": "lecture-19",
+    "lecture": 19,
+    "title": "Transactions: correctness under concurrency",
+    "short": "ACID · schedules · conflict graphs",
+    "group": "06 · Transactions",
+    "time": 25,
+    "lead": "A transaction groups several data operations into one unit of work. ACID describes the guarantees on which an application can rely.",
+    "goals": [
+      "Distinguish the four ACID properties",
+      "Construct a precedence graph from a read/write schedule",
+      "Distinguish conflict serializability from view serializability"
+    ],
+    "sections": [
+      {
+        "id": "l19-s1",
+        "title": "The conceptual map",
+        "html": "<p>Moving 5 boxes from the North warehouse to the South warehouse requires two writes: subtracting from North and adding to South. We group these operations into a <strong>transaction</strong> so that the application does not have to accept a transfer completed only halfway.</p><ul><li><strong>Atomicity:</strong> commit all changes, or abort and remove their effects.</li><li><strong>Consistency:</strong> a transaction must preserve invariants, such as an unchanged total number of boxes. The application still has to implement its business rules correctly.</li><li><strong>Isolation:</strong> in the serializability model studied here, transactions may interleave, but their effects must be equivalent to some serial execution order.</li><li><strong>Durability:</strong> committed results survive the kinds of failures that the system promises to handle.</li></ul><p>The DBMS manages database reads and writes. Shipping a physical item does not automatically reverse when ROLLBACK occurs. Identify the transaction boundary before choosing a mechanism.</p><p class=\"source-note\">Source: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=1\" target=\"_blank\" rel=\"noopener\">PDF pages 1–17</a>. The examples and worked solutions on this lesson page were written independently.</p>"
+      },
+      {
+        "id": "l19-s2",
+        "title": "Worked example: two warehouses",
+        "html": "<p>North has 40 boxes and South has 60. T1 moves 5 boxes from North → South, while T2 checks the total. In either serial schedule, with T1 completing before T2 or the reverse, T2 sees 100. If T2 reads North after the subtraction and South before the addition, it instead sees 35 + 60 = 95.</p><ol><li>Before the transfer, the quantities are (40,60).</li><li>T1 writes North = 35.</li><li>T2 reads North = 35 and South = 60.</li><li>T1 writes South = 65.</li></ol><p>The final database state is correct, but the answer already returned is wrong. Checking only the final state is insufficient; the values read during execution also matter.</p><p class=\"source-note\">Source: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=18\" target=\"_blank\" rel=\"noopener\">PDF pages 18–26</a>. The examples and worked solutions on this lesson page were written independently.</p>"
+      },
+      {
+        "id": "l19-s3",
+        "title": "Build a conflict graph",
+        "html": "<p>Read the schedule <code>R1(X), W1(X), R2(X), W2(Y), R1(Y)</code> from left to right. R1(X) means that T1 reads X, and W2(Y) means that T2 writes Y. A schedule preserves the operation order within each transaction.</p><ol><li>Create one vertex for each transaction: T1 and T2.</li><li>On X, W1 precedes R2, so add T1 → T2.</li><li>On Y, W2 precedes R1, so add T2 → T1.</li><li>The two edges form a cycle: no serial order can place T1 both before and after T2.</li></ol><p>Add an edge only when the two operations belong to different transactions, access the same object, and include at least one write. This structure is called a conflict graph or precedence graph.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>A cycle rules out conflict serializability.</b> Each edge imposes an order between two transactions, and a cycle makes those ordering requirements contradictory.</p></aside><p>If the final pair becomes <code>R1(Y), W2(Y)</code>, every edge points T1 → T2, matching the serial order T1 then T2. Two reads do not create an edge, and neither do operations on different objects.</p><p><strong>Check your understanding:</strong> Would adding R3(Z) at the start create a cycle? No, because its access to Z conflicts with no other operation.</p><p class=\"source-note\">Source: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=27\" target=\"_blank\" rel=\"noopener\">PDF pages 27–42</a>. The examples and worked solutions on this lesson page were written independently.</p>"
+      },
+      {
+        "id": "l19-s4",
+        "title": "Recognize three anomalies",
+        "html": "<p>The initial price is 100. T1 writes a price of 80 but <strong>has not committed</strong>. T2 then reads 80. This is already a <strong>dirty read</strong>, because T2 has read an uncommitted value written by another transaction.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>A dirty read is identified at the moment of the read.</b> If T1 later commits, the earlier read is still dirty. If T1 aborts, the price returns to 100, but T2 may already have used 80 in its calculation.</p></aside><ul><li><strong>Unrepeatable read:</strong> a transaction reads the same price twice and sees different values because another transaction updates and commits between the reads.</li><li><strong>Dirty read:</strong> a transaction reads another transaction's uncommitted value, regardless of whether the writer eventually commits or aborts.</li><li><strong>Lost update:</strong> two transactions update from the same old value, and a later write overwrites the effect of an earlier update.</li></ul><p>Exercise: 8 seats remain. Two customers both read 8 and each writes 7. Two successful bookings should leave 6 seats; a result of 7 is a lost update. Draw the R–W edges to find the cycle.</p><p class=\"source-note\">Source: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=29\" target=\"_blank\" rel=\"noopener\">PDF page 29 · slide 32 (dirty read); pages 28–30 (anomalies)</a>. The examples and worked solutions on this lesson page were written independently.</p>"
+      },
+      {
+        "id": "l19-s5",
+        "title": "View equivalence and its limits",
+        "html": "<p>View equivalence preserves the source of every read: whether it reads an initial value or a value written by a particular transaction. It also preserves the final writer of each object. Consider <code>W1(X), W2(X), W1(X)</code>. Its graph has edges in both directions, but it has no reads and T1 is the final writer. It is view-equivalent to T2 followed by T1.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>An acyclic graph characterizes conflict serializability.</b> A cycle alone does not disprove view serializability: the blind-write example here still preserves every read source and final writer.</p></aside><p>This example explains why conflict serializability is the stricter condition. A cyclic schedule does not necessarily fail every definition of equivalence; the precise conclusion is that it fails the conflict criterion. Real applications also need abort handling and durability, beyond the graph test.</p><p class=\"source-note\">Source: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=43\" target=\"_blank\" rel=\"noopener\">PDF pages 43–48</a>. The examples and worked solutions on this lesson page were written independently.</p>"
+      }
+    ],
+    "quiz": {
+      "question": "Is R1(A), W2(A), W1(B), R2(B) conflict-serializable?",
+      "options": [
+        "Yes, in the order T1 then T2",
+        "Yes, in the order T2 then T1",
+        "No, because the graph has a cycle",
+        "There is insufficient information because two objects are involved"
+      ],
+      "answer": 0,
+      "explanation": "Both R1(A) before W2(A) and W1(B) before R2(B) create T1 → T2. There is no edge in the reverse direction."
+    },
+    "source": {
+      "summary": "Lecture 19 introduces transactions, ACID, execution schedules, conflicts, and two serializability criteria. A dependency graph checks conflict serializability, while logging or shadow paging supports atomicity and durability.",
+      "links": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=1",
+          "label": "PDF pages 1–17"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=18",
+          "label": "PDF pages 18–26"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=27",
+          "label": "PDF pages 27–42"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=29",
+          "label": "PDF page 29 · slide 32 (dirty read); pages 28–30 (anomalies)"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=43",
+          "label": "PDF pages 43–48"
+        }
+      ]
+    },
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+      "verified": true,
+      "verifiedPages": "1–48",
+      "topics": [
+        "ACID",
+        "transaction abstraction",
+        "schedules",
+        "RW/WR/WW anomalies",
+        "conflict equivalence",
+        "precedence graph",
+        "view equivalence",
+        "durability"
+      ],
+      "limitations": []
+    },
+    "lab": "transactions"
+  }
+]

@@ -1,0 +1,527 @@
+{
+  "lectureId": "lecture-08",
+  "topics": [
+    {
+      "id": "l08-topic-cost-model",
+      "title": "COST MODEL FOR ANALYSIS / RECORD OPERATIONS",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations.pdf",
+      "pages": [
+        4,
+        6
+      ],
+      "questions": [
+        {
+          "id": "l08-cost-model-q1",
+          "prompt": "In this lecture's cost model, what do P and R denote, respectively?",
+          "options": [
+            "The number of data pages and the number of records per page",
+            "The number of records and the number of pages per record",
+            "The number of index levels and the number of root pages",
+            "The number of buffer frames and the number of query operators"
+          ],
+          "answer": 0,
+          "explanation": "P counts the file's data pages. R measures records per page, rather than the total number of records.",
+          "pages": [
+            5
+          ]
+        },
+        {
+          "id": "l08-cost-model-q2",
+          "prompt": "What does the I/O-only model temporarily ignore?",
+          "options": [
+            "The number of pages in the file",
+            "CPU costs, prefetching, and differences between random and sequential I/O",
+            "Every page read",
+            "Every page write"
+          ],
+          "answer": 1,
+          "explanation": "The model retains page-I/O costs while simplifying other factors so that broad performance trends can be compared.",
+          "pages": [
+            5
+          ]
+        },
+        {
+          "id": "l08-cost-model-q3",
+          "prompt": "How many matches does the analysis assume for an equality search on a key?",
+          "options": [
+            "Every record matches",
+            "There are as many matches as pages",
+            "Exactly one match exists",
+            "There is never a match"
+          ],
+          "answer": 2,
+          "explanation": "Assuming that one match exists allows the expected search cost to be approximated by half a file scan. Searching for a missing key has a different cost.",
+          "pages": [
+            6
+          ]
+        },
+        {
+          "id": "l08-cost-model-q4",
+          "prompt": "A uniformly full file has P=200 and R=40. How many records does it contain?",
+          "options": [
+            "240",
+            "5",
+            "1600",
+            "8000"
+          ],
+          "answer": 3,
+          "explanation": "Multiply pages by records per page: 200×40=8000 records. Adding quantities with different units would not give a record count.",
+          "pages": [
+            5
+          ]
+        },
+        {
+          "id": "l08-cost-model-q5",
+          "prompt": "Why should assumptions be stated before comparing heap and sorted files?",
+          "options": [
+            "A cost formula is meaningful only under its stated conditions",
+            "Stating assumptions always makes the cache warm",
+            "Every formula is independent of the workload",
+            "Equal P values guarantee equal wall-clock times"
+          ],
+          "answer": 0,
+          "explanation": "A model is an approximation with a defined scope. Files with the same page count can still have different workloads and layouts.",
+          "pages": [
+            4,
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l08-topic-heap-cost",
+      "title": "HEAP FILE ANALYSIS",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations.pdf",
+      "pages": [
+        7,
+        13
+      ],
+      "questions": [
+        {
+          "id": "l08-heap-cost-q1",
+          "prompt": "A heap file has P=120 pages and D=3 ms per page, with no caching. What is the full-scan cost in the I/O-only model?",
+          "options": [
+            "40 ms",
+            "360 ms",
+            "180 ms",
+            "123 ms"
+          ],
+          "answer": 1,
+          "explanation": "All 120 pages must be read at 3 ms each, giving 360 ms. The half-file approximation applies to finding one existing key, not to a full scan.",
+          "pages": [
+            8
+          ]
+        },
+        {
+          "id": "l08-heap-cost-q2",
+          "prompt": "An existing key is equally likely to be on any of P=9 pages. What is the exact expected number of pages read?",
+          "options": [
+            "9",
+            "3",
+            "5",
+            "4.5"
+          ],
+          "answer": 2,
+          "explanation": "The average of positions 1 through 9 is (9+1)/2=5. P/2=4.5 is only an approximation.",
+          "pages": [
+            9
+          ]
+        },
+        {
+          "id": "l08-heap-cost-q3",
+          "prompt": "How many pages must usually be scanned to find all matches on a non-key attribute in a heap without an index or cache?",
+          "options": [
+            "P/2",
+            "log₂P",
+            "1",
+            "P"
+          ],
+          "answer": 3,
+          "explanation": "Matching records can occur on any page. Finding one match is not enough to stop when all matches are required.",
+          "pages": [
+            10,
+            11
+          ]
+        },
+        {
+          "id": "l08-heap-cost-q4",
+          "prompt": "Assuming insertion appends to the last page, which I/Os does a heap insertion require?",
+          "options": [
+            "Read the last page and write it back, costing approximately 2D",
+            "Only read the last page, costing D",
+            "Perform a binary search and shift half the file",
+            "Scan all pages and then sort the entire file"
+          ],
+          "answer": 0,
+          "explanation": "This model assumes the append location is known and ignores other management overhead. Maintaining a sorted file would require a different analysis.",
+          "pages": [
+            12
+          ]
+        },
+        {
+          "id": "l08-heap-cost-q5",
+          "prompt": "What approximate cost does the lecture give for deleting an existing key from a heap?",
+          "options": [
+            "log₂P·D",
+            "P·D/2 + D",
+            "P·D/2",
+            "2P·D"
+          ],
+          "answer": 1,
+          "explanation": "The search reads approximately half the file, and the modified page must then be written. P·D/2 alone omits that final write.",
+          "pages": [
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l08-topic-sorted-cost",
+      "title": "SORTED FILE ANALYSIS",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations.pdf",
+      "pages": [
+        14,
+        19
+      ],
+      "questions": [
+        {
+          "id": "l08-sorted-cost-q1",
+          "prompt": "Can a file sorted by x use binary search directly for y=7 merely because y is a key?",
+          "options": [
+            "Yes, if y is an integer",
+            "Yes, if there is only one match",
+            "No, the search must match the file's sort order",
+            "Yes, every key can be searched by binary search"
+          ],
+          "answer": 2,
+          "explanation": "Uniqueness does not make the file sorted by y. Binary search requires the relevant ordering.",
+          "pages": [
+            15,
+            16
+          ]
+        },
+        {
+          "id": "l08-sorted-cost-q2",
+          "prompt": "For P=1024 and D=2 ms, what is the approximate equality-search cost on the sort key?",
+          "options": [
+            "2048 ms",
+            "1024 ms",
+            "10 ms",
+            "20 ms"
+          ],
+          "answer": 3,
+          "explanation": "The model estimates log₂1024=10 page reads. Multiplying by 2 ms per read gives 20 ms.",
+          "pages": [
+            16
+          ]
+        },
+        {
+          "id": "l08-sorted-cost-q3",
+          "prompt": "How is a range query on a sorted key performed conceptually?",
+          "options": [
+            "Locate the start of the range, then scan pages containing matches",
+            "Always read exactly one page, regardless of the range",
+            "Always scan the whole file from its beginning",
+            "Find only the final key and ignore the values in between"
+          ],
+          "answer": 0,
+          "explanation": "The ordering supports locating the starting point and continuing sequentially. A wide result range can still require many pages.",
+          "pages": [
+            16,
+            18
+          ]
+        },
+        {
+          "id": "l08-sorted-cost-q4",
+          "prompt": "Why can insertion into a compact sorted file require substantial I/O?",
+          "options": [
+            "Binary search is always linear",
+            "Records or pages after the insertion point may need to shift to preserve order",
+            "Every insertion changes every field type",
+            "Every insertion must build a new hash table"
+          ],
+          "answer": 1,
+          "explanation": "Shifting data adds substantial cost beyond locating the insertion point. Binary search itself remains logarithmic.",
+          "pages": [
+            17
+          ]
+        },
+        {
+          "id": "l08-sorted-cost-q5",
+          "prompt": "For P=128 and D=1 ms, use the slide's insertion formula: search + P·D. What is the approximate cost?",
+          "options": [
+            "128 ms",
+            "14 ms",
+            "135 ms",
+            "71 ms"
+          ],
+          "answer": 2,
+          "explanation": "The search costs log₂128=7 ms and shifting costs 128 ms. The 71 ms option counts only half the pages without accounting for both reading and writing them.",
+          "pages": [
+            17,
+            18
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l08-topic-entries",
+      "title": "INDEX / INDEX ENTRIES",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations.pdf",
+      "pages": [
+        20,
+        25
+      ],
+      "questions": [
+        {
+          "id": "l08-entries-q1",
+          "prompt": "Must a search key uniquely identify every record?",
+          "options": [
+            "Yes, it is always the primary key",
+            "Yes, it is always a minimal candidate key",
+            "Only when the index is a B+ tree",
+            "No, it can consist of non-unique attributes"
+          ],
+          "answer": 3,
+          "explanation": "A search key identifies the field or fields used for lookup. Uniqueness is a separate property.",
+          "pages": [
+            21
+          ]
+        },
+        {
+          "id": "l08-entries-q2",
+          "prompt": "What does an index entry contain in Variant A?",
+          "options": [
+            "The record's contents",
+            "Only a (key,RID) pair",
+            "Only a (key,list of RIDs) pair",
+            "Only page-directory free-space information"
+          ],
+          "answer": 0,
+          "explanation": "Variant A stores records by value. Variants B and C store references instead of the full record contents.",
+          "pages": [
+            23
+          ]
+        },
+        {
+          "id": "l08-entries-q3",
+          "prompt": "How does Variant B differ from Variant C?",
+          "options": [
+            "B is used only with hashing, while C is used only with trees",
+            "B stores one RID per entry, while C groups a key's RIDs into a list",
+            "B contains complete records, while C contains only internal pointers",
+            "B requires unique keys, while C cannot represent duplicates"
+          ],
+          "answer": 1,
+          "explanation": "The difference is how references are packaged. It is independent of the index's access structure.",
+          "pages": [
+            23
+          ]
+        },
+        {
+          "id": "l08-entries-q4",
+          "prompt": "Why can Variant C produce variable-length entries?",
+          "options": [
+            "The page size changes on every lookup",
+            "A B+ tree has no leaves",
+            "Different keys can have different numbers of RIDs",
+            "Every key must be a string"
+          ],
+          "answer": 2,
+          "explanation": "RID lists can have different lengths, so entry sizes can vary even when the keys have a fixed length.",
+          "pages": [
+            24
+          ]
+        },
+        {
+          "id": "l08-entries-q5",
+          "prompt": "Why are by-reference entries useful when a table has several indexes?",
+          "options": [
+            "They guarantee that key updates never need index maintenance",
+            "They automatically make every index clustered",
+            "They remove the need for a data file",
+            "They avoid repeating the entire tuple in every index"
+          ],
+          "answer": 3,
+          "explanation": "RID references let multiple indexes refer to the same record. Updating an indexed key may still require index maintenance.",
+          "pages": [
+            25
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l08-topic-classification",
+      "title": "INDEX CLASSIFICATION / HASH-BASED INDEX",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations.pdf",
+      "pages": [
+        26,
+        29
+      ],
+      "questions": [
+        {
+          "id": "l08-classification-q1",
+          "prompt": "Which index type naturally supports ranges in search-key order in this lecture?",
+          "options": [
+            "A tree-based index",
+            "An ordinary hash index",
+            "Both must store keys in sorted order",
+            "Only an unindexed heap"
+          ],
+          "answer": 0,
+          "explanation": "The tree structure maintains an ordering. Hashing primarily supports equality lookups and does not preserve the neighbourhood of adjacent keys.",
+          "pages": [
+            26
+          ]
+        },
+        {
+          "id": "l08-classification-q2",
+          "prompt": "What can a hash bucket consist of?",
+          "options": [
+            "Only a bitmap for the entire database",
+            "A primary page and zero or more overflow pages",
+            "Always exactly one record",
+            "Always one B+ tree root and all its leaves"
+          ],
+          "answer": 1,
+          "explanation": "Overflow pages extend a bucket when necessary. A bucket is not limited to a single record.",
+          "pages": [
+            29
+          ]
+        },
+        {
+          "id": "l08-classification-q3",
+          "prompt": "In the slides' terminology, what does a primary index's search key contain?",
+          "options": [
+            "Only the root page's ID",
+            "One constant shared by every entry",
+            "The primary key",
+            "Every non-key attribute"
+          ],
+          "answer": 2,
+          "explanation": "This classification depends on the search key containing the primary key. Clustering is a separate classification.",
+          "pages": [
+            26
+          ]
+        },
+        {
+          "id": "l08-classification-q4",
+          "prompt": "Which property do the slides associate with a unique index?",
+          "options": [
+            "Every entry has the same value",
+            "Every leaf contains exactly one entry",
+            "The index cannot have multiple columns",
+            "The search key contains a candidate key"
+          ],
+          "answer": 3,
+          "explanation": "A candidate key guarantees uniqueness. A search key containing several columns can still be unique.",
+          "pages": [
+            26
+          ]
+        },
+        {
+          "id": "l08-classification-q5",
+          "prompt": "Does choosing a B+ tree or a hash structure automatically determine whether entries use Variant A, B, or C?",
+          "options": [
+            "No, these are independent design choices",
+            "Yes, trees can use only A",
+            "Yes, hashing can use only C",
+            "Yes, by-reference entries cannot be used with trees"
+          ],
+          "answer": 0,
+          "explanation": "Entry representation is a different design choice from the tree-based or hash-based access mechanism.",
+          "pages": [
+            24,
+            26
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l08-topic-cluster",
+      "title": "CLUSTERED VS. UNCLUSTERED INDEX",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations.pdf",
+      "pages": [
+        30,
+        33
+      ],
+      "questions": [
+        {
+          "id": "l08-cluster-q1",
+          "prompt": "What relationship does a clustered index describe between data placement and index order?",
+          "options": [
+            "Every leaf has only one child",
+            "Data records are kept close together in search-key order",
+            "Every record must remain in RAM",
+            "Every index key must be unique"
+          ],
+          "answer": 1,
+          "explanation": "Clustering concerns the physical locality and ordering of records. It does not imply uniqueness or caching.",
+          "pages": [
+            30
+          ]
+        },
+        {
+          "id": "l08-cluster-q2",
+          "prompt": "According to the lecture, how many independent search-key orders can one data file generally be clustered on at the same time?",
+          "options": [
+            "As many as the number of columns, without restriction",
+            "It can never be clustered",
+            "At most one",
+            "As many as the number of records"
+          ],
+          "answer": 2,
+          "explanation": "One linear physical arrangement generally cannot follow several independent orders simultaneously. Multiple unclustered indexes can still be maintained.",
+          "pages": [
+            30
+          ]
+        },
+        {
+          "id": "l08-cluster-q3",
+          "prompt": "There are 60 matching records on 3 data pages, with a cold cache. Counting only data-page retrieval, how many reads are needed?",
+          "options": [
+            "60",
+            "20",
+            "63",
+            "3"
+          ],
+          "answer": 3,
+          "explanation": "Each required data page needs to be read once. Adding an index cost to obtain 63 would introduce a cost that the question does not specify.",
+          "pages": [
+            32
+          ]
+        },
+        {
+          "id": "l08-cluster-q4",
+          "prompt": "There are 60 matching records, each on a different data page, with a cold cache. Counting only data retrieval, how many reads are needed?",
+          "options": [
+            "60",
+            "3",
+            "1",
+            "log₂60"
+          ],
+          "answer": 0,
+          "explanation": "Scattered unclustered matches can require one I/O per record. Traversing an index does not replace fetching the data pages.",
+          "pages": [
+            32
+          ]
+        },
+        {
+          "id": "l08-cluster-q5",
+          "prompt": "What is a trade-off when maintaining clustering during insertions?",
+          "options": [
+            "All secondary indexes must be deleted",
+            "Free space, overflow pages, or reorganisation may be needed to preserve locality",
+            "The file never needs updating",
+            "Every insertion has zero I/O cost"
+          ],
+          "answer": 1,
+          "explanation": "Maintaining physical order has a cost. Reserving space and reorganising data can help, but do not remove the trade-off entirely.",
+          "pages": [
+            33
+          ]
+        }
+      ]
+    }
+  ]
+}

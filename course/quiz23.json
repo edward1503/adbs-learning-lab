@@ -1,0 +1,450 @@
+{
+  "lectureId": "lecture-23",
+  "topics": [
+    {
+      "id": "l23-topic-algebra-recap",
+      "title": "A Quick Recap",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf",
+      "pages": [
+        2,
+        11
+      ],
+      "questions": [
+        {
+          "id": "l23-algebra-recap-q1",
+          "prompt": "Under set semantics, what does πcity return for {(1,Hue),(2,Hue),(3,DaNang)}?",
+          "options": [
+            "{Hue,DaNang}",
+            "{Hue,Hue,DaNang}",
+            "{1,2,3}",
+            "Only {Hue}"
+          ],
+          "answer": 0,
+          "explanation": "Projection removes duplicates under set semantics. SQL without DISTINCT may behave differently, so the set-semantics assumption matters.",
+          "pages": [
+            3,
+            4
+          ]
+        },
+        {
+          "id": "l23-algebra-recap-q2",
+          "prompt": "What does the selection σcity='Hue' do?",
+          "options": [
+            "Keeps only the city column",
+            "Keeps tuples whose city is Hue",
+            "Renames every city to Hue",
+            "Joins all tables that have a city column"
+          ],
+          "answer": 1,
+          "explanation": "Selection filters rows using a condition; projection chooses columns. These are different operators.",
+          "pages": [
+            5,
+            6
+          ]
+        },
+        {
+          "id": "l23-algebra-recap-q3",
+          "prompt": "What does joining R(student,course) and S(course,teacher) on course find?",
+          "options": [
+            "Every pair of tuples, regardless of course",
+            "Only courses in R that do not occur in S",
+            "Enrollment and teaching pairs with the same course",
+            "Tuples paired by row position rather than by course value"
+          ],
+          "answer": 2,
+          "explanation": "An equijoin requires equal values in the join attributes. A Cartesian product does not impose that condition.",
+          "pages": [
+            7,
+            9
+          ]
+        },
+        {
+          "id": "l23-algebra-recap-q4",
+          "prompt": "Why are two separate roles for the City table needed when asking about trips from Hue to Hanoi?",
+          "options": [
+            "Both different city conditions must apply to the same City tuple",
+            "Every join must read two physically separate copies",
+            "A single role matches both origin and destination without aliases",
+            "One role matches the origin and the other matches the destination"
+          ],
+          "answer": 3,
+          "explanation": "A self-join uses two variables or aliases for two logical roles. It does not require duplicating the stored data.",
+          "pages": [
+            7,
+            10
+          ]
+        },
+        {
+          "id": "l23-algebra-recap-q5",
+          "prompt": "R(student,course) is joined with S(course,teacher), and only student is returned. Which expression has the correct logical order?",
+          "options": [
+            "πstudent(R ⋈course S)",
+            "σstudent(R × S) without a course condition",
+            "πstudent(R) ⋈course S after course has been removed from R",
+            "R ⋈course πteacher(S) after course has been removed from S"
+          ],
+          "answer": 0,
+          "explanation": "The course attribute must remain available to match the join before projecting student. Removing the join attribute first leaves the course condition undefined.",
+          "pages": [
+            7,
+            9,
+            10,
+            11
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l23-topic-calculus",
+      "title": "Codd’s Theorem",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf",
+      "pages": [
+        14,
+        18
+      ],
+      "questions": [
+        {
+          "id": "l23-calculus-q1",
+          "prompt": "What is the central message of Codd's theorem in this lecture?",
+          "options": [
+            "Relational algebra and calculus always have the same execution cost",
+            "Relational algebra and the appropriate safe relational calculus express the same class of relational queries",
+            "Every calculus expression can run without a safe-domain restriction",
+            "Declarative queries do not need to be translated into execution plans"
+          ],
+          "answer": 1,
+          "explanation": "The theorem connects procedural and declarative descriptions of safe, domain-independent relational queries. It does not claim that every arbitrary formula defines a finite query result.",
+          "pages": [
+            14
+          ]
+        },
+        {
+          "id": "l23-calculus-q2",
+          "prompt": "In {z : ∃x∃y Flight(x,y,z)}, which variable is returned?",
+          "options": [
+            "x and y",
+            "All of x,y,z",
+            "z",
+            "There is no output variable"
+          ],
+          "answer": 2,
+          "explanation": "z appears in the returned tuple; x and y are existential witnesses. Existential variables do not automatically appear in the output.",
+          "pages": [
+            15
+          ]
+        },
+        {
+          "id": "l23-calculus-q3",
+          "prompt": "What does {x : City(x,Hue)} express?",
+          "options": [
+            "Every x with City(x,c) where c differs from Hue",
+            "Every x, without requiring a corresponding City fact",
+            "The cities paired with one fixed x, rather than returning x",
+            "The values x for which the fact City(x,Hue) exists"
+          ],
+          "answer": 3,
+          "explanation": "The fact must exist, and the constant Hue remains fixed. The expression neither negates the condition nor renames the constant.",
+          "pages": [
+            16
+          ]
+        },
+        {
+          "id": "l23-calculus-q4",
+          "prompt": "Which logical operations primarily form a pure conjunctive query in this section?",
+          "options": [
+            "Existential quantification ∃ and conjunction ∧",
+            "Existential quantification ∃ and disjunction ∨ only",
+            "Universal quantification ∀ and conjunction ∧, with no existential variables",
+            "Negation ¬ and conjunction ∧, without requiring positive atoms"
+          ],
+          "answer": 0,
+          "explanation": "A positive CQ asserts that witnesses exist that make all its atoms true together. General negation and disjunction go beyond this fragment.",
+          "pages": [
+            18
+          ]
+        },
+        {
+          "id": "l23-calculus-q5",
+          "prompt": "The query 'students who take DB and have a scholarship' is a CQ. Which query adds an operation outside pure CQs?",
+          "options": [
+            "Students who take DB and AI",
+            "Students who take DB but do not have a scholarship",
+            "People with at least one enrollment",
+            "Person–course pairs that occur together in Enrol"
+          ],
+          "answer": 1,
+          "explanation": "The absence of a scholarship requires negation. The other positive queries can be expressed using atoms, existential variables, and conjunction.",
+          "pages": [
+            18
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l23-topic-syntax",
+      "title": "Syntax of Conjunctive Queries",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf",
+      "pages": [
+        19,
+        23
+      ],
+      "questions": [
+        {
+          "id": "l23-syntax-q1",
+          "prompt": "In Q(x) :- R(x,y), S(y), which part is the head?",
+          "options": [
+            "R(x,y), S(y)",
+            "Only S(y)",
+            "Q(x)",
+            "The entire database D"
+          ],
+          "answer": 2,
+          "explanation": "The head specifies the output variables; the body contains the condition atoms. The query's name is distinct from the input relation names.",
+          "pages": [
+            19
+          ]
+        },
+        {
+          "id": "l23-syntax-q2",
+          "prompt": "In Q(x) :- R(x,y), S(y), what is the role of y?",
+          "options": [
+            "Two independent variables because it occurs twice",
+            "A constant named y",
+            "A mandatory output variable",
+            "An existential variable assigned the same value in both atoms"
+          ],
+          "answer": 3,
+          "explanation": "A variable name has one consistent assignment throughout a CQ. Because y is absent from the head, its value is not returned.",
+          "pages": [
+            19
+          ]
+        },
+        {
+          "id": "l23-syntax-q3",
+          "prompt": "Given Enrol(s,c) and Teach(t,c), which CQ finds students taking a course taught by Linh?",
+          "options": [
+            "Q(s) :- Enrol(s,c), Teach(Linh,c)",
+            "Q(s) :- Enrol(s,c), Teach(Linh,d)",
+            "Q(s) :- Enrol(c,s), Teach(c,Linh)",
+            "Q(s) :- Teach(s,c)"
+          ],
+          "answer": 0,
+          "explanation": "Using the same c joins on the same course. Independent variables c and d would only require Linh to teach some course, not necessarily the student's course.",
+          "pages": [
+            22,
+            23
+          ]
+        },
+        {
+          "id": "l23-syntax-q4",
+          "prompt": "What extra condition does Q(x) :- R(x,x) impose compared with Q(x) :- R(x,y)?",
+          "options": [
+            "x and y must always have different values",
+            "The two positions in the R fact must have equal values",
+            "R must contain at least two tuples",
+            "The query creates a new equality relation"
+          ],
+          "answer": 1,
+          "explanation": "A repeated variable encodes equality between positions. Different variable names do not require different values.",
+          "pages": [
+            19
+          ]
+        },
+        {
+          "id": "l23-syntax-q5",
+          "prompt": "How does a Boolean CQ differ from a query with output variables?",
+          "options": [
+            "Every table may contain only TRUE/FALSE values",
+            "Its body may not contain variables",
+            "Its head has no variables; it asks whether a match exists",
+            "It always returns YES because it has no output variables"
+          ],
+          "answer": 2,
+          "explanation": "A Boolean head omits returned variables, but the body still needs a match. Having no output variables does not automatically make the condition true.",
+          "pages": [
+            19,
+            31
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l23-topic-homomorphism",
+      "title": "Homomorphism",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf",
+      "pages": [
+        26,
+        30
+      ],
+      "questions": [
+        {
+          "id": "l23-homomorphism-q1",
+          "prompt": "How must a homomorphism treat constants?",
+          "options": [
+            "Change constants like variables if that helps match an atom",
+            "Allow different constants to map to the same constant",
+            "Remove constant conditions from atoms before matching",
+            "Keep every constant unchanged"
+          ],
+          "answer": 3,
+          "explanation": "The mapping is the identity on constants. Changing a constant would change the meaning of a query condition.",
+          "pages": [
+            26
+          ]
+        },
+        {
+          "id": "l23-homomorphism-q2",
+          "prompt": "Let A={R(x,c),S(x)} and B={R(a,c),S(a)}, where c is a constant. Which mapping is a homomorphism?",
+          "options": [
+            "x↦a, c↦c",
+            "x↦c, c↦a",
+            "x↦a, c↦a",
+            "x↦b, c↦c, where b does not occur in B"
+          ],
+          "answer": 0,
+          "explanation": "The correct mapping sends both atoms into B and preserves c. Matching only one atom or changing c is insufficient.",
+          "pages": [
+            26,
+            28
+          ]
+        },
+        {
+          "id": "l23-homomorphism-q3",
+          "prompt": "Must a homomorphism be injective?",
+          "options": [
+            "Yes; every variable must have a different value",
+            "No; two variables may map to the same value",
+            "Yes; only constants may have the same image",
+            "Yes; if two variables share an image, all atoms lose their meaning"
+          ],
+          "answer": 1,
+          "explanation": "The definition requires preservation of atoms and constants, not a one-to-one mapping. Distinct variable names alone do not impose a distinctness constraint.",
+          "pages": [
+            26,
+            29,
+            30
+          ]
+        },
+        {
+          "id": "l23-homomorphism-q4",
+          "prompt": "Let A={R(x,y),S(y)}. The mapping h sends the R atom into B, but S(h(y)) is absent from B. What follows?",
+          "options": [
+            "h is still valid because at least one atom matches",
+            "h is valid if the head tuple matches, even though the S atom does not",
+            "h is not a homomorphism from A to B",
+            "h is valid because the body atoms are joined by OR"
+          ],
+          "answer": 2,
+          "explanation": "Every source atom must have an image in B. Matching the head or only part of the body is insufficient: a CQ body is an AND conjunction, not an OR disjunction.",
+          "pages": [
+            26
+          ]
+        },
+        {
+          "id": "l23-homomorphism-q5",
+          "prompt": "Can R(x,x) map to R(a,b) when a and b are different?",
+          "options": [
+            "Yes, because the relation name R is the same",
+            "Yes, if a and b are both constants",
+            "Yes, because homomorphisms ignore repeated positions",
+            "No; one variable x cannot have two different images"
+          ],
+          "answer": 3,
+          "explanation": "An assignment is a function, so both occurrences of x must have the same image. The tuple positions must match, not merely the relation name.",
+          "pages": [
+            26
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l23-topic-semantics",
+      "title": "Semantics of Conjunctive Queries",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf",
+      "pages": [
+        24,
+        33
+      ],
+      "questions": [
+        {
+          "id": "l23-semantics-q1",
+          "prompt": "For D={R(a,1),R(a,2),S(1),S(2)}, what does Q(x):-R(x,y),S(y) return under set semantics?",
+          "options": [
+            "{a}",
+            "{a,a}",
+            "{1,2}",
+            "The empty set"
+          ],
+          "answer": 0,
+          "explanation": "There are two matches, but both produce a, so the result set contains one tuple. The number of witnesses is not a bag multiplicity under set semantics.",
+          "pages": [
+            31
+          ]
+        },
+        {
+          "id": "l23-semantics-q2",
+          "prompt": "For D={R(a,b),R(b,c)}, what does Q(x,z):-R(x,y),R(y,z) return?",
+          "options": [
+            "{(a,b),(b,c)}",
+            "{(a,c)}",
+            "{(a,a),(b,b)}",
+            "The empty set, because both atoms use R"
+          ],
+          "answer": 1,
+          "explanation": "The assignment y=b connects the two facts into a two-step path. Using the same relation more than once is a valid self-join, not an error.",
+          "pages": [
+            31,
+            32
+          ]
+        },
+        {
+          "id": "l23-semantics-q3",
+          "prompt": "For D={R(a,b),S(c)} with b different from c, does Q(x):-R(x,y),S(y) return any answers?",
+          "options": [
+            "Yes, a, because an R fact exists",
+            "Yes, c, because an S fact exists",
+            "No; no value of y matches both atoms",
+            "Yes, both a and c"
+          ],
+          "answer": 2,
+          "explanation": "Conjunction requires the same y in both atoms. Separate facts are insufficient when their join-variable values do not match.",
+          "pages": [
+            24,
+            31
+          ]
+        },
+        {
+          "id": "l23-semantics-q4",
+          "prompt": "Why are only the images of head variables used to form Q(D)?",
+          "options": [
+            "Every existential variable must also be returned but is hidden",
+            "The head only specifies atom execution order and has no effect on output",
+            "Every match always returns both head and body variables",
+            "The head defines the result tuple; existential variables only witness a match"
+          ],
+          "answer": 3,
+          "explanation": "The semantics project each match onto the distinguished output variables. Evaluation neither changes the database nor returns all witness values.",
+          "pages": [
+            31
+          ]
+        },
+        {
+          "id": "l23-semantics-q5",
+          "prompt": "For D={Link(a,b),Link(b,a)}, what Boolean result does Q():-Link(x,y),Link(y,x) produce?",
+          "options": [
+            "YES, because x=a,y=b is a match",
+            "NO, because the same relation name may not be reused",
+            "NO, because a Boolean CQ may not share variables",
+            "YES, because every satisfiable Boolean CQ is true on every D"
+          ],
+          "answer": 0,
+          "explanation": "A concrete witness satisfies both atoms here. Being satisfiable on some database does not mean a CQ is true on every database.",
+          "pages": [
+            26,
+            31
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,980 @@
+{
+  "lectureId": "lecture-11",
+  "topics": [
+    {
+      "id": "l11-query-plans-and-operators",
+      "title": "Query Plans and Operators",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+      "pages": [
+        2,
+        3
+      ],
+      "questions": [
+        {
+          "id": "l11-query-plans-and-operators-q1",
+          "prompt": "What is the main difference between a physical plan and a logical plan?",
+          "options": [
+            "It can arbitrarily change the SQL answer",
+            "It no longer needs input tables",
+            "It always contains only one operator",
+            "It selects concrete implementations for operators"
+          ],
+          "answer": 3,
+          "explanation": "A physical plan specifies how to implement the required semantics. It must not arbitrarily change the result.",
+          "pages": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "l11-query-plans-and-operators-q2",
+          "prompt": "What must two valid implementations of the same operator preserve?",
+          "options": [
+            "The required output semantics",
+            "The same I/O count",
+            "The same memory usage",
+            "The same time to the first tuple"
+          ],
+          "answer": 0,
+          "explanation": "Their semantics must be equivalent, but their I/O costs and latency may differ.",
+          "pages": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "l11-query-plans-and-operators-q3",
+          "prompt": "What data passes between relational steps in a network of plan operators?",
+          "options": [
+            "Only cardinality estimates, without actual tuples",
+            "Intermediate tuples or relations",
+            "Only schema references, without result rows",
+            "Only parsed predicates, without a data stream"
+          ],
+          "answer": 1,
+          "explanation": "Operators process one another’s results. SQL text is not the stream of output tuples.",
+          "pages": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "l11-query-plans-and-operators-q4",
+          "prompt": "Why can an optimizer replace a heap scan with an index scan?",
+          "options": [
+            "An index always produces the same order as every heap scan",
+            "An index is valid even if residual predicates are not checked",
+            "The two access paths can satisfy the same requirements at different costs",
+            "An index scan may omit matching duplicates because the key already has an entry"
+          ],
+          "answer": 2,
+          "explanation": "The access path may change if predicates and semantics are preserved. Residual filtering may still be necessary.",
+          "pages": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "l11-query-plans-and-operators-q5",
+          "prompt": "A join operator has 3 correct implementations. What follows?",
+          "options": [
+            "All three always have equal cost",
+            "Only the first implementation is valid",
+            "The query has three different logical results",
+            "Cost and physical properties must be considered when choosing"
+          ],
+          "answer": 3,
+          "explanation": "Equivalent semantics do not imply equivalent performance or output order.",
+          "pages": [
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l11-sorting",
+      "title": "Sorting",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+      "pages": [
+        4,
+        6
+      ],
+      "questions": [
+        {
+          "id": "l11-sorting-q1",
+          "prompt": "With lexicographic order on (A,B), which pair is smaller than (3,1)?",
+          "options": [
+            "(2,99)",
+            "(3,2)",
+            "(4,0)",
+            "(3,9)"
+          ],
+          "answer": 0,
+          "explanation": "Compare A first: 2<3 even though B=99. Do not compare the sums of the two values.",
+          "pages": [
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "id": "l11-sorting-q2",
+          "prompt": "Which operation directly requires ordered output?",
+          "options": [
+            "A single equality hash lookup",
+            "ORDER BY",
+            "GROUP BY without ORDER BY",
+            "DISTINCT without ORDER BY"
+          ],
+          "answer": 1,
+          "explanation": "ORDER BY specifies an order. GROUP BY and DISTINCT do not inherently promise one.",
+          "pages": [
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "id": "l11-sorting-q3",
+          "prompt": "Why use an external sort instead of leaving access patterns entirely to virtual memory?",
+          "options": [
+            "Every in-memory sort automatically minimises page faults",
+            "The comparison count always equals the disk I/O count",
+            "To deliberately reduce I/O when the input exceeds RAM",
+            "Random virtual-memory access is always as cheap as sequential I/O"
+          ],
+          "answer": 2,
+          "explanation": "External algorithms explicitly account for pages and I/O. The issue is not merely comparing keys.",
+          "pages": [
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "id": "l11-sorting-q4",
+          "prompt": "If the input is sorted by (A,B), what else is it guaranteed to be sorted by?",
+          "options": [
+            "B alone",
+            "(B,A)",
+            "RID",
+            "A"
+          ],
+          "answer": 3,
+          "explanation": "A is the leading key and therefore changes monotonically. B is ordered only within each A group.",
+          "pages": [
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "id": "l11-sorting-q5",
+          "prompt": "How can sorting be used to remove duplicates?",
+          "options": [
+            "Sort by the complete DISTINCT key, then remove adjacent copies",
+            "Sort by part of the key, then treat all adjacent rows as duplicates",
+            "Remove only duplicates that shared an input page before sorting",
+            "Delete every group with at least two copies instead of retaining one"
+          ],
+          "answer": 0,
+          "explanation": "Duplicates must become adjacent under the complete distinguishing key. Unrelated columns do not guarantee this.",
+          "pages": [
+            4,
+            5,
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l11-2-way-external-merge-sort",
+      "title": "2-Way External Merge Sort",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+      "pages": [
+        7,
+        10
+      ],
+      "questions": [
+        {
+          "id": "l11-2-way-external-merge-sort-q1",
+          "prompt": "How long are the initial runs in the basic two-way version presented in the slides?",
+          "options": [
+            "2N pages",
+            "1 page",
+            "B−1 pages regardless of pass 0",
+            "The entire file"
+          ],
+          "answer": 1,
+          "explanation": "Pass 0 of the basic version sorts each page separately. This differs from multiway sorting that uses B-page runs.",
+          "pages": [
+            7,
+            8,
+            9,
+            10
+          ]
+        },
+        {
+          "id": "l11-2-way-external-merge-sort-q2",
+          "prompt": "What is the minimum number of page buffers required to merge two runs?",
+          "options": [
+            "2",
+            "4 in every case",
+            "3",
+            "1"
+          ],
+          "answer": 2,
+          "explanation": "Two input buffers and one output buffer are needed. Omitting the output buffer undercounts the requirement.",
+          "pages": [
+            7,
+            8,
+            9,
+            10
+          ]
+        },
+        {
+          "id": "l11-2-way-external-merge-sort-q3",
+          "prompt": "For N=8 pages, how many passes does basic two-way sorting require, including pass 0 and writing the full output?",
+          "options": [
+            "3",
+            "8",
+            "2",
+            "4"
+          ],
+          "answer": 3,
+          "explanation": "1+ceil(log₂(8))=4. Three counts only the merge passes.",
+          "pages": [
+            7,
+            8,
+            9,
+            10
+          ]
+        },
+        {
+          "id": "l11-2-way-external-merge-sort-q4",
+          "prompt": "For N=8 and 4 passes, what is the I/O cost if every page is read and written in every pass?",
+          "options": [
+            "64",
+            "32",
+            "16",
+            "8"
+          ],
+          "answer": 0,
+          "explanation": "2N×4=2 × 8 × 4=64 I/Os. The answer 32 counts only reads or only writes, rather than both.",
+          "pages": [
+            7,
+            8,
+            9,
+            10
+          ]
+        },
+        {
+          "id": "l11-2-way-external-merge-sort-q5",
+          "prompt": "For N=9 pages, which run-count sequence describes basic two-way sorting?",
+          "options": [
+            "9→8→7→1",
+            "9→5→3→2→1",
+            "9→4→2→1",
+            "9→3→1"
+          ],
+          "answer": 1,
+          "explanation": "Each merge combines at most two runs, so round up at every step.",
+          "pages": [
+            7,
+            8,
+            9,
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l11-external-merge-sort",
+      "title": "External Merge Sort",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+      "pages": [
+        11,
+        14
+      ],
+      "questions": [
+        {
+          "id": "l11-external-merge-sort-q1",
+          "prompt": "With B=6 buffers and 1 reserved for output, how many runs can one merge pass combine at most?",
+          "options": [
+            "7",
+            "3",
+            "5",
+            "6"
+          ],
+          "answer": 2,
+          "explanation": "B−1=5 buffers are available for input. Using all 6 for input leaves none for output.",
+          "pages": [
+            11,
+            12,
+            13,
+            14
+          ]
+        },
+        {
+          "id": "l11-external-merge-sort-q2",
+          "prompt": "For N=91 and B=6, how many initial runs are produced?",
+          "options": [
+            "15",
+            "6",
+            "19",
+            "16"
+          ],
+          "answer": 3,
+          "explanation": "ceil(91/6)=16 runs. The answer 15 rounds down and omits page 91 in the final run.",
+          "pages": [
+            11,
+            12,
+            13,
+            14
+          ]
+        },
+        {
+          "id": "l11-external-merge-sort-q3",
+          "prompt": "For N=91 and B=6, the run counts are 16→4→1. What is the full I/O cost?",
+          "options": [
+            "546",
+            "364",
+            "728",
+            "182"
+          ],
+          "answer": 0,
+          "explanation": "The 16 initial runs pass through two merges, producing 4 and then 1 run. Including pass 0 gives 3 passes, each reading and writing 91 pages: 2 × 91 × 3=546. The answer 364 omits pass 0.",
+          "pages": [
+            11,
+            12,
+            13,
+            14
+          ]
+        },
+        {
+          "id": "l11-external-merge-sort-q4",
+          "prompt": "With B=10 and B-page initial runs, what is the maximum number of pages sortable in at most 2 passes?",
+          "options": [
+            "10",
+            "90",
+            "100",
+            "81"
+          ],
+          "answer": 1,
+          "explanation": "ceil(N/10)≤9 means N≤10 × 9=90. A 100-page input produces 10 runs, but the merge is only 9-way.",
+          "pages": [
+            11,
+            12,
+            13,
+            14
+          ]
+        },
+        {
+          "id": "l11-external-merge-sort-q5",
+          "prompt": "For N=50 and B=50, with output still written to disk, what is the cost?",
+          "options": [
+            "200 I/Os",
+            "0 I/Os",
+            "100 I/Os",
+            "50 I/Os"
+          ],
+          "answer": 2,
+          "explanation": "One pass reads 50 pages and writes 50 pages. Sorting in memory does not eliminate input reads and output writes.",
+          "pages": [
+            11,
+            12,
+            13,
+            14
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l11-using-b-trees-for-sorting",
+      "title": "Using B+ Trees for Sorting",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+      "pages": [
+        15,
+        18
+      ],
+      "questions": [
+        {
+          "id": "l11-using-b-trees-for-sorting-q1",
+          "prompt": "When can a B+ tree avoid an external sort?",
+          "options": [
+            "Whenever any index exists on any column",
+            "Only when no tuple needs to be read",
+            "Only when a hash index exists",
+            "When its scan provides the key order required by the query"
+          ],
+          "answer": 3,
+          "explanation": "The index must provide the relevant order. An arbitrary index is insufficient.",
+          "pages": [
+            15,
+            16,
+            17,
+            18
+          ]
+        },
+        {
+          "id": "l11-using-b-trees-for-sorting-q2",
+          "prompt": "Why is a clustered index useful for returning full rows in key order?",
+          "options": [
+            "The matching data records have good locality in key order",
+            "Every full row is always stored in the root",
+            "Leaf pages never need to be read",
+            "Every tuple occupies one byte"
+          ],
+          "answer": 0,
+          "explanation": "Clustering connects logical key order with data placement. The root does not contain every record.",
+          "pages": [
+            15,
+            16,
+            17,
+            18
+          ]
+        },
+        {
+          "id": "l11-using-b-trees-for-sorting-q3",
+          "prompt": "An unclustered index has 10,000 entries pointing to full rows. In a poor-locality case, how many data fetches may be required?",
+          "options": [
+            "0, even when columns outside the index are needed",
+            "Close to 10,000",
+            "Always exactly 1",
+            "Always the tree height"
+          ],
+          "answer": 1,
+          "explanation": "Pointers may be scattered across data pages. Tree traversal cost does not include all data-fetch costs.",
+          "pages": [
+            15,
+            16,
+            17,
+            18
+          ]
+        },
+        {
+          "id": "l11-using-b-trees-for-sorting-q4",
+          "prompt": "A query needs only keys stored in the index, rather than full rows. What changes?",
+          "options": [
+            "The index loses its order",
+            "The query must switch to hashing",
+            "An index-only model can read ordered key entries without following every RID",
+            "Every data page must be read"
+          ],
+          "answer": 2,
+          "explanation": "A covering index can avoid data fetches, removing this particular disadvantage of an unclustered index.",
+          "pages": [
+            15,
+            16,
+            17,
+            18
+          ]
+        },
+        {
+          "id": "l11-using-b-trees-for-sorting-q5",
+          "prompt": "After sorting keys [2,2,4,4,4,9], what is the DISTINCT output?",
+          "options": [
+            "[2,2,4,4,4,9]",
+            "[2,9]",
+            "[4]",
+            "[2,4,9]"
+          ],
+          "answer": 3,
+          "explanation": "Retain one representative from each adjacent group. Do not delete the entire group merely because it contains duplicates.",
+          "pages": [
+            15,
+            16,
+            17,
+            18
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l11-external-hashing",
+      "title": "External Hashing",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+      "pages": [
+        19,
+        22
+      ],
+      "questions": [
+        {
+          "id": "l11-external-hashing-q1",
+          "prompt": "With B=7 buffers and 1 reserved for input, how many output partitions can be maintained at once?",
+          "options": [
+            "6",
+            "7",
+            "8",
+            "49"
+          ],
+          "answer": 0,
+          "explanation": "B−1=6. The input buffer cannot simultaneously serve as an output buffer.",
+          "pages": [
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "id": "l11-external-hashing-q2",
+          "prompt": "Why should rehashing within a partition use an independent hash function?",
+          "options": [
+            "To remove the need for key comparisons",
+            "To redistribute entries rather than reuse partition information that is already fixed",
+            "To send equal keys to different partitions",
+            "To produce sorted output"
+          ],
+          "answer": 1,
+          "explanation": "Entries in a partition already share the relevant partition hash value or bits. Reusing that same distinction may not redistribute them effectively.",
+          "pages": [
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "id": "l11-external-hashing-q3",
+          "prompt": "How should an oversized partition be handled?",
+          "options": [
+            "Process each page independently as if no group could span pages",
+            "Reuse exactly the same partition function without adding bits or changing the hash",
+            "Repartition with a new hash function, then process the smaller groups",
+            "Use the average-size bound to ignore the largest partition"
+          ],
+          "answer": 2,
+          "explanation": "Recursive partitioning retains the data. Discarding tuples would violate correctness.",
+          "pages": [
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "id": "l11-external-hashing-q4",
+          "prompt": "All tuples have the same key and occupy too many pages. Is rehashing the key guaranteed to solve the problem?",
+          "options": [
+            "Yes; every new hash function splits the duplicate group in half",
+            "Yes; a prime modulus guarantees equal keys enter different buckets",
+            "Yes; just create more partitions than input pages",
+            "No; equal keys still enter the same partition"
+          ],
+          "answer": 3,
+          "explanation": "Deterministic key hashing cannot split skew caused by repeated copies of the same key.",
+          "pages": [
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "id": "l11-external-hashing-q5",
+          "prompt": "What advantage can hashing offer for DISTINCT without ORDER BY?",
+          "options": [
+            "It need not establish a total order among keys",
+            "It always requires 0 temporary I/Os",
+            "It eliminates equality checks",
+            "It guarantees no skew"
+          ],
+          "answer": 0,
+          "explanation": "DISTINCT requires grouping by equality rather than a total order. Hashing can still spill and experience collisions.",
+          "pages": [
+            19,
+            20,
+            21,
+            22
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l11-hashing-aggregate",
+      "title": "Hashing Aggregate",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+      "pages": [
+        23,
+        28
+      ],
+      "questions": [
+        {
+          "id": "l11-hashing-aggregate-q1",
+          "prompt": "What basic state does GROUP BY k, SUM(v) need for each group?",
+          "options": [
+            "k→only the last tuple value encountered in the group",
+            "k→a running sum",
+            "One global sum for every group key",
+            "k→a count, with no sum stored"
+          ],
+          "answer": 1,
+          "explanation": "Each group needs its own sum. One global sum loses the grouping.",
+          "pages": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ]
+        },
+        {
+          "id": "l11-hashing-aggregate-q2",
+          "prompt": "For input (A,3),(B,7),(A,5), what is the SUM for group A?",
+          "options": [
+            "5",
+            "2",
+            "8",
+            "15"
+          ],
+          "answer": 2,
+          "explanation": "Group A contains values 3 and 5, so its SUM is 8. The value 15 sums both A and B; 2 is the COUNT of A, not its SUM.",
+          "pages": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ]
+        },
+        {
+          "id": "l11-hashing-aggregate-q3",
+          "prompt": "What should the partition phase hash to compute GROUP BY correctly?",
+          "options": [
+            "The aggregate value v even though grouping uses only k",
+            "The RID instead of k because RIDs are unique",
+            "Only part of the group key, without ever comparing complete keys",
+            "The group key"
+          ],
+          "answer": 3,
+          "explanation": "All tuples in a group must enter the same partition. Hashing the amount could split one group across partitions.",
+          "pages": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ]
+        },
+        {
+          "id": "l11-hashing-aggregate-q4",
+          "prompt": "What is the important RAM requirement when processing one partition?",
+          "options": [
+            "Its hash-table state must fit in the allocated memory",
+            "The entire database must fit in RAM",
+            "Pages may not be read individually",
+            "Every partition must be in RAM simultaneously"
+          ],
+          "answer": 0,
+          "explanation": "Input pages can be streamed, but the state must remain available to combine each group.",
+          "pages": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ]
+        },
+        {
+          "id": "l11-hashing-aggregate-q5",
+          "prompt": "For DISTINCT using a hash table, what should happen when a key already exists?",
+          "options": [
+            "Create another output row for each duplicate",
+            "Do not add another copy",
+            "Delete the existing entry so only keys with odd frequencies remain",
+            "Increase a count and output the key that many times at the end"
+          ],
+          "answer": 1,
+          "explanation": "DISTINCT retains one entry per key. Deleting the group or changing the key would be incorrect.",
+          "pages": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l11-hashing-summarisation",
+      "title": "Hashing Summarisation",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+      "pages": [
+        29,
+        32
+      ],
+      "questions": [
+        {
+          "id": "l11-hashing-summarisation-q1",
+          "prompt": "Which state should AVG retain to combine batches correctly?",
+          "options": [
+            "Only MAX",
+            "Only the page count",
+            "SUM and COUNT",
+            "Only AVG without a weight"
+          ],
+          "answer": 2,
+          "explanation": "The combined average must weight each batch by its count. An unweighted average of averages can be wrong.",
+          "pages": [
+            29,
+            30,
+            31,
+            32
+          ]
+        },
+        {
+          "id": "l11-hashing-summarisation-q2",
+          "prompt": "Batch 1 has sum=20,count=2; batch 2 has sum=90,count=3. What is the combined AVG?",
+          "options": [
+            "20",
+            "25",
+            "55",
+            "22"
+          ],
+          "answer": 3,
+          "explanation": "(20+90)/(2+3)=22. Averaging the batch averages, 10 and 30, gives 20 but ignores their different weights.",
+          "pages": [
+            29,
+            30,
+            31,
+            32
+          ]
+        },
+        {
+          "id": "l11-hashing-summarisation-q3",
+          "prompt": "The current MIN for group G is 7, and a new tuple for G has value 11. What is the new state?",
+          "options": [
+            "7",
+            "11",
+            "18",
+            "2"
+          ],
+          "answer": 0,
+          "explanation": "Update MIN with min(7,11)=7. The value 11 is the latest value, 18 is a sum, and 2 is an unrelated count.",
+          "pages": [
+            29,
+            30,
+            31,
+            32
+          ]
+        },
+        {
+          "id": "l11-hashing-summarisation-q4",
+          "prompt": "For COUNT(*) by group, another row arrives for a group whose count is 8. What is its new state?",
+          "options": [
+            "8",
+            "9",
+            "1",
+            "The measure value of the new row"
+          ],
+          "answer": 1,
+          "explanation": "COUNT(*) counts rows, so it increases by one. It neither adds the measure value nor creates an independent count for the same group.",
+          "pages": [
+            29,
+            30,
+            31,
+            32
+          ]
+        },
+        {
+          "id": "l11-hashing-summarisation-q5",
+          "prompt": "Two partial SUM states for the same group are 24 and 31. How should they be combined?",
+          "options": [
+            "27.5",
+            "31",
+            "55",
+            "2"
+          ],
+          "answer": 2,
+          "explanation": "SUM states are additive: 24+31=55. Averaging the sums or keeping only the last one does not preserve SUM semantics.",
+          "pages": [
+            29,
+            30,
+            31,
+            32
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l11-cost-analysis",
+      "title": "Cost Analysis",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+      "pages": [
+        31,
+        31
+      ],
+      "questions": [
+        {
+          "id": "l11-cost-analysis-q1",
+          "prompt": "With B=12, ideal uniform distribution, no overhead, and each partition hash table fitting in B pages, what is the two-phase capacity bound?",
+          "options": [
+            "144 pages",
+            "121 pages",
+            "24 pages",
+            "132 pages"
+          ],
+          "answer": 3,
+          "explanation": "B(B−1)=12 × 11=132. Reserving an input buffer limits the number of spill partitions.",
+          "pages": [
+            31
+          ]
+        },
+        {
+          "id": "l11-cost-analysis-q2",
+          "prompt": "For N=90 pages, B=10, and overhead factor f=1.2, the expected table size per partition is 12 pages. Does it fit in 10 pages?",
+          "options": [
+            "No",
+            "Yes, because N≤B(B−1) when overhead is ignored",
+            "Yes, because input is read one page at a time",
+            "Yes, because a hash table does not occupy RAM"
+          ],
+          "answer": 0,
+          "explanation": "1.2 × 90/9=12>10. The memory-bound calculation must include overhead.",
+          "pages": [
+            31
+          ]
+        },
+        {
+          "id": "l11-cost-analysis-q3",
+          "prompt": "With B fixed, what usually happens to hash-aggregation memory needs as the number of distinct groups increases?",
+          "options": [
+            "They remain exactly one state regardless of group count",
+            "They may increase because more group states are needed",
+            "They always remain unchanged because input is streamed",
+            "They decrease because hashes become shorter"
+          ],
+          "answer": 1,
+          "explanation": "Streaming input does not remove the state for groups already encountered.",
+          "pages": [
+            31
+          ]
+        },
+        {
+          "id": "l11-cost-analysis-q4",
+          "prompt": "Why is sqrt(N) an approximate memory scale for two-phase external hashing?",
+          "options": [
+            "Every pair of input tuples must be stored",
+            "Each tuple uses sqrt(N) bytes",
+            "There are about B partitions, each containing about B pages",
+            "Hash computation always takes logN time"
+          ],
+          "answer": 2,
+          "explanation": "A capacity of roughly B² pages implies B≈sqrtN under the stated distribution and overhead assumptions.",
+          "pages": [
+            31
+          ]
+        },
+        {
+          "id": "l11-cost-analysis-q5",
+          "prompt": "One partition exceeds RAM even though the average partition is small. Does the average bound guarantee two-phase execution?",
+          "options": [
+            "Yes; a small enough average is sufficient",
+            "Yes; distinct keys guarantee equally sized partitions",
+            "Yes; the output buffer stores the excess for free",
+            "No; skew can make the largest partition too large"
+          ],
+          "answer": 3,
+          "explanation": "The maximum partition size matters. A small mean does not guarantee that every build table fits.",
+          "pages": [
+            31
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l11-conclusion-sorting-vs-hashing",
+      "title": "Conclusion: Sorting vs. Hashing",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+      "pages": [
+        32,
+        32
+      ],
+      "questions": [
+        {
+          "id": "l11-conclusion-sorting-vs-hashing-q1",
+          "prompt": "For DISTINCT without required order and with many duplicates, what potential advantage does hashing have?",
+          "options": [
+            "It can combine duplicates early and retain state only for distinct keys",
+            "It automatically produces sorted output",
+            "It eliminates equality checks",
+            "It never uses disk"
+          ],
+          "answer": 0,
+          "explanation": "Hash grouping avoids establishing a total order, but collisions and spills remain possible.",
+          "pages": [
+            32
+          ]
+        },
+        {
+          "id": "l11-conclusion-sorting-vs-hashing-q2",
+          "prompt": "Why can sorting be attractive for GROUP BY k together with ORDER BY k?",
+          "options": [
+            "ORDER BY allows the aggregate to be omitted",
+            "The same order can serve both grouping and final output",
+            "Hashing cannot implement GROUP BY",
+            "Sorting always takes one pass regardless of N and B"
+          ],
+          "answer": 1,
+          "explanation": "Reusing the required order can help. Hashing can still form the groups but may require a later sort.",
+          "pages": [
+            32
+          ]
+        },
+        {
+          "id": "l11-conclusion-sorting-vs-hashing-q3",
+          "prompt": "Which risk from poorly distributed hash partitioning does external merge sort avoid relying on?",
+          "options": [
+            "Having to compare key values",
+            "Having to preserve correct output semantics",
+            "A hot partition exceeding memory because of hash skew",
+            "Having to read input from disk"
+          ],
+          "answer": 2,
+          "explanation": "Sorting does not depend on hash distribution to balance partitions. It still requires I/O and comparisons.",
+          "pages": [
+            32
+          ]
+        },
+        {
+          "id": "l11-conclusion-sorting-vs-hashing-q4",
+          "prompt": "When no order is required and aggregate state is small, which approach is usually worth considering?",
+          "options": [
+            "Sorting, because every GROUP BY must return sorted output",
+            "Keeping every input row in per-group lists even when SUM/COUNT state suffices",
+            "Using one global aggregate state and discarding group keys",
+            "Hash aggregation"
+          ],
+          "answer": 3,
+          "explanation": "Keeping one hash-table state per group is a natural choice. SQL grouping does not require sorting.",
+          "pages": [
+            32
+          ]
+        },
+        {
+          "id": "l11-conclusion-sorting-vs-hashing-q5",
+          "prompt": "Is there a method that always wins when choosing between sorting and hashing for every workload?",
+          "options": [
+            "No; the choice depends on order, memory, cardinality, and distribution",
+            "Yes; hashing always wins",
+            "Yes; sorting always wins",
+            "Yes; comparing only the number of output columns is sufficient"
+          ],
+          "answer": 0,
+          "explanation": "The approaches have different trade-offs. No single simple ranking decides every case.",
+          "pages": [
+            32
+          ]
+        }
+      ]
+    }
+  ]
+}

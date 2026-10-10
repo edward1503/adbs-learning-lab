@@ -1,0 +1,623 @@
+{
+  "lectureId": "lecture-24",
+  "topics": [
+    {
+      "id": "l24-topic-evaluation-complexity",
+      "title": "Data Complexity of Query Evaluation",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf",
+      "pages": [
+        10,
+        12
+      ],
+      "questions": [
+        {
+          "id": "l24-evaluation-complexity-q1",
+          "prompt": "In the combined complexity of CQ evaluation, which components may vary with the input?",
+          "options": [
+            "The database, query, and tuple being tested",
+            "Only the database, with the query fixed",
+            "Only the query, with the database and target tuple fixed",
+            "Only the output size; the database and query are excluded from the input"
+          ],
+          "answer": 0,
+          "explanation": "Combined complexity includes the query in the input size. Data complexity, by contrast, fixes the query.",
+          "pages": [
+            10,
+            11
+          ]
+        },
+        {
+          "id": "l24-evaluation-complexity-q2",
+          "prompt": "What does data complexity hold fixed?",
+          "options": [
+            "The database D",
+            "The query Q",
+            "Every result of Q",
+            "The number of rows in every table"
+          ],
+          "answer": 1,
+          "explanation": "Q is fixed while the amount of data grows. Fixing D while varying Q would measure a different kind of complexity.",
+          "pages": [
+            11
+          ]
+        },
+        {
+          "id": "l24-evaluation-complexity-q3",
+          "prompt": "Why does the lecture ask whether a tuple t belongs to Q(D), rather than always requiring the entire output to be printed?",
+          "options": [
+            "A CQ cannot output more than one tuple",
+            "Membership lets us count the entire output in constant time",
+            "The output may be very large and obscure the difficulty of deciding membership",
+            "The output is always smaller than the query"
+          ],
+          "answer": 2,
+          "explanation": "This separates the cost of deciding membership from the size of the output. The query still has an output, but printing it is not the task being measured.",
+          "pages": [
+            10
+          ]
+        },
+        {
+          "id": "l24-evaluation-complexity-q4",
+          "prompt": "Which complexity result does the lecture state for CQ evaluation?",
+          "options": [
+            "PTIME combined complexity but undecidable data complexity",
+            "NP-complete data complexity for every fixed Q",
+            "Constant time under both measures",
+            "NP-complete combined complexity and PTIME data complexity"
+          ],
+          "answer": 3,
+          "explanation": "The two statements use different complexity measures, so they do not conflict. The combined-complexity result does not make evaluation of every fixed query NP-complete.",
+          "pages": [
+            12
+          ]
+        },
+        {
+          "id": "l24-evaluation-complexity-q5",
+          "prompt": "A fixed query has k variables, and the data domain has n values. How does brute-force enumeration of n^k assignments grow with n?",
+          "options": [
+            "Polynomially, because k is constant",
+            "Always exponentially in n, even with k fixed",
+            "In constant time",
+            "It cannot be checked in finite time"
+          ],
+          "answer": 0,
+          "explanation": "A fixed exponent gives polynomial data complexity. When k varies as part of the input, this argument does not establish polynomial combined complexity.",
+          "pages": [
+            11,
+            18
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l24-topic-np",
+      "title": "Complexity of Query Evaluation",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf",
+      "pages": [
+        13,
+        18
+      ],
+      "questions": [
+        {
+          "id": "l24-np-q1",
+          "prompt": "What is a natural YES certificate for CQ membership?",
+          "options": [
+            "A low-cost execution plan without a matching assignment",
+            "A variable assignment satisfying every atom and the required head tuple",
+            "An assignment satisfying only the first atom",
+            "An output tuple without a way to satisfy the body atoms"
+          ],
+          "answer": 1,
+          "explanation": "Guess-and-verify uses a homomorphism as the witness. An execution plan alone does not prove that a match exists.",
+          "pages": [
+            16
+          ]
+        },
+        {
+          "id": "l24-np-q2",
+          "prompt": "What must be checked to verify a candidate mapping h?",
+          "options": [
+            "Only that h matches the first atom",
+            "Only that the number of variables equals the number of columns",
+            "That h(body) is contained in D and h(head) equals the tuple t",
+            "Only that h does not rename relations"
+          ],
+          "answer": 2,
+          "explanation": "Both the complete body and the output tuple must match. Checking one atom or only the relation names can miss join constraints.",
+          "pages": [
+            16
+          ]
+        },
+        {
+          "id": "l24-np-q3",
+          "prompt": "What idea underlies the reduction from 3-colorability?",
+          "options": [
+            "Mapping every vertex to the same color is always valid",
+            "Checking only whether the graph has exactly three vertices",
+            "Allowing the ends of an edge to share a color if the graph has a cycle",
+            "Mapping vertices to three colors so that every edge connects different colors"
+          ],
+          "answer": 3,
+          "explanation": "A graph homomorphism into the triangle of colors represents a coloring. Giving the same color to both ends of an edge violates the required color difference.",
+          "pages": [
+            14,
+            17
+          ]
+        },
+        {
+          "id": "l24-np-q4",
+          "prompt": "In the color-model database for an undirected graph, E contains pairs of different colors. Why is E(red,red) absent?",
+          "options": [
+            "To forbid assigning the same color to both ends of an edge",
+            "To force every vertex to be red",
+            "To exclude every graph with a cycle",
+            "To guarantee exactly one match for every query"
+          ],
+          "answer": 0,
+          "explanation": "Omitting self-loops rules out same-color edges. Cycles can still be three-colored, so excluding cycles is not the purpose.",
+          "pages": [
+            14,
+            17
+          ]
+        },
+        {
+          "id": "l24-np-q5",
+          "prompt": "What does membership in NP mean here?",
+          "options": [
+            "All witnesses are known to be findable in polynomial time",
+            "A correct, polynomial-size witness can be checked in polynomial time",
+            "P has been proved different from NP",
+            "Every instance requires exponential time"
+          ],
+          "answer": 1,
+          "explanation": "An efficient verifier does not imply an efficient method for finding a witness. NP-completeness also does not establish an exponential lower bound for every input.",
+          "pages": [
+            13,
+            16
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l24-topic-static-analysis",
+      "title": "Static Analysis",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf",
+      "pages": [
+        19,
+        31
+      ],
+      "questions": [
+        {
+          "id": "l24-static-analysis-q1",
+          "prompt": "What does CQ-Satisfiability ask?",
+          "options": [
+            "Whether Q runs quickly on the current database",
+            "Whether Q has a nonempty result on every database",
+            "Whether some database D makes Q(D) nonempty",
+            "Whether Q is equivalent to every query with the same head"
+          ],
+          "answer": 2,
+          "explanation": "Satisfiability asks whether at least one database gives the query an answer. It is neither a performance benchmark nor a claim about every database.",
+          "pages": [
+            19
+          ]
+        },
+        {
+          "id": "l24-static-analysis-q2",
+          "prompt": "What does CQ-Equivalence require?",
+          "options": [
+            "The two queries give the same result on one sample database",
+            "The two queries have the same number of atoms",
+            "The two queries have the same head name",
+            "Q1(D)=Q2(D) for every database D"
+          ],
+          "answer": 3,
+          "explanation": "Equivalence quantifies over every D. Matching results on a test dataset provide limited evidence, not a general proof.",
+          "pages": [
+            20
+          ]
+        },
+        {
+          "id": "l24-static-analysis-q3",
+          "prompt": "What does Q1⊆Q2 mean?",
+          "options": [
+            "For every D, every answer to Q1 is also an answer to Q2",
+            "For every D, Q2(D) is a subset of Q1(D)",
+            "The body of Q1 being a subset of the body of Q2 always suffices, regardless of the heads",
+            "The queries have the same output on exactly one D"
+          ],
+          "answer": 0,
+          "explanation": "Containment concerns result sets on every database, rather than the number of atoms or their execution order.",
+          "pages": [
+            21
+          ]
+        },
+        {
+          "id": "l24-static-analysis-q4",
+          "prompt": "Which containment checks together establish equivalence?",
+          "options": [
+            "Only Q1⊆Q2",
+            "Q1⊆Q2 and Q2⊆Q1",
+            "Only checking that the canonical databases have the same number of facts",
+            "Q1⊆Q1 alone"
+          ],
+          "answer": 1,
+          "explanation": "Inclusion in both directions gives equality. One direction alone only says that one query's answers are contained in the other's.",
+          "pages": [
+            21,
+            25
+          ]
+        },
+        {
+          "id": "l24-static-analysis-q5",
+          "prompt": "According to the lecture, what is the general complexity of CQ-Containment and CQ-Equivalence?",
+          "options": [
+            "Undecidable",
+            "Always constant time",
+            "NP-complete",
+            "PTIME simply because every CQ is satisfiable"
+          ],
+          "answer": 2,
+          "explanation": "Easy satisfiability does not imply easy containment. The homomorphism theorem leads to the NP-completeness of these two problems.",
+          "pages": [
+            30,
+            31
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l24-topic-canonical",
+      "title": "Canonical Database",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf",
+      "pages": [
+        23,
+        24
+      ],
+      "questions": [
+        {
+          "id": "l24-canonical-q1",
+          "prompt": "How is the canonical database D[Q] constructed?",
+          "options": [
+            "Delete the body and keep the head as a fact",
+            "Replace all variables with the same constant, regardless of structure",
+            "Choose any database with the same relation names",
+            "Replace each variable with its own fresh constant and retain the body atoms"
+          ],
+          "answer": 3,
+          "explanation": "Freezing variables as fresh constants preserves the query's structure. The construction is not random data sampling.",
+          "pages": [
+            23
+          ]
+        },
+        {
+          "id": "l24-canonical-q2",
+          "prompt": "Which is a canonical database for Q(x):-R(x,y),S(y)?",
+          "options": [
+            "{R(cx,cy),S(cy)}, with cx and cy distinct fresh constants",
+            "{R(cx,cy),S(cz)}, with cy different from cz",
+            "{R(cx,cx)} without S",
+            "Only {Q(cx)}"
+          ],
+          "answer": 0,
+          "explanation": "Every occurrence of y must become the same constant cy. D[Q] contains body facts, not merely a fact for the head.",
+          "pages": [
+            23
+          ]
+        },
+        {
+          "id": "l24-canonical-q3",
+          "prompt": "Why is every pure positive CQ satisfiable in the lecture's setting?",
+          "options": [
+            "It is true on every database, including the empty one",
+            "Its own canonical database provides an immediate match",
+            "Every atom is a tautology",
+            "Every relation must contain every possible tuple"
+          ],
+          "answer": 1,
+          "explanation": "The canonical database provides at least one suitable D. It does not imply that the query has an answer on every D.",
+          "pages": [
+            24
+          ]
+        },
+        {
+          "id": "l24-canonical-q4",
+          "prompt": "If Q contains the constant 'Hue', how does the canonical construction handle it?",
+          "options": [
+            "Replace Hue with the fresh constant for variable x",
+            "Delete every atom containing Hue",
+            "Keep Hue unchanged",
+            "Replace Hue with NULL"
+          ],
+          "answer": 2,
+          "explanation": "Only variables are frozen into fresh constants; existing constants must retain their meaning. Replacing Hue would change the query.",
+          "pages": [
+            23
+          ]
+        },
+        {
+          "id": "l24-canonical-q5",
+          "prompt": "Within which scope is the claim 'every CQ is satisfiable' justified here?",
+          "options": [
+            "All SQL queries with arbitrary NOT and inequality conditions",
+            "Every query under any schema constraints",
+            "Every query containing a contradictory condition",
+            "Pure positive CQs, without additional constraints that introduce contradictions"
+          ],
+          "answer": 3,
+          "explanation": "The canonical witness proves satisfiability in the CQ language considered here. Additional constraints or contradictory conditions outside that fragment can invalidate the argument.",
+          "pages": [
+            19,
+            24
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l24-topic-containment-hom",
+      "title": "Homomorphism Theorem",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf",
+      "pages": [
+        25,
+        29
+      ],
+      "questions": [
+        {
+          "id": "l24-containment-hom-q1",
+          "prompt": "To prove Q1⊆Q2, in which direction does the homomorphism theorem seek a mapping?",
+          "options": [
+            "From Q2 to Q1",
+            "From Q1 to Q2",
+            "From an arbitrary database to the head of Q1",
+            "Only from Q1 to itself"
+          ],
+          "answer": 0,
+          "explanation": "The mapping direction is opposite to the containment direction. This is easy to reverse: a stronger body produces a smaller answer set.",
+          "pages": [
+            26
+          ]
+        },
+        {
+          "id": "l24-containment-hom-q2",
+          "prompt": "Let Q1(x):-R(x,y),S(y) and Q2(x):-R(x,y). Which inclusion always holds?",
+          "options": [
+            "Q2⊆Q1",
+            "Q1⊆Q2",
+            "Q1 and Q2 are equivalent on every D",
+            "The queries are always disjoint, even when D contains matching R and S facts"
+          ],
+          "answer": 1,
+          "explanation": "Every Q1 match includes the R match required by Q2. The reverse fails when an R fact has no matching S fact.",
+          "pages": [
+            26,
+            27
+          ]
+        },
+        {
+          "id": "l24-containment-hom-q3",
+          "prompt": "What additional condition distinguishes a query homomorphism from a body homomorphism?",
+          "options": [
+            "It must be a bijection on all variables",
+            "It must preserve the number of atoms",
+            "It must map the source head tuple to the target head tuple position by position",
+            "Only the body mapping matters; the output tuple can be ignored"
+          ],
+          "answer": 2,
+          "explanation": "Preserving the output is essential. A valid body mapping that sends an output variable to the wrong variable does not establish containment for the same output tuples.",
+          "pages": [
+            26
+          ]
+        },
+        {
+          "id": "l24-containment-hom-q4",
+          "prompt": "For Q1(x):-R(x,y),S(y) and Q2(x):-R(x,y), which database disproves Q2⊆Q1?",
+          "options": [
+            "{R(a,b),S(b)}",
+            "The empty database",
+            "{R(a,b),S(b),S(c)}",
+            "{R(a,b)}, with S empty"
+          ],
+          "answer": 3,
+          "explanation": "With only R(a,b) and an empty S, a belongs to Q2's result but not Q1's. Databases containing S(b) make both queries return a and are not counterexamples.",
+          "pages": [
+            26,
+            27,
+            28
+          ]
+        },
+        {
+          "id": "l24-containment-hom-q5",
+          "prompt": "If h:Q2→Q1 and g matches Q1 into D, why does Q2 also have a suitable match?",
+          "options": [
+            "The composition g∘h maps Q2's body into D and preserves the head",
+            "h must be invertible",
+            "Q2 must have fewer variables than Q1",
+            "All queries with the same arity are equivalent"
+          ],
+          "answer": 0,
+          "explanation": "Composition proves the sufficient direction of the theorem. A homomorphism need not be invertible, and equal arity alone is insufficient.",
+          "pages": [
+            29
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l24-topic-minimization",
+      "title": "Minimization Procedure",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf",
+      "pages": [
+        32,
+        35
+      ],
+      "questions": [
+        {
+          "id": "l24-minimization-q1",
+          "prompt": "What is the stated goal of CQ minimization?",
+          "options": [
+            "Find a query returning the fewest tuples, regardless of meaning",
+            "Find an equivalent CQ with the fewest atoms",
+            "Merge variables however possible, even if the output changes",
+            "Choose only the cheapest join order for the current database"
+          ],
+          "answer": 1,
+          "explanation": "Minimization preserves semantics while reducing atoms and joins. Shrinking the result by adding conditions is a different task.",
+          "pages": [
+            32
+          ]
+        },
+        {
+          "id": "l24-minimization-q2",
+          "prompt": "For Q(x):-R(x,y),R(x,z), under set semantics and without inequality, can the second atom be removed?",
+          "options": [
+            "No, because y and z must have different values",
+            "Only if the database contains one tuple",
+            "Yes; the mapping z↦y proves that it is redundant",
+            "Yes, but the head must change to Q(y)"
+          ],
+          "answer": 2,
+          "explanation": "Existential variables with different names may have the same value, so one R witness can satisfy both atoms. There is no requirement that y≠z.",
+          "pages": [
+            34,
+            35
+          ]
+        },
+        {
+          "id": "l24-minimization-q3",
+          "prompt": "Before removing an atom, why check that all head variables still occur in the remaining body?",
+          "options": [
+            "To make every variable occur exactly twice in the body",
+            "To allow every output variable to be merged into a constant",
+            "To allow deletion based only on column counts, without checking equivalence",
+            "To keep the query safe and its output bound by the remaining body"
+          ],
+          "answer": 3,
+          "explanation": "The only atom binding an output variable cannot simply be removed. The procedure does not require variables to occur exactly twice.",
+          "pages": [
+            34
+          ]
+        },
+        {
+          "id": "l24-minimization-q4",
+          "prompt": "Let Qold be the query before deleting an atom and Qnew the query afterward. Which nontrivial mapping must the algorithm check?",
+          "options": [
+            "Qold→Qnew, preserving the head",
+            "Only Qnew→Qold, because it is always harder",
+            "Database→Qnew on one sample database",
+            "A mapping that sends every output variable to an arbitrary constant"
+          ],
+          "answer": 0,
+          "explanation": "Qnew→Qold follows immediately because the remaining body is included in the old body. The reverse mapping Qold→Qnew is needed for equivalence; the head cannot be changed arbitrarily.",
+          "pages": [
+            34
+          ]
+        },
+        {
+          "id": "l24-minimization-q5",
+          "prompt": "Can S(x) be removed from Q(x):-R(x,y),S(x) while preserving equivalence on every D?",
+          "options": [
+            "Yes, because S has only one column",
+            "No; a database containing only R(a,b) is a counterexample",
+            "Yes, because R already binds x, so S adds no condition",
+            "Yes, after renaming the existential variable y"
+          ],
+          "answer": 1,
+          "explanation": "When S is empty, the original query does not return a, but the query after deletion does. Low arity does not make an atom redundant.",
+          "pages": [
+            32,
+            34
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l24-topic-core",
+      "title": "Uniqueness of Minimal Queries",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf",
+      "pages": [
+        36,
+        36
+      ],
+      "questions": [
+        {
+          "id": "l24-core-q1",
+          "prompt": "According to the theorem, how are two minimal CQs that are both equivalent to Q related?",
+          "options": [
+            "Their text must match character for character",
+            "They may differ arbitrarily in their numbers of atoms",
+            "They are isomorphic: the same up to variable renaming",
+            "They only need the same number of output tuples on one D"
+          ],
+          "answer": 2,
+          "explanation": "Uniqueness is up to isomorphism, not byte-for-byte identity. Variable names may differ while the structure remains the same.",
+          "pages": [
+            36
+          ]
+        },
+        {
+          "id": "l24-core-q2",
+          "prompt": "What is the core of Q in this section?",
+          "options": [
+            "A materialized table storing Q(D) for the current data",
+            "The set of atoms occurring exactly once in the query text",
+            "The constants of one particular database that makes Q true",
+            "A minimal CQ equivalent to Q, unique up to variable renaming"
+          ],
+          "answer": 3,
+          "explanation": "The core is a semantically minimized representation of the query. It is not a materialized result on a particular D.",
+          "pages": [
+            36
+          ]
+        },
+        {
+          "id": "l24-core-q3",
+          "prompt": "Can Q(x):-R(x,y) and P(a):-R(a,b) be isomorphic when x,y,a,b are variables?",
+          "options": [
+            "Yes; rename x↦a,y↦b while preserving the head position",
+            "No, because their query names differ",
+            "No, because their variable names differ",
+            "Only if x and a are constants"
+          ],
+          "answer": 0,
+          "explanation": "Variable names are symbols. Renaming that preserves atoms and head positions establishes isomorphism; variables must not be confused with fixed constants.",
+          "pages": [
+            36
+          ]
+        },
+        {
+          "id": "l24-core-q4",
+          "prompt": "For Q(x):-R(x,y) and P(a):-R(b,a), with a and b variables, can variable renaming alone establish equivalence?",
+          "options": [
+            "Yes, because each has one R atom of arity 2",
+            "No; the head is in a different R position, so an output-preserving renaming does not generally exist",
+            "Yes, because all one-atom queries are equivalent",
+            "Yes, if the head is ignored when checking isomorphism"
+          ],
+          "answer": 1,
+          "explanation": "Q returns R's first component, whereas P returns its second. D={R(c,d)} with c different from d gives different outputs. Core isomorphism must preserve the head.",
+          "pages": [
+            26,
+            36
+          ]
+        },
+        {
+          "id": "l24-core-q5",
+          "prompt": "Does the uniqueness theorem itself provide a polynomial-time minimization algorithm?",
+          "options": [
+            "Yes; uniqueness makes every homomorphism check constant time",
+            "Yes; atoms can be deleted arbitrarily until only one remains",
+            "No; uniqueness of the result does not make every search step cheap",
+            "No; the theorem states that a query cannot be minimized"
+          ],
+          "answer": 2,
+          "explanation": "A canonical result may still be hard to find. The procedure still requires homomorphism checks, which are difficult in general.",
+          "pages": [
+            30,
+            34,
+            36
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,447 @@
+{
+  "lectureId": "lecture-21",
+  "topics": [
+    {
+      "id": "l21-topic-failures",
+      "title": "TYPES OF FAILURES",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+      "pages": [
+        4,
+        5
+      ],
+      "questions": [
+        {
+          "id": "l21-failures-q1",
+          "prompt": "An integrity-constraint violation prevents a transaction from completing. How does the lecture classify it?",
+          "options": [
+            "A logical error in the transaction",
+            "A system crash that loses all RAM state",
+            "A media failure that destroys nonvolatile storage",
+            "A DBMS software failure rather than a transaction-level logical condition"
+          ],
+          "answer": 0,
+          "explanation": "A constraint violation is a logical reason to abort. It does not mean that the storage hardware has failed.",
+          "pages": [
+            4
+          ]
+        },
+        {
+          "id": "l21-failures-q2",
+          "prompt": "The DBMS aborts a transaction to break a deadlock. What kind of failure is this?",
+          "options": [
+            "A media failure because a transaction loses its locks",
+            "An internal-state error leading to transaction failure",
+            "A system crash requiring rollback of committed transactions",
+            "No recovery is needed because there was no power failure"
+          ],
+          "answer": 1,
+          "explanation": "A deadlock victim still needs rollback and undo. Recovery mechanisms are needed for more than power failures.",
+          "pages": [
+            4,
+            5
+          ]
+        },
+        {
+          "id": "l21-failures-q3",
+          "prompt": "What does the lecture's fail-stop assumption for a system crash preserve?",
+          "options": [
+            "All RAM contents",
+            "The guarantee that no transaction was in progress",
+            "The contents of nonvolatile storage",
+            "The guarantee that every dirty page reached disk before power failed"
+          ],
+          "answer": 2,
+          "explanation": "This model allows volatile state to be lost while durable storage remains intact. It does not assume that RAM survives a crash.",
+          "pages": [
+            4
+          ]
+        },
+        {
+          "id": "l21-failures-q4",
+          "prompt": "Both data disks and the log are destroyed, leaving no local recovery information. What is needed?",
+          "options": [
+            "Analysis of the log that was also lost",
+            "Reading the buffer pool after RAM has lost its contents",
+            "Rolling back only the last transaction to reconstruct the entire database",
+            "A surviving backup or replica elsewhere"
+          ],
+          "answer": 3,
+          "explanation": "WAL-based recovery requires a surviving WAL. If both the data and log are lost, recovery must rely on a copy that still exists.",
+          "pages": [
+            4
+          ]
+        },
+        {
+          "id": "l21-failures-q5",
+          "prompt": "What activities does crash recovery involve?",
+          "options": [
+            "Preparation during normal processing and recovery after failure",
+            "Work only after a crash, with no recovery information stored beforehand",
+            "Flushing data pages only after detecting that power has already failed",
+            "Restarting the process without examining the log or transaction state"
+          ],
+          "answer": 0,
+          "explanation": "Recovery information must be saved before a failure so it is available afterward. Restarting alone cannot reconstruct lost state.",
+          "pages": [
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l21-topic-buffer-policies",
+      "title": "HANDLING THE BUFFER POOL",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+      "pages": [
+        6,
+        17
+      ],
+      "questions": [
+        {
+          "id": "l21-buffer-policies-q1",
+          "prompt": "What does STEAL permit?",
+          "options": [
+            "A requester may bypass another transaction's lock",
+            "Pages containing uncommitted updates may be flushed to nonvolatile storage",
+            "Every dirty page must reach disk before commit",
+            "No page modified by a transaction may be evicted"
+          ],
+          "answer": 1,
+          "explanation": "STEAL is a buffer-replacement and flushing policy, not permission to bypass concurrency control. FORCE concerns flushing requirements at commit.",
+          "pages": [
+            7
+          ]
+        },
+        {
+          "id": "l21-buffer-policies-q2",
+          "prompt": "What does NO-FORCE mean?",
+          "options": [
+            "Data pages are never written to disk",
+            "Log flushing at commit is forbidden",
+            "Not every modified data page must reach disk before commit",
+            "Only read-only transactions may commit"
+          ],
+          "answer": 2,
+          "explanation": "NO-FORCE removes the requirement to flush every data page at commit. It permits later flushing and does not waive the log's durability requirements.",
+          "pages": [
+            7,
+            16
+          ]
+        },
+        {
+          "id": "l21-buffer-policies-q3",
+          "prompt": "Why does STEAL require UNDO support?",
+          "options": [
+            "Committed changes may be missing from disk data pages",
+            "STEAL requires deleting all update logs before commit",
+            "STEAL forbids storing update before-images",
+            "Disk may contain changes from a transaction that later aborts"
+          ],
+          "answer": 3,
+          "explanation": "Uncommitted effects that reach disk must be removable. Missing committed changes are instead the REDO problem associated with NO-FORCE.",
+          "pages": [
+            16
+          ]
+        },
+        {
+          "id": "l21-buffer-policies-q4",
+          "prompt": "Why does NO-FORCE require REDO support?",
+          "options": [
+            "A crash can lose committed updates that exist only in RAM",
+            "Every transaction must be undone at commit",
+            "NO-FORCE permits deleting the log immediately after updating RAM",
+            "Only uncommitted dirty pages can be lost in a crash"
+          ],
+          "answer": 0,
+          "explanation": "Commit need not flush every data page, so the log must support reconstructing committed effects. UNDO addresses the different problem of removing effects that should not remain.",
+          "pages": [
+            16,
+            17
+          ]
+        },
+        {
+          "id": "l21-buffer-policies-q5",
+          "prompt": "What limitation of NO-STEAL + FORCE is discussed?",
+          "options": [
+            "It always gives the fastest runtime",
+            "It requires buffering uncommitted pages and incurs flushing work at commit",
+            "Crashes during a multi-page flush need no consideration",
+            "Every uncommitted page may be evicted"
+          ],
+          "answer": 1,
+          "explanation": "NO-STEAL requires sufficient buffer space, and FORCE increases commit-time writing. These policies do not automatically make a multi-page flush atomic.",
+          "pages": [
+            8,
+            15
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l21-topic-logging",
+      "title": "BASIC IDEA: LOGGING",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+      "pages": [
+        18,
+        18
+      ],
+      "questions": [
+        {
+          "id": "l21-logging-q1",
+          "prompt": "What should a recovery log contain for an update?",
+          "options": [
+            "Only a transaction ID and object name, with no way to reconstruct or reverse the update",
+            "Only a COMMIT record, with all update information omitted",
+            "Enough information for undo and redo as required by the chosen policies",
+            "Only an after-image, even when STEAL requires UNDO"
+          ],
+          "answer": 2,
+          "explanation": "Recovery must be able to reverse or reconstruct effects. An identity or query plan alone does not determine the values to restore.",
+          "pages": [
+            18
+          ]
+        },
+        {
+          "id": "l21-logging-q2",
+          "prompt": "Why can logging be more efficient than flushing scattered data pages during normal processing?",
+          "options": [
+            "Every log record requires its own flush, so I/O can never be grouped",
+            "Logging means data pages never need writing to storage",
+            "Every update requires copying the entire database into the log",
+            "The log is written sequentially and can pack many small updates into one page"
+          ],
+          "answer": 3,
+          "explanation": "Compact sequential logging reduces random I/O. It neither removes every cost nor requires copying the whole database for each update.",
+          "pages": [
+            18
+          ]
+        },
+        {
+          "id": "l21-logging-q3",
+          "prompt": "T changes A from 14 to 9. What does a log record containing old=14 and new=9 support?",
+          "options": [
+            "UNDO restores 14, and REDO writes 9",
+            "UNDO writes 9, and REDO restores 14",
+            "Both UNDO and REDO set A to 14",
+            "Both UNDO and REDO set A to 9"
+          ],
+          "answer": 0,
+          "explanation": "The before-image supports undo, and the after-image supports redo. Reversing these roles reconstructs the wrong state.",
+          "pages": [
+            18
+          ]
+        },
+        {
+          "id": "l21-logging-q4",
+          "prompt": "What goes wrong if the recovery log exists only in RAM when power fails?",
+          "options": [
+            "A transaction ID makes a RAM log stable storage",
+            "Recovery information can be lost alongside unflushed data pages",
+            "Every RAM log can automatically be recovered from a page that was also lost",
+            "A BEGIN record in RAM is enough to redo every update"
+          ],
+          "answer": 1,
+          "explanation": "Logging relies on durable recovery information. Log records that have not been persisted do not survive power loss merely because they are in RAM.",
+          "pages": [
+            18,
+            19
+          ]
+        },
+        {
+          "id": "l21-logging-q5",
+          "prompt": "What does it mean to separate the log file from the actual data?",
+          "options": [
+            "The log is the only copy of data pages and contains no update history",
+            "Every log record must occupy the same page as the data it describes",
+            "The log contains history and recovery information, while data pages contain database state",
+            "Data pages never need flushing because a log exists"
+          ],
+          "answer": 2,
+          "explanation": "Separating these roles allows sequential log writes and data-page flushing when needed. A log is not an index and does not make data immutable.",
+          "pages": [
+            18
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l21-topic-wal",
+      "title": "WRITE-AHEAD LOGGING (WAL)",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+      "pages": [
+        19,
+        24
+      ],
+      "questions": [
+        {
+          "id": "l21-wal-q1",
+          "prompt": "Before flushing a dirty page P, what does WAL require?",
+          "options": [
+            "Every running transaction must commit together",
+            "A BEGIN record in RAM is sufficient",
+            "P must be flushed first so the log can record its disk value",
+            "Log records for the relevant updates to P must already be durable"
+          ],
+          "answer": 3,
+          "explanation": "Recovery information must be durable before the page whose effects it may need to undo or redo. A BEGIN record in RAM is insufficient.",
+          "pages": [
+            19
+          ]
+        },
+        {
+          "id": "l21-wal-q2",
+          "prompt": "When may the system report a successful transaction commit under the lecture's WAL rules?",
+          "options": [
+            "When all of its log records, including COMMIT, are on nonvolatile storage",
+            "Immediately after COMMIT is appended to the in-memory log",
+            "Only when all data pages have been flushed under FORCE",
+            "As soon as update records are durable, even if COMMIT is not"
+          ],
+          "answer": 0,
+          "explanation": "A durable log allows WAL to work with NO-FORCE. Every data page need not be flushed, but a COMMIT record present only in RAM is insufficient.",
+          "pages": [
+            19,
+            23
+          ]
+        },
+        {
+          "id": "l21-wal-q3",
+          "prompt": "A data page with a new value is flushed before its update log is durable, and a crash follows. What is the risk?",
+          "options": [
+            "None; a durable data page automatically means its transaction committed",
+            "The information needed to undo an uncommitted change may be missing",
+            "The old value can always be reconstructed from the new disk value",
+            "Knowing the transaction's name is enough to undo every update"
+          ],
+          "answer": 1,
+          "explanation": "This violates log-before-page ordering. Storage contains an effect without the history needed to reverse it; a SELECT cannot reconstruct that missing history.",
+          "pages": [
+            19
+          ]
+        },
+        {
+          "id": "l21-wal-q4",
+          "prompt": "Disk has A=5. T commits A=11, with its log and COMMIT durable, but its data page is not flushed before a crash. How can A be recovered?",
+          "options": [
+            "UNDO to 5 while still treating T as successful",
+            "It cannot be recovered because the data page was not flushed",
+            "REDO from the log to obtain 11",
+            "Discard the update because the data disk is the only source of truth"
+          ],
+          "answer": 2,
+          "explanation": "The durable transaction log contains the information needed to reconstruct the change. This is why NO-FORCE can still provide durability.",
+          "pages": [
+            20,
+            23,
+            24
+          ]
+        },
+        {
+          "id": "l21-wal-q5",
+          "prompt": "Which sequence respects WAL before writing a page and acknowledging commit?",
+          "options": [
+            "Flush page → append update log → report commit",
+            "Append COMMIT in RAM → report success → flush log later",
+            "Report commit → discard log → flush page",
+            "Append log in RAM → flush update log → flush data page → flush COMMIT log → report success"
+          ],
+          "answer": 3,
+          "explanation": "The correct sequence keeps the log ahead of the data page and the durable COMMIT ahead of acknowledgement. The others leave crash windows that can lose recovery information or promised commits.",
+          "pages": [
+            19,
+            23
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l21-topic-aries",
+      "title": "ARIES",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+      "pages": [
+        25,
+        26
+      ],
+      "questions": [
+        {
+          "id": "l21-aries-q1",
+          "prompt": "What is the order of the three ARIES phases in the lecture?",
+          "options": [
+            "Analysis → Redo → Undo",
+            "Undo → Analysis → Redo",
+            "Analysis → Undo → Redo",
+            "Redo → Analysis → Undo"
+          ],
+          "answer": 0,
+          "explanation": "ARIES first reconstructs recovery state, then repeats history, and finally rolls back uncommitted transactions. It does not simply commit every transaction after a crash.",
+          "pages": [
+            25,
+            26
+          ]
+        },
+        {
+          "id": "l21-aries-q2",
+          "prompt": "What information does analysis identify?",
+          "options": [
+            "Only committed transactions, ignoring active transactions",
+            "Active transactions and dirty pages at the crash",
+            "Only clean data pages, because dirty pages recover themselves",
+            "Only COMMIT order, without examining pages or update logs"
+          ],
+          "answer": 1,
+          "explanation": "Analysis builds the information needed for subsequent recovery work. A list of schema objects alone is insufficient.",
+          "pages": [
+            25,
+            26
+          ]
+        },
+        {
+          "id": "l21-aries-q3",
+          "prompt": "Can ARIES redo repeat effects from a transaction that will subsequently be undone?",
+          "options": [
+            "No; redo considers only committed transactions in every algorithm",
+            "Yes, and that transaction must then commit",
+            "Yes, because ARIES repeats history before undoing losers",
+            "No; redo applies only to reads"
+          ],
+          "answer": 2,
+          "explanation": "ARIES reconstructs history, including loser effects, before undoing them. Repeating an effect does not authorize the loser to commit.",
+          "pages": [
+            26
+          ]
+        },
+        {
+          "id": "l21-aries-q4",
+          "prompt": "Which transactions are handled by undo after redo?",
+          "options": [
+            "Every committed transaction, because redo has repeated it",
+            "Only transactions with unflushed dirty pages, excluding losers whose pages reached disk",
+            "Only the last transaction started before the crash",
+            "Transactions that had not committed before the crash"
+          ],
+          "answer": 3,
+          "explanation": "Undo removes effects of unfinished transactions. Removing committed work would violate durability.",
+          "pages": [
+            26
+          ]
+        },
+        {
+          "id": "l21-aries-q5",
+          "prompt": "T1 commits A=8; T2 writes B=4 without committing before a crash. What is the correct recovery goal?",
+          "options": [
+            "Retain T1's effects and remove T2's effects",
+            "Retain both because every executed UPDATE must be durable",
+            "Remove both because a crash cancels committed transactions too",
+            "Retain only transactions whose data pages were flushed, regardless of COMMIT"
+          ],
+          "answer": 0,
+          "explanation": "Durability preserves T1, while atomicity removes T2. Redo may temporarily repeat T2's effects, but undo must remove them before recovery's final result.",
+          "pages": [
+            25,
+            26
+          ]
+        }
+      ]
+    }
+  ]
+}

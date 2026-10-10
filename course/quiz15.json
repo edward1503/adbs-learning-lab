@@ -1,0 +1,772 @@
+{
+  "lectureId": "lecture-15",
+  "topics": [
+    {
+      "id": "l15-selection-pushdown",
+      "title": "Selection Pushdown",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf",
+      "pages": [
+        3,
+        13
+      ],
+      "questions": [
+        {
+          "id": "l15-selection-pushdown-q1",
+          "prompt": "R has 100 pages and is the outer relation; S has 200 pages. Before filtering, what is the uncached page nested-loop join cost? Ignore CPU and output writes.",
+          "options": [
+            "300 I/Os",
+            "20,000 I/Os",
+            "40,100 I/Os",
+            "20,100 I/Os"
+          ],
+          "answer": 3,
+          "explanation": "The outer scan reads 100 pages, and 100 inner scans read 100×200 pages, totalling 20,100 I/Os. The answer 20,000 omits the outer scan; 300 reads each input only once.",
+          "pages": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ]
+        },
+        {
+          "id": "l15-selection-pushdown-q2",
+          "prompt": "R's 100-page heap is filtered and packed into 10 outer pages. Each outer page triggers a scan of S's 200-page heap. What is the cost, without materialising the outer result? Ignore CPU and output writes.",
+          "options": [
+            "2,100 I/Os",
+            "2,010 I/Os",
+            "300 I/Os",
+            "20,100 I/Os"
+          ],
+          "answer": 0,
+          "explanation": "Reading the original R costs 100 I/Os, followed by 10×200 inner reads. The 10 filtered output pages do not replace the 100-page base scan in the cost.",
+          "pages": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ]
+        },
+        {
+          "id": "l15-selection-pushdown-q3",
+          "prompt": "In the preceding 10-outer-page example, an on-the-fly filter reduces S's output to 5 pages, but each inner scan still reads S's 200-page heap. How does the I/O cost change?",
+          "options": [
+            "It becomes 105 I/Os",
+            "It remains 2,100 I/Os",
+            "It becomes 150 I/Os",
+            "It becomes 60 I/Os"
+          ],
+          "answer": 1,
+          "explanation": "The on-the-fly filter does not avoid reading the inner base heap. A smaller output does not by itself imply fewer input-page reads.",
+          "pages": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ]
+        },
+        {
+          "id": "l15-selection-pushdown-q4",
+          "prompt": "Which condition is necessary to push a selection to a particular input in this inner-join model?",
+          "options": [
+            "The predicate retains exactly one row",
+            "The table is sorted",
+            "All columns referenced by the predicate are available in that input",
+            "The predicate has shorter text"
+          ],
+          "answer": 2,
+          "explanation": "A predicate cannot be evaluated where its required columns are missing. High selectivity alone does not make a rewrite valid; the rewrite must also preserve semantics.",
+          "pages": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ]
+        },
+        {
+          "id": "l15-selection-pushdown-q5",
+          "prompt": "Even when selection pushdown does not reduce I/O, what can it still improve?",
+          "options": [
+            "It always reduces index height",
+            "It necessarily reduces the number of base pages",
+            "It beneficially changes the result's meaning",
+            "The number of rows and the work performed downstream"
+          ],
+          "answer": 3,
+          "explanation": "Fewer tuples can reduce downstream CPU work. An I/O-only model does not capture every possible benefit.",
+          "pages": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l15-join-ordering",
+      "title": "Join Ordering",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf",
+      "pages": [
+        14,
+        17
+      ],
+      "questions": [
+        {
+          "id": "l15-join-ordering-q1",
+          "prompt": "R's 120-page heap filters to 6 pages, and S's 80-page heap filters to 20. Page nested loops uses filtered R as outer, without materialising or caching the inner relation. What is the cost? Ignore CPU and output writes.",
+          "options": [
+            "600 I/Os",
+            "126 I/Os",
+            "240 I/Os",
+            "2,480 I/Os"
+          ],
+          "answer": 0,
+          "explanation": "Read R's 120 pages, then scan S's 80-page heap six times: 120+6×80=600 I/Os. S's 20-page output does not reduce repeated reads if its base heap is still rescanned.",
+          "pages": [
+            14,
+            15,
+            16,
+            17
+          ]
+        },
+        {
+          "id": "l15-join-ordering-q2",
+          "prompt": "With R120→6 pages and S80→20 pages, page nested loops instead uses filtered S as outer, without inner materialisation or caching. What is the cost? Ignore CPU and output writes.",
+          "options": [
+            "600 I/Os",
+            "2,480 I/Os",
+            "200 I/Os",
+            "2,400 I/Os"
+          ],
+          "answer": 1,
+          "explanation": "Read S's 80 pages, then scan R's 120 pages twenty times: 80+20×120=2,480 I/Os. Reversing the inputs still requires counting the outer base scan.",
+          "pages": [
+            14,
+            15,
+            16,
+            17
+          ]
+        },
+        {
+          "id": "l15-join-ordering-q3",
+          "prompt": "Should the outer relation be chosen using only table size before filtering?",
+          "options": [
+            "Yes, the smaller base table is always best regardless of filters",
+            "Yes, equality makes the physical cost symmetric",
+            "No, consider filtered output size and access costs",
+            "Only the number of columns matters, without page counts"
+          ],
+          "answer": 2,
+          "explanation": "Filtering can reverse which orientation is preferable. The cost of the complete plan must be considered.",
+          "pages": [
+            14,
+            15,
+            16,
+            17
+          ]
+        },
+        {
+          "id": "l15-join-ordering-q4",
+          "prompt": "Does exchanging the inputs of an inner equijoin change the matching pairs?",
+          "options": [
+            "Yes, it always removes duplicates",
+            "Yes, it always produces an outer join instead",
+            "Yes, it always leaves one row per key",
+            "No, if the predicate and output-column mapping are preserved"
+          ],
+          "answer": 3,
+          "explanation": "The logical matching pairs remain equivalent. Physical outer/inner orientation can nevertheless change execution cost.",
+          "pages": [
+            14,
+            15,
+            16,
+            17
+          ]
+        },
+        {
+          "id": "l15-join-ordering-q5",
+          "prompt": "Why can materialisation change which join orientation is best?",
+          "options": [
+            "The cost of each inner rescan and of creating temporary data has changed",
+            "Materialisation automatically changes the join predicate",
+            "Temporary writes are free, so orientation no longer matters",
+            "Materialising one side makes both inputs the same size"
+          ],
+          "answer": 0,
+          "explanation": "The logical query is unchanged, but its access costs differ. Both orientations should therefore be costed again.",
+          "pages": [
+            14,
+            15,
+            16,
+            17
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l15-materialising-inner-loops",
+      "title": "Materialising Inner Loops",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf",
+      "pages": [
+        18,
+        24
+      ],
+      "questions": [
+        {
+          "id": "l15-materialising-inner-loops-q1",
+          "prompt": "R's 100-page heap filters to 10 outer pages. S's 200-page heap filters to a 50-page temporary file. What is the total cost of creating the inner temporary file and using page nested loops? Ignore CPU and final output writes.",
+          "options": [
+            "2,100 I/Os",
+            "850 I/Os",
+            "600 I/Os",
+            "800 I/Os"
+          ],
+          "answer": 1,
+          "explanation": "The cost is 100+200+50+10×50=850 I/Os. It includes both base scans, the 50-page temporary write, and ten temporary-file scans; 800 omits the write.",
+          "pages": [
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24
+          ]
+        },
+        {
+          "id": "l15-materialising-inner-loops-q2",
+          "prompt": "When can materialising a filtered inner input save I/O?",
+          "options": [
+            "Only when the temporary file is larger than the base relation",
+            "Only when there are no filters",
+            "When repeated scans of a smaller temporary file repay the initial read/write cost",
+            "For every query, even one that reads the inner input only once"
+          ],
+          "answer": 2,
+          "explanation": "Compare the setup cost with the savings from repeated reads. Materialisation is beneficial only when the latter outweigh the former under the model.",
+          "pages": [
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24
+          ]
+        },
+        {
+          "id": "l15-materialising-inner-loops-q3",
+          "prompt": "A 200-page inner input filters to 50 pages and is needed only once. Compared with direct scan-and-filter, what extra work does materialising and rereading the temporary file add? Ignore CPU and final output writes.",
+          "options": [
+            "No extra I/O",
+            "Only one I/O",
+            "A mandatory 200 writes",
+            "50 temporary-page writes and 50 temporary-page reads"
+          ],
+          "answer": 3,
+          "explanation": "The direct scan costs 200 reads. The temporary-file route costs 200+50+50 I/Os, so without reuse or another benefit it is more expensive.",
+          "pages": [
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24
+          ]
+        },
+        {
+          "id": "l15-materialising-inner-loops-q4",
+          "prompt": "R's 100-page heap becomes a 10-page temporary inner file. S's 200-page heap produces 50 pipelined outer pages. What is the page nested-loop cost? Ignore CPU and final output writes.",
+          "options": [
+            "810 I/Os",
+            "850 I/Os",
+            "500 I/Os",
+            "5,200 I/Os"
+          ],
+          "answer": 0,
+          "explanation": "The cost is 200+100+10+50×10=810 I/Os. The smaller temporary R makes each repeated inner scan inexpensive.",
+          "pages": [
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24
+          ]
+        },
+        {
+          "id": "l15-materialising-inner-loops-q5",
+          "prompt": "Which bookkeeping mistake makes materialisation appear artificially cheap?",
+          "options": [
+            "Explicitly excluding final-output cost",
+            "Omitting the temporary write while assuming the temporary file exists on disk",
+            "Counting the base scan exactly once",
+            "Counting temporary-file reads on every rescan"
+          ],
+          "answer": 1,
+          "explanation": "A disk-based temporary file must be written before it can be reread. Its creation cannot be treated as free.",
+          "pages": [
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l15-join-algorithm",
+      "title": "Join Algorithm",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf",
+      "pages": [
+        25,
+        29
+      ],
+      "questions": [
+        {
+          "id": "l15-join-algorithm-q1",
+          "prompt": "A filter directly supplies 20 pages of tuples, and its base-read cost is already counted. With B=5, what additional I/O does sort pass 0 require to generate runs? Ignore CPU and final join-output writes.",
+          "options": [
+            "None, because the input is pipelined",
+            "20 reads but no writes",
+            "20 writes, without counting the base read again",
+            "An additional 40 I/Os in every case"
+          ],
+          "answer": 2,
+          "explanation": "The upstream operator has already read the input. Initial run generation must still write the sorted runs to disk.",
+          "pages": [
+            25,
+            26,
+            27,
+            28,
+            29
+          ]
+        },
+        {
+          "id": "l15-join-algorithm-q2",
+          "prompt": "There are 20 filtered pages and B=5, producing four initial runs for a four-way merge. After the base scan, what is the incremental sorting cost if the sorted output is written to disk?",
+          "options": [
+            "80 I/Os",
+            "40 I/Os",
+            "20 I/Os",
+            "60 I/Os"
+          ],
+          "answer": 3,
+          "explanation": "Pass 0 writes 20 pages, and the merge reads and writes 20 pages each, totalling 60 I/Os. A cost of 80 would count the upstream input read again.",
+          "pages": [
+            25,
+            26,
+            27,
+            28,
+            29
+          ]
+        },
+        {
+          "id": "l15-join-algorithm-q3",
+          "prompt": "Filtered inputs have 20 and 5 pages, with B=5. Without fusion, incremental sorting costs are 60 and 5, merge-join reads cost 25, and base scans cost 300. What is the total? Ignore CPU and final output writes.",
+          "options": [
+            "390 I/Os",
+            "365 I/Os",
+            "400 I/Os",
+            "325 I/Os"
+          ],
+          "answer": 0,
+          "explanation": "The total is 300+60+5+25=390 I/Os. The five-page input fits in one initial run, requiring a five-page write before the join reads it.",
+          "pages": [
+            25,
+            26,
+            27,
+            28,
+            29
+          ]
+        },
+        {
+          "id": "l15-join-algorithm-q4",
+          "prompt": "Why can the two join inputs require different numbers of sort passes?",
+          "options": [
+            "The outer input must have exactly one more pass than the inner input",
+            "Their filtered page counts can differ even with the same B",
+            "Equal B always requires equal pass counts",
+            "Page count does not affect the initial run count"
+          ],
+          "answer": 1,
+          "explanation": "The number of initial runs and merge fan-in determine the passes. Calling an input outer or inner does not determine its sort cost.",
+          "pages": [
+            25,
+            26,
+            27,
+            28,
+            29
+          ]
+        },
+        {
+          "id": "l15-join-algorithm-q5",
+          "prompt": "What additional work must be considered when replacing page nested loops with sort-merge join?",
+          "options": [
+            "Only merge reads, omitting all sort preparation",
+            "Only sorting the outer input, because the inner input is automatically sorted",
+            "Sort preparation, merge reads, and the inputs' physical properties",
+            "Discard all upstream reads because sorting receives filtered tuples"
+          ],
+          "answer": 2,
+          "explanation": "Complete-plan cost includes upstream access and any required sorting. An algorithm cannot be selected fairly using only one cost term.",
+          "pages": [
+            25,
+            26,
+            27,
+            28,
+            29
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l15-join-algorithm-again-again",
+      "title": "Join Algorithm Again, Again",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf",
+      "pages": [
+        30,
+        33
+      ],
+      "questions": [
+        {
+          "id": "l15-join-algorithm-again-again-q1",
+          "prompt": "A block nested-loop join has B=7 buffers. How large is its outer block?",
+          "options": [
+            "6 pages",
+            "7 pages",
+            "2 pages",
+            "5 pages"
+          ],
+          "answer": 3,
+          "explanation": "The outer block has B−2=7−2=5 pages. The other two buffers serve the inner input and output; six would forget the output buffer.",
+          "pages": [
+            30,
+            31,
+            32,
+            33
+          ]
+        },
+        {
+          "id": "l15-join-algorithm-again-again-q2",
+          "prompt": "Base scans cost 300 I/Os. The filtered outer input supplies 50 pages by pipeline, and the 10-page inner temporary file requires 10 writes. With B=7, what is the total cost? Ignore CPU and final output writes.",
+          "options": [
+            "410 I/Os",
+            "310 I/Os",
+            "800 I/Os",
+            "500 I/Os"
+          ],
+          "answer": 0,
+          "explanation": "The cost is 300+10+ceil(50/5)×10=410 I/Os. Upstream reads are already included in the 300-page base scans.",
+          "pages": [
+            30,
+            31,
+            32,
+            33
+          ]
+        },
+        {
+          "id": "l15-join-algorithm-again-again-q3",
+          "prompt": "The outer input instead has 51 pages, with B=7, a 10-page inner temporary file, and base scans costing 300 I/Os. What is the total? Ignore CPU and final output writes.",
+          "options": [
+            "510 I/Os",
+            "420 I/Os",
+            "412 I/Os",
+            "410 I/Os"
+          ],
+          "answer": 1,
+          "explanation": "There are ceil(51/5)=11 outer blocks, so the cost is 300+10+110=420 I/Os. The final partial block still requires a complete inner scan.",
+          "pages": [
+            30,
+            31,
+            32,
+            33
+          ]
+        },
+        {
+          "id": "l15-join-algorithm-again-again-q4",
+          "prompt": "If increasing B does not reduce ceil(outer pages/(B−2)), must it reduce I/O in this model? Ignore CPU and final output writes.",
+          "options": [
+            "Yes, the cost always halves",
+            "Yes, because the output disappears",
+            "No",
+            "Yes, by exactly one I/O per extra buffer"
+          ],
+          "answer": 2,
+          "explanation": "The repeated-scan cost changes in steps according to the number of outer blocks. An extra buffer may not cross the next threshold.",
+          "pages": [
+            30,
+            31,
+            32,
+            33
+          ]
+        },
+        {
+          "id": "l15-join-algorithm-again-again-q5",
+          "prompt": "Filtered outer tuples are pipelined into a block nested-loop join. Should a temporary outer-file read automatically be added?",
+          "options": [
+            "Yes, every intermediate must be written and read",
+            "Yes, with a cost equal to the base tuple count",
+            "Upstream reads should never be counted",
+            "No, if the outer input is not materialised"
+          ],
+          "answer": 3,
+          "explanation": "Pipelining avoids an outer temporary file. The upstream base scan must still be counted; pipelining does not make all reads free.",
+          "pages": [
+            30,
+            31,
+            32,
+            33
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l15-projection-cascade-pushdown",
+      "title": "Projection Cascade & Pushdown",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf",
+      "pages": [
+        34,
+        38
+      ],
+      "questions": [
+        {
+          "id": "l15-projection-cascade-pushdown-q1",
+          "prompt": "Filtered rows occupy 12 pages with 48-byte tuples. Ignoring overhead, projecting to 8 bytes per tuple gives approximately how many pages?",
+          "options": [
+            "2",
+            "6",
+            "12",
+            "72"
+          ],
+          "answer": 0,
+          "explanation": "Tuple width falls by a factor of six, so the estimated page count becomes 12/6=2. This calculation does not reduce the number of rows.",
+          "pages": [
+            34,
+            35,
+            36,
+            37,
+            38
+          ]
+        },
+        {
+          "id": "l15-projection-cascade-pushdown-q2",
+          "prompt": "With B=8, the projected outer input has 2 pages. Reading base R costs 100 I/Os and reading S costs 200. If the pipelined outer input stays in RAM while S is scanned once, what is the cost? Ignore CPU and output writes.",
+          "options": [
+            "600 I/Os",
+            "300 I/Os",
+            "302 I/Os",
+            "500 I/Os"
+          ],
+          "answer": 1,
+          "explanation": "The outer input fits within B−2 buffers. Only the two base scans are needed, totalling 300 I/Os; no imaginary temporary-file read should be added.",
+          "pages": [
+            34,
+            35,
+            36,
+            37,
+            38
+          ]
+        },
+        {
+          "id": "l15-projection-cascade-pushdown-q3",
+          "prompt": "To join on customer_id and later output name, what must early projections preserve?",
+          "options": [
+            "Only final-output columns, discarding the join key",
+            "No columns once rows have been filtered",
+            "Join keys and other columns needed downstream",
+            "Only name on every input"
+          ],
+          "answer": 2,
+          "explanation": "An early projection must not remove attributes required for the join or later processing.",
+          "pages": [
+            34,
+            35,
+            36,
+            37,
+            38
+          ]
+        },
+        {
+          "id": "l15-projection-cascade-pushdown-q4",
+          "prompt": "If the outer tuple count is unchanged, does narrowing outer rows through projection automatically reduce the number of index nested-loop probes?",
+          "options": [
+            "Yes, in proportion to row width",
+            "Yes, there is always only one probe left",
+            "Yes, projection implies DISTINCT by default",
+            "No"
+          ],
+          "answer": 3,
+          "explanation": "Index nested loops probe once per outer tuple in this model. Narrower rows do not reduce tuple count, and ordinary SQL projection does not imply duplicate elimination.",
+          "pages": [
+            34,
+            35,
+            36,
+            37,
+            38
+          ]
+        },
+        {
+          "id": "l15-projection-cascade-pushdown-q5",
+          "prompt": "Why can projection pushdown be particularly effective for block nested loops?",
+          "options": [
+            "More outer tuples fit in each block, reducing inner rescans",
+            "It turns every predicate into equality",
+            "It increases the inner pages that must be scanned",
+            "Buffers are no longer needed"
+          ],
+          "answer": 0,
+          "explanation": "Block capacity is measured in bytes or pages. Narrower tuples can reduce the number of outer blocks and therefore the number of inner scans.",
+          "pages": [
+            34,
+            35,
+            36,
+            37,
+            38
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l15-how-about-indexes",
+      "title": "How About Indexes?",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf",
+      "pages": [
+        39,
+        42
+      ],
+      "questions": [
+        {
+          "id": "l15-how-about-indexes-q1",
+          "prompt": "A clustered outer selection reads 6 pages and returns 300 tuples. Each unique inner lookup costs 1 I/O, with index pages cached. What is the index nested-loop cost? Ignore CPU and output writes.",
+          "options": [
+            "1,806 I/Os",
+            "306 I/Os",
+            "12 I/Os",
+            "300 I/Os"
+          ],
+          "answer": 1,
+          "explanation": "The cost is 6+300×1=306 I/Os. The six outer pages do not replace the 300 outer tuples when counting probes.",
+          "pages": [
+            39,
+            40,
+            41,
+            42
+          ]
+        },
+        {
+          "id": "l15-how-about-indexes-q2",
+          "prompt": "In the same example, each inner lookup additionally requires 2 traversal I/Os. What is the total? Ignore CPU and output writes.",
+          "options": [
+            "306 I/Os",
+            "9 I/Os",
+            "906 I/Os",
+            "606 I/Os"
+          ],
+          "answer": 2,
+          "explanation": "Each probe now costs 3 I/Os, so the total is 6+300×3=906. Changing the index-caching assumption substantially changes the estimate.",
+          "pages": [
+            39,
+            40,
+            41,
+            42
+          ]
+        },
+        {
+          "id": "l15-how-about-indexes-q3",
+          "prompt": "What does a unique inner join key establish?",
+          "options": [
+            "Every outer tuple must have a match even without a foreign key",
+            "The join output has no duplicates regardless of the outer input",
+            "The index is always cached",
+            "Each outer tuple has at most one matching inner tuple"
+          ],
+          "answer": 3,
+          "explanation": "Uniqueness guarantees at most one match. Existence requires an additional constraint, such as an applicable foreign key under the appropriate conditions.",
+          "pages": [
+            39,
+            40,
+            41,
+            42
+          ]
+        },
+        {
+          "id": "l15-how-about-indexes-q4",
+          "prompt": "When might a filter on an inner attribute absent from the lookup index need to be evaluated?",
+          "options": [
+            "After fetching the candidate inner row",
+            "Before the lookup, without reading the attribute anywhere",
+            "It can be discarded because an index was used",
+            "It can be replaced by join-key equality"
+          ],
+          "answer": 0,
+          "explanation": "An index on the join key does not automatically evaluate predicates on other attributes. Those values may need to be fetched from the record.",
+          "pages": [
+            39,
+            40,
+            41,
+            42
+          ]
+        },
+        {
+          "id": "l15-how-about-indexes-q5",
+          "prompt": "Under the same assumptions, index nested loops cost 900 I/Os and a scan-based plan costs 300. Which does the I/O model favour?",
+          "options": [
+            "Physical plans cannot be compared",
+            "The plan costing 300",
+            "Index nested loops, because using an index is always faster",
+            "Both are equal because they implement the same SQL"
+          ],
+          "answer": 1,
+          "explanation": "Compare the estimated costs under consistent assumptions. The presence of an index is not a guarantee of a cheaper plan.",
+          "pages": [
+            39,
+            40,
+            41,
+            42
+          ]
+        }
+      ]
+    }
+  ]
+}

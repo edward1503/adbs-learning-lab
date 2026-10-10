@@ -1,0 +1,350 @@
+{
+  "lectureId": "lecture-01",
+  "topics": [
+    {
+      "id": "l01-topic-database-dbms",
+      "title": "WHAT IS A DATABASE? / WHAT IS A DBMS?",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf",
+      "pages": [
+        10,
+        12
+      ],
+      "questions": [
+        {
+          "id": "l01-database-dbms-q1",
+          "prompt": "What are a collection of book data and the software managing it called, respectively?",
+          "options": [
+            "Query and query result",
+            "Database and DBMS",
+            "DBMS and database",
+            "Schema and instance"
+          ],
+          "answer": 1,
+          "explanation": "The database is the data, while the DBMS is the software that manages it. The two terms should not be reversed.",
+          "pages": [
+            10,
+            11
+          ]
+        },
+        {
+          "id": "l01-database-dbms-q2",
+          "prompt": "Which component sits between applications and data to manage access?",
+          "options": [
+            "A database instance",
+            "An individual query",
+            "The DBMS",
+            "A schema describing the data"
+          ],
+          "answer": 2,
+          "explanation": "The DBMS coordinates interactions with the data; a record or report is itself data.",
+          "pages": [
+            11
+          ]
+        },
+        {
+          "id": "l01-database-dbms-q3",
+          "prompt": "Which collection best represents a library database?",
+          "options": [
+            "Only a Books schema, with no data instance",
+            "Only the program implementing borrowing and returns",
+            "Only an SQL query that has not been executed",
+            "An organised collection of related books and loans"
+          ],
+          "answer": 3,
+          "explanation": "A database models part of the real world. The interface and program code are not the library’s collection of data.",
+          "pages": [
+            10
+          ]
+        },
+        {
+          "id": "l01-database-dbms-q4",
+          "prompt": "How does adding a new book differ from generating a list of current loans?",
+          "options": [
+            "One changes the data, while the other reads a result",
+            "One changes the schema, while the other changes the physical layout",
+            "Both only read existing data",
+            "Both necessarily change the table schema"
+          ],
+          "answer": 0,
+          "explanation": "Adding a record changes the instance. Producing a list can be a read-only query and does not require a schema change.",
+          "pages": [
+            12
+          ]
+        },
+        {
+          "id": "l01-database-dbms-q5",
+          "prompt": "Which statement about a DBMS and a relational database is correct?",
+          "options": [
+            "A query result is the entire DBMS",
+            "A DBMS is software and is not synonymous with a table",
+            "Database and DBMS are two names for the same instance",
+            "A schema is all the software that manages a database"
+          ],
+          "answer": 1,
+          "explanation": "Management software can serve many tables. A table is a data object, not the software managing it.",
+          "pages": [
+            11
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l01-topic-flat-files",
+      "title": "FLAT FILE: DRAWBACKS",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf",
+      "pages": [
+        13,
+        17
+      ],
+      "questions": [
+        {
+          "id": "l01-flat-files-q1",
+          "prompt": "Updating a department name in three files but forgetting the third illustrates which problem?",
+          "options": [
+            "An error caused only by selecting too few columns",
+            "An error caused only by integer formatting",
+            "Redundancy leading to inconsistency",
+            "An error caused only by a missing sort order"
+          ],
+          "answer": 2,
+          "explanation": "Multiple copies of the same information can drift apart. The problem is inconsistent data, not the hardware.",
+          "pages": [
+            15
+          ]
+        },
+        {
+          "id": "l01-flat-files-q2",
+          "prompt": "A transfer debits one account and then crashes before crediting the other. What is missing?",
+          "options": [
+            "The ability to sort data by account",
+            "The ability to remove duplicate rows",
+            "Fast account lookup",
+            "Atomic updates"
+          ],
+          "answer": 3,
+          "explanation": "The two changes must form one unit. Compression or sorting cannot repair an update left half-finished.",
+          "pages": [
+            16
+          ]
+        },
+        {
+          "id": "l01-flat-files-q3",
+          "prompt": "When is code that always treats record[1] as the department name most likely to fail?",
+          "options": [
+            "When the file’s field order changes",
+            "When the record count increases but field order stays unchanged",
+            "When salaries increase but the schema stays unchanged",
+            "When configuration changes the filename but field layout stays unchanged"
+          ],
+          "answer": 0,
+          "explanation": "The code depends on the physical layout. Moving a field makes it read a value with the wrong meaning.",
+          "pages": [
+            14
+          ]
+        },
+        {
+          "id": "l01-flat-files-q4",
+          "prompt": "Two people edit an old copy of a file and then overwrite each other’s changes. What is the main concern?",
+          "options": [
+            "Removing duplicates from a report",
+            "Coordinating concurrent access",
+            "Choosing the output sort order",
+            "Choosing the columns in a projection"
+          ],
+          "answer": 1,
+          "explanation": "One person’s work can be lost through an overwrite. Changing number formats does not coordinate their writes.",
+          "pages": [
+            17
+          ]
+        },
+        {
+          "id": "l01-flat-files-q5",
+          "prompt": "What is the drawback of repeating a nonnegative-score rule in many programs?",
+          "options": [
+            "It automatically provides atomicity for multi-file updates",
+            "It automatically synchronises all concurrent access",
+            "It makes the constraint difficult to change and enforce consistently",
+            "It guarantees that the constraint stays consistent across all code versions"
+          ],
+          "answer": 2,
+          "explanation": "Constraints scattered through application code are difficult to maintain. Their presence does not automatically provide indexes or transactions.",
+          "pages": [
+            16
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l01-topic-abstraction",
+      "title": "LEVELS OF ABSTRACTIONS",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf",
+      "pages": [
+        18,
+        18
+      ],
+      "questions": [
+        {
+          "id": "l01-abstraction-q1",
+          "prompt": "At which level does a record’s byte offset belong?",
+          "options": [
+            "Logical",
+            "View",
+            "An instance of business data",
+            "Physical"
+          ],
+          "answer": 3,
+          "explanation": "The physical level describes how data is stored; the logical level describes what the data means.",
+          "pages": [
+            18
+          ]
+        },
+        {
+          "id": "l01-abstraction-q2",
+          "prompt": "At which level does the list of fields name, dept, salary belong?",
+          "options": [
+            "Logical",
+            "Physical byte layout",
+            "A user-specific restricted view",
+            "An instance of one specific record"
+          ],
+          "answer": 0,
+          "explanation": "A record schema describes the data structure. It does not yet specify offsets or who may see each column.",
+          "pages": [
+            18
+          ]
+        },
+        {
+          "id": "l01-abstraction-q3",
+          "prompt": "A screen hides salaries but displays employee names. Which level does this illustrate?",
+          "options": [
+            "Disk-space allocation",
+            "View",
+            "Physical level",
+            "The complete logical schema of the database"
+          ],
+          "answer": 1,
+          "explanation": "A view limits what a user sees. Changing disk sectors does not determine which columns are visible.",
+          "pages": [
+            18
+          ]
+        },
+        {
+          "id": "l01-abstraction-q4",
+          "prompt": "What is the aim of data independence?",
+          "options": [
+            "To require every application to know the byte layout",
+            "To guarantee that data needs no schema",
+            "To reduce higher-level dependence on lower-level changes",
+            "To guarantee that data never changes"
+          ],
+          "answer": 2,
+          "explanation": "The aim is to isolate lower-level details. It does not mean that the database remains unchanged.",
+          "pages": [
+            18
+          ]
+        },
+        {
+          "id": "l01-abstraction-q5",
+          "prompt": "Page storage changes, but a query for book titles remains the same. What does this illustrate?",
+          "options": [
+            "Query logic must depend on every new offset",
+            "A physical-layout change necessarily changes business data",
+            "Every view must expose all storage details",
+            "The benefit of abstraction"
+          ],
+          "answer": 3,
+          "explanation": "A stable interface can hide physical changes, so the business question need not be rewritten.",
+          "pages": [
+            18
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l01-topic-models",
+      "title": "DATA MODELS",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf",
+      "pages": [
+        19,
+        19
+      ],
+      "questions": [
+        {
+          "id": "l01-models-q1",
+          "prompt": "What does a data model provide?",
+          "options": [
+            "Concepts for describing data",
+            "Only the tuples currently in a table",
+            "A specific schema for exactly one application",
+            "One mandatory physical layout"
+          ],
+          "answer": 0,
+          "explanation": "A model is a system of concepts. The current data is a particular instance.",
+          "pages": [
+            19
+          ]
+        },
+        {
+          "id": "l01-models-q2",
+          "prompt": "How does a schema differ from a model?",
+          "options": [
+            "A schema is always every byte in a file",
+            "A schema uses a model to describe a particular dataset",
+            "A schema is all the current tuples",
+            "A model describes exactly one instance"
+          ],
+          "answer": 1,
+          "explanation": "One model can support many schemas. A schema is a specific description made using that model.",
+          "pages": [
+            19
+          ]
+        },
+        {
+          "id": "l01-models-q3",
+          "prompt": "What is Book(id,title) best understood as?",
+          "options": [
+            "A complete physical page layout",
+            "A record containing two specific values",
+            "A relational schema",
+            "An instance containing exactly one book"
+          ],
+          "answer": 2,
+          "explanation": "It names a relation and its attributes without supplying the values for any particular book.",
+          "pages": [
+            19
+          ]
+        },
+        {
+          "id": "l01-models-q4",
+          "prompt": "Which pair consists of data models mentioned in the lecture?",
+          "options": [
+            "LRU and CLOCK",
+            "Heap files and sorted files",
+            "Selection and projection",
+            "Graph and document"
+          ],
+          "answer": 3,
+          "explanation": "Graph and document models describe ways to model data. The other pairs are system mechanisms or operations.",
+          "pages": [
+            19
+          ]
+        },
+        {
+          "id": "l01-models-q5",
+          "prompt": "Must two applications using the relational model have the same schema?",
+          "options": [
+            "No; each application can describe different relations",
+            "Yes; the model fixes every relation name",
+            "Yes; the model fixes all current tuples",
+            "Yes; the model fixes every field in each application"
+          ],
+          "answer": 0,
+          "explanation": "A model supplies common concepts. It does not prescribe one schema or one instance.",
+          "pages": [
+            19
+          ]
+        }
+      ]
+    }
+  ]
+}

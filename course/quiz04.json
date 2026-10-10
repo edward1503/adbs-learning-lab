@@ -1,0 +1,527 @@
+{
+  "lectureId": "lecture-04",
+  "topics": [
+    {
+      "id": "l04-topic-architecture",
+      "title": "ARCHITECTURE OF A DBMS",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+      "pages": [
+        2,
+        9
+      ],
+      "questions": [
+        {
+          "id": "l04-architecture-q1",
+          "prompt": "Which layer parses and checks SQL and selects a query plan?",
+          "options": [
+            "Query planning",
+            "Buffer management",
+            "Files/index management",
+            "Disk-space management"
+          ],
+          "answer": 0,
+          "explanation": "Planning interprets the query and chooses a plan. The disk layer provides page storage.",
+          "pages": [
+            3
+          ]
+        },
+        {
+          "id": "l04-architecture-q2",
+          "prompt": "What does operator execution do?",
+          "options": [
+            "It selects a buffer-pool victim",
+            "It runs the operators’ dataflow over records and files",
+            "It parses SQL and chooses logical rewrites",
+            "It maps page IDs to file offsets"
+          ],
+          "answer": 1,
+          "explanation": "Execution carries out the plan. Page allocation belongs to a lower layer.",
+          "pages": [
+            4
+          ]
+        },
+        {
+          "id": "l04-architecture-q3",
+          "prompt": "Which abstraction does the files/index layer work with directly?",
+          "options": [
+            "Only query text and syntax trees",
+            "Only frame metadata, without knowledge of records",
+            "Records organised into pages within logical files",
+            "Device sectors and head positions, bypassing pages"
+          ],
+          "answer": 2,
+          "explanation": "This layer organises records and files. Lower layers hide the device’s byte-level details.",
+          "pages": [
+            5
+          ]
+        },
+        {
+          "id": "l04-architecture-q4",
+          "prompt": "What is the main distinction between the buffer manager and the disk-space manager?",
+          "options": [
+            "The buffer manager chooses join order; the disk-space manager computes aggregates",
+            "The buffer manager stores schemas; the disk-space manager stores only query results",
+            "The buffer manager manages record fields; the disk-space manager chooses projections",
+            "The buffer manager manages pages in RAM; the disk-space manager maps and reads/writes storage"
+          ],
+          "answer": 3,
+          "explanation": "Both deal with pages, but they have different memory-management and storage responsibilities.",
+          "pages": [
+            6,
+            7
+          ]
+        },
+        {
+          "id": "l04-architecture-q5",
+          "prompt": "How does the architecture diagram represent concurrency control and recovery?",
+          "options": [
+            "As functions spanning several layers",
+            "As two physical join algorithms",
+            "As two fixed-length record layouts",
+            "As two types of leaf index entries"
+          ],
+          "answer": 0,
+          "explanation": "They coordinate multiple parts of the system, rather than acting as individual query-result operators.",
+          "pages": [
+            8,
+            9
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l04-topic-hierarchy",
+      "title": "DISK-ORIENTED ARCHITECTURE / STORAGE HIERARCHY",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+      "pages": [
+        11,
+        14
+      ],
+      "questions": [
+        {
+          "id": "l04-hierarchy-q1",
+          "prompt": "Where is data normally processed in a disk-oriented DBMS?",
+          "options": [
+            "Only in the query planner before any data page is read",
+            "In main memory after the required pages are read",
+            "By directly modifying sectors without loading pages into memory",
+            "Only on the persistent disk copy, without a buffer pool"
+          ],
+          "answer": 1,
+          "explanation": "Data is brought into RAM for processing, although its main persistent copy may reside on disk.",
+          "pages": [
+            11
+          ]
+        },
+        {
+          "id": "l04-hierarchy-q2",
+          "prompt": "What does volatile memory lose when power is removed and no other preservation mechanism is available?",
+          "options": [
+            "Only pages with pinCount=0",
+            "All copies on nonvolatile storage are also lost",
+            "The contents held in that memory",
+            "Only pages marked dirty=false"
+          ],
+          "answer": 2,
+          "explanation": "Volatility describes the device’s own contents. It does not mean that every persistent copy is also lost.",
+          "pages": [
+            11,
+            12
+          ]
+        },
+        {
+          "id": "l04-hierarchy-q3",
+          "prompt": "What is the general trend moving from CPU cache down to HDD in the hierarchy?",
+          "options": [
+            "Faster access but smaller capacity",
+            "Every layer has identical latency",
+            "Every layer supports byte access in the same way",
+            "Slower access but larger capacity"
+          ],
+          "answer": 3,
+          "explanation": "The hierarchy trades latency against capacity. Its storage layers do not all provide the same addressing capabilities.",
+          "pages": [
+            13
+          ]
+        },
+        {
+          "id": "l04-hierarchy-q4",
+          "prompt": "What unit does a disk-oriented read API typically transfer?",
+          "options": [
+            "A page or block",
+            "Always one individual SQL field",
+            "Always the entire database",
+            "Always one character"
+          ],
+          "answer": 0,
+          "explanation": "A page is the I/O abstraction. Needing one field does not imply reading only a few bytes from disk.",
+          "pages": [
+            11
+          ]
+        },
+        {
+          "id": "l04-hierarchy-q5",
+          "prompt": "Why does the lecture not assume that every database fits entirely in RAM?",
+          "options": [
+            "Disk access is always faster than DRAM",
+            "Cost, capacity, and volatility impose constraints",
+            "The relational model forbids tuples in RAM",
+            "No main-memory system can support persistence"
+          ],
+          "answer": 1,
+          "explanation": "These are system trade-offs, not restrictions imposed by SQL.",
+          "pages": [
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l04-topic-hdd",
+      "title": "ACCESSING A DISK PAGE",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+      "pages": [
+        15,
+        17
+      ],
+      "questions": [
+        {
+          "id": "l04-hdd-q1",
+          "prompt": "What are the three components of HDD read cost in the lecture’s model?",
+          "options": [
+            "Transfer time, pin count, and dirty flag",
+            "Rotational delay, query parsing, and duplicate elimination",
+            "Seek time, rotational delay, and transfer time",
+            "Seek time, buffer hit rate, and GROUP BY time"
+          ],
+          "answer": 2,
+          "explanation": "These are the HDD’s mechanical and transfer costs. Buffer metadata belongs to a different concept.",
+          "pages": [
+            16
+          ]
+        },
+        {
+          "id": "l04-hdd-q2",
+          "prompt": "What does seek time measure?",
+          "options": [
+            "Waiting for the required sector to rotate under the head",
+            "Transferring a block’s bytes after positioning",
+            "Finding the RAM frame holding a PageId",
+            "Moving the head to the required track"
+          ],
+          "answer": 3,
+          "explanation": "Seeking moves the arm or head. Rotational delay waits for the disk to turn.",
+          "pages": [
+            16
+          ]
+        },
+        {
+          "id": "l04-hdd-q3",
+          "prompt": "An HDD runs at 12000 rpm. Assuming a uniformly distributed rotational position, what is the average rotational delay?",
+          "options": [
+            "2.5 ms",
+            "5 ms",
+            "12 ms",
+            "0.5 ms"
+          ],
+          "answer": 0,
+          "explanation": "One revolution takes 60/12000 seconds=5 ms. The average wait is half a revolution, or 2.5 ms.",
+          "pages": [
+            17
+          ]
+        },
+        {
+          "id": "l04-hdd-q4",
+          "prompt": "With seek=4 ms, rotation=3 ms, and transfer=0.2 ms, what is one random read’s cost in the additive model?",
+          "options": [
+            "7 ms",
+            "7.2 ms",
+            "0.2 ms",
+            "12.2 ms"
+          ],
+          "answer": 1,
+          "explanation": "Add all three components. Counting only transfer would omit the substantial positioning cost.",
+          "pages": [
+            16,
+            17
+          ]
+        },
+        {
+          "id": "l04-hdd-q5",
+          "prompt": "If only the transfer rate doubles while seek and rotation stay unchanged, must total read latency halve?",
+          "options": [
+            "Yes; seek time automatically halves too",
+            "Yes; rotational delay disappears entirely",
+            "No",
+            "Yes; all read time is transfer time"
+          ],
+          "answer": 2,
+          "explanation": "Only the transfer component decreases. The fixed positioning costs remain, so the total generally does not halve.",
+          "pages": [
+            17
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l04-topic-locality",
+      "title": "SEQUENTIAL VS. RANDOM ACCESS / ARRANGING BLOCKS",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+      "pages": [
+        18,
+        19
+      ],
+      "questions": [
+        {
+          "id": "l04-locality-q1",
+          "prompt": "Each random read costs 6 ms for positioning and 0.1 ms for transfer. How long do 100 independent reads take when executed sequentially?",
+          "options": [
+            "16 ms",
+            "10 ms",
+            "6000 ms",
+            "610 ms"
+          ],
+          "answer": 3,
+          "explanation": "Each read costs 6.1 ms, multiplied by 100. Independent random positions do not share a single initial positioning cost.",
+          "pages": [
+            18
+          ]
+        },
+        {
+          "id": "l04-locality-q2",
+          "prompt": "With the same parameters, how long does one contiguous run of 100 pages take, ignoring track changes?",
+          "options": [
+            "16 ms",
+            "610 ms",
+            "6.1 ms",
+            "100 ms"
+          ],
+          "answer": 0,
+          "explanation": "The run pays 6 ms initially and then 100×0.1 ms for transfer. This differs from 100 random reads.",
+          "pages": [
+            18
+          ]
+        },
+        {
+          "id": "l04-locality-q3",
+          "prompt": "Why can prefetching a run of pages help?",
+          "options": [
+            "It guarantees every future request will be a buffer hit",
+            "It spreads positioning overhead across pages and prepares data early",
+            "It automatically reduces the number of logical result records",
+            "It makes every page read transfer exactly one field"
+          ],
+          "answer": 1,
+          "explanation": "Prefetch exploits locality and possible overlap. It does not change query semantics or the record layout.",
+          "pages": [
+            19
+          ]
+        },
+        {
+          "id": "l04-locality-q4",
+          "prompt": "How should pages frequently read together be placed under the lecture’s HDD model?",
+          "options": [
+            "Anywhere, because random and sequential HDD access always cost the same",
+            "Sharing a logical filename is sufficient regardless of physical placement",
+            "Close together physically",
+            "Far apart to increase the number of independent seeks"
+          ],
+          "answer": 2,
+          "explanation": "Physical locality can reduce seeking and rotational costs. Sharing a primary key does not determine physical placement.",
+          "pages": [
+            19
+          ]
+        },
+        {
+          "id": "l04-locality-q5",
+          "prompt": "Is a random/sequential comparison from one slide configuration a benchmark for every current SSD?",
+          "options": [
+            "Yes; the ratio is independent of controller and workload",
+            "Yes; equal page counts guarantee equal latency",
+            "Yes; caching and parallelism do not affect the comparison",
+            "No; it is a model or example under stated assumptions"
+          ],
+          "answer": 3,
+          "explanation": "Hardware and workloads differ. Slide figures do not replace measurements of the actual system.",
+          "pages": [
+            18
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l04-topic-ssd",
+      "title": "SOLID STATE DRIVES",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+      "pages": [
+        20,
+        23
+      ],
+      "questions": [
+        {
+          "id": "l04-ssd-q1",
+          "prompt": "Why can small writes cause write amplification on NAND flash?",
+          "options": [
+            "The erase unit is larger than the amount the application changes",
+            "Flash has a longer rotational delay than HDDs",
+            "Read pages and erase blocks always have identical granularity",
+            "Every logical write must rewrite the entire database"
+          ],
+          "answer": 0,
+          "explanation": "Flash has erase/program granularities and may need to relocate data. It has no HDD-style rotating mechanism.",
+          "pages": [
+            20
+          ]
+        },
+        {
+          "id": "l04-ssd-q2",
+          "prompt": "What is the purpose of wear levelling?",
+          "options": [
+            "To increase each cell’s physical erase limit through SQL",
+            "To distribute writes and erases and avoid concentrated wear",
+            "To put all hot writes in one cell to reduce metadata",
+            "To sort records by search key"
+          ],
+          "answer": 1,
+          "explanation": "Wear levelling manages device endurance. It is not an SQL grouping policy.",
+          "pages": [
+            20
+          ]
+        },
+        {
+          "id": "l04-ssd-q3",
+          "prompt": "Which cautious statement about SSD locality is consistent with the lecture?",
+          "options": [
+            "Random writes always cost the same as sequential writes at every size",
+            "SSDs eliminate every data-layout trade-off",
+            "Random and sequential access can still have different costs",
+            "Every SSD I/O costs the same"
+          ],
+          "answer": 2,
+          "explanation": "Having no moving head does not eliminate layout and write trade-offs.",
+          "pages": [
+            21,
+            22
+          ]
+        },
+        {
+          "id": "l04-ssd-q4",
+          "prompt": "In the lecture’s NAND description, must reading and erasing use the same granularity?",
+          "options": [
+            "Yes; both always operate on one byte",
+            "Yes; an erase block is exactly one SQL tuple",
+            "No; every read must fetch an entire erase block",
+            "No; an erase block can be larger than a read page"
+          ],
+          "answer": 3,
+          "explanation": "Different granularities contribute to write trade-offs. They should not be forced into one common unit.",
+          "pages": [
+            20
+          ]
+        },
+        {
+          "id": "l04-ssd-q5",
+          "prompt": "How should the deck’s hardware prices and latency figures be used?",
+          "options": [
+            "As teaching assumptions, with separate verification for real device advice",
+            "As guaranteed specifications for every current device",
+            "As proof that every I/O on every machine has equal latency",
+            "As current purchase quotations"
+          ],
+          "answer": 0,
+          "explanation": "Illustrative figures are not guaranteed to be current, but they remain useful within the stated model.",
+          "pages": [
+            23
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l04-topic-disk-manager",
+      "title": "DISK SPACE MANAGEMENT",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+      "pages": [
+        24,
+        29
+      ],
+      "questions": [
+        {
+          "id": "l04-disk-manager-q1",
+          "prompt": "Which API belongs to a disk-space manager?",
+          "options": [
+            "Evaluating predicates on individual records",
+            "Allocating/deallocating and reading/writing pages",
+            "Choosing join order and aggregation strategy",
+            "Tracking pin/unpin and selecting replacement victims"
+          ],
+          "answer": 1,
+          "explanation": "This layer provides a page abstraction. Query semantics belong to higher layers.",
+          "pages": [
+            26
+          ]
+        },
+        {
+          "id": "l04-disk-manager-q2",
+          "prompt": "In an implementation using a filesystem, what can a page ID map to?",
+          "options": [
+            "A position in sorted query output",
+            "An SQL alias and GROUP BY key",
+            "A filename and an offset within that file",
+            "An arbitrary tuple value without a file offset"
+          ],
+          "answer": 2,
+          "explanation": "The mapping locates persistent bytes, rather than describing business data.",
+          "pages": [
+            28
+          ]
+        },
+        {
+          "id": "l04-disk-manager-q3",
+          "prompt": "If a needed record is on an uncached page, must the system read only that record’s exact byte count?",
+          "options": [
+            "Yes; it always reads exactly one field",
+            "Yes, if the record has an id",
+            "No; it must read the entire database",
+            "No; page-granularity I/O can read the surrounding page"
+          ],
+          "answer": 3,
+          "explanation": "Page granularity can bring in neighbouring bytes. It does not imply a full database scan.",
+          "pages": [
+            24
+          ]
+        },
+        {
+          "id": "l04-disk-manager-q4",
+          "prompt": "A file uses 4096-byte pages numbered from 0 and has no header. At what offset does page 5 begin?",
+          "options": [
+            "20480",
+            "4096",
+            "24576",
+            "5"
+          ],
+          "answer": 0,
+          "explanation": "The offset is 5×4096. The value 24576 belongs to page 6 or reflects a numbering mistake.",
+          "pages": [
+            28
+          ]
+        },
+        {
+          "id": "l04-disk-manager-q5",
+          "prompt": "How does spatial control differ from temporal control?",
+          "options": [
+            "Both describe only the logical order of query results",
+            "Spatial control decides where pages go; temporal control decides when to read/write them",
+            "Spatial control decides when to flush; temporal control decides storage positions",
+            "Spatial control is pin count; temporal control is record length"
+          ],
+          "answer": 1,
+          "explanation": "These are the placement and timing dimensions of I/O management, not SQL clauses.",
+          "pages": [
+            25,
+            27
+          ]
+        }
+      ]
+    }
+  ]
+}

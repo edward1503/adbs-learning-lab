@@ -1,0 +1,272 @@
+[
+  {
+    "id": "lecture-05",
+    "lecture": 5,
+    "title": "The buffer pool: pin, dirty, LRU, and CLOCK",
+    "short": "Cache state & replacement traces",
+    "group": "02 · Data storage",
+    "time": 25,
+    "lead": "Trace the state: which pages may be replaced, which must be written back, and why?",
+    "goals": [
+      "Update pin counts and dirty flags correctly",
+      "Simulate LRU and CLOCK when some pages are pinned",
+      "Explain sequential flooding and the limits of replacement policies"
+    ],
+    "sections": [
+      {
+        "id": "l5-1",
+        "title": "The conceptual framework",
+        "html": "<p>A query needs page P. If P is already in RAM, the DBMS can use it immediately: this is a buffer hit. Otherwise, the DBMS must load P: this is a buffer miss. The buffer pool is the RAM area holding pages; each frame is a space that holds one page.</p><p>Pinning marks a page as in use; the pin count records outstanding uses that have not yet been released. Only a frame with pin count 0 may be selected for replacement. A dirty page has been modified in RAM but not yet written back to disk. Its modified contents must be written back before eviction removes the page from its frame. The lecture covers LRU based on the most recent unpin, CLOCK, MRU, sequential flooding, LRU-K, priority hints, multiple pools, prefetching, and differences from the OS cache.</p>"
+      },
+      {
+        "id": "l5-2",
+        "title": "An original trace: pinning and dirty state",
+        "html": "<p>Initially P has pin=0 and dirty=false. Two users each call pin(P), increasing the counter by one each time: pin=2. The first user modifies the page and calls unpin(P,true): pin falls to 1 and dirty=true. The second user only reads and calls unpin(P,false): pin falls to 0, but dirty remains true.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>Pin count and the dirty flag answer different questions.</b> Pin=0 means nobody still holds the page; dirty=true means there are changes not yet written to disk. Unpinning with false says only that this user made no modification. It does not erase an earlier user’s dirty state.</p></aside><p>P is now eligible for replacement, but is not necessarily evicted immediately. If a cache miss selects P as its victim, the cost may include one write of P and one read of the incoming page. A pin count also does not by itself prevent conflicting writes; coordinating them requires concurrency control.</p><details><summary>Check yourself: what if every frame is still pinned?</summary><p>No frame is eligible for eviction. An implementation must wait, report that no frame is available, or use another management mechanism. It cannot ignore pin counts and overwrite an in-use page. This is an additional implementation inference from the invariant, a condition that must always hold.</p></details>"
+      },
+      {
+        "id": "l5-3",
+        "title": "An original LRU trace: eight requests, three frames",
+        "html": "<p>Assume each request pins its page and immediately unpins it; all three frames start empty and every page is clean. The request trace is A,B,C,A,D,B,A,C. LRU selects the eligible page whose last unpin is furthest in the past. Under this assumption, that is also the least recently used page.</p><ol><li>A,B,C: 3 misses; oldest→newest order is A,B,C.</li><li>A: hit; B,C,A.</li><li>D: miss, evict B; C,A,D.</li><li>B: miss, evict C; A,D,B.</li><li>A: hit; D,B,A.</li><li>C: miss, evict D; B,A,C.</li></ol><p>The result is 6 misses, 2 hits, and 0 write-backs. The first three misses fill empty frames; the next three replace B, C, and then D. If D is dirty when evicted, the miss count stays the same but one write is added.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>Count cache misses and write-backs separately.</b> A miss means the requested page is absent from the pool. In this model, an extra write occurs only when a dirty page must be replaced; six misses do not mean six writes.</p></aside><p>With A,B,C,D repeating through three LRU frames, every request misses: each cycle needs four pages, but only three fit, and the page needed next has already been evicted. This is sequential flooding. “Recently used” does not guarantee “needed again soon”.</p>"
+      },
+      {
+        "id": "l5-4",
+        "title": "An original CLOCK trace and comparison exercise",
+        "html": "<p>CLOCK moves a hand around the frames. The reference bit, ref, records recent use. When CLOCK encounters an unpinned page with ref=1, it clears the bit and gives the page another chance. Consider the ring F0,F1,F2 with the hand at F0. The frames contain A(pin=1,ref=1), B(pin=0,ref=1), and C(pin=0,ref=0), respectively. We need to load D.</p><ol><li>Skip A because it is pinned. Needing space does not make A eligible.</li><li>At B, set ref to 0 and continue.</li><li>At C, ref=0 and the page is unpinned, so select C.</li><li>Load D into F2, set pin=1 and ref=1, and advance the hand to F0.</li></ol><p>Practise by changing C.ref to 1. The hand skips A, clears B.ref and C.ref, then returns and skips A again. If no intervening access occurs, B is the first page encountered again with ref=0. Compare this with MRU, which replaces the most recently used page, on a repeated scan. Explain why no policy is optimal for every workload.</p>"
+      }
+    ],
+    "quiz": {
+      "question": "P has dirty=true. What is dirty after unpin(P,false)?",
+      "options": [
+        "false",
+        "true",
+        "It depends on the pin count"
+      ],
+      "answer": 1,
+      "explanation": "The new dirty flag is the old dirty flag OR the supplied dirty argument. true OR false remains true."
+    },
+    "source": {
+      "summary": "Buffer metadata and pin/unpin; LRU/CLOCK/MRU; sequential flooding; LRU-K; priority hints, partitioned pools, prefetch and OS interaction.",
+      "links": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf#page=3",
+          "label": "PDF pp. 3–11 / slides 3–11 · buffer state"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf#page=13",
+          "label": "PDF pp. 13–21 / slides 14–22 · LRU/CLOCK"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf#page=22",
+          "label": "PDF pp. 22–35 / slides 26–39 · scans, MRU, and practical considerations"
+        }
+      ]
+    },
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+      "alternatePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management-2x2.pdf",
+      "verified": true,
+      "verifiedPages": "1–35",
+      "pdfPageCount": 35,
+      "topics": [
+        "Frames/page table",
+        "Pin/unpin",
+        "Dirty writeback",
+        "LRU",
+        "CLOCK",
+        "Sequential flooding",
+        "MRU",
+        "LRU-K",
+        "Priority hints",
+        "Partitioned pools",
+        "Prefetch",
+        "OS buffering"
+      ],
+      "limitations": [
+        "Practical DBMS claims in slides are course context, not a current-version implementation guarantee."
+      ],
+      "week": 2,
+      "officialTitle": "Buffer Management",
+      "weeklyPage": "https://opencourse.inf.ed.ac.uk/adbs/week-2",
+      "pageMap": [
+        {
+          "pdfPage": 1,
+          "printedSlide": null,
+          "heading": "Advanced Database Systems"
+        },
+        {
+          "pdfPage": 2,
+          "printedSlide": 2,
+          "heading": "B UFFER M ANAGEMENT"
+        },
+        {
+          "pdfPage": 3,
+          "printedSlide": 3,
+          "heading": "B UFFER M ANAGEMENT"
+        },
+        {
+          "pdfPage": 4,
+          "printedSlide": 4,
+          "heading": "B UFFER M ANAGEMENT : PAGE R EQUEST"
+        },
+        {
+          "pdfPage": 5,
+          "printedSlide": 5,
+          "heading": "B UFFER M ANAGEMENT : PAGE R ELEASE"
+        },
+        {
+          "pdfPage": 6,
+          "printedSlide": 6,
+          "heading": "O PEN Q UESTIONS"
+        },
+        {
+          "pdfPage": 7,
+          "printedSlide": 7,
+          "heading": "B UFFER M ANAGER S TATE"
+        },
+        {
+          "pdfPage": 8,
+          "printedSlide": 8,
+          "heading": "P ROPER P IN /U NPIN N ESTING"
+        },
+        {
+          "pdfPage": 9,
+          "printedSlide": 9,
+          "heading": "P IN I MPLEMENTATION"
+        },
+        {
+          "pdfPage": 10,
+          "printedSlide": 10,
+          "heading": "U NPIN I MPLEMENTATION"
+        },
+        {
+          "pdfPage": 11,
+          "printedSlide": 11,
+          "heading": "A DVANCED Q UESTIONS"
+        },
+        {
+          "pdfPage": 12,
+          "printedSlide": 12,
+          "heading": "B UFFER R EPLACEMENT P OLICIES"
+        },
+        {
+          "pdfPage": 13,
+          "printedSlide": 14,
+          "heading": "L EAST R ECENTLY U SED (LRU)"
+        },
+        {
+          "pdfPage": 14,
+          "printedSlide": 15,
+          "heading": "L EAST R ECENTLY U SED (LRU)"
+        },
+        {
+          "pdfPage": 15,
+          "printedSlide": 16,
+          "heading": "C LOCK R EPLACEMENT P OLICY                                             p1"
+        },
+        {
+          "pdfPage": 16,
+          "printedSlide": 17,
+          "heading": "C LOCK P OLICY S TATE : E XPLICIT & I LLUSTRATED"
+        },
+        {
+          "pdfPage": 17,
+          "printedSlide": 18,
+          "heading": "C LOCK P OLICY : R EAD PAGE 10"
+        },
+        {
+          "pdfPage": 18,
+          "printedSlide": 19,
+          "heading": "C LOCK P OLICY : R EAD PAGE 10 (C ONT.)"
+        },
+        {
+          "pdfPage": 19,
+          "printedSlide": 20,
+          "heading": "C LOCK P OLICY : R EAD PAGE 10 (C ONT.)"
+        },
+        {
+          "pdfPage": 20,
+          "printedSlide": 21,
+          "heading": "C LOCK P OLICY : R EAD PAGE 10 (C ONT.)"
+        },
+        {
+          "pdfPage": 21,
+          "printedSlide": 22,
+          "heading": "C LOCK P OLICY : R EAD PAGE 10 (C ONT.)"
+        },
+        {
+          "pdfPage": 22,
+          "printedSlide": 26,
+          "heading": "R EPLACEMENT P OLICIES C AN F AIL"
+        },
+        {
+          "pdfPage": 23,
+          "printedSlide": 27,
+          "heading": "R EPEATED S CAN (LRU)"
+        },
+        {
+          "pdfPage": 24,
+          "printedSlide": 28,
+          "heading": "R EPEATED S CAN (LRU)"
+        },
+        {
+          "pdfPage": 25,
+          "printedSlide": 29,
+          "heading": "R EPEATED S CAN (LRU)"
+        },
+        {
+          "pdfPage": 26,
+          "printedSlide": 30,
+          "heading": "R EPEATED S CAN (LRU)"
+        },
+        {
+          "pdfPage": 27,
+          "printedSlide": 31,
+          "heading": "R EPEATED S CAN (LRU)"
+        },
+        {
+          "pdfPage": 28,
+          "printedSlide": 32,
+          "heading": "R EPEATED S CAN (MRU)"
+        },
+        {
+          "pdfPage": 29,
+          "printedSlide": 33,
+          "heading": "R EPEATED S CAN (MRU)"
+        },
+        {
+          "pdfPage": 30,
+          "printedSlide": 34,
+          "heading": "R EPEATED S CAN (MRU)"
+        },
+        {
+          "pdfPage": 31,
+          "printedSlide": 35,
+          "heading": "B EST R EPLACEMENT P OLICY ?"
+        },
+        {
+          "pdfPage": 32,
+          "printedSlide": 36,
+          "heading": "B UFFER M ANAGEMENT IN P RACTICE"
+        },
+        {
+          "pdfPage": 33,
+          "printedSlide": 37,
+          "heading": "B UFFER M ANAGEMENT IN P RACTICE"
+        },
+        {
+          "pdfPage": 34,
+          "printedSlide": 38,
+          "heading": "W HY N OT U SE THE OS?"
+        },
+        {
+          "pdfPage": 35,
+          "printedSlide": 39,
+          "heading": "S UMMARY"
+        }
+      ],
+      "alternateVerified": true,
+      "alternatePdfPageCount": 9
+    },
+    "lab": "buffer"
+  }
+]

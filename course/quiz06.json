@@ -1,0 +1,522 @@
+{
+  "lectureId": "lecture-06",
+  "topics": [
+    {
+      "id": "l06-topic-files",
+      "title": "FILES OF PAGES OF RECORDS / HEAP FILE",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf",
+      "pages": [
+        4,
+        7
+      ],
+      "questions": [
+        {
+          "id": "l06-files-q1",
+          "prompt": "Which containment hierarchy is correct in this storage model?",
+          "options": [
+            "A page must contain a database",
+            "Each field contains a file",
+            "A logical file contains pages, and each page contains records",
+            "A record contains logical files, and each file contains pages"
+          ],
+          "answer": 2,
+          "explanation": "The containment hierarchy is file → page → record. A field is a smaller component within a record.",
+          "pages": [
+            4
+          ]
+        },
+        {
+          "id": "l06-files-q2",
+          "prompt": "Must a logical database file correspond to exactly one operating-system file?",
+          "options": [
+            "Yes, this is always part of its definition",
+            "Only when it contains more than one record",
+            "Only when it stores text",
+            "No, it can span multiple operating-system files or machines"
+          ],
+          "answer": 3,
+          "explanation": "A logical abstraction does not require a one-to-one correspondence with physical files.",
+          "pages": [
+            5
+          ]
+        },
+        {
+          "id": "l06-files-q3",
+          "prompt": "Which operation can the file layer's API support?",
+          "options": [
+            "Fetch a record by its RID",
+            "Track reference bits to select a CLOCK victim",
+            "Choose between a hash join and a merge join",
+            "Move the disk head to the track containing a block"
+          ],
+          "answer": 0,
+          "explanation": "The record/file layer understands record identifiers and scans. Hardware details and query-plan choices belong to other layers.",
+          "pages": [
+            5
+          ]
+        },
+        {
+          "id": "l06-files-q4",
+          "prompt": "What ordering does a heap file impose on its records?",
+          "options": [
+            "Always descending order of salary",
+            "No required ordering by a search key",
+            "Always sorted by the primary key",
+            "The ordering of a binary heap is mandatory"
+          ],
+          "answer": 1,
+          "explanation": "A heap file is not the heap data structure used for a priority queue. It simply has no required sort order.",
+          "pages": [
+            7
+          ]
+        },
+        {
+          "id": "l06-files-q5",
+          "prompt": "As a heap file grows or shrinks, what must the system track?",
+          "options": [
+            "Only column names and types in the schema",
+            "Only the root page of an arbitrary index",
+            "The file's pages, their free space, and the records on each page",
+            "Only tuples returned by SELECT"
+          ],
+          "answer": 2,
+          "explanation": "These three kinds of metadata support record and file management. Query text cannot replace them.",
+          "pages": [
+            7
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l06-topic-heap-directory",
+      "title": "HEAP FILE: LINKED LIST / PAGE DIRECTORY",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf",
+      "pages": [
+        8,
+        9
+      ],
+      "questions": [
+        {
+          "id": "l06-heap-directory-q1",
+          "prompt": "How does the linked-list heap organisation in the slides separate pages?",
+          "options": [
+            "Pages with primary keys from pages with foreign keys",
+            "Pages with fixed-length keys from pages with variable-length keys",
+            "Pages that were recently read from pages that have never been read",
+            "Full pages from pages with free space"
+          ],
+          "answer": 3,
+          "explanation": "The lists distinguish pages that may have room for insertion. Their membership does not depend on the values stored in the records.",
+          "pages": [
+            8
+          ]
+        },
+        {
+          "id": "l06-heap-directory-q2",
+          "prompt": "Why might finding a page for a large record through a free-space list require many reads?",
+          "options": [
+            "Many pages have free space, but not enough for that record",
+            "Every page is completely empty",
+            "No page has a header",
+            "A linked list automatically deletes large records"
+          ],
+          "answer": 0,
+          "explanation": "Having some free space does not mean having enough bytes. The system may need to inspect many candidate pages.",
+          "pages": [
+            8
+          ]
+        },
+        {
+          "id": "l06-heap-directory-q3",
+          "prompt": "What essential information does a page-directory entry store?",
+          "options": [
+            "Only the relation's schema, with no page metadata",
+            "A data-page ID and the number of free bytes",
+            "All record contents from the data page",
+            "Only next/previous pointers, with no free-space information"
+          ],
+          "answer": 1,
+          "explanation": "The directory summarises each page's identity and available space so the system can choose an insertion location.",
+          "pages": [
+            9
+          ]
+        },
+        {
+          "id": "l06-heap-directory-q4",
+          "prompt": "Why can a page directory reduce the I/O needed to find space for an insertion?",
+          "options": [
+            "The directory automatically increases the physical page capacity",
+            "Every record is stored directly in the directory",
+            "One directory page describes many data pages",
+            "An insertion never needs to read or write a data page"
+          ],
+          "answer": 2,
+          "explanation": "Reading a few metadata pages can reveal many candidates. The selected data page may still need to be read and written.",
+          "pages": [
+            9
+          ]
+        },
+        {
+          "id": "l06-heap-directory-q5",
+          "prompt": "A directory reports free space of P1=20, P2=90, and P3=40 bytes. A record needs 60 bytes, with no additional overhead. Which page has enough space?",
+          "options": [
+            "P1",
+            "P3",
+            "All three pages",
+            "P2"
+          ],
+          "answer": 3,
+          "explanation": "Only P2 has at least 60 bytes, because 90≥60. The other pages have some free space, but not enough.",
+          "pages": [
+            9
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l06-topic-packed",
+      "title": "FIXED-LENGTH RECORDS, PACKED",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf",
+      "pages": [
+        12,
+        16
+      ],
+      "questions": [
+        {
+          "id": "l06-packed-q1",
+          "prompt": "A page has a 16-byte header and 24-byte records, numbered from 1. At what byte offset does record 4 begin?",
+          "options": [
+            "88",
+            "96",
+            "72",
+            "112"
+          ],
+          "answer": 0,
+          "explanation": "The offset is 16+(4−1)×24=88. The first record starts immediately after the header, so the record number is reduced by one.",
+          "pages": [
+            13
+          ]
+        },
+        {
+          "id": "l06-packed-q2",
+          "prompt": "Where is a new record normally inserted in a packed page that still has space?",
+          "options": [
+            "Always in a different file",
+            "After the last existing record",
+            "Always before the header",
+            "Always in a hole in the middle, even though a packed layout has no holes"
+          ],
+          "answer": 1,
+          "explanation": "A packed layout keeps records in a contiguous region. A new record is appended to the end of the occupied region.",
+          "pages": [
+            14
+          ]
+        },
+        {
+          "id": "l06-packed-q3",
+          "prompt": "What risk arises when a middle record is deleted and the last record is moved into its place?",
+          "options": [
+            "The moved record must change its schema",
+            "The page automatically becomes an index page",
+            "The moved record's position-based RID changes",
+            "Its RID cannot change because every layout uses slot indirection"
+          ],
+          "answer": 2,
+          "explanation": "Moving a record changes an identifier based directly on its position. It does not automatically change the record's byte length.",
+          "pages": [
+            15,
+            16
+          ]
+        },
+        {
+          "id": "l06-packed-q4",
+          "prompt": "If every field has a fixed size, what can be inferred?",
+          "options": [
+            "Each record must occupy an entire page",
+            "All fields must have the same length as one another",
+            "Records must be sorted by their first field",
+            "Record size is fixed if the metadata layout is also fixed"
+          ],
+          "answer": 3,
+          "explanation": "A fixed sum of field lengths, together with fixed metadata, gives a fixed record length. It does not require one page per record.",
+          "pages": [
+            12
+          ]
+        },
+        {
+          "id": "l06-packed-q5",
+          "prompt": "A page has 512 bytes, a 32-byte header, and 30-byte fixed-length records, with no other overhead. How many records fit?",
+          "options": [
+            "16",
+            "17",
+            "15",
+            "18"
+          ],
+          "answer": 0,
+          "explanation": "There are floor((512−32)/30)=16 record slots. Rounding up would exceed the page's capacity.",
+          "pages": [
+            13
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l06-topic-unpacked",
+      "title": "FIXED-LENGTH RECORDS, UNPACKED",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf",
+      "pages": [
+        17,
+        19
+      ],
+      "questions": [
+        {
+          "id": "l06-unpacked-q1",
+          "prompt": "What does the bitmap of an unpacked page primarily record?",
+          "options": [
+            "The sorted key values on the page",
+            "Which slots are occupied and which are empty",
+            "Whether each field in a record is NULL",
+            "The reference bit of each buffer frame"
+          ],
+          "answer": 1,
+          "explanation": "This bitmap tracks slot occupancy. It does not store query results or field-level NULL information.",
+          "pages": [
+            17
+          ]
+        },
+        {
+          "id": "l06-unpacked-q2",
+          "prompt": "What is the main metadata change when deleting a record in a bitmap-based layout?",
+          "options": [
+            "Delete every subsequent slot",
+            "Change every RID on the page",
+            "Mark the slot as empty",
+            "Always move the last record into that slot"
+          ],
+          "answer": 2,
+          "explanation": "The layout permits gaps, so other records do not have to move. Their positions can remain unchanged.",
+          "pages": [
+            17
+          ]
+        },
+        {
+          "id": "l06-unpacked-q3",
+          "prompt": "Which slots does the free list link together?",
+          "options": [
+            "Occupied slots containing records with the same key",
+            "Buffer frames with pinCount=0",
+            "NULL fields within a record",
+            "Empty slots"
+          ],
+          "answer": 3,
+          "explanation": "The list helps locate unused slots. A NULL field within an existing record does not make that record's slot empty.",
+          "pages": [
+            18
+          ]
+        },
+        {
+          "id": "l06-unpacked-q4",
+          "prompt": "When inserting a record into the slot at the head of a free list, what must change?",
+          "options": [
+            "Use the head slot, then move the head to the next free slot",
+            "Keep the head pointing to the occupied slot so it can be reused immediately",
+            "Copy the new record into every free slot",
+            "Delete all records after the selected slot"
+          ],
+          "answer": 0,
+          "explanation": "The occupied slot is no longer free. The head must point to the next remaining free slot.",
+          "pages": [
+            18
+          ]
+        },
+        {
+          "id": "l06-unpacked-q5",
+          "prompt": "The free list is 2→5→8. A record in slot 4 is deleted, and that slot is added at the front. What is the new list?",
+          "options": [
+            "4→8",
+            "4→2→5→8",
+            "2→4→5→8",
+            "5→8"
+          ],
+          "answer": 1,
+          "explanation": "Adding the newly freed slot at the front makes slot 4 point to the previous head, slot 2.",
+          "pages": [
+            19
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l06-topic-slotted",
+      "title": "SLOTTED PAGES",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf",
+      "pages": [
+        20,
+        22
+      ],
+      "questions": [
+        {
+          "id": "l06-slotted-q1",
+          "prompt": "How is a RID represented in a slotted page?",
+          "options": [
+            "A table name and a tuple's position in a query result",
+            "A field ID and an offset within a record",
+            "A page ID and a slot ID",
+            "A page ID and the record's direct physical byte offset"
+          ],
+          "answer": 2,
+          "explanation": "The slot directory provides an indirection from the RID to the record's byte offset. The RID does not contain that offset directly.",
+          "pages": [
+            21
+          ]
+        },
+        {
+          "id": "l06-slotted-q2",
+          "prompt": "A record moves from offset 700 to 800 within the same page, keeping its slot ID. What must be updated?",
+          "options": [
+            "The external RID must change to the new offset even though the slot is unchanged",
+            "The field schema must change because the record moved",
+            "The page ID must change even though the record remains on the same page",
+            "The offset stored in the slot directory"
+          ],
+          "answer": 3,
+          "explanation": "The RID still contains the same page and slot IDs. The directory is updated to identify the record's new byte position.",
+          "pages": [
+            22
+          ]
+        },
+        {
+          "id": "l06-slotted-q3",
+          "prompt": "Why should deleting a record not arbitrarily renumber all the remaining slots?",
+          "options": [
+            "External RIDs may refer to those slot IDs",
+            "Record bytes must never be moved",
+            "A slot directory must always be packed with no empty slots",
+            "Every slot ID is a business-level primary key"
+          ],
+          "answer": 0,
+          "explanation": "Changing a slot's identity can invalidate external references. The record bytes can still be moved during compaction.",
+          "pages": [
+            22
+          ]
+        },
+        {
+          "id": "l06-slotted-q4",
+          "prompt": "A page has 1000 bytes and a 20-byte header. Each record needs 45 bytes plus a 4-byte slot entry. With no other overhead, how many records fit?",
+          "options": [
+            "19",
+            "20",
+            "21",
+            "22"
+          ],
+          "answer": 1,
+          "explanation": "Each record and its slot entry need 49 bytes. The available 980 bytes hold floor(980/49)=20 records.",
+          "pages": [
+            21
+          ]
+        },
+        {
+          "id": "l06-slotted-q5",
+          "prompt": "A page has enough total free space, but no sufficiently large contiguous region. What is an appropriate action within the page?",
+          "options": [
+            "Keep the old offsets after moving the bytes",
+            "Assume enough total free bytes removes the need for a contiguous region",
+            "Compact or defragment the page, then update the offsets",
+            "Increase the length field without allocating actual bytes"
+          ],
+          "answer": 2,
+          "explanation": "Compaction combines the gaps into a larger free region. Updating the directory preserves record identifiers while the bytes move.",
+          "pages": [
+            22
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l06-topic-record-layout",
+      "title": "RECORD LAYOUT / VARIABLE-LENGTH RECORDS",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf",
+      "pages": [
+        24,
+        28
+      ],
+      "questions": [
+        {
+          "id": "l06-record-layout-q1",
+          "prompt": "Must complete field-type information be repeated in every record?",
+          "options": [
+            "Yes, each record must store the complete DDL text",
+            "Yes, the system catalog stores only query results",
+            "No schema information is needed at any layer",
+            "No, the schema can be stored in the system catalog"
+          ],
+          "answer": 3,
+          "explanation": "The catalog stores a shared schema, avoiding repetition of the complete metadata in every record.",
+          "pages": [
+            24
+          ]
+        },
+        {
+          "id": "l06-record-layout-q2",
+          "prompt": "Three fields have lengths of 4, 2, and 8 bytes, with no header. At what offset does the third field begin?",
+          "options": [
+            "6",
+            "8",
+            "14",
+            "4"
+          ],
+          "answer": 0,
+          "explanation": "The offset is the sum of the preceding field lengths: 4+2=6. It is not the length of the third field itself.",
+          "pages": [
+            25
+          ]
+        },
+        {
+          "id": "l06-record-layout-q3",
+          "prompt": "What complication arises when a variable-length field's value contains its delimiter?",
+          "options": [
+            "Every field must be padded to the same length",
+            "Escaping or another way to distinguish data from delimiters is needed",
+            "No field can be accessed even with a parser",
+            "The data type alone identifies every boundary, so escaping is unnecessary"
+          ],
+          "answer": 1,
+          "explanation": "Without escaping or an equivalent convention, the parser cannot reliably distinguish field boundaries from delimiter characters inside a value.",
+          "pages": [
+            26
+          ]
+        },
+        {
+          "id": "l06-record-layout-q4",
+          "prompt": "Why may length=0 be insufficient to distinguish NULL from an empty string?",
+          "options": [
+            "NULL is always encoded as the character 0",
+            "A positive offset automatically proves that a field is not NULL",
+            "Both can have no payload bytes while having different meanings",
+            "An empty string and NULL always have identical semantics"
+          ],
+          "answer": 2,
+          "explanation": "Metadata such as a NULL bitmap preserves the distinction. Payload length alone may not be enough.",
+          "pages": [
+            27
+          ]
+        },
+        {
+          "id": "l06-record-layout-q5",
+          "prompt": "A record has a 12-byte fixed region followed by a 5-byte ASCII name. What are the name's offset and length?",
+          "options": [
+            "5,12",
+            "0,12",
+            "17,5",
+            "12,5"
+          ],
+          "answer": 3,
+          "explanation": "The offset identifies the start of the payload, and the length counts its bytes. The length is not the payload's ending position.",
+          "pages": [
+            28
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,784 @@
+{
+  "lectureId": "lecture-02",
+  "topics": [
+    {
+      "id": "l02-topic-terminology",
+      "title": "RELATIONAL TERMINOLOGY / RELATIONAL TABLES",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+      "pages": [
+        6,
+        9
+      ],
+      "questions": [
+        {
+          "id": "l02-terminology-q1",
+          "prompt": "In Product(id:int,name:text), what is the row (7,tea)?",
+          "options": [
+            "A DBMS",
+            "An attribute type",
+            "A tuple",
+            "A schema"
+          ],
+          "answer": 2,
+          "explanation": "A tuple is one row of values. A schema describes column names and types.",
+          "pages": [
+            6
+          ]
+        },
+        {
+          "id": "l02-terminology-q2",
+          "prompt": "An INSERT adds a valid row without adding columns. What changes?",
+          "options": [
+            "The data model",
+            "Every attribute name",
+            "The table’s type must change",
+            "The instance"
+          ],
+          "answer": 3,
+          "explanation": "The instance contains the current data. Adding a row does not by itself change the schema.",
+          "pages": [
+            6,
+            7
+          ]
+        },
+        {
+          "id": "l02-terminology-q3",
+          "prompt": "What does an SQL bag allow that a set does not?",
+          "options": [
+            "Two tuples with identical values in every position",
+            "Undefined column names",
+            "Every number must be a string",
+            "Rows cannot be counted"
+          ],
+          "answer": 0,
+          "explanation": "A bag preserves multiplicity, while a set removes fully duplicate tuples.",
+          "pages": [
+            7
+          ]
+        },
+        {
+          "id": "l02-terminology-q4",
+          "prompt": "Which category includes statements that create table structures?",
+          "options": [
+            "A query result",
+            "DDL",
+            "DML",
+            "DCL"
+          ],
+          "answer": 1,
+          "explanation": "DDL defines schemas. DCL focuses on access control.",
+          "pages": [
+            9
+          ]
+        },
+        {
+          "id": "l02-terminology-q5",
+          "prompt": "What may a change of join algorithm affect in a correct query execution?",
+          "options": [
+            "It may discard matches that make the join too large",
+            "It may change the predicate when another index exists",
+            "Performance, but not the result required by the semantics",
+            "It may discard duplicates to save CPU even when bag semantics are required"
+          ],
+          "answer": 2,
+          "explanation": "The DBMS chooses how to execute the query, but must preserve the specified result, including required multiplicities.",
+          "pages": [
+            9
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l02-topic-select",
+      "title": "BASIC SINGLE-TABLE QUERIES",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+      "pages": [
+        10,
+        10
+      ],
+      "questions": [
+        {
+          "id": "l02-select-q1",
+          "prompt": "T contains x=[1,1,3]. How many rows does SELECT x FROM T WHERE x<3 return?",
+          "options": [
+            "1",
+            "3",
+            "0",
+            "2"
+          ],
+          "answer": 3,
+          "explanation": "WHERE retains both rows with x=1. Without DISTINCT, they are not collapsed into one.",
+          "pages": [
+            10
+          ]
+        },
+        {
+          "id": "l02-select-q2",
+          "prompt": "T contains x=[1,1,3]. How many rows does SELECT DISTINCT x FROM T return?",
+          "options": [
+            "2",
+            "3",
+            "1",
+            "0"
+          ],
+          "answer": 0,
+          "explanation": "The distinct values are 1 and 3. DISTINCT does not mean that only one row is returned.",
+          "pages": [
+            10
+          ]
+        },
+        {
+          "id": "l02-select-q3",
+          "prompt": "Does WHERE price>20 retain a row with price=20?",
+          "options": [
+            "Yes, because WHERE affects only NULL values",
+            "No",
+            "Yes, because > includes equality",
+            "Yes, because SELECT * retains all rows regardless of WHERE"
+          ],
+          "answer": 1,
+          "explanation": "The strict comparison > excludes 20. Neither the row’s position nor * changes that condition.",
+          "pages": [
+            10
+          ]
+        },
+        {
+          "id": "l02-select-q4",
+          "prompt": "What does SELECT price*2 FROM T primarily do?",
+          "options": [
+            "It updates price in the source table",
+            "It automatically groups equal prices before multiplying",
+            "It computes an output expression for the selected rows",
+            "It doubles the number of output rows"
+          ],
+          "answer": 2,
+          "explanation": "A SELECT expression computes result values. It is not an UPDATE and does not automatically multiply the row count.",
+          "pages": [
+            10
+          ]
+        },
+        {
+          "id": "l02-select-q5",
+          "prompt": "T contains (city,amount)=(A,10),(A,20). How many rows does SELECT DISTINCT city,amount return?",
+          "options": [
+            "1",
+            "0",
+            "4",
+            "2"
+          ],
+          "answer": 3,
+          "explanation": "DISTINCT compares complete output tuples. The amounts differ, so the two rows remain distinct.",
+          "pages": [
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l02-topic-order",
+      "title": "ORDER BY",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+      "pages": [
+        11,
+        11
+      ],
+      "questions": [
+        {
+          "id": "l02-order-q1",
+          "prompt": "For (id,score)=(3,80),(1,80),(2,90), what id order does ORDER BY score DESC, id ASC produce?",
+          "options": [
+            "2,1,3",
+            "1,2,3",
+            "2,3,1",
+            "3,1,2"
+          ],
+          "answer": 0,
+          "explanation": "Scores are sorted descending first. The two scores of 80 are ordered by ascending id.",
+          "pages": [
+            11
+          ]
+        },
+        {
+          "id": "l02-order-q2",
+          "prompt": "What direction does ORDER BY age use when ASC/DESC is omitted?",
+          "options": [
+            "Primary-key order instead of age",
+            "Ascending",
+            "Descending",
+            "Insertion order regardless of age"
+          ],
+          "answer": 1,
+          "explanation": "The slides specify ASC as the default. Numeric values do not automatically imply descending order.",
+          "pages": [
+            11
+          ]
+        },
+        {
+          "id": "l02-order-q3",
+          "prompt": "When does ORDER BY a,b compare b?",
+          "options": [
+            "After LIMIT is applied, regardless of a",
+            "Only when b appears in GROUP BY",
+            "When the values of a are equal",
+            "Before every comparison of a"
+          ],
+          "answer": 2,
+          "explanation": "The key list defines lexicographic order. The second key b breaks ties in a.",
+          "pages": [
+            11
+          ]
+        },
+        {
+          "id": "l02-order-q4",
+          "prompt": "With only ORDER BY score, what remains unspecified when two rows have the same score?",
+          "options": [
+            "The number of rows for each score in the data",
+            "The rows’ score values",
+            "The direction explicitly given in ORDER BY",
+            "The relative order of the tied rows"
+          ],
+          "answer": 3,
+          "explanation": "That key cannot distinguish the tied rows. Add a secondary key when a total order is needed.",
+          "pages": [
+            11
+          ]
+        },
+        {
+          "id": "l02-order-q5",
+          "prompt": "Does ORDER BY automatically remove duplicate tuples?",
+          "options": [
+            "No",
+            "Yes, always, just like DISTINCT",
+            "Only with ASC",
+            "Only with DESC"
+          ],
+          "answer": 0,
+          "explanation": "Sorting determines order. DISTINCT is a separate request to eliminate duplicates.",
+          "pages": [
+            11
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l02-topic-limit",
+      "title": "LIMIT",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+      "pages": [
+        12,
+        12
+      ],
+      "questions": [
+        {
+          "id": "l02-limit-q1",
+          "prompt": "The sorted sequence is [10,20,30,40,50]. What does LIMIT 2 OFFSET 1 return?",
+          "options": [
+            "20,30,40",
+            "20,30",
+            "10,20",
+            "30,40"
+          ],
+          "answer": 1,
+          "explanation": "OFFSET skips the first row and LIMIT takes the next two. The offset is not a starting position numbered from 1.",
+          "pages": [
+            12
+          ]
+        },
+        {
+          "id": "l02-limit-q2",
+          "prompt": "Does LIMIT 3 force exactly three result rows when the input contains only two?",
+          "options": [
+            "Yes; it repeats the last row",
+            "No; it must raise an error",
+            "No; it returns only two rows",
+            "Yes; it adds NULL"
+          ],
+          "answer": 2,
+          "explanation": "LIMIT is an upper bound. It does not create extra rows to reach the requested number.",
+          "pages": [
+            12
+          ]
+        },
+        {
+          "id": "l02-limit-q3",
+          "prompt": "Why is LIMIT commonly combined with ORDER BY?",
+          "options": [
+            "To remove duplicates automatically before selecting rows",
+            "To group automatically by every column",
+            "To turn LIMIT into a value-based filter",
+            "To specify clearly which rows take priority"
+          ],
+          "answer": 3,
+          "explanation": "Without ordering, LIMIT does not guarantee a particular top set. An index is not a syntax requirement.",
+          "pages": [
+            12
+          ]
+        },
+        {
+          "id": "l02-limit-q4",
+          "prompt": "For the sorted sequence [2,4,6,8], what does LIMIT 1 OFFSET 3 return?",
+          "options": [
+            "8",
+            "6",
+            "2",
+            "No rows"
+          ],
+          "answer": 0,
+          "explanation": "Skipping 2,4,6 leaves 8 as the one row to return.",
+          "pages": [
+            12
+          ]
+        },
+        {
+          "id": "l02-limit-q5",
+          "prompt": "Which clause returns the two highest prices, breaking price ties by smaller id?",
+          "options": [
+            "LIMIT 2 followed by an arbitrary sort",
+            "ORDER BY price DESC, id ASC LIMIT 2",
+            "ORDER BY price ASC, id ASC LIMIT 2",
+            "ORDER BY id ASC LIMIT 2"
+          ],
+          "answer": 1,
+          "explanation": "Price DESC prioritises higher prices. Sorting only by id or using price ASC does not express the requirement.",
+          "pages": [
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l02-topic-aggregate",
+      "title": "AGGREGATES",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+      "pages": [
+        13,
+        13
+      ],
+      "questions": [
+        {
+          "id": "l02-aggregate-q1",
+          "prompt": "For the bag amount=[10,10,40], what is AVG(amount)?",
+          "options": [
+            "30",
+            "60",
+            "20",
+            "25"
+          ],
+          "answer": 2,
+          "explanation": "AVG includes both occurrences of 10: the sum is 60 and the count is 3. Removing duplicates first would answer a different question.",
+          "pages": [
+            13
+          ]
+        },
+        {
+          "id": "l02-aggregate-q2",
+          "prompt": "What is SUM for the bag [2,5,5]?",
+          "options": [
+            "7",
+            "10",
+            "3",
+            "12"
+          ],
+          "answer": 3,
+          "explanation": "SUM adds every element. It does not automatically remove duplicates.",
+          "pages": [
+            13
+          ]
+        },
+        {
+          "id": "l02-aggregate-q3",
+          "prompt": "What does COUNT return for three non-NULL id values?",
+          "options": [
+            "3",
+            "The number of distinct ids after automatic deduplication",
+            "The sum of the ids",
+            "The largest id in the group"
+          ],
+          "answer": 0,
+          "explanation": "COUNT counts qualifying input values. It does not compute their sum or an extreme value.",
+          "pages": [
+            13
+          ]
+        },
+        {
+          "id": "l02-aggregate-q4",
+          "prompt": "For [8,3,11], what are MIN and MAX, respectively?",
+          "options": [
+            "11 and 3",
+            "3 and 11",
+            "8 and 11",
+            "3 and 8"
+          ],
+          "answer": 1,
+          "explanation": "MIN and MAX select the extreme values, regardless of their positions in the input.",
+          "pages": [
+            13
+          ]
+        },
+        {
+          "id": "l02-aggregate-q5",
+          "prompt": "Which statement is consistent with both the aggregate and HAVING slides?",
+          "options": [
+            "WHERE always computes group aggregates first",
+            "SUM automatically adds GROUP BY for every column",
+            "An aggregate may appear in HAVING in a grouped query",
+            "Aggregates are allowed exclusively in SELECT"
+          ],
+          "answer": 2,
+          "explanation": "The HAVING slide demonstrates an aggregate in a group condition. The earlier simplified statement should not be read as an absolute restriction.",
+          "pages": [
+            13,
+            17
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l02-topic-group",
+      "title": "GROUP BY / HAVING",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+      "pages": [
+        14,
+        18
+      ],
+      "questions": [
+        {
+          "id": "l02-group-q1",
+          "prompt": "How many groups does GROUP BY city create for city=[A,A,B,B,B]?",
+          "options": [
+            "3",
+            "5",
+            "1",
+            "2"
+          ],
+          "answer": 3,
+          "explanation": "Each distinct city value produces one group. The number of groups differs from the number of input rows.",
+          "pages": [
+            14
+          ]
+        },
+        {
+          "id": "l02-group-q2",
+          "prompt": "How many groups does GROUP BY city,year create from (A,2024),(A,2025),(A,2024)?",
+          "options": [
+            "2",
+            "1",
+            "3",
+            "4"
+          ],
+          "answer": 0,
+          "explanation": "Grouping uses the pair of values, so A’s two years belong to different groups.",
+          "pages": [
+            14,
+            15
+          ]
+        },
+        {
+          "id": "l02-group-q3",
+          "prompt": "Where should the condition SUM(amount)>100 appear to retain qualifying groups?",
+          "options": [
+            "LIMIT 100",
+            "HAVING",
+            "WHERE SUM(amount)>100 before grouping",
+            "ORDER BY SUM(amount)>100"
+          ],
+          "answer": 1,
+          "explanation": "HAVING filters after aggregation. Sorting and limiting do not test a group’s total against the threshold.",
+          "pages": [
+            17
+          ]
+        },
+        {
+          "id": "l02-group-q4",
+          "prompt": "One group has amount=[20,80]. What does SUM produce after WHERE amount>50?",
+          "options": [
+            "20",
+            "50",
+            "80",
+            "100"
+          ],
+          "answer": 2,
+          "explanation": "WHERE removes 20 before the sum is computed. HAVING would test the already-computed total instead.",
+          "pages": [
+            16,
+            17
+          ]
+        },
+        {
+          "id": "l02-group-q5",
+          "prompt": "Under the lecture’s basic rule, what is wrong with SELECT city,name,AVG(age) GROUP BY city if each city contains several names?",
+          "options": [
+            "AVG must appear in WHERE",
+            "GROUP BY city automatically selects the first name under basic standard SQL",
+            "Every name is implicitly added to GROUP BY",
+            "name is neither grouped nor aggregated"
+          ],
+          "answer": 3,
+          "explanation": "A group containing several names does not determine a single name. The problem is not AVG or city.",
+          "pages": [
+            15
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l02-topic-inner-join",
+      "title": "JOIN QUERY",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+      "pages": [
+        19,
+        22
+      ],
+      "questions": [
+        {
+          "id": "l02-inner-join-q1",
+          "prompt": "R has two rows with key=7 and S has three rows with key=7. How many rows does an equijoin on key produce?",
+          "options": [
+            "6",
+            "5",
+            "3",
+            "2"
+          ],
+          "answer": 0,
+          "explanation": "Each R row matches three S rows, giving 2×3. A join does not automatically deduplicate keys.",
+          "pages": [
+            20
+          ]
+        },
+        {
+          "id": "l02-inner-join-q2",
+          "prompt": "R has keys {1,2} and S has keys {2,3}. Which key survives an equality inner join?",
+          "options": [
+            "No keys",
+            "2",
+            "1,2,3",
+            "1,3"
+          ],
+          "answer": 1,
+          "explanation": "Only a key present on both sides has matching row pairs.",
+          "pages": [
+            20
+          ]
+        },
+        {
+          "id": "l02-inner-join-q3",
+          "prompt": "Why can a join be understood as a cross product followed by filtering without requiring the engine to execute it that way?",
+          "options": [
+            "The optimiser only needs to return the same row count",
+            "An index always removes all unmatched rows before every query",
+            "That is the conceptual semantics, not a mandatory physical algorithm",
+            "The optimiser may discard the join predicate"
+          ],
+          "answer": 2,
+          "explanation": "The optimiser can avoid materialising the product, but it must preserve the equivalent filtered result.",
+          "pages": [
+            19,
+            20
+          ]
+        },
+        {
+          "id": "l02-inner-join-q4",
+          "prompt": "Which columns does NATURAL JOIN compare?",
+          "options": [
+            "Only the first column",
+            "Only primary keys, even with different names",
+            "Every pair of columns of the same type, regardless of name",
+            "All columns with the same name in both inputs"
+          ],
+          "answer": 3,
+          "explanation": "A natural join uses shared column names. Matching types or primary-key status alone do not define its condition.",
+          "pages": [
+            21
+          ]
+        },
+        {
+          "id": "l02-inner-join-q5",
+          "prompt": "What may happen if both tables in a NATURAL JOIN gain a column named status?",
+          "options": [
+            "The result may change because status equality becomes an additional condition",
+            "The result must stay unchanged because new names do not matter",
+            "The join uses only the first shared id column",
+            "The natural join automatically becomes a left join to preserve row count"
+          ],
+          "answer": 0,
+          "explanation": "The new shared name participates in matching. A natural join can therefore change meaning when schemas change.",
+          "pages": [
+            21
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l02-topic-outer-join",
+      "title": "LEFT / RIGHT / FULL OUTER JOIN",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+      "pages": [
+        23,
+        25
+      ],
+      "questions": [
+        {
+          "id": "l02-outer-join-q1",
+          "prompt": "R has keys {1,2} and S has keys {2,3}. How many rows does R LEFT JOIN S return with these unique keys?",
+          "options": [
+            "4",
+            "2",
+            "1",
+            "3"
+          ],
+          "answer": 1,
+          "explanation": "Both R rows are preserved. Key 1 is padded with NULL on the S side; S’s unmatched key 3 is not retained separately.",
+          "pages": [
+            23
+          ]
+        },
+        {
+          "id": "l02-outer-join-q2",
+          "prompt": "For R={1,2} and S={2,3}, which unmatched row does RIGHT JOIN retain?",
+          "options": [
+            "Both keys 1 and 3",
+            "No unmatched rows",
+            "Key 3 from S",
+            "Key 1 from R"
+          ],
+          "answer": 2,
+          "explanation": "RIGHT JOIN preserves the right-hand side. An unmatched left-hand row is not retained separately.",
+          "pages": [
+            24
+          ]
+        },
+        {
+          "id": "l02-outer-join-q3",
+          "prompt": "How many rows does FULL JOIN return for unique keys R={1,2} and S={2,3}?",
+          "options": [
+            "1",
+            "2",
+            "4",
+            "3"
+          ],
+          "answer": 3,
+          "explanation": "The result contains the match on key 2 and the two unmatched rows with keys 1 and 3.",
+          "pages": [
+            25
+          ]
+        },
+        {
+          "id": "l02-outer-join-q4",
+          "prompt": "R has one row with key=1 and S has two rows with key=1. Does LEFT JOIN add a NULL-padded row for R?",
+          "options": [
+            "No; there are already two matching rows",
+            "Yes; it always adds one NULL-padded row",
+            "Yes; it adds two NULL-padded rows",
+            "It returns no rows at all"
+          ],
+          "answer": 0,
+          "explanation": "NULL padding is for unmatched rows. It is not added when matches already exist.",
+          "pages": [
+            23
+          ]
+        },
+        {
+          "id": "l02-outer-join-q5",
+          "prompt": "R contains three rows and S is empty. How many rows does LEFT JOIN return?",
+          "options": [
+            "It is undefined because S is empty",
+            "3",
+            "0",
+            "1"
+          ],
+          "answer": 1,
+          "explanation": "Every left-hand row is preserved with NULL values on the right. An inner join would be empty here.",
+          "pages": [
+            23
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l02-topic-nested",
+      "title": "NESTED QUERIES / SET-COMPARISON OPERATORS",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+      "pages": [
+        26,
+        28
+      ],
+      "questions": [
+        {
+          "id": "l02-nested-q1",
+          "prompt": "S has id={1,2,3}, and a subquery returns [1,1,3]. Which ids does WHERE id IN (...) retain?",
+          "options": [
+            "2",
+            "1,2,3",
+            "1,3",
+            "1,1,3"
+          ],
+          "answer": 2,
+          "explanation": "IN tests membership for each outer row. Duplicates inside the subquery do not multiply outer rows.",
+          "pages": [
+            26
+          ]
+        },
+        {
+          "id": "l02-nested-q2",
+          "prompt": "What is a subquery that refers to S.id from its outer query called?",
+          "options": [
+            "An uncorrelated subquery",
+            "An independent derived table",
+            "An aggregate query with no outer reference",
+            "A correlated subquery"
+          ],
+          "answer": 3,
+          "explanation": "Referencing a variable from the outer query creates correlation. It does not prescribe the physical execution algorithm.",
+          "pages": [
+            27
+          ]
+        },
+        {
+          "id": "l02-nested-q3",
+          "prompt": "Is 50 > ALL({20,60}) true or false when no NULL is present?",
+          "options": [
+            "False",
+            "True, because at least one comparison is true",
+            "True, because 50 exceeds the average of 40",
+            "True, because only the first element is compared"
+          ],
+          "answer": 0,
+          "explanation": "ALL requires 50 to exceed 60 as well, which it does not. One successful comparison would be enough for ANY.",
+          "pages": [
+            28
+          ]
+        },
+        {
+          "id": "l02-nested-q4",
+          "prompt": "What does 50 > ANY({20,60}) evaluate to when no NULL is present?",
+          "options": [
+            "True only if all subquery elements are equal",
+            "True",
+            "False, because one element exceeds 50",
+            "False, because 50 must exceed both elements"
+          ],
+          "answer": 1,
+          "explanation": "ANY requires at least one true comparison. Here, 50>20 is true.",
+          "pages": [
+            28
+          ]
+        },
+        {
+          "id": "l02-nested-q5",
+          "prompt": "What does EXISTS(subquery) test?",
+          "options": [
+            "Whether every column is non-NULL",
+            "Whether the subquery has exactly one row",
+            "Whether the subquery returns at least one row",
+            "Whether the first value equals 1"
+          ],
+          "answer": 2,
+          "explanation": "EXISTS tests whether a row exists. It does not require SELECT to return the value 1 or exactly one row.",
+          "pages": [
+            28
+          ]
+        }
+      ]
+    }
+  ]
+}

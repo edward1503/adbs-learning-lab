@@ -1,0 +1,83 @@
+[
+  {
+    "id": "lecture-10",
+    "lecture": 10,
+    "title": "Hash-Based Indexing",
+    "short": "Hash indexes: buckets and directories",
+    "group": "03 · Indexing",
+    "time": 25,
+    "lead": "Follow how a hash index assigns keys to buckets, then see how the buckets and directory change as data is added.",
+    "goals": [
+      "Explain in-memory hashing and collision resolution",
+      "Trace searches, insertions, deletions, and overflow in static chained hashing",
+      "Recognise skew and identify when rehashing is needed",
+      "Simulate global and local depth, bucket splits, and directory changes in extendible hashing"
+    ],
+    "sections": [
+      {
+        "id": "l10-s1",
+        "title": "Ask the right questions of a hash index",
+        "html": "<p>A hash index applies a hash function to assign each key to a bucket, a storage area for entries with the same hash address. Two keys in the same bucket must still be compared directly. This approach suits equality lookups, which search for a key with a particular value. For a range query, keys that are close in value need not be close together after hashing.</p><p><strong>Original worked example:</strong> divide each ticket code by 4 and use the remainder as its bucket number. In compact notation, h(k)=k mod 4, where k is the ticket code and h(k) is a bucket number from 0 to 3. Codes 6, 10, and 14 all enter bucket 2. Finding code 10 requires checking the entries in that bucket; finding every code from 6 to 14 cannot be done by reading bucket 2 alone. Chaining links entries into a list; open addressing searches for another slot in an in-memory table. In a database, a bucket commonly occupies one or more pages.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>The same hash does not mean the same key.</b> Hashing narrows down where to look; key comparisons are still needed to confirm a match.</p></aside><p class=\"source-note\">Related source material: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=2\" target=\"_blank\" rel=\"noopener\">PDF pages 2–6</a>. The numerical examples and exercises in this section are original supplementary material.</p>"
+      },
+      {
+        "id": "l10-s2",
+        "title": "Static hashing: overflow determines the cost",
+        "html": "<p>Keep a fixed set of 4 primary bucket pages, each holding 2 entries. Inserting 6 and 10 fills bucket 2; inserting 14 requires an overflow page, an additional page linked to a full bucket. Looking up 14 may read 2 pages even though the hash function runs only once. Insertions and deletions must also write any modified pages. As the data grows, overflow chains lengthen; as it shrinks, some buckets may be left empty.</p><p>Rehashing recalculates the location of every entry using a new bucket mapping. Increasing the number of buckets redistributes the data but requires many page reads and writes. A fast hash function is not enough: a skewed key distribution or many duplicate keys can still create hot spots. The modulo function above is an illustration, not the best choice for every dataset.</p><p class=\"source-note\">Related source material: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=7\" target=\"_blank\" rel=\"noopener\">PDF pages 7–12</a>. The numerical examples and exercises in this section are original supplementary material.</p>"
+      },
+      {
+        "id": "l10-s3",
+        "title": "Extendible hashing: grow where space is needed",
+        "html": "<p>Extendible hashing uses a directory, a table of pointers to buckets. The global depth g is the number of hash bits used to look up a directory entry; the local depth d is the number of bits that identify a particular bucket. The example below uses the trailing bits, or suffix.</p><p><strong>Original worked example:</strong> g=2 gives 4 directory pointers labelled 00, 01, 10, and 11. Bucket 01 has d=2, holds at most 2 entries, and currently contains hash values 1 (001) and 5 (101). Inserting 9 (1001) exceeds its capacity, so split it using the last 3 bits. Bucket 001 receives 1 and 9; bucket 101 receives 5. Both new buckets have d=3, which exceeds the old g=2, so the directory grows from 4 to 8 pointers.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>Doubling the directory enlarges only the pointer table.</b> This step splits the full bucket; it does not copy every data bucket.</p></aside><p>If the bucket has d&lt;g before splitting, the directory already has enough bits to distinguish the two new buckets, so only the relevant pointers change. For example, with g=3 and d=1, the remaining 2 bits have 4 combinations, so 4 pointers refer to that bucket. In general, the number of pointers is 2^(g−d). Deletion may allow buckets to merge and the directory to shrink when the structural conditions permit it.</p><p class=\"source-note\">Related source material: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=13\" target=\"_blank\" rel=\"noopener\">PDF pages 13–25</a>. The numerical examples and exercises in this section are original supplementary material.</p>"
+      },
+      {
+        "id": "l10-s4",
+        "title": "Check your understanding with a trace",
+        "html": "<p>With global depth g=3 and a bucket whose local depth is d=1, how many pointers refer to that bucket? Does splitting it once require doubling the directory?</p><details><summary>Show the solution</summary><p>There are 2^(3−1)=4 pointers. After the split, each new bucket has d=2 and receives 2 pointers. No doubling is needed because 2≤3. If several keys have exactly the same complete hash value, adding bits cannot separate them; a practical implementation needs a separate way to handle this case.</p></details><p class=\"source-note\">Related source material: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=15\" target=\"_blank\" rel=\"noopener\">PDF pages 15–25</a>. The numerical examples and exercises in this section are original supplementary material.</p>"
+      }
+    ],
+    "quiz": {
+      "question": "A bucket with local depth 2 and global depth 4 is split into buckets with local depth 3. Which statement is correct?",
+      "options": [
+        "The directory does not need to double",
+        "The directory must double",
+        "Every bucket must be rehashed"
+      ],
+      "answer": 0,
+      "explanation": "The new local depth, 3, still does not exceed the global depth, 4."
+    },
+    "source": {
+      "summary": "The full official PDF has been reviewed. Coverage: In-memory hashing and collision resolution; Static chained hashing: search, insertion, deletion, and overflow; Hash functions, skew, and rehashing; Extendible hashing: global/local depth, splitting, doubling, and shrinking. The explanations and worked calculations above are original teaching material rather than reproductions of the slides.",
+      "links": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=1",
+          "label": "Official PDF, pages 1–26"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=2",
+          "label": "PDF pages 2–12"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=13",
+          "label": "PDF pages 13–25"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=26",
+          "label": "PDF pages 26–26"
+        }
+      ]
+    },
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+      "verified": true,
+      "verifiedPages": "1–26",
+      "topics": [
+        "In-memory hashing and collision resolution",
+        "Static chained hashing: search, insertion, deletion, and overflow",
+        "Hash functions, skew, and rehashing",
+        "Extendible hashing: global/local depth, splitting, doubling, and shrinking"
+      ],
+      "limitations": []
+    },
+    "lab": "index"
+  }
+]

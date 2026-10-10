@@ -1,0 +1,238 @@
+[
+  {
+    "id": "lecture-06",
+    "lecture": 6,
+    "title": "Files, pages, and records",
+    "short": "Heap files, slots & byte layout",
+    "group": "02 · Data storage",
+    "time": 25,
+    "lead": "From a tuple with named columns to a sequence of bytes: which layer keeps its address stable?",
+    "goals": [
+      "Calculate offsets and capacity under explicit assumptions",
+      "Explain packed pages, bitmaps, free lists, and slotted pages",
+      "Distinguish a slot directory from a field-offset directory"
+    ],
+    "sections": [
+      {
+        "id": "l6-1",
+        "title": "The conceptual framework",
+        "html": "<p>A database file consists of pages, and each page contains records. A record represents one row of data, while a page is the unit used to manage I/O in this model. A heap file does not require records to follow search-key order. Its pages may be managed through a linked list or a page directory. A free list tracks available pages or positions to support insertion.</p><p>For fixed-length records, a packed page places records next to one another, while an unpacked page may use a bitmap to mark occupied and empty positions. For variable-length records, a slotted page uses slots that record each record’s location and length. A record identifier (RID) in this slotted-page model is a pair: (page ID, slot ID).</p><p>Within a record, fixed-length fields can be located using calculated offsets. Variable-length fields need delimiters or offset/length metadata, together with a representation for NULL. This information locates fields inside a record. It serves a different purpose from the slot directory, which locates records inside a page.</p>"
+      },
+      {
+        "id": "l6-2",
+        "title": "An original exercise: calculating page capacity",
+        "html": "<p>A page contains 1024 bytes, its header occupies 24 bytes, and each record is 50 bytes long. First subtract the header: 1024−24=1000 bytes remain. Dividing 1000 by 50 gives 20 records. In compact notation, floor((1024−24)/50)=20. The floor operation rounds down so that we count only records that fit completely inside the page. Assume there is no other metadata or padding.</p><p>The seventh record follows the header and the first six records. Numbering record positions from 1, its offset is 24+(7−1)×50=324 bytes from the start of the page.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>Record capacity and record position require different calculations.</b> Capacity uses the bytes left after the header. The offset of the seventh record must skip six preceding records, rather than seven.</p></aside><p>Now add a slot directory with 4 bytes per slot. Each record and its slot require 50+4=54 bytes in total. Capacity falls to floor(1000/54)=18 records. These consume 18×54=972 bytes, leaving 28 bytes. The slot directory adds metadata, but it allows a record’s identifier to remain unchanged when its byte position moves.</p><details><summary>What if each record is 60 bytes long?</summary><p>With a 4-byte slot, floor(1000/64)=15 records fit. They occupy 960 bytes and leave 40 bytes unused. Rounding up would place part of the last record beyond the page boundary.</p></details>"
+      },
+      {
+        "id": "l6-3",
+        "title": "Moving bytes without changing the RID",
+        "html": "<p><strong>An original page state.</strong> Page 9 contains slot 0→offset 900,length 40; slot 1→offset 840,length 60; and slot 2→offset 790,length 50. An index points to RID (9,2). A lookup first reaches page 9, then reads slot 2 to discover that the record is currently at offset 790.</p><p>Deleting the record in slot 1 leaves bytes 840–899 free. Compaction moves records together to consolidate free space. Move the record in slot 2 from offset 790 to offset 850, then update slot 2→850. Its length is 50 bytes, so it occupies [850,900), meaning bytes 850 through 899. It now sits immediately before the record in slot 0, which starts at 900. Choosing 850=900−50 leaves no gap between those two records.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>Moving a record does not necessarily change its RID.</b> The index still stores (9,2). Its next lookup reads slot 2 and obtains the new offset, 850. If we instead changed the record’s slot ID from 2 to 1, the old index entry would no longer identify it correctly.</p></aside><p>A deletion may mark a slot as empty. Rules for safely reusing slot identifiers over time are an implementation issue outside this exercise.</p>"
+      },
+      {
+        "id": "l6-4",
+        "title": "Designing a record layout and representing NULL",
+        "html": "<p>Use this simple record model for practice: a 4-byte id, a 2-byte name offset, a 2-byte name length, a 1-byte NULL bitmap, then the name’s UTF-8 bytes. For the ASCII name “Linh”, the fixed part occupies 4+2+2+1=9 bytes, so the name offset is 9 bytes from the start of the record. The name occupies 4 bytes: length=4, and the full record occupies 9+4=13 bytes. Assume there is no padding.</p><p>In this model, one bit in the NULL bitmap describes the name: bit=0 means a value is present, and bit=1 means NULL. An empty string has length=0 and bit=0; a NULL name has bit=1. Therefore, length=0 alone cannot distinguish an empty string from NULL. For Vietnamese text, count UTF-8 bytes rather than assuming that each character occupies one byte.</p><p><strong>Independent extension exercise.</strong> The name grows from 4 to 20 bytes. The page lacks a sufficiently large contiguous gap, but its total free space is sufficient. Propose compacting the page and updating the slot offset. If even the total free space is insufficient, another policy is needed: a slot directory cannot create additional storage capacity.</p>"
+      }
+    ],
+    "quiz": {
+      "question": "In the slotted-page example, must the index change the RID when the record in slot 2 moves?",
+      "options": [
+        "Yes, always",
+        "No, if the slot ID remains unchanged",
+        "The RID is a byte offset, so the record cannot move"
+      ],
+      "answer": 1,
+      "explanation": "The slot directory updates the byte offset. The index still finds the record through (page 9, slot 2)."
+    },
+    "source": {
+      "summary": "Files/records API; heap page lists and directories; fixed packed/unpacked layouts; slotted pages; fixed/variable fields and NULL metadata.",
+      "links": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf#page=4",
+          "label": "PDF pp. 4–9 / slides 4–9 · files and heaps"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf#page=11",
+          "label": "PDF pp. 11–22 / slides 11–22 · page layout"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf#page=24",
+          "label": "PDF pp. 24–29 / slides 24–29 · record bytes"
+        }
+      ]
+    },
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf",
+      "alternatePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records-2x2.pdf",
+      "verified": true,
+      "verifiedPages": "1–29",
+      "pdfPageCount": 29,
+      "topics": [
+        "Logical file/API",
+        "Heap linked list",
+        "Page directory",
+        "Packed records",
+        "Bitmap/free list",
+        "Slotted page",
+        "RID",
+        "Fixed fields",
+        "Variable fields",
+        "NULL bitmap"
+      ],
+      "limitations": [],
+      "week": 2,
+      "officialTitle": "Files, Pages & Records",
+      "weeklyPage": "https://opencourse.inf.ed.ac.uk/adbs/week-2",
+      "pageMap": [
+        {
+          "pdfPage": 1,
+          "printedSlide": null,
+          "heading": "Advanced Database Systems"
+        },
+        {
+          "pdfPage": 2,
+          "printedSlide": 2,
+          "heading": "O VERVIEW : R EPRESENTATIONS"
+        },
+        {
+          "pdfPage": 3,
+          "printedSlide": 3,
+          "heading": "O UTLINE"
+        },
+        {
+          "pdfPage": 4,
+          "printedSlide": 4,
+          "heading": "F ILES OF PAGES OF R ECORDS"
+        },
+        {
+          "pdfPage": 5,
+          "printedSlide": 5,
+          "heading": "F ILES OF PAGES OF R ECORDS"
+        },
+        {
+          "pdfPage": 6,
+          "printedSlide": 6,
+          "heading": "DB F ILE O RGANISATION"
+        },
+        {
+          "pdfPage": 7,
+          "printedSlide": 7,
+          "heading": "H EAP F ILE"
+        },
+        {
+          "pdfPage": 8,
+          "printedSlide": 8,
+          "heading": "H EAP F ILE : L INKED L IST"
+        },
+        {
+          "pdfPage": 9,
+          "printedSlide": 9,
+          "heading": "H EAP F ILE : PAGE D IRECTORY"
+        },
+        {
+          "pdfPage": 10,
+          "printedSlide": 10,
+          "heading": "O UTLINE"
+        },
+        {
+          "pdfPage": 11,
+          "printedSlide": 11,
+          "heading": "PAGE L AYOUT"
+        },
+        {
+          "pdfPage": 12,
+          "printedSlide": 12,
+          "heading": "F IXED -L ENGTH R ECORDS"
+        },
+        {
+          "pdfPage": 13,
+          "printedSlide": 13,
+          "heading": "F IXED -L ENGTH R ECORDS , P ACKED"
+        },
+        {
+          "pdfPage": 14,
+          "printedSlide": 14,
+          "heading": "F IXED -L ENGTH R ECORDS , P ACKED"
+        },
+        {
+          "pdfPage": 15,
+          "printedSlide": 15,
+          "heading": "F IXED -L ENGTH R ECORDS , P ACKED"
+        },
+        {
+          "pdfPage": 16,
+          "printedSlide": 16,
+          "heading": "F IXED -L ENGTH R ECORDS , P ACKED"
+        },
+        {
+          "pdfPage": 17,
+          "printedSlide": 17,
+          "heading": "F IXED -L ENGTH R ECORDS , U NPACKED (B ITMAP )"
+        },
+        {
+          "pdfPage": 18,
+          "printedSlide": 18,
+          "heading": "F IXED -L ENGTH R ECORDS , U NPACKED (F REE L IST )"
+        },
+        {
+          "pdfPage": 19,
+          "printedSlide": 19,
+          "heading": "F IXED -L ENGTH R ECORDS , U NPACKED (F REE L IST )"
+        },
+        {
+          "pdfPage": 20,
+          "printedSlide": 20,
+          "heading": "VARIABLE -L ENGTH R ECORDS"
+        },
+        {
+          "pdfPage": 21,
+          "printedSlide": 21,
+          "heading": "S LOTTED PAGES"
+        },
+        {
+          "pdfPage": 22,
+          "printedSlide": 22,
+          "heading": "S LOTTED PAGES"
+        },
+        {
+          "pdfPage": 23,
+          "printedSlide": 23,
+          "heading": "O UTLINE"
+        },
+        {
+          "pdfPage": 24,
+          "printedSlide": 24,
+          "heading": "R ECORD L AYOUT"
+        },
+        {
+          "pdfPage": 25,
+          "printedSlide": 25,
+          "heading": "R ECORD L AYOUT : F IXED -L ENGTH R ECORDS"
+        },
+        {
+          "pdfPage": 26,
+          "printedSlide": 26,
+          "heading": "VARIABLE -L ENGTH R ECORDS"
+        },
+        {
+          "pdfPage": 27,
+          "printedSlide": 27,
+          "heading": "VARIABLE -L ENGTH R ECORDS"
+        },
+        {
+          "pdfPage": 28,
+          "printedSlide": 28,
+          "heading": "VARIABLE -L ENGTH R ECORDS"
+        },
+        {
+          "pdfPage": 29,
+          "printedSlide": 29,
+          "heading": "S UMMARY"
+        }
+      ],
+      "alternateVerified": true,
+      "alternatePdfPageCount": 8
+    },
+    "lab": "storage"
+  }
+]

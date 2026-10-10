@@ -1,0 +1,241 @@
+[
+  {
+    "id": "lecture-04",
+    "lecture": 4,
+    "title": "Hardware and the disk-space manager",
+    "short": "Pages, locality & I/O cost",
+    "group": "02 · Data storage",
+    "time": 25,
+    "lead": "An algorithm with little computation can still be slow if it forces the device to perform too many scattered I/Os.",
+    "goals": [
+      "Trace the path from SQL down to pages",
+      "Calculate read costs using an explicitly stated model",
+      "Distinguish bytes, pages, and records"
+    ],
+    "sections": [
+      {
+        "id": "l4-1",
+        "title": "The conceptual framework",
+        "html": "<p>A DBMS is organised into planning, operator execution, files/indexes, buffering, and disk-space management. Concurrency control and recovery span several layers. We compare hardware by latency, capacity, and durability. An HDD read can include seek time, moving the head to the required track; rotational latency, waiting for the required position to rotate under the head; and transfer time, moving the data. SSDs have no mechanical head and have different write characteristics. The disk-space manager handles page identifiers, allocation, and reads/writes.</p>"
+      },
+      {
+        "id": "l4-2",
+        "title": "An original I/O exercise, not a benchmark",
+        "html": "<p>Consider an illustrative HDD model. To read a page at a new location, the head moves to the correct track (seek time = 4 ms), waits for the required disk region to rotate into position (rotational latency = 3 ms), and transfers the page (transfer time = 0.1 ms). A random page read therefore takes 4+3+0.1=7.1 ms.</p><p>Perform 200 random page reads one after another. Assume no cache hits, read-ahead, or parallel I/O; every request targets a new location and pays all three costs. Seeking and waiting for rotation occur 200 times, not just at the beginning. Total time is 200×(4+3+0.1)=1420 ms, or 1.42 seconds.</p><p>If the 200 pages are contiguous on disk and read as one continuous sequential scan, the head locates the first page and then continues transferring subsequent pages. In this simplified model, charge seek and rotational latency only once; ignore track changes, pauses, and all other overheads. Positioning costs 4+3=7 ms, while transfer costs 200×0.1=20 ms. Total time is 4+3+200×0.1=27 ms, so the random/sequential ratio is 1420/27 ≈ 52.6.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>Random reads repeat positioning costs; a continuous run shares the initial cost.</b> This explains the difference between 1420 ms and 27 ms in the exercise. The numbers depend on the stated assumptions and are not a universal HDD or SSD speedup.</p></aside><p>Replace 200 with 2: random=14.2 ms and sequential=7.2 ms. Reading more consecutive pages spreads the initial seek and rotation costs across more pages.</p>"
+      },
+      {
+        "id": "l4-3",
+        "title": "An original page-ID mapping example",
+        "html": "<p>Assume a file uses 4096-byte pages, has no file header, and numbers pages from 0. Before page 7 are pages 0 through 6, seven pages in total. Page 7’s offset, measured in bytes from the start of the file, is 7×4096=28672 bytes. A record begins at offset 120 within that page, so its file address is 28672+120=28792.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>Identify each offset’s origin before adding offsets.</b> The value 28672 is measured from the start of the file; 120 is measured from the start of the page. Confusing those origins points to the wrong record even when the arithmetic is correct.</p></aside><p>Higher layers should request page 7 rather than hard-code a file path and byte offset. If the DBMS moves that page to another file, a mapping table can preserve the stable page-ID interface.</p><details><summary>Exercise: where does page 12 begin?</summary><p>Offset=12×4096=49152 bytes under the same assumptions. A file header of 512 bytes would require adding 512, so always state the addressing model.</p></details>"
+      },
+      {
+        "id": "l4-4",
+        "title": "Interpreting hardware figures carefully",
+        "html": "<p>The PDF’s prices, capacities, and latencies are teaching examples for particular configurations and points in time. In a model-based exam question, use the supplied numbers. To assess a real system, measure its workload, cache behaviour, parallelism, and specific device.</p><p>Check yourself: is “how many I/Os are needed to read 1,000 records?” sufficiently specified? No. You need to know how many pages contain the records, whether those pages are already in RAM, and whether they are physically close together. These questions prepare you for buffering, page layout, and indexes.</p>"
+      }
+    ],
+    "quiz": {
+      "question": "Under the exercise’s model, how long does reading 200 contiguous pages take?",
+      "options": [
+        "1420 ms",
+        "27 ms",
+        "20 ms"
+      ],
+      "answer": 1,
+      "explanation": "Seek time plus rotational latency is 7 ms. Transferring 200 pages takes 20 ms, giving a total of 27 ms under the stated assumptions."
+    },
+    "source": {
+      "summary": "Layered DBMS architecture; storage hierarchy; HDD/SSD; random versus sequential access; page abstraction and disk-space allocation/mapping.",
+      "links": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf#page=2",
+          "label": "PDF pp. 2–14 / slides 2–14 · architecture and the memory hierarchy"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf#page=15",
+          "label": "PDF pp. 15–23 / slides 15–24 · devices and I/O"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf#page=24",
+          "label": "PDF pp. 24–29 / slides 25–31 · the disk-space manager"
+        }
+      ]
+    },
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+      "alternatePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management-2x2.pdf",
+      "verified": true,
+      "verifiedPages": "1–29",
+      "pdfPageCount": 29,
+      "topics": [
+        "DBMS layers",
+        "Concurrency/recovery overview",
+        "Volatility",
+        "Hierarchy",
+        "HDD anatomy",
+        "Seek/rotation/transfer",
+        "Sequential locality",
+        "SSD/wear levelling",
+        "Pages",
+        "Allocation",
+        "Page-ID mapping"
+      ],
+      "limitations": [
+        "Hardware figures are dated examples, not current purchasing advice."
+      ],
+      "week": 2,
+      "officialTitle": "Hardware & Disk Space Management",
+      "weeklyPage": "https://opencourse.inf.ed.ac.uk/adbs/week-2",
+      "pageMap": [
+        {
+          "pdfPage": 1,
+          "printedSlide": null,
+          "heading": "Advanced Database Systems"
+        },
+        {
+          "pdfPage": 2,
+          "printedSlide": 2,
+          "heading": "DBMS: B IG P ICTURE"
+        },
+        {
+          "pdfPage": 3,
+          "printedSlide": 3,
+          "heading": "DBMS: Q UERY P LANNING"
+        },
+        {
+          "pdfPage": 4,
+          "printedSlide": 4,
+          "heading": "DBMS: O PERATOR E XECUTION"
+        },
+        {
+          "pdfPage": 5,
+          "printedSlide": 5,
+          "heading": "DBMS: F ILES & I NDEX M ANAGEMENT"
+        },
+        {
+          "pdfPage": 6,
+          "printedSlide": 6,
+          "heading": "DBMS: B UFFER M ANAGEMENT"
+        },
+        {
+          "pdfPage": 7,
+          "printedSlide": 7,
+          "heading": "DBMS: D ISK S PACE M ANAGEMENT"
+        },
+        {
+          "pdfPage": 8,
+          "printedSlide": 8,
+          "heading": "A RCHITECTURE OF A DBMS"
+        },
+        {
+          "pdfPage": 9,
+          "printedSlide": 9,
+          "heading": "DBMS: C ONCURRENCY & R ECOVERY"
+        },
+        {
+          "pdfPage": 10,
+          "printedSlide": 10,
+          "heading": "O UTLINE"
+        },
+        {
+          "pdfPage": 11,
+          "printedSlide": 11,
+          "heading": "D ISK -O RIENTED A RCHITECTURE"
+        },
+        {
+          "pdfPage": 12,
+          "printedSlide": 12,
+          "heading": "W HY N OT S TORE A LL IN M AIN M EMORY ?"
+        },
+        {
+          "pdfPage": 13,
+          "printedSlide": 13,
+          "heading": "S TORAGE H IERARCHY"
+        },
+        {
+          "pdfPage": 14,
+          "printedSlide": 14,
+          "heading": "S TORAGE H IERARCHY                           Latency   Capacity"
+        },
+        {
+          "pdfPage": 15,
+          "printedSlide": 15,
+          "heading": "A NATOMY OF A D ISK"
+        },
+        {
+          "pdfPage": 16,
+          "printedSlide": 16,
+          "heading": "A CCESSING A D ISK PAGE"
+        },
+        {
+          "pdfPage": 17,
+          "printedSlide": 17,
+          "heading": "Seagate Cheetah 15K.7                                           17"
+        },
+        {
+          "pdfPage": 18,
+          "printedSlide": 18,
+          "heading": "S EQUENTIAL VS . R ANDOM A CCESS"
+        },
+        {
+          "pdfPage": 19,
+          "printedSlide": 19,
+          "heading": "A RRANGING B LOCKS ON D ISK"
+        },
+        {
+          "pdfPage": 20,
+          "printedSlide": 20,
+          "heading": "S OLID S TATE D RIVES"
+        },
+        {
+          "pdfPage": 21,
+          "printedSlide": 21,
+          "heading": "S OLID S TATE D RIVES"
+        },
+        {
+          "pdfPage": 22,
+          "printedSlide": 22,
+          "heading": "SSD VS . HDD"
+        },
+        {
+          "pdfPage": 23,
+          "printedSlide": 24,
+          "heading": "B OTTOM L INE"
+        },
+        {
+          "pdfPage": 24,
+          "printedSlide": 25,
+          "heading": "D ATABASE S TORAGE"
+        },
+        {
+          "pdfPage": 25,
+          "printedSlide": 26,
+          "heading": "S YSTEM D ESIGN G OALS"
+        },
+        {
+          "pdfPage": 26,
+          "printedSlide": 27,
+          "heading": "D ISK S PACE M ANAGEMENT"
+        },
+        {
+          "pdfPage": 27,
+          "printedSlide": 28,
+          "heading": "D ISK S PACE M ANAGEMENT : PAGE R EQUESTS"
+        },
+        {
+          "pdfPage": 28,
+          "printedSlide": 30,
+          "heading": "D ISK S PACE M ANAGEMENT : I MPLEMENTATION"
+        },
+        {
+          "pdfPage": 29,
+          "printedSlide": 31,
+          "heading": "S UMMARY"
+        }
+      ],
+      "alternateVerified": true,
+      "alternatePdfPageCount": 8
+    },
+    "lab": "storage"
+  }
+]

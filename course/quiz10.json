@@ -1,0 +1,879 @@
+{
+  "lectureId": "lecture-10",
+  "topics": [
+    {
+      "id": "l10-collision-resolution",
+      "title": "Collision Resolution",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+      "pages": [
+        2,
+        3
+      ],
+      "questions": [
+        {
+          "id": "l10-collision-resolution-q1",
+          "prompt": "Two different keys have the same hash. What must a correct lookup do?",
+          "options": [
+            "Treat the two keys as one key",
+            "Increase every hash value by one",
+            "Compare the actual keys of the candidates",
+            "Return the first entry in the bucket"
+          ],
+          "answer": 2,
+          "explanation": "Equal hashes do not prove equal keys. The first entry may simply be a collision.",
+          "pages": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "l10-collision-resolution-q2",
+          "prompt": "How do chaining and open addressing differ?",
+          "options": [
+            "Both always require a directory of size 2^g",
+            "Chaining forbids duplicate keys, whereas open addressing allows them",
+            "Open addressing always uses overflow pages on disk",
+            "Chaining links entries together; open addressing probes slots in the table"
+          ],
+          "answer": 3,
+          "explanation": "Chaining stores a linked chain, while open addressing searches for another slot. A directory belongs to extendible hashing and is not a general requirement.",
+          "pages": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "l10-collision-resolution-q3",
+          "prompt": "A table has 4 slots and uses linear probing. h(9)=1; slots 1 and 2 are full, and slot 3 is empty. Where is the new entry inserted?",
+          "options": [
+            "Slot 3",
+            "Slot 1, overwriting its entry",
+            "Slot 0, regardless of its state",
+            "The insertion must be rejected"
+          ],
+          "answer": 0,
+          "explanation": "Linear probing advances through 1 and 2 to 3. It does not overwrite an existing entry.",
+          "pages": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "l10-collision-resolution-q4",
+          "prompt": "What can happen if 20 keys enter the same chain?",
+          "options": [
+            "A lookup needs only one key comparison because hashing is already complete",
+            "A lookup may need to check many entries",
+            "Only insertion slows down; every lookup still reads one entry",
+            "A long chain proves that every key in it is a duplicate"
+          ],
+          "answer": 1,
+          "explanation": "A long chain increases the work required. Constant-time hash computation does not make the entire lookup constant-time.",
+          "pages": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "l10-collision-resolution-q5",
+          "prompt": "What does an associative array map?",
+          "options": [
+            "Each value to exactly one key, even when values repeat",
+            "The position of a key in sorted order to its rank",
+            "Keys to values",
+            "Each hash value to exactly one key, forbidding collisions"
+          ],
+          "answer": 2,
+          "explanation": "A hash table implements a key→value mapping. It does not inherently provide key order as a search tree does.",
+          "pages": [
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l10-hash-based-indexing",
+      "title": "Hash-Based Indexing",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+      "pages": [
+        4,
+        5
+      ],
+      "questions": [
+        {
+          "id": "l10-hash-based-indexing-q1",
+          "prompt": "Which predicate is best suited to a hash index on code?",
+          "options": [
+            "code BETWEEN 10 AND 90",
+            "code > 42",
+            "ORDER BY code",
+            "code = 42"
+          ],
+          "answer": 3,
+          "explanation": "Equality identifies a bucket directly. Hashing does not preserve ranges or order.",
+          "pages": [
+            4,
+            5
+          ]
+        },
+        {
+          "id": "l10-hash-based-indexing-q2",
+          "prompt": "Why can hashing support GROUP BY?",
+          "options": [
+            "Tuples with the same group key enter the same partition",
+            "Every partition always contains only one key",
+            "Hashing automatically sorts tuples in ascending order",
+            "Hashing eliminates the need for state in every aggregate"
+          ],
+          "answer": 0,
+          "explanation": "Equal keys always enter the same partition, although different keys can still collide.",
+          "pages": [
+            4,
+            5
+          ]
+        },
+        {
+          "id": "l10-hash-based-indexing-q3",
+          "prompt": "With h(k)=k mod 8, what can be concluded about keys 6 and 14?",
+          "options": [
+            "14 always follows 6 in every scan",
+            "They enter the same bucket but remain different keys",
+            "They are the same key because their hashes match",
+            "They enter two consecutive buckets"
+          ],
+          "answer": 1,
+          "explanation": "Both 6 mod 8 and 14 mod 8 equal 6. A hash value proves neither key equality nor ordering.",
+          "pages": [
+            4,
+            5
+          ]
+        },
+        {
+          "id": "l10-hash-based-indexing-q4",
+          "prompt": "To remove duplicates on (A,B), what is the most direct hashing strategy?",
+          "options": [
+            "Hash only A, then treat every key in a bucket as a duplicate",
+            "Hash B, but compare only A when removing duplicates",
+            "Hash the pair (A,B), then compare the complete pair",
+            "Hash the entire tuple, including columns outside DISTINCT(A,B)"
+          ],
+          "answer": 2,
+          "explanation": "Hashing the complete grouping key consistently brings duplicates together. An entry address or input position does not establish equality.",
+          "pages": [
+            4,
+            5
+          ]
+        },
+        {
+          "id": "l10-hash-based-indexing-q5",
+          "prompt": "A join performs many equality checks. How can a hash index help?",
+          "options": [
+            "Eliminate the need to check collisions",
+            "Guarantee output sorted by the join key",
+            "Turn every inequality into equality",
+            "Find inner candidates using the join key"
+          ],
+          "answer": 3,
+          "explanation": "Hash lookups narrow the candidate search, but key comparisons remain necessary and the output is not sorted.",
+          "pages": [
+            4,
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l10-static-chained-hash-table-management",
+      "title": "Static Chained Hash Table Management",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+      "pages": [
+        7,
+        9
+      ],
+      "questions": [
+        {
+          "id": "l10-static-chained-hash-table-management-q1",
+          "prompt": "What makes up a bucket in static chained hashing?",
+          "options": [
+            "A primary page and its associated overflow pages",
+            "Only one tuple",
+            "The entire directory and all data pages",
+            "A complete B+ tree in every case"
+          ],
+          "answer": 0,
+          "explanation": "A bucket consists of its primary page and overflow chain. It need not occupy just one page.",
+          "pages": [
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "id": "l10-static-chained-hash-table-management-q2",
+          "prompt": "There are N=7 primary buckets and h(k)=k mod 7. In which bucket does the search for key 23 begin?",
+          "options": [
+            "23",
+            "2",
+            "3",
+            "7"
+          ],
+          "answer": 1,
+          "explanation": "23=3 × 7+2. Buckets are numbered 0..6; the original key is not used directly as the bucket number.",
+          "pages": [
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "id": "l10-static-chained-hash-table-management-q3",
+          "prompt": "In the slide cost model, how many I/Os does a lookup need if no overflow is involved and the page is not cached?",
+          "options": [
+            "Always 2",
+            "N",
+            "1",
+            "0"
+          ],
+          "answer": 2,
+          "explanation": "Only the primary bucket page is read. A cost of 0 would require a caching assumption that was not given.",
+          "pages": [
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "id": "l10-static-chained-hash-table-management-q4",
+          "prompt": "An insertion changes one primary page without overflow, and the page is initially uncached. What is its read-plus-write I/O cost?",
+          "options": [
+            "1",
+            "0",
+            "Always 4",
+            "2"
+          ],
+          "answer": 3,
+          "explanation": "One read and one write are required. Counting only the read omits the write of the modified page.",
+          "pages": [
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "id": "l10-static-chained-hash-table-management-q5",
+          "prompt": "A searched-for key may be on the second overflow page after the primary page. How many page reads are needed to follow this entire path?",
+          "options": [
+            "3",
+            "2",
+            "1",
+            "4"
+          ],
+          "answer": 0,
+          "explanation": "Reading the primary page and then two overflow pages requires 3 reads. The primary page is part of the access path.",
+          "pages": [
+            7,
+            8,
+            9
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l10-hash-collisions-and-overflow-chains",
+      "title": "Hash Collisions and Overflow Chains",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+      "pages": [
+        10,
+        12
+      ],
+      "questions": [
+        {
+          "id": "l10-hash-collisions-and-overflow-chains-q1",
+          "prompt": "A bucket contains 10 entries. Each page holds at most 3 entries, and all pages except the last are full. How many overflow pages are needed in addition to the primary page?",
+          "options": [
+            "2",
+            "3",
+            "4",
+            "10"
+          ],
+          "answer": 1,
+          "explanation": "The bucket needs ceil(10/3)=4 pages in total, so 3 are overflow pages. Answering 4 forgets that the primary page is already included.",
+          "pages": [
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "id": "l10-hash-collisions-and-overflow-chains-q2",
+          "prompt": "An unsuccessful lookup must search an uncached bucket with one primary page and 3 overflow pages. How many pages must it read before concluding that the key is absent?",
+          "options": [
+            "1",
+            "3",
+            "4",
+            "0"
+          ],
+          "answer": 2,
+          "explanation": "An unsuccessful search checks the entire chain: 1 primary+3 overflow=4 reads. Stopping at the primary page could miss a later entry.",
+          "pages": [
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "id": "l10-hash-collisions-and-overflow-chains-q3",
+          "prompt": "In a workload, 80% of lookups read 1 page and 20% read 4 pages in an overflow chain. What is the expected number of page reads per lookup?",
+          "options": [
+            "2.5",
+            "4",
+            "1.2",
+            "1.6"
+          ],
+          "answer": 3,
+          "explanation": "The weighted mean is 0.8 × 1+0.2 × 4=1.6. The value 2.5 averages the two cases without accounting for their frequencies.",
+          "pages": [
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "id": "l10-hash-collisions-and-overflow-chains-q4",
+          "prompt": "A primary bucket contains keys 4 and 12 with the same h(k). Does that mean the keys are duplicates?",
+          "options": [
+            "No; sharing a bucket only establishes a hash collision",
+            "Yes; a bucket may contain only one search key",
+            "Yes; keys on the same page are always equal",
+            "No; hash functions never produce collisions"
+          ],
+          "answer": 0,
+          "explanation": "4 and 12 are different even if their hashes match. Bucket membership does not establish search-key equality.",
+          "pages": [
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "id": "l10-hash-collisions-and-overflow-chains-q5",
+          "prompt": "Two hash indexes have the same average bucket occupancy. Index A has a few very long chains, while B is fairly balanced. What does the average conceal?",
+          "options": [
+            "A guarantee that A and B have the same maximum lookup cost",
+            "Tail latency and uneven lookup costs",
+            "The fact that A must have fewer data entries than B",
+            "The fact that B never needs key comparisons"
+          ],
+          "answer": 1,
+          "explanation": "Hot or long chains make some lookups much more expensive. Average occupancy does not determine the maximum or distribution of lookup costs.",
+          "pages": [
+            10,
+            11,
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l10-global-and-local-depth",
+      "title": "Global and Local Depth",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+      "pages": [
+        14,
+        17
+      ],
+      "questions": [
+        {
+          "id": "l10-global-and-local-depth-q1",
+          "prompt": "How many directory entries are there when global depth g=4?",
+          "options": [
+            "8",
+            "32",
+            "16",
+            "4"
+          ],
+          "answer": 2,
+          "explanation": "The directory has 2^g=16 entries, rather than g entries.",
+          "pages": [
+            14,
+            15,
+            16,
+            17
+          ]
+        },
+        {
+          "id": "l10-global-and-local-depth-q2",
+          "prompt": "With g=4 and a bucket of local depth d=2, how many directory pointers refer to that bucket?",
+          "options": [
+            "2",
+            "8",
+            "16",
+            "4"
+          ],
+          "answer": 3,
+          "explanation": "There are 2^(g−d)=4 extended suffixes pointing to the bucket. Local depth is not a pointer count.",
+          "pages": [
+            14,
+            15,
+            16,
+            17
+          ]
+        },
+        {
+          "id": "l10-global-and-local-depth-q3",
+          "prompt": "Using the low bits, with g=3 and h(k)=22 (10110₂), which directory entry is selected?",
+          "options": [
+            "110",
+            "101",
+            "010",
+            "011"
+          ],
+          "answer": 0,
+          "explanation": "The three low bits are 110. The three high bits, 101, are not used.",
+          "pages": [
+            14,
+            15,
+            16,
+            17
+          ]
+        },
+        {
+          "id": "l10-global-and-local-depth-q4",
+          "prompt": "What does local depth describe?",
+          "options": [
+            "The required number of overflow pages",
+            "The number of shared hash bits used to distinguish this bucket",
+            "The height of a B+ tree",
+            "The current number of tuples in the bucket"
+          ],
+          "answer": 1,
+          "explanation": "Local depth counts distinguishing bits, independently of the current entry count.",
+          "pages": [
+            14,
+            15,
+            16,
+            17
+          ]
+        },
+        {
+          "id": "l10-global-and-local-depth-q5",
+          "prompt": "Which relationship holds in a consistent extendible hash index?",
+          "options": [
+            "d = g for every bucket at all times",
+            "g equals the sum of all bucket depths d",
+            "d ≤ g for every bucket",
+            "d > g for every bucket"
+          ],
+          "answer": 2,
+          "explanation": "The directory uses enough bits to address every bucket, so d cannot exceed g. Many buckets can have d smaller than g.",
+          "pages": [
+            14,
+            15,
+            16,
+            17
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l10-extendible-hashing",
+      "title": "Extendible Hashing",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+      "pages": [
+        13,
+        24
+      ],
+      "questions": [
+        {
+          "id": "l10-extendible-hashing-q1",
+          "prompt": "What is the central idea for handling a full bucket in extendible hashing?",
+          "options": [
+            "Rehash the entire index whenever any bucket fills",
+            "Double every data bucket even when only one is full",
+            "Double only the directory without redistributing the full bucket",
+            "Split the affected bucket instead of rehashing the entire file"
+          ],
+          "answer": 3,
+          "explanation": "Extendible hashing redistributes only the bucket being split. Doubling the directory does not mean doubling the data.",
+          "pages": [
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24
+          ]
+        },
+        {
+          "id": "l10-extendible-hashing-q2",
+          "prompt": "A bucket with capacity 2 and suffix 01 contains hash values 1 and 5. Insert 9 and split using 3 bits. What goes into bucket 001?",
+          "options": [
+            "1 and 9",
+            "1 and 5",
+            "5 and 9",
+            "All three"
+          ],
+          "answer": 0,
+          "explanation": "1=001,5=101,9=1001. The low 3 bits of both 1 and 9 are 001.",
+          "pages": [
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24
+          ]
+        },
+        {
+          "id": "l10-extendible-hashing-q3",
+          "prompt": "What does an ordinary insertion do when the target bucket still has space?",
+          "options": [
+            "Always rehash every bucket",
+            "Add the entry to that bucket",
+            "Always double the directory",
+            "Always create two new buckets"
+          ],
+          "answer": 1,
+          "explanation": "Without overflow, no split is needed. Doubling the directory for every insertion would be unnecessary.",
+          "pages": [
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24
+          ]
+        },
+        {
+          "id": "l10-extendible-hashing-q4",
+          "prompt": "After a split, what determines how entries are redistributed?",
+          "options": [
+            "The current tuple count in each bucket rather than hash bits",
+            "The entry RID instead of its search-key hash",
+            "One additional bit of the hash",
+            "Halving the list by insertion order without examining hashes"
+          ],
+          "answer": 2,
+          "explanation": "The new bit distinguishes the two suffixes. Entry age or transaction identity does not determine the hash partition.",
+          "pages": [
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24
+          ]
+        },
+        {
+          "id": "l10-extendible-hashing-q5",
+          "prompt": "Why must a lookup compare actual keys even after selecting a bucket with all g bits?",
+          "options": [
+            "Directory pointers are always wrong",
+            "Local depth is always 0",
+            "Hash indexes store only sorted keys",
+            "Different keys can have the same hash suffix"
+          ],
+          "answer": 3,
+          "explanation": "A g-bit suffix selects candidates. Having a directory does not eliminate collisions.",
+          "pages": [
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l10-directory-doubling",
+      "title": "Directory Doubling",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+      "pages": [
+        25,
+        25
+      ],
+      "questions": [
+        {
+          "id": "l10-directory-doubling-q1",
+          "prompt": "With g=3 and d=2, a split produces a new local depth d=3. Must the directory double?",
+          "options": [
+            "No",
+            "Yes, because every split increases global depth",
+            "Yes, because the new local depth equals global depth",
+            "It must double twice so every bucket has one directory pointer"
+          ],
+          "answer": 0,
+          "explanation": "The new depth does not exceed g, so only pointers change. Not every split requires doubling.",
+          "pages": [
+            25
+          ]
+        },
+        {
+          "id": "l10-directory-doubling-q2",
+          "prompt": "With g=3 and d=3, a split needs one more bit. How does the directory change?",
+          "options": [
+            "It keeps 8 entries and g remains 3",
+            "It grows from 8 to 16 entries",
+            "It grows from 3 to 4 entries",
+            "It grows from 8 to 9 entries"
+          ],
+          "answer": 1,
+          "explanation": "Representing depth 4 requires 2^4 entries. Adding just one entry is insufficient.",
+          "pages": [
+            25
+          ]
+        },
+        {
+          "id": "l10-directory-doubling-q3",
+          "prompt": "Does doubling the directory require copying the data in every bucket?",
+          "options": [
+            "Yes; every bucket must become two buckets",
+            "No pointers need to be updated",
+            "No; it mainly duplicates pointers and handles the bucket being split",
+            "Yes; every tuple is duplicated"
+          ],
+          "answer": 2,
+          "explanation": "Duplicating pointers is different from duplicating data. Only the split bucket needs redistribution.",
+          "pages": [
+            25
+          ]
+        },
+        {
+          "id": "l10-directory-doubling-q4",
+          "prompt": "After directory doubling, what happens to the local depth of a bucket that was not split?",
+          "options": [
+            "It must increase by 1",
+            "It must decrease by 1",
+            "It must equal the new global depth",
+            "It remains unchanged"
+          ],
+          "answer": 3,
+          "explanation": "Increasing global depth does not mean that every bucket needs another distinguishing bit.",
+          "pages": [
+            25
+          ]
+        },
+        {
+          "id": "l10-directory-doubling-q5",
+          "prompt": "What must be ensured before safely shrinking a directory?",
+          "options": [
+            "Removing a directory bit preserves all necessary distinctions between buckets",
+            "It is enough for one bucket to have an empty slot",
+            "It is enough for overall occupancy to be below 50%, regardless of local depths",
+            "It is enough for the directory to have an even number of entries"
+          ],
+          "answer": 0,
+          "explanation": "Shrinking is a structural change with specific preconditions. A single deletion is not enough to establish that it is safe.",
+          "pages": [
+            25
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l10-hash-functions",
+      "title": "Hash Functions",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+      "pages": [
+        11,
+        11
+      ],
+      "questions": [
+        {
+          "id": "l10-hash-functions-q1",
+          "prompt": "How many low bits of a nonnegative integer are used by h(k)=k mod 16?",
+          "options": [
+            "16",
+            "4",
+            "2",
+            "8"
+          ],
+          "answer": 1,
+          "explanation": "Because 16=2^4, the function uses 4 low bits. The modulus itself is not the bit count.",
+          "pages": [
+            11
+          ]
+        },
+        {
+          "id": "l10-hash-functions-q2",
+          "prompt": "How are keys 0,16,32,48 distributed by h(k)=k mod 16?",
+          "options": [
+            "Each key must enter a different bucket",
+            "All enter bucket 4",
+            "All enter bucket 0",
+            "They enter buckets 0,1,2,3"
+          ],
+          "answer": 2,
+          "explanation": "All these keys are divisible by 16, so their low 4 bits are 0. A power-of-two modulus is vulnerable to this pattern.",
+          "pages": [
+            11
+          ]
+        },
+        {
+          "id": "l10-hash-functions-q3",
+          "prompt": "What is a suitable goal for a hash function used frequently in a DBMS?",
+          "options": [
+            "Maximise computation cost regardless of collisions",
+            "Preserve only numerical order",
+            "Avoid collisions for a few sample keys and ignore the rest",
+            "Keep computation cheap and distribute the workload well"
+          ],
+          "answer": 3,
+          "explanation": "Hash lookups need both speed and a good distribution. Preserving order is not the usual goal of hashing.",
+          "pages": [
+            11
+          ]
+        },
+        {
+          "id": "l10-hash-functions-q4",
+          "prompt": "Does a prime modulus guarantee no collisions when the key domain is larger than the number of buckets?",
+          "options": [
+            "No",
+            "Yes; a prime produces a one-to-one mapping for every domain",
+            "Yes, as long as the keys are unique",
+            "Yes, as long as the keys are integers"
+          ],
+          "answer": 0,
+          "explanation": "The pigeonhole principle still applies. Unique keys do not imply unique buckets.",
+          "pages": [
+            11
+          ]
+        },
+        {
+          "id": "l10-hash-functions-q5",
+          "prompt": "A hash function distributes distinct keys evenly, but key X occurs in 90% of the tuples. What can still happen?",
+          "options": [
+            "Occurrences of X are naturally spread evenly across buckets",
+            "The bucket containing X becomes very large",
+            "Every bucket is guaranteed to contain the same number of tuples",
+            "Overflow is never needed"
+          ],
+          "answer": 1,
+          "explanation": "Distributing distinct keys evenly does not remove frequency skew. Equal keys have the same hash.",
+          "pages": [
+            11
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l10-static-hashing-and-dynamic-files",
+      "title": "Static Hashing and Dynamic Files",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+      "pages": [
+        12,
+        12
+      ],
+      "questions": [
+        {
+          "id": "l10-static-hashing-and-dynamic-files-q1",
+          "prompt": "A static index has 100 primary buckets, and the table grows 10 × without rebuilding. What is the main risk?",
+          "options": [
+            "Every bucket local depth increases with the row count",
+            "The file automatically maintains exactly 20% free space",
+            "Overflow chains grow",
+            "The directory automatically grows 10×"
+          ],
+          "answer": 2,
+          "explanation": "A static bucket count does not adapt automatically. Directories and depths belong to a different, dynamic scheme.",
+          "pages": [
+            12
+          ]
+        },
+        {
+          "id": "l10-static-hashing-and-dynamic-files-q2",
+          "prompt": "A table shrinks substantially but retains its original primary area. What is the space consequence?",
+          "options": [
+            "Every primary page is immediately returned to the disk manager",
+            "Only overflow pages become primary pages",
+            "Space utilisation is unaffected",
+            "Many lightly used buckets still occupy space"
+          ],
+          "answer": 3,
+          "explanation": "Static allocation can waste space after shrinkage. It does not automatically compact the entire file.",
+          "pages": [
+            12
+          ]
+        },
+        {
+          "id": "l10-static-hashing-and-dynamic-files-q3",
+          "prompt": "Rehashing from 8 to 16 primary buckets may require processing which entries?",
+          "options": [
+            "Entries throughout the index under the new hash mapping",
+            "Only the newly inserted entry in every case",
+            "Only bucket 0, regardless of the keys",
+            "Only the pointer count changes; data placement is ignored"
+          ],
+          "answer": 0,
+          "explanation": "Changing a static mapping requires redistributing entries, unlike a local split in extendible hashing.",
+          "pages": [
+            12
+          ]
+        },
+        {
+          "id": "l10-static-hashing-and-dynamic-files-q4",
+          "prompt": "What concurrency advantage can static buckets provide?",
+          "options": [
+            "Rehashing never affects access",
+            "An insertion can limit locking to the affected bucket or page",
+            "No concurrent write ever needs locks",
+            "Every insertion must lock the entire database"
+          ],
+          "answer": 1,
+          "explanation": "Static placement can simplify local locking. It does not eliminate the need for concurrency control.",
+          "pages": [
+            12
+          ]
+        },
+        {
+          "id": "l10-static-hashing-and-dynamic-files-q5",
+          "prompt": "When comparing periodic rehashing with extendible growth, which trade-off is correct?",
+          "options": [
+            "Static rehashing never reads data",
+            "Extendible hashing does not use a directory",
+            "Rehashing does broad work in batches; extendible hashing usually splits locally",
+            "Both always copy the entire file on every insertion"
+          ],
+          "answer": 2,
+          "explanation": "The two schemes adapt differently. The local-growth advantage of extendible hashing does not mean every static update processes the entire file.",
+          "pages": [
+            12
+          ]
+        }
+      ]
+    }
+  ]
+}

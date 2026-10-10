@@ -1,0 +1,622 @@
+{
+  "lectureId": "lecture-14",
+  "topics": [
+    {
+      "id": "l14-query-optimisation-the-goal",
+      "title": "Query Optimisation: The Goal",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf",
+      "pages": [
+        1,
+        1
+      ],
+      "questions": [
+        {
+          "id": "l14-query-optimisation-the-goal-q1",
+          "prompt": "What is the practical goal of query optimisation?",
+          "options": [
+            "Guarantee the globally fastest plan in actual execution every time",
+            "Ignore cost and take the first plan",
+            "Find a correct plan with a good estimated cost within the search budget",
+            "Replace the query with an easier question"
+          ],
+          "answer": 2,
+          "explanation": "Estimation errors and search limits prevent a universal guarantee of the actual optimum. The optimiser seeks a good executable plan without changing the query's meaning.",
+          "pages": [
+            1
+          ]
+        },
+        {
+          "id": "l14-query-optimisation-the-goal-q2",
+          "prompt": "What does a declarative query primarily describe?",
+          "options": [
+            "The exact order of every page read",
+            "The mandatory join algorithm and exact buffer allocation",
+            "The precise materialisation point of every intermediate result",
+            "The desired result"
+          ],
+          "answer": 3,
+          "explanation": "SQL primarily states what result is wanted. The optimiser chooses how to obtain it while preserving the query's semantics.",
+          "pages": [
+            1
+          ]
+        },
+        {
+          "id": "l14-query-optimisation-the-goal-q3",
+          "prompt": "What trade-off comes with a larger search space?",
+          "options": [
+            "More opportunities to find a cheap plan, but more work to search for one",
+            "Planning time always decreases",
+            "Execution always becomes slower",
+            "The number of candidate plans is unaffected"
+          ],
+          "answer": 0,
+          "explanation": "The trade-off is between planning effort and execution quality. Time spent planning and time spent executing are distinct costs.",
+          "pages": [
+            1
+          ]
+        },
+        {
+          "id": "l14-query-optimisation-the-goal-q4",
+          "prompt": "Does the plan with the lowest estimated cost necessarily have the lowest actual runtime?",
+          "options": [
+            "No, because all plans return different results",
+            "No, statistics and cost models can be inaccurate",
+            "Yes, by definition",
+            "Yes, if the query contains SELECT"
+          ],
+          "answer": 1,
+          "explanation": "Estimated cost is a model-based prediction. It does not guarantee the fastest measured execution.",
+          "pages": [
+            1
+          ]
+        },
+        {
+          "id": "l14-query-optimisation-the-goal-q5",
+          "prompt": "How is System R used in this lecture?",
+          "options": [
+            "As an optimiser whose complete search rules every DBMS must preserve",
+            "As a model that measures exact runtime without statistics",
+            "As a foundation for learning optimiser concepts",
+            "As a search method that enumerates every possible plan without pruning"
+          ],
+          "answer": 2,
+          "explanation": "System R is a reference architecture for important optimisation concepts. Other optimiser families and design choices also exist.",
+          "pages": [
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l14-query-lifecycle",
+      "title": "Query Lifecycle",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf",
+      "pages": [
+        2,
+        3
+      ],
+      "questions": [
+        {
+          "id": "l14-query-lifecycle-q1",
+          "prompt": "Which issues does the parsing and validation stage address in this model?",
+          "options": [
+            "Measure the actual runtime of every candidate plan",
+            "Make final physical-join choices using execution measurements",
+            "Perform buffer replacement for each disk read",
+            "Check syntactic and semantic validity and produce a query representation"
+          ],
+          "answer": 3,
+          "explanation": "This stage validates the query and prepares its representation. Buffer replacement belongs to execution and storage management.",
+          "pages": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "l14-query-lifecycle-q2",
+          "prompt": "How does the rewriter mainly differ from the cost-based optimiser in this model?",
+          "options": [
+            "It applies equivalences and heuristics, with correctness independent of actual cardinalities",
+            "It may remove predicates whenever estimated output looks similar",
+            "It must enumerate every physical algorithm before rewriting",
+            "It keeps only one SQL syntax form and applies no equivalences"
+          ],
+          "answer": 0,
+          "explanation": "A correct rewrite follows from semantics. Cost-based choices then use estimates to compare equivalent execution alternatives.",
+          "pages": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "l14-query-lifecycle-q3",
+          "prompt": "What does the cost estimator use?",
+          "options": [
+            "Only logical operator names, without input sizes",
+            "The plan and catalog statistics",
+            "Only the order of predicates in the SQL text",
+            "Only the final output count, without intermediate estimates"
+          ],
+          "answer": 1,
+          "explanation": "Catalog statistics support cardinality and cost estimates. The order of SQL text alone is insufficient.",
+          "pages": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "l14-query-lifecycle-q4",
+          "prompt": "Where can a query block obtain its input?",
+          "options": [
+            "Only base tables, because all nested queries are forbidden",
+            "Only materialised temporary files, never base relations directly",
+            "Base relations or other query blocks",
+            "Only one relation, because multiple inputs cannot be represented"
+          ],
+          "answer": 2,
+          "explanation": "Nested-query structure can be represented through several query blocks. Their inputs are not restricted to base tables alone.",
+          "pages": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "l14-query-lifecycle-q5",
+          "prompt": "What are three relatively independent concerns of an optimiser?",
+          "options": [
+            "Join order, join predicates, and join output as the only three independent concerns",
+            "Parsing, execution, and recovery as three separate parts of plan search",
+            "Cardinality, page count, and row width as a replacement for search strategy",
+            "Plan space, cost estimation, and search strategy"
+          ],
+          "answer": 3,
+          "explanation": "The three questions are which plans to consider, how to estimate their costs, and how to search among them.",
+          "pages": [
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l14-some-simplifications",
+      "title": "Some Simplifications",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf",
+      "pages": [
+        2,
+        3
+      ],
+      "questions": [
+        {
+          "id": "l14-some-simplifications-q1",
+          "prompt": "For a row-producing query with no aggregation, what can WHERE 1=0 be simplified to?",
+          "options": [
+            "An empty result",
+            "Every row of R",
+            "One NULL row",
+            "One random row"
+          ],
+          "answer": 0,
+          "explanation": "The predicate is always false, so no input row qualifies. This differs from reading R without a filter; aggregate queries require separate care because an ungrouped aggregate can still produce a row.",
+          "pages": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "l14-some-simplifications-q2",
+          "prompt": "What is WHERE 1=1 on table R equivalent to, assuming no other effects?",
+          "options": [
+            "Duplicate every row",
+            "Read R without that predicate",
+            "Return an empty result",
+            "Return only R's first row"
+          ],
+          "answer": 1,
+          "explanation": "The predicate is a tautology and filters out no rows. Removing it preserves the result.",
+          "pages": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "l14-some-simplifications-q3",
+          "prompt": "A self-join uses R1.id=R2.id and returns only R1.*. Under the example's conditions, which property of id allows the join to be removed?",
+          "options": [
+            "It is nullable and non-unique",
+            "It is a random expression",
+            "It is a primary key",
+            "It can contain arbitrary duplicates"
+          ],
+          "answer": 2,
+          "explanation": "A primary key guarantees exactly one matching row for each row in the self-join. A non-unique column could multiply rows.",
+          "pages": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "l14-some-simplifications-q4",
+          "prompt": "What range is equivalent to val BETWEEN 2 AND 8 OR val BETWEEN 6 AND 12?",
+          "options": [
+            "BETWEEN 6 AND 8",
+            "BETWEEN 2 AND 6",
+            "BETWEEN 8 AND 12",
+            "BETWEEN 2 AND 12"
+          ],
+          "answer": 3,
+          "explanation": "OR takes the union of the overlapping ranges. The range 6..8 is their intersection instead.",
+          "pages": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "l14-some-simplifications-q5",
+          "prompt": "Why can a correlated EXISTS condition not always be removed?",
+          "options": [
+            "It may exclude rows with no matching subquery row",
+            "EXISTS always returns every row",
+            "SQL supports no rewrites",
+            "Subqueries always have side effects"
+          ],
+          "answer": 0,
+          "explanation": "Only sufficiently strong constraints can establish that EXISTS is redundant. Observing a few matching rows in one instance is not enough.",
+          "pages": [
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l14-relational-algebra-equivalences",
+      "title": "Relational Algebra Equivalences",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf",
+      "pages": [
+        4,
+        4
+      ],
+      "questions": [
+        {
+          "id": "l14-relational-algebra-equivalences-q1",
+          "prompt": "In the relational model, how can selection with P AND Q be decomposed?",
+          "options": [
+            "A projection that removes every predicate column",
+            "Selection by P after selection by Q",
+            "A union of the two selections without duplicate elimination",
+            "A Cartesian product of the two selections"
+          ],
+          "answer": 1,
+          "explanation": "A conjunction retains rows satisfying both predicates. A union corresponds to alternatives rather than requiring both conditions.",
+          "pages": [
+            4
+          ]
+        },
+        {
+          "id": "l14-relational-algebra-equivalences-q2",
+          "prompt": "What must an early projection retain?",
+          "options": [
+            "Only final SELECT columns, even if later joins need other keys",
+            "Only primary keys, discarding all other output fields",
+            "Output columns and columns needed by downstream operators",
+            "Only current filter columns, discarding join and output columns not yet used"
+          ],
+          "answer": 2,
+          "explanation": "Removing a join or filter column too early makes later operations impossible to evaluate correctly.",
+          "pages": [
+            4
+          ]
+        },
+        {
+          "id": "l14-relational-algebra-equivalences-q3",
+          "prompt": "Does changing join order allow a join predicate to be omitted?",
+          "options": [
+            "Yes, if it appears after AND",
+            "Yes, if the query has three tables",
+            "Yes, because joins are commutative",
+            "No"
+          ],
+          "answer": 3,
+          "explanation": "Reordering must preserve all required conditions. Commutativity does not permit changing the query's meaning.",
+          "pages": [
+            4
+          ]
+        },
+        {
+          "id": "l14-relational-algebra-equivalences-q4",
+          "prompt": "Given R(a), S(a,b), and T(b), can predicate S.a=R.a be placed in a subtree joining only S and T?",
+          "options": [
+            "No, because R.a is unavailable there",
+            "Yes, because all joins are associative",
+            "Yes, if T is small",
+            "Yes, if an index is available"
+          ],
+          "answer": 0,
+          "explanation": "A predicate must be evaluated where all its referenced attributes are available. A low cost does not repair a missing column reference.",
+          "pages": [
+            4
+          ]
+        },
+        {
+          "id": "l14-relational-algebra-equivalences-q5",
+          "prompt": "How are R×(S×T) and (R×S)×T related in relational Cartesian product?",
+          "options": [
+            "They are equivalent to a union",
+            "They are associative and produce the same tuple combinations",
+            "They always produce different tuple counts",
+            "They are equivalent only if all relations have keys"
+          ],
+          "answer": 1,
+          "explanation": "Cartesian product is associative, with corresponding attributes aligned. Its semantics should not be confused with union.",
+          "pages": [
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l14-introducing-additional-join-conditions",
+      "title": "Introducing Additional Join Conditions",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf",
+      "pages": [
+        5,
+        5
+      ],
+      "questions": [
+        {
+          "id": "l14-introducing-additional-join-conditions-q1",
+          "prompt": "What additional condition follows from R.a=S.b and S.b=T.c?",
+          "options": [
+            "R.a≠T.c",
+            "R.a=T.c+1",
+            "R.a=T.c",
+            "R.a<T.c"
+          ],
+          "answer": 2,
+          "explanation": "Equality is transitive. These conditions do not imply an inequality or an arithmetic offset.",
+          "pages": [
+            5
+          ]
+        },
+        {
+          "id": "l14-introducing-additional-join-conditions-q2",
+          "prompt": "What benefit can an inferred equality provide?",
+          "options": [
+            "Permission to remove all original predicates without checking equivalence",
+            "A guarantee that the inferred join is cheaper than every other order",
+            "A guarantee that the participating tables have equal cardinality",
+            "Additional join orders that avoid a Cartesian product"
+          ],
+          "answer": 3,
+          "explanation": "The inferred equality adds a usable edge to the join graph. It does not make the relation sizes equal or guarantee a cheaper plan.",
+          "pages": [
+            5
+          ]
+        },
+        {
+          "id": "l14-introducing-additional-join-conditions-q3",
+          "prompt": "The join graph is R—S—T, with no predicate between R and T. What is joining R with T first?",
+          "options": [
+            "A Cartesian product, unless an additional condition can be inferred",
+            "Always an equijoin on columns with matching names",
+            "Always an empty result",
+            "Always an index nested-loop join"
+          ],
+          "answer": 0,
+          "explanation": "Without a predicate, combining R and T is a cross product. Matching column names alone do not create an SQL join condition.",
+          "pages": [
+            5
+          ]
+        },
+        {
+          "id": "l14-introducing-additional-join-conditions-q4",
+          "prompt": "Which implication correctly propagates a constant through equality?",
+          "options": [
+            "X=Y OR Y=9 implies X=9",
+            "X=Y AND Y=9 implies X=9",
+            "X<Y AND Y=9 implies X=9",
+            "X≠Y AND Y=9 implies X=9"
+          ],
+          "answer": 1,
+          "explanation": "The conjunction of the two equalities supports the inference. An OR or an inequality does not establish the same conclusion.",
+          "pages": [
+            5
+          ]
+        },
+        {
+          "id": "l14-introducing-additional-join-conditions-q5",
+          "prompt": "How does adding a valid inferred predicate affect the correct result?",
+          "options": [
+            "It always adds rows",
+            "It always removes duplicates",
+            "It leaves the result unchanged",
+            "It always halves the row count"
+          ],
+          "answer": 2,
+          "explanation": "The original conditions already guarantee the inferred condition. Adding it therefore preserves the logical result.",
+          "pages": [
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l14-common-heuristics-projections",
+      "title": "Common Heuristics: Projections",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf",
+      "pages": [
+        5,
+        6
+      ],
+      "questions": [
+        {
+          "id": "l14-common-heuristics-projections-q1",
+          "prompt": "Why is selection pushdown often useful?",
+          "options": [
+            "It always reduces base-heap reads in exact proportion to selectivity",
+            "It requires no proof of equivalence",
+            "It converts every join into a hash join",
+            "It reduces the rows entering more expensive operators"
+          ],
+          "answer": 3,
+          "explanation": "Pushdown can reduce intermediate cardinalities. Reading a base heap may still require scanning every page.",
+          "pages": [
+            5,
+            6
+          ]
+        },
+        {
+          "id": "l14-common-heuristics-projections-q2",
+          "prompt": "What does projection pushdown commonly reduce?",
+          "options": [
+            "Row width and potentially the number of intermediate pages",
+            "The matching row count in every SQL bag projection",
+            "The number of tables in the query",
+            "The height of every index"
+          ],
+          "answer": 0,
+          "explanation": "Removing unnecessary columns reduces row width. SQL projection without DISTINCT does not automatically remove duplicate rows.",
+          "pages": [
+            5,
+            6
+          ]
+        },
+        {
+          "id": "l14-common-heuristics-projections-q3",
+          "prompt": "Before joining R.a=S.a, the final output needs only R.name. Which columns must an early projection of R retain at minimum?",
+          "options": [
+            "No columns",
+            "R.a and R.name",
+            "Only R.name",
+            "Only R.a"
+          ],
+          "answer": 1,
+          "explanation": "R.a is needed for the join and R.name for the output. Both have downstream uses.",
+          "pages": [
+            5,
+            6
+          ]
+        },
+        {
+          "id": "l14-common-heuristics-projections-q4",
+          "prompt": "What kind of rule is avoiding Cartesian products?",
+          "options": [
+            "A guarantee of the global optimum for every dataset",
+            "A correctness rule making every cross-product plan invalid",
+            "A useful heuristic that does not guarantee the lowest cost in every case",
+            "A rule requiring hash join instead of nested loops"
+          ],
+          "answer": 2,
+          "explanation": "A small Cartesian product can sometimes be beneficial. Avoiding them is mainly a heuristic that restricts the search space.",
+          "pages": [
+            5,
+            6
+          ]
+        },
+        {
+          "id": "l14-common-heuristics-projections-q5",
+          "prompt": "Two filters have comparable low evaluation costs. One retains 1% of rows and the other 80%. Which is usually considered first by the selectivity heuristic?",
+          "options": [
+            "The filter retaining 80%, because it returns more rows",
+            "Whichever filter appears first in WHERE, regardless of selectivity",
+            "The 1% filter is always optimal even if its evaluation cost becomes arbitrarily large",
+            "The filter retaining 1%"
+          ],
+          "answer": 3,
+          "explanation": "Applying the more selective filter first reduces later work when filter evaluation costs are comparable.",
+          "pages": [
+            5,
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l14-physical-equivalences",
+      "title": "Physical Equivalences",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf",
+      "pages": [
+        7,
+        7
+      ],
+      "questions": [
+        {
+          "id": "l14-physical-equivalences-q1",
+          "prompt": "Which pair can provide equivalent physical implementations for base-table access?",
+          "options": [
+            "A heap scan and a suitable index scan",
+            "A heap scan and full aggregation that does not preserve the original rows",
+            "An arbitrary index scan and arbitrary selection without residual checks",
+            "An inner join and an outer join with no additional conditions"
+          ],
+          "answer": 0,
+          "explanation": "Suitable scan paths can satisfy the same access requirement. Unrelated transformations are not automatically equivalent.",
+          "pages": [
+            7
+          ]
+        },
+        {
+          "id": "l14-physical-equivalences-q2",
+          "prompt": "What can implement an equijoin when no index exists?",
+          "options": [
+            "Only a read of the nonexistent index root",
+            "Hash join or sort-merge join",
+            "Only index nested loops",
+            "The join cannot be performed"
+          ],
+          "answer": 1,
+          "explanation": "Hashing and sorting do not require a pre-existing index, although they have memory and ordering costs.",
+          "pages": [
+            7
+          ]
+        },
+        {
+          "id": "l14-physical-equivalences-q3",
+          "prompt": "Can nested loops evaluate a general predicate such as R.x<S.y?",
+          "options": [
+            "Only if all keys are unique",
+            "Only if both tables are sorted",
+            "Yes",
+            "No, only equality is supported"
+          ],
+          "answer": 2,
+          "explanation": "Nested loops test the predicate directly for candidate pairs. An ordinary equijoin hash algorithm cannot replace them arbitrarily for inequalities.",
+          "pages": [
+            7
+          ]
+        },
+        {
+          "id": "l14-physical-equivalences-q4",
+          "prompt": "One input is very small, and the large input has a suitable index. Which algorithm is worth considering?",
+          "options": [
+            "Both inputs certainly must be sorted",
+            "Only a materialised Cartesian product",
+            "No join predicate is needed",
+            "Index nested loops"
+          ],
+          "answer": 3,
+          "explanation": "A small number of outer probes may be cheap. A cost estimate is still needed rather than assuming this choice is always best.",
+          "pages": [
+            7
+          ]
+        },
+        {
+          "id": "l14-physical-equivalences-q5",
+          "prompt": "When choosing an algorithm for the same logical join, what matters besides cardinality?",
+          "options": [
+            "Memory, indexes, and input/output ordering",
+            "Only the final output count, ignoring all input properties",
+            "Only join order, because algorithms cost the same once order is fixed",
+            "Only one index's height, ignoring scan and memory costs"
+          ],
+          "answer": 0,
+          "explanation": "Physical properties affect both feasibility and cost. The query's textual presentation does not determine the best implementation.",
+          "pages": [
+            7
+          ]
+        }
+      ]
+    }
+  ]
+}

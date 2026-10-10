@@ -1,0 +1,450 @@
+{
+  "lectureId": "lecture-25",
+  "topics": [
+    {
+      "id": "l25-topic-good-classes",
+      "title": "“Good” Classes of Conjunctive Queries",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf",
+      "pages": [
+        2,
+        5
+      ],
+      "questions": [
+        {
+          "id": "l25-good-classes-q1",
+          "prompt": "What is the goal of finding 'good classes' of CQs in this lecture?",
+          "options": [
+            "Restrict query structure to make combined evaluation tractable",
+            "Fix only the database while allowing arbitrary queries",
+            "Fix only the number of output tuples rather than the body structure",
+            "Only reorder atoms without changing the query's structural class"
+          ],
+          "answer": 0,
+          "explanation": "Graph or hypergraph structure can make evaluation easier even when Q is part of the input. The goal is not to change semantics or merely rename variables.",
+          "pages": [
+            3,
+            5
+          ]
+        },
+        {
+          "id": "l25-good-classes-q2",
+          "prompt": "Bounded treewidth is a property of which object here?",
+          "options": [
+            "A hypergraph measured only by its number of hyperedges, ignoring connections",
+            "The graph of the CQ",
+            "The number of tuples in the largest relation",
+            "The physical height of a B+ tree"
+          ],
+          "answer": 1,
+          "explanation": "Treewidth measures the structure of the variable-interaction graph, not the height of an index tree. These uses of 'tree' describe different concepts.",
+          "pages": [
+            5
+          ]
+        },
+        {
+          "id": "l25-good-classes-q3",
+          "prompt": "What does bounded hypertree width describe?",
+          "options": [
+            "The largest tuple count of any relation",
+            "The number of head variables, ignoring the body",
+            "How close the CQ's hypergraph is to being acyclic",
+            "A fixed number of columns in every atom, ignoring shared variables"
+          ],
+          "answer": 2,
+          "explanation": "Hypertree width measures hypergraph structure. It is neither a storage-size measure nor simply a restriction that all atoms have the same arity.",
+          "pages": [
+            5
+          ]
+        },
+        {
+          "id": "l25-good-classes-q4",
+          "prompt": "What hypertree width is stated for acyclic CQs?",
+          "options": [
+            "0 for every query with at least one atom",
+            "The number of atoms, regardless of their connections",
+            "The number of variables in the largest atom in every case",
+            "1"
+          ],
+          "answer": 3,
+          "explanation": "The lecture introduces acyclic CQs as having hypertree width 1. Data cardinality does not determine the structural width of a query.",
+          "pages": [
+            5
+          ]
+        },
+        {
+          "id": "l25-good-classes-q5",
+          "prompt": "Why does PTIME evaluation for a fixed query not already meet lecture 25's goal?",
+          "options": [
+            "The lecture seeks good guarantees for varying input queries with suitable structure",
+            "The fixed-query PTIME result is false for every CQ",
+            "PTIME means every query takes the same amount of time",
+            "Every query with more than two atoms is undecidable"
+          ],
+          "answer": 0,
+          "explanation": "Data complexity fixes Q, whereas these good classes target combined complexity. This does not contradict the earlier fixed-query result.",
+          "pages": [
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l25-topic-hypergraphs",
+      "title": "Acyclic Hypergraphs",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf",
+      "pages": [
+        4,
+        13
+      ],
+      "questions": [
+        {
+          "id": "l25-hypergraphs-q1",
+          "prompt": "Which hyperedge corresponds to the atom R(x,y,z)?",
+          "options": [
+            "Three separate edges {x,y},{y,z},{x,z} in place of a hyperedge",
+            "The set {x,y,z}",
+            "A node named R that contains no variables",
+            "The set of every value currently stored in database relation R"
+          ],
+          "answer": 1,
+          "explanation": "The hypergraph retains the atom's whole variable set as one edge. A three-edge clique represents the primal graph and has a different edge structure.",
+          "pages": [
+            4
+          ]
+        },
+        {
+          "id": "l25-hypergraphs-q2",
+          "prompt": "What does the running-intersection condition require in a join tree?",
+          "options": [
+            "Every atom has the same number of variables",
+            "Every pair of atoms shares at least one variable",
+            "For each variable, all nodes containing it form a connected subtree",
+            "Every variable occurs in exactly one atom"
+          ],
+          "answer": 2,
+          "explanation": "A variable may occur in many atoms, but the path between them must also consist of nodes containing that variable. Not every pair of atoms needs to overlap.",
+          "pages": [
+            6
+          ]
+        },
+        {
+          "id": "l25-hypergraphs-q3",
+          "prompt": "Which join tree is valid for R(a,b),S(b,c),T(c,d)?",
+          "options": [
+            "R—T—S",
+            "S—R—T",
+            "Every tree is valid",
+            "R—S—T"
+          ],
+          "answer": 3,
+          "explanation": "R—S—T keeps the nodes containing b connected, and likewise for c. Placing T between R and S would break the connectedness of b.",
+          "pages": [
+            6,
+            9
+          ]
+        },
+        {
+          "id": "l25-hypergraphs-q4",
+          "prompt": "Is the hypergraph {a,b},{b,c},{c,a} acyclic?",
+          "options": [
+            "No; every tree connecting the three edges violates running intersection for some variable",
+            "Yes, because it has only three edges",
+            "Yes, because each edge has exactly two variables",
+            "It cannot be assessed without a database"
+          ],
+          "answer": 0,
+          "explanation": "Acyclicity is a property of query structure. This triangle creates a running-intersection conflict regardless of the current data.",
+          "pages": [
+            11
+          ]
+        },
+        {
+          "id": "l25-hypergraphs-q5",
+          "prompt": "What can adding {a,b,c} to the triangle {a,b},{b,c},{c,a} do?",
+          "options": [
+            "It must remain cyclic because adding a hyperedge can never help",
+            "Make the hypergraph acyclic by using the large edge as the join-tree center",
+            "Make it necessarily more cyclic because the number of hyperedges increases",
+            "Make it acyclic only if all three smaller edges are deleted first"
+          ],
+          "answer": 1,
+          "explanation": "Hypergraph acyclicity differs from ordinary graph acyclicity: the large central edge contains every shared variable. Ordinary graph rules about adding edges do not transfer directly.",
+          "pages": [
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l25-topic-gyo",
+      "title": "Checking Acyclicity",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf",
+      "pages": [
+        14,
+        26
+      ],
+      "questions": [
+        {
+          "id": "l25-gyo-q1",
+          "prompt": "Which GYO reduction rule is valid?",
+          "options": [
+            "Delete any variable occurring in two edges",
+            "Delete all output variables first",
+            "Delete a variable occurring in at most one hyperedge",
+            "Delete the largest edge regardless of containment"
+          ],
+          "answer": 2,
+          "explanation": "A variable occurring in only one edge cannot connect that edge cyclically to others. Arbitrarily deleting a degree-2 variable can give an incorrect conclusion.",
+          "pages": [
+            14
+          ]
+        },
+        {
+          "id": "l25-gyo-q2",
+          "prompt": "Which hyperedge may GYO delete?",
+          "options": [
+            "Any edge with the largest number of variables",
+            "Any edge that is a leaf in an arbitrary tree",
+            "Any edge intersecting at least one other edge",
+            "An empty edge or an edge contained in another edge"
+          ],
+          "answer": 3,
+          "explanation": "A contained edge adds no structural requirement that must be retained for this acyclicity test. Merely intersecting another edge is not sufficient for deletion.",
+          "pages": [
+            14
+          ]
+        },
+        {
+          "id": "l25-gyo-q3",
+          "prompt": "What does reducing H to the empty hypergraph with GYO establish?",
+          "options": [
+            "H is acyclic",
+            "The query is semantically equivalent to the empty query",
+            "The database contains no tuples",
+            "The query must return YES on every database"
+          ],
+          "answer": 0,
+          "explanation": "GYO tests structure; it does not rewrite an executable query by discarding all its atoms while preserving meaning. The empty hypergraph says nothing about the data.",
+          "pages": [
+            25
+          ]
+        },
+        {
+          "id": "l25-gyo-q4",
+          "prompt": "For H={a,b},{b,c},{c,d}, what remains after removing a and d?",
+          "options": [
+            "The same three edges, unchanged",
+            "{b},{b,c},{c}, after which the contained edges can be removed",
+            "The triangle {a,b},{b,c},{c,a}",
+            "Only {a,d}"
+          ],
+          "answer": 1,
+          "explanation": "a and d each occur in only one edge, so they may be removed. The remaining singleton edges are contained in {b,c}, allowing reduction to continue.",
+          "pages": [
+            14,
+            15
+          ]
+        },
+        {
+          "id": "l25-gyo-q5",
+          "prompt": "GYO stops at a nonempty structure with no applicable rule. What follows?",
+          "options": [
+            "Reordering database tuples will make it acyclic",
+            "It is acyclic because at least one variable was removed",
+            "The hypergraph is cyclic",
+            "Nothing can be concluded until the query runs on a database"
+          ],
+          "answer": 2,
+          "explanation": "The theorem states that a hypergraph is acyclic exactly when it reduces to empty. The test does not depend on tuple order or evaluation on a particular database.",
+          "pages": [
+            25,
+            26
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l25-topic-acyclic-eval",
+      "title": "Evaluating Acyclic CQs",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf",
+      "pages": [
+        27,
+        27
+      ],
+      "questions": [
+        {
+          "id": "l25-acyclic-eval-q1",
+          "prompt": "What does the O(size(D)·size(Q)) guarantee apply to in this lecture's setting?",
+          "options": [
+            "Printing an arbitrarily large output without accounting for output size",
+            "Every CQ, including cyclic ones",
+            "Every SQL query with arbitrary recursion",
+            "The decision or membership problem for acyclic CQs"
+          ],
+          "answer": 3,
+          "explanation": "Enumerating the output may cost more than this bound because the output itself can be large. The stated context is decision evaluation, with acyclicity as an essential condition.",
+          "pages": [
+            13,
+            27
+          ]
+        },
+        {
+          "id": "l25-acyclic-eval-q2",
+          "prompt": "For fixed acyclic Q, how does O(size(D)·size(Q)) grow with size(D)?",
+          "options": [
+            "Linearly in size(D) within this bound",
+            "Quadratically, because size(Q) always equals size(D)",
+            "Exponentially in size(D)",
+            "Independently of the data"
+          ],
+          "answer": 0,
+          "explanation": "Fixing Q makes size(Q) a constant. Query size must not be equated with database size.",
+          "pages": [
+            27
+          ]
+        },
+        {
+          "id": "l25-acyclic-eval-q3",
+          "prompt": "If both size(D) and size(Q) double, by what factor does the product in O(size(D)·size(Q)) change?",
+          "options": [
+            "About 2, because each factor is individually linear",
+            "About 4 in the product expression",
+            "About 8",
+            "It stays unchanged"
+          ],
+          "answer": 1,
+          "explanation": "(2size(D))(2size(Q))=4size(D)size(Q). Being linear in each argument separately does not mean being linear in their sum when both grow together.",
+          "pages": [
+            27
+          ]
+        },
+        {
+          "id": "l25-acyclic-eval-q4",
+          "prompt": "Why can evaluating an acyclic CQ be easier than evaluating a general CQ?",
+          "options": [
+            "Acyclic CQs have no joins",
+            "Every relation contains only one tuple",
+            "The join tree allows local information to be combined with global guarantees",
+            "Acyclic CQs have no existential variables"
+          ],
+          "answer": 2,
+          "explanation": "An acyclic CQ can still have many joins and existential variables. Its favorable dependency structure supports efficient dynamic programming.",
+          "pages": [
+            27,
+            28
+          ]
+        },
+        {
+          "id": "l25-acyclic-eval-q5",
+          "prompt": "A CQ has a join tree, but its output is a large product of two independent relations. Can enumeration ignore the cost of writing the output?",
+          "options": [
+            "Yes, because an acyclic CQ returns at most one tuple",
+            "Yes, because GYO has removed its edges",
+            "No, because acyclic evaluation is undecidable",
+            "No; enumeration must at least account for the number of results produced"
+          ],
+          "answer": 3,
+          "explanation": "Decision and enumeration are different tasks. Acyclicity does not itself bound the cardinality of a non-Boolean result.",
+          "pages": [
+            13,
+            27,
+            28
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l25-topic-yannakakis",
+      "title": "Yannakakis' Algorithm",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf",
+      "pages": [
+        28,
+        36
+      ],
+      "questions": [
+        {
+          "id": "l25-yannakakis-q1",
+          "prompt": "What is the first step of the Boolean algorithm presented?",
+          "options": [
+            "Find a join tree for the query hypergraph",
+            "Materialize the entire join before finding a join tree",
+            "Perform semijoins in any atom order without using the structure",
+            "Choose a root and discard every relation in its branches"
+          ],
+          "answer": 0,
+          "explanation": "The join tree determines how semijoin information is propagated. Discarding atoms arbitrarily changes the query.",
+          "pages": [
+            28,
+            29
+          ]
+        },
+        {
+          "id": "l25-yannakakis-q2",
+          "prompt": "Which schema does the semijoin R ⋉ S return?",
+          "options": [
+            "All columns of R and S, as in a full joined tuple",
+            "Only R's columns, retaining tuples that have a match in S",
+            "Only S's columns",
+            "One COUNT column for every tuple"
+          ],
+          "answer": 1,
+          "explanation": "A semijoin filters left-hand tuples by whether they have a match. It does not construct the fully combined tuples of a join.",
+          "pages": [
+            28,
+            31
+          ]
+        },
+        {
+          "id": "l25-yannakakis-q3",
+          "prompt": "Let R(B)={1,2}, S(B,C)={(1,k),(2,m)}, T(C)={k}, with join tree R—S—T rooted at R. What is the root after the bottom-up pass?",
+          "options": [
+            "{1,2}",
+            "{2}",
+            "{1}",
+            "The empty set"
+          ],
+          "answer": 2,
+          "explanation": "S⋉T retains (1,k), then R⋉S retains 1. Looking only at the original S would incorrectly retain 2 as well.",
+          "pages": [
+            28,
+            31,
+            36
+          ]
+        },
+        {
+          "id": "l25-yannakakis-q4",
+          "prompt": "After the bottom-up semijoin pass, the root is empty. What does the Boolean CQ return?",
+          "options": [
+            "YES, because the original tables were nonempty",
+            "It is still unknown; the entire full join must be printed",
+            "YES, if the smallest relation was chosen as the root",
+            "NO"
+          ],
+          "answer": 3,
+          "explanation": "An empty root means no remaining tuple can extend to a match across the whole tree. Nonempty input tables alone do not guarantee that their join has a match.",
+          "pages": [
+            28,
+            36
+          ]
+        },
+        {
+          "id": "l25-yannakakis-q5",
+          "prompt": "Why is it safe to combine witnesses from different branches of a join tree?",
+          "options": [
+            "Running intersection ensures that shared variables are connected through nodes that also contain them",
+            "Different branches can never share a variable",
+            "Semijoins generate every possible combination to check",
+            "The root always contains every query variable"
+          ],
+          "answer": 0,
+          "explanation": "A variable shared by different branches must also occur in the intermediate nodes on their path. This ensures compatibility of the choices; the root need not contain every variable.",
+          "pages": [
+            6,
+            28
+          ]
+        }
+      ]
+    }
+  ]
+}

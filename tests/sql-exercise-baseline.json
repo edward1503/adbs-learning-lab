@@ -1,0 +1,95 @@
+{
+  "seed": "PRAGMA foreign_keys=ON;\nCREATE TABLE students (id INTEGER PRIMARY KEY, name TEXT NOT NULL, city TEXT, year INTEGER NOT NULL);\nCREATE TABLE courses (id TEXT PRIMARY KEY, title TEXT NOT NULL, credits INTEGER NOT NULL);\nCREATE TABLE enrollments (student_id INTEGER REFERENCES students(id), course_id TEXT REFERENCES courses(id), score INTEGER, PRIMARY KEY(student_id,course_id));\nINSERT INTO students VALUES (1,'An','Hanoi',2),(2,'Binh','Hue',1),(3,'Chi','Hanoi',3),(4,'Dung',NULL,2),(5,'Em','Da Nang',1),(6,'Giang','Hue',3);\nINSERT INTO courses VALUES ('DB','Databases',4),('AI','Artificial Intelligence',3),('NET','Networks',3),('SEC','Security',2);\nINSERT INTO enrollments VALUES (1,'DB',85),(1,'AI',90),(2,'DB',65),(3,'DB',95),(3,'NET',80),(4,'DB',NULL),(4,'AI',70),(5,'NET',75);",
+  "exercises": [
+    {
+      "id": "select",
+      "solution": "SELECT id, name FROM students;",
+      "starter": "SELECT * FROM students;",
+      "ordered": false
+    },
+    {
+      "id": "where",
+      "solution": "SELECT name, year FROM students WHERE year >= 2;",
+      "starter": "SELECT name, year FROM students;",
+      "ordered": false
+    },
+    {
+      "id": "distinct",
+      "solution": "SELECT DISTINCT city FROM students WHERE city IS NOT NULL;",
+      "starter": "SELECT city FROM students;",
+      "ordered": false
+    },
+    {
+      "id": "order",
+      "solution": "SELECT name, year FROM students ORDER BY year DESC, name ASC;",
+      "starter": "SELECT name, year FROM students;",
+      "ordered": true
+    },
+    {
+      "id": "join",
+      "solution": "SELECT s.name, e.score FROM students s JOIN enrollments e ON s.id=e.student_id WHERE e.course_id='DB';",
+      "starter": "SELECT name FROM students;",
+      "ordered": false
+    },
+    {
+      "id": "left",
+      "solution": "SELECT s.name, e.course_id FROM students s LEFT JOIN enrollments e ON s.id=e.student_id;",
+      "starter": "SELECT s.name, e.course_id FROM students s JOIN enrollments e ON s.id=e.student_id;",
+      "ordered": false
+    },
+    {
+      "id": "group",
+      "solution": "SELECT course_id, COUNT(*) AS n FROM enrollments GROUP BY course_id;",
+      "starter": "SELECT course_id, COUNT(*) AS n FROM enrollments;",
+      "ordered": false
+    },
+    {
+      "id": "having",
+      "solution": "SELECT course_id, COUNT(*) AS n FROM enrollments GROUP BY course_id HAVING COUNT(*) >= 3;",
+      "starter": "SELECT course_id, COUNT(*) AS n FROM enrollments GROUP BY course_id;",
+      "ordered": false
+    },
+    {
+      "id": "subquery",
+      "solution": "SELECT name FROM students WHERE id IN (SELECT student_id FROM enrollments WHERE score > (SELECT AVG(score) FROM enrollments));",
+      "starter": "SELECT name FROM students;",
+      "ordered": false
+    },
+    {
+      "id": "exists",
+      "solution": "SELECT s.name FROM students s WHERE NOT EXISTS (SELECT 1 FROM enrollments e WHERE e.student_id=s.id);",
+      "starter": "SELECT name FROM students;",
+      "ordered": false
+    },
+    {
+      "id": "union",
+      "solution": "SELECT student_id FROM enrollments WHERE course_id='DB' UNION SELECT student_id FROM enrollments WHERE course_id='AI';",
+      "starter": "SELECT student_id FROM enrollments WHERE course_id='DB' UNION ALL SELECT student_id FROM enrollments WHERE course_id='AI';",
+      "ordered": false
+    },
+    {
+      "id": "unionall",
+      "solution": "SELECT student_id FROM enrollments WHERE course_id='DB' UNION ALL SELECT student_id FROM enrollments WHERE course_id='AI';",
+      "starter": "SELECT student_id FROM enrollments WHERE course_id='DB' UNION SELECT student_id FROM enrollments WHERE course_id='AI';",
+      "ordered": false
+    },
+    {
+      "id": "except",
+      "solution": "SELECT student_id FROM enrollments WHERE course_id='DB' EXCEPT SELECT student_id FROM enrollments WHERE course_id='AI';",
+      "starter": "SELECT student_id FROM enrollments WHERE course_id='DB';",
+      "ordered": false
+    },
+    {
+      "id": "null",
+      "solution": "SELECT student_id, course_id FROM enrollments WHERE score IS NULL;",
+      "starter": "SELECT student_id, course_id FROM enrollments WHERE score = NULL;",
+      "ordered": false
+    },
+    {
+      "id": "countnull",
+      "solution": "SELECT COUNT(*) AS total, COUNT(score) AS graded FROM enrollments;",
+      "starter": "SELECT COUNT(score) AS total, COUNT(score) AS graded FROM enrollments;",
+      "ordered": false
+    }
+  ]
+}

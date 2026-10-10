@@ -1,0 +1,96 @@
+[
+  {
+    "id": "lecture-23",
+    "lecture": 23,
+    "title": "Conjunctive Queries: A Query Describes a Pattern",
+    "short": "Syntax · semantics · homomorphism",
+    "group": "07 · Conjunctive queries",
+    "time": 25,
+    "lead": "Evaluating a conjunctive query means finding assignments to its variables that make every relational condition true.",
+    "goals": [
+      "Translate SQL or relational algebra into a conjunctive query",
+      "Distinguish output variables from existentially quantified variables",
+      "Find homomorphisms and determine the result set"
+    ],
+    "sections": [
+      {
+        "id": "l23-s1",
+        "title": "A small language with precise meaning",
+        "html": "<p>Suppose the database contains R(An,DB) and S(DB). We can match An with DB through R, then check that DB also appears in S, so we return An. The query describing this pattern is <code>Q(x) :- R(x,y), S(y)</code>.</p><p>Read the notation from right to left: find a value of y that makes both R(x,y) and S(y) true, then return x. The <strong>head</strong> is Q(x), which contains the output variables. The <strong>body</strong> is the part after <code>:-</code>. Each relational condition, such as R(x,y), is an <strong>atom</strong>.</p><p>Conjunctive queries correspond to equality selection, projection, and joins without negation, under <strong>set semantics</strong>: the result does not retain duplicate rows. When comparing this mathematical model with SQL, use SELECT DISTINCT and avoid NULL in these examples.</p><p class=\"source-note\">Related source material: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=1\" target=\"_blank\" rel=\"noopener\">PDF pages 1–19</a>. The examples and solutions in this lesson are original supplementary material.</p>"
+      },
+      {
+        "id": "l23-s2",
+        "title": "Worked example: who takes a course taught by Linh?",
+        "html": "<p>The database contains Enrol(An,DB), Enrol(Bao,AI), Enrol(Chi,DB), Teach(Linh,DB), and Teach(Minh,AI).</p><p>We ask <code>Q(student) :- Enrol(student,course), Teach(Linh,course)</code>.</p><ol><li>The atom Teach(Linh,course) requires course = DB, because that is the course taught by Linh in this database.</li><li>We now look for Enrol(student,DB). It matches with student = An and with student = Chi.</li><li>Returning the student value from each match gives the result {An, Chi}.</li></ol><p>The corresponding SQL is <code>SELECT DISTINCT e.student FROM Enrol e JOIN Teach t ON e.course=t.course WHERE t.teacher=&apos;Linh&apos;</code>. The variable course is existentially quantified: its value is needed to establish a match, but it does not appear in the output.</p><p class=\"source-note\">Related source material: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=20\" target=\"_blank\" rel=\"noopener\">PDF pages 20–25</a>. The examples and solutions in this lesson are original supplementary material.</p>"
+      },
+      {
+        "id": "l23-s3",
+        "title": "A homomorphism uses one consistent assignment",
+        "html": "<p>Try the assignment h = {student ↦ An, course ↦ DB}. The two atoms become Enrol(An,DB) and Teach(Linh,DB). Both facts occur in the database, so this is a match.</p><p>Now try student ↦ Bao and course ↦ AI. The Enrol atom is satisfied, but Teach(Linh,AI) is absent, so the assignment fails. We cannot replace Linh with Minh, because constants must stay unchanged. We also cannot assign course = AI in the first atom and course = DB in the second. A variable must have one value throughout the same assignment.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>A homomorphism must use a single consistent assignment across the entire body.</b> Preserve constants and every occurrence of each variable. Checking atoms separately with incompatible assignments does not establish a match.</p></aside><p class=\"source-note\">Related source material: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=26\" target=\"_blank\" rel=\"noopener\">PDF pages 26–31</a>. The examples and solutions in this lesson are original supplementary material.</p>"
+      },
+      {
+        "id": "l23-s4",
+        "title": "Repeated variables and multiple witnesses",
+        "html": "<p>The relation Pair contains (a,a), (a,b), and (b,b). The query <code>Q(x) :- Pair(x,x)</code> returns {a,b}. Using x in both positions requires the two values to be equal, so (a,b) does not satisfy the atom.</p><p>For <code>Q(x) :- Pair(x,y)</code>, the output value a has two witnesses: two values of y satisfy the body. Nevertheless, a appears only once in the result set. A homomorphism need not be injective: two different variables may map to the same value.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>Multiple witnesses do not duplicate an answer under set semantics.</b> A witness is an assignment showing that the body is true. The result retains only the tuple of head values and removes duplicate tuples.</p></aside><p class=\"source-note\">Related source material: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=26\" target=\"_blank\" rel=\"noopener\">PDF pages 26–33</a>. The examples and solutions in this lesson are original supplementary material.</p>"
+      },
+      {
+        "id": "l23-s5",
+        "title": "Practice and worked solution",
+        "html": "<p>Suppose the database contains Link(a,b), Link(b,c), and Link(a,c). Find the result of <code>Q(x,z) :- Link(x,y), Link(y,z)</code>.</p><details><summary>Show the solution</summary><p>The only output tuple is (a,c), using y=b. The direct edge Link(a,c) is not enough on its own, because the query requires two consecutive edges. If we add Link(c,c), there will be more witnesses and new output pairs. Enumerate them by keeping the same value of y in both atoms.</p></details><p>A Boolean conjunctive query has no output variables in its head. For example, <code>Q() :- Link(x,y), Link(y,z)</code> asks only whether a two-step path exists.</p><p class=\"source-note\">Related source material: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=19\" target=\"_blank\" rel=\"noopener\">PDF pages 19–33</a>. The examples and solutions in this lesson are original supplementary material.</p>"
+      }
+    ],
+    "quiz": {
+      "question": "In Q(x) :- R(x,y), S(y), what is y?",
+      "options": [
+        "A constant",
+        "An output variable",
+        "An existentially quantified variable shared by the two atoms",
+        "Two independent variables"
+      ],
+      "answer": 2,
+      "explanation": "The variable y does not appear in the head, but every occurrence of y must receive the same value within an assignment."
+    },
+    "source": {
+      "summary": "Lecture 23 connects relational algebra and calculus with conjunctive queries. It defines head and body syntax, homomorphisms, and result semantics in terms of matches.",
+      "links": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=1",
+          "label": "PDF pages 1–19"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=20",
+          "label": "PDF pages 20–25"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=26",
+          "label": "PDF pages 26–31"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=26",
+          "label": "PDF pages 26–33"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=19",
+          "label": "PDF pages 19–33"
+        }
+      ]
+    },
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf",
+      "verified": true,
+      "verifiedPages": "1–33",
+      "topics": [
+        "RA recap",
+        "relational calculus",
+        "Codd theorem context",
+        "CQ syntax",
+        "distinguished variables",
+        "homomorphism",
+        "constants",
+        "set semantics"
+      ],
+      "limitations": []
+    },
+    "lab": "relational"
+  }
+]

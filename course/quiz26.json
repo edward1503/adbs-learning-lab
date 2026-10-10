@@ -1,0 +1,2099 @@
+{
+  "lectureId": "lecture-26",
+  "topics": [
+    {
+      "id": "l26-recap",
+      "title": "Recap: Parallel / Distributed DBMSs",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+      "pages": [
+        2,
+        3
+      ],
+      "questions": [
+        {
+          "id": "l26-recap-q1",
+          "prompt": "Why spread a database across multiple resources?",
+          "options": [
+            "To improve performance and availability",
+            "Only to increase capacity, with no possible improvement in throughput",
+            "To eliminate transaction-coordination costs entirely",
+            "To guarantee a linear reduction in latency for every query"
+          ],
+          "answer": 0,
+          "explanation": "Distributing resources can improve performance and availability; it does not eliminate the need for coordination or transactions.",
+          "pages": [
+            2
+          ]
+        },
+        {
+          "id": "l26-recap-q2",
+          "prompt": "Under the lecture's assumptions, what is the main difference between parallel and distributed DBMSs?",
+          "options": [
+            "Parallel DBMSs use shared RAM in every architecture",
+            "The distance between nodes and the cost of communication",
+            "Distributed DBMSs cannot provide a unified SQL interface",
+            "Parallel DBMSs do not need concurrency control"
+          ],
+          "answer": 1,
+          "explanation": "Parallel-system nodes are usually close together and connected by a fast LAN; distributed systems must account for network costs and failures.",
+          "pages": [
+            3
+          ]
+        },
+        {
+          "id": "l26-recap-q3",
+          "prompt": "What should happen when an SQL query moves from a single node to a multi-node cluster?",
+          "options": [
+            "One extra result row should automatically be added for each replica",
+            "The application should have to UNION all shards itself",
+            "Its logical result should remain unchanged",
+            "Rows on slow-responding nodes may be omitted"
+          ],
+          "answer": 2,
+          "explanation": "Data independence requires the same semantics when physical placement changes; replication must not duplicate query results.",
+          "pages": [
+            2
+          ]
+        },
+        {
+          "id": "l26-recap-q4",
+          "prompt": "What must a cluster spanning several continents pay particular attention to?",
+          "options": [
+            "Minimizing local I/O alone, because the network has no effect",
+            "Assuming network latency is always lower than RAM-access latency",
+            "Counting CPU costs alone and ignoring data transfers between nodes",
+            "Communication costs and failures"
+          ],
+          "answer": 3,
+          "explanation": "The lecture emphasizes that communication in a distributed system cannot be assumed to be cheap or failure-free.",
+          "pages": [
+            3
+          ]
+        },
+        {
+          "id": "l26-recap-q5",
+          "prompt": "What does increasing throughput most closely mean?",
+          "options": [
+            "Completing more queries per unit of time",
+            "Reducing the time for exactly one query, regardless of the total workload",
+            "Increasing the number of waiting queries without completing more",
+            "Returning fewer rows to finish the same query faster"
+          ],
+          "answer": 0,
+          "explanation": "Throughput measures the rate at which work is completed; latency measures how long an individual query takes.",
+          "pages": [
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l26-shared-memory",
+      "title": "Shared Memory",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+      "pages": [
+        4,
+        6
+      ],
+      "questions": [
+        {
+          "id": "l26-shared-memory-q1",
+          "prompt": "In a shared-memory architecture, what resource do multiple CPUs access in common?",
+          "options": [
+            "A memory address space",
+            "Each CPU has private RAM and shares only disk storage",
+            "Each CPU has entirely private RAM and disk storage",
+            "Only metadata is shared; all RAM holding data is private"
+          ],
+          "answer": 0,
+          "explanation": "The CPUs share memory through a fast interconnect; private-memory descriptions refer to other architectures.",
+          "pages": [
+            5,
+            6
+          ]
+        },
+        {
+          "id": "l26-shared-memory-q2",
+          "prompt": "Which advantage of shared memory is identified in the lecture?",
+          "options": [
+            "Each instance can operate without coordinating with other instances",
+            "CPUs have a common view of in-memory structures",
+            "Adding CPUs guarantees unlimited linear speedup",
+            "All data access must use network messages between nodes"
+          ],
+          "answer": 1,
+          "explanation": "A shared address space supports efficient communication, but instances still need to be aware of one another.",
+          "pages": [
+            6
+          ]
+        },
+        {
+          "id": "l26-shared-memory-q3",
+          "prompt": "What does the system architecture determine directly?",
+          "options": [
+            "The same SQL query must return different logical results depending on the RAM configuration",
+            "Every partition must contain the same complete copy",
+            "Which shared resources the CPUs can access",
+            "Every join must use one fixed algorithm"
+          ],
+          "answer": 2,
+          "explanation": "The architecture determines resource sharing and coordination, rather than dictating the schema or the number of result rows.",
+          "pages": [
+            4
+          ]
+        },
+        {
+          "prompt": "Can an instance in a shared-memory system ignore the existence of the other instances?",
+          "options": [
+            "Yes, because shared addresses automatically guarantee isolation",
+            "Yes, every RAM access is automatically an atomic transaction",
+            "Yes, because concurrent access occurs only in shared-nothing systems",
+            "No, instances must coordinate access to shared structures"
+          ],
+          "answer": 3,
+          "explanation": "Shared RAM makes communication easier but does not automatically make concurrent operations correct; the slide says instances must be aware of one another.",
+          "pages": [
+            6
+          ],
+          "id": "l26-shared-memory-q4"
+        },
+        {
+          "prompt": "Why is shared memory also called shared everything in this lecture?",
+          "options": [
+            "CPUs can share both the address space and the storage layer in the illustrated model",
+            "Every node has completely private RAM and disk storage",
+            "Only disks are shared, while all address spaces are private",
+            "Each CPU must hold an independent copy of the entire database"
+          ],
+          "answer": 0,
+          "explanation": "The shared-memory diagram shows shared memory and storage, whereas shared disk shares only the storage layer.",
+          "pages": [
+            5
+          ],
+          "id": "l26-shared-memory-q5"
+        }
+      ]
+    },
+    {
+      "id": "l26-shared-disk",
+      "title": "Shared Disk",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+      "pages": [
+        5,
+        7
+      ],
+      "questions": [
+        {
+          "id": "l26-shared-disk-q1",
+          "prompt": "Which architecture gives each CPU private memory while allowing access to a common logical disk?",
+          "options": [
+            "Shared disk",
+            "Shared memory with all RAM shared",
+            "Shared nothing with private storage at each node",
+            "Shared memory in which CPUs do not share an address space"
+          ],
+          "answer": 0,
+          "explanation": "Shared disk separates the CPUs' RAM but shares storage. Shared memory shares an address space, while shared nothing uses both private RAM and private disks.",
+          "pages": [
+            5,
+            7
+          ]
+        },
+        {
+          "id": "l26-shared-disk-q2",
+          "prompt": "What bottleneck is identified when a shared-disk system has many CPUs?",
+          "options": [
+            "Having to repartition every table after every read",
+            "The shared disk",
+            "Every CPU must wait for the same database-wide lock for every query",
+            "CPUs cannot read data without first holding a private copy of the entire database"
+          ],
+          "answer": 1,
+          "explanation": "Many CPUs place load on the same disk; private RAM does not remove the storage bottleneck.",
+          "pages": [
+            7
+          ]
+        },
+        {
+          "id": "l26-shared-disk-q3",
+          "prompt": "According to the lecture, which architecture lets the execution layer scale independently of the storage layer?",
+          "options": [
+            "Only shared nothing, because shared disk requires CPU and disk capacity to grow together",
+            "Only shared memory, because shared disk cannot separate the execution layer",
+            "Shared disk",
+            "No architecture allows compute and storage capacity to grow separately"
+          ],
+          "answer": 2,
+          "explanation": "A shared-disk architecture uses a common storage layer, so execution capacity can be added relatively independently.",
+          "pages": [
+            7
+          ]
+        },
+        {
+          "id": "l26-shared-disk-q4",
+          "prompt": "Which statement best matches the three architecture diagrams?",
+          "options": [
+            "Shared disk shares all RAM between CPUs",
+            "Shared nothing lets a CPU directly access another node's disk",
+            "Shared memory gives each CPU a separate memory address space",
+            "Shared disk and shared nothing both give each node private RAM"
+          ],
+          "answer": 3,
+          "explanation": "Both models show private RAM; their difference is whether disks are shared or private.",
+          "pages": [
+            5
+          ]
+        },
+        {
+          "prompt": "What is a correct implication of private memory in a shared-disk system?",
+          "options": [
+            "CPUs must still coordinate access to shared data; a shared disk does not replace concurrency control",
+            "Each CPU always immediately sees every change in another CPU's RAM",
+            "A single shared disk makes concurrent writes impossible",
+            "Each CPU must store a separate logical database on a different disk"
+          ],
+          "answer": 0,
+          "explanation": "Shared disk shares storage but keeps RAM private. Having one on-disk copy does not automatically eliminate all contention.",
+          "pages": [
+            7
+          ],
+          "id": "l26-shared-disk-q5"
+        }
+      ]
+    },
+    {
+      "id": "l26-shared-nothing",
+      "title": "Shared Nothing",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+      "pages": [
+        5,
+        8
+      ],
+      "questions": [
+        {
+          "id": "l26-shared-nothing-q1",
+          "prompt": "A node has its own CPU, RAM, and disk and communicates with other nodes only through the network. What architecture is this?",
+          "options": [
+            "Shared nothing",
+            "Shared memory, because the nodes still exchange messages",
+            "Shared disk, because all nodes query one logical database",
+            "Shared memory with a private cache for each CPU"
+          ],
+          "answer": 0,
+          "explanation": "Shared nothing does not directly share RAM or disks between nodes; pipelining, by contrast, is an execution technique.",
+          "pages": [
+            5,
+            8
+          ]
+        },
+        {
+          "id": "l26-shared-nothing-q2",
+          "prompt": "Why can consistency be harder to maintain in a shared-nothing system?",
+          "options": [
+            "Instances access the same RAM addresses directly without locks",
+            "Nodes must coordinate over the network",
+            "All nodes modify a single shared buffer pool",
+            "Each node must use the same physical disk"
+          ],
+          "answer": 1,
+          "explanation": "Independent resources help the system scale, but maintaining consistency requires network messages.",
+          "pages": [
+            8
+          ]
+        },
+        {
+          "id": "l26-shared-nothing-q3",
+          "prompt": "What is the natural way to increase capacity in a shared-nothing system?",
+          "options": [
+            "Add only CPUs that access an existing node's RAM and disk",
+            "Replace all private disks with a single shared disk",
+            "Add nodes with their own CPUs, RAM, and disks",
+            "Only replicate data without adding computing resources"
+          ],
+          "answer": 2,
+          "explanation": "Adding nodes adds independent resources; sharing disks would introduce the trade-offs of a shared-disk architecture.",
+          "pages": [
+            8
+          ]
+        },
+        {
+          "prompt": "In a shared-nothing system, how does node A obtain data held only at node B?",
+          "options": [
+            "Directly access B's RAM through a shared address space",
+            "Read the cluster's shared disk directly",
+            "Use A's cache, which is guaranteed to contain every tuple at B",
+            "Communicate with B over the network or transfer the relevant data"
+          ],
+          "answer": 3,
+          "explanation": "Nodes communicate only through the network; they do not directly share RAM or disks as the other architectures do.",
+          "pages": [
+            8
+          ],
+          "id": "l26-shared-nothing-q4"
+        },
+        {
+          "prompt": "Which deployment trade-off fits a shared-nothing architecture?",
+          "options": [
+            "Commodity resources are easy to add, but coordination software is more complex",
+            "Hardware is always the most expensive, but network communication is unnecessary",
+            "Capacity cannot be increased by adding nodes",
+            "All nodes share memory, so consistency is automatically guaranteed"
+          ],
+          "answer": 0,
+          "explanation": "Independent resources make scale-out convenient, but the system must handle network coordination and consistency.",
+          "pages": [
+            8
+          ],
+          "id": "l26-shared-nothing-q5"
+        }
+      ]
+    },
+    {
+      "id": "l26-parallelism",
+      "title": "Types of Parallelism in DBMSs",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+      "pages": [
+        9,
+        11
+      ],
+      "questions": [
+        {
+          "id": "l26-parallelism-q1",
+          "prompt": "Running two customers' queries at the same time is which type of parallelism?",
+          "options": [
+            "Intra-operator, because the same operator type may appear in both queries",
+            "Inter-operator within a single query",
+            "Inter-query",
+            "Partition parallelism for a single scan"
+          ],
+          "answer": 2,
+          "explanation": "Inter-query parallelism runs different queries concurrently; intra-operator parallelism divides the work of one operator.",
+          "pages": [
+            9
+          ]
+        },
+        {
+          "id": "l26-parallelism-q2",
+          "prompt": "Multiple CPUs scan different parts of a table for one query. What type of parallelism is this?",
+          "options": [
+            "Inter-query, because each CPU counts as a separate query",
+            "Only inter-operator, because there are multiple CPUs",
+            "Only pipeline parallelism, even though the data for just one operator is divided",
+            "Intra-query, intra-operator"
+          ],
+          "answer": 3,
+          "explanation": "A single scan is divided among several CPUs, so this is parallelism within one operator of the same query.",
+          "pages": [
+            9,
+            11
+          ]
+        },
+        {
+          "id": "l26-parallelism-q3",
+          "prompt": "What is one direct goal of intra-query parallelism?",
+          "options": [
+            "Reducing the latency of long-running queries",
+            "Only increasing the number of concurrent users, with no possible reduction in one query's runtime",
+            "Guaranteeing that throughput always increases exactly in proportion to the CPU count",
+            "Eliminating all waiting time between operators"
+          ],
+          "answer": 0,
+          "explanation": "Dividing the work can shorten query execution time; concurrency control is still necessary.",
+          "pages": [
+            9
+          ]
+        },
+        {
+          "id": "l26-parallelism-q4",
+          "prompt": "In a pipeline from f to g to h, different operators process different tuples simultaneously. What is this?",
+          "options": [
+            "Inter-query parallelism, because each tuple counts as a query",
+            "Inter-operator parallelism",
+            "Only intra-operator parallelism, because the operators process different tuples",
+            "Only bushy parallelism, because every pipeline consists of independent branches"
+          ],
+          "answer": 1,
+          "explanation": "Operator stages overlap within the same query; these are not independent queries.",
+          "pages": [
+            10
+          ]
+        },
+        {
+          "id": "l26-parallelism-q5",
+          "prompt": "Two independent join branches of a plan tree execute concurrently. What does this illustrate?",
+          "options": [
+            "Intra-operator parallelism, because both joins have the same operator name",
+            "Inter-query parallelism, because the branches are always separate SQL statements",
+            "Bushy (tree) parallelism",
+            "A linear pipeline, because the left branch's output must be the right branch's input"
+          ],
+          "answer": 2,
+          "explanation": "Bushy parallelism exploits independent branches; it does not require all operators to run one after another.",
+          "pages": [
+            10
+          ]
+        },
+        {
+          "id": "l26-parallelism-q6",
+          "prompt": "What distinguishes partition parallelism in the diagram from pipelining?",
+          "options": [
+            "Multiple independent queries share one partition",
+            "Different operators execute only sequentially over all the data",
+            "Every CPU repeats the same operation over the entire input",
+            "Multiple instances of the same operator process different portions of the data"
+          ],
+          "answer": 3,
+          "explanation": "Partition parallelism divides the input to one operator; pipelining overlaps different operators.",
+          "pages": [
+            10,
+            11
+          ]
+        },
+        {
+          "id": "l26-parallelism-q7",
+          "prompt": "What mechanism requires attention when more queries run concurrently?",
+          "options": [
+            "Concurrency control that accounts for parallelism",
+            "Only output-order control, with no control over shared data",
+            "Isolation can be discarded because the queries run on different CPUs",
+            "Only metadata needs locking; all data accesses are always independent"
+          ],
+          "answer": 0,
+          "explanation": "The lecture notes that inter-query parallelism needs appropriate concurrency control; isolation cannot simply be discarded.",
+          "pages": [
+            9
+          ]
+        },
+        {
+          "id": "l26-parallelism-q8",
+          "prompt": "In a two-branch join tree with materialization before the root join, what constrains the root join?",
+          "options": [
+            "Having multiple CPUs eliminates all input dependencies",
+            "It must wait for its inputs to be materialized as required by the plan",
+            "It can produce the complete result before either branch produces data",
+            "It must serialize both independent branches"
+          ],
+          "answer": 1,
+          "explanation": "Materialization creates a dependency: the root join needs the relevant inputs. The two lower branches can still execute concurrently.",
+          "pages": [
+            10
+          ]
+        },
+        {
+          "id": "l26-parallelism-q9",
+          "prompt": "An operator must receive all its input before producing any output. What does this blocking behavior most directly affect?",
+          "options": [
+            "It completely eliminates the ability to parallelize the input scan",
+            "It increases the required number of replicas for every table",
+            "The ability to overlap its execution with a downstream operator in a pipeline",
+            "It forces every upstream operator to use the same CPU"
+          ],
+          "answer": 2,
+          "explanation": "Pipelining depends on forwarding results while they are being produced; materialization can interrupt that overlap.",
+          "pages": [
+            10
+          ]
+        },
+        {
+          "id": "l26-parallelism-q10",
+          "prompt": "A query uses both a partitioned scan and a pipeline into a filter. Which statement is correct?",
+          "options": [
+            "These two types of parallelism are mutually exclusive within a query",
+            "With multiple CPUs, the only possible classification is inter-query",
+            "Pipelining requires each operator to process the entire input sequentially",
+            "Intra-operator and inter-operator parallelism can be combined"
+          ],
+          "answer": 3,
+          "explanation": "Both levels can coexist: work is divided within an operator, and execution overlaps between operators.",
+          "pages": [
+            9,
+            10,
+            11
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l26-partitioning",
+      "title": "Horizontal Partitioning",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+      "pages": [
+        12,
+        13
+      ],
+      "questions": [
+        {
+          "id": "l26-partitioning-q1",
+          "prompt": "How does horizontal partitioning divide a table?",
+          "options": [
+            "It divides each tuple's attributes into groups of columns",
+            "It copies the entire table to every node",
+            "It keeps all rows on one node and divides only the index",
+            "It divides tuples into disjoint subsets"
+          ],
+          "answer": 3,
+          "explanation": "Horizontal partitioning divides rows while retaining their columns; dividing columns is vertical partitioning.",
+          "pages": [
+            13
+          ]
+        },
+        {
+          "id": "l26-partitioning-q2",
+          "prompt": "After executing query fragments on the partitions, what must the DBMS do?",
+          "options": [
+            "Combine their results into one answer",
+            "Return only the result of the partition with the most rows",
+            "Return replicas as additional logical rows",
+            "Always apply DISTINCT, even when the query uses bag semantics"
+          ],
+          "answer": 0,
+          "explanation": "Physical partitioning must still produce the complete result of the logical query.",
+          "pages": [
+            12
+          ]
+        },
+        {
+          "id": "l26-partitioning-q3",
+          "prompt": "What is another name for database partitioning?",
+          "options": [
+            "Replication",
+            "Sharding",
+            "Vertical projection",
+            "Materialization"
+          ],
+          "answer": 1,
+          "explanation": "Sharding refers to partitioning data; it is distinct from backup or lock management.",
+          "pages": [
+            12
+          ]
+        },
+        {
+          "id": "l26-partitioning-q4",
+          "prompt": "Besides data size, what should be considered when choosing a partitioning column?",
+          "options": [
+            "Only the row count, because every tuple costs the same to process",
+            "Only disk capacity, ignoring access frequency",
+            "Load and data-usage patterns",
+            "Only key order, because all workload distributions are equivalent"
+          ],
+          "answer": 2,
+          "explanation": "Balanced row counts do not guarantee balanced load; the lecture identifies size, load, and usage as considerations.",
+          "pages": [
+            13
+          ]
+        },
+        {
+          "id": "l26-partitioning-q5",
+          "prompt": "Which option is not one of the three horizontal-partitioning methods discussed?",
+          "options": [
+            "Round-robin distribution of whole tuples in turn",
+            "Hash partitioning that maps whole tuples using a key",
+            "Range partitioning that divides tuples by key ranges",
+            "Separating personal-information columns from payment-information columns"
+          ],
+          "answer": 3,
+          "explanation": "Dividing columns is vertical partitioning; all three methods in the slides distribute whole tuples.",
+          "pages": [
+            13
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l26-round-robin",
+      "title": "Round-Robin Partitioning",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+      "pages": [
+        14,
+        14
+      ],
+      "questions": [
+        {
+          "id": "l26-round-robin-q1",
+          "prompt": "With 4 partitions P1–P4 and distribution starting at P1, where does the 6th tuple go?",
+          "options": [
+            "P2",
+            "P1, because each cycle restarts after the 5th tuple",
+            "P3, because the 6th tuple has index 6 mod 3",
+            "P4, because the four partitions receive consecutive pairs of tuples"
+          ],
+          "answer": 0,
+          "explanation": "The sequence repeats as P1,P2,P3,P4,P1,P2; placement does not depend on key values.",
+          "pages": [
+            14
+          ]
+        },
+        {
+          "id": "l26-round-robin-q2",
+          "prompt": "What is a direct strength of round-robin partitioning?",
+          "options": [
+            "It puts all equal join keys on the same node",
+            "It distributes tuple counts relatively evenly",
+            "It routes range queries using only key values",
+            "It guarantees balanced CPU costs even when tuples have different processing costs"
+          ],
+          "answer": 1,
+          "explanation": "Taking turns balances row counts, but it does not guarantee placement based on key values.",
+          "pages": [
+            14
+          ]
+        },
+        {
+          "id": "l26-round-robin-q3",
+          "prompt": "Does round-robin partitioning guarantee that two tuples with the same key are in the same partition?",
+          "options": [
+            "Yes, because round-robin uses the hash of the key",
+            "Yes, because duplicate values are always grouped before distribution",
+            "No, placement depends on the distribution turn",
+            "Yes, provided the tuples belong to the same table"
+          ],
+          "answer": 2,
+          "explanation": "Round-robin does not use key values, so equal keys can be spread across multiple nodes.",
+          "pages": [
+            14
+          ]
+        },
+        {
+          "id": "l26-round-robin-q4",
+          "prompt": "There are 10 tuples and 3 partitions, starting at P1. What are the respective tuple counts?",
+          "options": [
+            "3, 4, 3",
+            "5, 3, 2",
+            "4, 4, 2",
+            "4, 3, 3"
+          ],
+          "answer": 3,
+          "explanation": "Turns 1,4,7,10 go to P1; 2,5,8 go to P2; and 3,6,9 go to P3. Because distribution starts at P1, that partition receives the extra tuple.",
+          "pages": [
+            14
+          ]
+        },
+        {
+          "id": "l26-round-robin-q5",
+          "prompt": "Why do balanced tuple counts not guarantee balanced processing costs?",
+          "options": [
+            "Tuples can differ in size or processing cost",
+            "Round-robin always sends every hot key to one node",
+            "Balanced tuple counts force every partition to have the same byte count",
+            "Every partition must have the same access frequency"
+          ],
+          "answer": 0,
+          "explanation": "Round-robin balances counts; it does not automatically balance every kind of cost or the popularity of the data.",
+          "pages": [
+            13,
+            14
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l26-hash-partitioning",
+      "title": "Hash Partitioning",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+      "pages": [
+        15,
+        15
+      ],
+      "questions": [
+        {
+          "id": "l26-hash-partitioning-q1",
+          "prompt": "Which query is best suited to hash partitioning on customer_id?",
+          "options": [
+            "WHERE customer_id BETWEEN 10 AND 90, guaranteeing that only one shard is read",
+            "WHERE customer_id = 42",
+            "ORDER BY customer_id, so partitions can be concatenated without merging",
+            "WHERE email = a value, when email is not the partition key"
+          ],
+          "answer": 1,
+          "explanation": "An equality lookup on the key identifies the partition; a range of key values usually does not correspond to a range of hash buckets.",
+          "pages": [
+            15
+          ]
+        },
+        {
+          "id": "l26-hash-partitioning-q2",
+          "prompt": "Where do tuples with the same key value go when the same partitioning function is used?",
+          "options": [
+            "Different partitions to avoid duplicate keys",
+            "Every partition, because hashing always creates replicas",
+            "The same partition",
+            "Whichever partition is least busy, regardless of the hash value"
+          ],
+          "answer": 2,
+          "explanation": "A deterministic function maps equal keys to the same destination; this does not mean it automatically balances the current load.",
+          "pages": [
+            15
+          ]
+        },
+        {
+          "id": "l26-hash-partitioning-q3",
+          "prompt": "With partition index = h(k) mod 4 and h(k)=14, what is the index?",
+          "options": [
+            "0",
+            "1",
+            "3",
+            "2"
+          ],
+          "answer": 3,
+          "explanation": "Dividing 14 by 4 leaves a remainder of 2. This is an index, not a partition name P using numbering that starts at 1.",
+          "pages": [
+            15
+          ]
+        },
+        {
+          "id": "l26-hash-partitioning-q4",
+          "prompt": "Why does hash partitioning help GROUP BY on the partition key itself?",
+          "options": [
+            "Rows in the same group can be placed on the same node",
+            "The hash function has already computed SUM for each group",
+            "Each group always contains only one tuple",
+            "Different values can never share a hash bucket"
+          ],
+          "answer": 0,
+          "explanation": "Co-locating a group's data enables local processing; hashing does not replace the aggregate operation.",
+          "pages": [
+            15
+          ]
+        },
+        {
+          "id": "l26-hash-partitioning-q5",
+          "prompt": "What problem can arise if one key appears in 70% of the rows?",
+          "options": [
+            "Hashing guarantees that the hot key is spread evenly across all nodes",
+            "Skew can overload one partition",
+            "Each row with the hot key automatically becomes a separate logical group",
+            "Every query on that key reads only one row"
+          ],
+          "answer": 1,
+          "explanation": "Hashing sends equal keys to the same destination, so a hot key can still cause an uneven workload.",
+          "pages": [
+            15,
+            44
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l26-range-partitioning",
+      "title": "Range Partitioning",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+      "pages": [
+        16,
+        16
+      ],
+      "questions": [
+        {
+          "id": "l26-range-partitioning-q1",
+          "prompt": "P1 contains [a–c], P2 contains [d–e], P3 contains [f–m], and P4 contains [n–z]. Where does key h belong?",
+          "options": [
+            "P1",
+            "P2",
+            "P3",
+            "P4"
+          ],
+          "answer": 2,
+          "explanation": "h lies in the range f–m; routing follows range boundaries, not insertion order.",
+          "pages": [
+            16
+          ]
+        },
+        {
+          "id": "l26-range-partitioning-q2",
+          "prompt": "Which type of query is an additional strength of range partitioning over hash partitioning?",
+          "options": [
+            "Every lookup on a non-partition-key column reads only one node",
+            "Every GROUP BY on another column is entirely local",
+            "Every range contains the same number of rows without using statistics",
+            "Range queries on the partition key"
+          ],
+          "answer": 3,
+          "explanation": "Consecutive key values map to identifiable partitions; hashing does not preserve this order.",
+          "pages": [
+            15,
+            16
+          ]
+        },
+        {
+          "id": "l26-range-partitioning-q3",
+          "prompt": "How should range boundaries be defined so that partitions are disjoint subsets that cover the stored data?",
+          "options": [
+            "They should not overlap and should cover the domain to be stored",
+            "Every range should cover the entire domain so nothing is missed",
+            "Ranges may overlap arbitrarily without a destination-selection rule",
+            "Non-overlap alone is enough; not every valid value needs to be covered"
+          ],
+          "answer": 0,
+          "explanation": "Boundary rules must assign each tuple to exactly one partition; overlapping ranges create ambiguity.",
+          "pages": [
+            13,
+            16
+          ]
+        },
+        {
+          "id": "l26-range-partitioning-q4",
+          "prompt": "What problem can arise if most data falls within one range?",
+          "options": [
+            "Range partitioning automatically balances row counts regardless of the distribution",
+            "That partition becomes larger and slower to process",
+            "Duplicate keys are automatically spread evenly across all ranges",
+            "Only hash partitioning can suffer from skew"
+          ],
+          "answer": 1,
+          "explanation": "Ranges do not automatically contain equal numbers of rows; a skewed distribution can create a bottleneck.",
+          "pages": [
+            13,
+            16,
+            44
+          ]
+        },
+        {
+          "id": "l26-range-partitioning-q5",
+          "prompt": "Which partitions in the diagram must be read for keys from g to k?",
+          "options": [
+            "P1 [a–c] and P2 [d–e]",
+            "All four partitions, even though their boundaries are known",
+            "Only P3 [f–m]",
+            "Only P4 [n–z]"
+          ],
+          "answer": 2,
+          "explanation": "The entire range g–k lies inside f–m, so the other partitions can be pruned.",
+          "pages": [
+            16
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l26-replication",
+      "title": "Replication",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+      "pages": [
+        17,
+        17
+      ],
+      "questions": [
+        {
+          "id": "l26-replication-q1",
+          "prompt": "What is the main goal of replication identified in the lecture?",
+          "options": [
+            "Guaranteeing that every write is cheaper than with a single copy",
+            "Eliminating the need to transmit updates between nodes",
+            "Increasing logical capacity without increasing physical storage",
+            "Increasing availability"
+          ],
+          "answer": 3,
+          "explanation": "Multiple copies can keep data available when one location cannot serve it.",
+          "pages": [
+            17
+          ]
+        },
+        {
+          "id": "l26-replication-q2",
+          "prompt": "What does partition replication mean?",
+          "options": [
+            "Keeping copies of an entire partition in multiple locations",
+            "Dividing one partition into disjoint sets of tuples",
+            "Storing the whole table in every partition, regardless of how many partitions it has",
+            "Storing each column of a partition in a different location"
+          ],
+          "answer": 0,
+          "explanation": "Copying a partition is different from table replication, which copies an entire table.",
+          "pages": [
+            17
+          ]
+        },
+        {
+          "id": "l26-replication-q3",
+          "prompt": "According to the slide, what kind of table is generally best suited to table replication?",
+          "options": [
+            "A very large, constantly updated table, because synchronization is always free",
+            "A small, read-only table",
+            "A table that occupies most of the storage but is rarely read",
+            "A table requiring every write to synchronize with thousands of replicas at minimal latency"
+          ],
+          "answer": 1,
+          "explanation": "A small table that changes little reduces storage and synchronization costs; frequent writes make replication more expensive.",
+          "pages": [
+            17
+          ]
+        },
+        {
+          "id": "l26-replication-q4",
+          "prompt": "When a table with multiple replicas is updated, what must the DBMS do?",
+          "options": [
+            "Update only one replica and assume the others are always correct",
+            "Discard every update after the first replica receives it",
+            "Propagate changes to the copies",
+            "Let each replica choose a value without synchronization rules"
+          ],
+          "answer": 2,
+          "explanation": "The lecture requires update propagation for both replication types; the other copies cannot simply be ignored.",
+          "pages": [
+            17
+          ]
+        },
+        {
+          "id": "l26-replication-q5",
+          "prompt": "What is the fundamental difference between partitioning and replication?",
+          "options": [
+            "Both create a complete copy at every node",
+            "Replication divides a tuple's columns among nodes",
+            "Partitioning always creates multiple copies of each tuple",
+            "Partitioning divides data; replication creates additional copies"
+          ],
+          "answer": 3,
+          "explanation": "A system can combine both techniques, but dividing data and copying it serve different purposes.",
+          "pages": [
+            12,
+            17
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l26-transparency",
+      "title": "Data Transparency",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+      "pages": [
+        18,
+        18
+      ],
+      "questions": [
+        {
+          "id": "l26-transparency-q1",
+          "prompt": "What does data transparency allow users to avoid knowing?",
+          "options": [
+            "Where data is located and how it is partitioned and replicated",
+            "The names and meanings of tables in the logical schema",
+            "The JOIN conditions required by a business query",
+            "Which columns a query should return"
+          ],
+          "answer": 0,
+          "explanation": "Transparency hides physical organization, not the logical meaning of a query.",
+          "pages": [
+            18
+          ]
+        },
+        {
+          "id": "l26-transparency-q2",
+          "prompt": "How should moving a partition to another node affect an application's SQL?",
+          "options": [
+            "Every SELECT must be edited to include the new node's address",
+            "The logical SQL should continue to work as before",
+            "The logical result must change with the physical location",
+            "Every join between partitions must be removed"
+          ],
+          "answer": 1,
+          "explanation": "Data transparency preserves the interface and semantics when data placement changes.",
+          "pages": [
+            18
+          ]
+        },
+        {
+          "id": "l26-transparency-q3",
+          "prompt": "A row has three replicas. Should a logical SELECT automatically return that row three times?",
+          "options": [
+            "Yes, each replica is always an additional logical tuple",
+            "Yes, unless the application selects a replica by IP address",
+            "No, replicas do not automatically multiply logical results",
+            "Only if the DBMS does not automatically apply DISTINCT to every query"
+          ],
+          "answer": 2,
+          "explanation": "Replication is a physical implementation detail; the result must be equivalent to querying one logical database.",
+          "pages": [
+            18
+          ]
+        },
+        {
+          "id": "l26-transparency-q4",
+          "prompt": "Who determines which nodes to access when data transparency is maintained?",
+          "options": [
+            "The application must send each query fragment to each machine itself",
+            "The user must choose a replica for each row",
+            "Every SQL statement must declare the complete partitioning scheme",
+            "The DBMS"
+          ],
+          "answer": 3,
+          "explanation": "The DBMS hides routing and result-combination decisions from the person writing SQL.",
+          "pages": [
+            12,
+            18
+          ]
+        },
+        {
+          "id": "l26-transparency-q5",
+          "prompt": "Which claim does not follow from data transparency?",
+          "options": [
+            "Every query has the same runtime under every data layout",
+            "SQL retains the same logical meaning",
+            "Users do not need to know where replicas are located",
+            "Users do not need to know how tables are partitioned"
+          ],
+          "answer": 0,
+          "explanation": "Semantic transparency does not guarantee identical performance; data location still affects cost.",
+          "pages": [
+            18,
+            43,
+            44
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l26-scans",
+      "title": "Parallel Scans",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+      "pages": [
+        20,
+        20
+      ],
+      "questions": [
+        {
+          "id": "l26-scans-q1",
+          "prompt": "How are the outputs of parallel partition scans basically combined?",
+          "options": [
+            "Always remove duplicates, as in SELECT DISTINCT",
+            "Concatenate the result streams",
+            "Keep only the fastest partition's result",
+            "Compute the Cartesian product of the streams"
+          ],
+          "answer": 1,
+          "explanation": "A parallel scan combines the outputs of its parts; it does not automatically add DISTINCT or JOIN semantics.",
+          "pages": [
+            20
+          ]
+        },
+        {
+          "id": "l26-scans-q2",
+          "prompt": "In the slide's example, a sequential scan takes 200,000 seconds. Ideally, how long does it take on 100 machines?",
+          "options": [
+            "200 seconds",
+            "20,000 seconds",
+            "2,000 seconds",
+            "200,000 seconds"
+          ],
+          "answer": 2,
+          "explanation": "200,000/100=2,000. This is an ideal calculation, not a claim that there is no overhead.",
+          "pages": [
+            20
+          ]
+        },
+        {
+          "id": "l26-scans-q3",
+          "prompt": "When can a filter skip an entire site?",
+          "options": [
+            "When the site contains fewer rows than other sites",
+            "When the site responds more slowly than in the previous scan",
+            "When another site has already returned at least one matching row",
+            "When it is known that the site contains no tuple satisfying the condition"
+          ],
+          "answer": 3,
+          "explanation": "Partition pruning requires establishing that no matching row is present; it is not based on a site's name or speed.",
+          "pages": [
+            20
+          ]
+        },
+        {
+          "id": "l26-scans-q4",
+          "prompt": "How does partitioning by date ranges help a query that needs only January?",
+          "options": [
+            "Skip partitions whose date ranges do not overlap January",
+            "Read only the partition containing the most January rows",
+            "Skip the January partition because the condition already identifies the month",
+            "Read one row from each partition to infer the remaining rows"
+          ],
+          "answer": 0,
+          "explanation": "Range metadata allows sites known to contain no matching data to be excluded.",
+          "pages": [
+            20
+          ]
+        },
+        {
+          "id": "l26-scans-q5",
+          "prompt": "What can make the actual speedup lower than the linear speedup in the example?",
+          "options": [
+            "Every partition always takes exactly the same time to scan",
+            "Coordination overhead or uneven load across nodes",
+            "Adding machines proportionally increases the total amount of logical data",
+            "Combining results cannot involve communication or coordination costs"
+          ],
+          "answer": 1,
+          "explanation": "Ideal speedup ignores overhead and bottlenecks; these reduce performance without making the parallel scan semantically incorrect.",
+          "pages": [
+            20,
+            44
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l26-lookup",
+      "title": "Lookup By Key",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+      "pages": [
+        21,
+        21
+      ],
+      "questions": [
+        {
+          "id": "l26-lookup-q1",
+          "prompt": "Data is partitioned using a function of the lookup key. Where should the request go?",
+          "options": [
+            "Every node, because equality lookups always require broadcasting",
+            "Only the coordinator, even if the data is elsewhere",
+            "The appropriate node identified from the key",
+            "The node with the least data rather than the node mapped from the key"
+          ],
+          "answer": 2,
+          "explanation": "Knowing the key-to-partition mapping allows direct routing and avoids unnecessary broadcasting.",
+          "pages": [
+            21
+          ]
+        },
+        {
+          "id": "l26-lookup-q2",
+          "prompt": "There is no partitioning or routing mechanism for the lookup key. What basic approach does the slide use?",
+          "options": [
+            "Choose a random node and interpret an empty result as proof that the row does not exist",
+            "Ask only the node with the smallest key",
+            "Ask only a replica of an arbitrary partition",
+            "Broadcast the request to the nodes"
+          ],
+          "answer": 3,
+          "explanation": "If the row's location is unknown, checking only one node can miss it; the slide uses broadcasting.",
+          "pages": [
+            21
+          ]
+        },
+        {
+          "id": "l26-lookup-q3",
+          "prompt": "A table is partitioned by customer_id, but a lookup uses email and there is no secondary index. What follows?",
+          "options": [
+            "A single partition cannot be inferred from the email alone",
+            "An email always maps to the same partition as its customer_id",
+            "Every shard always has a complete copy of all email values",
+            "An equality lookup automatically has a global secondary index"
+          ],
+          "answer": 0,
+          "explanation": "The lookup key differs from the partition key, so routing information is missing; all nodes may need to be queried.",
+          "pages": [
+            21
+          ]
+        },
+        {
+          "id": "l26-lookup-q4",
+          "prompt": "When can both range and hash partitioning help with a key lookup?",
+          "options": [
+            "Only when each node has a complete copy of the table",
+            "When the partitioning scheme uses the key being looked up",
+            "Only when all data has been sorted on one machine",
+            "Even when the lookup key is entirely unrelated to the partition key"
+          ],
+          "answer": 1,
+          "explanation": "Both schemes can map a specific key to a partition; full replication is not required.",
+          "pages": [
+            21
+          ]
+        },
+        {
+          "id": "l26-lookup-q5",
+          "prompt": "There are 8 nodes, and the key's partition is known. What is the direct advantage over broadcasting?",
+          "options": [
+            "Reducing the physical size of each row to 1/8",
+            "Guaranteeing that the lookup needs no memory or disk access",
+            "Reducing the number of nodes that receive the lookup request",
+            "Eliminating all transaction-coordination costs"
+          ],
+          "answer": 2,
+          "explanation": "Routing reduces communication fan-out; it does not automatically change data size or hardware durability.",
+          "pages": [
+            21
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l26-parallel-hashing",
+      "title": "Parallel Hashing",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+      "pages": [
+        22,
+        22
+      ],
+      "questions": [
+        {
+          "id": "l26-parallel-hashing-q1",
+          "prompt": "What is the role of h_n in parallel hashing?",
+          "options": [
+            "Establishing a global ascending order across nodes",
+            "Performing the local hash join in place of all later steps",
+            "Selecting only a bucket in the coordinator's RAM",
+            "Distributing data among nodes"
+          ],
+          "answer": 3,
+          "explanation": "h_n divides data among nodes; local hashing steps follow afterward.",
+          "pages": [
+            22
+          ]
+        },
+        {
+          "id": "l26-parallel-hashing-q2",
+          "prompt": "After distribution using h_n, what does each node do?",
+          "options": [
+            "Perform external hashing independently",
+            "Always gather all data at the coordinator for hashing",
+            "Perform a mandatory global sort before any hashing step",
+            "Keep only the tuple with the smallest hash on each machine"
+          ],
+          "answer": 0,
+          "explanation": "Inter-node distribution is combined with a local external-hashing algorithm.",
+          "pages": [
+            22
+          ]
+        },
+        {
+          "id": "l26-parallel-hashing-q3",
+          "prompt": "Why does the slide compare parallel hashing with recursive partitioning?",
+          "options": [
+            "No step needs to store intermediate partitions",
+            "An inter-node partitioning step is followed by further partitioning or processing within each node",
+            "Every level must use a single bucket",
+            "All data must fit in one node's RAM"
+          ],
+          "answer": 1,
+          "explanation": "This hierarchy of data subdivision resembles recursive partitioning; it does not require all data to fit in memory.",
+          "pages": [
+            22
+          ]
+        },
+        {
+          "id": "l26-parallel-hashing-q4",
+          "prompt": "What can happen if h_n sends most tuples to one node?",
+          "options": [
+            "Lightly loaded nodes automatically receive the data without repartitioning",
+            "Adding nodes automatically guarantees perfectly balanced redistribution",
+            "That node can dominate the completion time",
+            "Completion time depends only on the fastest node"
+          ],
+          "answer": 2,
+          "explanation": "Skew reduces the benefit of dividing the work; hash partitioning does not guarantee perfectly balanced load.",
+          "pages": [
+            22,
+            44
+          ]
+        },
+        {
+          "id": "l26-parallel-hashing-q5",
+          "prompt": "Which statement about inter-node and local hashing is correct?",
+          "options": [
+            "h_n replaces all local partitioning, even when data exceeds RAM",
+            "Inter-node hashing must preserve global key order",
+            "Using hashing at every level makes collisions impossible",
+            "They divide data at different levels"
+          ],
+          "answer": 3,
+          "explanation": "The diagram distinguishes h_n from the local h_p and h_r steps; one level does not replace the entire algorithm.",
+          "pages": [
+            22
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l26-hash-join",
+      "title": "Parallel Hash Join",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+      "pages": [
+        23,
+        23
+      ],
+      "questions": [
+        {
+          "id": "l26-hash-join-q1",
+          "prompt": "On which attribute must two relations be hash-partitioned to perform an equijoin locally?",
+          "options": [
+            "The join key",
+            "Their existing partition keys, even if these differ from the join key",
+            "Two independently chosen columns in the two tables",
+            "Each tuple's position within its table"
+          ],
+          "answer": 0,
+          "explanation": "Partitioning on the join key brings potentially matching tuples to the same node; partitioning on another column can miss pairs.",
+          "pages": [
+            23
+          ]
+        },
+        {
+          "id": "l26-hash-join-q2",
+          "prompt": "R and S use incompatible key-to-node mappings. What is the risk?",
+          "options": [
+            "Matching tuples are still guaranteed to be together because the key names match",
+            "Matching tuples may be on different nodes",
+            "Hash join finds all tuples on other nodes without network communication",
+            "Equal partition counts alone always guarantee co-location"
+          ],
+          "answer": 1,
+          "explanation": "Co-location requires compatible mappings for both inputs.",
+          "pages": [
+            23
+          ]
+        },
+        {
+          "id": "l26-hash-join-q3",
+          "prompt": "What happens in phase 2 of a parallel hash join?",
+          "options": [
+            "Both relations are gathered onto one node immediately after being distributed",
+            "Both relations must be globally sorted",
+            "A local hash join runs at each node",
+            "The two inputs are merely concatenated without checking join keys"
+          ],
+          "answer": 2,
+          "explanation": "After repartitioning, each node uses a conventional hash-join algorithm, such as Grace hash join.",
+          "pages": [
+            23
+          ]
+        },
+        {
+          "id": "l26-hash-join-q4",
+          "prompt": "R has a tuple with key 7 at node A, and S has a tuple with key 7 at node B. What must the distribution phase ensure?",
+          "options": [
+            "Preserve their locations and join only tuples already present locally",
+            "Send only the keys, discarding all attributes needed in the result",
+            "Change key values so the two nodes have disjoint key domains",
+            "Bring both tuples to the same destination node"
+          ],
+          "answer": 3,
+          "explanation": "The goal is to co-locate matching pairs; data must not be changed or deleted simply to avoid communication.",
+          "pages": [
+            23
+          ]
+        },
+        {
+          "id": "l26-hash-join-q5",
+          "prompt": "What important extra cost does parallel hash join incur compared with a single-node hash join?",
+          "options": [
+            "Transferring data between nodes during repartitioning",
+            "A mandatory global sort despite using hash join",
+            "Eliminating all local I/O even when partitions exceed RAM",
+            "A mandatory complete copy of both tables at every node"
+          ],
+          "answer": 0,
+          "explanation": "Parallel hash join adds a network-distribution phase before the local joins.",
+          "pages": [
+            23
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l26-sorting",
+      "title": "Parallel Sorting",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+      "pages": [
+        24,
+        24
+      ],
+      "questions": [
+        {
+          "id": "l26-sorting-q1",
+          "prompt": "How does the parallel-sorting slide distribute data among machines?",
+          "options": [
+            "Round-robin, after which any concatenation of outputs gives global order",
+            "Range partitioning",
+            "Full replication on every machine so each tuple is sorted repeatedly",
+            "Hash partitioning, after which concatenating buckets in hash order is sufficient"
+          ],
+          "answer": 1,
+          "explanation": "Machines hold different key ranges, so their locally sorted results can be concatenated in range order.",
+          "pages": [
+            24
+          ]
+        },
+        {
+          "id": "l26-sorting-q2",
+          "prompt": "After range partitioning, what does each machine do?",
+          "options": [
+            "Hash its input instead of sorting, because hashing preserves order",
+            "Sort only the smallest key and discard the rest",
+            "Run external sorting on its own data",
+            "Always gather all partitions onto one machine for sorting"
+          ],
+          "answer": 2,
+          "explanation": "The lecture distributes the work and then runs external sorting independently on each machine.",
+          "pages": [
+            24
+          ]
+        },
+        {
+          "id": "l26-sorting-q3",
+          "prompt": "Node A holds keys <100 and node B holds keys ≥100; both are sorted. How can a global ascending order be produced?",
+          "options": [
+            "Concatenate B's output before A's",
+            "Interleave tuples from A and B arbitrarily",
+            "Keep only the output of the partition with larger keys",
+            "Concatenate A's output before B's"
+          ],
+          "answer": 3,
+          "explanation": "Ordered, non-overlapping ranges allow concatenation in boundary order.",
+          "pages": [
+            24
+          ]
+        },
+        {
+          "id": "l26-sorting-q4",
+          "prompt": "If tuples are distributed round-robin and then sorted locally, does concatenating the nodes' outputs guarantee global order?",
+          "options": [
+            "No, the nodes' key domains can interleave",
+            "Yes, local sorting automatically establishes key boundaries between nodes",
+            "Yes, provided every node has the same number of tuples",
+            "Yes, because round-robin keeps all small keys at the first node"
+          ],
+          "answer": 0,
+          "explanation": "Local sorting does not order arbitrary partitions relative to one another; range partitioning or an additional merge is needed.",
+          "pages": [
+            24
+          ]
+        },
+        {
+          "id": "l26-sorting-q5",
+          "prompt": "What is the risk if one range contains 90% of the tuples?",
+          "options": [
+            "Increasing the number of ranges automatically guarantees equal sorting times",
+            "Sorting at that node becomes a bottleneck",
+            "The local sort becomes incorrect solely because the distribution is skewed",
+            "External sorting works only when all partitions have the same size"
+          ],
+          "answer": 1,
+          "explanation": "Sorting remains correct, but skew reduces parallelism; suitable range boundaries are needed to balance the load.",
+          "pages": [
+            24,
+            44
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l26-sort-merge-join",
+      "title": "Parallel Sort Merge Join",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+      "pages": [
+        25,
+        25
+      ],
+      "questions": [
+        {
+          "id": "l26-sort-merge-join-q1",
+          "prompt": "How must the two relations be range-partitioned?",
+          "options": [
+            "On the join key, with arbitrary independent boundaries for each table",
+            "On any sort column, even if it is not the join key",
+            "On the join key using the same ranges",
+            "Round-robin with the same number of partitions is always sufficient"
+          ],
+          "answer": 2,
+          "explanation": "The same key and boundaries ensure that matching pairs reach the same node.",
+          "pages": [
+            25
+          ]
+        },
+        {
+          "id": "l26-sort-merge-join-q2",
+          "prompt": "R is split at 100 and S at 50, then corresponding nodes perform local joins. What problem can occur?",
+          "options": [
+            "Every pair remains co-located merely because both tables use id",
+            "Local sorting automatically fixes placement mismatches between nodes",
+            "Different boundaries affect only output order and cannot cause missed pairs",
+            "Tuples with the same key 75 can be on different nodes"
+          ],
+          "answer": 3,
+          "explanation": "Different boundaries break co-location; partitioning on the same column alone is insufficient.",
+          "pages": [
+            25
+          ]
+        },
+        {
+          "id": "l26-sort-merge-join-q3",
+          "prompt": "After compatible range partitioning, which join runs at each machine?",
+          "options": [
+            "An independent sort-merge join",
+            "A Cartesian product without applying the join condition",
+            "Simple concatenation of the two sorted relations",
+            "A mandatory broadcast of every partition to every node"
+          ],
+          "answer": 0,
+          "explanation": "Each node sorts and merges its relevant data using the local algorithm.",
+          "pages": [
+            25
+          ]
+        },
+        {
+          "id": "l26-sort-merge-join-q4",
+          "prompt": "How do the distribution steps differ for parallel hash join and sort-merge join in the slides?",
+          "options": [
+            "Hash join uses the join key, but sort-merge join does not need it",
+            "Hash partitioning on the key versus range partitioning on the key",
+            "Both require round-robin distribution",
+            "Sort-merge join always avoids all network-transfer costs"
+          ],
+          "answer": 1,
+          "explanation": "Both require matching keys to be co-located, but they use hash and range partitioning respectively.",
+          "pages": [
+            23,
+            25
+          ]
+        },
+        {
+          "id": "l26-sort-merge-join-q5",
+          "prompt": "If all tuples have the same join key, does adding ranges automatically divide them evenly for local joins?",
+          "options": [
+            "Yes, every range automatically receives equal tuple counts even when keys are equal",
+            "Yes, disjoint ranges all contain the same hot key",
+            "No, they must still be handled according to the co-location rules",
+            "Yes, local sorting automatically redistributes tuples to less busy nodes"
+          ],
+          "answer": 2,
+          "explanation": "Range partitioning does not automatically solve the hot-key problem; distributing matching pairs across nodes requires an additional strategy.",
+          "pages": [
+            25,
+            44
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l26-join-observation",
+      "title": "Observation",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+      "pages": [
+        26,
+        26
+      ],
+      "questions": [
+        {
+          "id": "l26-join-observation-q1",
+          "prompt": "What is the central principle for a correct distributed join?",
+          "options": [
+            "Preserve input locations even when matching pairs are on different nodes",
+            "It is enough for the tables to have the same number of partitions",
+            "It is enough for all nodes to know the join key's name",
+            "Bring matching tuples together at the same processing location"
+          ],
+          "answer": 3,
+          "explanation": "Every matching pair must meet; the partitioning scheme determines how much communication is needed.",
+          "pages": [
+            26
+          ]
+        },
+        {
+          "id": "l26-join-observation-q2",
+          "prompt": "Why is gathering both tables onto one node usually a naive approach?",
+          "options": [
+            "It incurs network-transfer costs and loses parallelism",
+            "A single node cannot execute a logically correct join",
+            "Every distributed join must broadcast entire tables",
+            "Centralizing data always eliminates all local I/O"
+          ],
+          "answer": 0,
+          "explanation": "A local join can still be correct, but centralizing all inputs sacrifices the benefits of distributed processing.",
+          "pages": [
+            26
+          ]
+        },
+        {
+          "id": "l26-join-observation-q3",
+          "prompt": "What directly affects the efficiency of a distributed join?",
+          "options": [
+            "Only table sizes; tuple locations have no effect",
+            "The inputs' existing partitioning schemes",
+            "Only the number of CPUs, without considering network costs",
+            "Only the result count, without considering input movement"
+          ],
+          "answer": 1,
+          "explanation": "Partitioning determines whether matching pairs are already on the same node or need to be moved.",
+          "pages": [
+            26
+          ]
+        },
+        {
+          "id": "l26-join-observation-q4",
+          "prompt": "Once matching tuples are on the same node, is an entirely new family of join algorithms required?",
+          "options": [
+            "Yes, local hash join cannot be used after repartitioning",
+            "Yes, only nested-loop joins can run at each node",
+            "No, the local join algorithms already studied can be used",
+            "No, because co-location completely replaces join-condition checks"
+          ],
+          "answer": 2,
+          "explanation": "The lecture reuses conventional join algorithms after resolving data placement.",
+          "pages": [
+            26
+          ]
+        },
+        {
+          "id": "l26-join-observation-q5",
+          "prompt": "Two plans produce the same correct result. Which cost can still differ substantially?",
+          "options": [
+            "The meaning of key equality automatically changes between nodes",
+            "The correct number of rows must change with the movement algorithm",
+            "The number of logical replicas in the result must increase with the machine count",
+            "The amount of data transferred between nodes"
+          ],
+          "answer": 3,
+          "explanation": "Input placement and movement strategies can lead to very different network costs.",
+          "pages": [
+            26
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l26-scenario1",
+      "title": "Scenario #1",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+      "pages": [
+        27,
+        28
+      ],
+      "questions": [
+        {
+          "id": "l26-scenario1-q1",
+          "prompt": "In Scenario #1, what is assumed about one input table?",
+          "options": [
+            "It is replicated at every node",
+            "It exists only at the coordinator and has not yet been distributed",
+            "It is partitioned across nodes using a different key",
+            "Each node holds only a disjoint subset"
+          ],
+          "answer": 0,
+          "explanation": "Table S is already replicated, so every node has all of S to join with its local portion of R.",
+          "pages": [
+            27
+          ]
+        },
+        {
+          "id": "l26-scenario1-q2",
+          "prompt": "What join does each node perform in Scenario #1?",
+          "options": [
+            "The whole of R with the whole of S at every node, followed by concatenation of all results",
+            "Its local portion of R with a complete copy of S",
+            "Its local R with an arbitrary portion of S, regardless of keys",
+            "Only R tuples that have already matched at another node"
+          ],
+          "answer": 1,
+          "explanation": "R is divided among nodes and every node has all of S; each portion of R contributes its corresponding results.",
+          "pages": [
+            27
+          ]
+        },
+        {
+          "id": "l26-scenario1-q3",
+          "prompt": "According to the diagram, where do results go after the local joins?",
+          "options": [
+            "Only one node's result is retained because S is replicated",
+            "They are broadcast again to repeat the same join",
+            "To the coordinator for combination",
+            "They must pass through DISTINCT to remove all rows with equal values"
+          ],
+          "answer": 2,
+          "explanation": "The coordinator combines the results; it does not change the input tables.",
+          "pages": [
+            28
+          ]
+        },
+        {
+          "id": "l26-scenario1-q4",
+          "prompt": "Why is there no need to broadcast S again at join time if valid replicas already exist?",
+          "options": [
+            "The tables have equal row counts, so no movement is needed",
+            "The join reads only R and no longer needs S",
+            "The coordinator can infer all of S from R's keys",
+            "Every node already has all of S"
+          ],
+          "answer": 3,
+          "explanation": "The benefit comes from existing replication, not from ignoring one of the join's inputs.",
+          "pages": [
+            27,
+            28
+          ]
+        },
+        {
+          "id": "l26-scenario1-q5",
+          "prompt": "R has disjoint partitions and S is replicated. How can duplicate computation caused by replicas be avoided?",
+          "options": [
+            "Each node joins only the portion of R it owns with S",
+            "Every node joins all of R with S, then all results are concatenated",
+            "Automatically delete all equal-valued rows even when the query has no DISTINCT",
+            "Perform the join at only one node while R remains distributed"
+          ],
+          "answer": 0,
+          "explanation": "Dividing R ensures each logical pair is processed in the right place; applying DISTINCT arbitrarily can violate bag semantics.",
+          "pages": [
+            27,
+            28
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l26-scenario2",
+      "title": "Scenario #2",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+      "pages": [
+        29,
+        30
+      ],
+      "questions": [
+        {
+          "id": "l26-scenario2-q1",
+          "prompt": "What enables local joins in Scenario #2?",
+          "options": [
+            "Both tables have the same partition count but arbitrary key mappings",
+            "R and S are co-partitioned on the join key",
+            "R is partitioned by name and S by val",
+            "Each node knows only the other table's metadata"
+          ],
+          "answer": 1,
+          "explanation": "The diagram uses the same id ranges for both tables at each node.",
+          "pages": [
+            29
+          ]
+        },
+        {
+          "id": "l26-scenario2-q2",
+          "prompt": "P1 holds ids 1–100 for both R and S. Where is a pair with key 70 processed?",
+          "options": [
+            "P2, because a key must move to another node before joining",
+            "Both P1 and P2 must produce the same result pair",
+            "P1",
+            "The coordinator must receive both complete tables before processing"
+          ],
+          "answer": 2,
+          "explanation": "The tuples with key 70 are both at P1 because the tables are co-partitioned.",
+          "pages": [
+            29
+          ]
+        },
+        {
+          "id": "l26-scenario2-q3",
+          "prompt": "Must entire tables be transferred before the join in this configuration?",
+          "options": [
+            "Yes, every distributed join must gather its inputs onto one machine",
+            "Yes, both R and S must always be broadcast to every node",
+            "There is no need to combine the nodes' results after the join",
+            "No, matching pairs are already co-located"
+          ],
+          "answer": 3,
+          "explanation": "Compatible placement avoids transferring inputs for the join; results may still need to be sent elsewhere.",
+          "pages": [
+            29,
+            30
+          ]
+        },
+        {
+          "id": "l26-scenario2-q4",
+          "prompt": "Is saying that both tables are partitioned by id enough to guarantee local joins?",
+          "options": [
+            "No, the mappings from id values to nodes must be compatible",
+            "Yes, even if the same id maps to different nodes",
+            "Yes, if partition counts match but range boundaries differ",
+            "No, because every local join requires a fully replicated table"
+          ],
+          "answer": 0,
+          "explanation": "The same key with different hash mappings or range boundaries can put matching tuples on different nodes.",
+          "pages": [
+            29
+          ]
+        },
+        {
+          "id": "l26-scenario2-q5",
+          "prompt": "What does the coalescing step in the diagram do?",
+          "options": [
+            "Redistribute all inputs even though they are already co-partitioned",
+            "Gather the nodes' join results",
+            "Apply DISTINCT to every result regardless of the SQL query",
+            "Change the join condition to fit the existing partitions"
+          ],
+          "answer": 1,
+          "explanation": "Results from individual partitions are combined into the global query result.",
+          "pages": [
+            30
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l26-scenario3",
+      "title": "Scenario #3",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+      "pages": [
+        31,
+        35
+      ],
+      "questions": [
+        {
+          "id": "l26-scenario3-q1",
+          "prompt": "When R and S are partitioned on different keys and S is small, what do the slides propose?",
+          "options": [
+            "Broadcast the larger table because the smaller table is less worth moving",
+            "Join the existing partitions immediately and treat that as the complete result",
+            "Broadcast S to the nodes",
+            "Send only S's schema instead of its data"
+          ],
+          "answer": 2,
+          "explanation": "A small table is easier to distribute in full, allowing each portion of R to find every matching tuple in S.",
+          "pages": [
+            31,
+            32,
+            33
+          ]
+        },
+        {
+          "id": "l26-scenario3-q2",
+          "prompt": "Why does the size of S matter for a broadcast join?",
+          "options": [
+            "A small table does not need its join condition checked",
+            "A small table always has only one key value",
+            "Broadcasting sends only one copy regardless of the number of nodes",
+            "S must be sent to multiple nodes"
+          ],
+          "answer": 3,
+          "explanation": "Multiplying transfer costs by the number of nodes can make broadcasting a large table very expensive.",
+          "pages": [
+            31,
+            33
+          ]
+        },
+        {
+          "id": "l26-scenario3-q3",
+          "prompt": "After S is broadcast, what does each node join?",
+          "options": [
+            "Its local R with all of S",
+            "Its local R with only the original portion of S from before the broadcast",
+            "All of R with all of S at every node, followed by concatenation of all results",
+            "Only portions of S across nodes, without reading R"
+          ],
+          "answer": 0,
+          "explanation": "Broadcasting compensates for S originally being partitioned by val rather than id.",
+          "pages": [
+            34
+          ]
+        },
+        {
+          "id": "l26-scenario3-q4",
+          "prompt": "What is the main difference between Scenario #3 and Scenario #1?",
+          "options": [
+            "Scenario #1 always requires both tables to be shuffled",
+            "Complete copies of S are created through data transfer during execution",
+            "Scenario #3 needs no network transfer before the join",
+            "Scenario #1 requires co-partitioned tables rather than replication"
+          ],
+          "answer": 1,
+          "explanation": "#1 already has replicas; #3 must broadcast the small table from its initial placement.",
+          "pages": [
+            27,
+            31,
+            33
+          ]
+        },
+        {
+          "id": "l26-scenario3-q5",
+          "prompt": "If S is no longer small, which decision is reasonable?",
+          "options": [
+            "Continue broadcasting because table size does not affect cost",
+            "Discard tuples exceeding RAM capacity to keep broadcasting cheap",
+            "Re-evaluate the costs of broadcasting versus repartitioning",
+            "Join only part of S to avoid transferring too much data"
+          ],
+          "answer": 2,
+          "explanation": "Broadcast costs must be considered; repartitioning is an alternative when sending many copies becomes too expensive.",
+          "pages": [
+            31,
+            36,
+            44
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l26-scenario4",
+      "title": "Scenario #4",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+      "pages": [
+        36,
+        42
+      ],
+      "questions": [
+        {
+          "id": "l26-scenario4-q1",
+          "prompt": "When neither R nor S is partitioned on the join key, what does Scenario #4 do?",
+          "options": [
+            "Join the existing partitions even though their partition keys are unrelated to the join",
+            "Broadcast only column names, then join locally",
+            "Merely sort each existing partition to guarantee co-location",
+            "Reshuffle both tables on the join key"
+          ],
+          "answer": 3,
+          "explanation": "Both inputs are moved to an id-based layout so matching pairs can be joined locally.",
+          "pages": [
+            36,
+            40
+          ]
+        },
+        {
+          "id": "l26-scenario4-q2",
+          "prompt": "R is initially partitioned by name and S by val, but they join on id. What is the goal of shuffling?",
+          "options": [
+            "Bring tuples with the same id in both tables to the same node",
+            "Change the ON condition to name=val to match the layout",
+            "Sort locally by id while never moving any tuples",
+            "Create copies of join results before processing the inputs"
+          ],
+          "answer": 0,
+          "explanation": "The query condition stays unchanged; only the physical placement changes.",
+          "pages": [
+            36,
+            40
+          ]
+        },
+        {
+          "id": "l26-scenario4-q3",
+          "prompt": "According to the diagram, which processing step follows the reshuffle?",
+          "options": [
+            "Simply concatenate R and S because they now have the same partition key",
+            "Perform local joins, then gather the results",
+            "Match only unequal keys to avoid duplicates",
+            "Gather metadata instead of join results"
+          ],
+          "answer": 1,
+          "explanation": "The diagram proceeds from repartitioning to joins at the nodes and then to combining results.",
+          "pages": [
+            40,
+            41,
+            42
+          ]
+        },
+        {
+          "id": "l26-scenario4-q4",
+          "prompt": "Compared with #2, which cost is more apparent in #4?",
+          "options": [
+            "A mandatory change to the logical result set",
+            "Having to abandon local joins after moving data",
+            "Transferring inputs to achieve co-partitioning",
+            "Reducing the number of logical tuples by removing duplicate keys"
+          ],
+          "answer": 2,
+          "explanation": "#2 already has compatible placement; #4 pays a shuffle cost to create similar conditions.",
+          "pages": [
+            29,
+            36,
+            40
+          ]
+        },
+        {
+          "id": "l26-scenario4-q5",
+          "prompt": "Does reshuffling mean that every node always receives a complete copy of both tables?",
+          "options": [
+            "Yes, shuffling always means broadcasting both tables",
+            "Yes, every tuple must be stored permanently at every node",
+            "No, because shuffling changes only metadata and never transfers tuples",
+            "No, tuples are routed to their respective destination partitions"
+          ],
+          "answer": 3,
+          "explanation": "Unlike broadcasting, repartitioning divides data by key; the illustration shows different id ranges.",
+          "pages": [
+            36,
+            40
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l26-planning",
+      "title": "Query Planning",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+      "pages": [
+        43,
+        44
+      ],
+      "questions": [
+        {
+          "id": "l26-planning-q1",
+          "prompt": "Which optimizations from a single-node system still apply in a distributed system?",
+          "options": [
+            "Predicate pushdown, early projection, and join-order selection",
+            "Only join-order selection; predicate pushdown no longer works",
+            "Always postponing filters until after all data is transferred",
+            "Always projecting away join keys before distribution"
+          ],
+          "answer": 0,
+          "explanation": "Logical optimizations remain useful and can also reduce the amount of data sent over the network.",
+          "pages": [
+            43
+          ]
+        },
+        {
+          "id": "l26-planning-q2",
+          "prompt": "Besides local costs, what must the optimizer account for?",
+          "options": [
+            "Only local I/O, because network transfers are always free",
+            "Data location and network costs",
+            "Only total CPU use, regardless of where data resides",
+            "Only the number of partitions, ignoring transferred data volume"
+          ],
+          "answer": 1,
+          "explanation": "Location determines which data must move; transfer time or volume is a crucial cost.",
+          "pages": [
+            43,
+            44
+          ]
+        },
+        {
+          "id": "l26-planning-q3",
+          "prompt": "Two parallel branches take 500 ms and 300 ms. Ignoring overhead, how long does the overall execution take?",
+          "options": [
+            "300 ms",
+            "400 ms",
+            "500 ms",
+            "800 ms"
+          ],
+          "answer": 2,
+          "explanation": "Execution must wait for the slower branch; the sum of 800 ms represents total work, not elapsed time when the branches run concurrently.",
+          "pages": [
+            44
+          ]
+        },
+        {
+          "id": "l26-planning-q4",
+          "prompt": "What is the benefit of projecting away unnecessary columns before a shuffle?",
+          "options": [
+            "It always reduces the tuple count to one",
+            "It allows required join keys to be removed while preserving correctness",
+            "It eliminates all transfer costs even when tuples still need to be sent",
+            "It reduces the bytes transferred while retaining columns needed by the query"
+          ],
+          "answer": 3,
+          "explanation": "Projection reduces tuple width; required columns must remain to preserve the query's semantics.",
+          "pages": [
+            43,
+            44
+          ]
+        },
+        {
+          "id": "l26-planning-q5",
+          "prompt": "Why is load balancing important for a distributed plan?",
+          "options": [
+            "One overloaded node can determine the completion time",
+            "Overall runtime equals the fastest node's runtime",
+            "All nodes automatically take the same time even when their data volumes differ",
+            "Adding nodes guarantees there are no remaining bottlenecks"
+          ],
+          "answer": 0,
+          "explanation": "Skew creates bottlenecks; adding nodes does not automatically remove the uneven work on a slow node.",
+          "pages": [
+            44
+          ]
+        }
+      ]
+    }
+  ]
+}

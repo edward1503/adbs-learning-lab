@@ -1,0 +1,271 @@
+[
+  {
+    "id": "lecture-01",
+    "lecture": 1,
+    "title": "From data to a DBMS",
+    "short": "Database, abstraction & course map",
+    "group": "01 · Foundations",
+    "time": 25,
+    "lead": "Start with a design question: what could go wrong if every feature in an application managed its own data?",
+    "goals": [
+      "Distinguish a database, a DBMS, a schema, and an instance",
+      "Explain the three levels of abstraction through an example",
+      "Identify the system responsibilities behind a query"
+    ],
+    "sections": [
+      {
+        "id": "l1-1",
+        "title": "A guide to the slides",
+        "html": "<p>A database is an organised collection of data, such as a library’s books and loans. A DBMS (Database Management System) is the software that manages how that data is stored, read, and updated. This lecture introduces the reasons for using a DBMS, the weaknesses of separate files, the view/logical/physical levels, and data independence: the ability to change one level while limiting the effect on the level above. The remaining slides cover the course roadmap, assessment, and course policies.</p><p>Read PDF pages 10–19 first; pages 21–35 provide context for the Spring 2026 course. Administrative dates belong to that historical slide edition and are not current submission deadlines.</p>"
+      },
+      {
+        "id": "l1-2",
+        "title": "Original design exercise: a neighbourhood library",
+        "html": "<p><strong>An original scenario.</strong> A library keeps books.csv and loans.csv. Initially, a book has identifier B17 and its loan also refers to B17. Mai changes the identifier in the books file to B017, but the program stops before updating the loans file: the loan still refers to B17, an identifier that no longer exists. Someone else then overwrites loans.csv with an older copy, making a new loan disappear.</p><ol><li>Draw the data before and after each write. Identify exactly which relationship is lost.</li><li>Write the business rules: every loan must refer to an existing book; assuming each book identifier represents one physical copy, each copy may have only one open loan.</li><li>Distinguish a modelling error, an update-procedure error, and an error caused by two people writing concurrently.</li></ol><p><strong>Analysis.</strong> The rule that a book identifier must exist is a data constraint. Changing a book identifier and updating its related loans should form one transaction, a unit of work containing several operations: either both changes finish, or no partial update remains. Overwriting the current file with an older copy is an access-coordination problem. Later lectures introduce the specific transaction mechanisms.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>Changing the file format does not fix update errors.</b> Both CSV and JSON can contain broken references or suffer overwritten changes. The system needs constraint checking, all-or-nothing updates, and coordinated writes.</p></aside>"
+      },
+      {
+        "id": "l1-3",
+        "title": "Three views of the same system",
+        "html": "<p><strong>An original example.</strong> A librarian sees borrowers’ names and due dates; visitors searching the catalogue see only book titles and availability. This is the view level: each user group sees the data relevant to it. At the logical level, we describe Book(book_id, title) and Loan(book_id, borrower, due). At the physical level, we decide how records and indexes, the structures that help locate data, are arranged.</p><p>Book(book_id, title) is a schema: it describes the table’s columns and structure. The current rows, such as (B017, “Databases”), form an instance: the data at a particular moment. Adding a book changes the instance; adding a publication-year column changes the schema.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>A schema describes structure; an instance is the current data.</b> Distinguishing these changes helps you decide whether an application needs another data row or a new structure for representing its data.</p></aside><p>Ask yourself: should changing the page size, the unit managed during reads and writes, from 4 KiB to 8 KiB force the catalogue application to rewrite its queries? Physical data independence helps keep logical queries stable when storage details change.</p><details><summary>Check yourself: at which level do we add a borrower’s email address?</summary><p>Adding the email field changes the logical description of the data. Its storage offset is a physical detail. Deciding who may see it belongs to view and access-control design.</p></details>"
+      },
+      {
+        "id": "l1-4",
+        "title": "A roadmap for independent practice",
+        "html": "<p>The exercises on this website use new examples and are not official assessed submissions: ask a data question → write a relational expression → count page I/Os → design buffers and indexes → choose an execution plan → preserve correct results under concurrency and failures.</p><p>Before Lecture 2, write a plain-language question about the library and state its expected answer for three data rows. You do not need an algorithm yet. That expected answer will help you check the execution methods introduced later.</p>"
+      }
+    ],
+    "quiz": {
+      "question": "Changing a record’s byte position primarily belongs to which level?",
+      "options": [
+        "View",
+        "Logical",
+        "Physical"
+      ],
+      "answer": 2,
+      "explanation": "A byte position is a physical representation detail; the schema describes the meaning and structure of the data."
+    },
+    "source": {
+      "summary": "Course Introduction: motivation, database/DBMS, flat-file weaknesses, abstraction, data models; course organisation, assessment and academic integrity.",
+      "links": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf#page=10",
+          "label": "PDF pp. 10–19 · databases, DBMSs, and abstraction; no printed slide numbers"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf#page=21",
+          "label": "PDF pp. 21–35 · roadmap and information for the Spring 2026 course"
+        }
+      ]
+    },
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf",
+      "alternatePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro-2x2.pdf",
+      "verified": true,
+      "verifiedPages": "1–36",
+      "pdfPageCount": 36,
+      "topics": [
+        "Motivation",
+        "Flat files",
+        "DBMS",
+        "Abstraction",
+        "Data independence",
+        "Data models/schema",
+        "Course organisation",
+        "Assessment",
+        "Academic integrity"
+      ],
+      "limitations": [
+        "Intro has no printed slide numbers; citations use physical PDF page numbers.",
+        "Administrative dates apply to Spring 2026 only."
+      ],
+      "week": 1,
+      "officialTitle": "Course Introduction",
+      "weeklyPage": "https://opencourse.inf.ed.ac.uk/adbs/week-1",
+      "pageMap": [
+        {
+          "pdfPage": 1,
+          "printedSlide": null,
+          "heading": "Advanced Database Systems"
+        },
+        {
+          "pdfPage": 2,
+          "printedSlide": null,
+          "heading": "E SSENTIAL Q UESTIONS"
+        },
+        {
+          "pdfPage": 3,
+          "printedSlide": null,
+          "heading": "W HY ? R EASON #1: U TILITY"
+        },
+        {
+          "pdfPage": 4,
+          "printedSlide": null,
+          "heading": "W HY ? R EASON #2: C ENTRALITY"
+        },
+        {
+          "pdfPage": 5,
+          "printedSlide": null,
+          "heading": "How much data is"
+        },
+        {
+          "pdfPage": 6,
+          "printedSlide": null,
+          "heading": "S CALE OF S CIEN TIFIC D ATA"
+        },
+        {
+          "pdfPage": 7,
+          "printedSlide": null,
+          "heading": "W HY ? R EASON #2: C ENTRALITY"
+        },
+        {
+          "pdfPage": 8,
+          "printedSlide": null,
+          "heading": "W HY ? R EASON #3: T HE C ORE OF C OMPUTING"
+        },
+        {
+          "pdfPage": 9,
+          "printedSlide": null,
+          "heading": "E SSENTIAL Q UESTIONS"
+        },
+        {
+          "pdfPage": 10,
+          "printedSlide": null,
+          "heading": "W HAT IS A D ATABASE ?"
+        },
+        {
+          "pdfPage": 11,
+          "printedSlide": null,
+          "heading": "W HAT IS A DBMS?"
+        },
+        {
+          "pdfPage": 12,
+          "printedSlide": null,
+          "heading": "W HY USING A DBMS?"
+        },
+        {
+          "pdfPage": 13,
+          "printedSlide": null,
+          "heading": "F LAT F ILE S TRAWMAN"
+        },
+        {
+          "pdfPage": 14,
+          "printedSlide": null,
+          "heading": "F LAT F ILE S TRAWMAN"
+        },
+        {
+          "pdfPage": 15,
+          "printedSlide": null,
+          "heading": "F LAT F ILE : D RAWBACKS"
+        },
+        {
+          "pdfPage": 16,
+          "printedSlide": null,
+          "heading": "F LAT F ILE : D RAWBACKS (C ONT.)"
+        },
+        {
+          "pdfPage": 17,
+          "printedSlide": null,
+          "heading": "F LAT F ILE : D RAWBACKS (C ONT.)"
+        },
+        {
+          "pdfPage": 18,
+          "printedSlide": null,
+          "heading": "L EVELS OF A BSTRACTIONS"
+        },
+        {
+          "pdfPage": 19,
+          "printedSlide": null,
+          "heading": "D ATA M ODELS"
+        },
+        {
+          "pdfPage": 20,
+          "printedSlide": null,
+          "heading": "R ANKING OF DBMS T ECHNOLOGIES 2026"
+        },
+        {
+          "pdfPage": 21,
+          "printedSlide": null,
+          "heading": "W HAT I S T HIS C OURSE A BOUT ?"
+        },
+        {
+          "pdfPage": 22,
+          "printedSlide": null,
+          "heading": "W HAT I S T HIS C OURSE A BOUT ?"
+        },
+        {
+          "pdfPage": 23,
+          "printedSlide": null,
+          "heading": "L EARNING O UTCOMES"
+        },
+        {
+          "pdfPage": 24,
+          "printedSlide": null,
+          "heading": "C OURSE P REREQUISITES"
+        },
+        {
+          "pdfPage": 25,
+          "printedSlide": null,
+          "heading": "E SSENTIAL Q UESTIONS"
+        },
+        {
+          "pdfPage": 26,
+          "printedSlide": null,
+          "heading": "W HO I S R UNNING T HIS C OURSE ?"
+        },
+        {
+          "pdfPage": 27,
+          "printedSlide": null,
+          "heading": "H OW W ILL T HIS C OURSE W ORK ?"
+        },
+        {
+          "pdfPage": 28,
+          "printedSlide": null,
+          "heading": "L ECTURE O VERVIEW"
+        },
+        {
+          "pdfPage": 29,
+          "printedSlide": null,
+          "heading": "A SSESSMENT S TRUCTURE"
+        },
+        {
+          "pdfPage": 30,
+          "printedSlide": null,
+          "heading": "P ROGRAMMING A SSIGNMENT"
+        },
+        {
+          "pdfPage": 31,
+          "printedSlide": null,
+          "heading": "T EXTBOOKS"
+        },
+        {
+          "pdfPage": 32,
+          "printedSlide": null,
+          "heading": "R ECENT C OURSE C HANGES"
+        },
+        {
+          "pdfPage": 33,
+          "printedSlide": null,
+          "heading": "S TUDENT F EEDBACK FROM P REVIOUS Y EARS"
+        },
+        {
+          "pdfPage": 34,
+          "printedSlide": null,
+          "heading": "P LAGIARISM P OLICY"
+        },
+        {
+          "pdfPage": 35,
+          "printedSlide": null,
+          "heading": "S TAYING IN T OUCH"
+        },
+        {
+          "pdfPage": 36,
+          "printedSlide": null,
+          "heading": "A CKNOWLEDGEMENT"
+        }
+      ],
+      "alternateVerified": true,
+      "alternatePdfPageCount": 9
+    },
+    "lab": null
+  }
+]

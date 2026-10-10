@@ -1,0 +1,714 @@
+{
+  "lectureId": "lecture-22",
+  "topics": [
+    {
+      "id": "l22-topic-distributed-model",
+      "title": "PARALLEL VS. DISTRIBUTED DBMSs",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+      "pages": [
+        3,
+        5
+      ],
+      "questions": [
+        {
+          "id": "l22-distributed-model-q1",
+          "prompt": "Which cost distinction between parallel and distributed DBMSs is emphasized?",
+          "options": [
+            "A distributed DBMS cannot ignore long-distance communication delays and failures",
+            "A parallel DBMS needs no coordination because it never uses a network",
+            "A distributed DBMS may ignore message delays if it has a log",
+            "Parallel and distributed systems always make identical communication-cost assumptions"
+          ],
+          "answer": 0,
+          "explanation": "The lecture distinguishes nearby, fast interconnects from remote networks with substantial costs and failure risks. Both kinds of systems can still use networks.",
+          "pages": [
+            3,
+            4
+          ]
+        },
+        {
+          "id": "l22-distributed-model-q2",
+          "prompt": "What does data independence require when a query moves to a distributed system?",
+          "options": [
+            "Return fewer tuples when data resides on remote nodes",
+            "Preserve the query's logical result when physical data locations change",
+            "Require users to name every node in their logical queries",
+            "Allow replicas or partitions to change join semantics"
+          ],
+          "answer": 1,
+          "explanation": "Physical distribution should not change the logical answer. Optimizing network traffic does not justify silently dropping results.",
+          "pages": [
+            3
+          ]
+        },
+        {
+          "id": "l22-distributed-model-q3",
+          "prompt": "What atomicity requirement applies to a transaction accessing data on three nodes?",
+          "options": [
+            "Each node may commit independently whenever convenient",
+            "Only the node holding the most tuples needs to commit",
+            "All parts must commit or abort according to one common decision",
+            "Committing on any two of the three nodes is always sufficient"
+          ],
+          "answer": 2,
+          "explanation": "Atomic commit covers every participant. It is not a majority rule that permits part of the transaction to be ignored.",
+          "pages": [
+            5
+          ]
+        },
+        {
+          "id": "l22-distributed-model-q4",
+          "prompt": "Why is distributed failure handling harder than restarting one machine?",
+          "options": [
+            "All nodes always restart together and need a fixed restart order",
+            "Local recovery can decide every transaction without consulting remote nodes",
+            "A delayed message proves that its participant has not committed",
+            "Other nodes may have continued and learned a decision unknown to the recovering node"
+          ],
+          "answer": 3,
+          "explanation": "Recovery must agree with states and decisions that survive elsewhere. It cannot assume that every node stopped at the same time.",
+          "pages": [
+            5,
+            16
+          ]
+        },
+        {
+          "id": "l22-distributed-model-q5",
+          "prompt": "What goals motivate deploying multiple nodes?",
+          "options": [
+            "Better performance and availability, supported by appropriate mechanisms",
+            "Automatic atomic commit without a protocol",
+            "Eliminating concurrency control because data has multiple locations",
+            "Lower latency for every query regardless of network traffic"
+          ],
+          "answer": 0,
+          "explanation": "More resources create opportunities, but do not automatically solve correctness or failure handling. Coordination remains necessary.",
+          "pages": [
+            3,
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l22-topic-distributed-locks",
+      "title": "DISTRIBUTED CONCURRENCY CONTROL",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+      "pages": [
+        7,
+        14
+      ],
+      "questions": [
+        {
+          "id": "l22-distributed-locks-q1",
+          "prompt": "What data-placement assumption is used at the start of lecture 22?",
+          "options": [
+            "Every node stores every table in full",
+            "Data is partitioned but not replicated",
+            "No transaction ever writes",
+            "The system uses only one shared-memory machine"
+          ],
+          "answer": 1,
+          "explanation": "The analysis starts with a shared-nothing system whose data is partitioned without replication. Replica-quorum rules should not be inserted into this model without justification.",
+          "pages": [
+            7
+          ]
+        },
+        {
+          "id": "l22-distributed-locks-q2",
+          "prompt": "Where is the lock for a tuple stored entirely on node N normally managed?",
+          "options": [
+            "Every lock table must be copied to all nodes so each can grant locks independently",
+            "Only the client manages locks, and servers always trust it",
+            "In node N's lock table",
+            "No lock is needed because the tuple has only one data copy"
+          ],
+          "answer": 2,
+          "explanation": "Keeping locks near their data lets a node manage its own resources. A single data copy still requires concurrency control.",
+          "pages": [
+            8
+          ]
+        },
+        {
+          "id": "l22-distributed-locks-q3",
+          "prompt": "What does the lecture suggest for a whole-table lock when the table spans multiple nodes?",
+          "options": [
+            "Every node independently grants an X-lock on the entire table",
+            "Coarse-grained locks never require coordination",
+            "Grant the lock only at the node holding the query's first tuple and ignore the others",
+            "Assign a home node to manage the coarse-grained lock"
+          ],
+          "answer": 3,
+          "explanation": "One authority for a coarse-grained object prevents contradictory grants. Independent table-level X-lock grants would not protect the entire table.",
+          "pages": [
+            8,
+            9,
+            10
+          ]
+        },
+        {
+          "id": "l22-distributed-locks-q4",
+          "prompt": "N1 sees T1→T2, and N2 sees T2→T1. Both local graphs are acyclic. What is true globally?",
+          "options": [
+            "Combining the edges reveals a deadlock cycle",
+            "There is definitely no deadlock because both local graphs are acyclic",
+            "Deadlock occurs only if both transactions originated at the same node",
+            "Remote edges do not count in a global waits-for graph"
+          ],
+          "answer": 0,
+          "explanation": "A cycle can span nodes. Local acyclicity does not imply that the union of the graphs is acyclic.",
+          "pages": [
+            13
+          ]
+        },
+        {
+          "id": "l22-distributed-locks-q5",
+          "prompt": "What simple distributed-deadlock detection method is presented?",
+          "options": [
+            "Check only each local graph and discard remote edges",
+            "Periodically combine waits-for graphs at a designated node and search for cycles",
+            "Wait for participants to commit before searching for a waiting cycle",
+            "Examine only the youngest transaction's coordinator"
+          ],
+          "answer": 1,
+          "explanation": "The global union exposes dependencies across nodes. Discarding remote edges would miss precisely the distributed deadlocks being sought.",
+          "pages": [
+            14
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l22-topic-two-phase-commit",
+      "title": "2-PHASE COMMIT",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+      "pages": [
+        16,
+        30
+      ],
+      "questions": [
+        {
+          "id": "l22-two-phase-commit-q1",
+          "prompt": "How do the main purposes of 2PC and 2PL differ?",
+          "options": [
+            "2PC controls lock acquisition, while 2PL provides atomic commit",
+            "2PC replaces isolation, so a scheduler is unnecessary",
+            "2PC coordinates atomic commit, while 2PL controls access schedules using locks",
+            "The two phases of 2PL automatically replace 2PC voting and recovery"
+          ],
+          "answer": 2,
+          "explanation": "These protocols address different layers and can be combined. Sharing the phrase “two-phase” does not make them equivalent.",
+          "pages": [
+            22
+          ]
+        },
+        {
+          "id": "l22-two-phase-commit-q2",
+          "prompt": "What does the coordinator send in phase 1 of 2PC?",
+          "options": [
+            "A final COMMIT before receiving participant votes",
+            "An ACK confirming that participants have already committed",
+            "A request to release locks before checking whether participants can commit",
+            "PREPARE, asking whether each participant can commit"
+          ],
+          "answer": 3,
+          "explanation": "PREPARE opens the voting phase. A final decision follows only after the required voting and logging conditions are met.",
+          "pages": [
+            22,
+            23
+          ]
+        },
+        {
+          "id": "l22-two-phase-commit-q3",
+          "prompt": "If 3/4 participants vote YES and one votes NO, what is the 2PC outcome?",
+          "options": [
+            "ABORT",
+            "COMMIT because a majority agreed",
+            "Commit only the three YES participants",
+            "Treat the NO participant as an unnecessary replica"
+          ],
+          "answer": 0,
+          "explanation": "Atomic commit requires unanimous YES votes. A NO may reflect a genuine constraint failure, and a majority is insufficient when all four transaction parts are required.",
+          "pages": [
+            20,
+            22
+          ]
+        },
+        {
+          "id": "l22-two-phase-commit-q4",
+          "prompt": "The coordinator times out before receiving one participant's vote. What may it do before deciding COMMIT?",
+          "options": [
+            "Treat silence as YES",
+            "Abort the transaction",
+            "Commit only the participants that replied",
+            "Remove the missing participant from work already performed"
+          ],
+          "answer": 1,
+          "explanation": "A missing vote does not prove readiness. Before receiving all YES votes, the coordinator may abort; a timeout is not an affirmative vote.",
+          "pages": [
+            20,
+            49
+          ]
+        },
+        {
+          "id": "l22-two-phase-commit-q5",
+          "prompt": "After the coordinator durably records its decision, what happens in phase 2?",
+          "options": [
+            "A majority revotes to reverse a recorded COMMIT if desired",
+            "Each participant independently chooses again using local state",
+            "The COMMIT or ABORT decision is distributed and ACKs are collected",
+            "Only PREPARE is recorded, and no decision is sent"
+          ],
+          "answer": 2,
+          "explanation": "Phase 2 disseminates an existing decision. It is not a new vote that can overturn a durable COMMIT.",
+          "pages": [
+            22,
+            27,
+            29
+          ]
+        },
+        {
+          "id": "l22-two-phase-commit-q6",
+          "prompt": "Why must one participant's NO vote be sufficient to prevent COMMIT?",
+          "options": [
+            "NO matters only when that participant holds most of the data",
+            "NO can be ignored if the coordinator itself is ready",
+            "NO prevents commit only if another participant also votes NO",
+            "The participant may have a constraint violation or be unable to complete its part"
+          ],
+          "answer": 3,
+          "explanation": "Every part is required for the whole transaction, so failure in any part prevents a common commit. The NO voter need not have a special role.",
+          "pages": [
+            20
+          ]
+        },
+        {
+          "id": "l22-two-phase-commit-q7",
+          "prompt": "Does an ACK in phase 2 mean the same thing as YES in phase 1?",
+          "options": [
+            "No; ACK confirms receipt or handling of the decision, while YES is a preparedness vote",
+            "Yes; both are votes sent before the coordinator decides",
+            "Yes; delayed messages can use the two interchangeably",
+            "No; YES means already committed, while ACK means only prepared"
+          ],
+          "answer": 0,
+          "explanation": "Messages have distinct roles in the state machine. Treating ACK and YES as interchangeable would invalidate the decision conditions.",
+          "pages": [
+            24,
+            29,
+            30
+          ]
+        },
+        {
+          "id": "l22-two-phase-commit-q8",
+          "prompt": "Does a delayed message prove that its sender has crashed?",
+          "options": [
+            "Yes; a timeout proves the node has stopped processing",
+            "No; a slow node and a crashed node may be indistinguishable so far",
+            "Yes; sequence numbers make delays impossible",
+            "The distinction is irrelevant because a slow node can always safely be treated as aborted"
+          ],
+          "answer": 1,
+          "explanation": "Not receiving a message in time does not identify the cause. The protocol must tolerate delay rather than assume that the sender is certainly dead.",
+          "pages": [
+            16,
+            17,
+            19,
+            49
+          ]
+        },
+        {
+          "id": "l22-two-phase-commit-q9",
+          "prompt": "If every participant has sent YES, may the client already conclude that COMMIT occurred?",
+          "options": [
+            "Yes; each YES is itself the final COMMIT",
+            "Yes; no logging is needed",
+            "Not yet; a common durable coordinator decision is still required",
+            "No transaction can ever commit after YES"
+          ],
+          "answer": 2,
+          "explanation": "YES means the participant is prepared to follow the outcome. Recording and distributing the final decision remain separate steps.",
+          "pages": [
+            22,
+            31,
+            38
+          ]
+        },
+        {
+          "id": "l22-two-phase-commit-q10",
+          "prompt": "Can 2PC alone replace concurrency control if the goal is to prevent dirty reads at one node?",
+          "options": [
+            "Yes; PREPARE retroactively creates all required read/write locks",
+            "Yes; the final ACK repairs dirty reads already published",
+            "Yes; unanimous YES votes prove that every preceding schedule was serializable",
+            "No; atomic commit does not itself ensure a correct read/write schedule"
+          ],
+          "answer": 3,
+          "explanation": "Two-phase commit and two-phase locking can work together, but are different mechanisms. Commit messages do not retroactively protect earlier accesses.",
+          "pages": [
+            22,
+            55
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l22-topic-2pc-logging",
+      "title": "ONE MORE TIME, WITH LOGGING",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+      "pages": [
+        31,
+        47
+      ],
+      "questions": [
+        {
+          "id": "l22-2pc-logging-q1",
+          "prompt": "What must a participant do before sending YES in logged 2PC?",
+          "options": [
+            "Append PREPARE only in RAM, without flushing",
+            "Send YES first and write PREPARE after receiving COMMIT",
+            "Flush data pages and discard the transaction's recovery information",
+            "Persist PREPARE and the information needed to recover its prepared state"
+          ],
+          "answer": 3,
+          "explanation": "YES is a promise that must survive a crash, so PREPARE must be durable first. A RAM-only record cannot preserve that promise after restart.",
+          "pages": [
+            31,
+            33,
+            34,
+            35
+          ]
+        },
+        {
+          "id": "l22-2pc-logging-q2",
+          "prompt": "Before which action must the coordinator persist its COMMIT decision?",
+          "options": [
+            "Sending COMMIT to participants",
+            "Sending PREPARE to start voting, even before any votes exist",
+            "Any local update by a participant",
+            "Only after every participant has acknowledged COMMIT"
+          ],
+          "answer": 0,
+          "explanation": "Sending COMMIT before persisting it could let a participant commit while a subsequent crash causes the coordinator to forget. Log-before-message ordering prevents this disagreement.",
+          "pages": [
+            37,
+            38,
+            39
+          ]
+        },
+        {
+          "id": "l22-2pc-logging-q3",
+          "prompt": "Why must a participant's PREPARE record identify the coordinator?",
+          "options": [
+            "So it can elect a replacement without learning the old decision",
+            "So recovery knows whom to ask for the decision",
+            "So an online coordinator automatically implies COMMIT",
+            "So PREPARE can replace the participant's COMMIT record"
+          ],
+          "answer": 1,
+          "explanation": "A recovering prepared participant may need to query its coordinator. The ID locates the source of decision information; it does not replace the decision logic.",
+          "pages": [
+            47
+          ]
+        },
+        {
+          "id": "l22-2pc-logging-q4",
+          "prompt": "Why does the coordinator's COMMIT record contain participant IDs?",
+          "options": [
+            "To remove unacknowledged participants from the atomic transaction",
+            "To count a majority instead of requiring unanimity when votes are missing",
+            "To identify participants that may need the decision resent during recovery",
+            "To let participants decide independently without querying the coordinator"
+          ],
+          "answer": 2,
+          "explanation": "The list supports completing dissemination and retries. It does not permit removing a participant's work from an atomic transaction.",
+          "pages": [
+            47
+          ]
+        },
+        {
+          "id": "l22-2pc-logging-q5",
+          "prompt": "What does an asterisk next to a record in the 2PC diagram indicate?",
+          "options": [
+            "The record may remain volatile and be lost in a crash",
+            "A message may be sent first, with flushing deferred indefinitely",
+            "The record's order is irrelevant if a transaction ID is present",
+            "Wait for the log to flush before sending the next message"
+          ],
+          "answer": 3,
+          "explanation": "The notation marks a durability ordering requirement: flush before sending. It is essential for recovery rather than decorative.",
+          "pages": [
+            47
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l22-topic-2pc-recovery",
+      "title": "RECOVERY: THINK IT THROUGH",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+      "pages": [
+        49,
+        54
+      ],
+      "questions": [
+        {
+          "id": "l22-2pc-recovery-q1",
+          "prompt": "A participant recovers with PREPARE but no COMMIT or ABORT. What should it do?",
+          "options": [
+            "Ask the coordinator for the decision, potentially waiting",
+            "Commit independently because it previously voted YES",
+            "Abort independently because that is always safe",
+            "Delete the transaction without undo or redo"
+          ],
+          "answer": 0,
+          "explanation": "Prepared means the decision is still unknown locally; another node may already have committed. Neither independent commit nor independent abort has sufficient evidence.",
+          "pages": [
+            49,
+            51,
+            54
+          ]
+        },
+        {
+          "id": "l22-2pc-recovery-q2",
+          "prompt": "A coordinator recovers with COMMIT but no END. What should it do according to the lecture?",
+          "options": [
+            "Change the decision to ABORT because END is missing",
+            "Repeat phase 2 to distribute the decision and collect ACKs",
+            "Start a new vote and discard the old decision",
+            "Immediately delete all participant records"
+          ],
+          "answer": 1,
+          "explanation": "A durable COMMIT fixes the decision. Missing END means completion work remains, not that the decision can be changed to ABORT.",
+          "pages": [
+            54
+          ]
+        },
+        {
+          "id": "l22-2pc-recovery-q3",
+          "prompt": "A coordinator recovers with both COMMIT and END. What further protocol work does the lecture's table require?",
+          "options": [
+            "Always rerun all of phase 1",
+            "Replace COMMIT with PREPARE",
+            "No rerun of the completed protocol is needed",
+            "Undo every participant"
+          ],
+          "answer": 2,
+          "explanation": "END records that the protocol finished, so the table specifies no further action. There is no reason to reopen voting.",
+          "pages": [
+            54
+          ]
+        },
+        {
+          "id": "l22-2pc-recovery-q4",
+          "prompt": "A participant recovers with PREPARE and COMMIT, but its ACK may have been lost. What is appropriate?",
+          "options": [
+            "Abort because no durable local ACK record is visible",
+            "Discard COMMIT and return to voting",
+            "Wait for every other local transaction to commit before deciding",
+            "Send an ACK to the coordinator"
+          ],
+          "answer": 3,
+          "explanation": "The local decision is already known to be COMMIT, so the participant completes acknowledgement. A lost ACK does not change the outcome.",
+          "pages": [
+            54
+          ]
+        },
+        {
+          "id": "l22-2pc-recovery-q5",
+          "prompt": "A participant has not logged PREPARE when it discovers that the coordinator is unreachable. What may it do?",
+          "options": [
+            "Abort locally",
+            "It must commit independently",
+            "It must retain locks forever in every case",
+            "Treat the coordinator's silence as a YES vote"
+          ],
+          "answer": 0,
+          "explanation": "Before entering the prepared state, the participant has not promised to await the final decision and may abort. The rules change after PREPARE.",
+          "pages": [
+            49
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l22-topic-2pc-locking",
+      "title": "2PC + STRICT 2PL",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+      "pages": [
+        55,
+        55
+      ],
+      "questions": [
+        {
+          "id": "l22-2pc-locking-q1",
+          "prompt": "What do message numbers 1,2,3,... for each sender/receiver/transaction combination help with?",
+          "options": [
+            "Guaranteeing zero network delay",
+            "Detecting missing or out-of-order messages",
+            "Replacing WAL automatically",
+            "Removing the need for transaction IDs"
+          ],
+          "answer": 1,
+          "explanation": "Sequence numbers let the receiver detect gaps. They neither prevent delays nor make data durable.",
+          "pages": [
+            55
+          ]
+        },
+        {
+          "id": "l22-2pc-locking-q2",
+          "prompt": "A receiver gets message 5 after receiving only 1,2,3. What should it do under the lecture's mechanism?",
+          "options": [
+            "Process 5 immediately and discard 4 if it later arrives",
+            "Treat the higher sequence number as proof of COMMIT",
+            "Buffer 5 until 4 arrives, then process messages in order",
+            "Tell the sender to omit message 4 so the gap disappears"
+          ],
+          "answer": 2,
+          "explanation": "The receiver retains message k+1 until it has received 1..k. A larger sequence number does not supply missing prerequisite state.",
+          "pages": [
+            55
+          ]
+        },
+        {
+          "id": "l22-2pc-locking-q3",
+          "prompt": "Why does a participant retain locks while awaiting the 2PC decision under strict 2PL?",
+          "options": [
+            "To make PREPARE identical to a final COMMIT",
+            "To remove the coordinator's need to persist its decision",
+            "To let all other transactions read temporary data without S-locks",
+            "To prevent others from observing or overwriting unfinished transaction state"
+          ],
+          "answer": 3,
+          "explanation": "Retaining locks preserves isolation through the prepared phase. It may reduce concurrency rather than improve speed.",
+          "pages": [
+            55,
+            56
+          ]
+        },
+        {
+          "id": "l22-2pc-locking-q4",
+          "prompt": "How must COMMIT processing coordinate log flushing and lock release?",
+          "options": [
+            "Use an appropriate atomic completion boundary and ordering so visibility does not precede durable state",
+            "Release locks before COMMIT is durable and flush whenever convenient afterward",
+            "Skip COMMIT flushing if an X-lock was held",
+            "Persist only PREPARE and release locks without learning the final decision"
+          ],
+          "answer": 0,
+          "explanation": "Other transactions must not see a state whose outcome lacks durable protection. Locks do not replace logging.",
+          "pages": [
+            55
+          ]
+        },
+        {
+          "id": "l22-2pc-locking-q5",
+          "prompt": "Does “abort locally” under strict 2PL let a prepared participant override the 2PC decision at will?",
+          "options": [
+            "Yes; any PREPARE can be discarded after a timeout",
+            "No; local processing must still respect the 2PC state and decision",
+            "Yes; strict 2PL makes COMMIT unnecessary",
+            "No; no transaction may ever abort"
+          ],
+          "answer": 1,
+          "explanation": "Strict 2PL allows undo without cascading dependencies, but does not authorize reversing atomic-commit decisions. A prepared participant must still query or wait under the recovery rules.",
+          "pages": [
+            49,
+            54,
+            55
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l22-topic-availability",
+      "title": "AVAILABILITY CONCERNS",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+      "pages": [
+        56,
+        56
+      ],
+      "questions": [
+        {
+          "id": "l22-availability-q1",
+          "prompt": "What can happen when the coordinator is unreachable after a participant has prepared?",
+          "options": [
+            "Every participant can safely commit after a timeout",
+            "Every prepared participant can independently abort without asking",
+            "The participant can block while retaining locks",
+            "It can release locks and decide later while still following strict 2PL"
+          ],
+          "answer": 2,
+          "explanation": "A prepared participant without a decision may have to wait, and its locks can delay other transactions. It cannot commit independently merely to improve availability.",
+          "pages": [
+            56
+          ]
+        },
+        {
+          "id": "l22-availability-q2",
+          "prompt": "Why does adding machines not automatically make 2PC more available?",
+          "options": [
+            "A new node automatically replaces the coordinator without agreement on state",
+            "Extra partitioning makes every transaction local",
+            "More participants allow majority YES votes to replace unanimity",
+            "More components and coordination create additional failure opportunities that can impede progress"
+          ],
+          "answer": 3,
+          "explanation": "Scale-out adds resources but also failure points and coordination. It does not automatically remove blocking on the coordinator.",
+          "pages": [
+            56,
+            57
+          ]
+        },
+        {
+          "id": "l22-availability-q3",
+          "prompt": "How do safety and availability differ in the blocking-2PC example?",
+          "options": [
+            "Preserving one consistent decision can require waiting and reduce service availability",
+            "Waiting always proves that atomic-commit safety has failed",
+            "Availability means every transaction must commit",
+            "Safety permits one participant to abort while another commits after a timeout"
+          ],
+          "answer": 0,
+          "explanation": "A protocol can remain safe while failing to make progress without decision information. Availability does not mean committing every request.",
+          "pages": [
+            49,
+            56
+          ]
+        },
+        {
+          "id": "l22-availability-q4",
+          "prompt": "Prepared T1 holds a lock for a long time. T2 is unrelated to its coordinator but needs the same object. What can happen?",
+          "options": [
+            "T2 always bypasses the lock because it is on another node",
+            "T2 can also be blocked by T1's lock",
+            "T2 treats T1's PREPARE as COMMIT and reads the object",
+            "T2 aborts T1 locally without knowing the global decision"
+          ],
+          "answer": 1,
+          "explanation": "Blocking propagates through locked resources. T2 cannot bypass concurrency control simply because it is not part of T1.",
+          "pages": [
+            55,
+            56
+          ]
+        },
+        {
+          "id": "l22-availability-q5",
+          "prompt": "How is Paxos Commit mentioned in the lecture?",
+          "options": [
+            "As an exact synonym for basic 2PC",
+            "As a rule allowing a majority of business participants to commit while discarding the rest",
+            "As a further approach to availability beyond the lecture's detailed treatment",
+            "As a way to omit logging while recovering forgotten decisions"
+          ],
+          "answer": 2,
+          "explanation": "The lecture presents it as an extension, not as a quorum rule for discarding required transaction parts. Consensus by a majority does not replace the requirement that every participant be ready to commit.",
+          "pages": [
+            56,
+            57
+          ]
+        }
+      ]
+    }
+  ]
+}

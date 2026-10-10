@@ -1,0 +1,785 @@
+{
+  "lectureId": "lecture-07",
+  "topics": [
+    {
+      "id": "l07-topic-workloads",
+      "title": "DATABASE WORKLOADS",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf",
+      "pages": [
+        2,
+        4
+      ],
+      "questions": [
+        {
+          "id": "l07-workloads-q1",
+          "prompt": "Updating one item's inventory in many short transactions is closest to which workload?",
+          "options": [
+            "OLAP scanning a large historical dataset",
+            "A workload that only reads analytical aggregates",
+            "A batch that only calculates monthly totals without updating entities",
+            "OLTP"
+          ],
+          "answer": 3,
+          "explanation": "OLTP focuses on short operations over small amounts of data. Broad analytical reports are associated with OLAP.",
+          "pages": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "l07-workloads-q2",
+          "prompt": "Calculating three years of revenue by region from millions of rows is closest to which workload?",
+          "options": [
+            "OLAP",
+            "A point lookup for exactly one customer",
+            "An OLTP update to exactly one record",
+            "A transaction that only changes one order's status"
+          ],
+          "answer": 0,
+          "explanation": "An aggregate report that scans large amounts of data is an analytical workload.",
+          "pages": [
+            2,
+            4
+          ]
+        },
+        {
+          "id": "l07-workloads-q3",
+          "prompt": "What does HTAP combine?",
+          "options": [
+            "Only short OLTP transactions, with no analytical queries",
+            "Transactional and analytical processing on the same database instance",
+            "A requirement that every tuple simultaneously contain both row and column layouts",
+            "A requirement to run read-only analytics on a separate exported copy"
+          ],
+          "answer": 1,
+          "explanation": "HTAP combines the two types of processing. It is not a general name for using two devices.",
+          "pages": [
+            2
+          ]
+        },
+        {
+          "id": "l07-workloads-q4",
+          "prompt": "Which characteristic is associated with OLTP?",
+          "options": [
+            "No writes",
+            "Exactly one transaction always running exclusively",
+            "Many short transactions with high concurrency",
+            "Only queries that read the entire historical dataset"
+          ],
+          "answer": 2,
+          "explanation": "OLTP typically handles small business operations involving reads and writes, rather than only broad read-only scans.",
+          "pages": [
+            3
+          ]
+        },
+        {
+          "id": "l07-workloads-q5",
+          "prompt": "Which task is most suitable for OLAP analysis?",
+          "options": [
+            "Change the status of one recently paid order",
+            "Record one person's login",
+            "Create one new shopping cart",
+            "Identify trends in order counts by month and region"
+          ],
+          "answer": 3,
+          "explanation": "A trend analysis aggregates information across many entities and times. The other tasks are operational changes involving small amounts of data.",
+          "pages": [
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l07-topic-row",
+      "title": "ROW STORAGE MODEL",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf",
+      "pages": [
+        7,
+        11
+      ],
+      "questions": [
+        {
+          "id": "l07-row-q1",
+          "prompt": "How does a row store place the attributes of one tuple?",
+          "options": [
+            "Close together or contiguously",
+            "By column across the entire table",
+            "In search-key order in every case",
+            "Each field must be in its own separate row group"
+          ],
+          "answer": 0,
+          "explanation": "A row layout groups data by tuple. It does not imply that attributes are distributed or omitted.",
+          "pages": [
+            7
+          ]
+        },
+        {
+          "id": "l07-row-q2",
+          "prompt": "Why does retrieving a complete entity by key often benefit from a row layout?",
+          "options": [
+            "Its attributes automatically become fixed-length",
+            "The required fields are close together",
+            "No index lookup or scan is needed to find the record",
+            "Every SELECT * requires no page I/O"
+          ],
+          "answer": 1,
+          "explanation": "Keeping the whole tuple together helps after its location is found. It does not eliminate lookup or I/O costs.",
+          "pages": [
+            9,
+            11
+          ]
+        },
+        {
+          "id": "l07-row-q3",
+          "prompt": "A full scan uses only 8 bytes of each 80-byte record. Ignoring compression and headers, what proportion of the bytes is useful?",
+          "options": [
+            "8%",
+            "90%",
+            "10%",
+            "80%"
+          ],
+          "answer": 2,
+          "explanation": "The useful fraction is 8/80=0.1, or 10%. The remaining 90% is unused by this query.",
+          "pages": [
+            10
+          ]
+        },
+        {
+          "id": "l07-row-q4",
+          "prompt": "Why can heterogeneous row data be less favourable for compression than values grouped by column?",
+          "options": [
+            "Row formats prohibit all compression",
+            "Every value within a row must be unique",
+            "Row formats require keys to be stored in random order",
+            "Values from different domains are interleaved"
+          ],
+          "answer": 3,
+          "explanation": "Values from the same domain often contain patterns that compression can exploit. This is a trade-off, not a prohibition on row compression.",
+          "pages": [
+            11
+          ]
+        },
+        {
+          "id": "l07-row-q5",
+          "prompt": "Does a row store guarantee faster execution than a column store for every workload?",
+          "options": [
+            "No, it depends on the access pattern",
+            "Yes, because every query needs every attribute",
+            "Yes, regardless of whether a query reads one tuple or millions",
+            "Yes, provided the table has a primary key"
+          ],
+          "answer": 0,
+          "explanation": "Reading a few columns across many rows can favour a column layout. The use of SQL alone does not determine which layout is faster.",
+          "pages": [
+            7,
+            11
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l07-topic-column",
+      "title": "COLUMNAR STORAGE MODEL",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf",
+      "pages": [
+        12,
+        16
+      ],
+      "questions": [
+        {
+          "id": "l07-column-q1",
+          "prompt": "What does a column store primarily group together?",
+          "options": [
+            "A separate copy of the table for every SQL query",
+            "Values of the same attribute across many tuples",
+            "All attributes of one tuple consecutively",
+            "All tuples with the same primary key into one row"
+          ],
+          "answer": 1,
+          "explanation": "A column layout places values from the same column close together, unlike a row layout.",
+          "pages": [
+            12
+          ]
+        },
+        {
+          "id": "l07-column-q2",
+          "prompt": "How can tuples be reconstructed from corresponding column arrays?",
+          "options": [
+            "By the values' alphabetical order, regardless of row position",
+            "By arbitrarily joining values with the same data type",
+            "By their corresponding positions or offsets in the arrays",
+            "By using only the MAX value of each column"
+          ],
+          "answer": 2,
+          "explanation": "Corresponding positions identify the parts belonging to the same tuple. Unrelated extrema do not identify matching rows.",
+          "pages": [
+            13
+          ]
+        },
+        {
+          "id": "l07-column-q3",
+          "prompt": "What does scanning only two required columns instead of every column primarily reduce?",
+          "options": [
+            "The number of tuples satisfying the query predicate by default",
+            "The number of logical columns in the original schema",
+            "All CPU costs of every operator",
+            "I/O for unused data"
+          ],
+          "answer": 3,
+          "explanation": "Physical projection avoids reading unnecessary bytes. It does not change the query's meaning or remove all other processing costs.",
+          "pages": [
+            16
+          ]
+        },
+        {
+          "id": "l07-column-q4",
+          "prompt": "Why can a point update to an entire tuple be less convenient in a column store?",
+          "options": [
+            "It may need to access several column regions and reconstruct or split the tuple",
+            "Relational tuples no longer exist in the logical model",
+            "SQL prohibits UPDATE in every column store",
+            "Every point lookup must return the entire table"
+          ],
+          "answer": 0,
+          "explanation": "The logical tuple still exists. Its physical attributes are spread across column regions, making multi-field operations less local.",
+          "pages": [
+            16
+          ]
+        },
+        {
+          "id": "l07-column-q5",
+          "prompt": "There are one million 100-byte records. A query uses columns totalling 12 bytes per record. Ignoring metadata and compression, how much column payload must be read?",
+          "options": [
+            "1.2 MB",
+            "12 MB in decimal units",
+            "100 MB",
+            "112 MB"
+          ],
+          "answer": 1,
+          "explanation": "The payload is 1,000,000×12=12,000,000 bytes. An ideal column layout does not require reading the rest of every record.",
+          "pages": [
+            12,
+            16
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l07-topic-pax",
+      "title": "HYBRID STORAGE MODEL (PAX)",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf",
+      "pages": [
+        17,
+        18
+      ],
+      "questions": [
+        {
+          "id": "l07-pax-q1",
+          "prompt": "What does PAX do conceptually?",
+          "options": [
+            "Keep the row bytes unchanged and only rename the file",
+            "Sort the records by every column simultaneously",
+            "Group attribute values by column within a page or tuple-group region",
+            "Put an entire table's column into exactly one page"
+          ],
+          "answer": 2,
+          "explanation": "A hybrid layout combines tuple grouping with attribute grouping. It is neither a simple row layout nor a single global array for each column.",
+          "pages": [
+            17
+          ]
+        },
+        {
+          "id": "l07-pax-q2",
+          "prompt": "Six tuples are divided into row groups of three tuples each. How many row groups are there?",
+          "options": [
+            "3",
+            "6",
+            "18",
+            "2"
+          ],
+          "answer": 3,
+          "explanation": "There are 6/3=2 groups of rows. The number of columns does not determine this division.",
+          "pages": [
+            18
+          ]
+        },
+        {
+          "id": "l07-pax-q3",
+          "prompt": "A row group has columns A, B, and C. Which arrangement describes its column chunks?",
+          "options": [
+            "Chunk A, chunk B, and chunk C within the same group",
+            "One chunk containing every complete row without any separation by column",
+            "Every value is always a separate file with no metadata",
+            "Only global column arrays, with no row groups"
+          ],
+          "answer": 0,
+          "explanation": "Each chunk groups one column's values within that row group. Individual tuples do not each become separate files.",
+          "pages": [
+            18
+          ]
+        },
+        {
+          "id": "l07-pax-q4",
+          "prompt": "What is a goal of a hybrid storage layout?",
+          "options": [
+            "Make the workload irrelevant to performance",
+            "Combine column-processing benefits with locality for related data",
+            "Eliminate every reconstruction cost in every query",
+            "Guarantee that every write changes only one byte"
+          ],
+          "answer": 1,
+          "explanation": "A hybrid layout seeks a useful trade-off. It does not guarantee that tuple reconstruction disappears or that every operation has constant cost.",
+          "pages": [
+            17
+          ]
+        },
+        {
+          "id": "l07-pax-q5",
+          "prompt": "What does the global metadata directory use offsets to locate in the diagram?",
+          "options": [
+            "Only record primary keys, without group locations",
+            "The current pin counts of buffer frames",
+            "Row groups within the file",
+            "Every tuple that every future query will select"
+          ],
+          "answer": 2,
+          "explanation": "The metadata locates storage structures. It does not precompute the answers to all possible queries.",
+          "pages": [
+            18
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l07-topic-parquet",
+      "title": "PARQUET FILE FORMAT",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf",
+      "pages": [
+        19,
+        20
+      ],
+      "questions": [
+        {
+          "id": "l07-parquet-q1",
+          "prompt": "Which containment hierarchy matches the Parquet diagram?",
+          "options": [
+            "File → column chunk → row group → page",
+            "File → page → column chunk → row group",
+            "Row group → file → page → column chunk",
+            "File → row group → column chunk → page"
+          ],
+          "answer": 3,
+          "explanation": "The hierarchy organises the data into blocks. Each row group contains the chunks for its columns, and chunks contain pages.",
+          "pages": [
+            19
+          ]
+        },
+        {
+          "id": "l07-parquet-q2",
+          "prompt": "What kind of information does the footer hold in the diagram?",
+          "options": [
+            "File, row-group, and column metadata",
+            "A complete duplicate of the raw row data instead of metadata",
+            "Only the encoded values of the final column",
+            "The pin counts and reference bits of the running buffer pool"
+          ],
+          "answer": 0,
+          "explanation": "The footer describes structures, schemas, and offsets. It is not another copy of the entire dataset.",
+          "pages": [
+            19
+          ]
+        },
+        {
+          "id": "l07-parquet-q3",
+          "prompt": "A chunk has valid statistics min=10 and max=20. How can these help evaluate x>30?",
+          "options": [
+            "Change max to 30",
+            "Skip the chunk because none of its values can satisfy the condition",
+            "Require every value to be read before making any decision",
+            "Return the value 30 immediately"
+          ],
+          "answer": 1,
+          "explanation": "The recorded value range does not overlap the predicate's range, so the chunk can be pruned. Metadata does not create new data values.",
+          "pages": [
+            20
+          ]
+        },
+        {
+          "id": "l07-parquet-q4",
+          "prompt": "For a chunk with min=10 and max=50, does the predicate x=30 prove that the chunk contains a row with value 30?",
+          "options": [
+            "Yes, if the chunk is sorted",
+            "No, because min must equal 30",
+            "No, the statistics only fail to rule out that possibility",
+            "Yes, min and max imply that every intermediate number occurs"
+          ],
+          "answer": 2,
+          "explanation": "Minimum and maximum values bound the range. They do not guarantee that every value between them is present.",
+          "pages": [
+            20
+          ]
+        },
+        {
+          "id": "l07-parquet-q5",
+          "prompt": "How can row groups support parallel processing?",
+          "options": [
+            "Remove all CPU work from every query",
+            "Automatically eliminate the need to combine results",
+            "Guarantee that all data is free from skew",
+            "Divide reading and processing work among groups"
+          ],
+          "answer": 3,
+          "explanation": "Groups provide units of work that can be assigned separately. Coordination costs and uneven workloads can still remain.",
+          "pages": [
+            20
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l07-topic-compression",
+      "title": "COMPRESSION IN DBMS / NAÏVE COMPRESSION",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf",
+      "pages": [
+        21,
+        22
+      ],
+      "questions": [
+        {
+          "id": "l07-compression-q1",
+          "prompt": "What must the database compression discussed in this lecture preserve?",
+          "options": [
+            "Exact recovery of the original data, meaning lossless compression",
+            "Only the average value",
+            "Only the row count, while fields may change",
+            "Only table names"
+          ],
+          "answer": 0,
+          "explanation": "Losing tuple details can change query results. Lossy methods, where appropriate, are a separate application-level choice.",
+          "pages": [
+            21
+          ]
+        },
+        {
+          "id": "l07-compression-q2",
+          "prompt": "What is an important compression trade-off?",
+          "options": [
+            "Compression has no connection to query processing",
+            "Less I/O and storage, potentially at the cost of more encoding and decoding CPU work",
+            "Every cost always becomes zero",
+            "File sizes always increase"
+          ],
+          "answer": 1,
+          "explanation": "Fewer bytes can be beneficial, but encoding and decoding require computation. Not every type of cost necessarily decreases.",
+          "pages": [
+            21
+          ]
+        },
+        {
+          "id": "l07-compression-q3",
+          "prompt": "What understanding does a general-purpose block codec typically lack?",
+          "options": [
+            "The ability to recover the original bytes",
+            "The ability to operate without knowing the complete query plan",
+            "High-level semantics of database values",
+            "Input-block boundaries that it can process"
+          ],
+          "answer": 2,
+          "explanation": "It treats the block as general data and may not exploit database types, value domains, or query semantics fully.",
+          "pages": [
+            22
+          ]
+        },
+        {
+          "id": "l07-compression-q4",
+          "prompt": "Must every value be decompressed before every computation?",
+          "options": [
+            "Yes, for every encoding",
+            "No data ever needs to be decompressed",
+            "Only when a query contains SELECT",
+            "No, some encodings support operations directly"
+          ],
+          "answer": 3,
+          "explanation": "Some operations can work directly on run-length or dictionary encodings. This does not mean every operation works on every compressed format.",
+          "pages": [
+            21
+          ]
+        },
+        {
+          "id": "l07-compression-q5",
+          "prompt": "A file shrinks from 80 MB to 20 MB. Using original size divided by compressed size, what is the compression ratio?",
+          "options": [
+            "4:1",
+            "1:4",
+            "60:1",
+            "2:1"
+          ],
+          "answer": 0,
+          "explanation": "The ratio is 80/20=4, or 4:1. A 75% size reduction describes the same change using a different measure.",
+          "pages": [
+            21
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l07-topic-column-encoding",
+      "title": "COLUMNAR COMPRESSION",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf",
+      "pages": [
+        23,
+        23
+      ],
+      "questions": [
+        {
+          "id": "l07-column-encoding-q1",
+          "prompt": "What is the run-length encoding of [4,4,4,9,9] using (value,count) pairs?",
+          "options": [
+            "[(4,1),(9,1)]",
+            "[(4,3),(9,2)]",
+            "[(3,4),(2,9)]",
+            "[(4,2),(9,3)]"
+          ],
+          "answer": 1,
+          "explanation": "The count is the length of each consecutive run. The pair order must not be reversed, and merely recording distinct values would lose multiplicity.",
+          "pages": [
+            23
+          ]
+        },
+        {
+          "id": "l07-column-encoding-q2",
+          "prompt": "What is the minimum fixed bit width for unsigned integers in the range 0..7?",
+          "options": [
+            "7",
+            "8",
+            "3",
+            "2"
+          ],
+          "answer": 2,
+          "explanation": "Three bits represent eight values. Two bits represent only four, while eight bits would work but are not minimal.",
+          "pages": [
+            23
+          ]
+        },
+        {
+          "id": "l07-column-encoding-q3",
+          "prompt": "What is the SUM represented by RLE pairs [(5,4),(2,3)]?",
+          "options": [
+            "7",
+            "35",
+            "17",
+            "26"
+          ],
+          "answer": 3,
+          "explanation": "Compute 5×4+2×3=26. Adding only 5+2 would ignore how many times each value occurs.",
+          "pages": [
+            23
+          ]
+        },
+        {
+          "id": "l07-column-encoding-q4",
+          "prompt": "How many runs does [1,2,1,2,1,2] have under ordinary RLE without reordering?",
+          "options": [
+            "6",
+            "2",
+            "3",
+            "1"
+          ],
+          "answer": 0,
+          "explanation": "Every value differs from its predecessor, so each run has length 1. Nonadjacent occurrences cannot be combined while preserving this sequence's order.",
+          "pages": [
+            23
+          ]
+        },
+        {
+          "id": "l07-column-encoding-q5",
+          "prompt": "There are 1000 integers in 0..7, stored using 3 bits per value. Ignoring headers and padding, how many payload bytes are needed?",
+          "options": [
+            "1000",
+            "375",
+            "3000",
+            "125"
+          ],
+          "answer": 1,
+          "explanation": "The payload is 1000×3=3000 bits. Dividing by 8 gives 375 bytes; 3000 is the bit count, not the byte count.",
+          "pages": [
+            23
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l07-topic-delta",
+      "title": "DELTA ENCODING IN PARQUET",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf",
+      "pages": [
+        24,
+        26
+      ],
+      "questions": [
+        {
+          "id": "l07-delta-q1",
+          "prompt": "Delta encoding of [20,23,24,29] stores first=20. What are the subsequent deltas?",
+          "options": [
+            "[23,24,29]",
+            "[3,4,9]",
+            "[3,1,5]",
+            "[20,3,1]"
+          ],
+          "answer": 2,
+          "explanation": "Each delta subtracts the immediately preceding value. The sequence [3,4,9] instead subtracts the initial value every time.",
+          "pages": [
+            24
+          ]
+        },
+        {
+          "id": "l07-delta-q2",
+          "prompt": "For deltas=[3,1,4,1] and minDelta=1, what are the residuals?",
+          "options": [
+            "[4,2,5,2]",
+            "[3,1,4,1]",
+            "[1,1,1,1]",
+            "[2,0,3,0]"
+          ],
+          "answer": 3,
+          "explanation": "Each residual is delta−minDelta. Decoding adds minDelta back to recover each delta.",
+          "pages": [
+            25
+          ]
+        },
+        {
+          "id": "l07-delta-q3",
+          "prompt": "Given first=40, minDelta=−1, and residuals=[3,0,2], what values follow the first value when decoded?",
+          "options": [
+            "42,41,42",
+            "43,43,45",
+            "42,39,40",
+            "3,0,2"
+          ],
+          "answer": 0,
+          "explanation": "The deltas are [2,−1,1]. Adding them successively to 40 produces 42,41,42; the residuals are not the original values.",
+          "pages": [
+            24,
+            25
+          ]
+        },
+        {
+          "id": "l07-delta-q4",
+          "prompt": "Why does subtracting a block's minDelta produce nonnegative residuals?",
+          "options": [
+            "Subtraction automatically removes negative deltas from the data",
+            "Every delta in the block is at least minDelta",
+            "Every original value must be nonnegative",
+            "Every original delta must be positive"
+          ],
+          "answer": 1,
+          "explanation": "By the definition of a minimum, delta−minDelta≥0, even when deltas are negative. No information needs to be discarded.",
+          "pages": [
+            25
+          ]
+        },
+        {
+          "id": "l07-delta-q5",
+          "prompt": "The largest residual is 6, and the block uses one unsigned bit width. What is the minimum number of bits per value?",
+          "options": [
+            "6",
+            "4",
+            "3",
+            "2"
+          ],
+          "answer": 2,
+          "explanation": "Three bits represent 0..7, whereas two bits represent only 0..3. A maximum value of 6 does not require six bits.",
+          "pages": [
+            26
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l07-topic-dictionary",
+      "title": "DICTIONARY ENCODING",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf",
+      "pages": [
+        27,
+        27
+      ],
+      "questions": [
+        {
+          "id": "l07-dictionary-q1",
+          "prompt": "A dictionary maps tea→0 and cake→1. What does codes=[0,1,0] decode to?",
+          "options": [
+            "[cake,tea,cake]",
+            "[tea,tea,cake]",
+            "[tea,cake,cake]",
+            "[tea,cake,tea]"
+          ],
+          "answer": 3,
+          "explanation": "Look up each code in sequence. Both occurrences of code 0 decode to tea, preserving order and multiplicity.",
+          "pages": [
+            27
+          ]
+        },
+        {
+          "id": "l07-dictionary-q2",
+          "prompt": "A dictionary assigns mango→0 and apple→1. Does 0<1 imply that mango comes before apple alphabetically?",
+          "options": [
+            "No, this mapping is not required to preserve alphabetical order",
+            "Yes, every integer code follows alphabetical order",
+            "Yes, dictionaries always assign codes by word length",
+            "Yes, provided the two codes are different"
+          ],
+          "answer": 0,
+          "explanation": "Codes may be assigned arbitrarily. Ordering comparisons require an order-preserving encoding or access to the original values.",
+          "pages": [
+            27
+          ]
+        },
+        {
+          "id": "l07-dictionary-q3",
+          "prompt": "In a dictionary-encoded column, tea has code 7. How should its occurrences be counted?",
+          "options": [
+            "Count it once because tea has only one dictionary entry",
+            "Count the positions whose code equals 7",
+            "Count the positions whose code is less than 7",
+            "Add together all the codes"
+          ],
+          "answer": 1,
+          "explanation": "Many positions can refer to the same dictionary entry. Counting the matching positions preserves multiplicity.",
+          "pages": [
+            27
+          ]
+        },
+        {
+          "id": "l07-dictionary-q4",
+          "prompt": "There are 100 values using 1-byte codes, and the dictionary contains four 10-byte ASCII strings. Ignoring overhead, what is the total payload?",
+          "options": [
+            "40 bytes",
+            "1000 bytes",
+            "140 bytes",
+            "100 bytes"
+          ],
+          "answer": 2,
+          "explanation": "The codes use 100 bytes and the dictionary uses 40 bytes. Counting only the codes would omit the mapping's storage cost.",
+          "pages": [
+            27
+          ]
+        },
+        {
+          "id": "l07-dictionary-q5",
+          "prompt": "With the same assumed overhead, which case is most likely to benefit from dictionary encoding?",
+          "options": [
+            "Every value is unique and already only 1 byte long",
+            "Every string occurs once and its code is larger than the string",
+            "The data is empty but a large dictionary is still built",
+            "Many repetitions of a small set of long strings"
+          ],
+          "answer": 3,
+          "explanation": "Repeated long strings can share one stored copy through their codes. Dictionary overhead means this is not beneficial for every dataset.",
+          "pages": [
+            27
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,267 @@
+[
+  {
+    "id": "lecture-08",
+    "lecture": 8,
+    "title": "File organisations and index types",
+    "short": "Heap, sorted, clustered & unclustered",
+    "group": "03 · Indexing",
+    "time": 25,
+    "lead": "Before choosing a storage structure, define the workload, the queries and updates it must support, and the cost model.",
+    "goals": [
+      "Compare heap and sorted-file costs under the same assumptions",
+      "Distinguish a search key, a primary key, and an index entry",
+      "Calculate the data-fetch costs of clustered and unclustered indexes"
+    ],
+    "sections": [
+      {
+        "id": "l8-1",
+        "title": "The conceptual framework",
+        "html": "<p>To find a record, we can scan a file, search a sorted file, or use an index to identify where to read. A heap file does not require records to follow search-key order. A sorted file keeps the data ordered by its sorting column. This lesson compares scans, equality searches for one value, range searches, insertions, and deletions using a simple page-I/O model.</p><p>A search key is the column or group of columns an index uses for lookup. Unlike a primary key, it need not be unique. An index entry can contain a record, a record identifier (RID), or a list of RIDs. Tree versus hash, clustered versus unclustered, and primary versus secondary describe different aspects of an index.</p>"
+      },
+      {
+        "id": "l8-2",
+        "title": "An original cost comparison",
+        "html": "<p>Consider a file with 1024 pages. In this exercise’s model, reading or writing one page takes 2 ms. Let P=1024 be the number of pages and D=2 ms be the time per page I/O. R denotes the number of records per page if we need to convert between record counts and page counts. The calculations below use P and D.</p><p>Assume a cold cache: none of the required data is already in RAM. The search key occurs exactly once and is equally likely to be on any page. For heap insertion, the location of the final page is known, and that page has free space. The sorted file is stored contiguously without reserved gaps, and the search uses the column on which the file is sorted. Ignore CPU costs and differences between random and sequential I/O.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>Binary search requires the file to follow the search order.</b> A file sorted by product code does not support binary search by price. The logarithmic cost below applies only when the search condition matches the sorting column.</p></aside><ul><li><strong>Full scan:</strong> read all 1024 pages. Both organisations cost P×D=1024×2=2048 ms.</li><li><strong>Heap equality search:</strong> read approximately half the file, giving P/2×D=512×2=1024 ms. The exact expected number of pages under these assumptions is (P+1)/2=512.5, corresponding to 1025 ms.</li><li><strong>Sorted equality search:</strong> binary search repeatedly halves the search region. Since log₂1024=10, the approximate model cost is log₂1024×2=20 ms.</li><li><strong>Heap insertion:</strong> read the final page, modify it in RAM, and write it back. Two I/Os cost approximately 2×2=4 ms.</li><li><strong>Sorted insertion:</strong> locating the insertion position costs approximately 10 I/Os. Assume that, on average, half the file must shift: 512 pages, each read and written once, require 512×2=1024 I/Os. The total is (10+1024)×2=2068 ms.</li></ul><p>These are model-based approximations using a common set of assumptions to compare file organisations. The figure of 20 ms is not a prediction of elapsed time for a real database.</p>"
+      },
+      {
+        "id": "l8-3",
+        "title": "Original index entries and data locality",
+        "html": "<p>Product(pid,category,price) contains three records: (1,tea,20),(2,tea,25),(3,cake,30). The search key category is not unique even though pid is unique. Looking up tea must lead to both products in that category.</p><ul><li>A record-containing entry has the form (tea, complete record).</li><li>RID entries have the form (tea,rid1),(tea,rid2), with one entry pointing to each record.</li><li>A list entry has the form (tea,[rid1,rid2]), grouping the RIDs that share one search-key value.</li></ul><p>With a clustered index, the data order follows the search-key order, so records close in key order tend to occupy fewer pages. An unclustered index may point to records scattered across many pages. Suppose a query matches 80 records and each data page holds 20 records. If the matches fit exactly on four pages, 80/20=4 page reads are sufficient for the data-fetch portion of the query. If each matching record is on a different page and the cache is cold, that portion may require 80 reads.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>Add the cost of locating index entries to the cost of fetching records.</b> The four or 80 reads above count only data pages. Also count the path through the index and the leaf pages containing its entries when those pages are not already cached.</p></aside>"
+      },
+      {
+        "id": "l8-4",
+        "title": "Practise choosing a design",
+        "html": "<p>Consider three new workloads. A always outputs the entire table. B looks up a code and updates one record. C retrieves every transaction within a date range. Suggest one design and one disadvantage for each workload.</p><details><summary>Suggestions, rather than unique answers</summary><p>For A, a heap file is simple, but it does not guarantee an output order. For B, an index that supports equality lookup narrows the search, but it must be maintained when the indexed data changes. For C, a tree index on the date supports range queries. Clustering can reduce the number of data pages fetched, but maintaining that layout can make updates more expensive.</p></details><p>Do not choose a design based only on the word “index”. Two indexes with the same tree structure can have very different data-fetch costs if one is clustered and the other is unclustered. Base your conclusion on selectivity, the fraction of records that match the condition, as well as the cache and record layout.</p>"
+      }
+    ],
+    "quiz": {
+      "question": "The 80 matching records occupy four data pages. How many page reads fetch those records if none of the pages is cached?",
+      "options": [
+        "4, excluding index traversal",
+        "Always 80",
+        "0, because an index exists"
+      ],
+      "answer": 0,
+      "explanation": "Count the pages that actually need to be read. Several records on the same page do not require a separate page read for each record."
+    },
+    "source": {
+      "summary": "I/O-only file cost model; heap/sorted operations; index entry variants; search keys; tree/hash; clustering, primary/secondary and uniqueness.",
+      "links": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations.pdf#page=5",
+          "label": "PDF pp. 5–19 / slides 5–21 · cost model"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations.pdf#page=20",
+          "label": "PDF pp. 20–29 / slides 22–33 · index concepts"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations.pdf#page=30",
+          "label": "PDF pp. 30–34 / slides 36–49 · clustering"
+        }
+      ]
+    },
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations.pdf",
+      "alternatePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations-2x2.pdf",
+      "verified": true,
+      "verifiedPages": "1–34",
+      "pdfPageCount": 34,
+      "topics": [
+        "P/R/D assumptions",
+        "Heap costs",
+        "Sorted costs",
+        "Range search",
+        "Insert/delete",
+        "Search key",
+        "Entry variants A/B/C",
+        "Tree/hash",
+        "Primary/secondary",
+        "Unique",
+        "Clustered/unclustered"
+      ],
+      "limitations": [
+        "Printed slide numbers have gaps; final PDF page 34 is printed slide 49.",
+        "Costs are simplified approximations under stated assumptions."
+      ],
+      "week": 3,
+      "officialTitle": "File Organisations",
+      "weeklyPage": "https://opencourse.inf.ed.ac.uk/adbs/week-3",
+      "pageMap": [
+        {
+          "pdfPage": 1,
+          "printedSlide": null,
+          "heading": "Advanced Database Systems"
+        },
+        {
+          "pdfPage": 2,
+          "printedSlide": 2,
+          "heading": "R ECAP : F ILE O RGANISATIONS"
+        },
+        {
+          "pdfPage": 3,
+          "printedSlide": 3,
+          "heading": "C OMPARING F ILE O RGANISATIONS"
+        },
+        {
+          "pdfPage": 4,
+          "printedSlide": 4,
+          "heading": "G OALS"
+        },
+        {
+          "pdfPage": 5,
+          "printedSlide": 5,
+          "heading": "C OST M ODEL FOR A NALYSIS"
+        },
+        {
+          "pdfPage": 6,
+          "printedSlide": 6,
+          "heading": "R ECORD O PERATIONS"
+        },
+        {
+          "pdfPage": 7,
+          "printedSlide": 7,
+          "heading": "H EAP F ILES"
+        },
+        {
+          "pdfPage": 8,
+          "printedSlide": 8,
+          "heading": "H EAP F ILE : S CAN A LL R ECORDS"
+        },
+        {
+          "pdfPage": 9,
+          "printedSlide": 9,
+          "heading": "H EAP F ILE : S EARCH ON K EY"
+        },
+        {
+          "pdfPage": 10,
+          "printedSlide": 10,
+          "heading": "H EAP F ILE : S EARCH ON N ON -K EY"
+        },
+        {
+          "pdfPage": 11,
+          "printedSlide": 11,
+          "heading": "H EAP F ILE : R ANGE S EARCH"
+        },
+        {
+          "pdfPage": 12,
+          "printedSlide": 12,
+          "heading": "H EAP F ILE : I NSERT & D ELETE"
+        },
+        {
+          "pdfPage": 13,
+          "printedSlide": 13,
+          "heading": "H EAP F ILE A NALYSIS"
+        },
+        {
+          "pdfPage": 14,
+          "printedSlide": 14,
+          "heading": "S ORTED F ILES"
+        },
+        {
+          "pdfPage": 15,
+          "printedSlide": 15,
+          "heading": "S ORTED F ILE : S EARCH"
+        },
+        {
+          "pdfPage": 16,
+          "printedSlide": 18,
+          "heading": "S ORTED F ILE : S EARCH"
+        },
+        {
+          "pdfPage": 17,
+          "printedSlide": 19,
+          "heading": "S ORTED F ILE : I NSERT & D ELETE"
+        },
+        {
+          "pdfPage": 18,
+          "printedSlide": 20,
+          "heading": "S ORTED F ILE A NALYSIS"
+        },
+        {
+          "pdfPage": 19,
+          "printedSlide": 21,
+          "heading": "H EAP F ILE VS . S ORTED F ILE"
+        },
+        {
+          "pdfPage": 20,
+          "printedSlide": 22,
+          "heading": "I NTRODUCTION TO I NDEXES"
+        },
+        {
+          "pdfPage": 21,
+          "printedSlide": 23,
+          "heading": "I NDEX"
+        },
+        {
+          "pdfPage": 22,
+          "printedSlide": 24,
+          "heading": "I NDEX U SAGE"
+        },
+        {
+          "pdfPage": 23,
+          "printedSlide": 25,
+          "heading": "I NDEX E NTRIES"
+        },
+        {
+          "pdfPage": 24,
+          "printedSlide": 26,
+          "heading": "I NDEX E NTRIES"
+        },
+        {
+          "pdfPage": 25,
+          "printedSlide": 27,
+          "heading": "I NDEXING BY R EFERENCE"
+        },
+        {
+          "pdfPage": 26,
+          "printedSlide": 29,
+          "heading": "I NDEX C LASSIFICATION"
+        },
+        {
+          "pdfPage": 27,
+          "printedSlide": 31,
+          "heading": "B+ T REE I NDEXES"
+        },
+        {
+          "pdfPage": 28,
+          "printedSlide": 32,
+          "heading": "E XAMPLE B+ T REE"
+        },
+        {
+          "pdfPage": 29,
+          "printedSlide": 33,
+          "heading": "H ASH -B ASED I NDEX"
+        },
+        {
+          "pdfPage": 30,
+          "printedSlide": 36,
+          "heading": "C LUSTERED VS . U NCLUSTERED I NDEX"
+        },
+        {
+          "pdfPage": 31,
+          "printedSlide": 37,
+          "heading": "C LUSTERED VS . U NCLUSTERED I NDEX"
+        },
+        {
+          "pdfPage": 32,
+          "printedSlide": 39,
+          "heading": "C LUSTERED VS . U NCLUSTERED I NDEX"
+        },
+        {
+          "pdfPage": 33,
+          "printedSlide": 40,
+          "heading": "C LUSTERED VS . U NCLUSTERED I NDEX"
+        },
+        {
+          "pdfPage": 34,
+          "printedSlide": 49,
+          "heading": "S UMMARY"
+        }
+      ],
+      "alternateVerified": true,
+      "alternatePdfPageCount": 9
+    },
+    "lab": "index"
+  }
+]

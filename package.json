@@ -1,0 +1,14 @@
+{
+  "name": "adbs-learning-web",
+  "version": "3.0.0",
+  "private": true,
+  "description": "Independent English ADBS companion; portable static frontend",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node scripts/test.mjs",
+    "start": "node server.cjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,96 @@
+[
+  {
+    "id": "lecture-20",
+    "lecture": 20,
+    "title": "Locking: from locks to correct schedules",
+    "short": "S/X locks · 2PL · deadlock",
+    "group": "06 · Transactions",
+    "time": 25,
+    "lead": "A lock controls access to a data object. A locking protocol specifies when a transaction may acquire and release its locks.",
+    "goals": [
+      "Simulate shared/exclusive locks and the two locking phases",
+      "Explain why cascading aborts occur",
+      "Handle deadlocks through detection or timestamp-based prevention"
+    ],
+    "sections": [
+      {
+        "id": "l20-s1",
+        "title": "The essential rules",
+        "html": "<p>Two people viewing an order can read it concurrently. When one updates the order, other transactions must be prevented from reading or writing the data protected by that update lock. Locks provide this access control.</p><p>An <strong>S-lock</strong>, or shared lock, permits reading. Multiple transactions may hold S-locks on the same object. An <strong>X-lock</strong>, or exclusive lock, permits writing and conflicts with other transactions' S-locks and X-locks.</p><p><strong>2PL</strong> has two phases. In the growing phase, a transaction may acquire or upgrade locks. Its first lock release begins the shrinking phase, during which it may only release locks. It therefore cannot acquire or upgrade a lock after releasing one.</p><p>In this lecture, <strong>strict 2PL</strong> retains all locks until the transaction ends. Some sources call retention of both S-locks and X-locks rigorous 2PL, so state the convention you are using.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>The first lock release is the phase boundary in 2PL.</b> A transaction cannot return to acquiring locks afterward. The lecture's strict variant additionally delays every release until transaction completion.</p></aside><p class=\"source-note\">Source: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=2\" target=\"_blank\" rel=\"noopener\">PDF pages 2–14</a>. The examples and worked solutions on this lesson page were written independently.</p>"
+      },
+      {
+        "id": "l20-s2",
+        "title": "Worked example: updating an order",
+        "html": "<p>T1 needs to update Order and Stock. The sequence <code>X(Order), update Order, unlock(Order), X(Stock)</code> violates 2PL at its final request. Replacing it with <code>X(Order), X(Stock), update both, commit, unlock</code> satisfies the lecture's strict variant.</p><p>T2, which only reads Order, must wait while T1 holds X(Order). If T1 aborts, T2 has never read the uncommitted version, so T2's result need not be withdrawn. This operational benefit goes beyond merely proving that a precedence graph is acyclic.</p><p class=\"source-note\">Source: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=3\" target=\"_blank\" rel=\"noopener\">PDF pages 3–17</a>. The examples and worked solutions on this lesson page were written independently.</p>"
+      },
+      {
+        "id": "l20-s3",
+        "title": "Deadlock and conflict cycles",
+        "html": "<p>Suppose T1 holds X(Order) and T2 holds X(Stock). T1 requests Stock, while T2 requests Order. The waits-for graph contains T1 → T2 → T1. T1 cannot proceed until T2 releases Stock, and T2 cannot proceed until T1 releases Order.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>Waits-for graphs and precedence graphs answer different questions.</b> A waits-for graph records who is waiting for whom to detect deadlock. A precedence graph records the order of conflicting operations to check conflict serializability.</p></aside><p>Aborting T2, undoing its changes, and releasing Stock lets T1 proceed. Victim selection should consider work already performed and previous restarts to avoid starvation. Preclaiming all required locks as one all-or-nothing request at the start avoids holding some locks while waiting for others, but it requires knowing the lock set in advance. Merely requesting locks one by one at the start does not provide this guarantee.</p><p class=\"source-note\">Source: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=18\" target=\"_blank\" rel=\"noopener\">PDF pages 18–22</a>. The examples and worked solutions on this lesson page were written independently.</p>"
+      },
+      {
+        "id": "l20-s4",
+        "title": "Reasoning with timestamps",
+        "html": "<p>T_old has timestamp 10 and T_new has timestamp 30. A smaller timestamp means that the transaction started earlier.</p><ul><li>Wait-die: if old requests a lock held by new, old waits; if new requests a lock held by old, new aborts.</li><li>Wound-wait: if old requests a lock held by new, new is forced to abort; if new requests a lock held by old, new waits.</li></ul><p>Each rule permits waiting edges in only one timestamp direction. A waiting chain therefore cannot loop back to its starting transaction. A restarted transaction retains its original timestamp so it is not repeatedly treated as the newest transaction.</p><p class=\"source-note\">Source: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=23\" target=\"_blank\" rel=\"noopener\">PDF pages 23–27</a>. The examples and worked solutions on this lesson page were written independently.</p>"
+      },
+      {
+        "id": "l20-s5",
+        "title": "Check your understanding",
+        "html": "<p>T1 acquires S(A), acquires S(B), releases S(A), and then upgrades S(B) to X(B). Is this valid? No. An upgrade after the shrinking phase has begun also violates 2PL.</p><p>Next question: does strict 2PL eliminate deadlock? No. Construct a counterexample with two transactions acquiring A and B in opposite orders. Serializability is a safety property; avoiding indefinite waits is a separate progress requirement.</p><p class=\"source-note\">Source: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=7\" target=\"_blank\" rel=\"noopener\">PDF pages 7–28</a>. The examples and worked solutions on this lesson page were written independently.</p>"
+      }
+    ],
+    "quiz": {
+      "question": "T_old requests a lock held by T_new. What does wound-wait do?",
+      "options": [
+        "T_old aborts",
+        "T_new aborts and releases its locks",
+        "T_old always waits",
+        "Both transactions receive the X-lock"
+      ],
+      "answer": 1,
+      "explanation": "Under wound-wait, a transaction with a smaller timestamp can force a younger transaction holding the requested lock to abort."
+    },
+    "source": {
+      "summary": "Lecture 20 covers shared and exclusive locks, 2PL, strict 2PL, deadlock detection, and the wait-die and wound-wait prevention rules.",
+      "links": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=2",
+          "label": "PDF pages 2–14"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=3",
+          "label": "PDF pages 3–17"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=18",
+          "label": "PDF pages 18–22"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=23",
+          "label": "PDF pages 23–27"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=7",
+          "label": "PDF pages 7–28"
+        }
+      ]
+    },
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+      "verified": true,
+      "verifiedPages": "1–28",
+      "topics": [
+        "lock compatibility",
+        "growing/shrinking phases",
+        "strict 2PL",
+        "cascading aborts",
+        "waits-for graph",
+        "victim selection",
+        "wait-die",
+        "wound-wait"
+      ],
+      "limitations": []
+    },
+    "lab": "transactions"
+  }
+]

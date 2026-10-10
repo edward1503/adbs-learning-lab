@@ -1,0 +1,86 @@
+[
+  {
+    "id": "lecture-17",
+    "lecture": 17,
+    "title": "Query Optimisation: Costing",
+    "short": "Estimate cardinality before cost",
+    "group": "05 · Query optimisation",
+    "time": 25,
+    "lead": "Estimate cardinality, the number of rows, at each step before costing the whole plan.",
+    "goals": [
+      "Estimate operator costs and the cardinalities passed between steps",
+      "Read catalog statistics and explain when they need updating",
+      "Identify uniformity and independence assumptions",
+      "Calculate selectivity for equality, range, NOT, AND, and OR conditions"
+    ],
+    "sections": [
+      {
+        "id": "l17-s1",
+        "title": "Wrong cardinalities lead to wrong costs",
+        "html": "<p>An optimizer needs to estimate how many rows each step will process before calculating its cost. The output estimate of a child operator becomes the input estimate of its parent, so an error can propagate through the whole plan. The catalog stores statistics such as tuple counts, page counts, numbers of distinct values, minimum and maximum values, and index heights. Statistics are usually approximate and need updating as the data changes. The System R model combines page I/O with the number of tuples processed by the CPU, using a weight to compare the two components.</p><p><strong>Original example:</strong> a table has 12,000 rows and 40 departments. Assuming that all departments have the same number of rows (uniformity), filtering for one department retains 12,000/40=300 rows. If a second condition retains 20% and is independent of the first condition (independence), 300×0.2=60 rows remain. Correlation between the columns can make this multiplication substantially wrong.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>Selectivity is the fraction retained, not the fraction discarded.</b> “Highly selective” usually describes a condition that retains very few rows, meaning its selectivity value is small.</p></aside><p class=\"source-note\">Source topic: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=2\" target=\"_blank\" rel=\"noopener\">PDF pages 2–6</a>. The numerical examples and exercises in this section are original supplementary material.</p>"
+      },
+      {
+        "id": "l17-s2",
+        "title": "Formulas and their assumptions",
+        "html": "<p>For equality A=c, suppose c is in the actual set of values and all values of column A occur equally often. Selecting one value retains one of V(A) equal shares, where V(A) is the number of distinct values of A. The selectivity is therefore 1/V(A). For a range, count the values retained: an integer A from 10 through 29 has 20 possible values. A&gt;24 retains 25,26,27,28,29, giving a fraction of 5/20 under a uniform distribution.</p><p>To combine conditions, let s be the selectivity of P, and let s1 and s2 be the selectivities of P and Q. First assume there are no NULL values, so each condition is either TRUE or FALSE:</p><ul><li>NOT P retains the part discarded by P: 1−s.</li><li>P AND Q: under independence, retain a fraction s2 of the fraction s1, giving s1s2. For example, 0.2×0.3=0.06.</li><li>P OR Q: add the two fractions and subtract their overlap to avoid double counting. Under independence, the overlap is s1s2, so OR has selectivity s1+s2−s1s2. For example, 0.2+0.3−0.06=0.44.</li></ul><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>The multiplication formula requires independence.</b> If the conditions are correlated, their overlap is not s1s2. SQL NULL introduces UNKNOWN, so even the formula for NOT needs to be reconsidered.</p></aside><p><strong>Equijoin example:</strong> R contains 600 rows and 30 distinct join-key values; S contains 900 rows and 60 distinct values. Assume uniform distributions and that all 30 keys in R also occur in S. Each key has 600/30=20 rows in R and 900/60=15 rows in S. Each shared key produces 20×15=300 pairs, so 30 keys produce 30×300=9,000 rows.</p><p>This gives the estimate |R||S|/max(V(R.A),V(S.A)): |R| and |S| are row counts; V(R.A) and V(S.A) are the numbers of distinct values of join key A on each side; max selects the larger number. In this example, 600×900/60=9,000. The formula requires uniformity and the assumption that the smaller key set is contained in the larger one, as in the example. A different amount of overlap requires an adjustment.</p><p>If S.A is a valid, non-NULL foreign key referencing unique key R.A, each row of S matches exactly one row of R, so the join contains exactly |S| rows. If the foreign key permits NULL, those NULL rows do not match in this equijoin and the output count may be lower.</p><p class=\"source-note\">Source topic: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=7\" target=\"_blank\" rel=\"noopener\">PDF pages 7–11</a>. The numerical examples and exercises in this section are original supplementary material.</p>"
+      },
+      {
+        "id": "l17-s3",
+        "title": "Histograms: whole buckets and partial buckets",
+        "html": "<p>A histogram divides the value domain into buckets and records the number of rows in each bucket. <strong>Original example:</strong> two equi-width integer buckets have equal widths: [1,4] contains 20 rows and [5,8] contains 60 rows. To estimate A=6, assume the 4 values in the second bucket occur equally often: 60/4=15 rows. For A&gt;6, retain only the two values 7 and 8: 2/4×60=30 rows.</p><p>Uniformity within a bucket is still an assumption; it does not mean the real data has exactly 15 rows for each value. Equi-width histograms use equally wide value intervals. Equi-depth histograms keep approximately the same number of rows in each bucket, using narrower intervals in denser regions. More buckets describe the distribution in greater detail but occupy more catalog space. When statistics are missing, an optimizer uses defaults that depend on the system and version; these are not measured probabilities.</p><p class=\"source-note\">Source topic: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=13\" target=\"_blank\" rel=\"noopener\">PDF pages 13–25</a>. The numerical examples and exercises in this section are original supplementary material.</p>"
+      },
+      {
+        "id": "l17-s4",
+        "title": "Exercise: find the independence error",
+        "html": "<p>A table contains 10,000 people. Of these, 20% live in city X and 20% have a postcode in region X. In reality, the two conditions match exactly the same group of people. What row count does the independence assumption estimate for AND? What is the actual count?</p><details><summary>View the solution</summary><p>The estimate is 10,000×0.2×0.2=400 rows. In reality, both conditions retain the same 20% group, giving 10,000×0.2=2,000 rows, 5 times the estimate. This error can cause the optimizer to choose an unsuitable join algorithm or memory allocation. A single-column histogram models a distribution better than assuming uniformity across the whole column, but it does not by itself resolve correlation between two columns.</p></details><p class=\"source-note\">Source topic: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=26\" target=\"_blank\" rel=\"noopener\">PDF pages 26–26</a>. The numerical examples and exercises in this section are original supplementary material.</p>"
+      }
+    ],
+    "quiz": {
+      "question": "An equi-width bucket contains 4 values and 60 rows. What is the estimated equality count for one value?",
+      "options": [
+        "4",
+        "15",
+        "60"
+      ],
+      "answer": 1,
+      "explanation": "Assuming uniformity within the bucket gives 60/4=15. This is an estimate based on equal frequencies, not the actual count if the data is skewed."
+    },
+    "source": {
+      "summary": "The complete official PDF was read. Topics covered: Operator costs and propagated cardinalities; Catalog statistics and refresh; Uniformity and independence; Equality/range/NOT/AND/OR selectivity; Key–foreign key and general equijoin size; Missing statistics defaults; Equi-width/equi-depth histogram equality/range estimates. The explanations and calculations above are original teaching material, not reproductions of the slides.",
+      "links": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=1",
+          "label": "Official PDF, pages 1–26"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=2",
+          "label": "PDF pages 2–12"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=13",
+          "label": "PDF pages 13–20"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=21",
+          "label": "PDF pages 21–26"
+        }
+      ]
+    },
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf",
+      "verified": true,
+      "verifiedPages": "1–26",
+      "topics": [
+        "Operator costs and propagated cardinalities",
+        "Catalog statistics and refresh",
+        "Uniformity and independence",
+        "Equality/range/NOT/AND/OR selectivity",
+        "Key–foreign key and general equijoin size",
+        "Missing statistics defaults",
+        "Equi-width/equi-depth histogram equality/range estimates"
+      ],
+      "limitations": []
+    },
+    "lab": "join-cost"
+  }
+]

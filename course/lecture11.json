@@ -1,0 +1,85 @@
+[
+  {
+    "id": "lecture-11",
+    "lecture": 11,
+    "title": "External Sorting & Aggregation",
+    "short": "Sorting when the data exceeds RAM",
+    "group": "04 · Query execution",
+    "time": 25,
+    "lead": "Count the reads and writes required when sorting or aggregation must process more data than fits in RAM.",
+    "goals": [
+      "Connect query execution to the implementation of individual operators",
+      "Calculate the number of passes in two-way and multiway external merge sort",
+      "Compare reading through clustered and unclustered B+ trees",
+      "Use sorting to implement DISTINCT"
+    ],
+    "sections": [
+      {
+        "id": "l11-s1",
+        "title": "From ORDER BY to external merge sort",
+        "html": "<p>Sorting supports ORDER BY, DISTINCT, GROUP BY, merge joins, and bulk loading. With a multi-column key, lexicographic order compares the first column first and considers each later column only when the preceding columns are equal. When the data exceeds RAM, it must be divided into smaller pieces and read and written sequentially. Relying on virtual memory alone does not make an in-memory algorithm efficient.</p><p><strong>New worked example:</strong> sort 90 pages using 6 buffer frames allocated to the algorithm. Each frame holds one page.</p><ol><li>Pass 0: read 6 pages into RAM, sort them, and write a run, which is a sorted sequence. Repeat until all the data has been processed, producing 90/6=15 runs.</li><li>Reserve 5 frames for reading 5 runs and 1 frame for collecting output. Repeatedly take the smallest item among the 5 inputs, append it to the output, and advance that input. One merge pass combines the 15 runs into 3 runs.</li><li>The next merge pass combines the 3 runs into 1. The run counts are therefore 15→3→1, requiring 3 passes in total, including pass 0.</li></ol><p>Every pass reads 90 pages and writes 90 pages, giving 2×90×3=540 page I/Os. This count includes writing the final result to disk and excludes CPU cost.</p><p class=\"source-note\">Related source material: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=2\" target=\"_blank\" rel=\"noopener\">PDF pages 2–13</a>. The numerical examples and exercises in this section are original supplementary material.</p>"
+      },
+      {
+        "id": "l11-s2",
+        "title": "Count the passes and avoid unnecessary sorting",
+        "html": "<p>Let N be the number of pages to sort and B the number of buffer frames. Pass 0 processes up to B pages at a time, producing ceil(N/B) runs. Here ceil means rounding up, because a partial final batch still needs a run. Each merge pass combines at most B−1 runs because 1 frame must be reserved for output.</p><p>Repeat the merging until only 1 run remains. For N&gt;0 and B≥3, the total number of passes is 1+ceil(log_(B−1)(ceil(N/B))). The initial 1 counts pass 0; the logarithm counts the merges in groups of B−1, rounded up. If each pass reads and writes all the data, the cost is 2×N×the number of passes. For two-way merge sort that creates one-page runs and merges 2 runs at a time, the pass count is 1+ceil(log2 N).</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>Count the runs and passes before substituting into a formula.</b> Pipelining the final output directly into the next operator may avoid the final write, but state that assumption before subtracting any I/O.</p></aside><p>A B+ tree provides key order. With a clustered index, records with nearby keys are also close together in the data file, making leaf-order access attractive. With an unclustered index, fetching complete records in index order may require one random fetch per tuple. Tuples and pages are different units.</p><p class=\"source-note\">Related source material: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=12\" target=\"_blank\" rel=\"noopener\">PDF pages 12–17</a>. The numerical examples and exercises in this section are original supplementary material.</p>"
+      },
+      {
+        "id": "l11-s3",
+        "title": "GROUP BY retains state, not necessarily every tuple",
+        "html": "<p><strong>Original worked example:</strong> sales(region,amount) contains (North,10), (South,8), and (North,14). To calculate AVG, retain a sum and row count for each group: North→(sum=24,count=2) and South→(8,1). Divide sum by count when producing the result, giving 12 and 8. MIN, MAX, SUM, and COUNT also have their own running state, so they do not require retaining every tuple.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>To combine averages, keep both the sum and the count.</b> When two groups have different row counts, averaging their two averages does not give the combined average.</p></aside><p>If the hash table of groups does not fit in RAM, read the data and partition it onto disk by group key. Then process each partition using a different hash function that is independent of the partitioning function. With B buffer frames, the partitioning phase reserves 1 frame for input and B−1 frames for writing B−1 partitions.</p><p>In a simple capacity model, if each partition subsequently fits into about B pages of RAM, the two phases can process approximately B(B−1) pages. This is only an estimate: overhead and skew may reduce the practical capacity, while combining state early may reduce the data that must be retained. Repeated partitioning cannot separate tuples with identical group keys; the state for that group must be combined.</p><p class=\"source-note\">Related source material: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=19\" target=\"_blank\" rel=\"noopener\">PDF pages 19–32</a>. The numerical examples and exercises in this section are original supplementary material.</p>"
+      },
+      {
+        "id": "l11-s4",
+        "title": "Exercise: sorting or hashing?",
+        "html": "<p>Suppose a query needs DISTINCT customer_id without any ordering. The requirement then changes to DISTINCT customer_id ORDER BY customer_id. How does that affect your choice?</p><details><summary>Show the solution</summary><p>Hashing is a candidate for the first query because it only needs to eliminate duplicate keys. The second query requires order, so sorting can both bring duplicate keys together for elimination and produce the required output order. Costs still need to be compared; no choice is best for every dataset.</p><p>Repeat the calculation with 90 pages and 10 buffer frames. Pass 0 produces 90/10=9 runs. Reserving 1 output frame leaves 9 input frames, so all 9 runs can be merged in one merge pass. There are 2 passes in total, costing 2×90×2=360 I/Os if the final output is also written.</p></details><p class=\"source-note\">Related source material: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=18\" target=\"_blank\" rel=\"noopener\">PDF pages 18–32</a>. The numerical examples and exercises in this section are original supplementary material.</p>"
+      }
+    ],
+    "quiz": {
+      "question": "For N=90 and B=6, how many I/Os does multiway sorting require when the final output is written?",
+      "options": [
+        "360",
+        "540",
+        "900"
+      ],
+      "answer": 1,
+      "explanation": "The run sequence 15→3→1 requires 3 passes, each costing 180 I/Os."
+    },
+    "source": {
+      "summary": "The full official PDF has been reviewed. Coverage: Query execution and operator implementations; Lexicographic sorting, two-way and multiway external merge sort; B+ tree sorting: clustered/unclustered; Sort-based DISTINCT; External hashing, recursive partitioning, and skew; Hash aggregation, running state, and memory bounds. The explanations and worked calculations above are original teaching material rather than reproductions of the slides.",
+      "links": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=1",
+          "label": "Official PDF, pages 1–32"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=2",
+          "label": "PDF pages 2–14"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=15",
+          "label": "PDF pages 15–20"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=21",
+          "label": "PDF pages 21–32"
+        }
+      ]
+    },
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+      "verified": true,
+      "verifiedPages": "1–32",
+      "topics": [
+        "Query execution and operator implementations",
+        "Lexicographic sorting, two-way and multiway external merge sort",
+        "B+ tree sorting: clustered/unclustered",
+        "Sort-based DISTINCT",
+        "External hashing, recursive partitioning, and skew",
+        "Hash aggregation, running state, and memory bounds"
+      ],
+      "limitations": []
+    },
+    "lab": "sorting"
+  }
+]

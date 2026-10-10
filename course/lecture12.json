@@ -1,0 +1,85 @@
+[
+  {
+    "id": "lecture-12",
+    "lecture": 12,
+    "title": "Joins",
+    "short": "Choose joins by their actual cost",
+    "group": "04 · Query execution",
+    "time": 25,
+    "lead": "Compare join algorithms using page I/O counts under the same data and buffer assumptions.",
+    "goals": [
+      "Identify join semantics and the assumptions behind I/O calculations",
+      "Calculate the costs of tuple, page, and block nested-loop joins",
+      "Calculate index nested-loop join costs with clustering",
+      "Handle duplicates and combine the final merge pass with a sort-merge join"
+    ],
+    "sections": [
+      {
+        "id": "l12-s1",
+        "title": "Nested loops: change the unit of iteration",
+        "html": "<p>In a nested-loop join, the outer input drives the outer loop. The inner input is scanned again for each outer tuple, page, or block. Start with a block nested-loop join (BNLJ) example: R occupies 120 pages, S occupies 40 pages, and memory provides 12 buffer frames. Each frame holds one page.</p><ol><li>Choose R as the outer input and S as the inner input. Reserve 1 frame for reading S and 1 for collecting output, leaving 10 frames to hold a block of R.</li><li>Read the first 10 pages of R into RAM. Keep them there while scanning all 40 pages of S to find every pair that satisfies the join condition.</li><li>Replace them with the next 10 pages of R, then scan all of S again. R has 120/10=12 blocks, so repeat this process 12 times.</li></ol><p>Reading R costs 120 page reads in total, with each page read once. Reading S costs 12×40=480 page reads. The total is 120+480=600 page I/Os. This model assumes that the inner input is rescanned for every outer block and that all of S is not retained between scans. It excludes CPU cost and writes of the final output.</p><p>Now express the calculation as a formula: M+ceil(M/(B−2))×N. Here M is the number of outer pages, N is the number of inner pages, and B is the number of buffer frames. B−2 frames hold the outer block, and ceil(M/(B−2)) counts the outer blocks. Round up because even an incomplete final block still requires an inner scan. The formula uses B≥3, and the inputs in this example are nonempty.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>Use the number of outer blocks to count inner scans.</b> With 12 frames, the outer block uses 10 frames. Each outer block triggers one complete read of the inner input.</p></aside><p>Reverse the roles: S as the outer input has 40/10=4 blocks, and each block scans all 120 pages of R. The cost is 40+ceil(40/10)×120=40+4×120=520 I/Os. If the outer input fits in B−2 frames, one block is enough and each input is read once. Calculate both outer choices because rounding can affect the result.</p><p>The two simpler variants use the same reasoning. Page nested loops holds one R page at a time and scans S 120 times: 120+120×40=4,920 I/Os, or M+MN in general. If R has 12,000 tuples, tuple nested loops scans S 12,000 times: 120+12,000×40=480,120 I/Os, or M+mN, where m is the number of outer tuples.</p><p class=\"source-note\">Related source material: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=4\" target=\"_blank\" rel=\"noopener\">PDF pages 4–11</a>. The numerical examples and exercises in this section are original supplementary material.</p>"
+      },
+      {
+        "id": "l12-s2",
+        "title": "Index nested loops: find every match",
+        "html": "<p>An index nested-loop join reads an outer tuple, extracts its join key, and uses an index on the inner input to find every matching tuple. The cost of a lookup includes both finding the index entries and reading those inner tuples. A clustered index may place many matches on a small number of pages; an unclustered index may require many random I/Os. The index must support the join condition being used.</p><p><strong>New worked example:</strong> after filtering, the outer input contains 25 tuples on 2 pages. Reading it costs 2 I/Os, and each unique-key lookup on the inner input costs 3 I/Os, including index access and the data fetch. There are 25 lookups, giving 2+25×3=77 I/Os. Counting 2+25 would require an additional assumption that reduces each lookup to 1 I/O.</p><p>In compact form, cost = M+m×C_lookup. M counts outer page reads, m counts outer tuples, and C_lookup is the I/O cost of finding all inner matches in one lookup. If costs vary by key, sum the individual lookups or use a suitable average. To isolate the effect of the probe count, hold the outer read cost at 2 I/Os and increase the number of probes to 2,500: the cost becomes 2+2,500×3=7,502 I/Os. This comparison deliberately holds the outer read cost fixed.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>A lookup must account for every match.</b> An index does not automatically make a join cheap: cost also depends on the number of outer tuples, the number of matches, and the data pages that must be read.</p></aside><p class=\"source-note\">Related source material: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=12\" target=\"_blank\" rel=\"noopener\">PDF pages 12–15</a>. The numerical examples and exercises in this section are original supplementary material.</p>"
+      },
+      {
+        "id": "l12-s3",
+        "title": "Sort-merge and hashing: two ways to bring matches together",
+        "html": "<p>A sort-merge join sorts both inputs by the join key, then compares their current keys. Advance the pointer on the side with the smaller key. When the keys are equal, produce every pair across the two equal-key groups: 3 copies in R and 4 in S produce 3×4=12 tuples.</p><p>If the sorted results are written to disk, add the cost of sorting each input and then rereading the M pages of R and N pages of S for the merge: sort(R)+sort(S)+M+N. This scan formula assumes duplicate groups can be handled without additional reads; very large groups may increase the cost. The final merge pass of sorting can be combined with the join if enough buffers are available to read the runs from both inputs.</p><p>An in-memory hash join keeps a hash table for the smaller input in RAM during its build phase, then probes it with tuples from the larger input. When RAM is insufficient, Grace hash join uses the same hash function to divide R and S into corresponding partition pairs. R_i only needs to join S_i, where i is the partition number.</p><p>Count the operations: reading both inputs costs M+N; writing the partitions costs M+N; and rereading them for build and probe costs M+N. The total is 3(M+N), or 3×(120+40)=480 I/Os in this example. The formula excludes output writes and applies only when each build partition, including hash-table overhead, fits in RAM without further partitioning. Hash collisions still require checking key equality.</p><p class=\"source-note\">Related source material: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=16\" target=\"_blank\" rel=\"noopener\">PDF pages 16–41</a>. The numerical examples and exercises in this section are original supplementary material.</p>"
+      },
+      {
+        "id": "l12-s4",
+        "title": "Exercise: choose under explicit assumptions",
+        "html": "<p>For R=120 pages, S=40 pages, and the 12 buffer frames above, compare the best BNLJ choice with Grace hash join. What changes if both inputs are already sorted and the output must follow the join-key order?</p><details><summary>Show the solution</summary><p>The lower BNLJ cost across the two orientations is 520 I/Os. Grace hash join costs 480 I/Os if each build partition fits in RAM and the distribution is suitable. With already-sorted inputs, a merge scan needs only 120+40=160 page reads and may preserve the required order, assuming duplicate groups cause no rereading. For a general inequality condition, the equijoin hash formula does not apply; nested loops remains applicable.</p></details><p class=\"source-note\">Related source material: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=31\" target=\"_blank\" rel=\"noopener\">PDF pages 31–43</a>. The numerical examples and exercises in this section are original supplementary material.</p>"
+      }
+    ],
+    "quiz": {
+      "question": "Two groups with the same key contain 3 and 4 tuples. How many joined tuples do they produce?",
+      "options": [
+        "4",
+        "7",
+        "12"
+      ],
+      "answer": 2,
+      "explanation": "A join retains every matching pair: 3×4=12. Each tuple in the first group matches every tuple in the second; the join does not automatically eliminate duplicate occurrences."
+    },
+    "source": {
+      "summary": "The full official PDF has been reviewed. Coverage: Join semantics and I/O assumptions; Tuple/page/block nested loops; Index nested loops and clustering; Sort-merge, duplicates, and final-pass fusion; In-memory hash join and Grace hash join; Recursive partitioning and algorithm trade-offs. The explanations and worked calculations above are original teaching material rather than reproductions of the slides.",
+      "links": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=1",
+          "label": "Official PDF, pages 1–43"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=2",
+          "label": "PDF pages 2–15"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=16",
+          "label": "PDF pages 16–33"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=34",
+          "label": "PDF pages 34–43"
+        }
+      ]
+    },
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+      "verified": true,
+      "verifiedPages": "1–43",
+      "topics": [
+        "Join semantics and I/O assumptions",
+        "Tuple/page/block nested loops",
+        "Index nested loops and clustering",
+        "Sort-merge, duplicates, and final-pass fusion",
+        "In-memory hash join and Grace hash join",
+        "Recursive partitioning and algorithm trade-offs"
+      ],
+      "limitations": []
+    },
+    "lab": "join-cost"
+  }
+]

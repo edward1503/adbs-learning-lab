@@ -1,0 +1,115 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  check:
+    name: Build and test (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Build production output
+        run: npm run build
+      - name: Run tests
+        run: npm test
+      - name: Record source release
+        run: node scripts/build-release-metadata.mjs
+      - name: Upload production output
+        if: matrix.os == 'ubuntu-latest'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: dist-${{ github.sha }}
+          path: dist/
+          if-no-files-found: error
+          retention-days: 14
+
+  publish:
+    name: Publish static deployment branch
+    timeout-minutes: 10
+    needs: check
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    concurrency:
+      group: deploy-branch
+      cancel-in-progress: false
+    steps:
+      - name: Check out repository for publication
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          path: publish
+          # Uses only the job's temporary repository token; cleaned up by checkout.
+          persist-credentials: true
+      - name: Download checked production output
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: dist-${{ github.sha }}
+          path: site
+      - name: Publish dist at the branch root
+        shell: bash
+        env:
+          SOURCE_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          test -f site/index.html
+          test -f site/release.json
+          cd publish
+          git fetch --no-tags origin main
+          if [ "$(git rev-parse FETCH_HEAD)" != "$SOURCE_SHA" ]; then
+            echo "A newer main commit exists; skipping this superseded build."
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if git ls-remote --exit-code --heads origin deploy >/dev/null; then
+            git fetch --no-tags origin deploy
+            git switch -C deploy FETCH_HEAD
+          else
+            status=$?
+            if [ "$status" -ne 2 ]; then
+              echo "Cannot inspect the deployment branch."
+              exit "$status"
+            fi
+            git switch --orphan deploy
+          fi
+          git rm -rf --ignore-unmatch .
+          cp -a ../site/. .
+          git add --all
+          if git diff --cached --quiet; then
+            echo "Deployment output is unchanged."
+            exit 0
+          fi
+          git commit -m "Deploy source $SOURCE_SHA"
+          # Recheck before pushing, and use a normal push to preserve deploy history.
+          git fetch --no-tags origin main
+          if [ "$(git rev-parse FETCH_HEAD)" != "$SOURCE_SHA" ]; then
+            echo "A newer main commit exists; skipping this superseded build."
+            exit 0
+          fi
+          git push origin HEAD:refs/heads/deploy

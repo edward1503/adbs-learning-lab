@@ -1,0 +1,88 @@
+[
+  {
+    "id": "lecture-16",
+    "lecture": 16,
+    "title": "Access Methods",
+    "short": "Scans, indexes, and bitmaps",
+    "group": "05 · Query optimisation",
+    "time": 25,
+    "lead": "Determine when a query can use an index, and when a sequential scan or bitmap scan has a lower cost.",
+    "goals": [
+      "Distinguish sequential-scan cost from output selectivity",
+      "Check whether an index can support a predicate in key order",
+      "Apply the equality-prefix/range rule to a composite B+ tree",
+      "Compare index-only, clustered, and unclustered scans"
+    ],
+    "sections": [
+      {
+        "id": "l16-s1",
+        "title": "Access paths: ways to execute an operator",
+        "html": "<p>An access path is a way of reading data to execute an operator. For example, a selection can use a sequential scan, an index scan, or a combination of several indexes through a bitmap. Selectivity is the fraction of rows retained by a filtering condition.</p><p><strong>Original example:</strong> a table contains 10,000 rows on 100 pages, and a predicate retains 10% of the rows. A heap scan still reads all 100 pages to test the predicate, leaving 1,000 rows. If row width stays the same and the output rows are packed into pages as densely as before, the output occupies approximately 10 pages. Unclustered lookups for the 1,000 matching rows may read many scattered pages; having an index does not guarantee fewer I/Os than a scan.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>Distinguish pages read from pages remaining after filtering.</b> Low selectivity produces a small output, but a sequential scan still reads the whole table unless some mechanism lets it skip pages.</p></aside><p>In general, a sequential scan of an input containing N pages costs N page reads. The estimate output pages ≈ selectivity × N applies only when row width and tuple packing remain unchanged.</p><p class=\"source-note\">Source topic: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=2\" target=\"_blank\" rel=\"noopener\">PDF pages 2–6</a>. The numerical examples and exercises in this section are original supplementary material.</p>"
+      },
+      {
+        "id": "l16-s2",
+        "title": "Composite B+ trees: an equality prefix followed by a range",
+        "html": "<p>An index on (department,age,salary) sorts first by department, then by age, and finally by salary. Searching for department=CS AND age&gt;30 means locating the CS group and reading its portion with age&gt;30, which is a contiguous index range. The condition department=CS AND age=30 AND salary&gt;500 also forms a contiguous range: fix the first two columns, then use a range on the third. A search for age=30 that omits department is not a left-prefix lookup in this teaching model.</p><p>For department=CS AND age&gt;30 AND salary=500, the index locates the CS entries with age&gt;30, after which salary must be checked in the entries found. Entries with salary=500 can occur in several different age groups, so the full predicate does not form one contiguous range.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>Read a composite key from left to right.</b> In this B+ tree model, fix the leading columns with equality conditions, then use one range. Conditions on later columns may still require additional checks.</p></aside><p>A hash index on (department,age) hashes the complete pair, so equality on both keys is needed to choose a bucket. Knowing only department, or specifying an age range, is insufficient for that kind of lookup.</p><p class=\"source-note\">Source topic: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=7\" target=\"_blank\" rel=\"noopener\">PDF pages 7–15</a>. The numerical examples and exercises in this section are original supplementary material.</p>"
+      },
+      {
+        "id": "l16-s3",
+        "title": "Index-only access and multiple indexes",
+        "html": "<p>With index-only access, a query needs only attributes already present in the index, so the teaching model can avoid reading the data tuples. When records still have to be fetched, clustering matters: a clustered index places matching records near one another, while an unclustered index may lead to many scattered pages. Sorting RIDs (record identifiers) by location before fetching helps group accesses to records on the same page.</p><p><strong>Original example:</strong> an age index returns RIDs {1,3,6,9}, and a department index returns {2,3,6,8}. An AND condition takes their intersection, {3,6}. An OR condition takes their union, {1,2,3,6,8,9}. A bitmap represents candidate locations and helps organise heap reads by page. After fetching, predicates not satisfied by the indexes must still be checked, along with any required rechecks; not every candidate necessarily becomes an output row.</p><p class=\"source-note\">Source topic: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=16\" target=\"_blank\" rel=\"noopener\">PDF pages 16–21</a>. The numerical examples and exercises in this section are original supplementary material.</p>"
+      },
+      {
+        "id": "l16-s4",
+        "title": "An additional EXPLAIN exercise",
+        "html": "<p>Create a separate test table in PostgreSQL. Run EXPLAIN for predicates with few and many matches, then compare it with EXPLAIN ANALYZE on a safe SELECT. Record estimated rows, actual rows, scan type, and buffer statistics if that option is enabled. ANALYZE actually executes the query; use it with data-changing statements only when you understand and accept their effects.</p><details><summary>What to observe</summary><p>The planner may switch from an index scan to a bitmap scan to a sequential scan as selectivity changes. The official practical uses Bay Area Bike Sharing on Learn; its login-restricted dataset and instructions were not accessed here. This experiment is an original supplementary exercise, not a copy of the Learn practical.</p></details><p class=\"source-note\">Source topic: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=22\" target=\"_blank\" rel=\"noopener\">PDF pages 22–23</a>. The numerical examples and exercises in this section are original supplementary material.</p>"
+      }
+    ],
+    "quiz": {
+      "question": "Which predicate forms a contiguous range in an index on (A,B)?",
+      "options": [
+        "A=7 AND B>20",
+        "B=20 with any value of A",
+        "A>7 AND B=20 with no residual check needed at all"
+      ],
+      "answer": 0,
+      "explanation": "An equality prefix on A followed by a range on B forms one contiguous interval in the index."
+    },
+    "source": {
+      "summary": "The complete official PDF was read. Topics covered: Sequential scan and selectivity; Index eligibility and key ordering; Composite B+ tree prefix/range rule; Index-only, clustered, unclustered scans; Hash composite equality; Multi-index RID intersection/union; PostgreSQL EXPLAIN practical scope. The explanations and calculations above are original teaching material, not reproductions of the slides.",
+      "links": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=1",
+          "label": "Official PDF, pages 1–23"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=2",
+          "label": "PDF pages 2–7"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=8",
+          "label": "PDF pages 8–16"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=17",
+          "label": "PDF pages 17–23"
+        }
+      ]
+    },
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf",
+      "verified": true,
+      "verifiedPages": "1–23",
+      "topics": [
+        "Sequential scan and selectivity",
+        "Index eligibility and key ordering",
+        "Composite B+ tree prefix/range rule",
+        "Index-only, clustered, unclustered scans",
+        "Hash composite equality",
+        "Multi-index RID intersection/union",
+        "PostgreSQL EXPLAIN practical scope"
+      ],
+      "limitations": [
+        "The Learn practical and dataset require separate access and were not verified."
+      ]
+    },
+    "lab": "index"
+  }
+]

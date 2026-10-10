@@ -1,0 +1,697 @@
+{
+  "lectureId": "lecture-09",
+  "topics": [
+    {
+      "id": "l09-topic-isam",
+      "title": "ISAM: INDEXED SEQUENTIAL ACCESS METHOD",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf",
+      "pages": [
+        4,
+        11
+      ],
+      "questions": [
+        {
+          "id": "l09-isam-q1",
+          "prompt": "Which part of the ISAM structure remains static during insertions and deletions in this lecture's model?",
+          "options": [
+            "The number of tuples in the file",
+            "The non-leaf levels",
+            "Every record value",
+            "Every overflow page, which can never change"
+          ],
+          "answer": 1,
+          "explanation": "Updates affect the leaves and overflow pages while the non-leaf structure stays fixed. The stored data can still change.",
+          "pages": [
+            7
+          ]
+        },
+        {
+          "id": "l09-isam-q2",
+          "prompt": "What normally happens when inserting into a full primary ISAM leaf?",
+          "options": [
+            "The entire tree is always replaced by a heap",
+            "The record is discarded if its key is not unique",
+            "An overflow page associated with that leaf is used or created",
+            "The root is always split immediately"
+          ],
+          "answer": 2,
+          "explanation": "ISAM uses overflow pages instead of rebalancing the index structure in the way a B+ tree does.",
+          "pages": [
+            7
+          ]
+        },
+        {
+          "id": "l09-isam-q3",
+          "prompt": "Is an ISAM separator necessarily invalid after the data entry with the same value is deleted?",
+          "options": [
+            "Yes, every separator must correspond to a currently existing record",
+            "Yes, the entire index must be rebuilt after every deletion",
+            "No, because separators are not used during searches",
+            "No, the separator can still correctly route a range of keys"
+          ],
+          "answer": 3,
+          "explanation": "A separator defines a routing boundary. It does not necessarily assert that an entry with exactly that value currently exists in a leaf.",
+          "pages": [
+            10
+          ]
+        },
+        {
+          "id": "l09-isam-q4",
+          "prompt": "Why can heavy insertion make ISAM progressively slower?",
+          "options": [
+            "Overflow chains can grow long and may be unsorted",
+            "The fanout automatically grows without limit",
+            "Every internal node becomes a one-record page",
+            "Key comparison can no longer be used at the root"
+          ],
+          "answer": 0,
+          "explanation": "Overflow chains add I/O after the initial leaf lookup. Static upper levels do not prevent these chains from growing.",
+          "pages": [
+            11
+          ]
+        },
+        {
+          "id": "l09-isam-q5",
+          "prompt": "Which workload suits the ISAM advantage described in the lecture?",
+          "options": [
+            "One requiring absolutely no overflow after any update",
+            "Relatively static data with few structural updates",
+            "Continuously adding many keys to one full leaf",
+            "Continuously changing the complete key order"
+          ],
+          "answer": 1,
+          "explanation": "Few updates limit overflow growth and benefit from stable internal levels. They do not guarantee that overflow will never occur.",
+          "pages": [
+            11
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l09-topic-fanout",
+      "title": "ISAM VS. BINARY SEARCH / B+ TREES IN PRACTICE",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf",
+      "pages": [
+        12,
+        16
+      ],
+      "questions": [
+        {
+          "id": "l09-fanout-q1",
+          "prompt": "What is fanout F in this index-tree model?",
+          "options": [
+            "The number of rows matching a query",
+            "The number of overflow chains in the entire database",
+            "The maximum number of children of an index node",
+            "The number of bytes in a key"
+          ],
+          "answer": 2,
+          "explanation": "Fanout measures branching capacity. Key size can influence it, but is not its definition.",
+          "pages": [
+            12
+          ]
+        },
+        {
+          "id": "l09-fanout-q2",
+          "prompt": "With N leaf pages, each step narrows the search space by approximately a factor of F. What approximates the number of edges down to a leaf?",
+          "options": [
+            "N·F",
+            "N+F",
+            "log_N F",
+            "log_F N"
+          ],
+          "answer": 3,
+          "explanation": "Solving N/F^s=1 gives s=log_F N. Multiplying the page count by the fanout does not measure the depth.",
+          "pages": [
+            12
+          ]
+        },
+        {
+          "id": "l09-fanout-q3",
+          "prompt": "An ideal full tree has F=10 and N=1000 leaf pages. How many edges lead from the root to a leaf?",
+          "options": [
+            "3",
+            "4",
+            "10",
+            "100"
+          ],
+          "answer": 0,
+          "explanation": "Since 10³=1000, the path has three edges. Four would count the levels, including both root and leaf.",
+          "pages": [
+            12
+          ]
+        },
+        {
+          "id": "l09-fanout-q4",
+          "prompt": "If the root and one internal level are cached, what can a search avoid?",
+          "options": [
+            "The keys matching the query",
+            "Disk I/O for those levels",
+            "All logical comparisons",
+            "The tree's data entries"
+          ],
+          "answer": 1,
+          "explanation": "Cached pages are still accessed and compared in memory. They simply do not require disk reads for that search.",
+          "pages": [
+            16
+          ]
+        },
+        {
+          "id": "l09-fanout-q5",
+          "prompt": "Why does high fanout often help a disk-based index compared with binary branching?",
+          "options": [
+            "Leaf pages are no longer needed",
+            "Every page contains exactly one key",
+            "Fewer levels mean fewer page traversals",
+            "Every key automatically becomes unique"
+          ],
+          "answer": 2,
+          "explanation": "Many children per page reduce tree depth. Fanout does not remove leaves or establish key uniqueness.",
+          "pages": [
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l09-topic-invariants",
+      "title": "B+ TREE: MOST WIDELY USED INDEX / EXAMPLE B+ TREE",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf",
+      "pages": [
+        13,
+        15
+      ],
+      "questions": [
+        {
+          "id": "l09-invariants-q1",
+          "prompt": "What does balanced mean for a B+ tree?",
+          "options": [
+            "Every node contains the same number of entries",
+            "All keys are separated by equal numerical intervals",
+            "Every page is physically contiguous on disk",
+            "Every leaf has the same depth"
+          ],
+          "answer": 3,
+          "explanation": "Balance concerns leaf depth. It does not require identical occupancy or physically adjacent pages.",
+          "pages": [
+            13
+          ]
+        },
+        {
+          "id": "l09-invariants-q2",
+          "prompt": "Using the lecture's order convention with d=3, how many entries can a non-root node contain?",
+          "options": [
+            "3 to 6",
+            "2 to 3",
+            "6 to 7",
+            "1 to 3"
+          ],
+          "answer": 0,
+          "explanation": "The lecture uses d≤entries≤2d. Other references may define order differently, so the convention must be stated.",
+          "pages": [
+            13,
+            14
+          ]
+        },
+        {
+          "id": "l09-invariants-q3",
+          "prompt": "For d=2, what is the maximum fanout of an internal node under this convention?",
+          "options": [
+            "6",
+            "5",
+            "4",
+            "2"
+          ],
+          "answer": 1,
+          "explanation": "An internal node can contain at most 2d keys and 2d+1 child pointers. Four counts keys rather than children.",
+          "pages": [
+            14
+          ]
+        },
+        {
+          "id": "l09-invariants-q4",
+          "prompt": "Why do B+ tree leaves have next/previous links even when their physical pages are not adjacent?",
+          "options": [
+            "To guarantee that all keys are unique",
+            "To keep exactly one record in every leaf",
+            "To scan between leaves in key order",
+            "To replace every search from the root"
+          ],
+          "answer": 2,
+          "explanation": "The links preserve a logical sequence for range scans. They do not require physical adjacency.",
+          "pages": [
+            14
+          ]
+        },
+        {
+          "id": "l09-invariants-q5",
+          "prompt": "A root separator is 20, with keys<20 on the left and keys≥20 on the right. Where does a search for 20 go?",
+          "options": [
+            "Left",
+            "Both sides are always required",
+            "Stop at the root because the record has already been found",
+            "Right"
+          ],
+          "answer": 3,
+          "explanation": "The separator routes the search. Seeing a key in an internal node does not mean that its data entry has been retrieved.",
+          "pages": [
+            15
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l09-topic-insert",
+      "title": "INSERTING A DATA ENTRY",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf",
+      "pages": [
+        17,
+        19
+      ],
+      "questions": [
+        {
+          "id": "l09-insert-q1",
+          "prompt": "What is the first step when inserting an entry into a B+ tree?",
+          "options": [
+            "Find the leaf covering the key's range",
+            "Insert the record arbitrarily into an internal root node",
+            "Split every node before searching",
+            "Always create a new leaf, even if space is available"
+          ],
+          "answer": 0,
+          "explanation": "The algorithm first locates the appropriate leaf and inserts in sorted order. In the basic model, splitting is needed only if the node overflows.",
+          "pages": [
+            17
+          ]
+        },
+        {
+          "id": "l09-insert-q2",
+          "prompt": "For d=2, a leaf contains [2,6,10,14]. Insert 8 and split into leaves with 2 and 3 entries. Which result is valid?",
+          "options": [
+            "[2,6,8,10] and [14]",
+            "[2,6] and [8,10,14]",
+            "[2,8] and [6,10,14]",
+            "[2] and [6,8,10,14]"
+          ],
+          "answer": 1,
+          "explanation": "The leaves must remain globally ordered, and each non-root leaf needs at least d=2 entries. The other options violate ordering or minimum occupancy.",
+          "pages": [
+            17,
+            18
+          ]
+        },
+        {
+          "id": "l09-insert-q3",
+          "prompt": "A leaf splits into [2,6] and [8,10,14]. Which key is copied to the parent under the minimum-right convention?",
+          "options": [
+            "10",
+            "14",
+            "8",
+            "6"
+          ],
+          "answer": 2,
+          "explanation": "The minimum key in the right leaf is 8, and it remains in that leaf after being copied. The value 6 is the maximum on the left.",
+          "pages": [
+            18
+          ]
+        },
+        {
+          "id": "l09-insert-q4",
+          "prompt": "An internal node temporarily contains [10,20,30,40,50]. If median 30 is pushed to the parent, which keys remain in the two internal nodes?",
+          "options": [
+            "[10,20,30] and [30,40,50]",
+            "[10] and [20,30,40,50]",
+            "[10,20] and [30,40,50]",
+            "[10,20] and [40,50]"
+          ],
+          "answer": 3,
+          "explanation": "An internal-node split pushes the median out of the two new nodes. A leaf split instead copies a separator while retaining the data entry in a leaf.",
+          "pages": [
+            17,
+            18
+          ]
+        },
+        {
+          "id": "l09-insert-q5",
+          "prompt": "Which event can increase a B+ tree's height?",
+          "options": [
+            "A root split that creates a new root",
+            "Every cache miss",
+            "Every insertion without a split",
+            "Every leaf hit"
+          ],
+          "answer": 0,
+          "explanation": "A split that propagates through the root can add a level. An ordinary insertion does not change the height.",
+          "pages": [
+            19
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l09-topic-redistribute",
+      "title": "REDISTRIBUTION: INSERTING",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf",
+      "pages": [
+        20,
+        20
+      ],
+      "questions": [
+        {
+          "id": "l09-redistribute-q1",
+          "prompt": "What does redistribution during insertion try to achieve?",
+          "options": [
+            "Delete the largest key to make space",
+            "Use a sibling's spare space to avoid a split when possible",
+            "Double every leaf's capacity",
+            "Remove the sorted-key requirement"
+          ],
+          "answer": 1,
+          "explanation": "Redistribution moves entries between siblings while preserving the tree's invariants. It does not discard data or change page capacity.",
+          "pages": [
+            20
+          ]
+        },
+        {
+          "id": "l09-redistribute-q2",
+          "prompt": "The left leaf is [2,4,6,8], the right leaf is [12,14], and d=2. Insert 10 and move one entry to the right leaf. Which result is valid?",
+          "options": [
+            "[2,4] and [6,8,10,12,14]",
+            "[2,4,6,8,10] and [12,14]",
+            "[2,4,6,8] and [10,12,14]",
+            "[2,4,6,10] and [8,12,14]"
+          ],
+          "answer": 2,
+          "explanation": "The correct result preserves ordering and the maximum capacity of four entries per leaf. The other options violate a range boundary or exceed capacity.",
+          "pages": [
+            20
+          ]
+        },
+        {
+          "id": "l09-redistribute-q3",
+          "prompt": "For leaves [2,4,6,8] and [10,12,14], what must the minimum-right separator be?",
+          "options": [
+            "12",
+            "8",
+            "14",
+            "10"
+          ],
+          "answer": 3,
+          "explanation": "The right leaf's minimum changed from 12 to 10. Keeping separator 12 would send a search for 10 to the wrong leaf.",
+          "pages": [
+            20
+          ]
+        },
+        {
+          "id": "l09-redistribute-q4",
+          "prompt": "What trade-off does the lecture identify for redistribution?",
+          "options": [
+            "Additional I/O in exchange for better space utilisation",
+            "No cost of any kind",
+            "It always reduces height by one level",
+            "It always makes the tree unbalanced"
+          ],
+          "answer": 0,
+          "explanation": "Reading and updating a sibling costs I/O. In return, redistribution can avoid allocating a page and splitting a node.",
+          "pages": [
+            20
+          ]
+        },
+        {
+          "id": "l09-redistribute-q5",
+          "prompt": "Why is a leaf's neighbouring sibling relatively easy to access in the approach described?",
+          "options": [
+            "Leaves do not need parent separators",
+            "Leaf links provide a direct access path",
+            "Every sibling has identical keys",
+            "Every leaf must already be cached"
+          ],
+          "answer": 1,
+          "explanation": "Leaf links help locate a neighbour. The parent separator must still be adjusted when necessary to keep searches correct.",
+          "pages": [
+            20
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l09-topic-delete",
+      "title": "DELETING A DATA ENTRY FROM A B+ TREE",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf",
+      "pages": [
+        21,
+        25
+      ],
+      "questions": [
+        {
+          "id": "l09-delete-q1",
+          "prompt": "After deletion, a leaf still has at least d entries. What can the textbook algorithm do?",
+          "options": [
+            "Always reduce the tree's height",
+            "Always rebuild the entire index",
+            "Finish underflow handling",
+            "Always merge the leaf with a sibling"
+          ],
+          "answer": 2,
+          "explanation": "The minimum occupancy is not violated, so underflow repair is unnecessary. Routing information must nevertheless remain valid.",
+          "pages": [
+            21
+          ]
+        },
+        {
+          "id": "l09-delete-q2",
+          "prompt": "A leaf has d−1 entries, and a sibling with the same parent has more than d entries. What is the preferred action?",
+          "options": [
+            "Always delete the parent immediately",
+            "Always accept the underflow in the textbook algorithm",
+            "Duplicate every remaining key",
+            "Borrow from or redistribute with the sibling"
+          ],
+          "answer": 3,
+          "explanation": "The sibling has a spare entry that it can lend while preserving its own minimum occupancy. Merging is used when borrowing is not possible.",
+          "pages": [
+            21
+          ]
+        },
+        {
+          "id": "l09-delete-q3",
+          "prompt": "For d=2, leaves are [5] and [9,12,15]. Borrow the smallest right-hand key into the left leaf. What are the result and minimum-right separator?",
+          "options": [
+            "[5,9], [12,15], separator 12",
+            "[5,9], [12,15], separator 9",
+            "[5,15], [9,12], separator 9",
+            "[5], [9,12,15], separator 5"
+          ],
+          "answer": 0,
+          "explanation": "Moving 9 makes 12 the new minimum on the right. The old separator 9 no longer describes the required partition.",
+          "pages": [
+            22
+          ]
+        },
+        {
+          "id": "l09-delete-q4",
+          "prompt": "A leaf is underfull and its sibling has exactly d entries. What should be done to maintain the textbook minimum?",
+          "options": [
+            "Add an artificial duplicate entry",
+            "Merge them and remove the corresponding separator from the parent",
+            "Borrow an entry so that the sibling also becomes underfull",
+            "Delete both leaves and all their data"
+          ],
+          "answer": 1,
+          "explanation": "The sibling has no spare entry to lend. Merging preserves the data and requires updating the parent's pointers and separator.",
+          "pages": [
+            23
+          ]
+        },
+        {
+          "id": "l09-delete-q5",
+          "prompt": "After a merge, the root has no keys and only one child. What is the correct action?",
+          "options": [
+            "Keep an empty root with no children",
+            "Add an arbitrary separator to the root",
+            "Make the child the new root, reducing the height",
+            "Delete the child and its data as well"
+          ],
+          "answer": 2,
+          "explanation": "The redundant root can be removed while preserving the existing subtree. The subtree's data must not be deleted.",
+          "pages": [
+            24
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l09-topic-practical-occupancy",
+      "title": "B+ TREE: DELETIONS / REDEFINE OCCUPANCY INVARIANT",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf",
+      "pages": [
+        26,
+        28
+      ],
+      "questions": [
+        {
+          "id": "l09-practical-occupancy-q1",
+          "prompt": "How can a practical deletion policy described in the lecture differ from the textbook algorithm?",
+          "options": [
+            "Delete the entire tree after every deletion",
+            "Require every node to remain exactly 100% full",
+            "Disallow every record deletion",
+            "Allow nodes below half full and reclaim them only when empty"
+          ],
+          "answer": 3,
+          "explanation": "Some implementations postpone rebalancing to reduce overhead. They do not enforce the textbook minimum entry count after every deletion.",
+          "pages": [
+            26
+          ]
+        },
+        {
+          "id": "l09-practical-occupancy-q2",
+          "prompt": "Why is an entry-count definition of order less suitable for variable-length keys?",
+          "options": [
+            "The same number of entries can occupy very different numbers of bytes",
+            "Strings cannot be compared",
+            "Leaves are no longer stored in pages",
+            "Every key must be unique"
+          ],
+          "answer": 0,
+          "explanation": "Page capacity is measured in bytes. Counting entries does not accurately measure fullness when entry sizes vary.",
+          "pages": [
+            27,
+            28
+          ]
+        },
+        {
+          "id": "l09-practical-occupancy-q3",
+          "prompt": "What alternative physical measure of occupancy does the lecture discuss?",
+          "options": [
+            "The number of times the root has been cached",
+            "Bytes used",
+            "Only the number of tuples returned by a query",
+            "The number of distinct table names"
+          ],
+          "answer": 1,
+          "explanation": "Byte usage reflects actual page capacity. The other quantities do not measure how much space a node occupies.",
+          "pages": [
+            28
+          ]
+        },
+        {
+          "id": "l09-practical-occupancy-q4",
+          "prompt": "Why can Variant C produce variable-length entries even when keys have fixed lengths?",
+          "options": [
+            "The root automatically increases the page size",
+            "Every RID must be an unlimited-length string",
+            "RID lists can have different lengths",
+            "A key changes its data type on every lookup"
+          ],
+          "answer": 2,
+          "explanation": "The number of records with a given key determines the number of references in its list. A fixed-size key does not make the whole entry fixed-size.",
+          "pages": [
+            27
+          ]
+        },
+        {
+          "id": "l09-practical-occupancy-q5",
+          "prompt": "A page has a payload capacity of 1000 bytes, of which entries use 480 bytes. Has it reached a byte-based half-full threshold?",
+          "options": [
+            "Yes, because it has more than one entry",
+            "Yes, because 480 is close to 500",
+            "Byte occupancy cannot be compared with capacity",
+            "No, it needs 20 more bytes to reach 500"
+          ],
+          "answer": 3,
+          "explanation": "Half of the 1000-byte capacity is 500 bytes. Entry count or approximate closeness does not satisfy the stated threshold.",
+          "pages": [
+            28
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l09-topic-key-compression",
+      "title": "OPTIMIZATIONS",
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf",
+      "pages": [
+        29,
+        29
+      ],
+      "questions": [
+        {
+          "id": "l09-key-compression-q1",
+          "prompt": "Which property of sorted keys does prefix compression exploit?",
+          "options": [
+            "Nearby keys often share a prefix",
+            "Every key must share the same suffix",
+            "Every key always has the same length",
+            "Keys no longer need to be distinguishable"
+          ],
+          "answer": 0,
+          "explanation": "A common prefix can be stored once, while individual suffixes preserve the distinctions between keys.",
+          "pages": [
+            29
+          ]
+        },
+        {
+          "id": "l09-key-compression-q2",
+          "prompt": "The keys cat01, cat02, and cat09 use the shared prefix cat0. What are their suffixes?",
+          "options": [
+            "cat01,cat02,cat09",
+            "1,2,9",
+            "cat,cat,cat",
+            "01,02,09"
+          ],
+          "answer": 1,
+          "explanation": "Removing exactly cat0 leaves the last character of each key. The suffix 01 would retain a zero already included in the prefix.",
+          "pages": [
+            29
+          ]
+        },
+        {
+          "id": "l09-key-compression-q3",
+          "prompt": "What condition must suffix truncation in an internal node preserve?",
+          "options": [
+            "Every separator must be longer than the original key",
+            "Ordering comparisons are no longer needed",
+            "The shortened separator must still route every search key correctly",
+            "The separator must equal a complete leaf record"
+          ],
+          "answer": 2,
+          "explanation": "Internal keys support routing and may be shortened. The shortened value must not confuse the key ranges.",
+          "pages": [
+            29
+          ]
+        },
+        {
+          "id": "l09-key-compression-q4",
+          "prompt": "Why can every leaf key not simply be truncated to one character?",
+          "options": [
+            "Every string must contain exactly eight characters",
+            "Internal nodes have no keys",
+            "Prefix compression requires removing the complete suffix",
+            "The data entries may no longer be distinguishable or recoverable"
+          ],
+          "answer": 3,
+          "explanation": "Leaf data must retain the information needed to distinguish and recover entries. Lossless compression differs from shortening a routing separator.",
+          "pages": [
+            29
+          ]
+        },
+        {
+          "id": "l09-key-compression-q5",
+          "prompt": "What is the longest common prefix of alpine and alps?",
+          "options": [
+            "alp",
+            "al",
+            "alpi",
+            "alpine"
+          ],
+          "answer": 0,
+          "explanation": "The characters a, l, and p match. The next characters differ: i in alpine and s in alps.",
+          "pages": [
+            29
+          ]
+        }
+      ]
+    }
+  ]
+}

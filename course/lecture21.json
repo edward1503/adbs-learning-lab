@@ -1,0 +1,97 @@
+[
+  {
+    "id": "lecture-21",
+    "lecture": 21,
+    "title": "Recovery: why the log must come first",
+    "short": "STEAL/FORCE · WAL · ARIES",
+    "group": "06 · Transactions",
+    "time": 25,
+    "lead": "After a crash, disk pages may both lack committed updates and contain uncommitted ones. Recovery must handle both possibilities.",
+    "goals": [
+      "Derive UNDO and REDO requirements from the buffer policy",
+      "Apply the two mandatory WAL ordering rules",
+      "Follow the analysis, redo, and undo phases"
+    ],
+    "sections": [
+      {
+        "id": "l21-s1",
+        "title": "Buffer policies: STEAL and FORCE",
+        "html": "<p>Suppose an uncommitted update reaches disk before the machine crashes. On restart, the DBMS must remove it using <strong>UNDO</strong>. Conversely, if a committed update exists only in RAM when the machine fails, the DBMS must reconstruct it using <strong>REDO</strong>.</p><p>To <strong>flush</strong> a page means to write it from RAM to durable storage. A <strong>STEAL</strong> policy permits flushing pages containing uncommitted updates, so UNDO may be needed. <strong>NO-FORCE</strong> permits committing before every modified data page is flushed, so REDO may be needed. STEAL + NO-FORCE therefore requires support for both.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>STEAL requires UNDO support; NO-FORCE requires REDO support.</b> These requirements arise because a data page may reach disk at a different time from its transaction's commit.</p></aside><p>NO-STEAL + FORCE simplifies some reasoning, but it requires retaining uncommitted pages in RAM and flushing many pages at commit. A mechanism is still needed for crashes during a multi-page flush: the two policy labels do not make a sequence of writes atomic.</p><p class=\"source-note\">Source: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=2\" target=\"_blank\" rel=\"noopener\">PDF pages 2–17</a>. The examples and worked solutions on this lesson page were written independently.</p>"
+      },
+      {
+        "id": "l21-s2",
+        "title": "Worked example: two products",
+        "html": "<p>Disk contains A = 12 and B = 7. T1 changes A to 10 and commits; T2 changes B to 3 without committing. Suppose B's page has been flushed, A's has not, and the machine crashes.</p><ol><li>After the crash, disk contains A = 12 and B = 3.</li><li>The durable log contains T1: A 12→10, COMMIT; and T2: B 7→3.</li><li>Restoring T1 requires REDO to set A = 10.</li><li>Removing T2's effects requires UNDO to restore B = 7.</li></ol><p>The desired result is A = 10 and B = 7. Both directions are necessary; merely replaying every log record would retain unfinished work.</p><p class=\"source-note\">Source: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=18\" target=\"_blank\" rel=\"noopener\">PDF pages 18–24</a>. The examples and worked solutions on this lesson page were written independently.</p>"
+      },
+      {
+        "id": "l21-s3",
+        "title": "The two WAL ordering rules",
+        "html": "<p>Suppose T1 changes A from 12 to 10. Before the new page A reaches disk, the DBMS must durably store the log information needed to recover that update. Reversing the order creates a crash window in which disk contains 10 but the information needed to restore 12 is missing.</p><ol><li>Update the page in RAM and create a log record in RAM.</li><li>Flush the log records needed for recovery to durable storage.</li><li>Only then may the corresponding data page be flushed.</li><li>At commit, flush the transaction's log through its COMMIT record before reporting success.</li></ol><p>These are the two rules of <strong>WAL, or write-ahead logging</strong>: the log precedes the data page, and the log through COMMIT precedes the successful-commit acknowledgement. Depending on the buffer policy, data-page flushing may occur before or after commit.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>WAL does not require every data page to be on disk at commit.</b> Under NO-FORCE, a durable log provides the information needed for REDO after a crash. A COMMIT record present only in RAM is insufficient for reporting success.</p></aside><p class=\"source-note\">Source: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=18\" target=\"_blank\" rel=\"noopener\">PDF pages 18–24</a>. The examples and worked solutions on this lesson page were written independently.</p>"
+      },
+      {
+        "id": "l21-s4",
+        "title": "ARIES: repeat history, then undo",
+        "html": "<p>In the A/B example, committed T1 is a <strong>winner</strong>, while uncommitted T2 is a <strong>loser</strong>. ARIES handles the crash in three phases:</p><ol><li><strong>Analysis:</strong> identify transactions and dirty pages that may need recovery.</li><li><strong>Redo:</strong> reconstruct history up to the crash, including loser updates when needed.</li><li><strong>Undo:</strong> remove loser effects so unfinished work is not retained.</li></ol><p>Do not conclude that ARIES redo considers only T1. “Repeat history, then undo” describes the algorithm's sequence; its final result must still retain T1 and remove T2's effects. A complete implementation also needs pageLSN values, compensation log records, and detailed checkpoint rules.</p><p class=\"source-note\">Source: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=25\" target=\"_blank\" rel=\"noopener\">PDF pages 25–27</a>. The examples and worked solutions on this lesson page were written independently.</p>"
+      },
+      {
+        "id": "l21-s5",
+        "title": "Failure models and design questions",
+        "html": "<p>If power fails but storage remains intact, the durable log supports recovery. If both the data and log are destroyed, this reasoning is insufficient: a replica or backup in another failure domain is needed.</p><p>Check your understanding: which property is endangered by reporting commit success before flushing the log? Durability, because the user has seen success even though a crash could erase the transaction's only surviving record.</p><p class=\"source-note\">Source: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=3\" target=\"_blank\" rel=\"noopener\">PDF pages 3–5</a>. The examples and worked solutions on this lesson page were written independently.</p>"
+      }
+    ],
+    "quiz": {
+      "question": "What does STEAL + NO-FORCE typically require?",
+      "options": [
+        "REDO only",
+        "UNDO only",
+        "Both UNDO and REDO",
+        "No log is needed"
+      ],
+      "answer": 2,
+      "explanation": "STEAL can put uncommitted data on disk, while NO-FORCE can leave committed data only in RAM."
+    },
+    "source": {
+      "summary": "Lecture 21 connects buffer policies to recovery, explains WAL, and introduces the three ARIES phases: analysis, redo, and undo.",
+      "links": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=2",
+          "label": "PDF pages 2–17"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=18",
+          "label": "PDF pages 18–24"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=18",
+          "label": "PDF pages 18–24"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=25",
+          "label": "PDF pages 25–27"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=3",
+          "label": "PDF pages 3–5"
+        }
+      ]
+    },
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+      "verified": true,
+      "verifiedPages": "1–27",
+      "topics": [
+        "failure types",
+        "buffer policies",
+        "UNDO/REDO",
+        "logging",
+        "WAL ordering",
+        "commit durability",
+        "ARIES phases"
+      ],
+      "limitations": [
+        "The lecture introduces ARIES at a high level; it is not a complete implementation specification."
+      ]
+    },
+    "lab": "recovery"
+  }
+]

@@ -1,0 +1,98 @@
+[
+  {
+    "id": "lecture-22",
+    "lecture": 22,
+    "title": "Distributed transactions: reaching one decision",
+    "short": "Distributed locks · 2PC · recovery",
+    "group": "06 · Transactions",
+    "time": 25,
+    "lead": "Machines participating in one transaction must agree on its outcome, even when messages are delayed and processes restart.",
+    "goals": [
+      "Detect global deadlock by combining local graphs",
+      "Simulate prepare, vote, decision, and acknowledgement",
+      "Explain why a prepared participant can become blocked"
+    ],
+    "sections": [
+      {
+        "id": "l22-s1",
+        "title": "Two global problems",
+        "html": "<p>Locks can be managed where their data resides. However, acyclic local waits-for graphs do not prove that the entire system is deadlock-free: combining their edges may reveal a cycle. Commit also requires a common decision rather than independent choices by each machine.</p><p>For example, N1 sees T1 → T2, N2 sees T2 → T3, and N3 sees T3 → T1. Each node sees just one edge, but their union is cyclic. Detecting this requires global information or an equivalent distributed detection protocol.</p><p class=\"source-note\">Source: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=3\" target=\"_blank\" rel=\"noopener\">PDF pages 3–20</a>. The examples and worked solutions on this lesson page were written independently.</p>"
+      },
+      {
+        "id": "l22-s2",
+        "title": "Worked example: moving stock between regions",
+        "html": "<p>East subtracts 4 crates while West adds 4. If East commits and West aborts, the total is incorrect. Coordinator C must therefore establish one decision for participants E/W.</p><ol><li><strong>Prepare:</strong> C asks whether E/W are ready to commit.</li><li><strong>Vote:</strong> each participant checks its conditions. To vote YES, it first durably records PREPARE and the necessary recovery information. Otherwise, it votes NO.</li><li><strong>Decide:</strong> C may choose COMMIT only after receiving every YES; one NO requires ABORT. C durably records its decision before announcing it.</li><li><strong>Finish:</strong> E/W record and implement the final decision, then send ACK.</li></ol><p>E might vote NO because it lacks enough stock. Once E promises YES, it must be able to follow the final decision even after restarting. This is why its PREPARE log must be durable before the vote is sent.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>2PC coordinates commit; 2PL controls concurrent reads and writes.</b> Two-phase commit protects atomic commit across machines. It does not replace an isolation protocol such as two-phase locking.</p></aside><p>Both names contain “two-phase,” but the phases have different meanings: prepare/decision in 2PC, and growing/shrinking lock phases in 2PL.</p><p class=\"source-note\">Source: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=21\" target=\"_blank\" rel=\"noopener\">PDF pages 21–31</a>. The examples and worked solutions on this lesson page were written independently.</p>"
+      },
+      {
+        "id": "l22-s3",
+        "title": "Crash checklist: which log records matter?",
+        "html": "<p>Consider four failure points in the example:</p><ul><li>E loses contact before preparing: it may abort locally.</li><li>E has logged PREPARE and sent YES: it cannot change its mind merely because of a timeout.</li><li>C has logged COMMIT but not yet sent it to W: after recovery, C resends the decision.</li><li>W has committed but its ACK is lost: W sends ACK again without subtracting or adding the stock a second time.</li></ul><p>Repeated messages must be handled according to transaction state. Sequence numbers and transaction IDs distinguish retransmissions from new work.</p><p class=\"source-note\">Source: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=32\" target=\"_blank\" rel=\"noopener\">PDF pages 32–54</a>. The examples and worked solutions on this lesson page were written independently.</p>"
+      },
+      {
+        "id": "l22-s4",
+        "title": "Why can a prepared participant not simply abort?",
+        "html": "<p>E sees only PREPARE in its log. It cannot yet distinguish two situations: C has not decided, or C has already committed and W has applied the decision. If E independently aborts in the second situation, the regions disagree permanently. To preserve atomicity, E must obtain the decision from C or a participant that knows it. If sufficiently reliable information is unavailable, E must wait.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>A timeout does not prove that the transaction aborted.</b> Another machine may already have committed while its notification was lost. A prepared participant cannot independently abort merely to stop waiting.</p></aside><p>If E holds locks, this wait also blocks other transactions. A protocol can therefore preserve atomicity while reducing availability. A timeout means only that information has not arrived in time; it does not establish that the other party has not committed.</p><p class=\"source-note\">Source: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=47\" target=\"_blank\" rel=\"noopener\">PDF pages 47–57</a>. The examples and worked solutions on this lesson page were written independently.</p>"
+      },
+      {
+        "id": "l22-s5",
+        "title": "Exercise: combining 2PL and 2PC",
+        "html": "<p>T1 has updated stock at E/W and entered PREPARE. T2 wants to read the same item at E. Under strict 2PL, T2 must still wait for T1's final decision. Draw two timelines: one for lock retention and one for commit messages. They meet at transaction completion.</p><p>Check your understanding: why does adding replicas not by itself prove that the protocol is nonblocking? You must also specify which replica has authority to decide and how that decision is recorded or agreed upon. Protocols such as Paxos Commit are mentioned as extensions, without a full treatment in this lecture.</p><p class=\"source-note\">Source: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=55\" target=\"_blank\" rel=\"noopener\">PDF pages 55–57</a>. The examples and worked solutions on this lesson page were written independently.</p>"
+      }
+    ],
+    "quiz": {
+      "question": "A participant has only a durable PREPARE record and loses contact with the coordinator. What is safe?",
+      "options": [
+        "Commit independently because it voted YES",
+        "Abort immediately when a timeout expires",
+        "Seek the decision; it may have to wait",
+        "Delete the log and start over"
+      ],
+      "answer": 2,
+      "explanation": "A YES vote is a promise to follow the common decision. The coordinator may already have committed elsewhere."
+    },
+    "source": {
+      "summary": "Lecture 22 studies partitioned, nonreplicated data, distributed locking, global deadlock, two-phase commit, and the coordination of logging with recovery. Two-phase commit can block progress when the coordinator is unreachable.",
+      "links": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=3",
+          "label": "PDF pages 3–20"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=21",
+          "label": "PDF pages 21–31"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=32",
+          "label": "PDF pages 32–54"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=47",
+          "label": "PDF pages 47–57"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=55",
+          "label": "PDF pages 55–57"
+        }
+      ]
+    },
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+      "verified": true,
+      "verifiedPages": "1–57",
+      "topics": [
+        "partitioned locks",
+        "global deadlock",
+        "2PC unanimity",
+        "prepare logging",
+        "decision logging",
+        "recovery cases",
+        "strict 2PL integration",
+        "blocking"
+      ],
+      "limitations": [
+        "The lecture assumes partitioning without replication. Consensus-based improvements are mentioned but not developed in detail."
+      ]
+    },
+    "lab": "distributed"
+  }
+]

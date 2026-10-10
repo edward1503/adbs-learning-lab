@@ -1,0 +1,2310 @@
+{
+  "edition": "Spring 2026",
+  "lectures": [
+    {
+      "lectureId": "lecture-01",
+      "topics": [
+        {
+          "id": "l01-topic-database-dbms",
+          "title": "WHAT IS A DATABASE? / WHAT IS A DBMS?",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf",
+          "pages": [
+            10,
+            12
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l01-topic-flat-files",
+          "title": "FLAT FILE: DRAWBACKS",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf",
+          "pages": [
+            13,
+            17
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l01-topic-abstraction",
+          "title": "LEVELS OF ABSTRACTIONS",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf",
+          "pages": [
+            18,
+            18
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l01-topic-models",
+          "title": "DATA MODELS",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf",
+          "pages": [
+            19,
+            19
+          ],
+          "questions": 5
+        }
+      ]
+    },
+    {
+      "lectureId": "lecture-02",
+      "topics": [
+        {
+          "id": "l02-topic-terminology",
+          "title": "RELATIONAL TERMINOLOGY / RELATIONAL TABLES",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+          "pages": [
+            6,
+            9
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l02-topic-select",
+          "title": "BASIC SINGLE-TABLE QUERIES",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+          "pages": [
+            10,
+            10
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l02-topic-order",
+          "title": "ORDER BY",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+          "pages": [
+            11,
+            11
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l02-topic-limit",
+          "title": "LIMIT",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+          "pages": [
+            12,
+            12
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l02-topic-aggregate",
+          "title": "AGGREGATES",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+          "pages": [
+            13,
+            13
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l02-topic-group",
+          "title": "GROUP BY / HAVING",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+          "pages": [
+            14,
+            18
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l02-topic-inner-join",
+          "title": "JOIN QUERY",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+          "pages": [
+            19,
+            22
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l02-topic-outer-join",
+          "title": "LEFT / RIGHT / FULL OUTER JOIN",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+          "pages": [
+            23,
+            25
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l02-topic-nested",
+          "title": "NESTED QUERIES / SET-COMPARISON OPERATORS",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+          "pages": [
+            26,
+            28
+          ],
+          "questions": 5
+        }
+      ]
+    },
+    {
+      "lectureId": "lecture-03",
+      "topics": [
+        {
+          "id": "l03-topic-algebra",
+          "title": "RELATIONAL ALGEBRA AND SETS",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+          "pages": [
+            2,
+            7
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l03-topic-selection",
+          "title": "SELECTION",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+          "pages": [
+            8,
+            8
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l03-topic-projection",
+          "title": "PROJECTION",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+          "pages": [
+            9,
+            9
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l03-topic-union",
+          "title": "UNION",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+          "pages": [
+            10,
+            10
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l03-topic-difference",
+          "title": "SET DIFFERENCE",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+          "pages": [
+            11,
+            11
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l03-topic-product",
+          "title": "CROSS PRODUCT",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+          "pages": [
+            12,
+            12
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l03-topic-rename",
+          "title": "RENAMING",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+          "pages": [
+            13,
+            13
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l03-topic-intersection",
+          "title": "COMPOUND OPERATOR: INTERSECTION",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+          "pages": [
+            14,
+            14
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l03-topic-theta",
+          "title": "COMPOUND OPERATOR: JOIN / THETA JOIN",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+          "pages": [
+            15,
+            17
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l03-topic-natural",
+          "title": "NATURAL JOIN",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+          "pages": [
+            18,
+            18
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l03-topic-extra",
+          "title": "EXTRA OPERATORS",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+          "pages": [
+            19,
+            19
+          ],
+          "questions": 5
+        }
+      ]
+    },
+    {
+      "lectureId": "lecture-04",
+      "topics": [
+        {
+          "id": "l04-topic-architecture",
+          "title": "ARCHITECTURE OF A DBMS",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+          "pages": [
+            2,
+            9
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l04-topic-hierarchy",
+          "title": "DISK-ORIENTED ARCHITECTURE / STORAGE HIERARCHY",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+          "pages": [
+            11,
+            14
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l04-topic-hdd",
+          "title": "ACCESSING A DISK PAGE",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+          "pages": [
+            15,
+            17
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l04-topic-locality",
+          "title": "SEQUENTIAL VS. RANDOM ACCESS / ARRANGING BLOCKS",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+          "pages": [
+            18,
+            19
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l04-topic-ssd",
+          "title": "SOLID STATE DRIVES",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+          "pages": [
+            20,
+            23
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l04-topic-disk-manager",
+          "title": "DISK SPACE MANAGEMENT",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+          "pages": [
+            24,
+            29
+          ],
+          "questions": 5
+        }
+      ]
+    },
+    {
+      "lectureId": "lecture-05",
+      "topics": [
+        {
+          "id": "l05-topic-buffer-state",
+          "title": "BUFFER MANAGER STATE",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+          "pages": [
+            3,
+            8
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l05-topic-pin-unpin",
+          "title": "PIN IMPLEMENTATION / UNPIN IMPLEMENTATION",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+          "pages": [
+            9,
+            11
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l05-topic-lru",
+          "title": "LEAST RECENTLY USED (LRU)",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+          "pages": [
+            13,
+            14
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l05-topic-clock",
+          "title": "CLOCK REPLACEMENT POLICY",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+          "pages": [
+            15,
+            21
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l05-topic-scan-policies",
+          "title": "REPLACEMENT POLICIES CAN FAIL / REPEATED SCAN",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+          "pages": [
+            22,
+            31
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l05-topic-buffer-practice",
+          "title": "BUFFER MANAGEMENT IN PRACTICE / WHY NOT USE THE OS?",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+          "pages": [
+            32,
+            35
+          ],
+          "questions": 5
+        }
+      ]
+    },
+    {
+      "lectureId": "lecture-06",
+      "topics": [
+        {
+          "id": "l06-topic-files",
+          "title": "FILES OF PAGES OF RECORDS / HEAP FILE",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf",
+          "pages": [
+            4,
+            7
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l06-topic-heap-directory",
+          "title": "HEAP FILE: LINKED LIST / PAGE DIRECTORY",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf",
+          "pages": [
+            8,
+            9
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l06-topic-packed",
+          "title": "FIXED-LENGTH RECORDS, PACKED",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf",
+          "pages": [
+            12,
+            16
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l06-topic-unpacked",
+          "title": "FIXED-LENGTH RECORDS, UNPACKED",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf",
+          "pages": [
+            17,
+            19
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l06-topic-slotted",
+          "title": "SLOTTED PAGES",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf",
+          "pages": [
+            20,
+            22
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l06-topic-record-layout",
+          "title": "RECORD LAYOUT / VARIABLE-LENGTH RECORDS",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf",
+          "pages": [
+            24,
+            28
+          ],
+          "questions": 5
+        }
+      ]
+    },
+    {
+      "lectureId": "lecture-07",
+      "topics": [
+        {
+          "id": "l07-topic-workloads",
+          "title": "DATABASE WORKLOADS",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf",
+          "pages": [
+            2,
+            4
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l07-topic-row",
+          "title": "ROW STORAGE MODEL",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf",
+          "pages": [
+            7,
+            11
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l07-topic-column",
+          "title": "COLUMNAR STORAGE MODEL",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf",
+          "pages": [
+            12,
+            16
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l07-topic-pax",
+          "title": "HYBRID STORAGE MODEL (PAX)",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf",
+          "pages": [
+            17,
+            18
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l07-topic-parquet",
+          "title": "PARQUET FILE FORMAT",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf",
+          "pages": [
+            19,
+            20
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l07-topic-compression",
+          "title": "COMPRESSION IN DBMS / NAÏVE COMPRESSION",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf",
+          "pages": [
+            21,
+            22
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l07-topic-column-encoding",
+          "title": "COLUMNAR COMPRESSION",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf",
+          "pages": [
+            23,
+            23
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l07-topic-delta",
+          "title": "DELTA ENCODING IN PARQUET",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf",
+          "pages": [
+            24,
+            26
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l07-topic-dictionary",
+          "title": "DICTIONARY ENCODING",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf",
+          "pages": [
+            27,
+            27
+          ],
+          "questions": 5
+        }
+      ]
+    },
+    {
+      "lectureId": "lecture-08",
+      "topics": [
+        {
+          "id": "l08-topic-cost-model",
+          "title": "COST MODEL FOR ANALYSIS / RECORD OPERATIONS",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations.pdf",
+          "pages": [
+            4,
+            6
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l08-topic-heap-cost",
+          "title": "HEAP FILE ANALYSIS",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations.pdf",
+          "pages": [
+            7,
+            13
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l08-topic-sorted-cost",
+          "title": "SORTED FILE ANALYSIS",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations.pdf",
+          "pages": [
+            14,
+            19
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l08-topic-entries",
+          "title": "INDEX / INDEX ENTRIES",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations.pdf",
+          "pages": [
+            20,
+            25
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l08-topic-classification",
+          "title": "INDEX CLASSIFICATION / HASH-BASED INDEX",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations.pdf",
+          "pages": [
+            26,
+            29
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l08-topic-cluster",
+          "title": "CLUSTERED VS. UNCLUSTERED INDEX",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations.pdf",
+          "pages": [
+            30,
+            33
+          ],
+          "questions": 5
+        }
+      ]
+    },
+    {
+      "lectureId": "lecture-09",
+      "topics": [
+        {
+          "id": "l09-topic-isam",
+          "title": "ISAM: INDEXED SEQUENTIAL ACCESS METHOD",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf",
+          "pages": [
+            4,
+            11
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l09-topic-fanout",
+          "title": "ISAM VS. BINARY SEARCH / B+ TREES IN PRACTICE",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf",
+          "pages": [
+            12,
+            16
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l09-topic-invariants",
+          "title": "B+ TREE: MOST WIDELY USED INDEX / EXAMPLE B+ TREE",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf",
+          "pages": [
+            13,
+            15
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l09-topic-insert",
+          "title": "INSERTING A DATA ENTRY",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf",
+          "pages": [
+            17,
+            19
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l09-topic-redistribute",
+          "title": "REDISTRIBUTION: INSERTING",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf",
+          "pages": [
+            20,
+            20
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l09-topic-delete",
+          "title": "DELETING A DATA ENTRY FROM A B+ TREE",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf",
+          "pages": [
+            21,
+            25
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l09-topic-practical-occupancy",
+          "title": "B+ TREE: DELETIONS / REDEFINE OCCUPANCY INVARIANT",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf",
+          "pages": [
+            26,
+            28
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l09-topic-key-compression",
+          "title": "OPTIMIZATIONS",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf",
+          "pages": [
+            29,
+            29
+          ],
+          "questions": 5
+        }
+      ]
+    },
+    {
+      "lectureId": "lecture-10",
+      "topics": [
+        {
+          "id": "l10-collision-resolution",
+          "title": "Collision Resolution",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+          "pages": [
+            2,
+            3
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l10-hash-based-indexing",
+          "title": "Hash-Based Indexing",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+          "pages": [
+            4,
+            5
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l10-static-chained-hash-table-management",
+          "title": "Static Chained Hash Table Management",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+          "pages": [
+            7,
+            9
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l10-hash-collisions-and-overflow-chains",
+          "title": "Hash Collisions and Overflow Chains",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+          "pages": [
+            10,
+            12
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l10-global-and-local-depth",
+          "title": "Global and Local Depth",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+          "pages": [
+            14,
+            17
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l10-extendible-hashing",
+          "title": "Extendible Hashing",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+          "pages": [
+            13,
+            24
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l10-directory-doubling",
+          "title": "Directory Doubling",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+          "pages": [
+            25,
+            25
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l10-hash-functions",
+          "title": "Hash Functions",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+          "pages": [
+            11,
+            11
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l10-static-hashing-and-dynamic-files",
+          "title": "Static Hashing and Dynamic Files",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+          "pages": [
+            12,
+            12
+          ],
+          "questions": 5
+        }
+      ]
+    },
+    {
+      "lectureId": "lecture-11",
+      "topics": [
+        {
+          "id": "l11-query-plans-and-operators",
+          "title": "Query Plans and Operators",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+          "pages": [
+            2,
+            3
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l11-sorting",
+          "title": "Sorting",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+          "pages": [
+            4,
+            6
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l11-2-way-external-merge-sort",
+          "title": "2-Way External Merge Sort",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+          "pages": [
+            7,
+            10
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l11-external-merge-sort",
+          "title": "External Merge Sort",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+          "pages": [
+            11,
+            14
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l11-using-b-trees-for-sorting",
+          "title": "Using B+ Trees for Sorting",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+          "pages": [
+            15,
+            18
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l11-external-hashing",
+          "title": "External Hashing",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+          "pages": [
+            19,
+            22
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l11-hashing-aggregate",
+          "title": "Hashing Aggregate",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+          "pages": [
+            23,
+            28
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l11-hashing-summarisation",
+          "title": "Hashing Summarisation",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+          "pages": [
+            29,
+            32
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l11-cost-analysis",
+          "title": "Cost Analysis",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+          "pages": [
+            31,
+            31
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l11-conclusion-sorting-vs-hashing",
+          "title": "Conclusion: Sorting vs. Hashing",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+          "pages": [
+            32,
+            32
+          ],
+          "questions": 5
+        }
+      ]
+    },
+    {
+      "lectureId": "lecture-12",
+      "topics": [
+        {
+          "id": "l12-join-operator",
+          "title": "Join Operator",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+          "pages": [
+            2,
+            4
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l12-simple-nested-loops-join",
+          "title": "Simple Nested Loops Join",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+          "pages": [
+            5,
+            7
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l12-page-nested-loops-join",
+          "title": "Page Nested Loops Join",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+          "pages": [
+            8,
+            9
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l12-block-nested-loops-join",
+          "title": "Block Nested Loops Join",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+          "pages": [
+            10,
+            11
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l12-index-nested-loops-join",
+          "title": "Index Nested Loops Join",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+          "pages": [
+            12,
+            15
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l12-sort-merge-join",
+          "title": "Sort-Merge Join",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+          "pages": [
+            16,
+            33
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l12-basic-in-memory-hash-join",
+          "title": "Basic In-Memory Hash Join",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+          "pages": [
+            34,
+            36
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l12-grace-hash-join",
+          "title": "Grace Hash Join",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+          "pages": [
+            37,
+            43
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l12-sort-merge-join-refinement",
+          "title": "Sort-Merge Join Refinement",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+          "pages": [
+            32,
+            33
+          ],
+          "questions": 5
+        }
+      ]
+    },
+    {
+      "lectureId": "lecture-13",
+      "topics": [
+        {
+          "id": "l13-iterator-model",
+          "title": "Iterator Model",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf",
+          "pages": [
+            2,
+            5
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l13-example-selection-p-on-the-fly",
+          "title": "Example: Selection σp (On-the-fly)",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf",
+          "pages": [
+            6,
+            6
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l13-example-heap-scan",
+          "title": "Example: Heap Scan",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf",
+          "pages": [
+            7,
+            7
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l13-example-nested-loops-join",
+          "title": "Example: Nested Loops Join",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf",
+          "pages": [
+            8,
+            8
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l13-example-sort-2-pass",
+          "title": "Example: Sort (2-pass)",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf",
+          "pages": [
+            9,
+            13
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l13-vectorisation-model",
+          "title": "Vectorisation Model",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf",
+          "pages": [
+            14,
+            15
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l13-materialisation-model",
+          "title": "Materialisation Model",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf",
+          "pages": [
+            16,
+            18
+          ],
+          "questions": 5
+        }
+      ]
+    },
+    {
+      "lectureId": "lecture-14",
+      "topics": [
+        {
+          "id": "l14-query-optimisation-the-goal",
+          "title": "Query Optimisation: The Goal",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf",
+          "pages": [
+            1,
+            1
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l14-query-lifecycle",
+          "title": "Query Lifecycle",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf",
+          "pages": [
+            2,
+            3
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l14-some-simplifications",
+          "title": "Some Simplifications",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf",
+          "pages": [
+            2,
+            3
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l14-relational-algebra-equivalences",
+          "title": "Relational Algebra Equivalences",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf",
+          "pages": [
+            4,
+            4
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l14-introducing-additional-join-conditions",
+          "title": "Introducing Additional Join Conditions",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf",
+          "pages": [
+            5,
+            5
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l14-common-heuristics-projections",
+          "title": "Common Heuristics: Projections",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf",
+          "pages": [
+            5,
+            6
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l14-physical-equivalences",
+          "title": "Physical Equivalences",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf",
+          "pages": [
+            7,
+            7
+          ],
+          "questions": 5
+        }
+      ]
+    },
+    {
+      "lectureId": "lecture-15",
+      "topics": [
+        {
+          "id": "l15-selection-pushdown",
+          "title": "Selection Pushdown",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf",
+          "pages": [
+            3,
+            13
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l15-join-ordering",
+          "title": "Join Ordering",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf",
+          "pages": [
+            14,
+            17
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l15-materialising-inner-loops",
+          "title": "Materialising Inner Loops",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf",
+          "pages": [
+            18,
+            24
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l15-join-algorithm",
+          "title": "Join Algorithm",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf",
+          "pages": [
+            25,
+            29
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l15-join-algorithm-again-again",
+          "title": "Join Algorithm Again, Again",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf",
+          "pages": [
+            30,
+            33
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l15-projection-cascade-pushdown",
+          "title": "Projection Cascade & Pushdown",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf",
+          "pages": [
+            34,
+            38
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l15-how-about-indexes",
+          "title": "How About Indexes?",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf",
+          "pages": [
+            39,
+            42
+          ],
+          "questions": 5
+        }
+      ]
+    },
+    {
+      "lectureId": "lecture-16",
+      "topics": [
+        {
+          "id": "l16-sequential-scan",
+          "title": "Sequential Scan",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf",
+          "pages": [
+            2,
+            3
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l16-index-scan",
+          "title": "Index Scan",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf",
+          "pages": [
+            4,
+            6
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l16-search-key-and-ordering",
+          "title": "Search Key and Ordering",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf",
+          "pages": [
+            7,
+            15
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l16-index-only-scan",
+          "title": "Index-Only Scan",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf",
+          "pages": [
+            16,
+            16
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l16-clustered-b-tree-scan",
+          "title": "Clustered B+ Tree Scan",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf",
+          "pages": [
+            17,
+            18
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l16-hash-index-scan",
+          "title": "Hash Index Scan",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf",
+          "pages": [
+            19,
+            19
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l16-multi-index-scan",
+          "title": "Multi-Index Scan",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf",
+          "pages": [
+            20,
+            21
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l16-practical-exercise-with-postgresql",
+          "title": "Practical Exercise with PostgreSQL",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf",
+          "pages": [
+            22,
+            23
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l16-unclustered-b-tree-scan",
+          "title": "Unclustered B+ Tree Scan",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf",
+          "pages": [
+            18,
+            18
+          ],
+          "questions": 5
+        }
+      ]
+    },
+    {
+      "lectureId": "lecture-17",
+      "topics": [
+        {
+          "id": "l17-cost-estimation",
+          "title": "Cost Estimation",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf",
+          "pages": [
+            2,
+            3
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l17-statistics-and-catalogs",
+          "title": "Statistics and Catalogs",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf",
+          "pages": [
+            4,
+            6
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l17-selections-complex-predicates",
+          "title": "Selections - Complex Predicates",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf",
+          "pages": [
+            7,
+            9
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l17-result-size-estimation-for-joins",
+          "title": "Result Size Estimation for Joins",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf",
+          "pages": [
+            10,
+            11
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l17-missing-statistics-use-default-values",
+          "title": "Missing Statistics? Use Default Values",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf",
+          "pages": [
+            12,
+            14
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l17-equi-width-histograms",
+          "title": "Equi-Width Histograms",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf",
+          "pages": [
+            15,
+            20
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l17-equi-depth-histograms",
+          "title": "Equi-Depth Histograms",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf",
+          "pages": [
+            21,
+            26
+          ],
+          "questions": 5
+        }
+      ]
+    },
+    {
+      "lectureId": "lecture-18",
+      "topics": [
+        {
+          "id": "l18-finding-the-best-query-plan",
+          "title": "Finding the “Best” Query Plan",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf",
+          "pages": [
+            2,
+            4
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l18-single-table-plans-cost-estimates",
+          "title": "Single-Table Plans: Cost Estimates",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf",
+          "pages": [
+            5,
+            7
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l18-left-deep-join-trees",
+          "title": "Left-Deep Join Trees",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf",
+          "pages": [
+            8,
+            12
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l18-the-principle-of-optimality",
+          "title": "The Principle of Optimality",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf",
+          "pages": [
+            13,
+            13
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l18-example-dynamic-programming",
+          "title": "Example: Dynamic Programming",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf",
+          "pages": [
+            14,
+            19
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l18-interesting-orders",
+          "title": "Interesting Orders",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf",
+          "pages": [
+            20,
+            23
+          ],
+          "questions": 5
+        }
+      ]
+    },
+    {
+      "lectureId": "lecture-19",
+      "topics": [
+        {
+          "id": "l19-topic-transactions",
+          "title": "TRANSACTIONS",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "pages": [
+            4,
+            11
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l19-topic-acid",
+          "title": "TRANSACTION GUARANTEES: ACID",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "pages": [
+            12,
+            47
+          ],
+          "questions": 10
+        },
+        {
+          "id": "l19-topic-schedules",
+          "title": "FORMAL PROPERTIES OF SCHEDULES",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "pages": [
+            18,
+            26
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l19-topic-conflicts",
+          "title": "CONFLICTING OPERATIONS",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "pages": [
+            27,
+            30
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l19-topic-conflict-serializable",
+          "title": "CONFLICT SERIALIZABLE SCHEDULES",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "pages": [
+            31,
+            39
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l19-topic-dependency",
+          "title": "DEPENDENCY GRAPHS",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "pages": [
+            40,
+            42
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l19-topic-view",
+          "title": "VIEW SERIALIZABILITY",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "pages": [
+            43,
+            46
+          ],
+          "questions": 5
+        }
+      ]
+    },
+    {
+      "lectureId": "lecture-20",
+      "topics": [
+        {
+          "id": "l20-topic-scheduler-locks",
+          "title": "QUERY SCHEDULER",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+          "pages": [
+            2,
+            6
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l20-topic-two-phase",
+          "title": "TWO-PHASE LOCKING",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+          "pages": [
+            7,
+            10
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l20-topic-cascading",
+          "title": "2PL – CASCADING ABORTS",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+          "pages": [
+            11,
+            12
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l20-topic-strict",
+          "title": "STRICT TWO-PHASE LOCKING",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+          "pages": [
+            13,
+            17
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l20-topic-deadlock-detection",
+          "title": "DEADLOCK DETECTION",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+          "pages": [
+            18,
+            22
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l20-topic-deadlock-prevention",
+          "title": "DEADLOCK PREVENTION",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+          "pages": [
+            23,
+            27
+          ],
+          "questions": 5
+        }
+      ]
+    },
+    {
+      "lectureId": "lecture-21",
+      "topics": [
+        {
+          "id": "l21-topic-failures",
+          "title": "TYPES OF FAILURES",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+          "pages": [
+            4,
+            5
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l21-topic-buffer-policies",
+          "title": "HANDLING THE BUFFER POOL",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+          "pages": [
+            6,
+            17
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l21-topic-logging",
+          "title": "BASIC IDEA: LOGGING",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+          "pages": [
+            18,
+            18
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l21-topic-wal",
+          "title": "WRITE-AHEAD LOGGING (WAL)",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+          "pages": [
+            19,
+            24
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l21-topic-aries",
+          "title": "ARIES",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+          "pages": [
+            25,
+            26
+          ],
+          "questions": 5
+        }
+      ]
+    },
+    {
+      "lectureId": "lecture-22",
+      "topics": [
+        {
+          "id": "l22-topic-distributed-model",
+          "title": "PARALLEL VS. DISTRIBUTED DBMSs",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "pages": [
+            3,
+            5
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l22-topic-distributed-locks",
+          "title": "DISTRIBUTED CONCURRENCY CONTROL",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "pages": [
+            7,
+            14
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l22-topic-two-phase-commit",
+          "title": "2-PHASE COMMIT",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "pages": [
+            16,
+            30
+          ],
+          "questions": 10
+        },
+        {
+          "id": "l22-topic-2pc-logging",
+          "title": "ONE MORE TIME, WITH LOGGING",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "pages": [
+            31,
+            47
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l22-topic-2pc-recovery",
+          "title": "RECOVERY: THINK IT THROUGH",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "pages": [
+            49,
+            54
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l22-topic-2pc-locking",
+          "title": "2PC + STRICT 2PL",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "pages": [
+            55,
+            55
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l22-topic-availability",
+          "title": "AVAILABILITY CONCERNS",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "pages": [
+            56,
+            56
+          ],
+          "questions": 5
+        }
+      ]
+    },
+    {
+      "lectureId": "lecture-23",
+      "topics": [
+        {
+          "id": "l23-topic-algebra-recap",
+          "title": "A Quick Recap",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf",
+          "pages": [
+            2,
+            11
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l23-topic-calculus",
+          "title": "Codd’s Theorem",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf",
+          "pages": [
+            14,
+            18
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l23-topic-syntax",
+          "title": "Syntax of Conjunctive Queries",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf",
+          "pages": [
+            19,
+            23
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l23-topic-homomorphism",
+          "title": "Homomorphism",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf",
+          "pages": [
+            26,
+            30
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l23-topic-semantics",
+          "title": "Semantics of Conjunctive Queries",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf",
+          "pages": [
+            24,
+            33
+          ],
+          "questions": 5
+        }
+      ]
+    },
+    {
+      "lectureId": "lecture-24",
+      "topics": [
+        {
+          "id": "l24-topic-evaluation-complexity",
+          "title": "Data Complexity of Query Evaluation",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf",
+          "pages": [
+            10,
+            12
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l24-topic-np",
+          "title": "Complexity of Query Evaluation",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf",
+          "pages": [
+            13,
+            18
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l24-topic-static-analysis",
+          "title": "Static Analysis",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf",
+          "pages": [
+            19,
+            31
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l24-topic-canonical",
+          "title": "Canonical Database",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf",
+          "pages": [
+            23,
+            24
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l24-topic-containment-hom",
+          "title": "Homomorphism Theorem",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf",
+          "pages": [
+            25,
+            29
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l24-topic-minimization",
+          "title": "Minimization Procedure",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf",
+          "pages": [
+            32,
+            35
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l24-topic-core",
+          "title": "Uniqueness of Minimal Queries",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf",
+          "pages": [
+            36,
+            36
+          ],
+          "questions": 5
+        }
+      ]
+    },
+    {
+      "lectureId": "lecture-25",
+      "topics": [
+        {
+          "id": "l25-topic-good-classes",
+          "title": "“Good” Classes of Conjunctive Queries",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf",
+          "pages": [
+            2,
+            5
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l25-topic-hypergraphs",
+          "title": "Acyclic Hypergraphs",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf",
+          "pages": [
+            4,
+            13
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l25-topic-gyo",
+          "title": "Checking Acyclicity",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf",
+          "pages": [
+            14,
+            26
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l25-topic-acyclic-eval",
+          "title": "Evaluating Acyclic CQs",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf",
+          "pages": [
+            27,
+            27
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l25-topic-yannakakis",
+          "title": "Yannakakis' Algorithm",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf",
+          "pages": [
+            28,
+            36
+          ],
+          "questions": 5
+        }
+      ]
+    },
+    {
+      "lectureId": "lecture-26",
+      "topics": [
+        {
+          "id": "l26-recap",
+          "title": "Recap: Parallel / Distributed DBMSs",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+          "pages": [
+            2,
+            3
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l26-shared-memory",
+          "title": "Shared Memory",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+          "pages": [
+            4,
+            6
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l26-shared-disk",
+          "title": "Shared Disk",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+          "pages": [
+            5,
+            7
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l26-shared-nothing",
+          "title": "Shared Nothing",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+          "pages": [
+            5,
+            8
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l26-parallelism",
+          "title": "Types of Parallelism in DBMSs",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+          "pages": [
+            9,
+            11
+          ],
+          "questions": 10
+        },
+        {
+          "id": "l26-partitioning",
+          "title": "Horizontal Partitioning",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+          "pages": [
+            12,
+            13
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l26-round-robin",
+          "title": "Round-Robin Partitioning",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+          "pages": [
+            14,
+            14
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l26-hash-partitioning",
+          "title": "Hash Partitioning",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+          "pages": [
+            15,
+            15
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l26-range-partitioning",
+          "title": "Range Partitioning",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+          "pages": [
+            16,
+            16
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l26-replication",
+          "title": "Replication",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+          "pages": [
+            17,
+            17
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l26-transparency",
+          "title": "Data Transparency",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+          "pages": [
+            18,
+            18
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l26-scans",
+          "title": "Parallel Scans",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+          "pages": [
+            20,
+            20
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l26-lookup",
+          "title": "Lookup By Key",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+          "pages": [
+            21,
+            21
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l26-parallel-hashing",
+          "title": "Parallel Hashing",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+          "pages": [
+            22,
+            22
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l26-hash-join",
+          "title": "Parallel Hash Join",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+          "pages": [
+            23,
+            23
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l26-sorting",
+          "title": "Parallel Sorting",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+          "pages": [
+            24,
+            24
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l26-sort-merge-join",
+          "title": "Parallel Sort Merge Join",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+          "pages": [
+            25,
+            25
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l26-join-observation",
+          "title": "Observation",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+          "pages": [
+            26,
+            26
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l26-scenario1",
+          "title": "Scenario #1",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+          "pages": [
+            27,
+            28
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l26-scenario2",
+          "title": "Scenario #2",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+          "pages": [
+            29,
+            30
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l26-scenario3",
+          "title": "Scenario #3",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+          "pages": [
+            31,
+            35
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l26-scenario4",
+          "title": "Scenario #4",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+          "pages": [
+            36,
+            42
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l26-planning",
+          "title": "Query Planning",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+          "pages": [
+            43,
+            44
+          ],
+          "questions": 5
+        }
+      ]
+    },
+    {
+      "lectureId": "lecture-27",
+      "topics": [
+        {
+          "id": "l27-motivation",
+          "title": "NoSQL Motivation",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+          "pages": [
+            2,
+            2
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l27-partition-scaling",
+          "title": "Scaling through Partitioning",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+          "pages": [
+            3,
+            3
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l27-replica-scaling",
+          "title": "Scaling through Replication",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+          "pages": [
+            4,
+            4
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l27-principles",
+          "title": "NoSQL: Core Principles",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+          "pages": [
+            5,
+            6
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l27-acid",
+          "title": "Recap: ACID in Relational DBMS",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+          "pages": [
+            8,
+            8
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l27-cap",
+          "title": "CAP Theorem",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+          "pages": [
+            9,
+            10
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l27-base",
+          "title": "NoSQL Paradigm: BASE",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+          "pages": [
+            11,
+            11
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l27-taxonomy",
+          "title": "Taxonomy of NoSQL Systems",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+          "pages": [
+            12,
+            13
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l27-taxonomy-cont",
+          "title": "Taxonomy of NoSQL Systems (Cont.)",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+          "pages": [
+            13,
+            13
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l27-key-value",
+          "title": "Key-Value Stores",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+          "pages": [
+            14,
+            14
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l27-documents",
+          "title": "Document Stores",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+          "pages": [
+            15,
+            15
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l27-json",
+          "title": "JSON: Semi-Structured Data Model",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+          "pages": [
+            16,
+            17
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l27-graphs",
+          "title": "Graph Databases",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+          "pages": [
+            18,
+            18
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l27-graph-languages",
+          "title": "Graph Query Languages",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+          "pages": [
+            19,
+            19
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l27-ranking",
+          "title": "Ranking of DBMS Technologies 2026",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+          "pages": [
+            20,
+            20
+          ],
+          "questions": 5
+        },
+        {
+          "id": "l27-sql-nosql",
+          "title": "SQL vs NoSQL",
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+          "pages": [
+            21,
+            21
+          ],
+          "questions": 5
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+[
+  {
+    "id": "lecture-24",
+    "lecture": 24,
+    "title": "Conjunctive Query Evaluation and Static Analysis",
+    "short": "Complexity · containment · minimization",
+    "group": "07 · Conjunctive queries",
+    "time": 25,
+    "lead": "Evaluating a query on one database is different from proving that two queries are equivalent on every database.",
+    "goals": [
+      "Distinguish data complexity from combined complexity",
+      "Use the correct homomorphism direction when checking containment",
+      "Remove redundant atoms while preserving the output variables"
+    ],
+    "sections": [
+      {
+        "id": "l24-s1",
+        "title": "Two ways to measure difficulty",
+        "html": "<p>Keep a query about shoppers fixed, then increase the database from 100 to 200 values. This measures <strong>data complexity</strong>. If we also allow the query to become longer and contain more variables and atoms, we measure <strong>combined complexity</strong>.</p><p>The <strong>membership</strong> problem considered here is: given a database D, a query Q, and a candidate tuple a, does a belong to Q(D)? We decide YES or NO for one tuple. We are not measuring the time needed to print the entire result set.</p><p>For a fixed query, the number of variables is constant, so a brute-force algorithm runs in polynomial time in the size of the data. When both the query and the data are inputs, general conjunctive-query membership is NP-complete. The next section distinguishes the brute-force count from the proof of that complexity result.</p><p class=\"source-note\">Related source material: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=10\" target=\"_blank\" rel=\"noopener\">PDF pages 10–18</a>. The examples and solutions in this lesson are original supplementary material.</p>"
+      },
+      {
+        "id": "l24-s2",
+        "title": "Worked example: count assignments and verify a witness",
+        "html": "<p>Try assigning values to three variables x, y, and z. If each variable has 100 candidate values, there are at most 100 × 100 × 100 = 1,000,000 assignments. For each assignment, we must still check the atoms and the tuple produced by the head.</p><p>Let <strong>n</strong> be the number of candidate values and <strong>k</strong> the number of query variables. The brute-force algorithm tries at most <strong>n<sup>k</sup></strong> assignments. If the query is fixed with k = 3, this is n<sup>3</sup>: increasing n from 100 to 200 raises the count from 1,000,000 to 8,000,000. If the query can also change, k is no longer constant. With k = 10 and n = 100, there are 100<sup>10</sup> possible assignments.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>The expression n<sup>k</sup> describes an algorithm; it does not prove NP-completeness.</b> An expensive brute-force search does not rule out a better algorithm. Proving NP-completeness requires both membership in NP and NP-hardness.</p></aside><ol><li><strong>Membership in NP:</strong> use one assignment as a witness. Preserve the constants, substitute the variables, and check that every resulting atom is in D and that the head produces the candidate tuple. The witness size and verification time are polynomial in the input size. Verifying one witness does not require trying every assignment.</li><li><strong>NP-hardness:</strong> reduce 3-coloring to Boolean conjunctive-query evaluation. Create one variable for each graph vertex and an atom Diff(u,v) for each edge (u,v). The database relation Diff contains the six ordered pairs of distinct colors among three colors, such as (red,blue), and contains no equal-color pair. A match exists exactly when the graph can be colored with three colors.</li></ol><p>The reduction creates only one variable per vertex and one atom per edge, so its size is polynomial. A polynomial-time algorithm for every conjunctive-query membership instance under combined complexity would therefore give one for every 3-coloring instance. These two arguments establish NP-completeness. They do not mean that every practical query is slow.</p><p class=\"source-note\">Related source material: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=10\" target=\"_blank\" rel=\"noopener\">PDF pages 10–18</a>. The examples and solutions in this lesson are original supplementary material.</p>"
+      },
+      {
+        "id": "l24-s3",
+        "title": "Containment: check the direction of the mapping",
+        "html": "<p>Everyone who buys a premium product is also a shopper. Write <code>Qsmall(x) :- Buy(x,p), Premium(p)</code> and <code>Qall(x) :- Buy(x,p)</code>. On every database, the result of Qsmall is contained in the result of Qall: <strong>Qsmall ⊆ Qall</strong>.</p><ol><li>Start with the body of Qall, which contains Buy(x,p).</li><li>Map x ↦ x and p ↦ p into Qsmall. The atom Buy(x,p) is present there, and the head variable x is preserved in its output position.</li><li>Every match of Qsmall already satisfies both Buy and Premium. Reusing its Buy assignment gives a match of Qall with the same output x.</li></ol><p>The homomorphism proving containment goes from <strong>Qall into Qsmall</strong>. More generally, Q1 ⊆ Q2 exactly when there is a homomorphism from Q2 into Q1 that preserves constants and maps the head of Q2 to the head of Q1. This theorem applies to the conjunctive-query set-semantics model considered here, without additional database constraints.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>The homomorphism arrow points in the opposite direction to containment.</b> To show that every result of Q1 also satisfies Q2, find all the conditions of Q2 inside Q1.</p></aside><p>Containment in the other direction fails. A database containing only Buy(An,pen), with no Premium facts, makes Qall return An while Qsmall is empty. Correspondingly, the Premium atom in Qsmall cannot be mapped into the body of Qall.</p><p class=\"source-note\">Related source material: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=19\" target=\"_blank\" rel=\"noopener\">PDF pages 19–29</a>. The examples and solutions in this lesson are original supplementary material.</p>"
+      },
+      {
+        "id": "l24-s4",
+        "title": "Canonical databases explain the proof",
+        "html": "<p>For <code>Q(x) :- R(x,y), S(y)</code>, construct the small database <code>D = {R(cx,cy), S(cy)}</code> by replacing x with cx and y with cy. Use a distinct fresh constant for each variable, while preserving any constants already in the query. This is the <strong>canonical database</strong> of Q, and cx certainly belongs to Q(D).</p><p>To test Q1 ⊆ Q2, construct the canonical database of Q1 and ask whether Q2 returns the head tuple of Q1 on this database. If it does not, that database is a counterexample to containment. If it does, the match of Q2 gives a homomorphism Q2 → Q1. Composing this mapping with any match of Q1 produces a match of Q2 with the same output.</p><p>The construction also shows that a pure positive conjunctive query of this form is satisfiable: some database gives it a result. This argument assumes there are no external constraints or contradictory additional conditions, such as comparisons that cannot all hold.</p><p class=\"source-note\">Related source material: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=23\" target=\"_blank\" rel=\"noopener\">PDF pages 23–31</a>. The examples and solutions in this lesson are original supplementary material.</p>"
+      },
+      {
+        "id": "l24-s5",
+        "title": "Minimization through a worked example",
+        "html": "<p>The query <code>Q(x) :- R(x,y), R(x,z), S(x)</code> is equivalent to <code>Q(x) :- R(x,y), S(x)</code>. Mapping z ↦ y shows that the second R atom adds no requirement. The variables y and z are not required to have different values.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p><b>Remove an atom only when the result is preserved on every database.</b> Different variable names may use the same value. However, a variable in the head or an inequality condition can make a proposed simplification invalid.</p></aside><p>If we change the head to Q(x,y,z), we cannot simply remove R(x,z), because all three output values must be preserved and z would otherwise lose its binding. Adding y ≠ z also moves beyond the pure conjunctive queries considered here, and the simplification above is no longer valid.</p><details><summary>Self-check: can S(x) be removed?</summary><p>No. On D = {R(a,b)}, the query after removal returns a, while the original query returns nothing. This single counterexample is enough to disprove equivalence.</p></details><p class=\"source-note\">Related source material: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=32\" target=\"_blank\" rel=\"noopener\">PDF pages 32–37</a>. The examples and solutions in this lesson are original supplementary material.</p>"
+      }
+    ],
+    "quiz": {
+      "question": "To prove Q1 ⊆ Q2 using the homomorphism theorem, which mapping should you seek?",
+      "options": [
+        "Q1 → Q2",
+        "Q2 → Q1",
+        "Database → Q1",
+        "Only compare the number of atoms"
+      ],
+      "answer": 1,
+      "explanation": "The mapping goes against the direction of containment and must preserve the head and the constants."
+    },
+    "source": {
+      "summary": "Lecture 24 studies the complexity of conjunctive-query evaluation, canonical databases, satisfiability, containment and equivalence through homomorphisms, and minimization to a core.",
+      "links": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=10",
+          "label": "PDF pages 10–18"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=10",
+          "label": "PDF pages 10–18"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=19",
+          "label": "PDF pages 19–29"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=23",
+          "label": "PDF pages 23–31"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=32",
+          "label": "PDF pages 32–37"
+        }
+      ]
+    },
+    "coverage": {
+      "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf",
+      "verified": true,
+      "verifiedPages": "1–37",
+      "topics": [
+        "combined complexity",
+        "data complexity",
+        "NP witness",
+        "3-colorability reduction",
+        "canonical database",
+        "satisfiability",
+        "homomorphism theorem",
+        "containment/equivalence",
+        "minimization",
+        "core"
+      ],
+      "limitations": [
+        "These theoretical results apply to conjunctive queries under set semantics. They do not automatically apply to SQL bags, NULL values, or additional constraints."
+      ]
+    },
+    "lab": "relational"
+  }
+]

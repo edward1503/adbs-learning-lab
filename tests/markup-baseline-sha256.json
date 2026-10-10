@@ -1,0 +1,26 @@
+{
+  "index.html": {
+    "attributeCount": 92,
+    "sha256": "3c5f969c07f7bf980178c1d40d232b88433c402dd225110370178051a732c274"
+  },
+  "app.js": {
+    "attributeCount": 118,
+    "sha256": "eb9651a2b9618eb38b3626d5360c0990b9bc01e9785c61fd6f659d7e1ff8e311"
+  },
+  "quiz.js": {
+    "attributeCount": 32,
+    "sha256": "7bcf53785954e131397f2ac1dca6021d32a127fcaa36294eadeec0db4857874e"
+  },
+  "labs/relational.js": {
+    "attributeCount": 57,
+    "sha256": "e4c688db4e4f93fa7898956c91813eb40205a1998985bc66e67c8d717a1a19a6"
+  },
+  "labs/systems.js": {
+    "attributeCount": 175,
+    "sha256": "390e681d27d82923c1023ab53548ea32d6b81ab4de0a2a48e06209080b552ef6"
+  },
+  "labs/sql.js": {
+    "attributeCount": 40,
+    "sha256": "4282b2512dc835cc56e338294e38c3690c3bf0060019d5c2a26cbb75db53b884"
+  }
+}
