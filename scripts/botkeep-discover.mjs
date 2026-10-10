@@ -42,8 +42,15 @@ try {
   const source = await probe('source', `/api/v1/developer/workloads/${TARGET.workload}/github`);
   if (source.status === 200 && typeof source.value?.operation?.id === 'string') {
     const operation = await probe('operation', `/api/v1/developer/operations/${encodeURIComponent(source.value.operation.id)}`);
-    const phase = operation.value?.phase;
-    if (typeof phase === 'string' && /^[a-z][a-z_-]{0,24}$/.test(phase)) console.log(JSON.stringify({ phase: 'operation-state', observedPhase: phase }));
+    const value = operation.value;
+    const phase = value?.operation?.phase;
+    const queueState = value?.queueState;
+    const runtimeState = value?.runtimeState;
+    if ([phase, queueState, runtimeState].every(item => typeof item === 'string' && /^[a-z][a-z_-]{0,24}$/.test(item))) {
+      console.log(JSON.stringify({ phase: 'operation-state', observedPhase: phase, queueState, runtimeState,
+        confirmed: value.confirmed === true, workloadMatches: value.workloadId === TARGET.workload,
+        operationMatches: value.id === source.value.operation.id }));
+    }
   }
   const inspected = await probe('inspect', `/api/v1/developer/workloads/${TARGET.workload}/github/inspect`, 'POST', inspectInput());
   if (inspected.status !== 200) process.exitCode = 1;

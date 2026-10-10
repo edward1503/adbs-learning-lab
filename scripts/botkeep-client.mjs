@@ -138,6 +138,14 @@ export class BotkeepClient {
       { method: 'POST', body: inspectInput(), idempotencyKey });
   }
 
+  workload() {
+    return this.#request(`/api/v1/developer/workloads/${TARGET.workload}`);
+  }
+
+  source() {
+    return this.#request(`/api/v1/developer/workloads/${TARGET.workload}/github`);
+  }
+
   sync(values, idempotencyKey) {
     const body = syncInput(values);
     return this.#request(`/api/v1/developer/workloads/${TARGET.workload}/github/sync`,
