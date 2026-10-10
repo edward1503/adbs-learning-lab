@@ -25,15 +25,21 @@ try {
       try { value = JSON.parse(text); } catch { /* Do not expose undecodable content. */ }
     }
     const targetMetadata = phase === 'workload' && response.status === 200 ?
-      { workloadMatches: value?.id === TARGET.workload, staticRuntime: value?.runtime === 'static' } : undefined;
+      { workloadMatches: value?.id === TARGET.workload, staticRuntime: value?.runtime === 'static' } :
+      phase === 'inspect' && response.status === 200 ? {
+        repositoryMatches: value?.repository === TARGET.repository.replace('https://github.com/', ''),
+        branchMatches: value?.branch === TARGET.branch,
+        publicRepository: value?.private === false,
+        commitHasShaForm: /^[a-f0-9]{40}$/.test(value?.commit ?? ''),
+      } : undefined;
     const structure = value === undefined ? [] : responseShape(value);
     console.log(JSON.stringify({ phase, httpStatus: response.status, mediaType, targetMetadata,
       errorMetadata: response.ok ? undefined : accessDiagnosis(value),
-      structure: phase === 'inspect' ? structure : structure.filter(row => row.path.split('[').length <= 2) }));
+      structure: ['inspect', 'source'].includes(phase) ? structure : structure.filter(row => row.path.split('[').length <= 2) }));
     return response.status;
   }
-  await probe('capabilities', '/api/v1/developer/capabilities');
   await probe('workload', `/api/v1/developer/workloads/${TARGET.workload}`);
+  await probe('source', `/api/v1/developer/workloads/${TARGET.workload}/github`);
   const status = await probe('inspect', `/api/v1/developer/workloads/${TARGET.workload}/github/inspect`, 'POST', inspectInput());
   if (status !== 200) process.exitCode = 1;
 } catch (error) {
