@@ -51,7 +51,7 @@ export function syncInput({ revision, confirmation, requestId } = {}) {
     revision, confirmation, requestId, restart: true };
 }
 
-async function jsonBody(response) {
+export async function jsonBody(response) {
   if (!/^application\/(?:[\w.+-]*\+)?json(?:\s*;|$)/i.test(response.headers.get('content-type') ?? '')) {
     fail('INVALID_RESPONSE', 'Expected a JSON response; response content is not logged.');
   }
@@ -84,22 +84,20 @@ export class BotkeepClient {
   #apiKey;
   #fetch;
   #sleep;
-  #postRetryConfirmed;
 
-  constructor({ apiKey, fetchImpl = fetch, sleep = pause, postRetryConfirmed = false } = {}) {
+  constructor({ apiKey, fetchImpl = fetch, sleep = pause } = {}) {
     if (typeof apiKey !== 'string' || !apiKey.trim() || /[\r\n]/.test(apiKey)) {
       fail('MISSING_KEY', 'An authorized Botkeep key is required; never supply it as a command argument.');
     }
     this.#apiKey = apiKey;
     this.#fetch = fetchImpl;
     this.#sleep = sleep;
-    this.#postRetryConfirmed = postRetryConfirmed === true;
   }
 
   async #request(path, { method = 'GET', body, idempotencyKey, expectedStatus = 200 } = {}) {
     if (method === 'POST') requireKey(idempotencyKey);
     const serialized = body === undefined ? undefined : JSON.stringify(body);
-    const attempts = method === 'GET' || this.#postRetryConfirmed ? 3 : 1;
+    const attempts = method === 'GET' ? 3 : 1;
     for (let attempt = 0; attempt < attempts; attempt++) {
       let response;
       try {
@@ -160,14 +158,6 @@ export class BotkeepClient {
   }
 }
 
-export function requireResponseContract(contract) {
-  const names = ['inspectionValues', 'operationId', 'operationState'];
-  if (!contract || names.some(name => typeof contract[name] !== 'function')) {
-    fail('RESPONSE_CONTRACT_UNVERIFIED',
-      'Botkeep inspect, sync, and operation success responses have no OpenAPI schema. Verified response adapters are required before deployment.');
-  }
-}
-
 export async function pollOperation(client, operationId, operationState, {
   sleep = pause, now = Date.now, maxPolls = 24, maxMs = 120000, intervalMs = 5000,
 } = {}) {
@@ -203,27 +193,12 @@ export async function verifyLiveRelease(sourceCommit, {
     } catch { /* A temporarily unavailable host is retried within the fixed bound. */ }
     if (response?.status === 200) {
       const release = await jsonBody(response);
-      if (release && typeof release === 'object' && !Array.isArray(release) && release.sourceCommit === sourceCommit) return release;
+      if (release && typeof release === 'object' && !Array.isArray(release) && release.sourceCommit === sourceCommit &&
+          release.sourceRepository === 'edward1503/adbs-learning-lab') return release;
     } else await response?.body?.cancel();
     if (attempt + 1 < attempts) await sleep(5000);
   }
   fail('LIVE_RELEASE_MISMATCH', 'The live release did not match the exact expected source commit within the verification bound.');
 }
 
-export async function deploy({ client, sourceCommit, logicalRunId, contract, pollOptions, verifyOptions } = {}) {
-  // Preflight before even inspect: this default prevents API writes while response discovery is pending.
-  requireResponseContract(contract);
-  const inspectKey = requestKey('inspect', sourceCommit, logicalRunId);
-  const syncKey = requestKey('sync', sourceCommit, logicalRunId);
-  const inspected = await client.inspect(inspectKey);
-  // A future VERIFIED adapter must validate workload/repository/branch/snapshot binding before returning these values.
-  const values = contract.inspectionValues(inspected, TARGET, sourceCommit);
-  const accepted = await client.sync({ ...values, requestId: syncKey }, syncKey);
-  const operationId = contract.operationId(accepted);
-  await pollOperation(client, operationId, contract.operationState, pollOptions);
-  await verifyLiveRelease(sourceCommit, verifyOptions);
-  return { verified: true, sourceCommit };
-}
-
-// No CLI, environment-key loader, runtime response adapters, or enabled workflow is shipped here.
-// Importing/running this module performs no network request.
+// Importing this client performs no network request. The workflow CLI is botkeep-run.mjs.

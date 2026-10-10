@@ -14,11 +14,24 @@ Publication is serialized. A job checks the current `main` commit before prepari
 
 Use the public repository's `deploy` branch for the existing managed static site. Its static root must resolve `/index.html` from the branch root. Keep the existing domain and HTTPS configuration. The source `main` branch requires a build and should not be connected directly to this static-root profile.
 
-Repository linking, branch import, restart behavior, and automatic push-trigger behavior belong to the hosting configuration. They are not provisioned by this workflow. No hosting credential, PAT, or persistent API key is stored in this repository.
+The CI hosting job imports the checked branch into the existing workload. It does not create a workload, change the domain, migrate to GitHub Pages, or provision account access. The public repository is read without a PAT. A user-managed Botkeep key is stored only in the repository's `BOTKEEP_API_KEY` Actions Secret and passed only to the hosting step on `main` pushes.
 
-The manual `Botkeep contract discovery` workflow uses a repository Actions Secret to inspect supported response structure without logging scalar response values. Its execution is restricted to this repository on `main`. This is a diagnostic workflow, not an automatic hosting deployment job.
+The key needs authorized access to the existing ADBS workload and the documented `deploy:write`, `workloads:read`, and `settings:read` endpoints. Account policy can impose additional write restrictions; a 403 must be resolved through user-approved key configuration, never bypassed by another credential. Renew an expiring key through the same Actions Secret. No key creation, access grant, or automatic renewal is performed by CI.
 
-During integration, authenticated capability and workload reads returned HTTP 200 for the correct ADBS static workload, while GitHub inspect returned HTTP 403. No sync request was made. Until that API write guard is resolved and the actual inspect/sync/operation contracts are verified, CI continues to publish the static branch without claiming automatic hosting updates. No additional key scope or alternate credential is used to bypass the failure.
+The manual `Botkeep contract discovery` workflow remains available for sanitized response-shape diagnostics. It logs no keys, workload names, revision tokens, confirmations, raw response text, or authorization headers.
+
+## Hosting deployment sequence
+
+1. Check both current GitHub branch heads and the immutable `deploy` commit's `release.json`. Superseded source builds are skipped.
+2. Fetch the previous live release and its 19 allowlisted public assets, verify every SHA-256, and upload a rollback artifact **before** any hosting sync.
+3. Verify the fixed workload is static, source settings identify this public repository and branch, and no active operation or recovery exists. Obtain the revision from source settings and exact confirmation from the workload name in memory.
+4. Preview `deploy` and require its commit to match the checked branch head. Recheck GitHub freshness before writing.
+5. Submit one sync in **merge** mode, with restart enabled. Automatic pull-on-start is disabled because this workflow controls imports. Matching files are overwritten; unrelated server files remain. Botkeep stops/restarts the server and revokes active SFTP sessions during import.
+6. Read the newly observed operation, require the verified `complete` / confirmed / queue `done` / runtime `running` state, then verify the exact live source commit and all asset hashes against the checked artifact.
+
+The hosting job has read-only GitHub permissions. Its deployment target is fixed in code and jobs are serialized. API redirects are rejected, responses and polling are bounded, and transient read failures use limited backoff. Mutating requests are sent once with stable logical request identifiers; uncertain outcomes are not automatically resubmitted. A workflow retry verifies already-live output without another import. If a request remains uncertain, inspect Botkeep and its receipt/operation before retrying; do not create a new request merely to bypass uncertainty.
+
+The request schema comes from [Botkeep's developer OpenAPI](https://api.botkeep.cloud/api/v1/developer/openapi.json). Revision and confirmation semantics were cross-checked against the [official GitHub tools client](https://botkeep.cloud/assets/BotToolsPages-BEMa_zC0.js) and successful developer source/operation reads. Unsupported or changed response states stop deployment instead of implying success.
 
 ## Serve every output asset
 
@@ -30,8 +43,8 @@ If the host adds a Content Security Policy, the SQL runtime needs `script-src 's
 
 After importing or updating the deployment branch, compare the hosted `/release.json` `sourceCommit` with the intended `main` commit. The same file gives the associated workflow URL and artifact file hashes. Then check lesson navigation, quiz feedback, browser-local progress, and SQL worker/WASM loading on the live site.
 
-A successful GitHub Actions run confirms the checks, artifact, and branch publication. End-to-end deployment is established only after the hosting update and live verification succeed. The metadata file is served by the static host; the included Node development server deliberately limits root asset routes and does not expose it.
+A green full CI run includes the hosting job's confirmed operation and exact live source/asset verification. Build and publication success alone do not establish hosting success. The metadata file is served by the static host; the included Node development server deliberately limits root asset routes and does not expose it.
 
 ## Rollback
 
-Preserve the currently hosted assets or deployment revision before importing a new branch snapshot. Use the hosting platform's revision/restore mechanism to roll back when available. The `deploy` history and retained CI artifacts identify prior output and source commits. Changing the source branch to an earlier release should be reviewed as a new source change and built/tested again.
+Download `rollback-before-<source SHA>` from the failed or successful workflow run to recover the exact previous live files. Both rollback and checked build artifacts are retained for 14 days; `deploy` history also preserves prior output. Botkeep's temporary recovery copy may be removed after a successful import, so it is not the durable rollback record. The workflow does not automatically roll back after an uncertain outcome. Inspect hosting status before restoring the artifact through the hosting UI or API. Changing source to an earlier release should be reviewed as a new source change and built/tested again.

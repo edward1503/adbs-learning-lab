@@ -20,4 +20,4 @@ GitHub Actions independently verifies dependency installation, build, and tests 
 
 The publication checks above do not establish desktop/mobile visual correctness or a new hosted deployment. The optional Playwright browser suites require separately installed browser tooling and are outside `npm test`.
 
-The live English application predates this repository import. Botkeep repository linking and push-trigger behavior are configured and verified separately. Confirm the intended source commit through hosted release metadata and perform live navigation, quiz, storage, and SQL/WASM checks after a hosting update.
+The live English application predates this repository import. The full CI workflow now checks Botkeep operation completion, exact hosted source metadata, and all 19 public asset hashes after each authorized import. This verifies delivery of checked files; it does not substitute for desktop/mobile visual or interaction testing. Confirm navigation, quiz feedback, storage, and SQL/WASM behavior in a browser after application changes.

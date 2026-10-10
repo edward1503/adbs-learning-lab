@@ -113,3 +113,42 @@ jobs:
             exit 0
           fi
           git push origin HEAD:refs/heads/deploy
+
+  botkeep:
+    name: Deploy and verify Botkeep
+    needs: publish
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && github.repository == 'edward1503/adbs-learning-lab'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    concurrency:
+      group: botkeep-adbs
+      cancel-in-progress: false
+    steps:
+      - name: Check out checked deployment code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+      - name: Save and verify current live assets
+        id: snapshot
+        env:
+          ROLLBACK_DIR: ${{ runner.temp }}/adbs-rollback
+        run: node scripts/botkeep-run.mjs snapshot
+      - name: Retain rollback output before hosting changes
+        if: steps.snapshot.outputs.active == 'true'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: rollback-before-${{ github.sha }}
+          path: ${{ runner.temp }}/adbs-rollback/
+          if-no-files-found: error
+          retention-days: 14
+      - name: Import checked deploy branch and verify live release
+        if: steps.snapshot.outputs.active == 'true'
+        env:
+          BOTKEEP_API_KEY: ${{ secrets.BOTKEEP_API_KEY }}
+        run: node scripts/botkeep-run.mjs deploy

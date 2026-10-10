@@ -66,7 +66,7 @@ Edit `course/lectureNN.json` or `course/quizNN.json`, then rebuild. `course-data
 
 ## Tests and CI
 
-`npm test` includes 48 application tests covering content/translation contracts, stable routes and IDs, quiz behavior, progress persistence, rendering hooks, lab algorithms, actual SQLite execution, worker lifecycle, and HTTP asset serving, plus deployment-diagnostic checks. Test discovery is independent of shell globbing, so the same command works on Windows and Linux.
+`npm test` includes 48 application tests covering content/translation contracts, stable routes and IDs, quiz behavior, progress persistence, rendering hooks, lab algorithms, actual SQLite execution, worker lifecycle, and HTTP asset serving, plus deployment safety and diagnostic checks. Test discovery is independent of shell globbing, so the same command works on Windows and Linux.
 
 GitHub Actions checks every pull request and push to `main`, running `npm ci`, `npm run build`, and `npm test` on Linux and Windows. Successful builds upload `dist` with a `release.json` file identifying the app version, source commit, workflow run, and artifact file hashes.
 
@@ -78,7 +78,7 @@ The optional `tests/browser.cjs` and `tests/sql-browser.cjs` suites require Play
 
 The live host is **[adbs-learning-lab.bot-keep.xyz](https://adbs-learning-lab.bot-keep.xyz/)**. Production output is **`dist/`**. The `deploy` branch contains only that output, with `index.html` at its root, so Botkeep can serve it without a remote build step. Deployment commits preserve the branch's history and record the corresponding `main` source commit.
 
-Botkeep repository linking and automatic update behavior are configured and verified separately. A successful CI run confirms build/test and branch publication; it does not by itself confirm that the live host has updated. Compare the live `release.json` with the intended source commit after a hosting update. See [the deployment guide](docs/deployment.md) for asset and hosting requirements.
+After both platform checks and branch publication pass on `main`, CI saves a verified rollback artifact and imports the checked `deploy` commit through Botkeep's API using the repository's `BOTKEEP_API_KEY` Actions Secret. It uses merge mode, restarts the existing static workload, waits for confirmed completion, and verifies the live source commit and every asset hash. Pull requests cannot run hosting deployment or access that secret. See [the deployment guide](docs/deployment.md) for configuration, failure handling, and rollback.
 
 ## Browser-local data
 
