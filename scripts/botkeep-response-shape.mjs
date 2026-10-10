@@ -30,6 +30,12 @@ export function accessDiagnosis(value) {
     mentionsResource: /resource|workload|allowlist/i.test(detail),
     mentionsPermission: /permission|access|forbidden/i.test(detail),
     mentionsExpiredKey: /expir/i.test(detail),
+    mentionsOrigin: /origin|cross.site|cross.origin|cors/i.test(detail),
+    mentionsCsrf: /csrf/i.test(detail),
+    mentionsHeader: /header|content.type|requested.with|idempotency/i.test(detail),
+    mentionsDisabled: /disabl|unavailable|not.enabled/i.test(detail),
+    mentionsAccountOrPlan: /account|customer|plan|billing|quota/i.test(detail),
+    mentionsMutation: /mutation|write|post/i.test(detail),
     referencedScopes: [...new Set((detail.match(/[a-z]+:[a-z]+/g) ?? []).filter(scope => publicScopes.has(scope)))],
   };
 }
