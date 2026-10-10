@@ -2,7 +2,7 @@ import { DeploymentError, TARGET, inspectInput, requestKey } from './botkeep-cli
 import { accessDiagnosis, responseShape } from './botkeep-response-shape.mjs';
 
 try {
-  if (process.env.GITHUB_REPOSITORY !== 'edward1503/adbs-learning-lab' || process.env.GITHUB_REF !== 'refs/heads/main') {
+  if (process.env.GITHUB_REPOSITORY !== 'edward1503/adbs-learning-lab' || process.env.GITHUB_REF !== 'refs/heads/botkeep-readonly-diagnostics') {
     throw new DeploymentError('WRONG_TARGET', 'Discovery is restricted to this repository on main.');
   }
   const apiKey = process.env.BOTKEEP_API_KEY;
@@ -35,11 +35,15 @@ try {
     const structure = value === undefined ? [] : responseShape(value);
     console.log(JSON.stringify({ phase, httpStatus: response.status, mediaType, targetMetadata,
       errorMetadata: response.ok ? undefined : accessDiagnosis(value),
-      structure: ['inspect', 'source', 'operation'].includes(phase) ? structure : structure.filter(row => row.path.split('[').length <= 2) }));
+      structure: ['inspect', 'source', 'operation', 'sync-receipt', 'inspect-receipt'].includes(phase) ? structure : structure.filter(row => row.path.split('[').length <= 2) }));
     return { status: response.status, value };
   }
   await probe('workload', `/api/v1/developer/workloads/${TARGET.workload}`);
   const source = await probe('source', `/api/v1/developer/workloads/${TARGET.workload}/github`);
+  if (source.status === 200) {
+    console.log(JSON.stringify({ phase: 'source-binding', commit: /^[a-f0-9]{40}$/.test(source.value?.source?.commit ?? '') ? source.value.source.commit : undefined,
+      operationId: /^[a-f0-9-]{36}$/.test(source.value?.operation?.id ?? '') ? source.value.operation.id : undefined }));
+  }
   if (source.status === 200 && typeof source.value?.operation?.id === 'string') {
     const operation = await probe('operation', `/api/v1/developer/operations/${encodeURIComponent(source.value.operation.id)}`);
     const value = operation.value;
@@ -52,8 +56,10 @@ try {
         operationMatches: value.id === source.value.operation.id }));
     }
   }
-  const inspected = await probe('inspect', `/api/v1/developer/workloads/${TARGET.workload}/github/inspect`, 'POST', inspectInput());
-  if (inspected.status !== 200) process.exitCode = 1;
+  for (const stage of ['inspect', 'sync']) {
+    const receipt = requestKey(stage, '1b6e2c0af420ecde6ba18984e6ab84a972589cbc', 'github-38075640486');
+    await probe(`${stage}-receipt`, `/api/v1/developer/requests/${receipt}`);
+  }
 } catch (error) {
   const safe = error instanceof DeploymentError ? { code: error.code, status: error.status, message: error.message } :
     { code: 'DISCOVERY_FAILED', message: 'Discovery failed; raw error details are suppressed.' };
