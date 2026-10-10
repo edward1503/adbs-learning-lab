@@ -2,7 +2,7 @@ import { execFileSync } from 'node:child_process';
 import { appendFile, mkdir, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { BotkeepClient, DeploymentError, TARGET, jsonBody } from './botkeep-client.mjs';
-import { REPOSITORY, deployChecked, publicResponse, snapshotLive, validateRelease } from './botkeep-deployment.mjs';
+import { REPOSITORY, deployChecked, pollSettings, publicResponse, snapshotLive, validateRelease } from './botkeep-deployment.mjs';
 
 const fail = (code, message) => { throw new DeploymentError(code, message); };
 async function summary(line) {
@@ -70,6 +70,7 @@ try {
         result = { verified: true, alreadyLive: true, sourceCommit, deployCommit };
       } else result = await deployChecked({ client: new BotkeepClient({ apiKey }), sourceCommit, deployCommit, expectedRelease: expected,
         logicalRunId: `github-${process.env.GITHUB_RUN_ID}`,
+        pollOptions: pollSettings(process.env.BOTKEEP_OPERATION_TIMEOUT_SECONDS),
         isCurrent: async () => { const latest = refs(); return latest.main === sourceCommit && latest.deploy === deployCommit; },
         onAccepted: () => console.log('Hosting accepted the import; checking its operation and live release.'),
       });

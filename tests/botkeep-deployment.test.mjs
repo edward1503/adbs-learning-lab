@@ -1,8 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { BotkeepClient, TARGET, jsonBody, requestKey, syncInput } from '../scripts/botkeep-client.mjs';
-import { ASSETS, REPOSITORY, deployChecked, operationState, snapshotLive,
+import { BotkeepClient, TARGET, jsonBody, pollOperation, requestKey, syncInput } from '../scripts/botkeep-client.mjs';
+import { ASSETS, REPOSITORY, deployChecked, operationState, pollSettings, snapshotLive,
   validateInspection, validatePreflight, validateRelease } from '../scripts/botkeep-deployment.mjs';
 
 const sourceCommit = 'a'.repeat(40);
@@ -85,12 +85,30 @@ test('inspection must bind to exact checked public deploy commit', () => {
 test('operation requires matching identifiers and observed confirmed complete/running tuple', () => {
   assert.equal(operationState(operation(newId), newId), 'succeeded');
   assert.equal(operationState(operation(newId, 'installing'), newId), 'pending');
+  assert.equal(operationState({ ...operation(newId), runtimeState: 'starting' }, newId), 'pending');
   assert.throws(() => operationState(operation(oldId), newId), { code: 'OPERATION_BINDING_MISMATCH' });
   assert.throws(() => operationState({ ...operation(newId), workloadId: oldId }, newId), { code: 'OPERATION_BINDING_MISMATCH' });
   for (const changed of [{ ...operation(newId), confirmed: false }, operation(newId, 'failed'),
     { ...operation(newId), runtimeState: 'stopped' }]) {
     assert.throws(() => operationState(changed, newId), { code: 'UNVERIFIED_OPERATION_STATE' });
   }
+});
+
+test('provider polling allows dispatch/startup time with validated configuration and a hard bound', async () => {
+  assert.deepEqual(pollSettings(), { maxMs: 900000, maxPolls: 90, intervalMs: 10000 });
+  assert.deepEqual(pollSettings('120'), { maxMs: 120000, maxPolls: 12, intervalMs: 10000 });
+  for (const value of ['119', '901', 'NaN', '120.5']) {
+    assert.throws(() => pollSettings(value), { code: 'INVALID_POLL_LIMIT' });
+  }
+  let calls = 0;
+  await assert.rejects(pollOperation({ operation: async () => { calls++; return operation(newId, 'dispatching'); } },
+    newId, value => operationState(value, newId), { maxPolls: 2, maxMs: 1000, intervalMs: 0, sleep: noSleep, now: () => 0 }),
+  { code: 'OPERATION_TIMEOUT' });
+  assert.equal(calls, 2);
+  let starts = 0;
+  await pollOperation({ operation: async () => ({ ...operation(newId), runtimeState: ++starts === 1 ? 'starting' : 'running' }) },
+    newId, value => operationState(value, newId), { intervalMs: 0, sleep: noSleep });
+  assert.equal(starts, 2);
 });
 
 test('rollback copies only allowlisted public files with verified SHA256 and release metadata', async () => {

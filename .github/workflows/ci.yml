@@ -119,7 +119,7 @@ jobs:
     needs: publish
     if: github.event_name == 'push' && github.ref == 'refs/heads/main' && github.repository == 'edward1503/adbs-learning-lab'
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     permissions:
       contents: read
     concurrency:
@@ -151,4 +151,5 @@ jobs:
         if: steps.snapshot.outputs.active == 'true'
         env:
           BOTKEEP_API_KEY: ${{ secrets.BOTKEEP_API_KEY }}
+          BOTKEEP_OPERATION_TIMEOUT_SECONDS: '900'
         run: node scripts/botkeep-run.mjs deploy

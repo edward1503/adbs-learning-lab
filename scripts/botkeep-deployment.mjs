@@ -95,10 +95,20 @@ export function operationState(operation, operationId) {
   }
   const phase = operation.operation.phase;
   if (ACTIVE.has(phase)) return 'pending';
+  // Developer GET confirmed this intermediate state while the imported static server started.
+  if (phase === 'complete' && operation.confirmed === true && operation.queueState === 'done' &&
+      operation.runtimeState === 'starting') return 'pending';
   // This exact successful tuple was observed from the developer endpoint.
   if (phase === 'complete' && operation.confirmed === true && operation.queueState === 'done' &&
       operation.runtimeState === 'running') return 'succeeded';
   fail('UNVERIFIED_OPERATION_STATE', 'Hosting has not reported the verified successful terminal state; inspect it before retrying.');
+}
+
+export function pollSettings(value = '900') {
+  if (typeof value !== 'string' || !/^\d+$/.test(value) || Number(value) < 120 || Number(value) > 900) {
+    fail('INVALID_POLL_LIMIT', 'Operation timeout must be between 120 and 900 seconds.');
+  }
+  return { maxMs: Number(value) * 1000, maxPolls: Math.ceil(Number(value) / 10), intervalMs: 10000 };
 }
 
 export async function deployChecked({ client, sourceCommit, deployCommit, logicalRunId, expectedRelease,

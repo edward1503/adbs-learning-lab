@@ -161,11 +161,11 @@ export class BotkeepClient {
 }
 
 export async function pollOperation(client, operationId, operationState, {
-  sleep = pause, now = Date.now, maxPolls = 24, maxMs = 120000, intervalMs = 5000,
+  sleep = pause, now = Date.now, maxPolls = 90, maxMs = 900000, intervalMs = 10000,
 } = {}) {
   if (typeof operationState !== 'function') fail('RESPONSE_CONTRACT_UNVERIFIED', 'Operation status mapping is unverified.');
-  if (!Number.isInteger(maxPolls) || maxPolls < 1 || maxPolls > 24 || maxMs < 1 || maxMs > 120000 ||
-      intervalMs < 0 || intervalMs > 5000) fail('INVALID_POLL_LIMIT', 'Polling limits are invalid.');
+  if (!Number.isInteger(maxPolls) || maxPolls < 1 || maxPolls > 90 || maxMs < 1 || maxMs > 900000 ||
+      intervalMs < 0 || intervalMs > 10000) fail('INVALID_POLL_LIMIT', 'Polling limits are invalid.');
   const start = now();
   for (let attempt = 0; attempt < maxPolls && now() - start < maxMs; attempt++) {
     // These three states are our internal adapter protocol, not assumed Botkeep fields or values.
