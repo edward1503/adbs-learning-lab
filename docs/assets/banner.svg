@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="330" viewBox="0 0 1200 330" role="img" aria-labelledby="title desc">
+  <title id="title">ADBS Learning Lab</title>
+  <desc id="desc">Explore, practice, understand. An English learning lab for Advanced Database Systems.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#111b36"/><stop offset="1" stop-color="#172d4c"/></linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#67e8f9"/><stop offset="1" stop-color="#a7f3d0"/></linearGradient>
+  </defs>
+  <rect width="1200" height="330" rx="24" fill="url(#bg)"/>
+  <circle cx="1130" cy="40" r="185" fill="#67e8f9" opacity=".05"/>
+  <circle cx="965" cy="300" r="150" fill="#a7f3d0" opacity=".04"/>
+  <g stroke="#7dd3fc" stroke-width="1" opacity=".16"><path d="M865 100H1125M865 165H1125M865 230H1125M895 70V260M960 70V260M1025 70V260M1090 70V260"/></g>
+  <g transform="translate(925 95)" fill="#172d4c" stroke="url(#accent)" stroke-width="4">
+    <path d="M0 24V116C0 149 164 149 164 116V24"/>
+    <ellipse cx="82" cy="24" rx="82" ry="25"/>
+    <path d="M0 70C0 103 164 103 164 70"/>
+    <path d="M0 116C0 149 164 149 164 116"/>
+  </g>
+  <text x="64" y="72" fill="#a7f3d0" font-family="Arial, sans-serif" font-size="16" font-weight="700" letter-spacing="3">ADVANCED DATABASE SYSTEMS</text>
+  <text x="60" y="145" fill="#f8fafc" font-family="Arial, sans-serif" font-size="60" font-weight="700">ADBS Learning Lab</text>
+  <text x="64" y="196" fill="#cbd5e1" font-family="Arial, sans-serif" font-size="26">Explore. Practice. Understand.</text>
+  <rect x="64" y="242" width="206" height="36" rx="18" fill="#67e8f9" opacity=".12"/>
+  <text x="86" y="266" fill="#a5f3fc" font-family="Arial, sans-serif" font-size="15" font-weight="700">ENGLISH · v3.0.0</text>
+</svg>
