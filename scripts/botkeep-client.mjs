@@ -96,7 +96,7 @@ export class BotkeepClient {
     this.#sleep = sleep;
   }
 
-  async #request(path, { method = 'GET', body, idempotencyKey, expectedStatus = 200 } = {}) {
+  async #request(path, { method = 'GET', body, idempotencyKey, expectedStatus = 200, label = 'read' } = {}) {
     if (method === 'POST') requireKey(idempotencyKey);
     const serialized = body === undefined ? undefined : JSON.stringify(body);
     const attempts = method === 'GET' ? 3 : 1;
@@ -104,7 +104,7 @@ export class BotkeepClient {
       let response;
       try {
         response = await this.#fetch(new URL(path, TARGET.api), {
-          method, redirect: 'error', signal: AbortSignal.timeout(10000),
+          method, redirect: 'error', signal: AbortSignal.timeout(method === 'POST' ? 45000 : 10000),
           headers: { Authorization: `Bearer ${this.#apiKey}`, Accept: 'application/json',
             ...(serialized === undefined ? {} : { 'Content-Type': 'application/json' }),
             ...(idempotencyKey ? { 'Idempotency-Key': idempotencyKey } : {}) },
@@ -115,7 +115,7 @@ export class BotkeepClient {
           await this.#sleep(500 * 2 ** attempt);
           continue;
         }
-        fail('TRANSPORT_UNCERTAIN', 'Request outcome is uncertain. Preserve its request key; do not create a new logical request.');
+        fail('TRANSPORT_UNCERTAIN', `Botkeep ${label} request outcome is uncertain. Preserve its request key; do not create a new logical request.`);
       }
       if (response.status === expectedStatus) return jsonBody(response);
       const retryable = response.status === 429 || [500, 502, 503, 504].includes(response.status);
@@ -135,7 +135,7 @@ export class BotkeepClient {
 
   inspect(idempotencyKey) {
     return this.#request(`/api/v1/developer/workloads/${TARGET.workload}/github/inspect`,
-      { method: 'POST', body: inspectInput(), idempotencyKey });
+      { method: 'POST', body: inspectInput(), idempotencyKey, label: 'preview' });
   }
 
   workload() {
@@ -149,7 +149,7 @@ export class BotkeepClient {
   sync(values, idempotencyKey) {
     const body = syncInput(values);
     return this.#request(`/api/v1/developer/workloads/${TARGET.workload}/github/sync`,
-      { method: 'POST', body, idempotencyKey, expectedStatus: 202 });
+      { method: 'POST', body, idempotencyKey, expectedStatus: 202, label: 'sync' });
   }
 
   operation(operationId) {

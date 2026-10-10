@@ -176,6 +176,6 @@ test('API GET retries transient failure; POST timeout is single and never expose
   const uncertain = new BotkeepClient({ apiKey, fetchImpl: async () => { writes++; throw new Error(apiKey); } });
   await assert.rejects(uncertain.sync({ revision, confirmation: workload.name,
     requestId: requestKey('sync', sourceCommit, 'run') }, requestKey('sync', sourceCommit, 'run')),
-  error => error.code === 'TRANSPORT_UNCERTAIN' && !error.message.includes(apiKey));
+  error => error.code === 'TRANSPORT_UNCERTAIN' && error.message.includes('sync request') && !error.message.includes(apiKey));
   assert.equal(writes, 1);
 });
