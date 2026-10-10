@@ -1,4 +1,4 @@
-import { DeploymentError, TARGET, inspectInput, requestKey } from './botkeep-client.mjs';
+import { BotkeepClient, DeploymentError, TARGET, inspectInput, requestKey } from './botkeep-client.mjs';
 import { accessDiagnosis, responseShape } from './botkeep-response-shape.mjs';
 
 try {
@@ -65,9 +65,38 @@ try {
       console.log(JSON.stringify({ phase: `${stage}-receipt-state`, state, idMatches: value?.id === receipt,
         statusCode: Number.isInteger(value?.statusCode) ? value.statusCode : undefined,
         resultStatusCode: Number.isInteger(value?.result?.statusCode) ? value.result.statusCode : undefined,
-        accepted: value?.result?.accepted === true, requestMatches: value?.result?.requestId === receipt }));
+        accepted: value?.result?.accepted === true, requestMatches: value?.result?.requestId === receipt,
+        workloadMatches: value?.result?.id === TARGET.workload,
+        operationMatches: value?.result?.operation?.id === source.value?.operation?.id }));
     }
   }
+  const client = new BotkeepClient({ apiKey });
+  const operationId = source.value?.operation?.id;
+  const deadline = Date.now() + 240000;
+  let previous;
+  let complete = false;
+  for (let attempt = 0; attempt < 48 && Date.now() < deadline; attempt++) {
+    const value = await client.operation(operationId);
+    if (value.id !== operationId || value.operation?.id !== operationId || value.workloadId !== TARGET.workload) {
+      throw new DeploymentError('WRONG_OPERATION', 'Read-only observation stopped because target binding changed.');
+    }
+    const state = { phase: 'observed-operation', operationId,
+      observedPhase: value.operation.phase, queueState: value.queueState, runtimeState: value.runtimeState,
+      confirmed: value.confirmed === true, activeSeen: value.operation.activeSeen === true,
+      deliveryUnconfirmed: value.operation.deliveryUnconfirmed === true };
+    if (![state.observedPhase, state.queueState, state.runtimeState].every(item => /^[a-z][a-z_-]{0,24}$/.test(item ?? ''))) {
+      throw new DeploymentError('UNVERIFIED_ENUM', 'Read-only observation returned an unknown state structure.');
+    }
+    const serialized = JSON.stringify(state);
+    if (serialized !== previous) { console.log(serialized); previous = serialized; }
+    if (state.observedPhase === 'complete' && state.confirmed && state.queueState === 'done' && state.runtimeState === 'running') {
+      complete = true;
+      break;
+    }
+    if (attempt < 47) await new Promise(resolve => setTimeout(resolve, 5000));
+  }
+  console.log(JSON.stringify({ phase: 'observation-result', complete, operationId }));
+  if (!complete) process.exitCode = 1;
 } catch (error) {
   const safe = error instanceof DeploymentError ? { code: error.code, status: error.status, message: error.message } :
     { code: 'DISCOVERY_FAILED', message: 'Discovery failed; raw error details are suppressed.' };
