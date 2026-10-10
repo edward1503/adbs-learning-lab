@@ -16,6 +16,10 @@ Use the public repository's `deploy` branch for the existing managed static site
 
 Repository linking, branch import, restart behavior, and automatic push-trigger behavior belong to the hosting configuration. They are not provisioned by this workflow. No hosting credential, PAT, or persistent API key is stored in this repository.
 
+The manual `Botkeep contract discovery` workflow uses a repository Actions Secret to inspect supported response structure without logging scalar response values. Its execution is restricted to this repository on `main`. This is a diagnostic workflow, not an automatic hosting deployment job.
+
+During integration, authenticated capability and workload reads returned HTTP 200 for the correct ADBS static workload, while GitHub inspect returned HTTP 403. No sync request was made. Until that API write guard is resolved and the actual inspect/sync/operation contracts are verified, CI continues to publish the static branch without claiming automatic hosting updates. No additional key scope or alternate credential is used to bypass the failure.
+
 ## Serve every output asset
 
 Preserve the `labs/` and `vendor/` paths, including the worker, WASM engine, and font. Serve `.wasm` as `application/wasm`. Lesson routes use hash fragments and need no server rewrite.

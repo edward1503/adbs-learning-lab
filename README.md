@@ -66,7 +66,7 @@ Edit `course/lectureNN.json` or `course/quizNN.json`, then rebuild. `course-data
 
 ## Tests and CI
 
-`npm test` runs 48 automated tests covering content/translation contracts, stable routes and IDs, quiz behavior, progress persistence, rendering hooks, lab algorithms, actual SQLite execution, worker lifecycle, and HTTP asset serving. Test discovery is independent of shell globbing, so the same command works on Windows and Linux.
+`npm test` includes 48 application tests covering content/translation contracts, stable routes and IDs, quiz behavior, progress persistence, rendering hooks, lab algorithms, actual SQLite execution, worker lifecycle, and HTTP asset serving, plus deployment-diagnostic checks. Test discovery is independent of shell globbing, so the same command works on Windows and Linux.
 
 GitHub Actions checks every pull request and push to `main`, running `npm ci`, `npm run build`, and `npm test` on Linux and Windows. Successful builds upload `dist` with a `release.json` file identifying the app version, source commit, workflow run, and artifact file hashes.
 
