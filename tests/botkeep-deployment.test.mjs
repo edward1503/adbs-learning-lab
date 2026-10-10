@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { BotkeepClient, TARGET, requestKey, syncInput } from '../scripts/botkeep-client.mjs';
+import { BotkeepClient, TARGET, jsonBody, requestKey, syncInput } from '../scripts/botkeep-client.mjs';
 import { ASSETS, REPOSITORY, deployChecked, operationState, snapshotLive,
   validateInspection, validatePreflight, validateRelease } from '../scripts/botkeep-deployment.mjs';
 
@@ -150,6 +150,15 @@ test('request keys are stable across a workflow retry and separate release/stage
   assert.equal(requestKey('sync', sourceCommit, 'github-123'), requestKey('sync', sourceCommit, 'github-123'));
   assert.notEqual(requestKey('sync', sourceCommit, 'github-123'), requestKey('inspect', sourceCommit, 'github-123'));
   assert.notEqual(requestKey('sync', sourceCommit, 'github-123'), requestKey('sync', deployCommit, 'github-123'));
+});
+
+test('GitHub raw text/plain metadata is parsed only through an explicit public-reader option', async () => {
+  const plain = () => new Response(JSON.stringify(release), { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
+  await assert.rejects(jsonBody(plain()), { code: 'INVALID_RESPONSE' });
+  assert.deepEqual(await jsonBody(plain(), { allowTextPlain: true }), release);
+  await assert.rejects(jsonBody(new Response('<html>error</html>', {
+    headers: { 'Content-Type': 'text/html' },
+  }), { allowTextPlain: true }), { code: 'INVALID_RESPONSE' });
 });
 
 test('API GET retries transient failure; POST timeout is single and never exposes credentials', async () => {

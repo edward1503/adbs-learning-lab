@@ -40,7 +40,7 @@ try {
   } else {
     const deployCommit = current.deploy;
     const expected = validateRelease(await jsonBody(await publicResponse(
-      `https://raw.githubusercontent.com/${REPOSITORY}/${deployCommit}/release.json`)), sourceCommit);
+      `https://raw.githubusercontent.com/${REPOSITORY}/${deployCommit}/release.json`), { allowTextPlain: true }), sourceCommit);
     if (expected.workflowRun !== `https://github.com/${REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`) {
       fail('WRONG_ARTIFACT', 'Deployment output was not published by this checked workflow run.');
     }

@@ -51,8 +51,10 @@ export function syncInput({ revision, confirmation, requestId } = {}) {
     revision, confirmation, requestId, restart: true };
 }
 
-export async function jsonBody(response) {
-  if (!/^application\/(?:[\w.+-]*\+)?json(?:\s*;|$)/i.test(response.headers.get('content-type') ?? '')) {
+export async function jsonBody(response, { allowTextPlain = false } = {}) {
+  const mediaType = response.headers.get('content-type') ?? '';
+  if (!/^application\/(?:[\w.+-]*\+)?json(?:\s*;|$)/i.test(mediaType) &&
+      !(allowTextPlain && /^text\/plain(?:\s*;|$)/i.test(mediaType))) {
     fail('INVALID_RESPONSE', 'Expected a JSON response; response content is not logged.');
   }
   if (!response.body) fail('INVALID_RESPONSE', 'Expected a JSON response body.');
