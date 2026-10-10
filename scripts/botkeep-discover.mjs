@@ -58,7 +58,15 @@ try {
   }
   for (const stage of ['inspect', 'sync']) {
     const receipt = requestKey(stage, '1b6e2c0af420ecde6ba18984e6ab84a972589cbc', 'github-38075640486');
-    await probe(`${stage}-receipt`, `/api/v1/developer/requests/${receipt}`);
+    const observed = await probe(`${stage}-receipt`, `/api/v1/developer/requests/${receipt}`);
+    if (observed.status === 200) {
+      const value = observed.value;
+      const state = typeof value?.state === 'string' && /^[a-z][a-z_-]{0,24}$/.test(value.state) ? value.state : undefined;
+      console.log(JSON.stringify({ phase: `${stage}-receipt-state`, state, idMatches: value?.id === receipt,
+        statusCode: Number.isInteger(value?.statusCode) ? value.statusCode : undefined,
+        resultStatusCode: Number.isInteger(value?.result?.statusCode) ? value.result.statusCode : undefined,
+        accepted: value?.result?.accepted === true, requestMatches: value?.result?.requestId === receipt }));
+    }
   }
 } catch (error) {
   const safe = error instanceof DeploymentError ? { code: error.code, status: error.status, message: error.message } :
