@@ -16,6 +16,7 @@ The independent baseline found the original 1,100 bank answers and 27 embedded a
 | [L23–27 resolutions](cq-nosql-resolutions.json) | Sixteen findings on conjunctive queries, parallelism and NoSQL/CAP |
 | [Foundation review](foundation-integrated-review.md), [execution/transaction review](execution-transactions-integrated-review.md), [CQ/NoSQL review](cq-nosql-integrated-review.md) | Independent reviews of the actual integrated prose and answers; all accepted |
 | [Supplemental evidence](supplemental-evidence.md), [supplemental review](supplemental-independent-review.md) | Primary-paper bibliography/status and independent review of all 50 supplemental answers |
+| [Technical review](technical-integrated-review.md) | Independent compiler/runtime, saved-answer compatibility, complete-packet, source-mapping and public-file acceptance |
 | [Validation](../../VALIDATION.md) | Automated contracts, browser acceptance checks and deployment verification scope |
 
 The 60 teaching findings are F01–F20, ten EX findings, P19-A through P22-E (14 total), and G23-1 through G27-7 (16 total). Some findings span multiple stable sections. Resolution records separately retain auxiliary citation and source-erratum work, so a record count is not a finding count. Original canonical quiz identities remain in `course/quiz*.json`; [the compatibility fixture](../../tests/audit-question-compatibility.json) records the exact approved differences instead of replacing historical golden baselines.

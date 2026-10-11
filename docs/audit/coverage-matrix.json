@@ -329,16 +329,17 @@
           "quizTopicIds": [
             "l01-topic-flat-files",
             "l01-topic-models"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-01",
           "sectionId": "l1-4",
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
-            "l01-topic-flat-files",
-            "l01-topic-models"
-          ]
+            "l01-topic-database-dbms"
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         }
       ],
       "plannedSupplementaryResourceIds": [],
@@ -467,7 +468,10 @@
           "lessonId": "lecture-01",
           "sectionId": "l1-4",
           "mappingStatus": "Stable section target of independently accepted finding",
-          "quizTopicIds": []
+          "quizTopicIds": [
+            "l01-topic-database-dbms"
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         }
       ],
       "plannedSupplementaryResourceIds": [],
@@ -586,7 +590,10 @@
           "lessonId": "lecture-01",
           "sectionId": "l1-4",
           "mappingStatus": "Stable section target of independently accepted finding",
-          "quizTopicIds": []
+          "quizTopicIds": [
+            "l01-topic-database-dbms"
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         }
       ],
       "plannedSupplementaryResourceIds": [],
@@ -713,7 +720,8 @@
             "l02-topic-terminology",
             "l02-topic-outer-join",
             "l02-topic-nested"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-02",
@@ -723,7 +731,8 @@
             "l02-topic-terminology",
             "l02-topic-outer-join",
             "l02-topic-nested"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-02",
@@ -733,7 +742,8 @@
             "l02-topic-terminology",
             "l02-topic-outer-join",
             "l02-topic-nested"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         }
       ],
       "plannedSupplementaryResourceIds": [],
@@ -879,15 +889,11 @@
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
             "l03-topic-algebra",
-            "l03-topic-union",
-            "l03-topic-difference",
             "l03-topic-product",
             "l03-topic-rename",
-            "l03-topic-intersection",
-            "l03-topic-theta",
-            "l03-topic-natural",
-            "l03-topic-extra"
-          ]
+            "l03-topic-theta"
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-03",
@@ -903,23 +909,22 @@
             "l03-topic-theta",
             "l03-topic-natural",
             "l03-topic-extra"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-03",
           "sectionId": "l3-4",
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
-            "l03-topic-algebra",
             "l03-topic-union",
             "l03-topic-difference",
-            "l03-topic-product",
-            "l03-topic-rename",
             "l03-topic-intersection",
             "l03-topic-theta",
             "l03-topic-natural",
             "l03-topic-extra"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         }
       ],
       "plannedSupplementaryResourceIds": [],
@@ -1054,7 +1059,8 @@
             "l04-topic-locality",
             "l04-topic-ssd",
             "l04-topic-disk-manager"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-04",
@@ -1066,7 +1072,8 @@
             "l04-topic-locality",
             "l04-topic-ssd",
             "l04-topic-disk-manager"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         }
       ],
       "plannedSupplementaryResourceIds": [],
@@ -1180,7 +1187,8 @@
             "l05-topic-clock",
             "l05-topic-scan-policies",
             "l05-topic-buffer-practice"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-05",
@@ -1193,7 +1201,8 @@
             "l05-topic-clock",
             "l05-topic-scan-policies",
             "l05-topic-buffer-practice"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         }
       ],
       "plannedSupplementaryResourceIds": [],
@@ -1316,9 +1325,9 @@
             "l06-topic-heap-directory",
             "l06-topic-packed",
             "l06-topic-unpacked",
-            "l06-topic-slotted",
-            "l06-topic-record-layout"
-          ]
+            "l06-topic-slotted"
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-06",
@@ -1329,22 +1338,18 @@
             "l06-topic-heap-directory",
             "l06-topic-packed",
             "l06-topic-unpacked",
-            "l06-topic-slotted",
-            "l06-topic-record-layout"
-          ]
+            "l06-topic-slotted"
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-06",
           "sectionId": "l6-4",
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
-            "l06-topic-files",
-            "l06-topic-heap-directory",
-            "l06-topic-packed",
-            "l06-topic-unpacked",
-            "l06-topic-slotted",
             "l06-topic-record-layout"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         }
       ],
       "plannedSupplementaryResourceIds": [],
@@ -1469,9 +1474,9 @@
           "quizTopicIds": [
             "l07-topic-row",
             "l07-topic-column",
-            "l07-topic-pax",
-            "l07-topic-parquet"
-          ]
+            "l07-topic-pax"
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-07",
@@ -1480,20 +1485,19 @@
           "quizTopicIds": [
             "l07-topic-row",
             "l07-topic-column",
-            "l07-topic-pax",
-            "l07-topic-parquet"
-          ]
+            "l07-topic-pax"
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-07",
           "sectionId": "l7-4",
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
-            "l07-topic-row",
-            "l07-topic-column",
             "l07-topic-pax",
             "l07-topic-parquet"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         }
       ],
       "plannedSupplementaryResourceIds": [],
@@ -1598,7 +1602,8 @@
             "l07-topic-column-encoding",
             "l07-topic-delta",
             "l07-topic-dictionary"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-07",
@@ -1609,7 +1614,8 @@
             "l07-topic-column-encoding",
             "l07-topic-delta",
             "l07-topic-dictionary"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         }
       ],
       "plannedSupplementaryResourceIds": [],
@@ -1725,7 +1731,8 @@
             "l08-topic-entries",
             "l08-topic-classification",
             "l08-topic-cluster"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-08",
@@ -1738,7 +1745,8 @@
             "l08-topic-entries",
             "l08-topic-classification",
             "l08-topic-cluster"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         }
       ],
       "plannedSupplementaryResourceIds": [],
@@ -1863,15 +1871,11 @@
           "sectionId": "l9-3",
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
-            "l09-topic-isam",
-            "l09-topic-fanout",
-            "l09-topic-invariants",
             "l09-topic-insert",
             "l09-topic-redistribute",
-            "l09-topic-delete",
-            "l09-topic-practical-occupancy",
-            "l09-topic-key-compression"
-          ]
+            "l09-topic-delete"
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-09",
@@ -1881,12 +1885,10 @@
             "l09-topic-isam",
             "l09-topic-fanout",
             "l09-topic-invariants",
-            "l09-topic-insert",
-            "l09-topic-redistribute",
-            "l09-topic-delete",
             "l09-topic-practical-occupancy",
             "l09-topic-key-compression"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-09",
@@ -1896,12 +1898,10 @@
             "l09-topic-isam",
             "l09-topic-fanout",
             "l09-topic-invariants",
-            "l09-topic-insert",
-            "l09-topic-redistribute",
-            "l09-topic-delete",
             "l09-topic-practical-occupancy",
             "l09-topic-key-compression"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         }
       ],
       "plannedSupplementaryResourceIds": [],
@@ -2010,24 +2010,32 @@
           "sectionId": "l10-s2",
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
+            "l10-hash-based-indexing",
             "l10-static-chained-hash-table-management",
             "l10-hash-collisions-and-overflow-chains",
+            "l10-global-and-local-depth",
+            "l10-extendible-hashing",
             "l10-directory-doubling",
             "l10-hash-functions",
             "l10-static-hashing-and-dynamic-files"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-10",
           "sectionId": "l10-s3",
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
+            "l10-hash-based-indexing",
             "l10-static-chained-hash-table-management",
             "l10-hash-collisions-and-overflow-chains",
+            "l10-global-and-local-depth",
+            "l10-extendible-hashing",
             "l10-directory-doubling",
             "l10-hash-functions",
             "l10-static-hashing-and-dynamic-files"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         }
       ],
       "plannedSupplementaryResourceIds": [],
@@ -2154,7 +2162,8 @@
             "l11-hashing-summarisation",
             "l11-cost-analysis",
             "l11-conclusion-sorting-vs-hashing"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-11",
@@ -2170,7 +2179,8 @@
             "l11-hashing-summarisation",
             "l11-cost-analysis",
             "l11-conclusion-sorting-vs-hashing"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         }
       ],
       "plannedSupplementaryResourceIds": [],
@@ -2297,7 +2307,8 @@
             "l11-hashing-summarisation",
             "l11-cost-analysis",
             "l11-conclusion-sorting-vs-hashing"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-11",
@@ -2313,7 +2324,8 @@
             "l11-hashing-summarisation",
             "l11-cost-analysis",
             "l11-conclusion-sorting-vs-hashing"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         }
       ],
       "plannedSupplementaryResourceIds": [],
@@ -2432,12 +2444,10 @@
           "sectionId": "l12-s4",
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
-            "l12-join-operator",
             "l12-sort-merge-join",
-            "l12-basic-in-memory-hash-join",
-            "l12-grace-hash-join",
             "l12-sort-merge-join-refinement"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-12",
@@ -2445,11 +2455,12 @@
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
             "l12-join-operator",
+            "l12-simple-nested-loops-join",
             "l12-sort-merge-join",
             "l12-basic-in-memory-hash-join",
-            "l12-grace-hash-join",
-            "l12-sort-merge-join-refinement"
-          ]
+            "l12-grace-hash-join"
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         }
       ],
       "plannedSupplementaryResourceIds": [],
@@ -2551,7 +2562,8 @@
             "l13-example-sort-2-pass",
             "l13-vectorisation-model",
             "l13-materialisation-model"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         }
       ],
       "plannedSupplementaryResourceIds": [],
@@ -2642,7 +2654,8 @@
             "l13-example-sort-2-pass",
             "l13-vectorisation-model",
             "l13-materialisation-model"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         }
       ],
       "plannedSupplementaryResourceIds": [],
@@ -2756,7 +2769,8 @@
             "l14-query-optimisation-the-goal",
             "l14-query-lifecycle",
             "l14-some-simplifications"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-15",
@@ -2764,17 +2778,18 @@
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
             "l15-join-algorithm",
-            "l15-how-about-indexes"
-          ]
+            "l15-join-algorithm-again-again"
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-15",
           "sectionId": "l15-s4",
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
-            "l15-join-algorithm",
             "l15-how-about-indexes"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         }
       ],
       "plannedSupplementaryResourceIds": [],
@@ -2890,20 +2905,19 @@
           "quizTopicIds": [
             "l16-index-only-scan",
             "l16-clustered-b-tree-scan",
-            "l16-hash-index-scan",
             "l16-unclustered-b-tree-scan"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-16",
           "sectionId": "l16-s2",
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
-            "l16-index-only-scan",
-            "l16-clustered-b-tree-scan",
-            "l16-hash-index-scan",
-            "l16-unclustered-b-tree-scan"
-          ]
+            "l16-index-scan",
+            "l16-hash-index-scan"
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         }
       ],
       "plannedSupplementaryResourceIds": [],
@@ -3019,22 +3033,20 @@
           "sectionId": "l17-s2",
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
-            "l17-selections-complex-predicates",
-            "l17-missing-statistics-use-default-values",
-            "l17-equi-width-histograms",
-            "l17-equi-depth-histograms"
-          ]
+            "l17-selections-complex-predicates"
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-17",
           "sectionId": "l17-s3",
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
-            "l17-selections-complex-predicates",
             "l17-missing-statistics-use-default-values",
             "l17-equi-width-histograms",
             "l17-equi-depth-histograms"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         }
       ],
       "plannedSupplementaryResourceIds": [],
@@ -3159,7 +3171,8 @@
             "l18-the-principle-of-optimality",
             "l18-example-dynamic-programming",
             "l18-interesting-orders"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-18",
@@ -3170,7 +3183,8 @@
             "l18-the-principle-of-optimality",
             "l18-example-dynamic-programming",
             "l18-interesting-orders"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-18",
@@ -3181,7 +3195,8 @@
             "l18-the-principle-of-optimality",
             "l18-example-dynamic-programming",
             "l18-interesting-orders"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         }
       ],
       "plannedSupplementaryResourceIds": [],
@@ -3335,59 +3350,55 @@
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
             "l19-topic-transactions",
-            "l19-topic-schedules",
-            "l19-topic-conflicts",
-            "l19-topic-dependency",
-            "l19-topic-view"
-          ]
+            "l19-topic-acid"
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-19",
           "sectionId": "l19-s2",
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
-            "l19-topic-transactions",
+            "l19-topic-acid",
             "l19-topic-schedules",
-            "l19-topic-conflicts",
+            "l19-topic-conflict-serializable",
             "l19-topic-dependency",
             "l19-topic-view"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-19",
           "sectionId": "l19-s3",
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
-            "l19-topic-transactions",
+            "l19-topic-acid",
             "l19-topic-schedules",
-            "l19-topic-conflicts",
+            "l19-topic-conflict-serializable",
             "l19-topic-dependency",
             "l19-topic-view"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-19",
           "sectionId": "l19-s4",
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
-            "l19-topic-transactions",
-            "l19-topic-schedules",
-            "l19-topic-conflicts",
-            "l19-topic-dependency",
-            "l19-topic-view"
-          ]
+            "l19-topic-acid",
+            "l19-topic-conflicts"
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-19",
           "sectionId": "l19-s5",
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
-            "l19-topic-transactions",
-            "l19-topic-schedules",
-            "l19-topic-conflicts",
-            "l19-topic-dependency",
+            "l19-topic-acid",
             "l19-topic-view"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         }
       ],
       "plannedSupplementaryResourceIds": [],
@@ -3527,10 +3538,9 @@
           "quizTopicIds": [
             "l20-topic-scheduler-locks",
             "l20-topic-two-phase",
-            "l20-topic-cascading",
-            "l20-topic-deadlock-detection",
-            "l20-topic-deadlock-prevention"
-          ]
+            "l20-topic-cascading"
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-20",
@@ -3539,34 +3549,29 @@
           "quizTopicIds": [
             "l20-topic-scheduler-locks",
             "l20-topic-two-phase",
-            "l20-topic-cascading",
-            "l20-topic-deadlock-detection",
-            "l20-topic-deadlock-prevention"
-          ]
+            "l20-topic-cascading"
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-20",
           "sectionId": "l20-s3",
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
-            "l20-topic-scheduler-locks",
-            "l20-topic-two-phase",
-            "l20-topic-cascading",
             "l20-topic-deadlock-detection",
             "l20-topic-deadlock-prevention"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-20",
           "sectionId": "l20-s4",
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
-            "l20-topic-scheduler-locks",
-            "l20-topic-two-phase",
-            "l20-topic-cascading",
             "l20-topic-deadlock-detection",
             "l20-topic-deadlock-prevention"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         }
       ],
       "plannedSupplementaryResourceIds": [],
@@ -3717,10 +3722,9 @@
           "quizTopicIds": [
             "l21-topic-failures",
             "l21-topic-buffer-policies",
-            "l21-topic-logging",
-            "l21-topic-wal",
-            "l21-topic-aries"
-          ]
+            "l21-topic-logging"
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-21",
@@ -3729,22 +3733,20 @@
           "quizTopicIds": [
             "l21-topic-failures",
             "l21-topic-buffer-policies",
-            "l21-topic-logging",
-            "l21-topic-wal",
-            "l21-topic-aries"
-          ]
+            "l21-topic-logging"
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-21",
           "sectionId": "l21-s4",
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
-            "l21-topic-failures",
-            "l21-topic-buffer-policies",
             "l21-topic-logging",
             "l21-topic-wal",
             "l21-topic-aries"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         }
       ],
       "plannedSupplementaryResourceIds": [],
@@ -3932,64 +3934,56 @@
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
             "l22-topic-distributed-model",
-            "l22-topic-distributed-locks",
-            "l22-topic-2pc-logging",
-            "l22-topic-2pc-recovery",
-            "l22-topic-2pc-locking",
-            "l22-topic-availability"
-          ]
+            "l22-topic-distributed-locks"
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-22",
           "sectionId": "l22-s2",
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
-            "l22-topic-distributed-model",
-            "l22-topic-distributed-locks",
-            "l22-topic-2pc-logging",
-            "l22-topic-2pc-recovery",
-            "l22-topic-2pc-locking",
-            "l22-topic-availability"
-          ]
+            "l22-topic-two-phase-commit",
+            "l22-topic-2pc-logging"
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-22",
           "sectionId": "l22-s3",
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
-            "l22-topic-distributed-model",
-            "l22-topic-distributed-locks",
+            "l22-topic-two-phase-commit",
             "l22-topic-2pc-logging",
             "l22-topic-2pc-recovery",
             "l22-topic-2pc-locking",
             "l22-topic-availability"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-22",
           "sectionId": "l22-s4",
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
-            "l22-topic-distributed-model",
-            "l22-topic-distributed-locks",
-            "l22-topic-2pc-logging",
+            "l22-topic-two-phase-commit",
             "l22-topic-2pc-recovery",
             "l22-topic-2pc-locking",
             "l22-topic-availability"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-22",
           "sectionId": "l22-s5",
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
-            "l22-topic-distributed-model",
-            "l22-topic-distributed-locks",
-            "l22-topic-2pc-logging",
+            "l22-topic-two-phase-commit",
             "l22-topic-2pc-recovery",
             "l22-topic-2pc-locking",
             "l22-topic-availability"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         }
       ],
       "plannedSupplementaryResourceIds": [],
@@ -4114,7 +4108,8 @@
           "quizTopicIds": [
             "l23-topic-algebra-recap",
             "l23-topic-calculus"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-23",
@@ -4123,7 +4118,8 @@
           "quizTopicIds": [
             "l23-topic-algebra-recap",
             "l23-topic-calculus"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         }
       ],
       "plannedSupplementaryResourceIds": [],
@@ -4196,6 +4192,24 @@
           ],
           "sourceKind": "verified-slide",
           "sourceSha256": null
+        },
+        {
+          "sourceDocumentId": "ed-adbs-2026-lecture-24",
+          "sourceUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf",
+          "physicalPages": [
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18
+          ],
+          "sourceKind": "verified-slide",
+          "sourceSha256": null,
+          "verificationProvenance": "Retained original source-review mapping; not a new raw-PDF audit"
         }
       ],
       "candidateSourceDocumentIds": [
@@ -4209,18 +4223,40 @@
           "sectionId": "l23-s3",
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
+            "l23-topic-syntax",
             "l23-topic-homomorphism",
             "l23-topic-semantics"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-23",
           "sectionId": "l23-s5",
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
+            "l23-topic-syntax",
             "l23-topic-homomorphism",
             "l23-topic-semantics"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
+        },
+        {
+          "lessonId": "lecture-24",
+          "sectionId": "l24-s1",
+          "quizTopicIds": [
+            "l24-topic-evaluation-complexity",
+            "l24-topic-np"
+          ],
+          "mappingStatus": "Retained existing evaluation-complexity section and source-review mapping; not an additional finding or fresh PDF audit"
+        },
+        {
+          "lessonId": "lecture-24",
+          "sectionId": "l24-s2",
+          "quizTopicIds": [
+            "l24-topic-evaluation-complexity",
+            "l24-topic-np"
+          ],
+          "mappingStatus": "Retained existing evaluation-complexity section and source-review mapping; not an additional finding or fresh PDF audit"
         }
       ],
       "plannedSupplementaryResourceIds": [],
@@ -4327,10 +4363,11 @@
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
             "l24-topic-static-analysis",
+            "l24-topic-canonical",
             "l24-topic-containment-hom",
-            "l24-topic-minimization",
             "l24-topic-core"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-24",
@@ -4338,21 +4375,21 @@
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
             "l24-topic-static-analysis",
+            "l24-topic-canonical",
             "l24-topic-containment-hom",
-            "l24-topic-minimization",
             "l24-topic-core"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-24",
           "sectionId": "l24-s5",
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
-            "l24-topic-static-analysis",
-            "l24-topic-containment-hom",
             "l24-topic-minimization",
             "l24-topic-core"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         }
       ],
       "plannedSupplementaryResourceIds": [],
@@ -4473,9 +4510,9 @@
             "l25-topic-good-classes",
             "l25-topic-hypergraphs",
             "l25-topic-gyo",
-            "l25-topic-acyclic-eval",
             "l25-topic-yannakakis"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-25",
@@ -4485,33 +4522,29 @@
             "l25-topic-good-classes",
             "l25-topic-hypergraphs",
             "l25-topic-gyo",
-            "l25-topic-acyclic-eval",
             "l25-topic-yannakakis"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-25",
           "sectionId": "l25-s4",
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
-            "l25-topic-good-classes",
-            "l25-topic-hypergraphs",
-            "l25-topic-gyo",
             "l25-topic-acyclic-eval",
             "l25-topic-yannakakis"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-25",
           "sectionId": "l25-s5",
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
-            "l25-topic-good-classes",
-            "l25-topic-hypergraphs",
-            "l25-topic-gyo",
             "l25-topic-acyclic-eval",
             "l25-topic-yannakakis"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         }
       ],
       "plannedSupplementaryResourceIds": [],
@@ -4643,29 +4676,15 @@
             "l26-shared-memory",
             "l26-shared-disk",
             "l26-shared-nothing",
-            "l26-partitioning",
-            "l26-round-robin",
-            "l26-hash-partitioning",
-            "l26-range-partitioning",
-            "l26-replication",
-            "l26-transparency",
-            "l26-scans",
-            "l26-lookup",
-            "l26-parallel-hashing",
-            "l26-hash-join",
-            "l26-sorting",
-            "l26-sort-merge-join"
-          ]
+            "l26-transparency"
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-26",
           "sectionId": "l26-s2",
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
-            "l26-recap",
-            "l26-shared-memory",
-            "l26-shared-disk",
-            "l26-shared-nothing",
             "l26-partitioning",
             "l26-round-robin",
             "l26-hash-partitioning",
@@ -4673,35 +4692,21 @@
             "l26-replication",
             "l26-transparency",
             "l26-scans",
-            "l26-lookup",
-            "l26-parallel-hashing",
-            "l26-hash-join",
-            "l26-sorting",
-            "l26-sort-merge-join"
-          ]
+            "l26-lookup"
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-26",
           "sectionId": "l26-s3",
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
-            "l26-recap",
-            "l26-shared-memory",
-            "l26-shared-disk",
-            "l26-shared-nothing",
-            "l26-partitioning",
-            "l26-round-robin",
-            "l26-hash-partitioning",
-            "l26-range-partitioning",
-            "l26-replication",
-            "l26-transparency",
-            "l26-scans",
-            "l26-lookup",
             "l26-parallel-hashing",
             "l26-hash-join",
             "l26-sorting",
             "l26-sort-merge-join"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         }
       ],
       "plannedSupplementaryResourceIds": [],
@@ -4878,56 +4883,28 @@
             "l27-motivation",
             "l27-partition-scaling",
             "l27-replica-scaling",
-            "l27-principles",
-            "l27-acid",
-            "l27-cap",
-            "l27-base",
-            "l27-taxonomy",
-            "l27-taxonomy-cont",
-            "l27-key-value",
-            "l27-documents",
-            "l27-json",
-            "l27-graphs",
-            "l27-graph-languages",
-            "l27-ranking",
-            "l27-sql-nosql"
-          ]
+            "l27-principles"
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-27",
           "sectionId": "l27-s3",
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
-            "l27-motivation",
-            "l27-partition-scaling",
-            "l27-replica-scaling",
-            "l27-principles",
             "l27-acid",
             "l27-cap",
             "l27-base",
-            "l27-taxonomy",
-            "l27-taxonomy-cont",
-            "l27-key-value",
-            "l27-documents",
-            "l27-json",
-            "l27-graphs",
-            "l27-graph-languages",
-            "l27-ranking",
             "l27-sql-nosql"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-27",
           "sectionId": "l27-s4",
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
-            "l27-motivation",
-            "l27-partition-scaling",
-            "l27-replica-scaling",
             "l27-principles",
-            "l27-acid",
-            "l27-cap",
-            "l27-base",
             "l27-taxonomy",
             "l27-taxonomy-cont",
             "l27-key-value",
@@ -4937,53 +4914,35 @@
             "l27-graph-languages",
             "l27-ranking",
             "l27-sql-nosql"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-27",
           "sectionId": "l27-s5",
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
-            "l27-motivation",
-            "l27-partition-scaling",
-            "l27-replica-scaling",
             "l27-principles",
-            "l27-acid",
-            "l27-cap",
-            "l27-base",
             "l27-taxonomy",
             "l27-taxonomy-cont",
-            "l27-key-value",
-            "l27-documents",
             "l27-json",
             "l27-graphs",
             "l27-graph-languages",
             "l27-ranking",
             "l27-sql-nosql"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         },
         {
           "lessonId": "lecture-27",
           "sectionId": "l27-s2",
           "mappingStatus": "Stable section target of independently accepted finding",
           "quizTopicIds": [
-            "l27-motivation",
-            "l27-partition-scaling",
-            "l27-replica-scaling",
-            "l27-principles",
             "l27-acid",
             "l27-cap",
-            "l27-base",
-            "l27-taxonomy",
-            "l27-taxonomy-cont",
-            "l27-key-value",
-            "l27-documents",
-            "l27-json",
-            "l27-graphs",
-            "l27-graph-languages",
-            "l27-ranking",
             "l27-sql-nosql"
-          ]
+          ],
+          "quizMappingProvenance": "Related practice topics selected using this section finding's source evidence, inclusive topic ranges and explicit per-question source overrides; not an exhaustive one-to-one question/paragraph claim."
         }
       ],
       "plannedSupplementaryResourceIds": [],
