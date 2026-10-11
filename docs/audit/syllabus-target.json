@@ -6,7 +6,7 @@
     "weeks": 15,
     "sessions": 30
   },
-  "referencePolicy": "RG/DBT labels are preserved as supplied. Editions and course-specific Canvas readings, rubric details, assignments, and dates have not been verified and must not be invented.",
+  "referencePolicy": "RG/DBT chapter labels are preserved as supplied. Reference identities reported by the independent source coordinator are recorded separately; no textbook physical pages or course-specific Canvas readings, rubrics, assignments, or dates are invented.",
   "modules": [
     {
       "id": "module-01",
@@ -35,7 +35,13 @@
         "lecture-04",
         "lecture-07"
       ],
-      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
+      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets",
+      "scheduledLessonIds": [
+        "lecture-01",
+        "lecture-02",
+        "lecture-03"
+      ],
+      "supplementaryResourceIds": []
     },
     {
       "id": "module-02",
@@ -58,7 +64,13 @@
         "lecture-05",
         "lecture-06"
       ],
-      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
+      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets",
+      "scheduledLessonIds": [
+        "lecture-04",
+        "lecture-05",
+        "lecture-06"
+      ],
+      "supplementaryResourceIds": []
     },
     {
       "id": "module-03",
@@ -83,7 +95,13 @@
         "lecture-08",
         "lecture-09"
       ],
-      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
+      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets",
+      "scheduledLessonIds": [
+        "lecture-07",
+        "lecture-08",
+        "lecture-09"
+      ],
+      "supplementaryResourceIds": []
     },
     {
       "id": "module-04",
@@ -109,7 +127,13 @@
         "lecture-11",
         "lecture-12"
       ],
-      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
+      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets",
+      "scheduledLessonIds": [
+        "lecture-10",
+        "lecture-11",
+        "lecture-12"
+      ],
+      "supplementaryResourceIds": []
     },
     {
       "id": "module-05",
@@ -133,7 +157,13 @@
         "lecture-14",
         "lecture-15"
       ],
-      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
+      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets",
+      "scheduledLessonIds": [
+        "lecture-13",
+        "lecture-14",
+        "lecture-15"
+      ],
+      "supplementaryResourceIds": []
     },
     {
       "id": "module-06",
@@ -157,7 +187,13 @@
         "lecture-17",
         "lecture-18"
       ],
-      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
+      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets",
+      "scheduledLessonIds": [
+        "lecture-16",
+        "lecture-17",
+        "lecture-18"
+      ],
+      "supplementaryResourceIds": []
     },
     {
       "id": "module-07",
@@ -180,7 +216,13 @@
         "lecture-20",
         "lecture-21"
       ],
-      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
+      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets",
+      "scheduledLessonIds": [
+        "lecture-19",
+        "lecture-20",
+        "lecture-21"
+      ],
+      "supplementaryResourceIds": []
     },
     {
       "id": "module-08",
@@ -199,7 +241,11 @@
       "candidateLessonIds": [
         "lecture-22"
       ],
-      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
+      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets",
+      "scheduledLessonIds": [
+        "lecture-22"
+      ],
+      "supplementaryResourceIds": []
     },
     {
       "id": "module-09",
@@ -224,7 +270,13 @@
         "lecture-24",
         "lecture-25"
       ],
-      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
+      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets",
+      "scheduledLessonIds": [
+        "lecture-23",
+        "lecture-24",
+        "lecture-25"
+      ],
+      "supplementaryResourceIds": []
     },
     {
       "id": "module-10",
@@ -245,7 +297,12 @@
         "lecture-26",
         "lecture-27"
       ],
-      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
+      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets",
+      "scheduledLessonIds": [
+        "lecture-26",
+        "lecture-27"
+      ],
+      "supplementaryResourceIds": []
     },
     {
       "id": "module-11",
@@ -267,7 +324,14 @@
         "Canvas readings: unavailable"
       ],
       "candidateLessonIds": [],
-      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
+      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets",
+      "scheduledLessonIds": [],
+      "supplementaryResourceIds": [
+        "supplement-28",
+        "supplement-29",
+        "supplement-30",
+        "supplement-31"
+      ]
     },
     {
       "id": "module-12",
@@ -286,7 +350,14 @@
         "Instructor guidance: unavailable"
       ],
       "candidateLessonIds": [],
-      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
+      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets",
+      "scheduledLessonIds": [],
+      "supplementaryResourceIds": [
+        "supplement-32",
+        "supplement-33",
+        "supplement-34",
+        "supplement-35"
+      ]
     },
     {
       "id": "module-13",
@@ -303,7 +374,12 @@
         "Instructor guidance: unavailable"
       ],
       "candidateLessonIds": [],
-      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
+      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets",
+      "scheduledLessonIds": [],
+      "supplementaryResourceIds": [
+        "supplement-36",
+        "supplement-37"
+      ]
     }
   ],
   "coverageRecordContract": {
@@ -330,5 +406,57 @@
       "instructor-detail-unavailable"
     ],
     "initialStatus": "awaiting-source-audit"
+  },
+  "referenceIdentities": {
+    "verificationProvenance": "Independent source coordinator reports verification against the official Edinburgh ADBS schedule; original source audit packets pending.",
+    "sourceUrl": "https://opencourse.inf.ed.ac.uk/adbs/schedule",
+    "RG": {
+      "title": "Database Management Systems",
+      "authors": [
+        "Ramakrishnan",
+        "Gehrke"
+      ],
+      "edition": "3rd",
+      "year": 2003
+    },
+    "DBT": {
+      "title": "Database Theory",
+      "authors": [
+        "Arenas",
+        "Barcelo",
+        "Libkin",
+        "Martens",
+        "Pieris"
+      ],
+      "edition": null,
+      "year": null
+    }
+  },
+  "lessonRecordsAreNotTimetabledSessions": true,
+  "resourceTotals": {
+    "existingSlideBasedLessons": 27,
+    "plannedSupplementaryResources": 10,
+    "totalLearningResources": 37
+  },
+  "supplementaryResourceContract": {
+    "ids": "supplement-28 through supplement-37",
+    "lecture": null,
+    "moduleField": "moduleId",
+    "requiredFields": [
+      "id",
+      "title",
+      "lead",
+      "goals",
+      "sections",
+      "source"
+    ],
+    "citationPolicy": "Public primary-literature URLs or explicitly labelled research scaffolds. A physical PDF page is optional and may be included only when source auditors verify it.",
+    "unavailableInstructorDetails": [
+      "Canvas paper selection",
+      "grading rubric",
+      "assignment dates",
+      "instructor consultation arrangements"
+    ],
+    "classification": "Supplementary learning resources; these do not change the 30-session timetable."
   }
 }

@@ -1,0 +1,1710 @@
+{
+  "schemaVersion": 1,
+  "baselineCommit": "b694ecf13394d3cf9f35bf78b880bb95acf46995",
+  "policy": "Pending rows are a traceability scaffold, not a claim of verified topic coverage. Populate exact public source document, verified physical page, site section, finding/correction, and test evidence from audit packets before promotion.",
+  "sources": [
+    {
+      "id": "ed-adbs-2026-lecture-01",
+      "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf",
+      "variant": "standard source PDF",
+      "legacyPageCount": 36,
+      "sourceSha256": null,
+      "verificationStatus": "awaiting-independent-source-audit"
+    },
+    {
+      "id": "ed-adbs-2026-lecture-02",
+      "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+      "variant": "standard source PDF",
+      "legacyPageCount": 29,
+      "sourceSha256": null,
+      "verificationStatus": "awaiting-independent-source-audit"
+    },
+    {
+      "id": "ed-adbs-2026-lecture-03",
+      "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+      "variant": "standard source PDF",
+      "legacyPageCount": 20,
+      "sourceSha256": null,
+      "verificationStatus": "awaiting-independent-source-audit"
+    },
+    {
+      "id": "ed-adbs-2026-lecture-04",
+      "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+      "variant": "standard source PDF",
+      "legacyPageCount": 29,
+      "sourceSha256": null,
+      "verificationStatus": "awaiting-independent-source-audit"
+    },
+    {
+      "id": "ed-adbs-2026-lecture-05",
+      "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+      "variant": "standard source PDF",
+      "legacyPageCount": 35,
+      "sourceSha256": null,
+      "verificationStatus": "awaiting-independent-source-audit"
+    },
+    {
+      "id": "ed-adbs-2026-lecture-06",
+      "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf",
+      "variant": "standard source PDF",
+      "legacyPageCount": 29,
+      "sourceSha256": null,
+      "verificationStatus": "awaiting-independent-source-audit"
+    },
+    {
+      "id": "ed-adbs-2026-lecture-07",
+      "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf",
+      "variant": "standard source PDF",
+      "legacyPageCount": 28,
+      "sourceSha256": null,
+      "verificationStatus": "awaiting-independent-source-audit"
+    },
+    {
+      "id": "ed-adbs-2026-lecture-08",
+      "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations.pdf",
+      "variant": "standard source PDF",
+      "legacyPageCount": 34,
+      "sourceSha256": null,
+      "verificationStatus": "awaiting-independent-source-audit"
+    },
+    {
+      "id": "ed-adbs-2026-lecture-09",
+      "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf",
+      "variant": "standard source PDF",
+      "legacyPageCount": 30,
+      "sourceSha256": null,
+      "verificationStatus": "awaiting-independent-source-audit"
+    },
+    {
+      "id": "ed-adbs-2026-lecture-10",
+      "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+      "variant": "standard source PDF",
+      "sourceSha256": null,
+      "verificationStatus": "awaiting-independent-source-audit"
+    },
+    {
+      "id": "ed-adbs-2026-lecture-11",
+      "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+      "variant": "standard source PDF",
+      "sourceSha256": null,
+      "verificationStatus": "awaiting-independent-source-audit"
+    },
+    {
+      "id": "ed-adbs-2026-lecture-12",
+      "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+      "variant": "standard source PDF",
+      "sourceSha256": null,
+      "verificationStatus": "awaiting-independent-source-audit"
+    },
+    {
+      "id": "ed-adbs-2026-lecture-13",
+      "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf",
+      "variant": "standard source PDF",
+      "sourceSha256": null,
+      "verificationStatus": "awaiting-independent-source-audit"
+    },
+    {
+      "id": "ed-adbs-2026-lecture-14-2x2",
+      "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf",
+      "variant": "2x2 handout",
+      "sourceSha256": null,
+      "verificationStatus": "awaiting-independent-source-audit"
+    },
+    {
+      "id": "ed-adbs-2026-lecture-15",
+      "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf",
+      "variant": "standard source PDF",
+      "sourceSha256": null,
+      "verificationStatus": "awaiting-independent-source-audit"
+    },
+    {
+      "id": "ed-adbs-2026-lecture-16",
+      "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf",
+      "variant": "standard source PDF",
+      "sourceSha256": null,
+      "verificationStatus": "awaiting-independent-source-audit"
+    },
+    {
+      "id": "ed-adbs-2026-lecture-17",
+      "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf",
+      "variant": "standard source PDF",
+      "sourceSha256": null,
+      "verificationStatus": "awaiting-independent-source-audit"
+    },
+    {
+      "id": "ed-adbs-2026-lecture-18",
+      "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf",
+      "variant": "standard source PDF",
+      "sourceSha256": null,
+      "verificationStatus": "awaiting-independent-source-audit"
+    },
+    {
+      "id": "ed-adbs-2026-lecture-19",
+      "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+      "variant": "standard source PDF",
+      "sourceSha256": null,
+      "verificationStatus": "awaiting-independent-source-audit"
+    },
+    {
+      "id": "ed-adbs-2026-lecture-20",
+      "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+      "variant": "standard source PDF",
+      "sourceSha256": null,
+      "verificationStatus": "awaiting-independent-source-audit"
+    },
+    {
+      "id": "ed-adbs-2026-lecture-21",
+      "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+      "variant": "standard source PDF",
+      "sourceSha256": null,
+      "verificationStatus": "awaiting-independent-source-audit"
+    },
+    {
+      "id": "ed-adbs-2026-lecture-22",
+      "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+      "variant": "standard source PDF",
+      "sourceSha256": null,
+      "verificationStatus": "awaiting-independent-source-audit"
+    },
+    {
+      "id": "ed-adbs-2026-lecture-23",
+      "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf",
+      "variant": "standard source PDF",
+      "sourceSha256": null,
+      "verificationStatus": "awaiting-independent-source-audit"
+    },
+    {
+      "id": "ed-adbs-2026-lecture-24",
+      "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf",
+      "variant": "standard source PDF",
+      "sourceSha256": null,
+      "verificationStatus": "awaiting-independent-source-audit"
+    },
+    {
+      "id": "ed-adbs-2026-lecture-25",
+      "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf",
+      "variant": "standard source PDF",
+      "sourceSha256": null,
+      "verificationStatus": "awaiting-independent-source-audit"
+    },
+    {
+      "id": "ed-adbs-2026-lecture-26",
+      "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+      "variant": "standard source PDF",
+      "sourceSha256": null,
+      "verificationStatus": "awaiting-independent-source-audit"
+    },
+    {
+      "id": "ed-adbs-2026-lecture-27",
+      "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+      "variant": "standard source PDF",
+      "sourceSha256": null,
+      "verificationStatus": "awaiting-independent-source-audit"
+    }
+  ],
+  "rows": [
+    {
+      "id": "module-01-topic-01",
+      "moduleId": "module-01",
+      "weeks": [
+        1
+      ],
+      "syllabusTopic": "DBMS architectures",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [
+        "ed-adbs-2026-lecture-01",
+        "ed-adbs-2026-lecture-02",
+        "ed-adbs-2026-lecture-03",
+        "ed-adbs-2026-lecture-04",
+        "ed-adbs-2026-lecture-07"
+      ],
+      "siteReferences": [
+        {
+          "lessonId": "lecture-01",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-02",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-03",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-04",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-07",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        }
+      ],
+      "plannedSupplementaryResourceIds": [],
+      "status": "awaiting-source-audit",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-01-topic-02",
+      "moduleId": "module-01",
+      "weeks": [
+        1
+      ],
+      "syllabusTopic": "OLTP versus OLAP",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [
+        "ed-adbs-2026-lecture-01",
+        "ed-adbs-2026-lecture-02",
+        "ed-adbs-2026-lecture-03",
+        "ed-adbs-2026-lecture-04",
+        "ed-adbs-2026-lecture-07"
+      ],
+      "siteReferences": [
+        {
+          "lessonId": "lecture-01",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-02",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-03",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-04",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-07",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        }
+      ],
+      "plannedSupplementaryResourceIds": [],
+      "status": "awaiting-source-audit",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-01-topic-03",
+      "moduleId": "module-01",
+      "weeks": [
+        1
+      ],
+      "syllabusTopic": "In-memory DBMSs",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [
+        "ed-adbs-2026-lecture-01",
+        "ed-adbs-2026-lecture-02",
+        "ed-adbs-2026-lecture-03",
+        "ed-adbs-2026-lecture-04",
+        "ed-adbs-2026-lecture-07"
+      ],
+      "siteReferences": [
+        {
+          "lessonId": "lecture-01",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-02",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-03",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-04",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-07",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        }
+      ],
+      "plannedSupplementaryResourceIds": [],
+      "status": "awaiting-source-audit",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-01-topic-04",
+      "moduleId": "module-01",
+      "weeks": [
+        1
+      ],
+      "syllabusTopic": "SQL",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [
+        "ed-adbs-2026-lecture-01",
+        "ed-adbs-2026-lecture-02",
+        "ed-adbs-2026-lecture-03",
+        "ed-adbs-2026-lecture-04",
+        "ed-adbs-2026-lecture-07"
+      ],
+      "siteReferences": [
+        {
+          "lessonId": "lecture-01",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-02",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-03",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-04",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-07",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        }
+      ],
+      "plannedSupplementaryResourceIds": [],
+      "status": "awaiting-source-audit",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-01-topic-05",
+      "moduleId": "module-01",
+      "weeks": [
+        1
+      ],
+      "syllabusTopic": "Relational algebra",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [
+        "ed-adbs-2026-lecture-01",
+        "ed-adbs-2026-lecture-02",
+        "ed-adbs-2026-lecture-03",
+        "ed-adbs-2026-lecture-04",
+        "ed-adbs-2026-lecture-07"
+      ],
+      "siteReferences": [
+        {
+          "lessonId": "lecture-01",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-02",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-03",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-04",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-07",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        }
+      ],
+      "plannedSupplementaryResourceIds": [],
+      "status": "awaiting-source-audit",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-02-topic-01",
+      "moduleId": "module-02",
+      "weeks": [
+        2
+      ],
+      "syllabusTopic": "Hardware and disk-space management",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [
+        "ed-adbs-2026-lecture-04",
+        "ed-adbs-2026-lecture-05",
+        "ed-adbs-2026-lecture-06"
+      ],
+      "siteReferences": [
+        {
+          "lessonId": "lecture-04",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-05",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-06",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        }
+      ],
+      "plannedSupplementaryResourceIds": [],
+      "status": "awaiting-source-audit",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-02-topic-02",
+      "moduleId": "module-02",
+      "weeks": [
+        2
+      ],
+      "syllabusTopic": "Buffer management",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [
+        "ed-adbs-2026-lecture-04",
+        "ed-adbs-2026-lecture-05",
+        "ed-adbs-2026-lecture-06"
+      ],
+      "siteReferences": [
+        {
+          "lessonId": "lecture-04",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-05",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-06",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        }
+      ],
+      "plannedSupplementaryResourceIds": [],
+      "status": "awaiting-source-audit",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-02-topic-03",
+      "moduleId": "module-02",
+      "weeks": [
+        2
+      ],
+      "syllabusTopic": "Files, pages, and records",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [
+        "ed-adbs-2026-lecture-04",
+        "ed-adbs-2026-lecture-05",
+        "ed-adbs-2026-lecture-06"
+      ],
+      "siteReferences": [
+        {
+          "lessonId": "lecture-04",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-05",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-06",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        }
+      ],
+      "plannedSupplementaryResourceIds": [],
+      "status": "awaiting-source-audit",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-03-topic-01",
+      "moduleId": "module-03",
+      "weeks": [
+        3
+      ],
+      "syllabusTopic": "Storage models",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [
+        "ed-adbs-2026-lecture-07",
+        "ed-adbs-2026-lecture-08",
+        "ed-adbs-2026-lecture-09"
+      ],
+      "siteReferences": [
+        {
+          "lessonId": "lecture-07",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-08",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-09",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        }
+      ],
+      "plannedSupplementaryResourceIds": [],
+      "status": "awaiting-source-audit",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-03-topic-02",
+      "moduleId": "module-03",
+      "weeks": [
+        3
+      ],
+      "syllabusTopic": "Compression",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [
+        "ed-adbs-2026-lecture-07",
+        "ed-adbs-2026-lecture-08",
+        "ed-adbs-2026-lecture-09"
+      ],
+      "siteReferences": [
+        {
+          "lessonId": "lecture-07",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-08",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-09",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        }
+      ],
+      "plannedSupplementaryResourceIds": [],
+      "status": "awaiting-source-audit",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-03-topic-03",
+      "moduleId": "module-03",
+      "weeks": [
+        3
+      ],
+      "syllabusTopic": "File organisations",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [
+        "ed-adbs-2026-lecture-07",
+        "ed-adbs-2026-lecture-08",
+        "ed-adbs-2026-lecture-09"
+      ],
+      "siteReferences": [
+        {
+          "lessonId": "lecture-07",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-08",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-09",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        }
+      ],
+      "plannedSupplementaryResourceIds": [],
+      "status": "awaiting-source-audit",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-03-topic-04",
+      "moduleId": "module-03",
+      "weeks": [
+        3
+      ],
+      "syllabusTopic": "Tree indexes",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [
+        "ed-adbs-2026-lecture-07",
+        "ed-adbs-2026-lecture-08",
+        "ed-adbs-2026-lecture-09"
+      ],
+      "siteReferences": [
+        {
+          "lessonId": "lecture-07",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-08",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-09",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        }
+      ],
+      "plannedSupplementaryResourceIds": [],
+      "status": "awaiting-source-audit",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-04-topic-01",
+      "moduleId": "module-04",
+      "weeks": [
+        4
+      ],
+      "syllabusTopic": "Hash indexes",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [
+        "ed-adbs-2026-lecture-10",
+        "ed-adbs-2026-lecture-11",
+        "ed-adbs-2026-lecture-12"
+      ],
+      "siteReferences": [
+        {
+          "lessonId": "lecture-10",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-11",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-12",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        }
+      ],
+      "plannedSupplementaryResourceIds": [],
+      "status": "awaiting-source-audit",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-04-topic-02",
+      "moduleId": "module-04",
+      "weeks": [
+        4
+      ],
+      "syllabusTopic": "External sorting",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [
+        "ed-adbs-2026-lecture-10",
+        "ed-adbs-2026-lecture-11",
+        "ed-adbs-2026-lecture-12"
+      ],
+      "siteReferences": [
+        {
+          "lessonId": "lecture-10",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-11",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-12",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        }
+      ],
+      "plannedSupplementaryResourceIds": [],
+      "status": "awaiting-source-audit",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-04-topic-03",
+      "moduleId": "module-04",
+      "weeks": [
+        4
+      ],
+      "syllabusTopic": "Aggregation",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [
+        "ed-adbs-2026-lecture-10",
+        "ed-adbs-2026-lecture-11",
+        "ed-adbs-2026-lecture-12"
+      ],
+      "siteReferences": [
+        {
+          "lessonId": "lecture-10",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-11",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-12",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        }
+      ],
+      "plannedSupplementaryResourceIds": [],
+      "status": "awaiting-source-audit",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-04-topic-04",
+      "moduleId": "module-04",
+      "weeks": [
+        4
+      ],
+      "syllabusTopic": "Join algorithms",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [
+        "ed-adbs-2026-lecture-10",
+        "ed-adbs-2026-lecture-11",
+        "ed-adbs-2026-lecture-12"
+      ],
+      "siteReferences": [
+        {
+          "lessonId": "lecture-10",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-11",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-12",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        }
+      ],
+      "plannedSupplementaryResourceIds": [],
+      "status": "awaiting-source-audit",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-05-topic-01",
+      "moduleId": "module-05",
+      "weeks": [
+        5
+      ],
+      "syllabusTopic": "Query evaluation",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [
+        "ed-adbs-2026-lecture-13",
+        "ed-adbs-2026-lecture-14-2x2",
+        "ed-adbs-2026-lecture-15"
+      ],
+      "siteReferences": [
+        {
+          "lessonId": "lecture-13",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-14",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-15",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        }
+      ],
+      "plannedSupplementaryResourceIds": [],
+      "status": "awaiting-source-audit",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-05-topic-02",
+      "moduleId": "module-05",
+      "weeks": [
+        5
+      ],
+      "syllabusTopic": "Processing models",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [
+        "ed-adbs-2026-lecture-13",
+        "ed-adbs-2026-lecture-14-2x2",
+        "ed-adbs-2026-lecture-15"
+      ],
+      "siteReferences": [
+        {
+          "lessonId": "lecture-13",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-14",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-15",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        }
+      ],
+      "plannedSupplementaryResourceIds": [],
+      "status": "awaiting-source-audit",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-05-topic-03",
+      "moduleId": "module-05",
+      "weeks": [
+        5
+      ],
+      "syllabusTopic": "Plan space",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [
+        "ed-adbs-2026-lecture-13",
+        "ed-adbs-2026-lecture-14-2x2",
+        "ed-adbs-2026-lecture-15"
+      ],
+      "siteReferences": [
+        {
+          "lessonId": "lecture-13",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-14",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-15",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        }
+      ],
+      "plannedSupplementaryResourceIds": [],
+      "status": "awaiting-source-audit",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-06-topic-01",
+      "moduleId": "module-06",
+      "weeks": [
+        6
+      ],
+      "syllabusTopic": "Access methods",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [
+        "ed-adbs-2026-lecture-16",
+        "ed-adbs-2026-lecture-17",
+        "ed-adbs-2026-lecture-18"
+      ],
+      "siteReferences": [
+        {
+          "lessonId": "lecture-16",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-17",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-18",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        }
+      ],
+      "plannedSupplementaryResourceIds": [],
+      "status": "awaiting-source-audit",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-06-topic-02",
+      "moduleId": "module-06",
+      "weeks": [
+        6
+      ],
+      "syllabusTopic": "Cost estimation",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [
+        "ed-adbs-2026-lecture-16",
+        "ed-adbs-2026-lecture-17",
+        "ed-adbs-2026-lecture-18"
+      ],
+      "siteReferences": [
+        {
+          "lessonId": "lecture-16",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-17",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-18",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        }
+      ],
+      "plannedSupplementaryResourceIds": [],
+      "status": "awaiting-source-audit",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-06-topic-03",
+      "moduleId": "module-06",
+      "weeks": [
+        6
+      ],
+      "syllabusTopic": "Plan search",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [
+        "ed-adbs-2026-lecture-16",
+        "ed-adbs-2026-lecture-17",
+        "ed-adbs-2026-lecture-18"
+      ],
+      "siteReferences": [
+        {
+          "lessonId": "lecture-16",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-17",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-18",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        }
+      ],
+      "plannedSupplementaryResourceIds": [],
+      "status": "awaiting-source-audit",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-07-topic-01",
+      "moduleId": "module-07",
+      "weeks": [
+        7
+      ],
+      "syllabusTopic": "Transactions",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [
+        "ed-adbs-2026-lecture-19",
+        "ed-adbs-2026-lecture-20",
+        "ed-adbs-2026-lecture-21"
+      ],
+      "siteReferences": [
+        {
+          "lessonId": "lecture-19",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-20",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-21",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        }
+      ],
+      "plannedSupplementaryResourceIds": [],
+      "status": "awaiting-source-audit",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-07-topic-02",
+      "moduleId": "module-07",
+      "weeks": [
+        7
+      ],
+      "syllabusTopic": "Locking and concurrency control",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [
+        "ed-adbs-2026-lecture-19",
+        "ed-adbs-2026-lecture-20",
+        "ed-adbs-2026-lecture-21"
+      ],
+      "siteReferences": [
+        {
+          "lessonId": "lecture-19",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-20",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-21",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        }
+      ],
+      "plannedSupplementaryResourceIds": [],
+      "status": "awaiting-source-audit",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-07-topic-03",
+      "moduleId": "module-07",
+      "weeks": [
+        7
+      ],
+      "syllabusTopic": "Crash recovery",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [
+        "ed-adbs-2026-lecture-19",
+        "ed-adbs-2026-lecture-20",
+        "ed-adbs-2026-lecture-21"
+      ],
+      "siteReferences": [
+        {
+          "lessonId": "lecture-19",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-20",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-21",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        }
+      ],
+      "plannedSupplementaryResourceIds": [],
+      "status": "awaiting-source-audit",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-08-topic-01",
+      "moduleId": "module-08",
+      "weeks": [
+        8
+      ],
+      "syllabusTopic": "Distributed transactions",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [
+        "ed-adbs-2026-lecture-22"
+      ],
+      "siteReferences": [
+        {
+          "lessonId": "lecture-22",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        }
+      ],
+      "plannedSupplementaryResourceIds": [],
+      "status": "awaiting-source-audit",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-09-topic-01",
+      "moduleId": "module-09",
+      "weeks": [
+        9
+      ],
+      "syllabusTopic": "Syntax and semantics",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [
+        "ed-adbs-2026-lecture-23",
+        "ed-adbs-2026-lecture-24",
+        "ed-adbs-2026-lecture-25"
+      ],
+      "siteReferences": [
+        {
+          "lessonId": "lecture-23",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-24",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-25",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        }
+      ],
+      "plannedSupplementaryResourceIds": [],
+      "status": "awaiting-source-audit",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-09-topic-02",
+      "moduleId": "module-09",
+      "weeks": [
+        9
+      ],
+      "syllabusTopic": "Evaluation",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [
+        "ed-adbs-2026-lecture-23",
+        "ed-adbs-2026-lecture-24",
+        "ed-adbs-2026-lecture-25"
+      ],
+      "siteReferences": [
+        {
+          "lessonId": "lecture-23",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-24",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-25",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        }
+      ],
+      "plannedSupplementaryResourceIds": [],
+      "status": "awaiting-source-audit",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-09-topic-03",
+      "moduleId": "module-09",
+      "weeks": [
+        9
+      ],
+      "syllabusTopic": "Static analysis",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [
+        "ed-adbs-2026-lecture-23",
+        "ed-adbs-2026-lecture-24",
+        "ed-adbs-2026-lecture-25"
+      ],
+      "siteReferences": [
+        {
+          "lessonId": "lecture-23",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-24",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-25",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        }
+      ],
+      "plannedSupplementaryResourceIds": [],
+      "status": "awaiting-source-audit",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-09-topic-04",
+      "moduleId": "module-09",
+      "weeks": [
+        9
+      ],
+      "syllabusTopic": "Fast evaluation",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [
+        "ed-adbs-2026-lecture-23",
+        "ed-adbs-2026-lecture-24",
+        "ed-adbs-2026-lecture-25"
+      ],
+      "siteReferences": [
+        {
+          "lessonId": "lecture-23",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-24",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-25",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        }
+      ],
+      "plannedSupplementaryResourceIds": [],
+      "status": "awaiting-source-audit",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-10-topic-01",
+      "moduleId": "module-10",
+      "weeks": [
+        10
+      ],
+      "syllabusTopic": "Parallel and distributed DBMSs",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [
+        "ed-adbs-2026-lecture-26",
+        "ed-adbs-2026-lecture-27"
+      ],
+      "siteReferences": [
+        {
+          "lessonId": "lecture-26",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-27",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        }
+      ],
+      "plannedSupplementaryResourceIds": [],
+      "status": "awaiting-source-audit",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-10-topic-02",
+      "moduleId": "module-10",
+      "weeks": [
+        10
+      ],
+      "syllabusTopic": "NoSQL",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [
+        "ed-adbs-2026-lecture-26",
+        "ed-adbs-2026-lecture-27"
+      ],
+      "siteReferences": [
+        {
+          "lessonId": "lecture-26",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        },
+        {
+          "lessonId": "lecture-27",
+          "sectionId": null,
+          "quizTopicIds": [],
+          "mappingStatus": "Candidate topic link; exact section/quiz evidence pending"
+        }
+      ],
+      "plannedSupplementaryResourceIds": [],
+      "status": "awaiting-source-audit",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-11-topic-01",
+      "moduleId": "module-11",
+      "weeks": [
+        11,
+        12
+      ],
+      "syllabusTopic": "Learned DBMS components",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [],
+      "siteReferences": [],
+      "plannedSupplementaryResourceIds": [
+        "supplement-28",
+        "supplement-29",
+        "supplement-30",
+        "supplement-31"
+      ],
+      "status": "awaiting-original-supplement-packet",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-11-topic-02",
+      "moduleId": "module-11",
+      "weeks": [
+        11,
+        12
+      ],
+      "syllabusTopic": "Vector databases and approximate nearest-neighbour search",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [],
+      "siteReferences": [],
+      "plannedSupplementaryResourceIds": [
+        "supplement-28",
+        "supplement-29",
+        "supplement-30",
+        "supplement-31"
+      ],
+      "status": "awaiting-original-supplement-packet",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-11-topic-03",
+      "moduleId": "module-11",
+      "weeks": [
+        11,
+        12
+      ],
+      "syllabusTopic": "LLMs for data systems",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [],
+      "siteReferences": [],
+      "plannedSupplementaryResourceIds": [
+        "supplement-28",
+        "supplement-29",
+        "supplement-30",
+        "supplement-31"
+      ],
+      "status": "awaiting-original-supplement-packet",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-11-topic-04",
+      "moduleId": "module-11",
+      "weeks": [
+        11,
+        12
+      ],
+      "syllabusTopic": "Cloud-native and disaggregated DBMSs",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [],
+      "siteReferences": [],
+      "plannedSupplementaryResourceIds": [
+        "supplement-28",
+        "supplement-29",
+        "supplement-30",
+        "supplement-31"
+      ],
+      "status": "awaiting-original-supplement-packet",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-11-topic-05",
+      "moduleId": "module-11",
+      "weeks": [
+        11,
+        12
+      ],
+      "syllabusTopic": "Recent SIGMOD/VLDB/ICDE/PODS research",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [],
+      "siteReferences": [],
+      "plannedSupplementaryResourceIds": [
+        "supplement-28",
+        "supplement-29",
+        "supplement-30",
+        "supplement-31"
+      ],
+      "status": "awaiting-original-supplement-packet",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-12-topic-01",
+      "moduleId": "module-12",
+      "weeks": [
+        13,
+        14
+      ],
+      "syllabusTopic": "Supervised research",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [],
+      "siteReferences": [],
+      "plannedSupplementaryResourceIds": [
+        "supplement-32",
+        "supplement-33",
+        "supplement-34",
+        "supplement-35"
+      ],
+      "status": "awaiting-original-supplement-packet",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-12-topic-02",
+      "moduleId": "module-12",
+      "weeks": [
+        13,
+        14
+      ],
+      "syllabusTopic": "Instructor consultations",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [],
+      "siteReferences": [],
+      "plannedSupplementaryResourceIds": [
+        "supplement-32",
+        "supplement-33",
+        "supplement-34",
+        "supplement-35"
+      ],
+      "status": "awaiting-original-supplement-packet",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    },
+    {
+      "id": "module-13-topic-01",
+      "moduleId": "module-13",
+      "weeks": [
+        15
+      ],
+      "syllabusTopic": "Conference-style group presentations",
+      "sourceEvidence": [],
+      "candidateSourceDocumentIds": [],
+      "siteReferences": [],
+      "plannedSupplementaryResourceIds": [
+        "supplement-36",
+        "supplement-37"
+      ],
+      "status": "awaiting-original-supplement-packet",
+      "findings": [],
+      "corrections": [],
+      "evidence": [],
+      "tests": []
+    }
+  ]
+}
