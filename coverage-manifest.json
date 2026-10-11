@@ -1,6 +1,6 @@
 {
   "edition": "Spring 2026",
-  "generated": "2026-10-10T16:42:01.141Z",
+  "generated": "2026-10-11T03:20:49.051Z",
   "lectures": [
     {
       "lecture": 1,
@@ -640,7 +640,7 @@
         },
         {
           "pdfPage": 17,
-          "printedSlide": 17,
+          "printedSlide": null,
           "heading": "Seagate Cheetah 15K.7                                           17"
         },
         {

@@ -554,6 +554,40 @@
             14,
             15
           ]
+        },
+        {
+          "id": "ex13-models-q1",
+          "prompt": "A vectorized operator returns batches of at most 1,000 rows. If 2,050 rows survive, what is the complete output sequence?",
+          "options": [
+            "1,000, 1,000, then EOF",
+            "1,000, 1,000, 50, then EOF",
+            "2,000, then EOF",
+            "50, then EOF"
+          ],
+          "answer": 1,
+          "explanation": "The final partial batch is required to preserve all 2,050 rows; EOF is a separate marker.",
+          "pages": [
+            13,
+            14,
+            15,
+            16,
+            17,
+            18
+          ],
+          "sources": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf",
+              "physicalPages": [
+                13,
+                14,
+                15,
+                16,
+                17,
+                18
+              ]
+            }
+          ],
+          "origin": "Original audit extension question"
         }
       ]
     },

@@ -16,7 +16,7 @@
       {
         "id": "l4-1",
         "title": "The conceptual framework",
-        "html": "<p>A DBMS is organised into planning, operator execution, files/indexes, buffering, and disk-space management. Concurrency control and recovery span several layers. We compare hardware by latency, capacity, and durability. An HDD read can include seek time, moving the head to the required track; rotational latency, waiting for the required position to rotate under the head; and transfer time, moving the data. SSDs have no mechanical head and have different write characteristics. The disk-space manager handles page identifiers, allocation, and reads/writes.</p>"
+        "html": "<p>A DBMS is organised into planning, operator execution, files/indexes, buffering, and disk-space management. Concurrency control and recovery span several layers. We compare hardware by latency, capacity, and durability. An HDD read can include seek time, moving the head to the required track; rotational latency, waiting for the required position to rotate under the head; and transfer time, moving the data. SSDs have no mechanical head and have different write characteristics. The disk-space manager handles page identifiers, allocation, and reads/writes.</p><h3>Storage tiers and the physical cost of a page</h3><p>Fast CPU caches and ordinary RAM are volatile; HDDs and SSDs provide persistent block interfaces. A DBMS page is a logical unit chosen by the database and need not equal an SSD physical program or erase unit. HDD latency includes seek, rotational delay and transfer. Nearby access can amortize mechanical movement, and prefetch can overlap work.</p><p>NAND flash reads/programs units smaller than its erase blocks. Updating data can trigger copying and erasing, causing write amplification: physical bytes written divided by logical host bytes written under a declared measurement boundary. It is not a general synonym for extra CPU or read work. Wear, controller behavior and workload affect results; slide hardware figures are examples rather than current product prices.</p><p class=\"source-note\">Source topics: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf#page=11\" target=\"_blank\" rel=\"noopener\">Physical PDF pp. 11, 12, 13, 14, 15, 16, 19, 20, 21, 22 ↗</a>. The worked examples are original.</p>"
       },
       {
         "id": "l4-2",
@@ -31,7 +31,7 @@
       {
         "id": "l4-4",
         "title": "Interpreting hardware figures carefully",
-        "html": "<p>The PDF’s prices, capacities, and latencies are teaching examples for particular configurations and points in time. In a model-based exam question, use the supplied numbers. To assess a real system, measure its workload, cache behaviour, parallelism, and specific device.</p><p>Check yourself: is “how many I/Os are needed to read 1,000 records?” sufficiently specified? No. You need to know how many pages contain the records, whether those pages are already in RAM, and whether they are physically close together. These questions prepare you for buffering, page layout, and indexes.</p>"
+        "html": "<p>The PDF’s prices, capacities, and latencies are teaching examples for particular configurations and points in time. In a model-based exam question, use the supplied numbers. To assess a real system, measure its workload, cache behaviour, parallelism, and specific device.</p><p>Check yourself: is “how many I/Os are needed to read 1,000 records?” sufficiently specified? No. You need to know how many pages contain the records, whether those pages are already in RAM, and whether they are physically close together. These questions prepare you for buffering, page layout, and indexes.</p><h3>Locality and the disk-space interface</h3><p>Spatial locality concerns nearby locations; temporal locality concerns repeated use over time. Disk-space management allocates/deallocates pages and reads/writes page IDs. An implementation can map a page ID to a filename and byte offset. Consecutive logical IDs do not by themselves guarantee physically contiguous storage: allocation and lower storage layers also matter.</p><p class=\"source-note\">Source topics: <a href=\"https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf#page=24\" target=\"_blank\" rel=\"noopener\">Physical PDF pp. 24, 25, 26, 27, 28 ↗</a>. The worked examples are original.</p>"
       }
     ],
     "quiz": {
@@ -169,7 +169,7 @@
         },
         {
           "pdfPage": 17,
-          "printedSlide": 17,
+          "printedSlide": null,
           "heading": "Seagate Cheetah 15K.7                                           17"
         },
         {

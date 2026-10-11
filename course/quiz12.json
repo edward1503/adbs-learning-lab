@@ -22,9 +22,7 @@
           "answer": 0,
           "explanation": "An inner equijoin returns the matching pairs. It does not automatically eliminate duplicates.",
           "pages": [
-            2,
-            3,
-            4
+            2
           ]
         },
         {
@@ -39,9 +37,7 @@
           "answer": 1,
           "explanation": "Each of the two R tuples matches all three S tuples, producing 2×3=6 pairs.",
           "pages": [
-            2,
-            3,
-            4
+            2
           ]
         },
         {
@@ -56,8 +52,6 @@
           "answer": 2,
           "explanation": "The model focuses on input I/O and relevant temporary-file I/O. Input reads must still be counted.",
           "pages": [
-            2,
-            3,
             4
           ]
         },
@@ -73,9 +67,9 @@
           "answer": 3,
           "explanation": "Many tuples can share one page. Scanning the inner relation once per tuple can therefore require many more scans than scanning once per page.",
           "pages": [
-            2,
-            3,
-            4
+            4,
+            5,
+            8
           ]
         },
         {
@@ -90,9 +84,7 @@
           "answer": 0,
           "explanation": "Selection over R×S can express the correct logical join, but examining all possible pairs can require substantial work.",
           "pages": [
-            2,
-            3,
-            4
+            3
           ]
         }
       ]
@@ -118,9 +110,7 @@
           "answer": 1,
           "explanation": "The cost is M+mN=20+2,000×30=60,020 I/Os. The answer 620 incorrectly uses the outer page count in place of its tuple count.",
           "pages": [
-            5,
-            6,
-            7
+            5
           ]
         },
         {
@@ -135,9 +125,7 @@
           "answer": 2,
           "explanation": "Simple nested loops iterate over outer tuples. Repeating the scan once per outer page describes a different algorithm.",
           "pages": [
-            5,
-            6,
-            7
+            5
           ]
         },
         {
@@ -152,9 +140,7 @@
           "answer": 3,
           "explanation": "The number of repeated inner scans depends on the new outer relation's tuple count, not merely its page count.",
           "pages": [
-            5,
-            6,
-            7
+            6
           ]
         },
         {
@@ -169,9 +155,8 @@
           "answer": 0,
           "explanation": "Nested loops support general join predicates. The usual equality requirement belongs to ordinary hash join.",
           "pages": [
-            5,
-            6,
-            7
+            15,
+            43
           ]
         },
         {
@@ -187,8 +172,7 @@
           "explanation": "Retaining the inner relation in memory reduces disk reads. The number of comparisons and the number of disk I/Os are different measures.",
           "pages": [
             5,
-            6,
-            7
+            11
           ]
         }
       ]
@@ -214,8 +198,7 @@
           "answer": 2,
           "explanation": "The cost is M+MN=20+600=620 I/Os. The outer scan contributes 20 reads in addition to the repeated inner scans.",
           "pages": [
-            8,
-            9
+            8
           ]
         },
         {
@@ -246,7 +229,6 @@
           "answer": 0,
           "explanation": "One buffer holds a page from each input, and one holds output. The complete relations need not fit in memory.",
           "pages": [
-            8,
             9
           ]
         },
@@ -262,8 +244,8 @@
           "answer": 1,
           "explanation": "Rearranging the loops allows the outer page to be reused. All necessary tuple pairs are still examined.",
           "pages": [
-            8,
-            9
+            7,
+            8
           ]
         },
         {
@@ -278,8 +260,7 @@
           "answer": 2,
           "explanation": "Seven inner scans read 7×12=84 pages. The value 19 counts only one scan of each relation, which is not this algorithm's repeated-scan cost.",
           "pages": [
-            8,
-            9
+            8
           ]
         }
       ]
@@ -305,8 +286,7 @@
           "answer": 3,
           "explanation": "Two buffers are reserved: one for the inner input and one for output. The remaining B−2=6 hold the outer block.",
           "pages": [
-            10,
-            11
+            10
           ]
         },
         {
@@ -321,7 +301,6 @@
           "answer": 0,
           "explanation": "The outer block holds 6 pages, so the cost is 25+ceil(25/6)×40=25+200=225 I/Os. Rounding the block count down would miss the final partial block.",
           "pages": [
-            10,
             11
           ]
         },
@@ -337,7 +316,6 @@
           "answer": 1,
           "explanation": "The outer relation fits in B−2=6 buffers. Each input is read once, giving 6+40=46 I/Os.",
           "pages": [
-            10,
             11
           ]
         },
@@ -353,7 +331,6 @@
           "answer": 2,
           "explanation": "The outer block now holds 7 pages, giving ceil(25/7)=4 blocks. The cost is 25+4×40=185 I/Os.",
           "pages": [
-            10,
             11
           ]
         },
@@ -369,7 +346,6 @@
           "answer": 3,
           "explanation": "Physical cost depends on block packing and ceiling terms. Compare both orientations while preserving the required join semantics.",
           "pages": [
-            10,
             11
           ]
         }
@@ -396,10 +372,7 @@
           "answer": 0,
           "explanation": "The cost is 4+80×3=244 I/Os: a 4-page outer scan and 80 probes. The answer 240 omits the outer scan, while 84 incorrectly assumes each probe costs only one I/O.",
           "pages": [
-            12,
-            13,
-            14,
-            15
+            13
           ]
         },
         {
@@ -415,9 +388,7 @@
           "explanation": "The index must support the lookup condition. An unrelated index does not directly locate the required matches.",
           "pages": [
             12,
-            13,
-            14,
-            15
+            13
           ]
         },
         {
@@ -432,10 +403,8 @@
           "answer": 2,
           "explanation": "Retrieving many matching rows can be expensive. Index traversal is only one part of the lookup cost.",
           "pages": [
-            12,
             13,
-            14,
-            15
+            14
           ]
         },
         {
@@ -450,10 +419,7 @@
           "answer": 3,
           "explanation": "Clustering improves physical locality. It does not change the join's logical cardinality.",
           "pages": [
-            12,
-            13,
-            14,
-            15
+            13
           ]
         },
         {
@@ -468,10 +434,7 @@
           "answer": 0,
           "explanation": "Probe cost is multiplied by the outer tuple count. A fixed index height does not imply a fixed total join cost.",
           "pages": [
-            12,
-            13,
-            14,
-            15
+            14
           ]
         }
       ]
@@ -497,24 +460,7 @@
           "answer": 1,
           "explanation": "The merge makes one forward pass over each input. Sorted input does not imply that its pages are already cached.",
           "pages": [
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24,
-            25,
-            26,
-            27,
-            28,
-            29,
-            30,
-            31,
-            32,
-            33
+            30
           ]
         },
         {
@@ -529,24 +475,7 @@
           "answer": 2,
           "explanation": "The smaller S key cannot match the current R key, and later R keys cannot be smaller. Advancing R instead could skip a match with a later S tuple.",
           "pages": [
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24,
-            25,
-            26,
-            27,
-            28,
-            29,
-            30,
-            31,
-            32,
-            33
+            17
           ]
         },
         {
@@ -561,24 +490,8 @@
           "answer": 3,
           "explanation": "Add the sort costs and merge reads: 480+160+120+40=800 I/Os. The 640 I/Os of sorting alone do not include the join's input reads.",
           "pages": [
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24,
-            25,
-            26,
-            27,
-            28,
-            29,
             30,
-            31,
-            32,
-            33
+            31
           ]
         },
         {
@@ -593,24 +506,8 @@
           "answer": 0,
           "explanation": "Each of the four R tuples matches all five S tuples, producing 4×5=20 pairs. Merge join does not automatically deduplicate a group.",
           "pages": [
-            16,
             17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24,
-            25,
-            26,
-            27,
-            28,
-            29,
-            30,
-            31,
-            32,
-            33
+            30
           ]
         },
         {
@@ -625,24 +522,7 @@
           "answer": 1,
           "explanation": "Ascending order guarantees that remaining S keys satisfy key≥s.key>r.key. The argument relies on ordering, not uniqueness.",
           "pages": [
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24,
-            25,
-            26,
-            27,
-            28,
-            29,
-            30,
-            31,
-            32,
-            33
+            17
           ]
         }
       ]
@@ -668,9 +548,7 @@
           "answer": 2,
           "explanation": "The build phase stores candidate matches in a hash table for later probes. It is not a sorting phase.",
           "pages": [
-            34,
-            35,
-            36
+            34
           ]
         },
         {
@@ -686,8 +564,8 @@
           "explanation": "Each input is read once, giving 15+60=75 I/Os. The formula 3(M+N) instead describes a two-phase Grace hash join.",
           "pages": [
             34,
-            35,
-            36
+            41,
+            42
           ]
         },
         {
@@ -703,8 +581,7 @@
           "explanation": "A hash collision does not establish key equality. The actual join keys must still be compared.",
           "pages": [
             34,
-            35,
-            36
+            35
           ]
         },
         {
@@ -719,9 +596,7 @@
           "answer": 1,
           "explanation": "Build memory depends on the input and hash-table state. A smaller input helps memory usage but does not eliminate skew or collisions.",
           "pages": [
-            34,
-            35,
-            36
+            41
           ]
         },
         {
@@ -736,9 +611,7 @@
           "answer": 2,
           "explanation": "The probe tuple must be paired with every matching build tuple. The hash table must not accidentally discard duplicate-key records.",
           "pages": [
-            34,
-            35,
-            36
+            34
           ]
         }
       ]
@@ -764,13 +637,8 @@
           "answer": 3,
           "explanation": "Equal join keys must reach corresponding partitions. Inconsistent partitioning can separate tuples that should match.",
           "pages": [
-            37,
-            38,
-            39,
-            40,
-            41,
-            42,
-            43
+            36,
+            37
           ]
         },
         {
@@ -785,13 +653,8 @@
           "answer": 0,
           "explanation": "Partitioning reads and writes both inputs, costing 2×160 I/Os. Building and probing reads them again, adding 160 for a total of 480.",
           "pages": [
-            37,
-            38,
             39,
-            40,
-            41,
-            42,
-            43
+            40
           ]
         },
         {
@@ -806,13 +669,8 @@
           "answer": 1,
           "explanation": "The build hash table must fit in memory for the in-memory build/probe step. The probe partition can be processed one page at a time.",
           "pages": [
-            37,
-            38,
-            39,
-            40,
-            41,
-            42,
-            43
+            34,
+            38
           ]
         },
         {
@@ -827,13 +685,7 @@
           "answer": 2,
           "explanation": "Recursive partitioning preserves matches when both sides use a consistent rule, but it adds I/O. The simple two-phase cost no longer automatically applies.",
           "pages": [
-            37,
-            38,
-            39,
-            40,
-            41,
-            42,
-            43
+            39
           ]
         },
         {
@@ -848,14 +700,46 @@
           "answer": 3,
           "explanation": "Existing physical order can favour merge join. Hash join is still logically valid but may require additional work.",
           "pages": [
-            37,
-            38,
-            39,
-            40,
-            41,
-            42,
-            43
+            41
           ]
+        },
+        {
+          "id": "l12-skew-new-q1",
+          "prompt": "One join key alone creates an oversized build partition. Why is replacing it by a single SUM state incorrect for an ordinary join?",
+          "options": [
+            "It must preserve every matching build/probe pair",
+            "A hash join requires sorted output",
+            "SUM changes the number of buffer frames",
+            "A prime modulus forbids duplicate keys"
+          ],
+          "answer": 0,
+          "explanation": "Aggregation may compress a group into a summary; an ordinary many-to-many join needs the tuples that form all result pairs.",
+          "pages": [
+            34,
+            35,
+            36,
+            39
+          ],
+          "sources": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+              "physicalPages": [
+                34,
+                35,
+                36,
+                39
+              ]
+            },
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+              "physicalPages": [
+                22,
+                29,
+                30
+              ]
+            }
+          ],
+          "addresses": "F20"
         }
       ]
     },
@@ -880,8 +764,7 @@
           "answer": 0,
           "explanation": "The join directly consumes the sorted streams produced by the final merge pass, avoiding a separate materialised sorted-file stage.",
           "pages": [
-            32,
-            33
+            32
           ]
         },
         {
@@ -896,8 +779,7 @@
           "answer": 1,
           "explanation": "The seven input runs need 3+4 buffers, and output needs one more, for 8 total. Seven omits output; four cannot hold all the required run heads.",
           "pages": [
-            32,
-            33
+            32
           ]
         },
         {
@@ -912,8 +794,7 @@
           "answer": 2,
           "explanation": "Initial run generation costs 2×120 I/Os and the final fused read costs 120, totalling 360. Separate two-pass sorts followed by a join merge would cost 5×120=600.",
           "pages": [
-            32,
-            33
+            32
           ]
         },
         {
@@ -928,8 +809,7 @@
           "answer": 3,
           "explanation": "The saved final sorted-file write and subsequent join read total 2(M+N)=240 I/Os.",
           "pages": [
-            32,
-            33
+            32
           ]
         },
         {
@@ -944,9 +824,32 @@
           "answer": 0,
           "explanation": "Fusion requires enough buffers for the run inputs and output. Insufficient buffers require additional merge passes or another execution strategy.",
           "pages": [
-            32,
-            33
+            32
           ]
+        },
+        {
+          "id": "l12-fusion-new-q1",
+          "prompt": "R=120 pages, S=40 pages, B=12. B-page pass0 runs are created on both sides. Can all initial runs feed a fused final merge with one output buffer?",
+          "options": [
+            "Yes, because each separate sort takes two passes",
+            "Yes, because 120+40 is divisible by 10",
+            "No; 10+4=14 input runs exceed B−1=11",
+            "No; fusion is never possible for unequal relation sizes"
+          ],
+          "answer": 2,
+          "explanation": "Count the combined run inputs. Each separate sort fits its own merge, but their runs do not all fit simultaneously.",
+          "pages": [
+            32
+          ],
+          "sources": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+              "physicalPages": [
+                32
+              ]
+            }
+          ],
+          "addresses": "F19"
         }
       ]
     }

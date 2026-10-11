@@ -1,0 +1,588 @@
+{
+  "schemaVersion": 1,
+  "preparedAt": "2026-10-11",
+  "scope": "Sixteen CQ, parallel-query and NoSQL content-depth findings for original slide resources 23–27. Source PDFs remain external links.",
+  "status": "implemented-awaiting-independent-QA",
+  "boundaries": [
+    "Preserved all original lesson and section IDs, existing HTML, in-context key takeaways, and embedded checks.",
+    "No new bank questions, changed original keyed answers, rehosted PDFs or current product-ranking claims.",
+    "CQ claims are scoped to the safe positive set-semantics model without external constraints, bags or NULL.",
+    "Physical PDF pages identify navigation positions, not printed slide labels.",
+    "This resolution record documents implementation; it does not assert independent integrated-content or deployment acceptance."
+  ],
+  "counts": {
+    "findings": 16,
+    "lessons": 5,
+    "appendedSectionBlocks": 22,
+    "newBankQuestions": 0,
+    "capQuestionSourcesAdded": 5
+  },
+  "findings": [
+    {
+      "findingId": "G23-1",
+      "lessonId": "lecture-23",
+      "title": "Relational algebra/calculus bridge and safe CQ language",
+      "baseline": {
+        "status": "partial",
+        "basis": "Coordinator supplied content-depth audit of the pre-integration lesson; existing answer keys were correct."
+      },
+      "final": {
+        "status": "implemented-awaiting-independent-QA",
+        "change": "Original explanations, worked examples and exercises appended to stable existing section IDs."
+      },
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf",
+          "physicalPages": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            14,
+            15,
+            16,
+            17,
+            18
+          ]
+        }
+      ],
+      "implementationEvidence": [
+        {
+          "sectionId": "l23-s1",
+          "heading": "The relational language bridge"
+        },
+        {
+          "sectionId": "l23-s2",
+          "heading": "Two witnesses, one student"
+        }
+      ],
+      "verification": "Independently enumerated the three Enrol/Teach matches and two distinct student answers in tests/cq-nosql-audit.test.mjs."
+    },
+    {
+      "findingId": "G23-2",
+      "lessonId": "lecture-23",
+      "title": "General assignments, duplicate head tuples and Boolean results",
+      "baseline": {
+        "status": "partial",
+        "basis": "Coordinator supplied content-depth audit of the pre-integration lesson; existing answer keys were correct."
+      },
+      "final": {
+        "status": "implemented-awaiting-independent-QA",
+        "change": "Original explanations, worked examples and exercises appended to stable existing section IDs."
+      },
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf",
+          "physicalPages": [
+            26,
+            31,
+            32,
+            33
+          ]
+        }
+      ],
+      "implementationEvidence": [
+        {
+          "sectionId": "l23-s3",
+          "heading": "A match must preserve every occurrence and constant"
+        },
+        {
+          "sectionId": "l23-s5",
+          "heading": "Complete the self-loop extension"
+        }
+      ],
+      "verification": "Independently enumerated all four satisfying path assignments and three distinct head tuples; Boolean output is one empty tuple."
+    },
+    {
+      "findingId": "G24-1",
+      "lessonId": "lecture-24",
+      "title": "Equivalence, certificate direction and scope of complexity",
+      "baseline": {
+        "status": "partial",
+        "basis": "Coordinator supplied content-depth audit of the pre-integration lesson; existing answer keys were correct."
+      },
+      "final": {
+        "status": "implemented-awaiting-independent-QA",
+        "change": "Original explanations, worked examples and exercises appended to stable existing section IDs."
+      },
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf",
+          "physicalPages": [
+            19,
+            20,
+            21,
+            22,
+            25,
+            26,
+            28,
+            29,
+            30,
+            31
+          ]
+        }
+      ],
+      "implementationEvidence": [
+        {
+          "sectionId": "l24-s3",
+          "heading": "Equivalence needs both reverse maps"
+        },
+        {
+          "sectionId": "l24-s4",
+          "heading": "What the complexity statement does and does not say"
+        }
+      ],
+      "verification": "Exhaustively compared the A/B answers over every subset of a two-value binary relation in tests/cq-nosql-audit.test.mjs."
+    },
+    {
+      "findingId": "G24-2",
+      "lessonId": "lecture-24",
+      "title": "Head-safe iterative minimization and cores",
+      "baseline": {
+        "status": "partial",
+        "basis": "Coordinator supplied content-depth audit of the pre-integration lesson; existing answer keys were correct."
+      },
+      "final": {
+        "status": "implemented-awaiting-independent-QA",
+        "change": "Original explanations, worked examples and exercises appended to stable existing section IDs."
+      },
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf",
+          "physicalPages": [
+            32,
+            33,
+            34,
+            35,
+            36,
+            37
+          ]
+        }
+      ],
+      "implementationEvidence": [
+        {
+          "sectionId": "l24-s5",
+          "heading": "Minimize again after a successful deletion"
+        }
+      ],
+      "verification": "Exhaustively compared original/core answers on small instances and checked a counterexample for each remaining atom."
+    },
+    {
+      "findingId": "G25-1",
+      "lessonId": "lecture-25",
+      "title": "Primal graph, hypergraph and join tree are different objects",
+      "baseline": {
+        "status": "partial",
+        "basis": "Coordinator supplied content-depth audit of the pre-integration lesson; existing answer keys were correct."
+      },
+      "final": {
+        "status": "implemented-awaiting-independent-QA",
+        "change": "Original explanations, worked examples and exercises appended to stable existing section IDs."
+      },
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf",
+          "physicalPages": [
+            3,
+            4,
+            5,
+            6,
+            11,
+            12,
+            25,
+            26
+          ]
+        }
+      ],
+      "implementationEvidence": [
+        {
+          "sectionId": "l25-s1",
+          "heading": "Three structures, three different meanings"
+        },
+        {
+          "sectionId": "l25-s3",
+          "heading": "State the structural guarantee precisely"
+        }
+      ],
+      "verification": "Test confirms equal primal-edge sets but different GYO outcomes for the single ternary atom and binary triangle."
+    },
+    {
+      "findingId": "G25-2",
+      "lessonId": "lecture-25",
+      "title": "Candidate bindings and all-child bottom-up semijoins",
+      "baseline": {
+        "status": "partial",
+        "basis": "Coordinator supplied content-depth audit of the pre-integration lesson; existing answer keys were correct."
+      },
+      "final": {
+        "status": "implemented-awaiting-independent-QA",
+        "change": "Original explanations, worked examples and exercises appended to stable existing section IDs."
+      },
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf",
+          "physicalPages": [
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36
+          ]
+        }
+      ],
+      "implementationEvidence": [
+        {
+          "sectionId": "l25-s4",
+          "heading": "Every child must support a root tuple"
+        },
+        {
+          "sectionId": "l25-s5",
+          "heading": "Bind the candidate before testing membership"
+        }
+      ],
+      "verification": "Independently joined all four relations, verified the b/1/k witness, and recomputed the bottom-up pass and T={c} failure."
+    },
+    {
+      "findingId": "G26-1",
+      "lessonId": "lecture-26",
+      "title": "Architectural costs, latency and logical data transparency",
+      "baseline": {
+        "status": "partial",
+        "basis": "Coordinator supplied content-depth audit of the pre-integration lesson; existing answer keys were correct."
+      },
+      "final": {
+        "status": "implemented-awaiting-independent-QA",
+        "change": "Original explanations, worked examples and exercises appended to stable existing section IDs."
+      },
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+          "physicalPages": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            18,
+            45
+          ]
+        }
+      ],
+      "implementationEvidence": [
+        {
+          "sectionId": "l26-s1",
+          "heading": "Parallelism changes the bottleneck, not the result contract"
+        }
+      ],
+      "verification": "Source-linked explanation integrated; independent integrated-content review pending."
+    },
+    {
+      "findingId": "G26-2",
+      "lessonId": "lecture-26",
+      "title": "Partition balance, replicated small tables and routing assumptions",
+      "baseline": {
+        "status": "partial",
+        "basis": "Coordinator supplied content-depth audit of the pre-integration lesson; existing answer keys were correct."
+      },
+      "final": {
+        "status": "implemented-awaiting-independent-QA",
+        "change": "Original explanations, worked examples and exercises appended to stable existing section IDs."
+      },
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+          "physicalPages": [
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            20,
+            21
+          ]
+        }
+      ],
+      "implementationEvidence": [
+        {
+          "sectionId": "l26-s2",
+          "heading": "Balanced row counts can still hide imbalance"
+        }
+      ],
+      "verification": "Computed the three round-robin assignments independently; test distinguishes disjoint partitions from replication."
+    },
+    {
+      "findingId": "G26-3",
+      "lessonId": "lecture-26",
+      "title": "Separate join hash functions and align sort-merge boundaries",
+      "baseline": {
+        "status": "partial",
+        "basis": "Coordinator supplied content-depth audit of the pre-integration lesson; existing answer keys were correct."
+      },
+      "final": {
+        "status": "implemented-awaiting-independent-QA",
+        "change": "Original explanations, worked examples and exercises appended to stable existing section IDs."
+      },
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+          "physicalPages": [
+            22,
+            23,
+            24,
+            25
+          ]
+        }
+      ],
+      "implementationEvidence": [
+        {
+          "sectionId": "l26-s3",
+          "heading": "One join can use three different hash functions"
+        }
+      ],
+      "verification": "Test compares global join with aligned and misaligned local partitions, confirming loss of the 75 pair without exchange."
+    },
+    {
+      "findingId": "G27-1",
+      "lessonId": "lecture-27",
+      "title": "Workload-dependent scale-out and combined shard/replica layouts",
+      "baseline": {
+        "status": "partial",
+        "basis": "Coordinator supplied content-depth audit of the pre-integration lesson; existing answer keys were correct."
+      },
+      "final": {
+        "status": "implemented-awaiting-independent-QA",
+        "change": "Original explanations, worked examples and exercises appended to stable existing section IDs."
+      },
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+          "physicalPages": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        }
+      ],
+      "implementationEvidence": [
+        {
+          "sectionId": "l27-s1",
+          "heading": "Capacity is not the same as query efficiency"
+        }
+      ],
+      "verification": "Recomputed 300 GB × 2 total copies = 600 GB; copy count is explicitly total copies rather than two additional copies."
+    },
+    {
+      "findingId": "G27-2",
+      "lessonId": "lecture-27",
+      "title": "BASE names an approach, not a universal guarantee",
+      "baseline": {
+        "status": "partial",
+        "basis": "Coordinator supplied content-depth audit of the pre-integration lesson; existing answer keys were correct."
+      },
+      "final": {
+        "status": "implemented-awaiting-independent-QA",
+        "change": "Original explanations, worked examples and exercises appended to stable existing section IDs."
+      },
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+          "physicalPages": [
+            8,
+            9,
+            11
+          ]
+        }
+      ],
+      "implementationEvidence": [
+        {
+          "sectionId": "l27-s3",
+          "heading": "Expand BASE without overclaiming"
+        }
+      ],
+      "verification": "Source-linked explanation integrated; independent integrated-content review pending."
+    },
+    {
+      "findingId": "G27-3",
+      "lessonId": "lecture-27",
+      "title": "Key-value API scope, hashing and replica visibility",
+      "baseline": {
+        "status": "partial",
+        "basis": "Coordinator supplied content-depth audit of the pre-integration lesson; existing answer keys were correct."
+      },
+      "final": {
+        "status": "implemented-awaiting-independent-QA",
+        "change": "Original explanations, worked examples and exercises appended to stable existing section IDs."
+      },
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+          "physicalPages": [
+            12,
+            14
+          ]
+        }
+      ],
+      "implementationEvidence": [
+        {
+          "sectionId": "l27-s4",
+          "heading": "An opaque value makes the key-value contract clear"
+        }
+      ],
+      "verification": "Source-linked explanation integrated; independent integrated-content review pending."
+    },
+    {
+      "findingId": "G27-4",
+      "lessonId": "lecture-27",
+      "title": "Document structure, predicate boundaries and SQL compatibility",
+      "baseline": {
+        "status": "partial",
+        "basis": "Coordinator supplied content-depth audit of the pre-integration lesson; existing answer keys were correct."
+      },
+      "final": {
+        "status": "implemented-awaiting-independent-QA",
+        "change": "Original explanations, worked examples and exercises appended to stable existing section IDs."
+      },
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+          "physicalPages": [
+            15,
+            16,
+            17,
+            21
+          ]
+        }
+      ],
+      "implementationEvidence": [
+        {
+          "sectionId": "l27-s4",
+          "heading": "Objects, arrays and validation have different roles"
+        }
+      ],
+      "verification": "Independently evaluated strict and inclusive age boundaries and ordered-array inequality."
+    },
+    {
+      "findingId": "G27-5",
+      "lessonId": "lecture-27",
+      "title": "Property graph patterns and language contexts",
+      "baseline": {
+        "status": "partial",
+        "basis": "Coordinator supplied content-depth audit of the pre-integration lesson; existing answer keys were correct."
+      },
+      "final": {
+        "status": "implemented-awaiting-independent-QA",
+        "change": "Original explanations, worked examples and exercises appended to stable existing section IDs."
+      },
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+          "physicalPages": [
+            13,
+            18,
+            19
+          ]
+        }
+      ],
+      "implementationEvidence": [
+        {
+          "sectionId": "l27-s4",
+          "heading": "Choose the relationship pattern, not just a graph label"
+        },
+        {
+          "sectionId": "l27-s5",
+          "heading": "Graph language names need their data-model context"
+        }
+      ],
+      "verification": "Enumerated the labeled two-hop path; unrelated DRIVES edge does not satisfy the FRIEND pattern."
+    },
+    {
+      "findingId": "G27-6",
+      "lessonId": "lecture-27",
+      "title": "Historical product snapshots and authoritative inventory",
+      "baseline": {
+        "status": "partial",
+        "basis": "Coordinator supplied content-depth audit of the pre-integration lesson; existing answer keys were correct."
+      },
+      "final": {
+        "status": "implemented-awaiting-independent-QA",
+        "change": "Original explanations, worked examples and exercises appended to stable existing section IDs."
+      },
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+          "physicalPages": [
+            20,
+            21
+          ]
+        }
+      ],
+      "implementationEvidence": [
+        {
+          "sectionId": "l27-s5",
+          "heading": "Keep popularity evidence in its historical scope"
+        }
+      ],
+      "verification": "Source-linked explanation integrated; independent integrated-content review pending."
+    },
+    {
+      "findingId": "G27-7",
+      "lessonId": "lecture-27",
+      "title": "Formal CAP evidence on individual questions",
+      "baseline": {
+        "status": "partial",
+        "basis": "Coordinator supplied content-depth audit of the pre-integration lesson; existing answer keys were correct."
+      },
+      "final": {
+        "status": "implemented-awaiting-independent-QA",
+        "change": "Original explanations, worked examples and exercises appended to stable existing section IDs."
+      },
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+          "physicalPages": [
+            9,
+            10
+          ]
+        },
+        {
+          "url": "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer6.pdf",
+          "physicalPages": [
+            2,
+            3,
+            4
+          ]
+        }
+      ],
+      "implementationEvidence": [
+        {
+          "sectionId": "l27-s2",
+          "heading": "A guarantee quantifies over the permitted executions"
+        }
+      ],
+      "quizQuestionIds": [
+        "l27-cap-q1",
+        "l27-cap-q2",
+        "l27-cap-q3",
+        "l27-cap-q4",
+        "l27-cap-q5"
+      ],
+      "verification": "Source-linked explanation integrated; independent integrated-content review pending."
+    }
+  ]
+}

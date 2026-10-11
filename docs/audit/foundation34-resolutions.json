@@ -1,0 +1,3271 @@
+{
+  "auditDate": "2026-10-11",
+  "scope": "Modules 3–4, original additions F11–F20 and quiz provenance refinements",
+  "baselinePreserved": true,
+  "publicationBoundary": "Original explanations and public source links only; no source PDFs copied. Statuses here describe implementation, not independent post-integration acceptance.",
+  "resolutions": [
+    {
+      "id": "F11",
+      "kind": "original-teaching-addition",
+      "status": "implemented-awaiting-independent-QA",
+      "baselineFinding": "partial",
+      "targets": [
+        {
+          "file": "course/lecture07.json",
+          "sectionId": "l7-1",
+          "subsectionId": "f11-layout-and-pax",
+          "title": "Reconstruct rows and distinguish PAX from a column store"
+        },
+        {
+          "file": "course/lecture07.json",
+          "sectionId": "l7-2",
+          "subsectionId": "f11-column-position-exercise",
+          "title": "Worked exercise: filter positions, then gather values"
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf",
+          "physicalPages": [
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18
+          ]
+        }
+      ],
+      "verification": {
+        "implementationChecks": "Existing sections, examples and answer keys preserved; numerical and structural checks recorded separately.",
+        "independentReview": "pending"
+      }
+    },
+    {
+      "id": "F12",
+      "kind": "original-teaching-addition",
+      "status": "implemented-awaiting-independent-QA",
+      "baselineFinding": "partial",
+      "targets": [
+        {
+          "file": "course/lecture07.json",
+          "sectionId": "l7-4",
+          "subsectionId": "f12-parquet-metadata",
+          "title": "Use Parquet metadata before reading payload"
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf",
+          "physicalPages": [
+            18,
+            19,
+            20
+          ]
+        },
+        {
+          "url": "https://parquet.apache.org/docs/file-format/",
+          "label": "Apache Parquet file-format specification",
+          "physicalPages": []
+        }
+      ],
+      "verification": {
+        "implementationChecks": "Existing sections, examples and answer keys preserved; numerical and structural checks recorded separately.",
+        "independentReview": "pending"
+      }
+    },
+    {
+      "id": "F13",
+      "kind": "original-teaching-addition",
+      "status": "implemented-awaiting-independent-QA",
+      "baselineFinding": "partial",
+      "targets": [
+        {
+          "file": "course/lecture07.json",
+          "sectionId": "l7-3",
+          "subsectionId": "f13-value-aware-compression",
+          "title": "Compare byte compression with value-aware encodings"
+        },
+        {
+          "file": "course/lecture07.json",
+          "sectionId": "l7-4",
+          "subsectionId": "f13-compression-performance",
+          "title": "Check the whole operation"
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf",
+          "physicalPages": [
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ]
+        }
+      ],
+      "verification": {
+        "implementationChecks": "Existing sections, examples and answer keys preserved; numerical and structural checks recorded separately.",
+        "independentReview": "pending"
+      }
+    },
+    {
+      "id": "F14",
+      "kind": "original-teaching-addition",
+      "status": "implemented-awaiting-independent-QA",
+      "baselineFinding": "partial",
+      "targets": [
+        {
+          "file": "course/lecture08.json",
+          "sectionId": "l8-2",
+          "subsectionId": "f14-file-cost-completion",
+          "title": "Complete the file-organisation cost model"
+        },
+        {
+          "file": "course/lecture08.json",
+          "sectionId": "l8-3",
+          "subsectionId": "f14-index-classification",
+          "title": "Separate entry representation, classification, and clustering"
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations.pdf",
+          "physicalPages": [
+            5,
+            6,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            16,
+            17,
+            18,
+            19
+          ]
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations.pdf",
+          "physicalPages": [
+            23,
+            24,
+            25,
+            26,
+            30,
+            33
+          ]
+        }
+      ],
+      "verification": {
+        "implementationChecks": "Existing sections, examples and answer keys preserved; numerical and structural checks recorded separately.",
+        "independentReview": "pending"
+      }
+    },
+    {
+      "id": "F15",
+      "kind": "original-teaching-addition",
+      "status": "implemented-awaiting-independent-QA",
+      "baselineFinding": "missing",
+      "targets": [
+        {
+          "file": "course/lecture09.json",
+          "sectionId": "l9-3",
+          "subsectionId": "f15-internal-node-repair",
+          "title": "Repair internal nodes, not just leaves"
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf",
+          "physicalPages": [
+            17,
+            18,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25
+          ]
+        }
+      ],
+      "verification": {
+        "implementationChecks": "Existing sections, examples and answer keys preserved; numerical and structural checks recorded separately.",
+        "independentReview": "pending"
+      }
+    },
+    {
+      "id": "F16",
+      "kind": "original-teaching-addition",
+      "status": "implemented-awaiting-independent-QA",
+      "baselineFinding": "partial",
+      "targets": [
+        {
+          "file": "course/lecture09.json",
+          "sectionId": "l9-1",
+          "subsectionId": "f16-occupancy-conventions",
+          "title": "Textbook occupancy and production policies"
+        },
+        {
+          "file": "course/lecture09.json",
+          "sectionId": "l9-4",
+          "subsectionId": "f16-isam-and-key-compression",
+          "title": "ISAM boundaries, prefix compression, and duplicates"
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf",
+          "physicalPages": [
+            13,
+            14,
+            16,
+            26,
+            27,
+            28,
+            29
+          ]
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf",
+          "physicalPages": [
+            6,
+            7,
+            10,
+            11,
+            13,
+            14,
+            16,
+            26,
+            27,
+            28,
+            29
+          ]
+        }
+      ],
+      "verification": {
+        "implementationChecks": "Existing sections, examples and answer keys preserved; numerical and structural checks recorded separately.",
+        "independentReview": "pending"
+      }
+    },
+    {
+      "id": "F17",
+      "kind": "original-teaching-addition",
+      "status": "implemented-awaiting-independent-QA",
+      "baselineFinding": "partial",
+      "targets": [
+        {
+          "file": "course/lecture10.json",
+          "sectionId": "l10-s2",
+          "subsectionId": "f17-hash-lookup-cost",
+          "title": "State exactly what a hash lookup costs"
+        },
+        {
+          "file": "course/lecture10.json",
+          "sectionId": "l10-s3",
+          "subsectionId": "f17-extendible-depth",
+          "title": "Keep local and global depths consistent"
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+          "physicalPages": [
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+          "physicalPages": [
+            15,
+            25
+          ]
+        }
+      ],
+      "verification": {
+        "implementationChecks": "Existing sections, examples and answer keys preserved; numerical and structural checks recorded separately.",
+        "independentReview": "pending"
+      }
+    },
+    {
+      "id": "F18",
+      "kind": "original-teaching-addition",
+      "status": "implemented-awaiting-independent-QA",
+      "baselineFinding": "partial",
+      "targets": [
+        {
+          "file": "course/lecture11.json",
+          "sectionId": "l11-s1",
+          "subsectionId": "f18-merge-values",
+          "title": "Follow values as well as runs"
+        },
+        {
+          "file": "course/lecture11.json",
+          "sectionId": "l11-s3",
+          "subsectionId": "f18-hash-state-capacity",
+          "title": "Size the aggregation state and account for skew"
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+          "physicalPages": [
+            4,
+            5,
+            9,
+            10,
+            11,
+            12,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            27,
+            29,
+            30,
+            31,
+            32
+          ]
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+          "physicalPages": [
+            19,
+            20,
+            21,
+            22,
+            23,
+            27,
+            29,
+            30,
+            31,
+            32
+          ]
+        }
+      ],
+      "verification": {
+        "implementationChecks": "Existing sections, examples and answer keys preserved; numerical and structural checks recorded separately.",
+        "independentReview": "pending"
+      }
+    },
+    {
+      "id": "F19",
+      "kind": "original-teaching-addition",
+      "status": "implemented-awaiting-independent-QA",
+      "baselineFinding": "partial",
+      "targets": [
+        {
+          "file": "course/lecture12.json",
+          "sectionId": "l12-s4",
+          "subsectionId": "f19-sort-merge-fusion",
+          "title": "Fuse the last sort pass only when its buffers fit"
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+          "physicalPages": [
+            16,
+            17,
+            30,
+            31,
+            32,
+            33
+          ]
+        }
+      ],
+      "verification": {
+        "implementationChecks": "Existing sections, examples and answer keys preserved; numerical and structural checks recorded separately.",
+        "independentReview": "pending"
+      }
+    },
+    {
+      "id": "F20",
+      "kind": "original-teaching-addition",
+      "status": "implemented-awaiting-independent-QA",
+      "baselineFinding": "partial",
+      "targets": [
+        {
+          "file": "course/lecture12.json",
+          "sectionId": "l12-s3",
+          "subsectionId": "f20-join-groups-and-skew",
+          "title": "Keep every pair when groups repeat or partitions skew"
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+          "physicalPages": [
+            4,
+            17,
+            30,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            43
+          ]
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+          "physicalPages": [
+            22,
+            27
+          ]
+        }
+      ],
+      "verification": {
+        "implementationChecks": "Existing sections, examples and answer keys preserved; numerical and structural checks recorded separately.",
+        "independentReview": "pending"
+      }
+    }
+  ],
+  "quizChanges": [
+    {
+      "id": "l10-collision-resolution-q2",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz10.json",
+      "topicId": "l10-collision-resolution",
+      "oldPages": [
+        2,
+        3
+      ],
+      "newPages": [
+        3
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+        "physicalPages": [
+          3
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l10-collision-resolution-q3",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz10.json",
+      "topicId": "l10-collision-resolution",
+      "oldPages": [
+        2,
+        3
+      ],
+      "newPages": [
+        3
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+        "physicalPages": [
+          3
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l10-collision-resolution-q4",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz10.json",
+      "topicId": "l10-collision-resolution",
+      "oldPages": [
+        2,
+        3
+      ],
+      "newPages": [
+        3
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+        "physicalPages": [
+          3
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l10-collision-resolution-q5",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz10.json",
+      "topicId": "l10-collision-resolution",
+      "oldPages": [
+        2,
+        3
+      ],
+      "newPages": [
+        2
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+        "physicalPages": [
+          2
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l10-hash-based-indexing-q1",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz10.json",
+      "topicId": "l10-hash-based-indexing",
+      "oldPages": [
+        4,
+        5
+      ],
+      "newPages": [
+        5
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+        "physicalPages": [
+          5
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l10-hash-based-indexing-q2",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz10.json",
+      "topicId": "l10-hash-based-indexing",
+      "oldPages": [
+        4,
+        5
+      ],
+      "newPages": [
+        4
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+        "physicalPages": [
+          4
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l10-hash-based-indexing-q3",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz10.json",
+      "topicId": "l10-hash-based-indexing",
+      "oldPages": [
+        4,
+        5
+      ],
+      "newPages": [
+        5,
+        11
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+        "physicalPages": [
+          5,
+          11
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l10-hash-based-indexing-q4",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz10.json",
+      "topicId": "l10-hash-based-indexing",
+      "oldPages": [
+        4,
+        5
+      ],
+      "newPages": [
+        4
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+        "physicalPages": [
+          4
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l10-hash-based-indexing-q5",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz10.json",
+      "topicId": "l10-hash-based-indexing",
+      "oldPages": [
+        4,
+        5
+      ],
+      "newPages": [
+        5
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+        "physicalPages": [
+          5
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l10-static-chained-hash-table-management-q1",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz10.json",
+      "topicId": "l10-static-chained-hash-table-management",
+      "oldPages": [
+        7,
+        8,
+        9
+      ],
+      "newPages": [
+        7,
+        8
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+        "physicalPages": [
+          7,
+          8
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l10-static-chained-hash-table-management-q2",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz10.json",
+      "topicId": "l10-static-chained-hash-table-management",
+      "oldPages": [
+        7,
+        8,
+        9
+      ],
+      "newPages": [
+        7,
+        11
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+        "physicalPages": [
+          7,
+          11
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l10-static-chained-hash-table-management-q3",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz10.json",
+      "topicId": "l10-static-chained-hash-table-management",
+      "oldPages": [
+        7,
+        8,
+        9
+      ],
+      "newPages": [
+        9
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+        "physicalPages": [
+          9
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l10-static-chained-hash-table-management-q4",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz10.json",
+      "topicId": "l10-static-chained-hash-table-management",
+      "oldPages": [
+        7,
+        8,
+        9
+      ],
+      "newPages": [
+        9
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+        "physicalPages": [
+          9
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l10-static-chained-hash-table-management-q5",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz10.json",
+      "topicId": "l10-static-chained-hash-table-management",
+      "oldPages": [
+        7,
+        8,
+        9
+      ],
+      "newPages": [
+        8,
+        9
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+        "physicalPages": [
+          8,
+          9
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l10-hash-collisions-and-overflow-chains-q1",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz10.json",
+      "topicId": "l10-hash-collisions-and-overflow-chains",
+      "oldPages": [
+        10,
+        11,
+        12
+      ],
+      "newPages": [
+        8,
+        10
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+        "physicalPages": [
+          8,
+          10
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l10-hash-collisions-and-overflow-chains-q2",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz10.json",
+      "topicId": "l10-hash-collisions-and-overflow-chains",
+      "oldPages": [
+        10,
+        11,
+        12
+      ],
+      "newPages": [
+        8,
+        9
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+        "physicalPages": [
+          8,
+          9
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l10-hash-collisions-and-overflow-chains-q3",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz10.json",
+      "topicId": "l10-hash-collisions-and-overflow-chains",
+      "oldPages": [
+        10,
+        11,
+        12
+      ],
+      "newPages": [
+        9,
+        10
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+        "physicalPages": [
+          9,
+          10
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l10-hash-collisions-and-overflow-chains-q4",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz10.json",
+      "topicId": "l10-hash-collisions-and-overflow-chains",
+      "oldPages": [
+        10,
+        11,
+        12
+      ],
+      "newPages": [
+        10
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+        "physicalPages": [
+          10
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l10-hash-collisions-and-overflow-chains-q5",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz10.json",
+      "topicId": "l10-hash-collisions-and-overflow-chains",
+      "oldPages": [
+        10,
+        11,
+        12
+      ],
+      "newPages": [
+        10
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+        "physicalPages": [
+          10
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l10-global-and-local-depth-q1",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz10.json",
+      "topicId": "l10-global-and-local-depth",
+      "oldPages": [
+        14,
+        15,
+        16,
+        17
+      ],
+      "newPages": [
+        15
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+        "physicalPages": [
+          15
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l10-global-and-local-depth-q2",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz10.json",
+      "topicId": "l10-global-and-local-depth",
+      "oldPages": [
+        14,
+        15,
+        16,
+        17
+      ],
+      "newPages": [
+        15,
+        25
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+        "physicalPages": [
+          15,
+          25
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l10-global-and-local-depth-q3",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz10.json",
+      "topicId": "l10-global-and-local-depth",
+      "oldPages": [
+        14,
+        15,
+        16,
+        17
+      ],
+      "newPages": [
+        15,
+        16
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+        "physicalPages": [
+          15,
+          16
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l10-global-and-local-depth-q4",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz10.json",
+      "topicId": "l10-global-and-local-depth",
+      "oldPages": [
+        14,
+        15,
+        16,
+        17
+      ],
+      "newPages": [
+        15
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+        "physicalPages": [
+          15
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l10-global-and-local-depth-q5",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz10.json",
+      "topicId": "l10-global-and-local-depth",
+      "oldPages": [
+        14,
+        15,
+        16,
+        17
+      ],
+      "newPages": [
+        15,
+        25
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+        "physicalPages": [
+          15,
+          25
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l10-extendible-hashing-q1",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz10.json",
+      "topicId": "l10-extendible-hashing",
+      "oldPages": [
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ],
+      "newPages": [
+        13,
+        21
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+        "physicalPages": [
+          13,
+          21
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l10-extendible-hashing-q2",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz10.json",
+      "topicId": "l10-extendible-hashing",
+      "oldPages": [
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ],
+      "newPages": [
+        21,
+        22,
+        23,
+        24
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+        "physicalPages": [
+          21,
+          22,
+          23,
+          24
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l10-extendible-hashing-q3",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz10.json",
+      "topicId": "l10-extendible-hashing",
+      "oldPages": [
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ],
+      "newPages": [
+        18,
+        19
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+        "physicalPages": [
+          18,
+          19
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l10-extendible-hashing-q4",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz10.json",
+      "topicId": "l10-extendible-hashing",
+      "oldPages": [
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ],
+      "newPages": [
+        21,
+        22
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+        "physicalPages": [
+          21,
+          22
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l10-extendible-hashing-q5",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz10.json",
+      "topicId": "l10-extendible-hashing",
+      "oldPages": [
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ],
+      "newPages": [
+        17
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+        "physicalPages": [
+          17
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-query-plans-and-operators-q2",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-query-plans-and-operators",
+      "oldPages": [
+        2,
+        3
+      ],
+      "newPages": [
+        3
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          3
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-query-plans-and-operators-q3",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-query-plans-and-operators",
+      "oldPages": [
+        2,
+        3
+      ],
+      "newPages": [
+        3
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          3
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-query-plans-and-operators-q5",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-query-plans-and-operators",
+      "oldPages": [
+        2,
+        3
+      ],
+      "newPages": [
+        3
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          3
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-sorting-q1",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-sorting",
+      "oldPages": [
+        4,
+        5,
+        6
+      ],
+      "newPages": [
+        5
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          5
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-sorting-q2",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-sorting",
+      "oldPages": [
+        4,
+        5,
+        6
+      ],
+      "newPages": [
+        4
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          4
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-sorting-q3",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-sorting",
+      "oldPages": [
+        4,
+        5,
+        6
+      ],
+      "newPages": [
+        6
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          6
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-sorting-q4",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-sorting",
+      "oldPages": [
+        4,
+        5,
+        6
+      ],
+      "newPages": [
+        5
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          5
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-sorting-q5",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-sorting",
+      "oldPages": [
+        4,
+        5,
+        6
+      ],
+      "newPages": [
+        18
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          18
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-2-way-external-merge-sort-q1",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-2-way-external-merge-sort",
+      "oldPages": [
+        7,
+        8,
+        9,
+        10
+      ],
+      "newPages": [
+        9
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          9
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-2-way-external-merge-sort-q2",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-2-way-external-merge-sort",
+      "oldPages": [
+        7,
+        8,
+        9,
+        10
+      ],
+      "newPages": [
+        9
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          9
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-2-way-external-merge-sort-q3",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-2-way-external-merge-sort",
+      "oldPages": [
+        7,
+        8,
+        9,
+        10
+      ],
+      "newPages": [
+        10
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          10
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-2-way-external-merge-sort-q4",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-2-way-external-merge-sort",
+      "oldPages": [
+        7,
+        8,
+        9,
+        10
+      ],
+      "newPages": [
+        10
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          10
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-2-way-external-merge-sort-q5",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-2-way-external-merge-sort",
+      "oldPages": [
+        7,
+        8,
+        9,
+        10
+      ],
+      "newPages": [
+        9,
+        10
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          9,
+          10
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-external-merge-sort-q1",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-external-merge-sort",
+      "oldPages": [
+        11,
+        12,
+        13,
+        14
+      ],
+      "newPages": [
+        11,
+        12
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          11,
+          12
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-external-merge-sort-q2",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-external-merge-sort",
+      "oldPages": [
+        11,
+        12,
+        13,
+        14
+      ],
+      "newPages": [
+        12
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          12
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-external-merge-sort-q3",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-external-merge-sort",
+      "oldPages": [
+        11,
+        12,
+        13,
+        14
+      ],
+      "newPages": [
+        12,
+        13
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          12,
+          13
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-external-merge-sort-q4",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-external-merge-sort",
+      "oldPages": [
+        11,
+        12,
+        13,
+        14
+      ],
+      "newPages": [
+        12
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          12
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-external-merge-sort-q5",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-external-merge-sort",
+      "oldPages": [
+        11,
+        12,
+        13,
+        14
+      ],
+      "newPages": [
+        6,
+        12
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          6,
+          12
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-using-b-trees-for-sorting-q1",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-using-b-trees-for-sorting",
+      "oldPages": [
+        15,
+        16,
+        17,
+        18
+      ],
+      "newPages": [
+        15
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          15
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-using-b-trees-for-sorting-q2",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-using-b-trees-for-sorting",
+      "oldPages": [
+        15,
+        16,
+        17,
+        18
+      ],
+      "newPages": [
+        16
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          16
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-using-b-trees-for-sorting-q3",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-using-b-trees-for-sorting",
+      "oldPages": [
+        15,
+        16,
+        17,
+        18
+      ],
+      "newPages": [
+        17
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          17
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-using-b-trees-for-sorting-q4",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-using-b-trees-for-sorting",
+      "oldPages": [
+        15,
+        16,
+        17,
+        18
+      ],
+      "newPages": [
+        15,
+        17
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          15,
+          17
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-using-b-trees-for-sorting-q5",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-using-b-trees-for-sorting",
+      "oldPages": [
+        15,
+        16,
+        17,
+        18
+      ],
+      "newPages": [
+        18
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          18
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-external-hashing-q1",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-external-hashing",
+      "oldPages": [
+        19,
+        20,
+        21,
+        22
+      ],
+      "newPages": [
+        20
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          20
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-external-hashing-q2",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-external-hashing",
+      "oldPages": [
+        19,
+        20,
+        21,
+        22
+      ],
+      "newPages": [
+        21
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          21
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-external-hashing-q3",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-external-hashing",
+      "oldPages": [
+        19,
+        20,
+        21,
+        22
+      ],
+      "newPages": [
+        22,
+        27
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          22,
+          27
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-external-hashing-q4",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-external-hashing",
+      "oldPages": [
+        19,
+        20,
+        21,
+        22
+      ],
+      "newPages": [
+        22
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          22
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-external-hashing-q5",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-external-hashing",
+      "oldPages": [
+        19,
+        20,
+        21,
+        22
+      ],
+      "newPages": [
+        19,
+        32
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          19,
+          32
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-hashing-aggregate-q1",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-hashing-aggregate",
+      "oldPages": [
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "newPages": [
+        29,
+        30
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          29,
+          30
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-hashing-aggregate-q2",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-hashing-aggregate",
+      "oldPages": [
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "newPages": [
+        29,
+        30
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          29,
+          30
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-hashing-aggregate-q3",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-hashing-aggregate",
+      "oldPages": [
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "newPages": [
+        25
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          25
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-hashing-aggregate-q4",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-hashing-aggregate",
+      "oldPages": [
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "newPages": [
+        27
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          27
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-hashing-aggregate-q5",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-hashing-aggregate",
+      "oldPages": [
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "newPages": [
+        23
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          23
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-hashing-summarisation-q1",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-hashing-summarisation",
+      "oldPages": [
+        29,
+        30,
+        31,
+        32
+      ],
+      "newPages": [
+        30
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          30
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-hashing-summarisation-q2",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-hashing-summarisation",
+      "oldPages": [
+        29,
+        30,
+        31,
+        32
+      ],
+      "newPages": [
+        30
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          30
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-hashing-summarisation-q3",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-hashing-summarisation",
+      "oldPages": [
+        29,
+        30,
+        31,
+        32
+      ],
+      "newPages": [
+        30
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          30
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-hashing-summarisation-q4",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-hashing-summarisation",
+      "oldPages": [
+        29,
+        30,
+        31,
+        32
+      ],
+      "newPages": [
+        30
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          30
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-hashing-summarisation-q5",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-hashing-summarisation",
+      "oldPages": [
+        29,
+        30,
+        31,
+        32
+      ],
+      "newPages": [
+        29,
+        30
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          29,
+          30
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l11-cost-analysis-q3",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz11.json",
+      "topicId": "l11-cost-analysis",
+      "oldPages": [
+        31
+      ],
+      "newPages": [
+        27,
+        29,
+        32
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "physicalPages": [
+          27,
+          29,
+          32
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-join-operator-q1",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-join-operator",
+      "oldPages": [
+        2,
+        3,
+        4
+      ],
+      "newPages": [
+        2
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          2
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-join-operator-q2",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-join-operator",
+      "oldPages": [
+        2,
+        3,
+        4
+      ],
+      "newPages": [
+        2
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          2
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-join-operator-q3",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-join-operator",
+      "oldPages": [
+        2,
+        3,
+        4
+      ],
+      "newPages": [
+        4
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          4
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-join-operator-q4",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-join-operator",
+      "oldPages": [
+        2,
+        3,
+        4
+      ],
+      "newPages": [
+        4,
+        5,
+        8
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          4,
+          5,
+          8
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-join-operator-q5",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-join-operator",
+      "oldPages": [
+        2,
+        3,
+        4
+      ],
+      "newPages": [
+        3
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          3
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-simple-nested-loops-join-q1",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-simple-nested-loops-join",
+      "oldPages": [
+        5,
+        6,
+        7
+      ],
+      "newPages": [
+        5
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          5
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-simple-nested-loops-join-q2",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-simple-nested-loops-join",
+      "oldPages": [
+        5,
+        6,
+        7
+      ],
+      "newPages": [
+        5
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          5
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-simple-nested-loops-join-q3",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-simple-nested-loops-join",
+      "oldPages": [
+        5,
+        6,
+        7
+      ],
+      "newPages": [
+        6
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          6
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-simple-nested-loops-join-q4",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-simple-nested-loops-join",
+      "oldPages": [
+        5,
+        6,
+        7
+      ],
+      "newPages": [
+        15,
+        43
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          15,
+          43
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-simple-nested-loops-join-q5",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-simple-nested-loops-join",
+      "oldPages": [
+        5,
+        6,
+        7
+      ],
+      "newPages": [
+        5,
+        11
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          5,
+          11
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-page-nested-loops-join-q1",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-page-nested-loops-join",
+      "oldPages": [
+        8,
+        9
+      ],
+      "newPages": [
+        8
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          8
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-page-nested-loops-join-q3",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-page-nested-loops-join",
+      "oldPages": [
+        8,
+        9
+      ],
+      "newPages": [
+        9
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          9
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-page-nested-loops-join-q4",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-page-nested-loops-join",
+      "oldPages": [
+        8,
+        9
+      ],
+      "newPages": [
+        7,
+        8
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          7,
+          8
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-page-nested-loops-join-q5",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-page-nested-loops-join",
+      "oldPages": [
+        8,
+        9
+      ],
+      "newPages": [
+        8
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          8
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-block-nested-loops-join-q1",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-block-nested-loops-join",
+      "oldPages": [
+        10,
+        11
+      ],
+      "newPages": [
+        10
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          10
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-block-nested-loops-join-q2",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-block-nested-loops-join",
+      "oldPages": [
+        10,
+        11
+      ],
+      "newPages": [
+        11
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          11
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-block-nested-loops-join-q3",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-block-nested-loops-join",
+      "oldPages": [
+        10,
+        11
+      ],
+      "newPages": [
+        11
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          11
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-block-nested-loops-join-q4",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-block-nested-loops-join",
+      "oldPages": [
+        10,
+        11
+      ],
+      "newPages": [
+        11
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          11
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-block-nested-loops-join-q5",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-block-nested-loops-join",
+      "oldPages": [
+        10,
+        11
+      ],
+      "newPages": [
+        11
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          11
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-index-nested-loops-join-q1",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-index-nested-loops-join",
+      "oldPages": [
+        12,
+        13,
+        14,
+        15
+      ],
+      "newPages": [
+        13
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          13
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-index-nested-loops-join-q2",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-index-nested-loops-join",
+      "oldPages": [
+        12,
+        13,
+        14,
+        15
+      ],
+      "newPages": [
+        12,
+        13
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          12,
+          13
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-index-nested-loops-join-q3",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-index-nested-loops-join",
+      "oldPages": [
+        12,
+        13,
+        14,
+        15
+      ],
+      "newPages": [
+        13,
+        14
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          13,
+          14
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-index-nested-loops-join-q4",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-index-nested-loops-join",
+      "oldPages": [
+        12,
+        13,
+        14,
+        15
+      ],
+      "newPages": [
+        13
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          13
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-index-nested-loops-join-q5",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-index-nested-loops-join",
+      "oldPages": [
+        12,
+        13,
+        14,
+        15
+      ],
+      "newPages": [
+        14
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          14
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-sort-merge-join-q1",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-sort-merge-join",
+      "oldPages": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33
+      ],
+      "newPages": [
+        30
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          30
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-sort-merge-join-q2",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-sort-merge-join",
+      "oldPages": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33
+      ],
+      "newPages": [
+        17
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          17
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-sort-merge-join-q3",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-sort-merge-join",
+      "oldPages": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33
+      ],
+      "newPages": [
+        30,
+        31
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          30,
+          31
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-sort-merge-join-q4",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-sort-merge-join",
+      "oldPages": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33
+      ],
+      "newPages": [
+        17,
+        30
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          17,
+          30
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-sort-merge-join-q5",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-sort-merge-join",
+      "oldPages": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33
+      ],
+      "newPages": [
+        17
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          17
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-basic-in-memory-hash-join-q1",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-basic-in-memory-hash-join",
+      "oldPages": [
+        34,
+        35,
+        36
+      ],
+      "newPages": [
+        34
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          34
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-basic-in-memory-hash-join-q2",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-basic-in-memory-hash-join",
+      "oldPages": [
+        34,
+        35,
+        36
+      ],
+      "newPages": [
+        34,
+        41,
+        42
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          34,
+          41,
+          42
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-basic-in-memory-hash-join-q3",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-basic-in-memory-hash-join",
+      "oldPages": [
+        34,
+        35,
+        36
+      ],
+      "newPages": [
+        34,
+        35
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          34,
+          35
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-basic-in-memory-hash-join-q4",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-basic-in-memory-hash-join",
+      "oldPages": [
+        34,
+        35,
+        36
+      ],
+      "newPages": [
+        41
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          41
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-basic-in-memory-hash-join-q5",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-basic-in-memory-hash-join",
+      "oldPages": [
+        34,
+        35,
+        36
+      ],
+      "newPages": [
+        34
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          34
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-grace-hash-join-q1",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-grace-hash-join",
+      "oldPages": [
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43
+      ],
+      "newPages": [
+        36,
+        37
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          36,
+          37
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-grace-hash-join-q2",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-grace-hash-join",
+      "oldPages": [
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43
+      ],
+      "newPages": [
+        39,
+        40
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          39,
+          40
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-grace-hash-join-q3",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-grace-hash-join",
+      "oldPages": [
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43
+      ],
+      "newPages": [
+        34,
+        38
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          34,
+          38
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-grace-hash-join-q4",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-grace-hash-join",
+      "oldPages": [
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43
+      ],
+      "newPages": [
+        39
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          39
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-grace-hash-join-q5",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-grace-hash-join",
+      "oldPages": [
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43
+      ],
+      "newPages": [
+        41
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          41
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-sort-merge-join-refinement-q1",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-sort-merge-join-refinement",
+      "oldPages": [
+        32,
+        33
+      ],
+      "newPages": [
+        32
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          32
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-sort-merge-join-refinement-q2",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-sort-merge-join-refinement",
+      "oldPages": [
+        32,
+        33
+      ],
+      "newPages": [
+        32
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          32
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-sort-merge-join-refinement-q3",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-sort-merge-join-refinement",
+      "oldPages": [
+        32,
+        33
+      ],
+      "newPages": [
+        32
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          32
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-sort-merge-join-refinement-q4",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-sort-merge-join-refinement",
+      "oldPages": [
+        32,
+        33
+      ],
+      "newPages": [
+        32
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          32
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-sort-merge-join-refinement-q5",
+      "kind": "citation-precision-refinement",
+      "file": "course/quiz12.json",
+      "topicId": "l12-sort-merge-join-refinement",
+      "oldPages": [
+        32,
+        33
+      ],
+      "newPages": [
+        32
+      ],
+      "source": {
+        "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "physicalPages": [
+          32
+        ]
+      },
+      "answerContentChanged": false,
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l09-internal-merge-new-q1",
+      "kind": "original-question-addition",
+      "file": "course/quiz09.json",
+      "topicId": "l09-topic-delete",
+      "addresses": "F15",
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf",
+          "physicalPages": [
+            23,
+            24
+          ]
+        }
+      ],
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l09-internal-rotate-new-q2",
+      "kind": "original-question-addition",
+      "file": "course/quiz09.json",
+      "topicId": "l09-topic-delete",
+      "addresses": "F15",
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf",
+          "physicalPages": [
+            25
+          ]
+        }
+      ],
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-fusion-new-q1",
+      "kind": "original-question-addition",
+      "file": "course/quiz12.json",
+      "topicId": "l12-sort-merge-join-refinement",
+      "addresses": "F19",
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+          "physicalPages": [
+            32
+          ]
+        }
+      ],
+      "status": "implemented-awaiting-independent-QA"
+    },
+    {
+      "id": "l12-skew-new-q1",
+      "kind": "original-question-addition",
+      "file": "course/quiz12.json",
+      "topicId": "l12-grace-hash-join",
+      "addresses": "F20",
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+          "physicalPages": [
+            34,
+            35,
+            36,
+            39
+          ]
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+          "physicalPages": [
+            22,
+            29,
+            30
+          ]
+        }
+      ],
+      "status": "implemented-awaiting-independent-QA"
+    }
+  ],
+  "checks": [
+    {
+      "name": "original-content-preservation",
+      "result": "passed",
+      "evidence": "Compared all six lessons with branch HEAD. Section IDs/titles/counts and original HTML prefixes match; embedded questions remain identical."
+    },
+    {
+      "name": "legacy-question-preservation",
+      "result": "passed",
+      "evidence": "All 180 existing question IDs, prompts, option order/meaning, answer indices and explanations match branch HEAD; topic IDs unchanged, banks remain 5–10 questions."
+    },
+    {
+      "name": "resolution-target-and-citation-check",
+      "result": "passed",
+      "evidence": "All 16 subsection targets exist; all 112 requested page arrays exactly match the canonical data; four new questions include physical-page and full source metadata."
+    },
+    {
+      "name": "foundation34-math",
+      "command": "node --test tests/foundation34-math.test.mjs",
+      "result": "4/4 passed",
+      "scope": "Reference child routing, fusion memory threshold and I/O, dictionary and hash-state sizes, duplicate-pair completeness and cross-document provenance; not a full browser or independent content acceptance result."
+    },
+    {
+      "name": "patch-whitespace",
+      "command": "git diff --check -- assigned course files",
+      "result": "passed"
+    }
+  ],
+  "counts": {
+    "teachingFindings": 10,
+    "teachingSectionTargets": 16,
+    "citationPrecisionRefinements": 112,
+    "originalQuestionsAdded": 4
+  }
+}

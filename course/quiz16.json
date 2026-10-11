@@ -149,7 +149,8 @@
           "pages": [
             4,
             5,
-            6
+            6,
+            19
           ]
         },
         {
@@ -411,7 +412,7 @@
       "questions": [
         {
           "id": "l16-clustered-b-tree-scan-q1",
-          "prompt": "Traversal costs 3 I/Os; selectivity is 10%; the index has 100 leaf pages and the data has 1,000 pages. For variant B with full rows required, what is the clustered-scan estimate?",
+          "prompt": "Internal-node descent before leaf scanning costs 3 I/Os; selectivity is 10%; the index has 100 leaf pages and the data has 1,000 pages. For variant B with full rows required, what is the clustered-scan estimate?",
           "options": [
             "113 I/Os",
             "103 I/Os",
@@ -427,7 +428,7 @@
         },
         {
           "id": "l16-clustered-b-tree-scan-q2",
-          "prompt": "Using the same figures, what is the estimate if the query is index-only in this model?",
+          "prompt": "Using the same figures (including 3 I/Os for internal-node descent before leaf scanning), what is the estimate if the query is index-only in this model?",
           "options": [
             "3 I/Os",
             "13 I/Os",
@@ -488,6 +489,34 @@
             17,
             18
           ]
+        },
+        {
+          "id": "ex16-costs-q1",
+          "prompt": "Internal-node descent costs h=3 I/Os, leaf pages L=120, data pages N=900, and selectivity s=0.05. What is the clustered full-row estimate h+sL+sN?",
+          "options": [
+            "9 I/Os",
+            "48 I/Os",
+            "54 I/Os",
+            "903 I/Os"
+          ],
+          "answer": 2,
+          "explanation": "3+0.05×120+0.05×900=3+6+45=54. Descent excludes leaf scanning, so the first leaf is not double-counted.",
+          "pages": [
+            16,
+            17,
+            18
+          ],
+          "sources": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf",
+              "physicalPages": [
+                16,
+                17,
+                18
+              ]
+            }
+          ],
+          "origin": "Original audit extension question"
         }
       ]
     },

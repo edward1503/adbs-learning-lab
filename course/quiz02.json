@@ -68,7 +68,7 @@
           "answer": 1,
           "explanation": "DDL defines schemas. DCL focuses on access control.",
           "pages": [
-            9
+            8
           ]
         },
         {
@@ -83,7 +83,7 @@
           "answer": 2,
           "explanation": "The DBMS chooses how to execute the query, but must preserve the specified result, including required multiplicities.",
           "pages": [
-            9
+            8
           ]
         }
       ]
@@ -777,6 +777,34 @@
           "pages": [
             28
           ]
+        },
+        {
+          "id": "l02-negative-new-q1",
+          "prompt": "Member IDs are 1, 2, 3 and non-NULL Borrow.member_id values are 1, 1, 2. Which Member survives a correlated NOT EXISTS for a matching Borrow?",
+          "options": [
+            "1",
+            "3",
+            "1 and 2",
+            "All three"
+          ],
+          "answer": 1,
+          "explanation": "Only Member 3 has no matching Borrow row. Duplicate matches for Member 1 do not change existence.",
+          "pages": [
+            26,
+            27,
+            28
+          ],
+          "sources": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                26,
+                27,
+                28
+              ]
+            }
+          ],
+          "auditFinding": "F04"
         }
       ]
     }

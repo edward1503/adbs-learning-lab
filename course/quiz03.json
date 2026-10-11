@@ -602,6 +602,34 @@
           "pages": [
             13
           ]
+        },
+        {
+          "id": "l03-rename-new-q1",
+          "prompt": "Employee is renamed as E and its manager occurrence as M. Which condition matches each employee to the manager identified in the employee row?",
+          "options": [
+            "E.id = M.id",
+            "E.manager_id = E.id",
+            "M.manager_id = M.id",
+            "E.manager_id = M.id"
+          ],
+          "answer": 3,
+          "explanation": "Renaming gives the two relation occurrences distinct roles; E.manager_id refers to the identifier M.id of the manager.",
+          "pages": [
+            13,
+            16,
+            17
+          ],
+          "sources": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                13,
+                16,
+                17
+              ]
+            }
+          ],
+          "auditFinding": "F05"
         }
       ]
     },

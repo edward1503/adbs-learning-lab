@@ -1,0 +1,302 @@
+{
+  "lesson": {
+    "id": "supplement-34",
+    "lecture": null,
+    "order": 34,
+    "kind": "supplemental",
+    "displayLabel": "M12 · Session 3",
+    "module": 12,
+    "week": 14,
+    "suggestedSession": 3,
+    "title": "Project clinic: ablations, counterexamples and negative results",
+    "short": "Mechanisms · factorial tests · robustness · claims",
+    "group": "12 · Project clinic",
+    "time": 35,
+    "timeMeaning": "Suggested independent study minutes; not scheduled contact time",
+    "lead": "An ablation asks why the system works. A counterexample shows where the explanation stops working.",
+    "goals": [
+      "Design ablations that isolate mechanisms without quietly changing the task.",
+      "Interpret interacting components using a small factorial experiment.",
+      "Turn failures and negative results into bounded, useful conclusions."
+    ],
+    "sections": [
+      {
+        "id": "supplement-34-status",
+        "title": "How to use this supplemental session",
+        "html": "<p>This is an original supplemental study session aligned to the user-provided syllabus. It is not an Edinburgh lecture or a verified Canvas assignment. The Canvas reading list and instructor-specific assessment instructions were not accessible. Suggested activities, timings, templates and checks below are practice guidance, not official requirements.</p>"
+      },
+      {
+        "id": "supplement-34-s1",
+        "title": "From a system result to a mechanism claim",
+        "html": "<p>Suppose a method changes batching, caching and candidate selection simultaneously. A faster final system does not show which change helped. Remove or vary one mechanism while preserving the intended workload, correctness and measurement protocol.</p><p>Some components require retuning when removed. Report both a fixed-parameter ablation, which tests the local effect in one configuration, and a retuned ablation if the scientific question is the best achievable system without that component. Label the distinction. A broken or obviously mistuned ablation is not a fair test of necessity.</p><p>Controls can include the same training budget with random labels, a simpler model, equal candidate counts, equal memory, or exact reranking. Choose controls from the proposed causal explanation, not from a generic checklist.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p>“Without X” is meaningful only when the remaining system still implements a coherent comparison.</p></aside>"
+      },
+      {
+        "id": "supplement-34-s2",
+        "title": "Worked example: interactions between cache and batching",
+        "html": "<p><strong>Original hypothetical measurements.</strong> All variants have the same quality and use the same workload. No cache/no batching takes 100 ms. Cache only takes 70 ms. Batching only takes 80 ms. Both take 40 ms.</p><p>The cache saves 30 ms without batching but 40 ms with batching. Batching saves 20 ms without caching but 30 ms with caching. A purely additive prediction from the individual savings would be 50 ms; the observed combined 40 ms suggests a 10 ms interaction on this latency scale.</p><p>This calculation does not prove the cause of the interaction. It motivates tracing cache hit rates, request counts and scheduling. Also check repetition variability: the four cells must not be noisy single observations. Interactions depend on metric scale; additive latency effects and multiplicative speedup effects are different analyses.</p><details><summary>Exercise: a feature A gives no benefit alone but improves a system that already has B. Should A be called useless?</summary><p><strong>Worked answer.</strong> No. A may interact with B. Show the four configurations, examine the mechanism and uncertainty, and limit the claim to the combined design if the evidence supports it.</p></details>"
+      },
+      {
+        "id": "supplement-34-s3",
+        "title": "Stress the assumptions deliberately",
+        "html": "<p>Write an assumption ledger: a statement, why the method needs it, how to violate it, the expected failure, and the observed result.</p><ul><li><strong>Learned component:</strong> unseen template, new data distribution, unsupported operator or stale model.</li><li><strong>ANN:</strong> rare selective filter, difficult near-ties, skewed clusters, update/delete load or embedding-version change.</li><li><strong>LLM pipeline:</strong> very long document, ambiguous label, noisy OCR, repeated boilerplate, conflicting evidence or model-version change.</li><li><strong>Disaggregation:</strong> hot-page contention, cold cache, partial failure, high network latency or ownership churn.</li></ul><p>Use a small reproducible counterexample when possible. The purpose is to characterize a boundary, not to make another method look bad with an irrelevant corner case. Connect each stress case to the intended deployment or research claim.</p>"
+      },
+      {
+        "id": "supplement-34-s4",
+        "title": "A negative result is a result after the controls are checked",
+        "html": "<p>When the proposed method loses, first verify implementation correctness, baseline equivalence, measurement boundaries and workload generation. Check whether the hypothesized bottleneck actually exists. Then inspect traces and breakdowns before adding complexity.</p><p><strong>Original example.</strong> Adaptive ANN search lowers distance evaluations by 30%, but end-to-end latency is unchanged. Profiling finds that transfer and host orchestration dominate. A useful conclusion is that reduced search work does not improve latency in this host-bound regime. The next experiment can increase batch size or remove transfers to test the mechanism under a different boundary, while preserving the original negative result.</p><p>Do not keep trying datasets until a favorable result appears and then present it as the only test. Record exploratory trials and freeze a confirmatory protocol before claiming generality.</p><details><summary>Exercise: a model improves q-error but worsens runtime. Is the study invalid?</summary><p><strong>Worked answer.</strong> Not automatically. Verify correctness and measurement first. The result can reveal that the metric is misaligned with plan decisions, that inference overhead dominates, or that a few harmful errors cross plan thresholds. Report the conflict and investigate a specific explanation.</p></details>"
+      },
+      {
+        "id": "supplement-34-s5",
+        "title": "Revise the claim and consultation decisions",
+        "html": "<p>Use three columns: “supported”, “not established” and “contradicted”. Place every planned claim in one column using actual evidence. Replace “always faster” with a bounded condition when appropriate. Keep limitations specific enough that another researcher can design the next test.</p><p>Bring the key ablation plot, one counterexample, the assumption ledger and a proposed scope change to consultation. Record which follow-up discriminates between explanations. A suggested decision log contains date, evidence, decision, rationale, owner and next check; it is not an official submission template.</p><details><summary>Exercise: your improvement appears only after excluding high-contention runs. What is a defensible report?</summary><p><strong>Worked answer.</strong> Report all runs, explain the contention-dependent breakdown and narrow the benefit to the measured low-contention regime. If high contention is part of the target workload, the overall claim must include that failure. Exclusion solely because a run hurts the result is not defensible.</p></details><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p>A credible limitation explains when and why the result changes.</p></aside>"
+      }
+    ],
+    "quiz": {
+      "question": "What does a four-cell experiment with A off/on and B off/on reveal that two independent ablations may miss?",
+      "options": [
+        "The official grading rubric.",
+        "A guarantee of generalization to every workload.",
+        "Interactions between A and B.",
+        "Whether all bugs are gone."
+      ],
+      "answer": 2,
+      "explanation": "The effect of one component can depend on whether the other component is present.",
+      "id": "supplement-34-q1",
+      "origin": "Original supplemental exercise; not a verified assessed question",
+      "sourceKeys": [
+        "lqo",
+        "grasp",
+        "cuvsbench"
+      ],
+      "lessonSectionIds": [
+        "supplement-34-s1",
+        "supplement-34-s2",
+        "supplement-34-s3",
+        "supplement-34-s4",
+        "supplement-34-s5"
+      ]
+    },
+    "source": {
+      "summary": "Original supplemental explanation and exercises. Primary research/software evidence is linked; syllabus alignment is based on the user-provided outline. Canvas-assigned readings are unverified.",
+      "links": [
+        {
+          "url": "https://www.vldb.org/pvldb/vol17/p1565-lehmann.pdf",
+          "label": "Is Your Learned Query Optimizer Behaving As You Expect? A Machine Learning Perspective · Published peer-reviewed research / evaluation"
+        },
+        {
+          "url": "https://www.vldb.org/pvldb/vol18/p2519-wu.pdf",
+          "label": "Data-Agnostic Cardinality Learning from Imperfect Workloads · Published peer-reviewed research"
+        },
+        {
+          "url": "https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies",
+          "label": "NVIDIA cuVS: Benchmarking methodologies · Official software documentation, checked 2026-10-11"
+        }
+      ]
+    },
+    "coverage": {
+      "verified": false,
+      "status": "Supplemental content with verified primary references; official Canvas reading alignment unverified",
+      "sourceEvidenceVerified": true,
+      "officialCourseMaterialVerified": false,
+      "module": 12,
+      "week": 14,
+      "syllabusTopics": [
+        "project clinic",
+        "ablation studies",
+        "mechanism analysis",
+        "negative results",
+        "research consultation"
+      ],
+      "topics": [
+        "project clinic",
+        "ablation studies",
+        "mechanism analysis",
+        "negative results",
+        "research consultation"
+      ],
+      "limitations": [
+        "Canvas-assigned paper list is unavailable.",
+        "Lesson is an original supplement, not a reconstructed official lecture.",
+        "No assessment rubric, deadline, presentation duration or submission format is asserted."
+      ],
+      "sourceKeys": [
+        "lqo",
+        "grasp",
+        "cuvsbench"
+      ]
+    },
+    "lab": null
+  },
+  "quizBank": {
+    "lessonId": "supplement-34",
+    "kind": "supplemental",
+    "module": 12,
+    "title": "Project clinic: ablations, counterexamples and negative results",
+    "topics": [
+      {
+        "id": "supplement-34-practice",
+        "title": "Mechanisms · factorial tests · robustness · claims",
+        "sourceStatus": "Supplemental, not official slide/Canvas quiz",
+        "questions": [
+          {
+            "question": "What does a four-cell experiment with A off/on and B off/on reveal that two independent ablations may miss?",
+            "options": [
+              "The official grading rubric.",
+              "A guarantee of generalization to every workload.",
+              "Interactions between A and B.",
+              "Whether all bugs are gone."
+            ],
+            "answer": 2,
+            "explanation": "The effect of one component can depend on whether the other component is present.",
+            "id": "supplement-34-q1",
+            "origin": "Original supplemental exercise; not a verified assessed question",
+            "sourceKeys": [
+              "lqo",
+              "grasp",
+              "cuvsbench"
+            ],
+            "lessonSectionIds": [
+              "supplement-34-s1",
+              "supplement-34-s2",
+              "supplement-34-s3",
+              "supplement-34-s4",
+              "supplement-34-s5"
+            ]
+          },
+          {
+            "question": "Why might a retuned ablation be useful in addition to a fixed-parameter ablation?",
+            "options": [
+              "It eliminates the need for a baseline.",
+              "Retuning always proves the new component is necessary.",
+              "It permits tuning on final test answers.",
+              "Removing a component may change the appropriate settings for the remaining system."
+            ],
+            "answer": 3,
+            "explanation": "The two designs answer different questions: the component’s local effect versus the best achievable system without it.",
+            "id": "supplement-34-q2",
+            "origin": "Original supplemental exercise; not a verified assessed question",
+            "sourceKeys": [
+              "lqo",
+              "grasp",
+              "cuvsbench"
+            ],
+            "lessonSectionIds": [
+              "supplement-34-s1",
+              "supplement-34-s2",
+              "supplement-34-s3",
+              "supplement-34-s4",
+              "supplement-34-s5"
+            ]
+          },
+          {
+            "question": "If only low-contention workloads improve, what should the claim say?",
+            "options": [
+              "The system is always faster.",
+              "The system improves in the measured low-contention regime and has a stated high-contention limitation.",
+              "The negative cases cannot be real.",
+              "High-contention runs should be hidden."
+            ],
+            "answer": 1,
+            "explanation": "A bounded operating range is defensible. A general claim that omits relevant failures is not.",
+            "id": "supplement-34-q3",
+            "origin": "Original supplemental exercise; not a verified assessed question",
+            "sourceKeys": [
+              "lqo",
+              "grasp",
+              "cuvsbench"
+            ],
+            "lessonSectionIds": [
+              "supplement-34-s1",
+              "supplement-34-s2",
+              "supplement-34-s3",
+              "supplement-34-s4",
+              "supplement-34-s5"
+            ]
+          },
+          {
+            "question": "Distance evaluations drop 30%, but latency is unchanged. What is a plausible next step?",
+            "options": [
+              "Assume the timer is wrong without checking.",
+              "Stop reporting latency.",
+              "Measure a time breakdown to see whether transfers or orchestration dominate.",
+              "Invent a latency improvement from the arithmetic reduction."
+            ],
+            "answer": 2,
+            "explanation": "Reduced internal work need not reduce end-to-end time. A breakdown tests the bottleneck explanation.",
+            "id": "supplement-34-q4",
+            "origin": "Original supplemental exercise; not a verified assessed question",
+            "sourceKeys": [
+              "lqo",
+              "grasp",
+              "cuvsbench"
+            ],
+            "lessonSectionIds": [
+              "supplement-34-s1",
+              "supplement-34-s2",
+              "supplement-34-s3",
+              "supplement-34-s4",
+              "supplement-34-s5"
+            ]
+          },
+          {
+            "question": "What makes a negative result useful?",
+            "options": [
+              "Hiding unfavorable tests.",
+              "Changing metrics until one improves.",
+              "A claim that research requires positive speedup.",
+              "A meaningful hypothesis, validated implementation/protocol, and an explained operating boundary."
+            ],
+            "answer": 3,
+            "explanation": "Careful negative evidence can falsify an assumption and guide the next experiment.",
+            "id": "supplement-34-q5",
+            "origin": "Original supplemental exercise; not a verified assessed question",
+            "sourceKeys": [
+              "lqo",
+              "grasp",
+              "cuvsbench"
+            ],
+            "lessonSectionIds": [
+              "supplement-34-s1",
+              "supplement-34-s2",
+              "supplement-34-s3",
+              "supplement-34-s4",
+              "supplement-34-s5"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "sources": {
+    "lqo": {
+      "title": "Is Your Learned Query Optimizer Behaving As You Expect? A Machine Learning Perspective",
+      "authors": "Claude Lehmann, Pavel Sulimov, Kurt Stockinger",
+      "venue": "PVLDB 17(7): 1565–1577, 2024",
+      "year": 2024,
+      "status": "Published peer-reviewed research / evaluation",
+      "url": "https://www.vldb.org/pvldb/vol17/p1565-lehmann.pdf",
+      "doi": "10.14778/3654621.3654625",
+      "supports": "An end-to-end learned-optimizer evaluation framework; sensitivity to training/test design; PostgreSQL wins in most tested comparisons, depending on split. This is evidence about the evaluated systems and protocol, not impossibility of learned optimization.",
+      "read": "Abstract; evaluation methodology and experimental results",
+      "artifact": "https://github.com/edualc/lqo_ml_perspective"
+    },
+    "grasp": {
+      "title": "Data-Agnostic Cardinality Learning from Imperfect Workloads",
+      "authors": "Peizhi Wu, Rong Kang, Tieying Zhang, Jianjun Chen, Ryan Marcus, Zachary G. Ives",
+      "venue": "PVLDB 18(8): 2519–2532, 2025",
+      "year": 2025,
+      "status": "Published peer-reviewed research",
+      "url": "https://www.vldb.org/pvldb/vol18/p2519-wu.pdf",
+      "doi": "10.14778/3742728.3742745",
+      "supports": "GRASP learns from queries and observed cardinalities without raw data access; compositional models target incomplete or imbalanced join templates and range-predicate shifts. Evaluated on three database instances.",
+      "read": "Sections 2–3 for scope; 4–6 for design; 7 for evaluation",
+      "artifact": "https://github.com/shoupzwu/GRASP"
+    },
+    "cuvsbench": {
+      "title": "NVIDIA cuVS: Benchmarking methodologies",
+      "status": "Official software documentation, checked 2026-10-11",
+      "url": "https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies",
+      "supports": "Recall-matched comparisons, parameter sweeps, Pareto trade-offs and reporting of build/search cost."
+    }
+  }
+}

@@ -457,6 +457,16 @@
           "pages": [
             9,
             10
+          ],
+          "sources": [
+            {
+              "url": "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer6.pdf",
+              "physicalPages": [
+                2,
+                3,
+                4
+              ]
+            }
           ]
         },
         {
@@ -472,6 +482,16 @@
           "explanation": "CAP's C is commonly formalized as linearizability; ACID's C means preserving invariants.",
           "pages": [
             9
+          ],
+          "sources": [
+            {
+              "url": "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer6.pdf",
+              "physicalPages": [
+                2,
+                3,
+                4
+              ]
+            }
           ]
         },
         {
@@ -488,6 +508,16 @@
           "pages": [
             9,
             10
+          ],
+          "sources": [
+            {
+              "url": "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer6.pdf",
+              "physicalPages": [
+                2,
+                3,
+                4
+              ]
+            }
           ]
         },
         {
@@ -503,6 +533,16 @@
           "explanation": "The slide oversimplifies A. The formal definition requires a valid response from a non-failing node; refusing service with an error is insufficient.",
           "pages": [
             9
+          ],
+          "sources": [
+            {
+              "url": "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer6.pdf",
+              "physicalPages": [
+                2,
+                3,
+                4
+              ]
+            }
           ]
         },
         {
@@ -519,6 +559,16 @@
           "pages": [
             9,
             10
+          ],
+          "sources": [
+            {
+              "url": "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer6.pdf",
+              "physicalPages": [
+                2,
+                3,
+                4
+              ]
+            }
           ]
         }
       ]

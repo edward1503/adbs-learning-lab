@@ -1,0 +1,273 @@
+{
+  "lesson": {
+    "id": "supplement-36",
+    "lecture": null,
+    "order": 36,
+    "kind": "supplemental",
+    "displayLabel": "M13 · Session 1",
+    "module": 13,
+    "week": 15,
+    "suggestedSession": 1,
+    "title": "Research symposium: build a conference-style research story",
+    "short": "Claim · mechanism · evidence · limitations · group handoffs",
+    "group": "13 · Research symposium",
+    "time": 35,
+    "timeMeaning": "Suggested independent study minutes; not scheduled contact time",
+    "lead": "Your audience should leave knowing the problem, the idea, the evidence and the condition under which the idea stops helping.",
+    "goals": [
+      "Organize a talk around one supported claim.",
+      "Explain a mechanism with a small worked example before benchmarks.",
+      "Design readable evidence slides and coordinated group handoffs."
+    ],
+    "sections": [
+      {
+        "id": "supplement-36-status",
+        "title": "How to use this supplemental session",
+        "html": "<p>This is an original supplemental study session aligned to the user-provided syllabus. It is not an Edinburgh lecture or a verified Canvas assignment. The Canvas reading list and instructor-specific assessment instructions were not accessible. Suggested activities, timings, templates and checks below are practice guidance, not official requirements.</p>"
+      },
+      {
+        "id": "supplement-36-s1",
+        "title": "The research story in four questions",
+        "html": "<p>Start with: <strong>What problem matters?</strong> <strong>Why does the current approach struggle?</strong> <strong>What changes?</strong> <strong>What evidence supports the change?</strong> State the scope in the opening: workload, system boundary and quality/correctness requirement.</p><p>A conference-style talk is not a chronological diary of implementation. Keep debugging history only when it explains an important design decision or failure mode. Make one central claim and distinguish supporting observations from broader speculation.</p><p>Use a recurring example with a few rows, pages or vectors. Show the baseline path, the proposed path and the trade-off. A listener should be able to predict a case where the proposed method loses; that is evidence they understand the mechanism.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p>A clear talk lets the audience reconstruct the argument, not just remember the headline.</p></aside>"
+      },
+      {
+        "id": "supplement-36-s2",
+        "title": "An adaptable presentation outline",
+        "html": "<p><strong>Suggested structure, not an instructor rubric or required slide count.</strong></p><ol><li><strong>Question and scope:</strong> one sentence and why the problem matters.</li><li><strong>Baseline bottleneck:</strong> a trace, cost model or small example.</li><li><strong>Mechanism:</strong> one change, explained operationally.</li><li><strong>Methodology:</strong> dataset, baseline, resource budget, quality target and measurement boundary.</li><li><strong>Main result:</strong> a readable comparison with uncertainty and units.</li><li><strong>Ablation or counterexample:</strong> why it works and where it does not.</li><li><strong>Conclusion and artifact:</strong> one supported answer, limitation and next experiment.</li></ol><p>Fit the outline to the actual allotted time when the instructor supplies it. A rehearsal can allocate time proportionally, but this companion does not assert a presentation duration or question period.</p>"
+      },
+      {
+        "id": "supplement-36-s3",
+        "title": "Worked example: replace a headline with an argument",
+        "html": "<p><strong>Weak headline:</strong> “Our ANN system is 2× faster.”</p><p><strong>Stronger claim using hypothetical numbers:</strong> “On our fixed one-million-vector public workload, batching increases throughput from 8,000 to 16,000 queries/s at recall@10=0.95, while p95 response latency rises from 4 to 7 ms.” These invented numbers illustrate reporting style and are not experiment results.</p><p>The first sentence hides quality and waiting time. The second exposes the trade-off. Now show the arrival-rate range, device, index settings, confidence/variability and end-to-end timing boundary. If the required latency budget is 5 ms, the faster-throughput configuration is not acceptable for that target.</p><p>Use one graph to answer one question. Label axes and units directly, identify the baseline and state whether higher or lower is better. If using a truncated axis or log scale, make it unmistakable. A speedup ratio should name its denominator.</p><details><summary>Exercise: your chart shows only the best run of each system. What should change before the talk?</summary><p><strong>Worked answer.</strong> Present the declared aggregation across repetitions and uncertainty, or explicitly label the chart as best-case and add representative evidence. Selecting only each method’s best run can hide instability and does not establish typical performance.</p></details>"
+      },
+      {
+        "id": "supplement-36-s4",
+        "title": "Group presentation as one coherent explanation",
+        "html": "<p>Agree on shared terms, colors and notation before dividing slides. Each speaker should know the full central claim, methodology and main limitation. Assign portions by argument, not merely by who wrote which code file.</p><p>Practice transitions that carry the logic: “Now that the mechanism predicts fewer transfers, the next question is whether transfers dominate real latency.” Rehearse how to recover if a demo fails; a saved trace or screenshot can support explanation if clearly labeled as recorded, not live.</p><p>Acknowledge each member’s actual contribution accurately. Do not invent equal contributions or imply another person ran an experiment they did not run. Keep a private coordination checklist for speaking order and backup files; the course may have its own contribution-reporting requirements.</p>"
+      },
+      {
+        "id": "supplement-36-s5",
+        "title": "Citations, backup evidence and rehearsal",
+        "html": "<p>Put a short source label on reused figures, algorithms or reported external results, with a full citation/link in the bibliography or backup material. Prefer original explanatory diagrams and cite the underlying idea. Check licenses before redistributing paper figures or datasets. Label author-reported numbers separately from your measurements.</p><p>Prepare backup evidence for baseline tuning, dataset splits, hardware, quality metrics, failure counts, ablations and raw trace examples. Rehearse once for logic, once for timing and once with skeptical questions. Ask a listener unfamiliar with the project to restate the claim and limitation.</p><details><summary>Exercise: a paper’s chart gives the context you need, but you did not reproduce its result. How do you present it?</summary><p><strong>Worked answer.</strong> Attribute it clearly as the authors’ reported result, identify the source and conditions, and distinguish it visually/verbal­ly from your own experiments. Follow the figure’s reuse license or create an original summary instead of copying it.</p></details><details><summary>Exercise: a live demo fails during rehearsal. Is hiding the failure the best response?</summary><p><strong>Worked answer.</strong> No. Diagnose and document it. Prepare a recorded fallback labeled as such, and narrow any reliability claim if the failure exposes a real limitation. The talk’s scientific argument should not depend on an unrepeatable demo.</p></details><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p>A polished presentation makes assumptions and limits easier to see.</p></aside>"
+      }
+    ],
+    "quiz": {
+      "question": "Which main-result slide is most defensible?",
+      "options": [
+        "A comparison stating workload, baseline, units, quality target and uncertainty.",
+        "A speedup with no baseline name.",
+        "An unlabeled best-case screenshot.",
+        "A paper’s plot labeled as the group’s own result."
+      ],
+      "answer": 0,
+      "explanation": "A scientific comparison needs enough context to interpret what improved and what was held fixed.",
+      "id": "supplement-36-q1",
+      "origin": "Original supplemental exercise; not a verified assessed question",
+      "sourceKeys": [
+        "artifact",
+        "cuvsbench"
+      ],
+      "lessonSectionIds": [
+        "supplement-36-s1",
+        "supplement-36-s2",
+        "supplement-36-s3",
+        "supplement-36-s4",
+        "supplement-36-s5"
+      ]
+    },
+    "source": {
+      "summary": "Original supplemental explanation and exercises. Primary research/software evidence is linked; syllabus alignment is based on the user-provided outline. Canvas-assigned readings are unverified.",
+      "links": [
+        {
+          "url": "https://sigsim.acm.org/conf/pads/2024/blog/artifact-evaluation/",
+          "label": "ACM SIGSIM PADS 2024: Reproducibility and Artifact Evaluation · Official ACM conference guidance; used as a general example, not the course rubric"
+        },
+        {
+          "url": "https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies",
+          "label": "NVIDIA cuVS: Benchmarking methodologies · Official software documentation, checked 2026-10-11"
+        }
+      ]
+    },
+    "coverage": {
+      "verified": false,
+      "status": "Supplemental content with verified primary references; official Canvas reading alignment unverified",
+      "sourceEvidenceVerified": true,
+      "officialCourseMaterialVerified": false,
+      "module": 13,
+      "week": 15,
+      "syllabusTopics": [
+        "research symposium",
+        "conference-style group presentation",
+        "presentation structure",
+        "evidence communication",
+        "research attribution"
+      ],
+      "topics": [
+        "research symposium",
+        "conference-style group presentation",
+        "presentation structure",
+        "evidence communication",
+        "research attribution"
+      ],
+      "limitations": [
+        "Canvas-assigned paper list is unavailable.",
+        "Lesson is an original supplement, not a reconstructed official lecture.",
+        "No assessment rubric, deadline, presentation duration or submission format is asserted."
+      ],
+      "sourceKeys": [
+        "artifact",
+        "cuvsbench"
+      ]
+    },
+    "lab": null
+  },
+  "quizBank": {
+    "lessonId": "supplement-36",
+    "kind": "supplemental",
+    "module": 13,
+    "title": "Research symposium: build a conference-style research story",
+    "topics": [
+      {
+        "id": "supplement-36-practice",
+        "title": "Claim · mechanism · evidence · limitations · group handoffs",
+        "sourceStatus": "Supplemental, not official slide/Canvas quiz",
+        "questions": [
+          {
+            "question": "Which main-result slide is most defensible?",
+            "options": [
+              "A comparison stating workload, baseline, units, quality target and uncertainty.",
+              "A speedup with no baseline name.",
+              "An unlabeled best-case screenshot.",
+              "A paper’s plot labeled as the group’s own result."
+            ],
+            "answer": 0,
+            "explanation": "A scientific comparison needs enough context to interpret what improved and what was held fixed.",
+            "id": "supplement-36-q1",
+            "origin": "Original supplemental exercise; not a verified assessed question",
+            "sourceKeys": [
+              "artifact",
+              "cuvsbench"
+            ],
+            "lessonSectionIds": [
+              "supplement-36-s1",
+              "supplement-36-s2",
+              "supplement-36-s3",
+              "supplement-36-s4",
+              "supplement-36-s5"
+            ]
+          },
+          {
+            "question": "Why show a small worked example before a benchmark chart?",
+            "options": [
+              "It replaces all need for evaluation.",
+              "It helps the audience understand the mechanism and predict its limits.",
+              "It proves the method is novel.",
+              "It guarantees the demo will run."
+            ],
+            "answer": 1,
+            "explanation": "An operational example explains what changes and why the result might hold, while the benchmark provides separate evidence.",
+            "id": "supplement-36-q2",
+            "origin": "Original supplemental exercise; not a verified assessed question",
+            "sourceKeys": [
+              "artifact",
+              "cuvsbench"
+            ],
+            "lessonSectionIds": [
+              "supplement-36-s1",
+              "supplement-36-s2",
+              "supplement-36-s3",
+              "supplement-36-s4",
+              "supplement-36-s5"
+            ]
+          },
+          {
+            "question": "Which use of another paper’s plot is acceptable scientific communication?",
+            "options": [
+              "Crop away the axes and citation.",
+              "Use its best number without mentioning conditions.",
+              "Attribute the original source, distinguish it from group measurements and respect reuse rights.",
+              "Label it as the group’s new result."
+            ],
+            "answer": 2,
+            "explanation": "Attribution and scope distinguish contextual prior evidence from the group’s own experiment; reuse rights still apply.",
+            "id": "supplement-36-q3",
+            "origin": "Original supplemental exercise; not a verified assessed question",
+            "sourceKeys": [
+              "artifact",
+              "cuvsbench"
+            ],
+            "lessonSectionIds": [
+              "supplement-36-s1",
+              "supplement-36-s2",
+              "supplement-36-s3",
+              "supplement-36-s4",
+              "supplement-36-s5"
+            ]
+          },
+          {
+            "question": "How should hypothetical numerical examples appear?",
+            "options": [
+              "Hidden in a chart to improve appearance.",
+              "As measured results if they seem plausible.",
+              "Mixed with actual data without distinction.",
+              "Clearly labeled as illustrative invented numbers."
+            ],
+            "answer": 3,
+            "explanation": "Illustrative arithmetic is useful, but it must never be represented as experimental evidence.",
+            "id": "supplement-36-q4",
+            "origin": "Original supplemental exercise; not a verified assessed question",
+            "sourceKeys": [
+              "artifact",
+              "cuvsbench"
+            ],
+            "lessonSectionIds": [
+              "supplement-36-s1",
+              "supplement-36-s2",
+              "supplement-36-s3",
+              "supplement-36-s4",
+              "supplement-36-s5"
+            ]
+          },
+          {
+            "question": "What is a sensible group handoff?",
+            "options": [
+              "A sudden switch to unrelated implementation history.",
+              "A transition connecting the current mechanism to the next evidence question.",
+              "A repeated introduction with no link to the argument.",
+              "An assertion that only one member knows the results."
+            ],
+            "answer": 1,
+            "explanation": "A coordinated handoff preserves the logical thread of the presentation.",
+            "id": "supplement-36-q5",
+            "origin": "Original supplemental exercise; not a verified assessed question",
+            "sourceKeys": [
+              "artifact",
+              "cuvsbench"
+            ],
+            "lessonSectionIds": [
+              "supplement-36-s1",
+              "supplement-36-s2",
+              "supplement-36-s3",
+              "supplement-36-s4",
+              "supplement-36-s5"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "sources": {
+    "artifact": {
+      "title": "ACM SIGSIM PADS 2024: Reproducibility and Artifact Evaluation",
+      "status": "Official ACM conference guidance; used as a general example, not the course rubric",
+      "url": "https://sigsim.acm.org/conf/pads/2024/blog/artifact-evaluation/",
+      "supports": "Distinction between documented, exercisable artifacts and stronger reuse/results evidence. No badge or course requirement is claimed."
+    },
+    "cuvsbench": {
+      "title": "NVIDIA cuVS: Benchmarking methodologies",
+      "status": "Official software documentation, checked 2026-10-11",
+      "url": "https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies",
+      "supports": "Recall-matched comparisons, parameter sweeps, Pareto trade-offs and reporting of build/search cost."
+    }
+  }
+}

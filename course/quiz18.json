@@ -350,7 +350,8 @@
           "answer": 3,
           "explanation": "Include the extension: 70 versus 55. The cheapest subplan alone need not give the cheapest complete plan when physical properties differ.",
           "pages": [
-            13
+            13,
+            20
           ]
         },
         {
@@ -365,7 +366,8 @@
           "answer": 0,
           "explanation": "Ordering affects merge and sort costs. The set of relations alone does not describe a subplan's usefulness to later operators.",
           "pages": [
-            13
+            13,
+            20
           ]
         },
         {
@@ -380,7 +382,8 @@
           "answer": 1,
           "explanation": "Remembering the best solutions to subproblems reduces recomputation. Candidate plans and estimates are still needed.",
           "pages": [
-            13
+            13,
+            20
           ]
         }
       ]
@@ -594,6 +597,46 @@
             22,
             23
           ]
+        },
+        {
+          "id": "ex18-enum-q1",
+          "prompt": "For the RS route, an unordered subplan costs 40 and its extension 45. A b-ordered subplan costs 52 and its extension 20. What is the cheaper complete RS-route cost?",
+          "options": [
+            "40",
+            "52",
+            "72",
+            "85"
+          ],
+          "answer": 2,
+          "explanation": "The ordered alternative totals 52+20=72, while the unordered alternative totals 40+45=85. Intermediate cost alone is insufficient.",
+          "pages": [
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23
+          ],
+          "sources": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf",
+              "physicalPages": [
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23
+              ]
+            }
+          ],
+          "origin": "Original audit extension question"
         }
       ]
     }

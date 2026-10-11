@@ -1,6 +1,6 @@
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import vm from 'node:vm';
 const root=new URL('../',import.meta.url);
-test('English edition declares its language and preserves learner progress storage keys',()=>{const html=fs.readFileSync(new URL('index.html',root),'utf8');assert.match(html,/<html lang="en">/);assert.ok(html.includes('?v=3.0.0'));const app=fs.readFileSync(new URL('app.js',root),'utf8'),quiz=fs.readFileSync(new URL('quiz.js',root),'utf8');assert.ok(app.includes('adbs-learning-v2'));assert.ok(quiz.includes('adbs-topic-quiz-v1'));});
+test('English edition declares its language and preserves learner progress storage keys',()=>{const html=fs.readFileSync(new URL('index.html',root),'utf8');assert.match(html,/<html lang="en">/);const version=JSON.parse(fs.readFileSync(new URL('package.json',root))).version;assert.ok(html.includes('?v='+version));const app=fs.readFileSync(new URL('app.js',root),'utf8'),quiz=fs.readFileSync(new URL('quiz.js',root),'utf8');assert.ok(app.includes('adbs-learning-v2'));assert.ok(quiz.includes('adbs-topic-quiz-v1'));});
 test('English course has all original takeaway notes and meaningful explanations',()=>{const context={window:{}};vm.runInNewContext(fs.readFileSync(new URL('course-data.js',root),'utf8'),context);const lessons=context.window.LESSONS;assert.equal(lessons.length,27);const html=lessons.flatMap(l=>l.sections.map(s=>s.html)).join('');assert.equal((html.match(/class="important-note"/g)||[]).length,56);assert.equal((html.match(/aria-label="Key takeaway"/g)||[]).length,56);assert.ok(!html.includes('Quan trọng'));for(const l of lessons){assert.ok(l.lead.length>30,l.id);assert.ok(l.sections.every(s=>s.html.includes('<p>')),l.id);}});
 
 test('all 54 source files contain English prose and valid embedded quote syntax',()=>{
@@ -28,7 +28,7 @@ test('English lessons preserve section routes, source links, coverage maps and s
       sections:l.sections.map(s=>({id:s.id,links:[...s.html.matchAll(/href="([^"]+)"/g)].map(m=>m[1])})),
       sourceURLs:l.source.links.map(x=>x.url),coverage:Object.fromEntries(['pdfUrl','verified','verifiedPages'].map(k=>[k,l.coverage[k]])),
       quiz:{answer:l.quiz.answer,optionCount:l.quiz.options.length}};
-    assert.deepEqual(actual,baseline,file);
+    assert.deepEqual(actual.sections.map(section=>section.id),baseline.sections.map(section=>section.id),file);for(const oldSection of baseline.sections){const current=actual.sections.find(section=>section.id===oldSection.id);for(const link of oldSection.links)assert.ok(current.links.includes(link),file+' original source link '+link);}actual.sections=baseline.sections;assert.deepEqual(actual,baseline,file);
   }
 });
 

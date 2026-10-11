@@ -1,0 +1,477 @@
+{
+  "schemaVersion": 1,
+  "provenance": "User-supplied syllabus; module/week/session totals are authoritative for the target learning plan.",
+  "totals": {
+    "modules": 13,
+    "weeks": 15,
+    "sessions": 30
+  },
+  "referencePolicy": "RG/DBT chapter labels are preserved as supplied. Reference identities reported by the independent source coordinator are recorded separately; no textbook physical pages or course-specific Canvas readings, rubrics, assignments, or dates are invented.",
+  "modules": [
+    {
+      "id": "module-01",
+      "number": 1,
+      "weeks": [
+        1
+      ],
+      "sessions": 2,
+      "title": "DBMS foundations",
+      "topics": [
+        "DBMS architectures",
+        "OLTP versus OLAP",
+        "In-memory DBMSs",
+        "SQL",
+        "Relational algebra"
+      ],
+      "readingLabels": [
+        "RG 1",
+        "RG 4.1–4.2",
+        "RG 5"
+      ],
+      "candidateLessonIds": [
+        "lecture-01",
+        "lecture-02",
+        "lecture-03",
+        "lecture-04",
+        "lecture-07"
+      ],
+      "mappingStatus": "Integrated core slide resources; independently reviewed content additions",
+      "scheduledLessonIds": [
+        "lecture-01",
+        "lecture-02",
+        "lecture-03"
+      ],
+      "supplementaryResourceIds": [],
+      "baselineMappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
+    },
+    {
+      "id": "module-02",
+      "number": 2,
+      "weeks": [
+        2
+      ],
+      "sessions": 2,
+      "title": "Hardware and physical storage",
+      "topics": [
+        "Hardware and disk-space management",
+        "Buffer management",
+        "Files, pages, and records"
+      ],
+      "readingLabels": [
+        "RG 9"
+      ],
+      "candidateLessonIds": [
+        "lecture-04",
+        "lecture-05",
+        "lecture-06"
+      ],
+      "mappingStatus": "Integrated core slide resources; independently reviewed content additions",
+      "scheduledLessonIds": [
+        "lecture-04",
+        "lecture-05",
+        "lecture-06"
+      ],
+      "supplementaryResourceIds": [],
+      "baselineMappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
+    },
+    {
+      "id": "module-03",
+      "number": 3,
+      "weeks": [
+        3
+      ],
+      "sessions": 2,
+      "title": "Storage models and tree indexes",
+      "topics": [
+        "Storage models",
+        "Compression",
+        "File organisations",
+        "Tree indexes"
+      ],
+      "readingLabels": [
+        "RG 8",
+        "RG 10"
+      ],
+      "candidateLessonIds": [
+        "lecture-07",
+        "lecture-08",
+        "lecture-09"
+      ],
+      "mappingStatus": "Integrated core slide resources; independently reviewed content additions",
+      "scheduledLessonIds": [
+        "lecture-07",
+        "lecture-08",
+        "lecture-09"
+      ],
+      "supplementaryResourceIds": [],
+      "baselineMappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
+    },
+    {
+      "id": "module-04",
+      "number": 4,
+      "weeks": [
+        4
+      ],
+      "sessions": 2,
+      "title": "Hashing and operator algorithms",
+      "topics": [
+        "Hash indexes",
+        "External sorting",
+        "Aggregation",
+        "Join algorithms"
+      ],
+      "readingLabels": [
+        "RG 11",
+        "RG 13",
+        "RG 14"
+      ],
+      "candidateLessonIds": [
+        "lecture-10",
+        "lecture-11",
+        "lecture-12"
+      ],
+      "mappingStatus": "Integrated core slide resources; independently reviewed content additions",
+      "scheduledLessonIds": [
+        "lecture-10",
+        "lecture-11",
+        "lecture-12"
+      ],
+      "supplementaryResourceIds": [],
+      "baselineMappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
+    },
+    {
+      "id": "module-05",
+      "number": 5,
+      "weeks": [
+        5
+      ],
+      "sessions": 2,
+      "title": "Query evaluation and plan space",
+      "topics": [
+        "Query evaluation",
+        "Processing models",
+        "Plan space"
+      ],
+      "readingLabels": [
+        "RG 14",
+        "RG 15"
+      ],
+      "candidateLessonIds": [
+        "lecture-13",
+        "lecture-14",
+        "lecture-15"
+      ],
+      "mappingStatus": "Integrated core slide resources; independently reviewed content additions",
+      "scheduledLessonIds": [
+        "lecture-13",
+        "lecture-14",
+        "lecture-15"
+      ],
+      "supplementaryResourceIds": [],
+      "baselineMappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
+    },
+    {
+      "id": "module-06",
+      "number": 6,
+      "weeks": [
+        6
+      ],
+      "sessions": 2,
+      "title": "Access paths and optimisation",
+      "topics": [
+        "Access methods",
+        "Cost estimation",
+        "Plan search"
+      ],
+      "readingLabels": [
+        "RG 14",
+        "RG 15"
+      ],
+      "candidateLessonIds": [
+        "lecture-16",
+        "lecture-17",
+        "lecture-18"
+      ],
+      "mappingStatus": "Integrated core slide resources; independently reviewed content additions",
+      "scheduledLessonIds": [
+        "lecture-16",
+        "lecture-17",
+        "lecture-18"
+      ],
+      "supplementaryResourceIds": [],
+      "baselineMappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
+    },
+    {
+      "id": "module-07",
+      "number": 7,
+      "weeks": [
+        7
+      ],
+      "sessions": 2,
+      "title": "Transactions, concurrency, and recovery",
+      "topics": [
+        "Transactions",
+        "Locking and concurrency control",
+        "Crash recovery"
+      ],
+      "readingLabels": [
+        "RG 16–18"
+      ],
+      "candidateLessonIds": [
+        "lecture-19",
+        "lecture-20",
+        "lecture-21"
+      ],
+      "mappingStatus": "Integrated core slide resources; independently reviewed content additions",
+      "scheduledLessonIds": [
+        "lecture-19",
+        "lecture-20",
+        "lecture-21"
+      ],
+      "supplementaryResourceIds": [],
+      "baselineMappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
+    },
+    {
+      "id": "module-08",
+      "number": 8,
+      "weeks": [
+        8
+      ],
+      "sessions": 2,
+      "title": "Distributed transactions",
+      "topics": [
+        "Distributed transactions"
+      ],
+      "readingLabels": [
+        "RG 22"
+      ],
+      "candidateLessonIds": [
+        "lecture-22"
+      ],
+      "mappingStatus": "Integrated core slide resources; independently reviewed content additions",
+      "scheduledLessonIds": [
+        "lecture-22"
+      ],
+      "supplementaryResourceIds": [],
+      "baselineMappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
+    },
+    {
+      "id": "module-09",
+      "number": 9,
+      "weeks": [
+        9
+      ],
+      "sessions": 2,
+      "title": "Conjunctive queries",
+      "topics": [
+        "Syntax and semantics",
+        "Evaluation",
+        "Static analysis",
+        "Fast evaluation"
+      ],
+      "readingLabels": [
+        "DBT 12–15",
+        "DBT 18"
+      ],
+      "candidateLessonIds": [
+        "lecture-23",
+        "lecture-24",
+        "lecture-25"
+      ],
+      "mappingStatus": "Integrated core slide resources; independently reviewed content additions",
+      "scheduledLessonIds": [
+        "lecture-23",
+        "lecture-24",
+        "lecture-25"
+      ],
+      "supplementaryResourceIds": [],
+      "baselineMappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
+    },
+    {
+      "id": "module-10",
+      "number": 10,
+      "weeks": [
+        10
+      ],
+      "sessions": 2,
+      "title": "Parallel databases and NoSQL",
+      "topics": [
+        "Parallel and distributed DBMSs",
+        "NoSQL"
+      ],
+      "readingLabels": [
+        "RG 22"
+      ],
+      "candidateLessonIds": [
+        "lecture-26",
+        "lecture-27"
+      ],
+      "mappingStatus": "Integrated core slide resources; independently reviewed content additions",
+      "scheduledLessonIds": [
+        "lecture-26",
+        "lecture-27"
+      ],
+      "supplementaryResourceIds": [],
+      "baselineMappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
+    },
+    {
+      "id": "module-11",
+      "number": 11,
+      "weeks": [
+        11,
+        12
+      ],
+      "sessions": 4,
+      "title": "Database frontiers",
+      "topics": [
+        "Learned DBMS components",
+        "Vector databases and approximate nearest-neighbour search",
+        "LLMs for data systems",
+        "Cloud-native and disaggregated DBMSs",
+        "Recent SIGMOD/VLDB/ICDE/PODS research"
+      ],
+      "readingLabels": [
+        "Canvas readings: unavailable"
+      ],
+      "candidateLessonIds": [],
+      "mappingStatus": "Original supplemental practice integrated; official instructor/Canvas alignment unverified",
+      "scheduledLessonIds": [],
+      "supplementaryResourceIds": [
+        "supplement-28",
+        "supplement-29",
+        "supplement-30",
+        "supplement-31"
+      ],
+      "baselineMappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
+    },
+    {
+      "id": "module-12",
+      "number": 12,
+      "weeks": [
+        13,
+        14
+      ],
+      "sessions": 4,
+      "title": "Project clinic",
+      "topics": [
+        "Supervised research",
+        "Instructor consultations"
+      ],
+      "readingLabels": [
+        "Instructor guidance: unavailable"
+      ],
+      "candidateLessonIds": [],
+      "mappingStatus": "Original supplemental practice integrated; official instructor/Canvas alignment unverified",
+      "scheduledLessonIds": [],
+      "supplementaryResourceIds": [
+        "supplement-32",
+        "supplement-33",
+        "supplement-34",
+        "supplement-35"
+      ],
+      "baselineMappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
+    },
+    {
+      "id": "module-13",
+      "number": 13,
+      "weeks": [
+        15
+      ],
+      "sessions": 2,
+      "title": "Research symposium",
+      "topics": [
+        "Conference-style group presentations"
+      ],
+      "readingLabels": [
+        "Instructor guidance: unavailable"
+      ],
+      "candidateLessonIds": [],
+      "mappingStatus": "Original supplemental practice integrated; official instructor/Canvas alignment unverified",
+      "scheduledLessonIds": [],
+      "supplementaryResourceIds": [
+        "supplement-36",
+        "supplement-37"
+      ],
+      "baselineMappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
+    }
+  ],
+  "coverageRecordContract": {
+    "fields": [
+      "moduleId",
+      "syllabusTopic",
+      "siteLessonId",
+      "siteSectionId",
+      "quizTopicIds",
+      "sourceDocumentId",
+      "sourceUrl",
+      "sourceSha256",
+      "physicalPages",
+      "sourceKind",
+      "status",
+      "finding",
+      "correction",
+      "evidence",
+      "tests"
+    ],
+    "sourceKinds": [
+      "verified-slide",
+      "supplemental-primary-literature",
+      "instructor-detail-unavailable"
+    ],
+    "initialStatus": "awaiting-source-audit"
+  },
+  "referenceIdentities": {
+    "verificationProvenance": "Independent source coordinator verified identities against the official Edinburgh ADBS schedule; textbook chapter/page coverage was not audited on this executor.",
+    "sourceUrl": "https://opencourse.inf.ed.ac.uk/adbs/schedule",
+    "RG": {
+      "title": "Database Management Systems",
+      "authors": [
+        "Ramakrishnan",
+        "Gehrke"
+      ],
+      "edition": "3rd",
+      "year": 2003
+    },
+    "DBT": {
+      "title": "Database Theory",
+      "authors": [
+        "Arenas",
+        "Barcelo",
+        "Libkin",
+        "Martens",
+        "Pieris"
+      ],
+      "edition": null,
+      "year": null
+    }
+  },
+  "lessonRecordsAreNotTimetabledSessions": true,
+  "resourceTotals": {
+    "existingSlideBasedLessons": 27,
+    "supplementaryResources": 10,
+    "totalLearningResources": 37
+  },
+  "supplementaryResourceContract": {
+    "ids": "supplement-28 through supplement-37",
+    "lecture": null,
+    "moduleField": "module",
+    "requiredFields": [
+      "id",
+      "title",
+      "lead",
+      "goals",
+      "sections",
+      "source"
+    ],
+    "citationPolicy": "Public primary-literature URLs or explicitly labelled research scaffolds. A physical PDF page is optional and may be included only when source auditors verify it.",
+    "unavailableInstructorDetails": [
+      "Canvas paper selection",
+      "grading rubric",
+      "assignment dates",
+      "instructor consultation arrangements"
+    ],
+    "classification": "Supplementary learning resources; these do not change the 30-session timetable.",
+    "kind": "supplemental",
+    "officialCoverageVerified": false
+  }
+}

@@ -38,7 +38,6 @@
           "answer": 0,
           "explanation": "Their semantics must be equivalent, but their I/O costs and latency may differ.",
           "pages": [
-            2,
             3
           ]
         },
@@ -54,7 +53,6 @@
           "answer": 1,
           "explanation": "Operators process one another’s results. SQL text is not the stream of output tuples.",
           "pages": [
-            2,
             3
           ]
         },
@@ -86,7 +84,6 @@
           "answer": 3,
           "explanation": "Equivalent semantics do not imply equivalent performance or output order.",
           "pages": [
-            2,
             3
           ]
         }
@@ -113,9 +110,7 @@
           "answer": 0,
           "explanation": "Compare A first: 2<3 even though B=99. Do not compare the sums of the two values.",
           "pages": [
-            4,
-            5,
-            6
+            5
           ]
         },
         {
@@ -130,9 +125,7 @@
           "answer": 1,
           "explanation": "ORDER BY specifies an order. GROUP BY and DISTINCT do not inherently promise one.",
           "pages": [
-            4,
-            5,
-            6
+            4
           ]
         },
         {
@@ -147,8 +140,6 @@
           "answer": 2,
           "explanation": "External algorithms explicitly account for pages and I/O. The issue is not merely comparing keys.",
           "pages": [
-            4,
-            5,
             6
           ]
         },
@@ -164,9 +155,7 @@
           "answer": 3,
           "explanation": "A is the leading key and therefore changes monotonically. B is ordered only within each A group.",
           "pages": [
-            4,
-            5,
-            6
+            5
           ]
         },
         {
@@ -181,9 +170,7 @@
           "answer": 0,
           "explanation": "Duplicates must become adjacent under the complete distinguishing key. Unrelated columns do not guarantee this.",
           "pages": [
-            4,
-            5,
-            6
+            18
           ]
         }
       ]
@@ -209,10 +196,7 @@
           "answer": 1,
           "explanation": "Pass 0 of the basic version sorts each page separately. This differs from multiway sorting that uses B-page runs.",
           "pages": [
-            7,
-            8,
-            9,
-            10
+            9
           ]
         },
         {
@@ -227,10 +211,7 @@
           "answer": 2,
           "explanation": "Two input buffers and one output buffer are needed. Omitting the output buffer undercounts the requirement.",
           "pages": [
-            7,
-            8,
-            9,
-            10
+            9
           ]
         },
         {
@@ -245,9 +226,6 @@
           "answer": 3,
           "explanation": "1+ceil(log₂(8))=4. Three counts only the merge passes.",
           "pages": [
-            7,
-            8,
-            9,
             10
           ]
         },
@@ -263,9 +241,6 @@
           "answer": 0,
           "explanation": "2N×4=2 × 8 × 4=64 I/Os. The answer 32 counts only reads or only writes, rather than both.",
           "pages": [
-            7,
-            8,
-            9,
             10
           ]
         },
@@ -281,8 +256,6 @@
           "answer": 1,
           "explanation": "Each merge combines at most two runs, so round up at every step.",
           "pages": [
-            7,
-            8,
             9,
             10
           ]
@@ -311,9 +284,7 @@
           "explanation": "B−1=5 buffers are available for input. Using all 6 for input leaves none for output.",
           "pages": [
             11,
-            12,
-            13,
-            14
+            12
           ]
         },
         {
@@ -328,10 +299,7 @@
           "answer": 3,
           "explanation": "ceil(91/6)=16 runs. The answer 15 rounds down and omits page 91 in the final run.",
           "pages": [
-            11,
-            12,
-            13,
-            14
+            12
           ]
         },
         {
@@ -346,10 +314,8 @@
           "answer": 0,
           "explanation": "The 16 initial runs pass through two merges, producing 4 and then 1 run. Including pass 0 gives 3 passes, each reading and writing 91 pages: 2 × 91 × 3=546. The answer 364 omits pass 0.",
           "pages": [
-            11,
             12,
-            13,
-            14
+            13
           ]
         },
         {
@@ -364,10 +330,7 @@
           "answer": 1,
           "explanation": "ceil(N/10)≤9 means N≤10 × 9=90. A 100-page input produces 10 runs, but the merge is only 9-way.",
           "pages": [
-            11,
-            12,
-            13,
-            14
+            12
           ]
         },
         {
@@ -382,10 +345,8 @@
           "answer": 2,
           "explanation": "One pass reads 50 pages and writes 50 pages. Sorting in memory does not eliminate input reads and output writes.",
           "pages": [
-            11,
-            12,
-            13,
-            14
+            6,
+            12
           ]
         }
       ]
@@ -411,10 +372,7 @@
           "answer": 3,
           "explanation": "The index must provide the relevant order. An arbitrary index is insufficient.",
           "pages": [
-            15,
-            16,
-            17,
-            18
+            15
           ]
         },
         {
@@ -429,10 +387,7 @@
           "answer": 0,
           "explanation": "Clustering connects logical key order with data placement. The root does not contain every record.",
           "pages": [
-            15,
-            16,
-            17,
-            18
+            16
           ]
         },
         {
@@ -447,10 +402,7 @@
           "answer": 1,
           "explanation": "Pointers may be scattered across data pages. Tree traversal cost does not include all data-fetch costs.",
           "pages": [
-            15,
-            16,
-            17,
-            18
+            17
           ]
         },
         {
@@ -466,9 +418,7 @@
           "explanation": "A covering index can avoid data fetches, removing this particular disadvantage of an unclustered index.",
           "pages": [
             15,
-            16,
-            17,
-            18
+            17
           ]
         },
         {
@@ -483,9 +433,6 @@
           "answer": 3,
           "explanation": "Retain one representative from each adjacent group. Do not delete the entire group merely because it contains duplicates.",
           "pages": [
-            15,
-            16,
-            17,
             18
           ]
         }
@@ -512,10 +459,7 @@
           "answer": 0,
           "explanation": "B−1=6. The input buffer cannot simultaneously serve as an output buffer.",
           "pages": [
-            19,
-            20,
-            21,
-            22
+            20
           ]
         },
         {
@@ -530,10 +474,7 @@
           "answer": 1,
           "explanation": "Entries in a partition already share the relevant partition hash value or bits. Reusing that same distinction may not redistribute them effectively.",
           "pages": [
-            19,
-            20,
-            21,
-            22
+            21
           ]
         },
         {
@@ -548,10 +489,8 @@
           "answer": 2,
           "explanation": "Recursive partitioning retains the data. Discarding tuples would violate correctness.",
           "pages": [
-            19,
-            20,
-            21,
-            22
+            22,
+            27
           ]
         },
         {
@@ -566,9 +505,6 @@
           "answer": 3,
           "explanation": "Deterministic key hashing cannot split skew caused by repeated copies of the same key.",
           "pages": [
-            19,
-            20,
-            21,
             22
           ]
         },
@@ -585,9 +521,7 @@
           "explanation": "DISTINCT requires grouping by equality rather than a total order. Hashing can still spill and experience collisions.",
           "pages": [
             19,
-            20,
-            21,
-            22
+            32
           ]
         }
       ]
@@ -613,12 +547,8 @@
           "answer": 1,
           "explanation": "Each group needs its own sum. One global sum loses the grouping.",
           "pages": [
-            23,
-            24,
-            25,
-            26,
-            27,
-            28
+            29,
+            30
           ]
         },
         {
@@ -633,12 +563,8 @@
           "answer": 2,
           "explanation": "Group A contains values 3 and 5, so its SUM is 8. The value 15 sums both A and B; 2 is the COUNT of A, not its SUM.",
           "pages": [
-            23,
-            24,
-            25,
-            26,
-            27,
-            28
+            29,
+            30
           ]
         },
         {
@@ -653,12 +579,7 @@
           "answer": 3,
           "explanation": "All tuples in a group must enter the same partition. Hashing the amount could split one group across partitions.",
           "pages": [
-            23,
-            24,
-            25,
-            26,
-            27,
-            28
+            25
           ]
         },
         {
@@ -673,12 +594,7 @@
           "answer": 0,
           "explanation": "Input pages can be streamed, but the state must remain available to combine each group.",
           "pages": [
-            23,
-            24,
-            25,
-            26,
-            27,
-            28
+            27
           ]
         },
         {
@@ -693,12 +609,7 @@
           "answer": 1,
           "explanation": "DISTINCT retains one entry per key. Deleting the group or changing the key would be incorrect.",
           "pages": [
-            23,
-            24,
-            25,
-            26,
-            27,
-            28
+            23
           ]
         }
       ]
@@ -724,10 +635,7 @@
           "answer": 2,
           "explanation": "The combined average must weight each batch by its count. An unweighted average of averages can be wrong.",
           "pages": [
-            29,
-            30,
-            31,
-            32
+            30
           ]
         },
         {
@@ -742,10 +650,7 @@
           "answer": 3,
           "explanation": "(20+90)/(2+3)=22. Averaging the batch averages, 10 and 30, gives 20 but ignores their different weights.",
           "pages": [
-            29,
-            30,
-            31,
-            32
+            30
           ]
         },
         {
@@ -760,10 +665,7 @@
           "answer": 0,
           "explanation": "Update MIN with min(7,11)=7. The value 11 is the latest value, 18 is a sum, and 2 is an unrelated count.",
           "pages": [
-            29,
-            30,
-            31,
-            32
+            30
           ]
         },
         {
@@ -778,10 +680,7 @@
           "answer": 1,
           "explanation": "COUNT(*) counts rows, so it increases by one. It neither adds the measure value nor creates an independent count for the same group.",
           "pages": [
-            29,
-            30,
-            31,
-            32
+            30
           ]
         },
         {
@@ -797,9 +696,7 @@
           "explanation": "SUM states are additive: 24+31=55. Averaging the sums or keeping only the last one does not preserve SUM semantics.",
           "pages": [
             29,
-            30,
-            31,
-            32
+            30
           ]
         }
       ]
@@ -855,7 +752,9 @@
           "answer": 1,
           "explanation": "Streaming input does not remove the state for groups already encountered.",
           "pages": [
-            31
+            27,
+            29,
+            32
           ]
         },
         {
