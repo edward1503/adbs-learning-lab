@@ -1,0 +1,867 @@
+{
+  "status": "Local review candidate; not published or deployed",
+  "baselineCommit": "0a1fb0363d2c44a0ca8f508f4e964a01af128720",
+  "branch": "readability/learner-review-2026-10",
+  "resources": 37,
+  "sections": 181,
+  "goals": 120,
+  "baselineSupplementalPacketSHA256": "722f98721436e1d00486056b4374b886248a8d37bd16da009d7e1d350fb63163",
+  "candidateSupplementalPacketSHA256": "a12c0173f80dcb4d675dfd6711d0ccbd752383efe596fca7d1c8b5dcdb54a0e4",
+  "protection": "Immutable metadata hash per packet plus exact Key takeaways, original subsection anchors, all URLs and per-section external citations; all quiz objects and answer meanings are excluded from permitted editorial changes.",
+  "setup": {
+    "npmCi": true,
+    "npmRunBuild": true
+  },
+  "tests": {
+    "command": "npm test",
+    "passed": 113,
+    "failed": 0
+  },
+  "browser": {
+    "resources": 37,
+    "routeChecks": 74,
+    "viewports": [
+      1440,
+      390
+    ],
+    "pageErrors": [],
+    "checks": [
+      {
+        "resource": "lecture-01",
+        "width": 1440,
+        "sectionCount": 4,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-02",
+        "width": 1440,
+        "sectionCount": 4,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-03",
+        "width": 1440,
+        "sectionCount": 4,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-04",
+        "width": 1440,
+        "sectionCount": 4,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-05",
+        "width": 1440,
+        "sectionCount": 4,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-06",
+        "width": 1440,
+        "sectionCount": 4,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-07",
+        "width": 1440,
+        "sectionCount": 4,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-08",
+        "width": 1440,
+        "sectionCount": 4,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-09",
+        "width": 1440,
+        "sectionCount": 4,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-10",
+        "width": 1440,
+        "sectionCount": 4,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-11",
+        "width": 1440,
+        "sectionCount": 4,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-12",
+        "width": 1440,
+        "sectionCount": 4,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-13",
+        "width": 1440,
+        "sectionCount": 4,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-14",
+        "width": 1440,
+        "sectionCount": 4,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-15",
+        "width": 1440,
+        "sectionCount": 4,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-16",
+        "width": 1440,
+        "sectionCount": 4,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-17",
+        "width": 1440,
+        "sectionCount": 4,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-18",
+        "width": 1440,
+        "sectionCount": 4,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-19",
+        "width": 1440,
+        "sectionCount": 5,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-20",
+        "width": 1440,
+        "sectionCount": 5,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-21",
+        "width": 1440,
+        "sectionCount": 5,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-22",
+        "width": 1440,
+        "sectionCount": 5,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-23",
+        "width": 1440,
+        "sectionCount": 5,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-24",
+        "width": 1440,
+        "sectionCount": 5,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-25",
+        "width": 1440,
+        "sectionCount": 5,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-26",
+        "width": 1440,
+        "sectionCount": 5,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-27",
+        "width": 1440,
+        "sectionCount": 5,
+        "pageOverflow": false
+      },
+      {
+        "resource": "supplement-28",
+        "width": 1440,
+        "sectionCount": 7,
+        "pageOverflow": false
+      },
+      {
+        "resource": "supplement-29",
+        "width": 1440,
+        "sectionCount": 7,
+        "pageOverflow": false
+      },
+      {
+        "resource": "supplement-30",
+        "width": 1440,
+        "sectionCount": 7,
+        "pageOverflow": false
+      },
+      {
+        "resource": "supplement-31",
+        "width": 1440,
+        "sectionCount": 7,
+        "pageOverflow": false
+      },
+      {
+        "resource": "supplement-32",
+        "width": 1440,
+        "sectionCount": 6,
+        "pageOverflow": false
+      },
+      {
+        "resource": "supplement-33",
+        "width": 1440,
+        "sectionCount": 6,
+        "pageOverflow": false
+      },
+      {
+        "resource": "supplement-34",
+        "width": 1440,
+        "sectionCount": 6,
+        "pageOverflow": false
+      },
+      {
+        "resource": "supplement-35",
+        "width": 1440,
+        "sectionCount": 6,
+        "pageOverflow": false
+      },
+      {
+        "resource": "supplement-36",
+        "width": 1440,
+        "sectionCount": 6,
+        "pageOverflow": false
+      },
+      {
+        "resource": "supplement-37",
+        "width": 1440,
+        "sectionCount": 6,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-01",
+        "width": 390,
+        "sectionCount": 4,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-02",
+        "width": 390,
+        "sectionCount": 4,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-03",
+        "width": 390,
+        "sectionCount": 4,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-04",
+        "width": 390,
+        "sectionCount": 4,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-05",
+        "width": 390,
+        "sectionCount": 4,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-06",
+        "width": 390,
+        "sectionCount": 4,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-07",
+        "width": 390,
+        "sectionCount": 4,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-08",
+        "width": 390,
+        "sectionCount": 4,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-09",
+        "width": 390,
+        "sectionCount": 4,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-10",
+        "width": 390,
+        "sectionCount": 4,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-11",
+        "width": 390,
+        "sectionCount": 4,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-12",
+        "width": 390,
+        "sectionCount": 4,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-13",
+        "width": 390,
+        "sectionCount": 4,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-14",
+        "width": 390,
+        "sectionCount": 4,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-15",
+        "width": 390,
+        "sectionCount": 4,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-16",
+        "width": 390,
+        "sectionCount": 4,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-17",
+        "width": 390,
+        "sectionCount": 4,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-18",
+        "width": 390,
+        "sectionCount": 4,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-19",
+        "width": 390,
+        "sectionCount": 5,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-20",
+        "width": 390,
+        "sectionCount": 5,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-21",
+        "width": 390,
+        "sectionCount": 5,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-22",
+        "width": 390,
+        "sectionCount": 5,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-23",
+        "width": 390,
+        "sectionCount": 5,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-24",
+        "width": 390,
+        "sectionCount": 5,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-25",
+        "width": 390,
+        "sectionCount": 5,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-26",
+        "width": 390,
+        "sectionCount": 5,
+        "pageOverflow": false
+      },
+      {
+        "resource": "lecture-27",
+        "width": 390,
+        "sectionCount": 5,
+        "pageOverflow": false
+      },
+      {
+        "resource": "supplement-28",
+        "width": 390,
+        "sectionCount": 7,
+        "pageOverflow": false
+      },
+      {
+        "resource": "supplement-29",
+        "width": 390,
+        "sectionCount": 7,
+        "pageOverflow": false
+      },
+      {
+        "resource": "supplement-30",
+        "width": 390,
+        "sectionCount": 7,
+        "pageOverflow": false
+      },
+      {
+        "resource": "supplement-31",
+        "width": 390,
+        "sectionCount": 7,
+        "pageOverflow": false
+      },
+      {
+        "resource": "supplement-32",
+        "width": 390,
+        "sectionCount": 6,
+        "pageOverflow": false
+      },
+      {
+        "resource": "supplement-33",
+        "width": 390,
+        "sectionCount": 6,
+        "pageOverflow": false
+      },
+      {
+        "resource": "supplement-34",
+        "width": 390,
+        "sectionCount": 6,
+        "pageOverflow": false
+      },
+      {
+        "resource": "supplement-35",
+        "width": 390,
+        "sectionCount": 6,
+        "pageOverflow": false
+      },
+      {
+        "resource": "supplement-36",
+        "width": 390,
+        "sectionCount": 6,
+        "pageOverflow": false
+      },
+      {
+        "resource": "supplement-37",
+        "width": 390,
+        "sectionCount": 6,
+        "pageOverflow": false
+      }
+    ],
+    "screenshots": [
+      "readability-bplus-desktop.png",
+      "readability-dp-desktop.png",
+      "readability-research-mobile.png",
+      "readability-postgres-mobile.png"
+    ]
+  },
+  "smoke": {
+    "screenshots": [
+      {
+        "route": "lecture-09/l9-3",
+        "focusedId": "f15-internal-node-repair",
+        "width": 1440,
+        "headingTop": 113.859375
+      },
+      {
+        "route": "lecture-18/l18-s3",
+        "focusedId": "l18-s3",
+        "width": 1440,
+        "headingTop": 97.46875
+      },
+      {
+        "route": "supplement-28/supplement-28-s5",
+        "focusedId": "supplement-28-s5",
+        "width": 390,
+        "headingTop": 105.71875
+      },
+      {
+        "route": "lecture-16/l16-s4",
+        "focusedId": "l16-s4",
+        "width": 390,
+        "headingTop": 121.3125
+      }
+    ],
+    "coreProgressReload": true,
+    "supplementProgressReload": true,
+    "actualBrowserWorkerWASMResult": "6",
+    "cleanSeedGrading": "Correct on the sample dataset! Columns, values, and row multiplicities all match. Explain why the query would also be correct on other data.",
+    "pageErrors": []
+  },
+  "sql": {
+    "engine": "vendored SQLite/sql.js",
+    "schema": "Sale(id,city,amount); Member(mid,name); Borrow(mid,book)",
+    "shownStatements": [
+      {
+        "sectionId": "l2-2",
+        "sql": "SELECT city, SUM(amount) AS total\nFROM Sale\nWHERE amount >= 30\nGROUP BY city\nHAVING SUM(amount) > 100\nORDER BY total DESC, city ASC;",
+        "actual": [
+          {
+            "columns": [
+              "city",
+              "total"
+            ],
+            "values": [
+              [
+                "Hue",
+                120
+              ],
+              [
+                "Hanoi",
+                110
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "sectionId": "l2-3",
+        "sql": "SELECT M.name, B.book\nFROM Member M LEFT JOIN Borrow B ON M.mid=B.mid\nORDER BY M.mid, B.book;",
+        "actual": [
+          {
+            "columns": [
+              "name",
+              "book"
+            ],
+            "values": [
+              [
+                "An",
+                "A"
+              ],
+              [
+                "An",
+                "B"
+              ],
+              [
+                "Binh",
+                "C"
+              ],
+              [
+                "Chi",
+                null
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "sectionId": "l2-3",
+        "sql": "SELECT M.name FROM Member M\nWHERE EXISTS (SELECT 1 FROM Borrow B WHERE B.mid=M.mid)\nORDER BY M.mid;",
+        "actual": [
+          {
+            "columns": [
+              "name"
+            ],
+            "values": [
+              [
+                "An"
+              ],
+              [
+                "Binh"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "sectionId": "l2-4",
+        "sql": "SELECT id, city, amount FROM Sale\nORDER BY amount DESC, id ASC LIMIT 1;",
+        "actual": [
+          {
+            "columns": [
+              "id",
+              "city",
+              "amount"
+            ],
+            "values": [
+              [
+                4,
+                "Hue",
+                90
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "sectionId": "l2-4",
+        "sql": "SELECT M.name\nFROM Member M\nWHERE NOT EXISTS (SELECT 1 FROM Borrow B WHERE B.mid=M.mid)\nORDER BY M.mid;",
+        "actual": [
+          {
+            "columns": [
+              "name"
+            ],
+            "values": [
+              [
+                "Chi"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "sectionId": "l2-4",
+        "sql": "SELECT M.name\nFROM Member M\nWHERE M.mid NOT IN (SELECT B.mid FROM Borrow B)\nORDER BY M.mid;",
+        "actual": [
+          {
+            "columns": [
+              "name"
+            ],
+            "values": [
+              [
+                "Chi"
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "additionalNullVariant": {
+      "notExists": [
+        [
+          "Chi"
+        ]
+      ],
+      "notIn": []
+    },
+    "queryBlockExample": {
+      "sectionId": "l14-s1",
+      "sql": "SELECT C.customer_id\nFROM Customer AS C\nWHERE EXISTS (\n  SELECT 1 FROM Orders AS O\n  WHERE O.customer_id = C.customer_id AND O.total > 100\n);",
+      "schema": "Customer(customer_id); Orders(order_id,customer_id,total)",
+      "actual": [
+        [
+          1
+        ]
+      ],
+      "duplicateMatchesAndStrictThresholdPassed": true
+    },
+    "postgresql": {
+      "executed": false,
+      "reason": "External PostgreSQL is optional; fixture and EXPLAIN syntax reviewed against official documentation."
+    }
+  },
+  "canonicalFiles": [
+    {
+      "file": "course/lecture01.json",
+      "baselineSHA256": "0c508aba89715c0e6eb385e5e7faeb0703ec618498b369bd231acb8db72c7009",
+      "candidateSHA256": "887174cd6a664cff0d958c6c2d4e1e92fe4861b34c940edbde7c8bb6492da817"
+    },
+    {
+      "file": "course/lecture02.json",
+      "baselineSHA256": "e8c371be0a3e6f95646a4de2cc6c2a73f856b02ef200f33b9c728be925f82000",
+      "candidateSHA256": "278645a559c3cfdce8d49226a018fb41e2a81fecb727e85e9adef025912eca13"
+    },
+    {
+      "file": "course/lecture03.json",
+      "baselineSHA256": "970bb013cc1524984d8740a635ebe73ab2af56c30bac3e76b7d4f56f5071f468",
+      "candidateSHA256": "bef36187113fdd298c28fafa806c60a6c4f576128c0d7172a1d27136bf0680a1"
+    },
+    {
+      "file": "course/lecture04.json",
+      "baselineSHA256": "ead701416dc990c6ba51a3819e8c97b4c733612eb6e775f1854b35df963e26ff",
+      "candidateSHA256": "9851fcbc2750e18e7c997057bf3b9589188a50b80e11329ac826d7a8a6e8fae2"
+    },
+    {
+      "file": "course/lecture05.json",
+      "baselineSHA256": "e41dfd35be709ce3271838c23ae296c60e2a6c71d42c5046ea9d26e9478de6c0",
+      "candidateSHA256": "61030dcd6c9b8a5b7f0d895a3893a3c9ff7d20fc0d76c4afb427d5c9f1fd1671"
+    },
+    {
+      "file": "course/lecture06.json",
+      "baselineSHA256": "988ad31ac5a7975e6aeb09cbe6b898f1994a17f00075752431a655a861e0d6b8",
+      "candidateSHA256": "83322e2a2892e1659515c32588f38bb03ec7a04413906f919a55b1cbcf9138ae"
+    },
+    {
+      "file": "course/lecture07.json",
+      "baselineSHA256": "ae4fe0583e234ac2e7b8bfb3c670103cfa62624b85e97f2e7b8470c727b62257",
+      "candidateSHA256": "af8289c68e9278c577a90bf4b25d820104164d2d5cdc59055baeb9ae2e352cc7"
+    },
+    {
+      "file": "course/lecture08.json",
+      "baselineSHA256": "6e97102c7207497cb7976eb90d1d58eb6abcdb3c275a285d357cae7cbb106aaf",
+      "candidateSHA256": "d0beae5520d1a25fb9f1f065eb5dba7d13c772dc561180aa104ab2dbcfac6c35"
+    },
+    {
+      "file": "course/lecture09.json",
+      "baselineSHA256": "bfb7a725028b193a1ebc58da60207d4684e1d3e184fee8642b5fcdeb1a340751",
+      "candidateSHA256": "7989d0433178fe647a1d6666b6c84b6e5a80e528b0015c849aed83f82dd5457f"
+    },
+    {
+      "file": "course/lecture10.json",
+      "baselineSHA256": "697f42b27a63890a196200247abb8a871e0a4351cc142f9c36dbd82b6bed1219",
+      "candidateSHA256": "7ddd58a7b7c64fb78a72d0fd53e1c30542e064e427863ef3f9e408cbb6227afd"
+    },
+    {
+      "file": "course/lecture11.json",
+      "baselineSHA256": "fd9dd33abb8464966422df22f06c4635d0916ba74d94ec31c1ee428a0fafacf2",
+      "candidateSHA256": "8388725165d5736503edf0068f10385a471fce53a92f2a47dd7df06df4b2e9fc"
+    },
+    {
+      "file": "course/lecture12.json",
+      "baselineSHA256": "93f4552fec64846fab0eb02b3311667b37e7db0912c0c8bc9af34a435ea3659a",
+      "candidateSHA256": "0af83878e0a29830df5888ebc40ab05e0824f234e2514a05450f2b996ac9bd4c"
+    },
+    {
+      "file": "course/lecture13.json",
+      "baselineSHA256": "9c51db78f28075b3c2ceaded15b5d96c2828f18c925412f231bd2a22001ffe30",
+      "candidateSHA256": "fd36f0ff621960c2a092026d733df268b661ff31b1dd4e5bd48e29dbb1b8010b"
+    },
+    {
+      "file": "course/lecture14.json",
+      "baselineSHA256": "be8257388bf13c4056187b86621b07fd374ad95a9542582c74e259da1c9bb7d8",
+      "candidateSHA256": "077d2ddeb8384228480d08971be45b460f786609d5471dfb1cecee960bc46718"
+    },
+    {
+      "file": "course/lecture15.json",
+      "baselineSHA256": "c04e4f9b8333c412719a6ab77ccb5b06f4c3a11bb20c25838ee6e800020aadd5",
+      "candidateSHA256": "d132353ec3baca5eecb140944e5b0a567753236e6859f9209b01a0559906c860"
+    },
+    {
+      "file": "course/lecture16.json",
+      "baselineSHA256": "a704838c5469232b161ef53bac9b9f94b32139336baea76e54fa7bb5271e59e3",
+      "candidateSHA256": "a6be845efaa3b8a22ffb0a8a36a400ced19a8cf8f754e4046e6756dde6f4dea8"
+    },
+    {
+      "file": "course/lecture17.json",
+      "baselineSHA256": "b7714dcc563222f360593617041bbb1b49a3defe442c60b6cbfa65d70e759a55",
+      "candidateSHA256": "31abc0f307b50e39b3332532377502cc8d0b429e9189e53081e97c4306586e59"
+    },
+    {
+      "file": "course/lecture18.json",
+      "baselineSHA256": "40e38f20b4a5182af2192d2a1eb4ba4efc124bc7a51bb44bbaac7a1fe61bd658",
+      "candidateSHA256": "23ae45f3cb605999cd286252bf59aca02d25358431140ce8fcd0c6b4c2eb7170"
+    },
+    {
+      "file": "course/lecture19.json",
+      "baselineSHA256": "3ae875cf0080e98276ed21af1f556165708d48fe68fe916d57e177bc35b21c21",
+      "candidateSHA256": "b2651b9719fec9d5756ec7fe22a1ca757be3d1931d73a90e97f2966b93d8ffdc"
+    },
+    {
+      "file": "course/lecture20.json",
+      "baselineSHA256": "a4a3e9223344649dad0bfe4f1199fe020c574161893d8c9540490202ea60689f",
+      "candidateSHA256": "436b7ea61ef18e02bee466f13d46af3ba359306ca21e4335844130513c21b6a5"
+    },
+    {
+      "file": "course/lecture21.json",
+      "baselineSHA256": "3be941d9ef673976c78664b891ea19b1dabe5ff378d514c234f42cbd34168843",
+      "candidateSHA256": "36c9e1ab0b2988975988b958f18a20d6bc519e956c964c723aa34f85ce9cf3bd"
+    },
+    {
+      "file": "course/lecture22.json",
+      "baselineSHA256": "e45e19d9d0271b292222e3d7603688c28e88423e64ea57bbb6b3a32d6a213460",
+      "candidateSHA256": "25ff9362ea628c2bd85144d55abadb8a8398b1cac730f695a3cdd336a165294d"
+    },
+    {
+      "file": "course/lecture23.json",
+      "baselineSHA256": "0f696d32859ec6090828a835c0f7b135b4fad8e9d46fe99b0461b54519b67cbd",
+      "candidateSHA256": "3bd6c8badb3f310ad8b08d687bf1c458180b577f82a257984afe3d9916227fa1"
+    },
+    {
+      "file": "course/lecture24.json",
+      "baselineSHA256": "78330f42172546e9e20c952066db8e632e87e93b43c20bd648096bb9cbbc4ccd",
+      "candidateSHA256": "70b24d28228b8a828996f6df46f9e9626bb25496a5598b03976263be209d71fe"
+    },
+    {
+      "file": "course/lecture25.json",
+      "baselineSHA256": "bd41686a7935b50d3c163affbb08231787a5fc440d580034366e9bb1a8cc1191",
+      "candidateSHA256": "79142699e8727f27d4d2ca2ca6939f9ae7072b4cef63bafd5e53c989773a699c"
+    },
+    {
+      "file": "course/lecture26.json",
+      "baselineSHA256": "688fd55cc18cfb18c679cce191627db2f9855b1494fa8a271674159fe9e90428",
+      "candidateSHA256": "50e09eb8dee6f359bb05f010649ac4452d390314a13a5352b27d4a6596d57929"
+    },
+    {
+      "file": "course/lecture27.json",
+      "baselineSHA256": "26d9f7f8d940083a3343fad3d8301e5a12a1f11fda8f3241f02075296a5be198",
+      "candidateSHA256": "ae3ccb68538f2cae0e60d12c0fe2ca621cadedb4aefcd843815570fad8bf69c5"
+    },
+    {
+      "file": "course/supplements/supplement28.json",
+      "baselineSHA256": "85cd7c9a590357e25f19c01f905d300e5c8859356416be7eee03b0fc23c99c6a",
+      "candidateSHA256": "c0d3b84a51b034f74a70dc4f49f9caabd1a6e11c34c0d0d75d91b0cc61313a08"
+    },
+    {
+      "file": "course/supplements/supplement29.json",
+      "baselineSHA256": "ad4227168f93ef7469a65295fd1d89d29a26c90b6f8c842bff70e21c93c8b628",
+      "candidateSHA256": "d1c88e78d76e033c7ac01c3626ad7ae10b0a6f69ff75650d4d8f0a8266e14492"
+    },
+    {
+      "file": "course/supplements/supplement30.json",
+      "baselineSHA256": "352df977b55eb788726a74f626cda180ea2eb99515f40dce8ba1c7a7d08ec716",
+      "candidateSHA256": "d82bf09fe93f07e008c1bc63dc802c35919b0c5daa6e9f9bce46f44a0c5c4cb2"
+    },
+    {
+      "file": "course/supplements/supplement31.json",
+      "baselineSHA256": "3e57567a2b0b98285809b8bc0bd5a2bae1cf2be2802e4f8a4737c5a54c661abc",
+      "candidateSHA256": "439ae433b003abf7e74234b7c8e8d36541ba783885651847e5b3e28df28f662c"
+    },
+    {
+      "file": "course/supplements/supplement32.json",
+      "baselineSHA256": "b5aecdfe74a169076adb8bd6069ca21ae0f07fedc5527a2ec5927f1c12250bf4",
+      "candidateSHA256": "43b09d340508290670aa219b3e3fca1d54cca013c4cd012ab943f12aa4797f51"
+    },
+    {
+      "file": "course/supplements/supplement33.json",
+      "baselineSHA256": "441b3b1e088262482442d33778b0429286815df99455cbbd1d98318b4aaa73f6",
+      "candidateSHA256": "6582cf25ed7651b3180888fe34021b7751954b32ece14732ae26671108b49bf7"
+    },
+    {
+      "file": "course/supplements/supplement34.json",
+      "baselineSHA256": "c0dae3b4120c826e6d7332b9b21b89629fe30bfae303feaf23c37117eaa96314",
+      "candidateSHA256": "fe73a560eadfc6d4801bb4becc619718bc8a8d4e3fe949d34d6f543bbb8813c3"
+    },
+    {
+      "file": "course/supplements/supplement35.json",
+      "baselineSHA256": "7ddf867a9ed36e861f35ef5d9a2571f7f8c1751814cab76f29867e7f4ad8f51f",
+      "candidateSHA256": "b275307500109dcac5ed2c96c2604cfef0a4c9d3dbb42eb630bc4256ea7f67cb"
+    },
+    {
+      "file": "course/supplements/supplement36.json",
+      "baselineSHA256": "264e2bb90ed9b17c67a605999b48d3d3deed8c8dac252017da92364fa73564b9",
+      "candidateSHA256": "3abe3e6b47e9943152528d839cbf50869d0ff0fee1a825154cf8f50c08593034"
+    },
+    {
+      "file": "course/supplements/supplement37.json",
+      "baselineSHA256": "fc366a1f80c880941e1606577e1edfeffcfae522d5911ed1d5270ed9de3c6f8d",
+      "candidateSHA256": "11e1061b3cdefbb74c1d111219ec19683570c42245bb4aefe92bdbde6e34ee1f"
+    }
+  ],
+  "generatedBundles": [
+    {
+      "file": "course-data.js",
+      "sha256": "634c3b04c5e059c41bfe0ef212103eab15da9d41a8571f0fef0f676e2db0ca04"
+    },
+    {
+      "file": "quiz-data.js",
+      "sha256": "0742884cdd2bf02dec8d301cc278ece976ca3f83e39e867f42396856685bfdaf"
+    },
+    {
+      "file": "coverage-manifest.json",
+      "sha256": "20655bf96ceb39ed8a9aee1071ce050d9344ae3a808e80edda605e72c1f37773"
+    }
+  ]
+}

@@ -1,0 +1,1713 @@
+{
+  "baselineCommit": "0a1fb0363d2c44a0ca8f508f4e964a01af128720",
+  "baselineSupplementalPacketSHA256": "722f98721436e1d00486056b4374b886248a8d37bd16da009d7e1d350fb63163",
+  "allowedEditorialFields": [
+    "lesson.title",
+    "lesson.short",
+    "lesson.lead",
+    "lesson.goals",
+    "section.title",
+    "section.html"
+  ],
+  "records": [
+    {
+      "file": "course/lecture01.json",
+      "lessonId": "lecture-01",
+      "baselineFileSHA256": "0c508aba89715c0e6eb385e5e7faeb0703ec618498b369bd231acb8db72c7009",
+      "immutableMetadataSHA256": "50af74d4886ae27809e0a533e3c87be39e26d18dcdb064e1219ec32ad5c480e4",
+      "sectionIds": [
+        "l1-1",
+        "l1-2",
+        "l1-3",
+        "l1-4"
+      ],
+      "subsectionAnchors": [],
+      "sourceLinks": [
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf#page=13",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf#page=11",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf#page=2",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf#page=2"
+      ],
+      "sectionSourceLinks": {
+        "l1-1": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf#page=13"
+        ],
+        "l1-2": [],
+        "l1-3": [],
+        "l1-4": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf#page=11",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf#page=2",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf#page=2"
+        ]
+      },
+      "importantNoteHTMLSHA256": [
+        "cf10e0e9fd9f426822e0aac100ddea4398e2cb7fa541418eb72474922092fa63",
+        "5e32771785a6867e545da4928683988a02e9031cb5605c18a71d166c53caa15d"
+      ],
+      "sectionBaselineSHA256": {
+        "l1-1": "853e0b3e926d3ff20e4c8bac619a3594309cd3e771cc3e811e3ae40018e85d7a",
+        "l1-2": "df1dc7bd04c0ebe1a728ba0817aae8337de8406003749cd90b73de98b7e1cac3",
+        "l1-3": "5203b68f8dee534a50eededb3221d31fba71ca4728c399421c8d77d791bee045",
+        "l1-4": "c6e2397db25d2ac3f9a4956a8877937e9b9493cf75344519f554550b5b034925"
+      }
+    },
+    {
+      "file": "course/lecture02.json",
+      "lessonId": "lecture-02",
+      "baselineFileSHA256": "e8c371be0a3e6f95646a4de2cc6c2a73f856b02ef200f33b9c728be925f82000",
+      "immutableMetadataSHA256": "8400e69fb4d09548da119c453a7a8188f84a25780c0c1419c0e7cf43b16d12c6",
+      "sectionIds": [
+        "l2-1",
+        "l2-2",
+        "l2-3",
+        "l2-4"
+      ],
+      "subsectionAnchors": [],
+      "sourceLinks": [
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf#page=23",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf#page=26",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf#page=6",
+        "https://www.postgresql.org/docs/current/functions-subquery.html"
+      ],
+      "sectionSourceLinks": {
+        "l2-1": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf#page=6"
+        ],
+        "l2-2": [],
+        "l2-3": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf#page=23"
+        ],
+        "l2-4": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf#page=26",
+          "https://www.postgresql.org/docs/current/functions-subquery.html"
+        ]
+      },
+      "importantNoteHTMLSHA256": [
+        "9c6b9310f62b1cde8fe79cb6739fd911cdb8af974cff1a67046e6aed3880f79c",
+        "c636392d7dfb52e2dace4ad5c2f34e50c57e97185a19c2ec5ab6b5a6094b0c4f"
+      ],
+      "sectionBaselineSHA256": {
+        "l2-1": "d75ccb3a121e23d1ef37e6a92d15b53e352b57815ab5d87c8966948e6fcc1956",
+        "l2-2": "15e0f49eecaf97fa57001c5fd21892215841304017f2841c9e90898add51ddbb",
+        "l2-3": "89aee7e0d3a38e6895ff754599ec47dd332230d1b56af7a78c644bcbd96d5466",
+        "l2-4": "090d1b38bf09408459fb213ccc64919562a745b329d5bd21c4bab0a4a75a4a9e"
+      }
+    },
+    {
+      "file": "course/lecture03.json",
+      "lessonId": "lecture-03",
+      "baselineFileSHA256": "970bb013cc1524984d8740a635ebe73ab2af56c30bac3e76b7d4f56f5071f468",
+      "immutableMetadataSHA256": "9615b75fc020346feb1f0ce8e72c4dcf3589339838ec10ab402cb1a6e434e393",
+      "sectionIds": [
+        "l3-1",
+        "l3-2",
+        "l3-3",
+        "l3-4"
+      ],
+      "subsectionAnchors": [],
+      "sourceLinks": [
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf#page=10",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf#page=13",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf#page=2",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf#page=7"
+      ],
+      "sectionSourceLinks": {
+        "l3-1": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf#page=2"
+        ],
+        "l3-2": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf#page=10",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf#page=13",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf#page=7"
+        ],
+        "l3-3": [],
+        "l3-4": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf#page=10"
+        ]
+      },
+      "importantNoteHTMLSHA256": [
+        "cb6f162c597c9600f8a57a8937043d36a9d1a52677d67b2e8f69cf83abaffb21",
+        "ae7deebfbcf83ad71c229199ff0f793f892650723228e2c6049d45a2fd2d5188"
+      ],
+      "sectionBaselineSHA256": {
+        "l3-1": "1493704004653b5dec2027197f7e89ce6d4fbe2cc679317bda6c0ad1c203e36b",
+        "l3-2": "68094a7b11d517333dbf9935554c47cb7fd278642163dbd5064dec51baa70288",
+        "l3-3": "f379fd5bd301de157e4152cbf523d60beac98d95fcb08fbf7e41cbb2d0730da5",
+        "l3-4": "a045df8fd1dbe4b732b392554c87dde800e836223d4cbf446ee72fc2f841f9be"
+      }
+    },
+    {
+      "file": "course/lecture04.json",
+      "lessonId": "lecture-04",
+      "baselineFileSHA256": "ead701416dc990c6ba51a3819e8c97b4c733612eb6e775f1854b35df963e26ff",
+      "immutableMetadataSHA256": "01f32b32fab71f40700218a0e4bea4adfe3c4c7deae1a5118a9a30b9127cac63",
+      "sectionIds": [
+        "l4-1",
+        "l4-2",
+        "l4-3",
+        "l4-4"
+      ],
+      "subsectionAnchors": [],
+      "sourceLinks": [
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf#page=11",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf#page=24"
+      ],
+      "sectionSourceLinks": {
+        "l4-1": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf#page=11"
+        ],
+        "l4-2": [],
+        "l4-3": [],
+        "l4-4": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf#page=24"
+        ]
+      },
+      "importantNoteHTMLSHA256": [
+        "875dd3e5655996915e697c4354b9ca80cbd30887747c37a609194ec93287fa00",
+        "7cc2ddc505bf67e0eb2afee37c212f78a165f6b945de7a27ede50ec58343407b"
+      ],
+      "sectionBaselineSHA256": {
+        "l4-1": "5ad876d1e97e6aa90c5e54f3dc6180caf7be26e3a2f6ca3b99b2fcd10cc53019",
+        "l4-2": "c6dce0334236316385b2513048df45e8f29030442740c92ddada9362808a6b43",
+        "l4-3": "a1eca3196c22026945b5de51c29909c625acc7047db6ce7f27c1a86e8449e115",
+        "l4-4": "92231dfc89e794ce8d143f2c3b2ebe0cabb5f46342ac8187b2b02b8585ac90f9"
+      }
+    },
+    {
+      "file": "course/lecture05.json",
+      "lessonId": "lecture-05",
+      "baselineFileSHA256": "e41dfd35be709ce3271838c23ae296c60e2a6c71d42c5046ea9d26e9478de6c0",
+      "immutableMetadataSHA256": "a4613ca28a565ffb2943f61684b2ec2fa4fcce31d38e042d24bd0bcc00feb42e",
+      "sectionIds": [
+        "l5-1",
+        "l5-2",
+        "l5-3",
+        "l5-4"
+      ],
+      "subsectionAnchors": [],
+      "sourceLinks": [
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf#page=22",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf#page=7"
+      ],
+      "sectionSourceLinks": {
+        "l5-1": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf#page=7"
+        ],
+        "l5-2": [],
+        "l5-3": [],
+        "l5-4": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf#page=22"
+        ]
+      },
+      "importantNoteHTMLSHA256": [
+        "c823163a6e8987a8da5402bd090616082de8b00d4de9e34bf6e3e431c4a3425d",
+        "dcf51833e0be07f2cd4872aef6b2e3bceca3089ebc435ade7d4a7d3c73dae921"
+      ],
+      "sectionBaselineSHA256": {
+        "l5-1": "926c7502e6fbb5acbd5decb7962d916fecd85f8b6b0bdc39436cd1dc679af737",
+        "l5-2": "ae0f40a0d201714f551e8a702023848d62e67fd4d641a02497d7a9ad5b62f7fd",
+        "l5-3": "695da9f2db7a17641ae0f28867c716f8cc78c1363d092fe0d15e035ff942eb3b",
+        "l5-4": "ffab8bdf53e586e04c4bcb37726e5c7d1b5826feb225984c7841df45dec53d2f"
+      }
+    },
+    {
+      "file": "course/lecture06.json",
+      "lessonId": "lecture-06",
+      "baselineFileSHA256": "988ad31ac5a7975e6aeb09cbe6b898f1994a17f00075752431a655a861e0d6b8",
+      "immutableMetadataSHA256": "cd600d217e154b22c0858894cd162e9410a6e9ba7991ac83da4fc19c6db213ae",
+      "sectionIds": [
+        "l6-1",
+        "l6-2",
+        "l6-3",
+        "l6-4"
+      ],
+      "subsectionAnchors": [],
+      "sourceLinks": [
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf#page=12",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf#page=24",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf#page=5"
+      ],
+      "sectionSourceLinks": {
+        "l6-1": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf#page=5"
+        ],
+        "l6-2": [],
+        "l6-3": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf#page=12"
+        ],
+        "l6-4": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf#page=24"
+        ]
+      },
+      "importantNoteHTMLSHA256": [
+        "7d74ac2574289bbd82a4a2eece7330b74e28e59bfe6ce8eaf07bb8c251c73fe1",
+        "bc00cac74ba89d838e9908afcce144ae0ce0701ca25ff37458a5d2c1a2ad88e8"
+      ],
+      "sectionBaselineSHA256": {
+        "l6-1": "3239cf1af8e2f2b89d79158f0b99428e022b99e607486bb6ae25e555c1c0e547",
+        "l6-2": "baf76c94362e39b23d0ec7305a762a86cc48f3d631a4dba0200609e443344689",
+        "l6-3": "b897829bcb4a11e8309b4bd779dd876a87f48a5432d952bfc63c1537f92aea5a",
+        "l6-4": "e0c5bd957285b0aa77941a3fd4624f6f9aa9c17cb06a83be5db9f7fe457cf6ad"
+      }
+    },
+    {
+      "file": "course/lecture07.json",
+      "lessonId": "lecture-07",
+      "baselineFileSHA256": "ae4fe0583e234ac2e7b8bfb3c670103cfa62624b85e97f2e7b8470c727b62257",
+      "immutableMetadataSHA256": "b6f790236cc90e77303dd3cb0869bb2a1a9f2150163ce2a74b4ed7044136bed0",
+      "sectionIds": [
+        "l7-1",
+        "l7-2",
+        "l7-3",
+        "l7-4"
+      ],
+      "subsectionAnchors": [
+        "f11-column-position-exercise",
+        "f11-layout-and-pax",
+        "f12-parquet-metadata",
+        "f13-compression-performance",
+        "f13-value-aware-compression"
+      ],
+      "sourceLinks": [
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf#page=18",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf#page=21",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf#page=7",
+        "https://parquet.apache.org/docs/file-format/"
+      ],
+      "sectionSourceLinks": {
+        "l7-1": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf#page=7"
+        ],
+        "l7-2": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf#page=7"
+        ],
+        "l7-3": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf#page=21"
+        ],
+        "l7-4": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf#page=18",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf#page=21",
+          "https://parquet.apache.org/docs/file-format/"
+        ]
+      },
+      "importantNoteHTMLSHA256": [
+        "b9a47d75439b070a6c125ffea3ef73192c1498c3ee80d1bed2f80771ba5b18d6",
+        "353645eb194f78392de02aceb1e10dda336b83c82e5115d1a36e25164ae25cc2"
+      ],
+      "sectionBaselineSHA256": {
+        "l7-1": "a8c7c1589d4183d70f174f4917eae4a8c978ec6f98dd31951ac36a9fc79fbe43",
+        "l7-2": "9c5cd70d0edfeb4b343336af0a75884256435ee520b846591f3bd72a5577e543",
+        "l7-3": "53362ef1ecb9cadb0b4ad24d3459da8795bec981b9b014358fbfd0124236dce5",
+        "l7-4": "1376b193b2ba6b6463767a5639d464bc84e8a93a956104edbb42e6e58273cdd7"
+      }
+    },
+    {
+      "file": "course/lecture08.json",
+      "lessonId": "lecture-08",
+      "baselineFileSHA256": "6e97102c7207497cb7976eb90d1d58eb6abcdb3c275a285d357cae7cbb106aaf",
+      "immutableMetadataSHA256": "bb76c9a01d4a31eaad68bc518b72230593553225b1dd8fad7aadb679342c4cdd",
+      "sectionIds": [
+        "l8-1",
+        "l8-2",
+        "l8-3",
+        "l8-4"
+      ],
+      "subsectionAnchors": [
+        "f14-file-cost-completion",
+        "f14-index-classification"
+      ],
+      "sourceLinks": [
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations.pdf#page=23",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations.pdf#page=5"
+      ],
+      "sectionSourceLinks": {
+        "l8-1": [],
+        "l8-2": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations.pdf#page=5"
+        ],
+        "l8-3": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations.pdf#page=23"
+        ],
+        "l8-4": []
+      },
+      "importantNoteHTMLSHA256": [
+        "6c5c6647d5e908d40cd5048a9b842cfe6739cf32636a8a7016edfa1a392a195d",
+        "088486c956c9cc18d46385b8e6f62df970304134187211edd4d76fca1492c17f"
+      ],
+      "sectionBaselineSHA256": {
+        "l8-1": "af04af970487d0cfef7964ddba217cd125bf14db0f7dff8f140ce7322f4ae872",
+        "l8-2": "8c40957670cfcffebbce283ad9329c406619e4be9c314c09a8fdb80aee1fad5e",
+        "l8-3": "13683442295cedc32d742abcc6408fddff9a6f06b5a339e86aa250b2e4d6830a",
+        "l8-4": "1ad26c6385237db014e47ca219c369f9cb01a457bee53888ab90a9d127e410f5"
+      }
+    },
+    {
+      "file": "course/lecture09.json",
+      "lessonId": "lecture-09",
+      "baselineFileSHA256": "bfb7a725028b193a1ebc58da60207d4684e1d3e184fee8642b5fcdeb1a340751",
+      "immutableMetadataSHA256": "18e87b1f4483a7abe32458819f3bd48fc7b92b4501df8eeb5bb2a293ef8c3dcb",
+      "sectionIds": [
+        "l9-1",
+        "l9-2",
+        "l9-3",
+        "l9-4"
+      ],
+      "subsectionAnchors": [
+        "f15-internal-node-repair",
+        "f16-isam-and-key-compression",
+        "f16-occupancy-conventions"
+      ],
+      "sourceLinks": [
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf#page=13",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf#page=17",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf#page=6"
+      ],
+      "sectionSourceLinks": {
+        "l9-1": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf#page=13"
+        ],
+        "l9-2": [],
+        "l9-3": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf#page=17"
+        ],
+        "l9-4": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf#page=6"
+        ]
+      },
+      "importantNoteHTMLSHA256": [
+        "668f3af2bfba0260dd1c64ad7ca2133d052814435a214e070b5bd2a2ad360807",
+        "89e2652280375f52ee02fa81dda281e26fa0bf577fbfabaf09af9365886aa005"
+      ],
+      "sectionBaselineSHA256": {
+        "l9-1": "95f9eb2a1a2b178d2be8031a7fe93ced593069d72be26c7948f0d66e13b34d6d",
+        "l9-2": "08ed3eb98d61e51c7d7d13fcb72a7ba1b9040d6ed9ed164e6d929f96dca4bfa2",
+        "l9-3": "49bb49edac82a948e3ff2bc5e98ef45b74fdf380ecfb5891d0f7e53dc338c450",
+        "l9-4": "0c76ebec24fd9ac299eb85f1721b600f634759fb977462b049b84e4bd575ee3b"
+      }
+    },
+    {
+      "file": "course/lecture10.json",
+      "lessonId": "lecture-10",
+      "baselineFileSHA256": "697f42b27a63890a196200247abb8a871e0a4351cc142f9c36dbd82b6bed1219",
+      "immutableMetadataSHA256": "923af9456c5338e8b1150b10118c2f7563b2a879371e6b83dbe0c1b90a148bbe",
+      "sectionIds": [
+        "l10-s1",
+        "l10-s2",
+        "l10-s3",
+        "l10-s4"
+      ],
+      "subsectionAnchors": [
+        "f17-extendible-depth",
+        "f17-hash-lookup-cost"
+      ],
+      "sourceLinks": [
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=13",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=15",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=2",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=7"
+      ],
+      "sectionSourceLinks": {
+        "l10-s1": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=2"
+        ],
+        "l10-s2": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=7"
+        ],
+        "l10-s3": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=13",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=15"
+        ],
+        "l10-s4": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=15"
+        ]
+      },
+      "importantNoteHTMLSHA256": [
+        "c2a437646962af306ac52cb79df20301ee4789a7d705f9a6708ba0c664652cee",
+        "075b685036a981b93695b0ed7b4c31a6b3a66c1ded13556723f7ab4110dac02a"
+      ],
+      "sectionBaselineSHA256": {
+        "l10-s1": "ad4cab4d32757dfac2ee02cfe44e21f01e56701bc8bbb31e8dff485bb332cc5a",
+        "l10-s2": "15a66e31b52eeb9b0d01a3c0f04c5c38f816906a84b7619add3ed2fa83f3fcab",
+        "l10-s3": "b3f5a998a944e275165bef65cb84742bdc5d4d7b0b9a21e298333e0fbc6c27bc",
+        "l10-s4": "ee7a90f06f3da2f40e8f535a2f745c4cd18c1a9c389fe0a8f036e5540872ac33"
+      }
+    },
+    {
+      "file": "course/lecture11.json",
+      "lessonId": "lecture-11",
+      "baselineFileSHA256": "fd9dd33abb8464966422df22f06c4635d0916ba74d94ec31c1ee428a0fafacf2",
+      "immutableMetadataSHA256": "2814396cc508f1e0fdb33bb4407dee4bf4a01d14bd3943dccaae0aa35cbacee8",
+      "sectionIds": [
+        "l11-s1",
+        "l11-s2",
+        "l11-s3",
+        "l11-s4"
+      ],
+      "subsectionAnchors": [
+        "f18-hash-state-capacity",
+        "f18-merge-values"
+      ],
+      "sourceLinks": [
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=12",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=18",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=19",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=2",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=4"
+      ],
+      "sectionSourceLinks": {
+        "l11-s1": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=2",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=4"
+        ],
+        "l11-s2": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=12"
+        ],
+        "l11-s3": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=19"
+        ],
+        "l11-s4": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=18"
+        ]
+      },
+      "importantNoteHTMLSHA256": [
+        "9e59eb376ed860ccec549dfa9605fedcb161ad0d83d4955c32ec5bae0f484f4a",
+        "cb89426d928cb3fbd15ee10fb9956bdd6648b09860b66e00c3996750fd2593be"
+      ],
+      "sectionBaselineSHA256": {
+        "l11-s1": "aa170ecc7d115cdef408ce6a5bc1d282c13f0029d1ff5184907812c4db8f8bcf",
+        "l11-s2": "3a73e4cf936d8c201223db6352a6ea94ba0de90719a3c087c4d8eeb4aef6a544",
+        "l11-s3": "c30c3a4ff4d5e6082190971e951dbe0ef50f586a9bb8d148ec97a3ce6d0966ff",
+        "l11-s4": "69d186e93053bac8b17964f312f1836df00116cca52347b1979f32e68dd7a97c"
+      }
+    },
+    {
+      "file": "course/lecture12.json",
+      "lessonId": "lecture-12",
+      "baselineFileSHA256": "93f4552fec64846fab0eb02b3311667b37e7db0912c0c8bc9af34a435ea3659a",
+      "immutableMetadataSHA256": "bd0aad4e2ee5b41d8b6285a3705d76bdc498736f269768c691d2346f23785617",
+      "sectionIds": [
+        "l12-s1",
+        "l12-s2",
+        "l12-s3",
+        "l12-s4"
+      ],
+      "subsectionAnchors": [
+        "f19-sort-merge-fusion",
+        "f20-join-groups-and-skew"
+      ],
+      "sourceLinks": [
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=22",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=12",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=16",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=31",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=4"
+      ],
+      "sectionSourceLinks": {
+        "l12-s1": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=4"
+        ],
+        "l12-s2": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=12"
+        ],
+        "l12-s3": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=22",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=16",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=4"
+        ],
+        "l12-s4": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=16",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=31"
+        ]
+      },
+      "importantNoteHTMLSHA256": [
+        "eed132bfc446c293d6386bdd26cc0774d1707d07e64e192fc98e0e96aa3921e2",
+        "4f9cc763b3ac29033916a4943deab974482f8316f6aa47935c66fd07be71381a"
+      ],
+      "sectionBaselineSHA256": {
+        "l12-s1": "d8d73013755a77ff0c135560048a4ec6857415f895af6926c9351da025f86efc",
+        "l12-s2": "7aa80649f274b8e1dfc69b33eed164c4e81a36a9f4033b680a59294796e7a7bc",
+        "l12-s3": "7d6e17f7757b2d064849485f9059dd218205224a3858ff073bf1737455c3e0a5",
+        "l12-s4": "31a0e5ac88bb680b8345f747202869677aa51c4aa32e3b990281c48ceb73470a"
+      }
+    },
+    {
+      "file": "course/lecture13.json",
+      "lessonId": "lecture-13",
+      "baselineFileSHA256": "9c51db78f28075b3c2ceaded15b5d96c2828f18c925412f231bd2a22001ffe30",
+      "immutableMetadataSHA256": "c51d1d29c8560523aeb9876c4c17cce73756126004ef864ba1bf0a36371ed5bb",
+      "sectionIds": [
+        "l13-s1",
+        "l13-s2",
+        "l13-s3",
+        "l13-s4"
+      ],
+      "subsectionAnchors": [],
+      "sourceLinks": [
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=13",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=14",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=2",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=7",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=9"
+      ],
+      "sectionSourceLinks": {
+        "l13-s1": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=2"
+        ],
+        "l13-s2": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=7"
+        ],
+        "l13-s3": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=13",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=14"
+        ],
+        "l13-s4": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=9"
+        ]
+      },
+      "importantNoteHTMLSHA256": [
+        "a7be73269953b49b2e9d26674f67353305939556540f2126c1ffc60ad918d1f1",
+        "ba126202c105beb216492e9aa63a63213e8edb0091843bcb0a7d5807b4a82967"
+      ],
+      "sectionBaselineSHA256": {
+        "l13-s1": "0af74e7bc9acbbb2051cd973fa7be5ba6a44f26110cff45f639a6951c7d8dba1",
+        "l13-s2": "07bb2860a6478162426b4b28749537c2c7fadbf96e222bd13e7b5570b364b0f4",
+        "l13-s3": "1be5a162613da76e2c0525d10f393eb5696869b127fa69511e0117b2f1b32ced",
+        "l13-s4": "a79da201843f91bcba44487cefbb0a14342c47dd7927bc8a2811ba6e12abbb8e"
+      }
+    },
+    {
+      "file": "course/lecture14.json",
+      "lessonId": "lecture-14",
+      "baselineFileSHA256": "be8257388bf13c4056187b86621b07fd374ad95a9542582c74e259da1c9bb7d8",
+      "immutableMetadataSHA256": "5b85cc8cf05458e8895bc075c617546db64da8ff84bad30134649cdf0cbab6f6",
+      "sectionIds": [
+        "l14-s1",
+        "l14-s2",
+        "l14-s3",
+        "l14-s4"
+      ],
+      "subsectionAnchors": [],
+      "sourceLinks": [
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf#page=1",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf#page=4"
+      ],
+      "sectionSourceLinks": {
+        "l14-s1": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf#page=1"
+        ],
+        "l14-s2": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf#page=4"
+        ],
+        "l14-s3": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf#page=4"
+        ],
+        "l14-s4": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf#page=4"
+        ]
+      },
+      "importantNoteHTMLSHA256": [
+        "0b4e7cb57aa887582ae3ff9decaba9d2a868ec28d5f5a19b23e370f4457c65de",
+        "ad75dbbbece223f5aff1fb211b61b50ce489089e3f59e14f789605459a442212"
+      ],
+      "sectionBaselineSHA256": {
+        "l14-s1": "361a92d24bb8cbc4c5509ab5b07e4aa723bbbaaad9f3c3a7beeb63b4294b33be",
+        "l14-s2": "947b5b8ad6d6f01783ef176f65b7dc3b0039351071077ff0ee98847636ccb196",
+        "l14-s3": "69e1c159fa6ae425c04d753220b6d0099cb955e2109bbd012703f011a35797fc",
+        "l14-s4": "56e37845c373ec7a114dbacedc54c06385f8b5951ed44bba9031374a68eda5bf"
+      }
+    },
+    {
+      "file": "course/lecture15.json",
+      "lessonId": "lecture-15",
+      "baselineFileSHA256": "c04e4f9b8333c412719a6ab77ccb5b06f4c3a11bb20c25838ee6e800020aadd5",
+      "immutableMetadataSHA256": "537175850977922306f17d24055139aa17ee2a7c9527e11a311fe0bdaaf118b4",
+      "sectionIds": [
+        "l15-s1",
+        "l15-s2",
+        "l15-s3",
+        "l15-s4"
+      ],
+      "subsectionAnchors": [],
+      "sourceLinks": [
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=14",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=25",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=3",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=39"
+      ],
+      "sectionSourceLinks": {
+        "l15-s1": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=3"
+        ],
+        "l15-s2": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=14"
+        ],
+        "l15-s3": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=25"
+        ],
+        "l15-s4": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=39"
+        ]
+      },
+      "importantNoteHTMLSHA256": [
+        "23c86c6e6c423e72a5d7e2f8be0371cd32786bd9ae64d556e5666db8f81def07",
+        "6976c80bb7beadd28665510e4720b8a8f128ca0a0ca6fb69ddc0dfc1d9322730"
+      ],
+      "sectionBaselineSHA256": {
+        "l15-s1": "d6f75306e1d24da1caf881514c3b3136926021d827a250401ccaa90706585e80",
+        "l15-s2": "e4bd238bbe41bf46b25033185e027fc5b726a675deedce880a8b56783c3f380a",
+        "l15-s3": "f7d34d247c349857dcb40cebdaed729cde99513e95147e1c5131d7d408c25d98",
+        "l15-s4": "de24b0742ddb835698e0914b916b19a6f4948e5cbe5b0b95ca6d2a8227255255"
+      }
+    },
+    {
+      "file": "course/lecture16.json",
+      "lessonId": "lecture-16",
+      "baselineFileSHA256": "a704838c5469232b161ef53bac9b9f94b32139336baea76e54fa7bb5271e59e3",
+      "immutableMetadataSHA256": "5229d19ce8ef94f3eab29cfcf813a9ce2ef4895a6bd90402dbf994fa565fc8e3",
+      "sectionIds": [
+        "l16-s1",
+        "l16-s2",
+        "l16-s3",
+        "l16-s4"
+      ],
+      "subsectionAnchors": [],
+      "sourceLinks": [
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=16",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=19",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=2",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=22",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=7"
+      ],
+      "sectionSourceLinks": {
+        "l16-s1": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=2"
+        ],
+        "l16-s2": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=19",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=7"
+        ],
+        "l16-s3": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=16"
+        ],
+        "l16-s4": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=22"
+        ]
+      },
+      "importantNoteHTMLSHA256": [
+        "7ffbfb22dcb95801b41b2622b57924f90daed15ddb00dff05099cc29e03e56f1",
+        "ff815ad3294d7a25b5375b12daebcc357cc518c0f4ec5f10329bb8836437bc63"
+      ],
+      "sectionBaselineSHA256": {
+        "l16-s1": "b68561d1d691c953da15e2a1970de27cd6ded9bc53c1a37cb8922a4a8d539366",
+        "l16-s2": "02b9fe8959413149f4dd82bb2da5ff7c7724e4d714a6ebd7ee8676de5e97d1d0",
+        "l16-s3": "d0a3ce2a894ab8bc7e2e012e52c734a7c9dfe962cf1a73616bde2626a479b685",
+        "l16-s4": "e3b70a103db425ea8a747266ed2b5dfb1070d4d0ec74accb3aa8bd65df972788"
+      }
+    },
+    {
+      "file": "course/lecture17.json",
+      "lessonId": "lecture-17",
+      "baselineFileSHA256": "b7714dcc563222f360593617041bbb1b49a3defe442c60b6cbfa65d70e759a55",
+      "immutableMetadataSHA256": "e10c82251562dce33a9bbdf3773ae9dcd5dc7adbd4869a8131810c3840f51514",
+      "sectionIds": [
+        "l17-s1",
+        "l17-s2",
+        "l17-s3",
+        "l17-s4"
+      ],
+      "subsectionAnchors": [],
+      "sourceLinks": [
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=12",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=13",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=2",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=26",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=7"
+      ],
+      "sectionSourceLinks": {
+        "l17-s1": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=2"
+        ],
+        "l17-s2": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=7"
+        ],
+        "l17-s3": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=12",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=13"
+        ],
+        "l17-s4": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=26"
+        ]
+      },
+      "importantNoteHTMLSHA256": [
+        "2b0ecc6d9839ac8e5220df39ff77925f892351af1017ff305ba6fd889d9f807f",
+        "e94966320bb2bdf0d5217c1c41097421638842ccb6f04f68fe50bb0e82af1c50"
+      ],
+      "sectionBaselineSHA256": {
+        "l17-s1": "933ddef92b8efc5ca78b2b9be5fc2d6b781963d7f67ef50051ecd3c21f07af53",
+        "l17-s2": "cb52ecbe327ec9fe1fbc9afeab0d70f0cc1650a4de4aada1c3f2b2d068deddcd",
+        "l17-s3": "5684186b7eae15eb06a4c6a280f36f18ae1fa9860c49b5b8ddb3ce90a3b3a653",
+        "l17-s4": "9e9539edfdac7b9d1dc2838010ad82639b14206cc8f7fd5421a6672c3834e906"
+      }
+    },
+    {
+      "file": "course/lecture18.json",
+      "lessonId": "lecture-18",
+      "baselineFileSHA256": "40e38f20b4a5182af2192d2a1eb4ba4efc124bc7a51bb44bbaac7a1fe61bd658",
+      "immutableMetadataSHA256": "78d251a79f3f1cd9b94f61e01b157bad0b096f7aa57309e27a4e8a9f85fd8c24",
+      "sectionIds": [
+        "l18-s1",
+        "l18-s2",
+        "l18-s3",
+        "l18-s4"
+      ],
+      "subsectionAnchors": [],
+      "sourceLinks": [
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=13",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=14",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=2",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=8"
+      ],
+      "sectionSourceLinks": {
+        "l18-s1": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=2"
+        ],
+        "l18-s2": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=8"
+        ],
+        "l18-s3": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=13"
+        ],
+        "l18-s4": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=14"
+        ]
+      },
+      "importantNoteHTMLSHA256": [
+        "b7642e211a1c481c1ecc703459650215d983b7829befe626ed293840331ba997",
+        "41836c60cd1367329f3c0b70e471e012de461266d218ac59f56d5254418f6787"
+      ],
+      "sectionBaselineSHA256": {
+        "l18-s1": "29325c011fd951d93809578a277158075868a52f6ae887be7cf00d392cc8c72e",
+        "l18-s2": "f9ad8c94f349c68e709a859d97a88c38eeeb33ef26302bebfeb639b08efa7555",
+        "l18-s3": "8afb1e32dbd55d6adbddf27c4efd11b9de7242a27e5d25a78decc540f5f5f398",
+        "l18-s4": "0e66830a97f4469beb452b04874aedfb7fe1e0eca5f71fc4afe0f55fc683df02"
+      }
+    },
+    {
+      "file": "course/lecture19.json",
+      "lessonId": "lecture-19",
+      "baselineFileSHA256": "3ae875cf0080e98276ed21af1f556165708d48fe68fe916d57e177bc35b21c21",
+      "immutableMetadataSHA256": "66575a6817ab4782dc58214ca5d7fab18e16b339678edc19296859cb35b5501c",
+      "sectionIds": [
+        "l19-s1",
+        "l19-s2",
+        "l19-s3",
+        "l19-s4",
+        "l19-s5"
+      ],
+      "subsectionAnchors": [],
+      "sourceLinks": [
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=1",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=18",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=24",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=27",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=29",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=4",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=43",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=11"
+      ],
+      "sectionSourceLinks": {
+        "l19-s1": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=1",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=4"
+        ],
+        "l19-s2": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=18",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=24"
+        ],
+        "l19-s3": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=27"
+        ],
+        "l19-s4": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=29",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=11"
+        ],
+        "l19-s5": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=43"
+        ]
+      },
+      "importantNoteHTMLSHA256": [
+        "b27f3a882d38880c9865f4849d6a212a407b402b04bb4c657786cb861daf748d",
+        "cdd2b8f408040505ced016f0b280c56c1d4c07219d93267034d04b3eb150b979",
+        "f60920038e121ab7ce123ed7677bd930dec4910e16ce7d36d7e8c96e79a349ea"
+      ],
+      "sectionBaselineSHA256": {
+        "l19-s1": "9db4799bd1e82be9f8bc4e68207d3566c1ebe91350ec482699142c804b6bb381",
+        "l19-s2": "f455ca4b7131107ea7e17b510e727e74efd636bc3427ffceddf7f2a1ef6782a2",
+        "l19-s3": "5034f84258e271ff6cce316b9161c87f60954c57a27a15f4ef4702d3e46a7076",
+        "l19-s4": "4dbd3d3ceb324c25e78b41886d6f15552b721ad98ce6eae9bcdedb7ccdda5089",
+        "l19-s5": "296203721ed356b7b48e8ff0b24deb1449f4a33ab4b2a91f898c68b0f7dd37a4"
+      }
+    },
+    {
+      "file": "course/lecture20.json",
+      "lessonId": "lecture-20",
+      "baselineFileSHA256": "a4a3e9223344649dad0bfe4f1199fe020c574161893d8c9540490202ea60689f",
+      "immutableMetadataSHA256": "81f1fe9102a2de7505cf37c5628694a19bfc8b81fdf09538b0df293e36842198",
+      "sectionIds": [
+        "l20-s1",
+        "l20-s2",
+        "l20-s3",
+        "l20-s4",
+        "l20-s5"
+      ],
+      "subsectionAnchors": [],
+      "sourceLinks": [
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=18",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=19",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=2",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=23",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=3",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=7"
+      ],
+      "sectionSourceLinks": {
+        "l20-s1": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=2"
+        ],
+        "l20-s2": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=3"
+        ],
+        "l20-s3": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=18",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=19"
+        ],
+        "l20-s4": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=23"
+        ],
+        "l20-s5": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=7"
+        ]
+      },
+      "importantNoteHTMLSHA256": [
+        "967369b184e0cf9f7f0c581735a5cff1d99035658604a9d4943064fde03b3bb1",
+        "18fd5d567a90c928e20002d6930f56f704b9a1784c4ecf68bb0575d96f670469"
+      ],
+      "sectionBaselineSHA256": {
+        "l20-s1": "a151c100c9f0fe8a54df673f6a895368d22a113f833e56f03766c61a2885fb9c",
+        "l20-s2": "35a36fd57d1bb6c4202061abe2decf8829acfc524148c05247cb20094fc3d07a",
+        "l20-s3": "eb175237ff387b6df510c4e43dab769b4a71a382aec7daaf0154c456bdb0a5b4",
+        "l20-s4": "886404ac99c6ba29e112e9d4cd5496d5169bf089a7536deda03f9a4276cff877",
+        "l20-s5": "f723b8ccbf31c8efc072f7eed68d1d97b887c30e886a183527368140bf1a3262"
+      }
+    },
+    {
+      "file": "course/lecture21.json",
+      "lessonId": "lecture-21",
+      "baselineFileSHA256": "3be941d9ef673976c78664b891ea19b1dabe5ff378d514c234f42cbd34168843",
+      "immutableMetadataSHA256": "1047b43ec32c9eb6feb88e62ec02cb0e96d369f83ef6ed64d3d77264f13ee240",
+      "sectionIds": [
+        "l21-s1",
+        "l21-s2",
+        "l21-s3",
+        "l21-s4",
+        "l21-s5"
+      ],
+      "subsectionAnchors": [],
+      "sourceLinks": [
+        "https://cs.stanford.edu/people/chrismre/cs345/rl/aries.pdf#page=20",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=18",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=19",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=2",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=25",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=3",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=49"
+      ],
+      "sectionSourceLinks": {
+        "l21-s1": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=2"
+        ],
+        "l21-s2": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=18"
+        ],
+        "l21-s3": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=18"
+        ],
+        "l21-s4": [
+          "https://cs.stanford.edu/people/chrismre/cs345/rl/aries.pdf#page=20",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=19",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=25",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=49"
+        ],
+        "l21-s5": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=3"
+        ]
+      },
+      "importantNoteHTMLSHA256": [
+        "10f9d8f66456f1e195ccf07c48f24a2bfa920913df1b8e1c4d3cfae27b21e817",
+        "9dd29a10340a41d88bc48f42ce54264fe85db11e3173568febb7bf57ab466787"
+      ],
+      "sectionBaselineSHA256": {
+        "l21-s1": "61ca2d27bc2902c102a3c88961a525d80d7085cbd34629b4c213ea441d44033d",
+        "l21-s2": "060e6a5f4622dbcf9bc83fc0eb320376ce53d28b5bbd57a19ff9f6014352337c",
+        "l21-s3": "6f6a5a6b9878e0a29de9ff5f8d5454d21a61805546da94f9cd3578281296d789",
+        "l21-s4": "ccfd86a4f204cae8e6fb4749430bc8fff497ea6e24dacb75a0662cff41e716a6",
+        "l21-s5": "55360b0fcda50350f513bf0275428cbe703f6040431a8b5dcd9d517c1247bb50"
+      }
+    },
+    {
+      "file": "course/lecture22.json",
+      "lessonId": "lecture-22",
+      "baselineFileSHA256": "e45e19d9d0271b292222e3d7603688c28e88423e64ea57bbb6b3a32d6a213460",
+      "immutableMetadataSHA256": "d070a91b4b4d2a977f78fd7cfc82d40eb526f187bff928dc14fa0650539342b9",
+      "sectionIds": [
+        "l22-s1",
+        "l22-s2",
+        "l22-s3",
+        "l22-s4",
+        "l22-s5"
+      ],
+      "subsectionAnchors": [],
+      "sourceLinks": [
+        "https://dsf.berkeley.edu/cs286/papers/paxoscommit-tods2006.pdf#page=2",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=20",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=21",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=3",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=31",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=32",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=47",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=49",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=55"
+      ],
+      "sectionSourceLinks": {
+        "l22-s1": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=3"
+        ],
+        "l22-s2": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=20",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=21",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=31"
+        ],
+        "l22-s3": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=32",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=49",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=55"
+        ],
+        "l22-s4": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=47"
+        ],
+        "l22-s5": [
+          "https://dsf.berkeley.edu/cs286/papers/paxoscommit-tods2006.pdf#page=2",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=20",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=55"
+        ]
+      },
+      "importantNoteHTMLSHA256": [
+        "07753d6dd9aa60ff8d1cea012c0b81dd8a900bb1b1ac43ec31df4e28f013514e",
+        "d1cdd9b5b31f372c0b0ec86b88b2d2b9ca22cf025d8b62b09b64e6b6c538ef12"
+      ],
+      "sectionBaselineSHA256": {
+        "l22-s1": "df8a659210c297e595a24485c912b1a6637d0c90deb413bd99a84591f7ef61c7",
+        "l22-s2": "5bc6bf2d88e04d016d5de2439a9320891c134d97aadc7e095214dcd8a38f4be3",
+        "l22-s3": "eb6be371aa4d0eb9258f792ef678ec651917d634ba126ca635a183d46aa18e88",
+        "l22-s4": "8e2165e294f421139c7977bea32aad7de3a3e1dca15bcc2a70fb6e87fff9c350",
+        "l22-s5": "f4cee79b031994256dcff25692456dad991f0e491b38b654694959ad352c56d7"
+      }
+    },
+    {
+      "file": "course/lecture23.json",
+      "lessonId": "lecture-23",
+      "baselineFileSHA256": "0f696d32859ec6090828a835c0f7b135b4fad8e9d46fe99b0461b54519b67cbd",
+      "immutableMetadataSHA256": "c23f5c90e32f0bb0d45a02d47d7b537f41e166dbc83e388690e88189e3ad9247",
+      "sectionIds": [
+        "l23-s1",
+        "l23-s2",
+        "l23-s3",
+        "l23-s4",
+        "l23-s5"
+      ],
+      "subsectionAnchors": [],
+      "sourceLinks": [
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=1",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=19",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=2",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=20",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=26"
+      ],
+      "sectionSourceLinks": {
+        "l23-s1": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=1",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=2"
+        ],
+        "l23-s2": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=2",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=20"
+        ],
+        "l23-s3": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=26"
+        ],
+        "l23-s4": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=26"
+        ],
+        "l23-s5": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=19",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=26"
+        ]
+      },
+      "importantNoteHTMLSHA256": [
+        "a1afbb8414069e599bf7f09846c419b1588866e024cd4b39aed47001c6377bc6",
+        "21589a8686a2e061a945feef1995773f42cafc5edee76bfe135fb810ac946495"
+      ],
+      "sectionBaselineSHA256": {
+        "l23-s1": "3a315a30f2eaf9f9ced2dea5ac24baa2d6e2a19120bc05b086dca7af18901344",
+        "l23-s2": "5a01724ac81c1d4d992225949b2ead9cbd00e350d1cdaac9dc50b46ed1a5c6c3",
+        "l23-s3": "c30c6624a8815f5464f7adca0e3d1309bcae154e5d70a8fb47549e8ebcbd6c18",
+        "l23-s4": "75d8ca8cd8c460530e696013103ea89e33f1969f1efc1d5e799cc4a4ec88b9ab",
+        "l23-s5": "361821b0a1fb8a3d172d9a15cbed30b9ac03ebe97c16dbacf55627bb18535a96"
+      }
+    },
+    {
+      "file": "course/lecture24.json",
+      "lessonId": "lecture-24",
+      "baselineFileSHA256": "78330f42172546e9e20c952066db8e632e87e93b43c20bd648096bb9cbbc4ccd",
+      "immutableMetadataSHA256": "36558dc041cba6801f3746aba22373af8d6b07d97fcf20ab76c1c3459c22a428",
+      "sectionIds": [
+        "l24-s1",
+        "l24-s2",
+        "l24-s3",
+        "l24-s4",
+        "l24-s5"
+      ],
+      "subsectionAnchors": [],
+      "sourceLinks": [
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=10",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=19",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=23",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=32"
+      ],
+      "sectionSourceLinks": {
+        "l24-s1": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=10"
+        ],
+        "l24-s2": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=10"
+        ],
+        "l24-s3": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=19"
+        ],
+        "l24-s4": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=19",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=23"
+        ],
+        "l24-s5": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=32"
+        ]
+      },
+      "importantNoteHTMLSHA256": [
+        "a38267a4fbf4e830e02d32bd5627da9c3c4efc220d439c9bcde07e39de072777",
+        "69f411c0491cee28fcae9a0326071b575b6536ff4fd1516f14b76859079f2712",
+        "2bff3db6e48c4f31fed79f7accd676e4ff2efc8a87e4cfcba33e3943e5dfca06"
+      ],
+      "sectionBaselineSHA256": {
+        "l24-s1": "c211360602051bffac0afa3420de0d68cb5d2e57caa29982645593b8817be150",
+        "l24-s2": "dab67050107fbca54eba1740a3092b94f281c9b28433a7dcccc5cb53ce831e45",
+        "l24-s3": "c7cddcab08bad2a0755c37eac88e194d81886922ea62d37794f857847e848463",
+        "l24-s4": "718197c664287b2ffc51d6226cbfb13d40c338e1e14710c492667982a3dc5e71",
+        "l24-s5": "52233cde1533b754e6f678e456be88b5024fbd6f7abfd01f557f8a9fb78101f6"
+      }
+    },
+    {
+      "file": "course/lecture25.json",
+      "lessonId": "lecture-25",
+      "baselineFileSHA256": "bd41686a7935b50d3c163affbb08231787a5fc440d580034366e9bb1a8cc1191",
+      "immutableMetadataSHA256": "ec216928c8287e6fb28fe1ff6c4c53220a1daa499f36c58b473e39de3fcf812e",
+      "sectionIds": [
+        "l25-s1",
+        "l25-s2",
+        "l25-s3",
+        "l25-s4",
+        "l25-s5"
+      ],
+      "subsectionAnchors": [],
+      "sourceLinks": [
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=1",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=14",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=27",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=28",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=3",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=4"
+      ],
+      "sectionSourceLinks": {
+        "l25-s1": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=1",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=3"
+        ],
+        "l25-s2": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=4"
+        ],
+        "l25-s3": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=14",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=3"
+        ],
+        "l25-s4": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=27"
+        ],
+        "l25-s5": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=27",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=28"
+        ]
+      },
+      "importantNoteHTMLSHA256": [
+        "814692e9c4a2c92f80d33805032d2006eb36fcad2606819cc4aed59828fc20f7",
+        "52c1e2a86bbef38bfa9ce92b85202d4aecc7b5c219b153e469ea0426fe8b9933"
+      ],
+      "sectionBaselineSHA256": {
+        "l25-s1": "9eb99056bb4c95945464d8db1931f7c8de13f1f61b5561a86d09d368c6f35a6c",
+        "l25-s2": "114d5498781c11c8d98969ea980aa3d0851d1f588f817ed86f5d1227def170b1",
+        "l25-s3": "92dc064ea73c96b2d97fd8794c92bd4c16969558592f5324aab939634a322a1a",
+        "l25-s4": "b70755ad1830fe091306ee76c1840df2e812979e1b2eeb771f602b39b0a37f57",
+        "l25-s5": "2f6fc43f4a184b8c70940d505394846e24d3836e22a1a6ffa749c04e68ec6477"
+      }
+    },
+    {
+      "file": "course/lecture26.json",
+      "lessonId": "lecture-26",
+      "baselineFileSHA256": "688fd55cc18cfb18c679cce191627db2f9855b1494fa8a271674159fe9e90428",
+      "immutableMetadataSHA256": "6de2f1427ffb870f8846e11dc85c653184bd56abcfd64972e9bfc6a530f551b8",
+      "sectionIds": [
+        "l26-s1",
+        "l26-s2",
+        "l26-s3",
+        "l26-s4",
+        "l26-s5"
+      ],
+      "subsectionAnchors": [],
+      "sourceLinks": [
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=1",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=12",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=2",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=20",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=22",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=27",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=43"
+      ],
+      "sectionSourceLinks": {
+        "l26-s1": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=1",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=2"
+        ],
+        "l26-s2": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=12"
+        ],
+        "l26-s3": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=20",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=22"
+        ],
+        "l26-s4": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=27"
+        ],
+        "l26-s5": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=43"
+        ]
+      },
+      "importantNoteHTMLSHA256": [
+        "3b5f821c3fc10fbdcd669e71fa40eef00fc22a4171bb90cef57f2db613f54d2c",
+        "6f8678fb4f6cd1cd811e27d6ecceb2eefc9c91660808fceacf3b7e4c84205467"
+      ],
+      "sectionBaselineSHA256": {
+        "l26-s1": "6689c12328d4cbf4349130497e16df216b980eaf17e61e1fa439acea32d841c7",
+        "l26-s2": "fafb5da4b7cb83b8a3f93ba11a2a0f4dde4cd78a277fe09adabcaadcef3a2f2f",
+        "l26-s3": "c6d04cc57be762c1701d6131f2ed76ca94e73ed20f174b431dd1abf11beb9ca5",
+        "l26-s4": "67d23afe3f27a55b7fc7da27b68dc40b823d9ecddcc973284a1f567c713ee394",
+        "l26-s5": "412eaed5473f7074f67cb422d072a0dd8d52f7189d2bd8f3bd3a93d580c187cb"
+      }
+    },
+    {
+      "file": "course/lecture27.json",
+      "lessonId": "lecture-27",
+      "baselineFileSHA256": "26d9f7f8d940083a3343fad3d8301e5a12a1f11fda8f3241f02075296a5be198",
+      "immutableMetadataSHA256": "9add840c42ea79af2e4ddf60172b93e2bd259a2e87f7fcf1d1aa0546b63c0b65",
+      "sectionIds": [
+        "l27-s1",
+        "l27-s2",
+        "l27-s3",
+        "l27-s4",
+        "l27-s5"
+      ],
+      "subsectionAnchors": [],
+      "sourceLinks": [
+        "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer6.pdf#page=2",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=1",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=11",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=12",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=13",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=15",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=18",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=2",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=20",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=8",
+        "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=9"
+      ],
+      "sectionSourceLinks": {
+        "l27-s1": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=1",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=2"
+        ],
+        "l27-s2": [
+          "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer6.pdf#page=2",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=9"
+        ],
+        "l27-s3": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=11",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=8"
+        ],
+        "l27-s4": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=12",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=13",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=15"
+        ],
+        "l27-s5": [
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=13",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=18",
+          "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=20"
+        ]
+      },
+      "importantNoteHTMLSHA256": [
+        "88ea911e857bb2f592fe8b87f174236e82c605f11fdd57ad8162904068eb322f",
+        "66d27e5fb34e96c1be402c055b9c4c13913d17aa7731ec6115f97ede6d02f0c7"
+      ],
+      "sectionBaselineSHA256": {
+        "l27-s1": "2e6f229306904deaed7f0422cc8ee29509291c49cd3465f8cec51fdaa5c31981",
+        "l27-s2": "1d35eebe64658ffe7fcf466d1a7bed37cf88e698dae5b806164e3e02896f5d7d",
+        "l27-s3": "e505ed5450786f54f7c3c9d63bb34bc3517b93969616b5890eed58e5bf5d0999",
+        "l27-s4": "0051efc271f888f9622d5e345ba55b6af01f816d67dcbdb5332e8d30d4cc32c3",
+        "l27-s5": "e204097643166e3c6d3b36e39dd219fcf2656e98a2d5abf4601b8b3fdfc9cbeb"
+      }
+    },
+    {
+      "file": "course/supplements/supplement28.json",
+      "lessonId": "supplement-28",
+      "baselineFileSHA256": "85cd7c9a590357e25f19c01f905d300e5c8859356416be7eee03b0fc23c99c6a",
+      "immutableMetadataSHA256": "9fb7254c1bcfa089b7c610989d85cfe0de4d125d251f7878d707f9192a2a2fd1",
+      "sectionIds": [
+        "supplement-28-status",
+        "supplement-28-s1",
+        "supplement-28-s2",
+        "supplement-28-s3",
+        "supplement-28-s4",
+        "supplement-28-s5",
+        "supplement-28-s6"
+      ],
+      "subsectionAnchors": [],
+      "sourceLinks": [
+        "https://arxiv.org/abs/2306.14075",
+        "https://www.vldb.org/pvldb/vol17/p1565-lehmann.pdf",
+        "https://www.vldb.org/pvldb/vol18/p2519-wu.pdf"
+      ],
+      "sectionSourceLinks": {
+        "supplement-28-status": [],
+        "supplement-28-s1": [],
+        "supplement-28-s2": [],
+        "supplement-28-s3": [],
+        "supplement-28-s4": [
+          "https://arxiv.org/abs/2306.14075",
+          "https://www.vldb.org/pvldb/vol17/p1565-lehmann.pdf",
+          "https://www.vldb.org/pvldb/vol18/p2519-wu.pdf"
+        ],
+        "supplement-28-s5": [],
+        "supplement-28-s6": []
+      },
+      "importantNoteHTMLSHA256": [
+        "410d513f8d7f6da5fe687f0175ba3ac7388ccd4531f1667bd057bb03c0b18035",
+        "c084675c0ff9eca7e0e36d9b1ca21e1105a98a9167c960b37149e75c09563bdf"
+      ],
+      "sectionBaselineSHA256": {
+        "supplement-28-status": "a6b5b74faf796eb32d3cf48c61f4f9123fc27866492e285d2cf58f2000679db8",
+        "supplement-28-s1": "b4cad78e4991b0507c486e075b58930e090b6c0db7ed0c11f03e26bfef9cea63",
+        "supplement-28-s2": "8087378907f6b3b958dad4c068eb10e7adf8b05b391b024e325ce5b3afa5acb8",
+        "supplement-28-s3": "e898837c4354d0bef441fc2a646cb096487648da339feb5690a7fce7522f52ef",
+        "supplement-28-s4": "235e37c647edf5b116429a27ab0677d19e25b0a37bfa00e16ed5f7c37052066e",
+        "supplement-28-s5": "ee65f42dc9d67ec700fabff548ca55eabc665d36d7460a98e13e86bd9e6b6271",
+        "supplement-28-s6": "e0f63c66e24b40d63c75336023ef77801d33aaed8b47bfc090ed19cbbcd7d407"
+      }
+    },
+    {
+      "file": "course/supplements/supplement29.json",
+      "lessonId": "supplement-29",
+      "baselineFileSHA256": "ad4227168f93ef7469a65295fd1d89d29a26c90b6f8c842bff70e21c93c8b628",
+      "immutableMetadataSHA256": "69b76d011009408864f2275d6b17ddecf13633de5f574cad975568f83827e40b",
+      "sectionIds": [
+        "supplement-29-status",
+        "supplement-29-s1",
+        "supplement-29-s2",
+        "supplement-29-s3",
+        "supplement-29-s4",
+        "supplement-29-s5",
+        "supplement-29-s6"
+      ],
+      "subsectionAnchors": [],
+      "sourceLinks": [
+        "https://arxiv.org/abs/2308.15136",
+        "https://arxiv.org/abs/2405.12497",
+        "https://docs.nvidia.com/cuvs/installation",
+        "https://docs.nvidia.com/cuvs/user-guide/api-guides/indexing-guide/cagra",
+        "https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies",
+        "https://github.com/pgvector/pgvector"
+      ],
+      "sectionSourceLinks": {
+        "supplement-29-status": [],
+        "supplement-29-s1": [],
+        "supplement-29-s2": [
+          "https://github.com/pgvector/pgvector"
+        ],
+        "supplement-29-s3": [],
+        "supplement-29-s4": [
+          "https://arxiv.org/abs/2308.15136",
+          "https://arxiv.org/abs/2405.12497"
+        ],
+        "supplement-29-s5": [
+          "https://docs.nvidia.com/cuvs/installation",
+          "https://docs.nvidia.com/cuvs/user-guide/api-guides/indexing-guide/cagra",
+          "https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies"
+        ],
+        "supplement-29-s6": []
+      },
+      "importantNoteHTMLSHA256": [
+        "9ab5d5c2673389051da10ae8f8a7f12b18db836bde0de4da8d10567526c2b1b2",
+        "4c79702772421a8e1bfea5319343cb0da68b2f023afc70eda0694e3e240d96e1"
+      ],
+      "sectionBaselineSHA256": {
+        "supplement-29-status": "a6b5b74faf796eb32d3cf48c61f4f9123fc27866492e285d2cf58f2000679db8",
+        "supplement-29-s1": "d0ef37b4a3ae8a8531907d0fcc6a5577dc6c0bafa1f0bcd7fa7719531df8265b",
+        "supplement-29-s2": "253fb526d466d947020530ab2435452a0f184024914e6ac9a8f3061856bdd679",
+        "supplement-29-s3": "e06aeea396d13b90d3f17a6ff8c37505be89ed087a6bfcf8e02bf6d87d9891b3",
+        "supplement-29-s4": "eef85d14f83f125b7774389bc9968396d39bd46aacc06cbd3cb95b3977591b51",
+        "supplement-29-s5": "2c26f091ed7df92b4d4f08aa89b2fb67bab78c8ba9c3c58ce08d87f6b76141fd",
+        "supplement-29-s6": "798a042818ed235cd147b760703d64852958a4b680d92534bef376ad46810777"
+      }
+    },
+    {
+      "file": "course/supplements/supplement30.json",
+      "lessonId": "supplement-30",
+      "baselineFileSHA256": "352df977b55eb788726a74f626cda180ea2eb99515f40dce8ba1c7a7d08ec716",
+      "immutableMetadataSHA256": "d9893451b635fa115f59214ce5e2b879dddfe02cebc78fdc2c19cdd850b2b0aa",
+      "sectionIds": [
+        "supplement-30-status",
+        "supplement-30-s1",
+        "supplement-30-s2",
+        "supplement-30-s3",
+        "supplement-30-s4",
+        "supplement-30-s5",
+        "supplement-30-s6"
+      ],
+      "subsectionAnchors": [],
+      "sourceLinks": [
+        "https://docs.vllm.ai/en/stable/configuration/optimization/",
+        "https://www.vldb.org/pvldb/vol18/p3035-shankar.pdf",
+        "https://www.vldb.org/pvldb/vol18/p4171-patel.pdf"
+      ],
+      "sectionSourceLinks": {
+        "supplement-30-status": [],
+        "supplement-30-s1": [],
+        "supplement-30-s2": [],
+        "supplement-30-s3": [
+          "https://www.vldb.org/pvldb/vol18/p3035-shankar.pdf",
+          "https://www.vldb.org/pvldb/vol18/p4171-patel.pdf"
+        ],
+        "supplement-30-s4": [],
+        "supplement-30-s5": [
+          "https://docs.vllm.ai/en/stable/configuration/optimization/"
+        ],
+        "supplement-30-s6": []
+      },
+      "importantNoteHTMLSHA256": [
+        "7ee8205ae86032c443a0035dc7660f23e646d07c435f09209a4df226e637ab53",
+        "0ecd40acf27149348a977c36b9e090e4c6ae0eefbcbbeb3e4f29f12717047c29"
+      ],
+      "sectionBaselineSHA256": {
+        "supplement-30-status": "a6b5b74faf796eb32d3cf48c61f4f9123fc27866492e285d2cf58f2000679db8",
+        "supplement-30-s1": "42c805ce754d9d573e4adb0e5d7f12acb0558196f150daa4f720c9cdc4964527",
+        "supplement-30-s2": "21ae52bfe5bfa3a86b6d3bee0158f6df2be5843df5e5eaf3802d7ca3ec2171fc",
+        "supplement-30-s3": "33210e1a7d6473d500e926593cb55797c4c2237fa60db3d59424cd5a726e587d",
+        "supplement-30-s4": "77371739038865962720484bc0ed2e89181b09c7d6ea5e8aac58b2e429f1e9b4",
+        "supplement-30-s5": "aa3b18bd1dc064a2473d0d009a46b83f46975e5879ba252ba9114d3cca1c1557",
+        "supplement-30-s6": "8b3fe51383822659eacdfeb0143ec67a9a542738faddef9209c65d4698ad9c64"
+      }
+    },
+    {
+      "file": "course/supplements/supplement31.json",
+      "lessonId": "supplement-31",
+      "baselineFileSHA256": "3e57567a2b0b98285809b8bc0bd5a2bae1cf2be2802e4f8a4737c5a54c661abc",
+      "immutableMetadataSHA256": "37f1d9b5d2286e07bdd50b55de3c500cf8c6513da230d7a9e334cf8b7a05c01e",
+      "sectionIds": [
+        "supplement-31-status",
+        "supplement-31-s1",
+        "supplement-31-s2",
+        "supplement-31-s3",
+        "supplement-31-s4",
+        "supplement-31-s5",
+        "supplement-31-s6"
+      ],
+      "subsectionAnchors": [],
+      "sourceLinks": [
+        "https://cighao.com/papers/polardb_mp.pdf",
+        "https://neon.com/blog/architecture-decisions-in-neon",
+        "https://www.vldb.org/pvldb/vol17/p3786-li.pdf"
+      ],
+      "sectionSourceLinks": {
+        "supplement-31-status": [],
+        "supplement-31-s1": [],
+        "supplement-31-s2": [],
+        "supplement-31-s3": [],
+        "supplement-31-s4": [
+          "https://cighao.com/papers/polardb_mp.pdf",
+          "https://neon.com/blog/architecture-decisions-in-neon",
+          "https://www.vldb.org/pvldb/vol17/p3786-li.pdf"
+        ],
+        "supplement-31-s5": [],
+        "supplement-31-s6": []
+      },
+      "importantNoteHTMLSHA256": [
+        "f324610bab6a5bcc62e3521167d827a8414e2ac328531ab88c5649fc32728bd9",
+        "1526ec01cb6db7377ad28c7593c97f89a1713bf0eb89494a23b8d99e58ba7580"
+      ],
+      "sectionBaselineSHA256": {
+        "supplement-31-status": "a6b5b74faf796eb32d3cf48c61f4f9123fc27866492e285d2cf58f2000679db8",
+        "supplement-31-s1": "243aa8ed76187aa52b9282920088ea88d255949affd49c97a066c7500ee2922c",
+        "supplement-31-s2": "aeabd46108d44a9bc7e4722b11179f88e003ec3212c68305de574772b7550f7c",
+        "supplement-31-s3": "772bd4a68ebd5917b999e18259ce6383d7047f80d353a9663e3b9eba61d5f262",
+        "supplement-31-s4": "8b8aa2e143ae379296983e4cc3f3002fd9700bb1f531110c01dfbcd821ad58e6",
+        "supplement-31-s5": "0e7d0baba0c3e898fe34e8cd1e059c512bbb9e6ddd35de84f86fbfd012aebe77",
+        "supplement-31-s6": "1cf2bec982d3e9cdfdf5abc78a256c1748644a9bab6b053576022fe543a960e1"
+      }
+    },
+    {
+      "file": "course/supplements/supplement32.json",
+      "lessonId": "supplement-32",
+      "baselineFileSHA256": "b5aecdfe74a169076adb8bd6069ca21ae0f07fedc5527a2ec5927f1c12250bf4",
+      "immutableMetadataSHA256": "d59fbc93f5406619ae71839a0e88a17ce54823d10b03ae4abc1dab1ebd0535a5",
+      "sectionIds": [
+        "supplement-32-status",
+        "supplement-32-s1",
+        "supplement-32-s2",
+        "supplement-32-s3",
+        "supplement-32-s4",
+        "supplement-32-s5"
+      ],
+      "subsectionAnchors": [],
+      "sourceLinks": [
+        "https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies",
+        "https://www.vldb.org/pvldb/vol17/p1565-lehmann.pdf"
+      ],
+      "sectionSourceLinks": {
+        "supplement-32-status": [],
+        "supplement-32-s1": [],
+        "supplement-32-s2": [],
+        "supplement-32-s3": [
+          "https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies",
+          "https://www.vldb.org/pvldb/vol17/p1565-lehmann.pdf"
+        ],
+        "supplement-32-s4": [],
+        "supplement-32-s5": []
+      },
+      "importantNoteHTMLSHA256": [
+        "ea1ccaf1709f287069bd762038f0a2bee66758b8ad192a0ec7414d4761c3c87e",
+        "f0c122d849f39726cb3c2102bf89649794e7cab4839e1555fec3e52b609de788"
+      ],
+      "sectionBaselineSHA256": {
+        "supplement-32-status": "a6b5b74faf796eb32d3cf48c61f4f9123fc27866492e285d2cf58f2000679db8",
+        "supplement-32-s1": "c89eea3c5b6aae3479604b33a7a264f294bfcaea17c11b1ce45fc2ed175d6274",
+        "supplement-32-s2": "2d781433576600d2fbab811036e2a15c4f0cf4634842d71a9d40e6499e281018",
+        "supplement-32-s3": "9b462caaf662f74606fb0b17af88873edf1a1275fd273bd5df38a95afe42fd59",
+        "supplement-32-s4": "36fedc9166e816c897ab8ab705cdf069806237ffaf3d25ba7f4b157da1662372",
+        "supplement-32-s5": "fcf676b38513e080685c8b8cdd5d6dd4491aec94f50c1ce6b883c98fe131e8f0"
+      }
+    },
+    {
+      "file": "course/supplements/supplement33.json",
+      "lessonId": "supplement-33",
+      "baselineFileSHA256": "441b3b1e088262482442d33778b0429286815df99455cbbd1d98318b4aaa73f6",
+      "immutableMetadataSHA256": "f05a01d3e3c545404b2b29bf80480bb19bc06f5e997a50e26526c57b6c98474a",
+      "sectionIds": [
+        "supplement-33-status",
+        "supplement-33-s1",
+        "supplement-33-s2",
+        "supplement-33-s3",
+        "supplement-33-s4",
+        "supplement-33-s5"
+      ],
+      "subsectionAnchors": [],
+      "sourceLinks": [
+        "https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies"
+      ],
+      "sectionSourceLinks": {
+        "supplement-33-status": [],
+        "supplement-33-s1": [],
+        "supplement-33-s2": [],
+        "supplement-33-s3": [
+          "https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies"
+        ],
+        "supplement-33-s4": [],
+        "supplement-33-s5": []
+      },
+      "importantNoteHTMLSHA256": [
+        "64d1e108139fc12af6b3c67a73acbb759caf39ca8cf05406f12f1b208e739d83",
+        "43f3cc2f45572f29239ab8ff31deee026fca6dd60f9a8431fcd03e8a256768a0"
+      ],
+      "sectionBaselineSHA256": {
+        "supplement-33-status": "a6b5b74faf796eb32d3cf48c61f4f9123fc27866492e285d2cf58f2000679db8",
+        "supplement-33-s1": "6308e4d8776157eec4ec24f2030f040c71600d9fb359de01d57a5c3155aef9ed",
+        "supplement-33-s2": "7ae83ba7428b43308bfc8a6db4da28b707e438572291a976f53b7a8eae8c3598",
+        "supplement-33-s3": "25dfd0b37b901628c235731285e434b34da0a50430291645d855fb894e2a954b",
+        "supplement-33-s4": "41ace8f74a4a576c6349bcd5a57eae51dc5173b3acb1332a9025ddb9c7f6f14b",
+        "supplement-33-s5": "fb6ec6234b3125a4929aab1a2636d78a44d34352e1ee5a45896eccbcc5de3ea6"
+      }
+    },
+    {
+      "file": "course/supplements/supplement34.json",
+      "lessonId": "supplement-34",
+      "baselineFileSHA256": "c0dae3b4120c826e6d7332b9b21b89629fe30bfae303feaf23c37117eaa96314",
+      "immutableMetadataSHA256": "2c4ec3899382ed10c048eb639bf950f3a8f0876ea19c5a34c0fdc145239a9ad9",
+      "sectionIds": [
+        "supplement-34-status",
+        "supplement-34-s1",
+        "supplement-34-s2",
+        "supplement-34-s3",
+        "supplement-34-s4",
+        "supplement-34-s5"
+      ],
+      "subsectionAnchors": [],
+      "sourceLinks": [],
+      "sectionSourceLinks": {
+        "supplement-34-status": [],
+        "supplement-34-s1": [],
+        "supplement-34-s2": [],
+        "supplement-34-s3": [],
+        "supplement-34-s4": [],
+        "supplement-34-s5": []
+      },
+      "importantNoteHTMLSHA256": [
+        "f7c22039ca95881ab55446dc6b9ebe321effac1857703a3a9eafb8199a0e2240",
+        "55371f042889b437a653257e33c43b01ae9a0bdf798994ecabc3a3f2be6b8fe7"
+      ],
+      "sectionBaselineSHA256": {
+        "supplement-34-status": "a6b5b74faf796eb32d3cf48c61f4f9123fc27866492e285d2cf58f2000679db8",
+        "supplement-34-s1": "fcc450cb1c580f457c3a32c918469541d0d0a399d33f02a00d736fed6702cffd",
+        "supplement-34-s2": "b3d81370a02633a93ccd18765cf4a1c624ff3a58dfd76f0665af852d7219f3f1",
+        "supplement-34-s3": "f892f3a797eb646115ae60b1b4c9bc00378dc3f0fa242aff8621d87db6c46c00",
+        "supplement-34-s4": "15a1b9fc5183f68e04c901482e875069e21371831c0cf2ba82edd53b31b1c7c5",
+        "supplement-34-s5": "4d79ffdaa1e07b40d2f211b189be279e8e60d13a2f01b70647a3e25aedd0baea"
+      }
+    },
+    {
+      "file": "course/supplements/supplement35.json",
+      "lessonId": "supplement-35",
+      "baselineFileSHA256": "7ddf867a9ed36e861f35ef5d9a2571f7f8c1751814cab76f29867e7f4ad8f51f",
+      "immutableMetadataSHA256": "fed6ae92b19b8a5fa22ff7eb0bbe1fb57c8d1e3882cce9ace98b790146d900c2",
+      "sectionIds": [
+        "supplement-35-status",
+        "supplement-35-s1",
+        "supplement-35-s2",
+        "supplement-35-s3",
+        "supplement-35-s4",
+        "supplement-35-s5"
+      ],
+      "subsectionAnchors": [],
+      "sourceLinks": [
+        "https://sigsim.acm.org/conf/pads/2024/blog/artifact-evaluation/"
+      ],
+      "sectionSourceLinks": {
+        "supplement-35-status": [],
+        "supplement-35-s1": [
+          "https://sigsim.acm.org/conf/pads/2024/blog/artifact-evaluation/"
+        ],
+        "supplement-35-s2": [],
+        "supplement-35-s3": [],
+        "supplement-35-s4": [],
+        "supplement-35-s5": []
+      },
+      "importantNoteHTMLSHA256": [
+        "66f3837a070de4027fafbaaaa95c1a69e379a7b68aa8f48b38424a885c40fac5",
+        "ec7f0f0d8a6ad3ab41fcbc747cac13a5c6ff74de7fae1b1b6b13d0a08093f75f"
+      ],
+      "sectionBaselineSHA256": {
+        "supplement-35-status": "a6b5b74faf796eb32d3cf48c61f4f9123fc27866492e285d2cf58f2000679db8",
+        "supplement-35-s1": "1f5d867f55255d0441643387cb18fb1a712700d760f9b72056a85bf1740274b1",
+        "supplement-35-s2": "fcf243c038923d084ca6ceebb290cb911b6d5df82bb064afb9df69cfb43859e1",
+        "supplement-35-s3": "57e3d42b508c0faec51bc93dc803c4c7813f34689032de0ba5b012be29917459",
+        "supplement-35-s4": "5b7dca4fde946d4553240f07e53e0d0c516188bb54b0c48526286b81c6133c94",
+        "supplement-35-s5": "99a2b5d6ef7a586e0ad9dd29fe7f6f46606552af97e1a1a0a36b88e4bfb3cc91"
+      }
+    },
+    {
+      "file": "course/supplements/supplement36.json",
+      "lessonId": "supplement-36",
+      "baselineFileSHA256": "264e2bb90ed9b17c67a605999b48d3d3deed8c8dac252017da92364fa73564b9",
+      "immutableMetadataSHA256": "4c9e86f8b48673744a88a0e92db7a14a2069d2de4e3a6ab4f9d92c5cba305572",
+      "sectionIds": [
+        "supplement-36-status",
+        "supplement-36-s1",
+        "supplement-36-s2",
+        "supplement-36-s3",
+        "supplement-36-s4",
+        "supplement-36-s5"
+      ],
+      "subsectionAnchors": [],
+      "sourceLinks": [],
+      "sectionSourceLinks": {
+        "supplement-36-status": [],
+        "supplement-36-s1": [],
+        "supplement-36-s2": [],
+        "supplement-36-s3": [],
+        "supplement-36-s4": [],
+        "supplement-36-s5": []
+      },
+      "importantNoteHTMLSHA256": [
+        "05f7daf795aa90f15750ecc6ccff2e01aba265a704ad99fcbb90c7fbe1bf3fe1",
+        "c55fe089f625c62fa7602425e2ecff4462f1172b7d7337c7f6b2a444eb803121"
+      ],
+      "sectionBaselineSHA256": {
+        "supplement-36-status": "a6b5b74faf796eb32d3cf48c61f4f9123fc27866492e285d2cf58f2000679db8",
+        "supplement-36-s1": "a5d5e01ba9f998957258caef8b0085b7a9d1e96e007ee76c76b2c0c459f9b793",
+        "supplement-36-s2": "47043fe6bfef06dcbf61c329e6df77dee9d7e751b1bb655da66ff29476892069",
+        "supplement-36-s3": "44f79a5d5c80ad83da2fe0925215d13d636d9cf79888cab17ed6a2bc4e060189",
+        "supplement-36-s4": "f19997fcc789ac09702725eb7693e4cf2df8076974286814a45b8cb7fb3840e8",
+        "supplement-36-s5": "2a7dd849fd4a8728e7a0a3d5de7cde768461ab436215c5c748b5842a9fe3ae7f"
+      }
+    },
+    {
+      "file": "course/supplements/supplement37.json",
+      "lessonId": "supplement-37",
+      "baselineFileSHA256": "fc366a1f80c880941e1606577e1edfeffcfae522d5911ed1d5270ed9de3c6f8d",
+      "immutableMetadataSHA256": "6887146af7fd3ad52d7a62a288bcfb219f960559e66e927219f4d3a125f3275d",
+      "sectionIds": [
+        "supplement-37-status",
+        "supplement-37-s1",
+        "supplement-37-s2",
+        "supplement-37-s3",
+        "supplement-37-s4",
+        "supplement-37-s5"
+      ],
+      "subsectionAnchors": [],
+      "sourceLinks": [],
+      "sectionSourceLinks": {
+        "supplement-37-status": [],
+        "supplement-37-s1": [],
+        "supplement-37-s2": [],
+        "supplement-37-s3": [],
+        "supplement-37-s4": [],
+        "supplement-37-s5": []
+      },
+      "importantNoteHTMLSHA256": [
+        "d1e3962717121af2f2ad58e6208706893787a608ade9a934f6b07356a3e64b08",
+        "44aa9110641186e1dbb33759ff25be8a40d4f01ab3374ac9c53e23c2f9568b15"
+      ],
+      "sectionBaselineSHA256": {
+        "supplement-37-status": "a6b5b74faf796eb32d3cf48c61f4f9123fc27866492e285d2cf58f2000679db8",
+        "supplement-37-s1": "c1897769ee8dabe19709e0e89c91985715e6046ccb75a1d79bb6711cc324d2fc",
+        "supplement-37-s2": "a3c4f3a086d1a22657d4bbd018313be185746a101db7d569f8a993e056f8e377",
+        "supplement-37-s3": "b156660193776657a13801644c7b2ebd1e6228e0394f7baf47f067716169ea16",
+        "supplement-37-s4": "625eaeeba488a0d50e7fc817e8a165d1e3062d94b6e14ae9fca599da82e61b43",
+        "supplement-37-s5": "90a46a6ce273f1ea41422c691662e74453a406adad9b9e17757ba548f3ba196b"
+      }
+    }
+  ]
+}

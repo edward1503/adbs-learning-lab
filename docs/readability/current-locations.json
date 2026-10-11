@@ -1,0 +1,74 @@
+{
+  "baselineCommit": "0a1fb0363d2c44a0ca8f508f4e964a01af128720",
+  "policy": "Historical audit records and accepted review SHAs remain historical. This overlay locates teaching blocks after readability integration; all original anchors and every source URL are retained. Original section source links remain in place even where supporting prose moved.",
+  "relocatedAnchors": [
+    {
+      "resource": "lecture-09",
+      "anchor": "f16-occupancy-conventions",
+      "baselineSection": "l9-1",
+      "candidateSection": "l9-4"
+    }
+  ],
+  "relocatedTeachingBlocks": [
+    {
+      "resource": "lecture-01",
+      "material": "DBMS responsibilities",
+      "baselineSection": "l1-1",
+      "candidateSection": "l1-2"
+    },
+    {
+      "resource": "lecture-03",
+      "material": "Closure/type checks",
+      "baselineSection": "l3-1",
+      "candidateSection": "l3-2"
+    },
+    {
+      "resource": "lecture-03",
+      "material": "Safe calculus/equivalence qualification",
+      "baselineSection": "l3-1",
+      "candidateSection": "l3-3"
+    },
+    {
+      "resource": "lecture-04",
+      "material": "SSD write amplification",
+      "baselineSection": "l4-1",
+      "candidateSection": "l4-4"
+    },
+    {
+      "resource": "lecture-05",
+      "material": "Last-unpin LRU convention",
+      "baselineSection": "l5-1",
+      "candidateSection": "l5-3"
+    },
+    {
+      "resource": "lecture-05",
+      "material": "CLOCK pin-increase convention",
+      "baselineSection": "l5-1",
+      "candidateSection": "l5-4"
+    },
+    {
+      "resource": "lecture-07",
+      "material": "Lossless compression introduction",
+      "baselineSection": "l7-1",
+      "candidateSection": "l7-3"
+    },
+    {
+      "resource": "lecture-18",
+      "material": "Four-route DP ledger",
+      "baselineSection": "l18-s2",
+      "candidateSection": "l18-s3"
+    },
+    {
+      "resource": "lecture-19",
+      "material": "Conflict-preserving swaps / three-transaction graph",
+      "baselineSection": "l19-s2",
+      "candidateSection": "l19-s3"
+    },
+    {
+      "resource": "lecture-20",
+      "material": "Wait-die/wound-wait timestamp proof",
+      "baselineSection": "l20-s3",
+      "candidateSection": "l20-s4"
+    }
+  ]
+}
