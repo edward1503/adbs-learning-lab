@@ -1,0 +1,273 @@
+{
+  "lesson": {
+    "id": "supplement-35",
+    "lecture": null,
+    "order": 35,
+    "kind": "supplemental",
+    "displayLabel": "M12 · Session 4",
+    "module": 12,
+    "week": 14,
+    "suggestedSession": 4,
+    "title": "Project clinic: reproducible artifacts and defensible conclusions",
+    "short": "Environment · data lineage · smoke tests · report assembly",
+    "group": "12 · Project clinic",
+    "time": 35,
+    "timeMeaning": "Suggested independent study minutes; not scheduled contact time",
+    "lead": "A useful artifact lets another person trace a figure back to inputs, code, settings and raw measurements.",
+    "goals": [
+      "Package the evidence required to rerun a result.",
+      "Separate a smoke test from a full scientific reproduction.",
+      "Audit cost, data permission, limitations and claims before presenting."
+    ],
+    "sections": [
+      {
+        "id": "supplement-35-status",
+        "title": "How to use this supplemental session",
+        "html": "<p>This is an original supplemental study session aligned to the user-provided syllabus. It is not an Edinburgh lecture or a verified Canvas assignment. The Canvas reading list and instructor-specific assessment instructions were not accessible. Suggested activities, timings, templates and checks below are practice guidance, not official requirements.</p>"
+      },
+      {
+        "id": "supplement-35-s1",
+        "title": "Define the artifact boundary",
+        "html": "<p>An artifact can contain source code, environment specification, data-access instructions, preprocessing scripts, configurations, raw results and plotting code. It should explain which result each command is intended to produce.</p><p>Pin code revisions and relevant dependency versions. Record CPU, GPU model and memory, driver/runtime, interconnect, RAM/storage, operating system and concurrency settings. A container helps preserve software but does not make hardware, datasets, external APIs or numerical behavior identical.</p><p>Describe dataset provenance, version, license and any permitted redistribution. If data cannot be shared, provide a synthetic smoke-test case and disclose which full results remain inaccessible. Do not redistribute restricted course files, private documents or credentials merely to make a package “complete”.</p><p class=\"source-note\">Primary sources: <a href=\"https://sigsim.acm.org/conf/pads/2024/blog/artifact-evaluation/\" target=\"_blank\" rel=\"noopener\">ACM SIGSIM PADS 2024: Reproducibility and Artifact Evaluation</a>.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p>Reproducibility is a traceable chain of evidence, not just a link to code.</p></aside>"
+      },
+      {
+        "id": "supplement-35-s2",
+        "title": "Worked example: a minimal run manifest",
+        "html": "<p><strong>Original suggested manifest fields.</strong></p><ul><li><strong>Identity:</strong> experiment ID, code commit, configuration hash, timestamp and responsible group member.</li><li><strong>Inputs:</strong> dataset version/hash, query split IDs, model/embedding/prompt revision and random seed.</li><li><strong>Environment:</strong> package lock, OS/runtime, hardware inventory, resource limits and background-load notes.</li><li><strong>Protocol:</strong> warm-up, repetitions, trial order, timing boundary, timeout threshold and quality target.</li><li><strong>Outputs:</strong> raw-result paths, error logs, correctness checks, generated figure and command.</li><li><strong>Cost:</strong> elapsed device/CPU time, external-service calls, measured peak memory and any assumed price model.</li></ul><p>Use checksums to detect changed files, not as evidence that data are correct. Keep secrets in approved environment/credential mechanisms and never commit tokens or keys. Logs can contain sensitive queries or document text, so inspect them before sharing.</p><details><summary>Exercise: the README says “run latest version on the standard dataset.” What is missing?</summary><p><strong>Worked answer.</strong> Exact code/dependency versions, dataset identity and preprocessing, the command/configuration, hardware assumptions, expected output and acceptable variation. “Latest” and “standard” drift over time.</p></details>"
+      },
+      {
+        "id": "supplement-35-s3",
+        "title": "A two-level execution path",
+        "html": "<p><strong>Smoke test:</strong> run a tiny public/synthetic input that checks installation, schema, result correctness and output paths. It should complete quickly enough to diagnose setup. State that it does not reproduce the paper-scale performance result.</p><p><strong>Full run:</strong> list realistic resource/time requirements, dataset preparation, the evaluation command, raw output format and figure-generation command. Include a resume/retry policy and warnings about expensive API calls or disk usage. Do not silently launch a paid cloud job from a setup script.</p><p>Ask a group member to follow the instructions from a clean allowed environment. Record discrepancies: changed defaults, unavailable packages, missing paths or nondeterminism. If the clean rerun differs, investigate rather than copying the old chart into the new report.</p><details><summary>Exercise: the smoke test matches expected output. Can you claim the benchmark is reproduced?</summary><p><strong>Worked answer.</strong> No. It validates the basic execution path on a tiny input. Performance reproduction requires the declared dataset, protocol, environment and comparison, with reported differences and uncertainty.</p></details>"
+      },
+      {
+        "id": "supplement-35-s4",
+        "title": "Budget the experiment rather than only the final run",
+        "html": "<p><strong>Original planning example.</strong> Suppose one configuration uses 6 GPU-minutes and you plan 20 configurations with 5 repetitions: 600 GPU-minutes, or 10 GPU-hours. If data preparation costs another hour and index construction costs 4 minutes per configuration outside the timed query region, add those costs according to whether builds are reused. Stopping after the first successful run cannot answer a variability question.</p><p>For a one- or two-H100 project, check memory headroom before increasing dataset size and save intermediate results. A smaller complete matrix can be more informative than one oversized run that consumes the whole budget. Keep exploratory and final runs separate.</p><p>A clear stopping condition is evidence-based: the planned matrix is complete, a feasibility assumption fails, the bounded budget is reached, or additional work requires approval. Report which condition ended the study.</p>"
+      },
+      {
+        "id": "supplement-35-s5",
+        "title": "Assemble a report that does not overclaim",
+        "html": "<p>A practical structure is: question; motivation and related work; design; assumptions; methodology; results; ablations; limitations; conclusion; artifact instructions. Put the central claim beside the plot that supports it and make axis units, sample count and quality target visible.</p><p>Maintain a claim-evidence checklist. For each sentence such as “scales better”, name the scaling axis, held-constant resources, workload, uncertainty and figure. Separate measured results, theoretical results, estimates and future work. Fabricated “representative” data must never be presented as an experiment.</p><p>Before the symposium, check that every group member can explain the main result and one failure case. Exact deliverable format, deadline, marking weights and submission channel must come from the instructor; this session does not supply them.</p><details><summary>Exercise: you estimated memory from vector dimensions but never measured peak allocation. How should it appear?</summary><p><strong>Worked answer.</strong> Label it an analytical estimate, list omitted buffers/workspace, and avoid calling it measured peak memory. If capacity feasibility is central to the claim, instrument the actual run or disclose that the claim remains untested.</p></details><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p>State what ran, what was measured and what remains an inference.</p></aside>"
+      }
+    ],
+    "quiz": {
+      "question": "Which item most directly links a plotted point to its scientific inputs?",
+      "options": [
+        "A run manifest with code/data/configuration versions and raw result references.",
+        "The number of repository stars.",
+        "The project logo.",
+        "A screenshot without units."
+      ],
+      "answer": 0,
+      "explanation": "A manifest supports the evidence chain from inputs and protocol to raw results and the figure.",
+      "id": "supplement-35-q1",
+      "origin": "Original supplemental exercise; not a verified assessed question",
+      "sourceKeys": [
+        "artifact",
+        "cuvsbench"
+      ],
+      "lessonSectionIds": [
+        "supplement-35-s1",
+        "supplement-35-s2",
+        "supplement-35-s3",
+        "supplement-35-s4",
+        "supplement-35-s5"
+      ]
+    },
+    "source": {
+      "summary": "Original supplemental explanation and exercises. Primary research/software evidence is linked; syllabus alignment is based on the user-provided outline. Canvas-assigned readings are unverified.",
+      "links": [
+        {
+          "url": "https://sigsim.acm.org/conf/pads/2024/blog/artifact-evaluation/",
+          "label": "ACM SIGSIM PADS 2024: Reproducibility and Artifact Evaluation · Official ACM conference guidance; used as a general example, not the course rubric"
+        },
+        {
+          "url": "https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies",
+          "label": "NVIDIA cuVS: Benchmarking methodologies · Official software documentation, checked 2026-10-11"
+        }
+      ]
+    },
+    "coverage": {
+      "verified": false,
+      "status": "Supplemental content with verified primary references; official Canvas reading alignment unverified",
+      "sourceEvidenceVerified": true,
+      "officialCourseMaterialVerified": false,
+      "module": 12,
+      "week": 14,
+      "syllabusTopics": [
+        "project clinic",
+        "reproducibility",
+        "artifact packaging",
+        "research reporting",
+        "resource planning"
+      ],
+      "topics": [
+        "project clinic",
+        "reproducibility",
+        "artifact packaging",
+        "research reporting",
+        "resource planning"
+      ],
+      "limitations": [
+        "Canvas-assigned paper list is unavailable.",
+        "Lesson is an original supplement, not a reconstructed official lecture.",
+        "No assessment rubric, deadline, presentation duration or submission format is asserted."
+      ],
+      "sourceKeys": [
+        "artifact",
+        "cuvsbench"
+      ]
+    },
+    "lab": null
+  },
+  "quizBank": {
+    "lessonId": "supplement-35",
+    "kind": "supplemental",
+    "module": 12,
+    "title": "Project clinic: reproducible artifacts and defensible conclusions",
+    "topics": [
+      {
+        "id": "supplement-35-practice",
+        "title": "Environment · data lineage · smoke tests · report assembly",
+        "sourceStatus": "Supplemental, not official slide/Canvas quiz",
+        "questions": [
+          {
+            "question": "Which item most directly links a plotted point to its scientific inputs?",
+            "options": [
+              "A run manifest with code/data/configuration versions and raw result references.",
+              "The number of repository stars.",
+              "The project logo.",
+              "A screenshot without units."
+            ],
+            "answer": 0,
+            "explanation": "A manifest supports the evidence chain from inputs and protocol to raw results and the figure.",
+            "id": "supplement-35-q1",
+            "origin": "Original supplemental exercise; not a verified assessed question",
+            "sourceKeys": [
+              "artifact",
+              "cuvsbench"
+            ],
+            "lessonSectionIds": [
+              "supplement-35-s1",
+              "supplement-35-s2",
+              "supplement-35-s3",
+              "supplement-35-s4",
+              "supplement-35-s5"
+            ]
+          },
+          {
+            "question": "Does a container alone guarantee bit-identical scientific reproduction?",
+            "options": [
+              "No; hardware, data, external services and numerical/runtime behavior also matter.",
+              "Yes, regardless of hardware or input data.",
+              "Yes, if the image is large enough.",
+              "No, so containers have no value."
+            ],
+            "answer": 0,
+            "explanation": "Containers preserve part of the software environment. Reproducibility still depends on the complete evidence and execution boundary.",
+            "id": "supplement-35-q2",
+            "origin": "Original supplemental exercise; not a verified assessed question",
+            "sourceKeys": [
+              "artifact",
+              "cuvsbench"
+            ],
+            "lessonSectionIds": [
+              "supplement-35-s1",
+              "supplement-35-s2",
+              "supplement-35-s3",
+              "supplement-35-s4",
+              "supplement-35-s5"
+            ]
+          },
+          {
+            "question": "A tiny smoke test passes. What has been established?",
+            "options": [
+              "The paper-scale performance result is reproduced.",
+              "The basic execution path works on that test input.",
+              "Every dataset license permits redistribution.",
+              "The main hypothesis is universally true."
+            ],
+            "answer": 1,
+            "explanation": "A smoke test checks setup and a small functional path, not the full scientific claim.",
+            "id": "supplement-35-q3",
+            "origin": "Original supplemental exercise; not a verified assessed question",
+            "sourceKeys": [
+              "artifact",
+              "cuvsbench"
+            ],
+            "lessonSectionIds": [
+              "supplement-35-s1",
+              "supplement-35-s2",
+              "supplement-35-s3",
+              "supplement-35-s4",
+              "supplement-35-s5"
+            ]
+          },
+          {
+            "question": "A run uses 6 GPU-minutes; there are 20 configurations and 5 repetitions. What is the total query-run budget, excluding preparation/build costs?",
+            "options": [
+              "30 GPU-minutes",
+              "120 GPU-minutes",
+              "600 GPU-minutes",
+              "6,000 GPU-minutes"
+            ],
+            "answer": 2,
+            "explanation": "6×20×5=600 GPU-minutes, or 10 GPU-hours. Additional costs must be counted separately.",
+            "id": "supplement-35-q4",
+            "origin": "Original supplemental exercise; not a verified assessed question",
+            "sourceKeys": [
+              "artifact",
+              "cuvsbench"
+            ],
+            "lessonSectionIds": [
+              "supplement-35-s1",
+              "supplement-35-s2",
+              "supplement-35-s3",
+              "supplement-35-s4",
+              "supplement-35-s5"
+            ]
+          },
+          {
+            "question": "What should happen to API keys before sharing an artifact?",
+            "options": [
+              "Remove them from code/logs and document approved credential setup without exposing secrets.",
+              "Put them in the figure caption.",
+              "Encode them in base64.",
+              "Include them so reviewers can run immediately."
+            ],
+            "answer": 0,
+            "explanation": "Encoding is not protection. Shared artifacts and logs must not expose credentials or unauthorized data.",
+            "id": "supplement-35-q5",
+            "origin": "Original supplemental exercise; not a verified assessed question",
+            "sourceKeys": [
+              "artifact",
+              "cuvsbench"
+            ],
+            "lessonSectionIds": [
+              "supplement-35-s1",
+              "supplement-35-s2",
+              "supplement-35-s3",
+              "supplement-35-s4",
+              "supplement-35-s5"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "sources": {
+    "artifact": {
+      "title": "ACM SIGSIM PADS 2024: Reproducibility and Artifact Evaluation",
+      "status": "Official ACM conference guidance; used as a general example, not the course rubric",
+      "url": "https://sigsim.acm.org/conf/pads/2024/blog/artifact-evaluation/",
+      "supports": "Distinction between documented, exercisable artifacts and stronger reuse/results evidence. No badge or course requirement is claimed."
+    },
+    "cuvsbench": {
+      "title": "NVIDIA cuVS: Benchmarking methodologies",
+      "status": "Official software documentation, checked 2026-10-11",
+      "url": "https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies",
+      "supports": "Recall-matched comparisons, parameter sweeps, Pareto trade-offs and reporting of build/search cost."
+    }
+  }
+}

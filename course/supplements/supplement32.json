@@ -1,0 +1,279 @@
+{
+  "lesson": {
+    "id": "supplement-32",
+    "lecture": null,
+    "order": 32,
+    "kind": "supplemental",
+    "displayLabel": "M12 · Session 1",
+    "module": 12,
+    "week": 13,
+    "suggestedSession": 1,
+    "title": "Project clinic: turn a topic into a falsifiable research question",
+    "short": "Scope · hypothesis · literature matrix · consultation",
+    "group": "12 · Project clinic",
+    "time": 35,
+    "timeMeaning": "Suggested independent study minutes; not scheduled contact time",
+    "lead": "“Use a GPU for databases” is a topic. A research question names a mechanism, a comparison, a workload and a possible failure.",
+    "goals": [
+      "Write a bounded research claim with a falsification condition.",
+      "Connect a proposed mechanism to an observed bottleneck.",
+      "Prepare concrete evidence and decisions for an instructor consultation."
+    ],
+    "sections": [
+      {
+        "id": "supplement-32-status",
+        "title": "How to use this supplemental session",
+        "html": "<p>This is an original supplemental study session aligned to the user-provided syllabus. It is not an Edinburgh lecture or a verified Canvas assignment. The Canvas reading list and instructor-specific assessment instructions were not accessible. Suggested activities, timings, templates and checks below are practice guidance, not official requirements.</p>"
+      },
+      {
+        "id": "supplement-32-s1",
+        "title": "The research-question contract",
+        "html": "<p>Write one sentence with five parts: <strong>mechanism</strong>, <strong>baseline</strong>, <strong>workload/conditions</strong>, <strong>metric</strong> and <strong>constraint</strong>. Example: “For public 768-dimensional embeddings at small query batches, does a fixed-budget graph-search policy lower p95 latency relative to a tuned fixed policy while preserving recall@10 ≥0.95?” This is a suggested research question, not a claim that the method will work or be novel.</p><p>State the null possibility: the policy may add overhead, lose recall on difficult queries or fail to generalize. Name the smallest experiment that could expose that failure. A good question remains informative when the result is negative.</p><p>Distinguish <em>reproduction</em> (re-running a published claim under declared conditions), <em>replication/generalization</em> (testing the claim with changed data or implementation), and <em>extension</em> (introducing a new mechanism). Define your usage because communities sometimes use these words differently. Novelty requires a literature check; it is not established by a new repository.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p>A narrow question with a credible baseline is stronger than a broad system with no testable claim.</p></aside>"
+      },
+      {
+        "id": "supplement-32-s2",
+        "title": "Use a causal chain to justify the mechanism",
+        "html": "<p>Start from a measured symptom and trace why it happens. Example: low GPU utilization → tiny query batches → insufficient parallel work per launch → batch accumulation might improve throughput → waiting to form a batch might increase latency. That last arrow creates a trade-off worth testing.</p><p>For every arrow, list an observable: batch-size distribution, queue delay, device execution time and end-to-end latency. If only final QPS is measured, a faster result cannot explain the cause. If the true bottleneck is host-side preprocessing, optimizing a search kernel may have little effect.</p><p>Construct a minimal prototype to test the critical arrow. A two-day feasibility check that disproves an assumption can save the rest of the project. Time boxes here are illustrative planning choices, not syllabus deadlines.</p><details><summary>Exercise: “LLMs improve query optimization.” Rewrite it as a research question.</summary><p><strong>Worked answer.</strong> One possible version: “On a held-out set of multi-table query templates, can an LLM-based selector choose among the same ten legal plans faster end-to-end than a native optimizer, after including selection latency and with no increase in timeout count?” It specifies the decision, baseline, domain, costs and risk. A simpler non-LLM ranker is also an important comparator.</p></details>"
+      },
+      {
+        "id": "supplement-32-s3",
+        "title": "Build a literature-and-evidence matrix",
+        "html": "<p>For each close paper, record: exact title/venue/year; problem; key assumption; mechanism; strongest baseline; dataset; metric; artifact; reported limitation; and the difference from your proposal. Add a short “what would I need to reproduce this?” note.</p><p>Keep publication status separate. An arXiv manuscript can correspond to an accepted paper when a primary record confirms it; a preprint without such evidence must remain labeled a preprint. Do not infer acceptance from a repository badge or a third-party summary. For assigned reading, use the actual instructor list when it becomes available; the frontier bibliography here is supplemental.</p><p>Read the benchmark protocol as carefully as the abstract. Learned-optimizer evaluation and ANN methodology provide examples of how data splits and recall thresholds can change the interpretation of a result.</p><p class=\"source-note\">Primary sources: <a href=\"https://www.vldb.org/pvldb/vol17/p1565-lehmann.pdf\" target=\"_blank\" rel=\"noopener\">Is Your Learned Query Optimizer Behaving As You Expect? A Machine Learning Perspective</a>; <a href=\"https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies\" target=\"_blank\" rel=\"noopener\">NVIDIA cuVS: Benchmarking methodologies</a>.</p>"
+      },
+      {
+        "id": "supplement-32-s4",
+        "title": "Worked example: a one-page research charter",
+        "html": "<p><strong>Original example charter.</strong></p><ul><li><strong>Question:</strong> When does microbatching improve end-to-end ANN throughput under a p95 latency budget?</li><li><strong>Motivation:</strong> Batch-1 device utilization is low in a preliminary trace; this observation must first be measured.</li><li><strong>Mechanism:</strong> Accumulate arrivals for a bounded waiting window before a search call.</li><li><strong>Baselines:</strong> Immediate dispatch and a tuned fixed-size batching policy, using identical index/search parameters.</li><li><strong>Independent variables:</strong> Arrival rate, waiting-window cap and query difficulty. Hold dataset, GPU and recall target fixed.</li><li><strong>Evidence:</strong> Arrival-to-response p50/p95/p99, queue time, execution time, QPS, achieved recall and dropped/failed queries.</li><li><strong>Falsification:</strong> Throughput gains disappear at matched p95, or difficult-query recall violates the target.</li><li><strong>Deliverable:</strong> A reproducible plot and explanation of the useful operating range, including where batching loses.</li></ul><p>Check that the load generator can produce the intended arrival process and is not itself the bottleneck. Under overload, a closed-loop client can hide queue growth; state whether load is open- or closed-loop.</p>"
+      },
+      {
+        "id": "supplement-32-s5",
+        "title": "Prepare an instructor consultation that can change the project",
+        "html": "<p>The syllabus mentions supervised research and instructor consultations. Exact appointments, required documents and approval rules have not been verified. The following agenda is a useful preparation template.</p><ol><li>Show the one-sentence question and a diagram of the measured bottleneck.</li><li>Bring the closest prior paper and the precise proposed difference.</li><li>Show one preliminary result or a minimal failure trace, with configuration and uncertainty.</li><li>List two concrete decisions, such as “Is this baseline appropriate?” and “Should the scope prioritize filtered recall or update freshness?”</li><li>Record the instructor’s actual answer, resulting change, owner and next evidence needed. Do not turn an informal suggestion into an invented grading rule.</li></ol><details><summary>Exercise: a project needs four GPUs but only one is available. What is a rigorous rescope?</summary><p><strong>Worked answer.</strong> Study a single-device mechanism or a controlled model of communication overhead, and narrow the claim accordingly. Do not label single-node emulation a reproduction of a four-GPU scaling result. Record the hardware limitation and ask whether the revised question fits the course’s actual expectations.</p></details><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p>Bring a decision and the evidence needed to make it, rather than a list of activities.</p></aside>"
+      }
+    ],
+    "quiz": {
+      "question": "Which is the strongest project starting point?",
+      "options": [
+        "Build the fastest possible database.",
+        "Use every available GPU.",
+        "Implement a paper without reading its evaluation.",
+        "Test a specific mechanism against a fair baseline under a stated workload and constraint."
+      ],
+      "answer": 3,
+      "explanation": "A testable claim connects scope, mechanism and evidence; implementation size alone does not make a research contribution.",
+      "id": "supplement-32-q1",
+      "origin": "Original supplemental exercise; not a verified assessed question",
+      "sourceKeys": [
+        "lqo",
+        "cuvsbench"
+      ],
+      "lessonSectionIds": [
+        "supplement-32-s1",
+        "supplement-32-s2",
+        "supplement-32-s3",
+        "supplement-32-s4",
+        "supplement-32-s5"
+      ]
+    },
+    "source": {
+      "summary": "Original supplemental explanation and exercises. Primary research/software evidence is linked; syllabus alignment is based on the user-provided outline. Canvas-assigned readings are unverified.",
+      "links": [
+        {
+          "url": "https://www.vldb.org/pvldb/vol17/p1565-lehmann.pdf",
+          "label": "Is Your Learned Query Optimizer Behaving As You Expect? A Machine Learning Perspective · Published peer-reviewed research / evaluation"
+        },
+        {
+          "url": "https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies",
+          "label": "NVIDIA cuVS: Benchmarking methodologies · Official software documentation, checked 2026-10-11"
+        }
+      ]
+    },
+    "coverage": {
+      "verified": false,
+      "status": "Supplemental content with verified primary references; official Canvas reading alignment unverified",
+      "sourceEvidenceVerified": true,
+      "officialCourseMaterialVerified": false,
+      "module": 12,
+      "week": 13,
+      "syllabusTopics": [
+        "project clinic",
+        "supervised research",
+        "research question",
+        "literature review",
+        "instructor consultation"
+      ],
+      "topics": [
+        "project clinic",
+        "supervised research",
+        "research question",
+        "literature review",
+        "instructor consultation"
+      ],
+      "limitations": [
+        "Canvas-assigned paper list is unavailable.",
+        "Lesson is an original supplement, not a reconstructed official lecture.",
+        "No assessment rubric, deadline, presentation duration or submission format is asserted."
+      ],
+      "sourceKeys": [
+        "lqo",
+        "cuvsbench"
+      ]
+    },
+    "lab": null
+  },
+  "quizBank": {
+    "lessonId": "supplement-32",
+    "kind": "supplemental",
+    "module": 12,
+    "title": "Project clinic: turn a topic into a falsifiable research question",
+    "topics": [
+      {
+        "id": "supplement-32-practice",
+        "title": "Scope · hypothesis · literature matrix · consultation",
+        "sourceStatus": "Supplemental, not official slide/Canvas quiz",
+        "questions": [
+          {
+            "question": "Which is the strongest project starting point?",
+            "options": [
+              "Build the fastest possible database.",
+              "Use every available GPU.",
+              "Implement a paper without reading its evaluation.",
+              "Test a specific mechanism against a fair baseline under a stated workload and constraint."
+            ],
+            "answer": 3,
+            "explanation": "A testable claim connects scope, mechanism and evidence; implementation size alone does not make a research contribution.",
+            "id": "supplement-32-q1",
+            "origin": "Original supplemental exercise; not a verified assessed question",
+            "sourceKeys": [
+              "lqo",
+              "cuvsbench"
+            ],
+            "lessonSectionIds": [
+              "supplement-32-s1",
+              "supplement-32-s2",
+              "supplement-32-s3",
+              "supplement-32-s4",
+              "supplement-32-s5"
+            ]
+          },
+          {
+            "question": "Which element makes a research hypothesis falsifiable?",
+            "options": [
+              "A condition under which evidence would contradict it.",
+              "A promise to use the newest model.",
+              "A sufficiently ambitious title.",
+              "A large number of implementation files."
+            ],
+            "answer": 0,
+            "explanation": "A falsifiable hypothesis specifies an observable failure condition, not just the desired result.",
+            "id": "supplement-32-q2",
+            "origin": "Original supplemental exercise; not a verified assessed question",
+            "sourceKeys": [
+              "lqo",
+              "cuvsbench"
+            ],
+            "lessonSectionIds": [
+              "supplement-32-s1",
+              "supplement-32-s2",
+              "supplement-32-s3",
+              "supplement-32-s4",
+              "supplement-32-s5"
+            ]
+          },
+          {
+            "question": "What should an instructor consultation ideally bring?",
+            "options": [
+              "Invented grading criteria.",
+              "Only a broad topic name.",
+              "Concrete evidence, a scoped question and decisions that need guidance.",
+              "An untested claim of success."
+            ],
+            "answer": 2,
+            "explanation": "A consultation is more useful when the instructor can evaluate a choice using actual assumptions and evidence. Required formats remain instructor-specific.",
+            "id": "supplement-32-q3",
+            "origin": "Original supplemental exercise; not a verified assessed question",
+            "sourceKeys": [
+              "lqo",
+              "cuvsbench"
+            ],
+            "lessonSectionIds": [
+              "supplement-32-s1",
+              "supplement-32-s2",
+              "supplement-32-s3",
+              "supplement-32-s4",
+              "supplement-32-s5"
+            ]
+          },
+          {
+            "question": "A project needs four GPUs but one is available. Which response preserves scientific integrity?",
+            "options": [
+              "Pretend the one GPU is four devices.",
+              "Hide the hardware configuration.",
+              "State that four-GPU scaling is proven analytically without a model.",
+              "Narrow the question to a single-device mechanism and disclose the new scope."
+            ],
+            "answer": 3,
+            "explanation": "Rescoping is legitimate when the revised evidence matches the revised claim. Do not claim measurements from unavailable hardware.",
+            "id": "supplement-32-q4",
+            "origin": "Original supplemental exercise; not a verified assessed question",
+            "sourceKeys": [
+              "lqo",
+              "cuvsbench"
+            ],
+            "lessonSectionIds": [
+              "supplement-32-s1",
+              "supplement-32-s2",
+              "supplement-32-s3",
+              "supplement-32-s4",
+              "supplement-32-s5"
+            ]
+          },
+          {
+            "question": "How should an arXiv paper with no verified venue acceptance be labeled?",
+            "options": [
+              "As assigned course reading.",
+              "As a preprint until acceptance/publication is verified from a reliable primary record.",
+              "As peer-reviewed whenever code is public.",
+              "As a SIGMOD paper if its topic is databases."
+            ],
+            "answer": 1,
+            "explanation": "Repository availability and subject area do not establish acceptance or assignment status.",
+            "id": "supplement-32-q5",
+            "origin": "Original supplemental exercise; not a verified assessed question",
+            "sourceKeys": [
+              "lqo",
+              "cuvsbench"
+            ],
+            "lessonSectionIds": [
+              "supplement-32-s1",
+              "supplement-32-s2",
+              "supplement-32-s3",
+              "supplement-32-s4",
+              "supplement-32-s5"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "sources": {
+    "lqo": {
+      "title": "Is Your Learned Query Optimizer Behaving As You Expect? A Machine Learning Perspective",
+      "authors": "Claude Lehmann, Pavel Sulimov, Kurt Stockinger",
+      "venue": "PVLDB 17(7): 1565–1577, 2024",
+      "year": 2024,
+      "status": "Published peer-reviewed research / evaluation",
+      "url": "https://www.vldb.org/pvldb/vol17/p1565-lehmann.pdf",
+      "doi": "10.14778/3654621.3654625",
+      "supports": "An end-to-end learned-optimizer evaluation framework; sensitivity to training/test design; PostgreSQL wins in most tested comparisons, depending on split. This is evidence about the evaluated systems and protocol, not impossibility of learned optimization.",
+      "read": "Abstract; evaluation methodology and experimental results",
+      "artifact": "https://github.com/edualc/lqo_ml_perspective"
+    },
+    "cuvsbench": {
+      "title": "NVIDIA cuVS: Benchmarking methodologies",
+      "status": "Official software documentation, checked 2026-10-11",
+      "url": "https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies",
+      "supports": "Recall-matched comparisons, parameter sweeps, Pareto trade-offs and reporting of build/search cost."
+    }
+  }
+}

@@ -1,0 +1,319 @@
+{
+  "lesson": {
+    "id": "supplement-28",
+    "lecture": null,
+    "order": 28,
+    "kind": "supplemental",
+    "displayLabel": "M11 · Session 1",
+    "module": 11,
+    "week": 11,
+    "suggestedSession": 1,
+    "title": "Learned DBMS components: predictions need a systems contract",
+    "short": "Cardinality · plan ranking · learned indexes · robust evaluation",
+    "group": "11 · Research frontiers",
+    "time": 45,
+    "timeMeaning": "Suggested independent study minutes; not scheduled contact time",
+    "lead": "A model can reduce prediction error and still make a database slower. Follow the decision from features to plan to measured execution.",
+    "goals": [
+      "Locate learning at cardinality estimation, cost/ranking, indexing and configuration boundaries.",
+      "Calculate q-error and end-to-end break-even cost.",
+      "Design a leakage-resistant evaluation with a safe conventional fallback."
+    ],
+    "sections": [
+      {
+        "id": "supplement-28-status",
+        "title": "How to use this supplemental session",
+        "html": "<p>This is an original supplemental study session aligned to the user-provided syllabus. It is not an Edinburgh lecture or a verified Canvas assignment. The Canvas reading list and instructor-specific assessment instructions were not accessible. Suggested activities, timings, templates and checks below are practice guidance, not official requirements.</p>"
+      },
+      {
+        "id": "supplement-28-s1",
+        "title": "Four places to introduce learning",
+        "html": "<p>A database exposes several different prediction problems. A <strong>cardinality estimator</strong> predicts rows after a filter or join. A <strong>cost model or plan ranker</strong> helps choose among correct physical plans. A <strong>learned index</strong> predicts where a key is likely to be found in sorted data, then verifies/corrects the position. A <strong>configuration advisor</strong> selects knobs, indexes or resource allocations for a workload.</p><p>These components have different contracts. A wrong cardinality estimate normally hurts performance without changing SQL semantics. A learned index that skips verification can return the wrong key. A configuration choice can change memory pressure or concurrency for every query. Define input, output, fallback, update behavior and correctness checks before selecting a neural architecture.</p><p>For a learned sorted-array lookup, suppose a model predicts position 420, with a valid maximum error of 6 for the supported keys. Search and verify inside positions 414–426. If that bound is only measured on training keys, it does not establish correctness for arbitrary future keys. Inserts, deletes and distribution shifts require an updated bound, a correct search strategy or a fallback.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p>A learned component is useful only inside a complete algorithm that preserves correctness and accounts for prediction, maintenance and fallback cost.</p></aside>"
+      },
+      {
+        "id": "supplement-28-s2",
+        "title": "Worked example: correlation and q-error",
+        "html": "<p><strong>Original example.</strong> A table has 100,000 customers. Ten percent live in City A; five percent have a local commuter pass. Every pass holder lives in City A. Independence would estimate the conjunction as 100,000 × 0.10 × 0.05 = 500 rows; the actual result is 5,000.</p><p>For positive actual cardinality c and estimate ĉ, q-error is max(ĉ/c, c/ĉ). The independence estimate has q-error 10. An estimate of 4,000 has q-error 1.25. For zero cardinalities, explicitly document a convention such as replacing both values by max(value, 1); never mix conventions silently.</p><p>Better q-error is not automatically a better plan. Errors at a small, unimportant subplan may matter less than a threshold error that makes a hash table spill. Record both estimation quality and the downstream execution plan, memory usage and runtime.</p><details><summary>Exercise: an estimate is 60,000 and the true count is 15,000. What is q-error?</summary><p><strong>Worked answer.</strong> 4. The estimate is four times too large. Q-error treats a fourfold under-estimate symmetrically, but a DBMS can pay very different costs for over- and under-estimation.</p></details>"
+      },
+      {
+        "id": "supplement-28-s3",
+        "title": "Prediction quality versus end-to-end benefit",
+        "html": "<p><strong>Original timing example.</strong> A conventional optimizer takes 2 ms and chooses an 80 ms plan. A learned selector takes 9 ms and chooses a 60 ms plan. End-to-end totals are 82 ms and 69 ms: speedup is 82/69 ≈ 1.19, not 80/60 ≈ 1.33. For a short query with 3 ms conventional execution and 2 ms learned execution, totals become 5 ms versus 11 ms. The same inference overhead reverses the outcome.</p><p>Suppose training and label collection cost 1,800 seconds and deployment saves 13 ms per request. The simplified break-even volume is 1,800/0.013 ≈ 138,462 requests, before retraining and operational overhead. Report training cost separately and show a stated amortization scenario.</p><p>Useful measurements include total workload time, per-query speedup distribution, planning latency, timeout count and catastrophic regressions. Include a native optimizer, a simple heuristic and an oracle over the <em>same candidate plans</em>. The oracle separates failure to propose a good plan from failure to rank available plans.</p><details><summary>Exercise: the candidate-plan oracle takes 40 ms, the learned choice takes 60 ms, and the native plan takes 100 ms. What does each gap diagnose?</summary><p><strong>Worked answer.</strong> The 20 ms gap between learned and candidate oracle suggests ranking opportunity. The oracle is not the globally optimal plan: missing candidates may leave further opportunity. The 40 ms native-to-learned difference measures execution savings only; add planning and collection overhead for an end-to-end claim.</p></details>"
+      },
+      {
+        "id": "supplement-28-s4",
+        "title": "Read recent research as testable claims",
+        "html": "<p><a href=\"https://www.vldb.org/pvldb/vol17/p1565-lehmann.pdf\" target=\"_blank\" rel=\"noopener\">Lehmann, Sulimov and Stockinger (PVLDB 2024)</a> audit the whole learned-query-optimizer pipeline. Their experiments show that train/test design can change conclusions, and the native PostgreSQL optimizer wins most of their tested comparisons. Read this as a warning about evaluation scope, rather than proof that all learning is ineffective.</p><p><a href=\"https://www.vldb.org/pvldb/vol18/p2519-wu.pdf\" target=\"_blank\" rel=\"noopener\">GRASP (PVLDB 2025)</a> addresses a different contract: learn cardinalities from queries and observed counts without raw-table access. Its compositional design targets unseen or imbalanced join templates and range-predicate distribution shifts. Check which SQL fragments it supports and how it handles data updates before transferring the result to a new DBMS.</p><p><strong>Theory bridge.</strong> <a href=\"https://arxiv.org/abs/2306.14075\" target=\"_blank\" rel=\"noopener\">Join Size Bounds using Lp-Norms on Degree Sequences (PODS 2024)</a> studies upper bounds rather than predictions. A one-sided bound can serve a different purpose from a highly accurate average estimate. The linked manuscript began in 2023; its PODS 2024 acceptance is verified in the conference list.</p><p><strong>Original small calculation.</strong> For a one-key equijoin with key frequencies a=(3,1) and b=(2,2), the output has 3×2+1×2=8 rows. The Cauchy–Schwarz upper bound is √(3²+1²) × √(2²+2²)=√80≈8.94, so the integer count is at most 8. A point predictor of 7 has small error but is not an upper bound. This two-vector exercise illustrates the distinction; it is not the paper’s general theorem.</p>"
+      },
+      {
+        "id": "supplement-28-s5",
+        "title": "Mini-experiment: generalization without leakage",
+        "html": "<p><strong>Suggested experiment, not an assigned implementation.</strong> Build a small selectivity/cardinality model or reuse an available learned-optimizer artifact. Use one fixed database snapshot and three distinct test regimes: unseen predicate literals on known templates, held-out templates, and a later workload period. Preserve a validation split for all tuning; keep the final test set untouched.</p><ol><li>Log query/template IDs, actual counts, native estimates, plans, timing, dataset hash and random seed.</li><li>Compare a native estimator, a simple regression or histogram baseline, and the proposed method under the same label budget.</li><li>Measure q-error distribution, total execution plus planning time, collection/training cost and worst regressions. Keep timeouts in the report.</li><li>Ablate workload overlap, representation and training volume. A template-aware split prevents near-duplicate queries from making generalization look easier than it is.</li><li>Specify fallback behavior for unsupported SQL, out-of-distribution input or inference failure. A confidence score is not itself a safety guarantee.</li></ol><p>Start on CPU with a small model. A GPU is an optional training accelerator, not evidence that this workload needs one. Success is a defensible result, including a negative one, with a clear operating range.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p>Evaluate the workload you want to generalize to, not just a convenient random split.</p></aside>"
+      },
+      {
+        "id": "supplement-28-s6",
+        "title": "Seminar exercise and answer",
+        "html": "<p>A paper reports median q-error 1.4 and a mean execution speedup of 2×. It excludes training, optimizer inference and three timed-out queries. Write a fair conclusion and three follow-up questions.</p><details><summary>Reveal a defensible response</summary><p><strong>Worked answer.</strong> “The method improves the reported estimation metric and the selected execution-only comparison under the paper’s workload. End-to-end advantage and worst-case robustness remain unclear.” Ask for a timeout-aware workload total, complete planning/training costs and a template-held-out or time-held-out evaluation. Also inspect whether the baseline received comparable tuning and whether the same correctness checks were applied.</p></details>"
+      }
+    ],
+    "quiz": {
+      "question": "A learned selector saves 4 ms of execution but adds 7 ms of planning. What follows?",
+      "options": [
+        "It improves end-to-end latency by 3 ms.",
+        "Q-error must be below one.",
+        "The query result must be incorrect.",
+        "It worsens end-to-end latency by 3 ms, before amortized training cost."
+      ],
+      "answer": 3,
+      "explanation": "The execution saving is smaller than the added planning overhead; performance and SQL correctness are separate questions.",
+      "id": "supplement-28-q1",
+      "origin": "Original supplemental exercise; not a verified assessed question",
+      "sourceKeys": [
+        "lqo",
+        "grasp",
+        "lp"
+      ],
+      "lessonSectionIds": [
+        "supplement-28-s1",
+        "supplement-28-s2",
+        "supplement-28-s3",
+        "supplement-28-s4",
+        "supplement-28-s5",
+        "supplement-28-s6"
+      ]
+    },
+    "source": {
+      "summary": "Original supplemental explanation and exercises. Primary research/software evidence is linked; syllabus alignment is based on the user-provided outline. Canvas-assigned readings are unverified.",
+      "links": [
+        {
+          "url": "https://www.vldb.org/pvldb/vol17/p1565-lehmann.pdf",
+          "label": "Is Your Learned Query Optimizer Behaving As You Expect? A Machine Learning Perspective · Published peer-reviewed research / evaluation"
+        },
+        {
+          "url": "https://www.vldb.org/pvldb/vol18/p2519-wu.pdf",
+          "label": "Data-Agnostic Cardinality Learning from Imperfect Workloads · Published peer-reviewed research"
+        },
+        {
+          "url": "https://arxiv.org/abs/2306.14075",
+          "label": "Join Size Bounds using Lp-Norms on Degree Sequences · Accepted PODS 2024 paper; linked arXiv is an author manuscript first posted in 2023"
+        }
+      ]
+    },
+    "coverage": {
+      "verified": false,
+      "status": "Supplemental content with verified primary references; official Canvas reading alignment unverified",
+      "sourceEvidenceVerified": true,
+      "officialCourseMaterialVerified": false,
+      "module": 11,
+      "week": 11,
+      "syllabusTopics": [
+        "learned DBMS components",
+        "cardinality estimation",
+        "learned cost models and indexes",
+        "robust experimental design",
+        "recent SIGMOD/VLDB/ICDE/PODS reading"
+      ],
+      "topics": [
+        "learned DBMS components",
+        "cardinality estimation",
+        "learned cost models and indexes",
+        "robust experimental design",
+        "recent SIGMOD/VLDB/ICDE/PODS reading"
+      ],
+      "limitations": [
+        "Canvas-assigned paper list is unavailable.",
+        "Lesson is an original supplement, not a reconstructed official lecture.",
+        "No assessment rubric, deadline, presentation duration or submission format is asserted."
+      ],
+      "sourceKeys": [
+        "lqo",
+        "grasp",
+        "lp"
+      ]
+    },
+    "lab": null
+  },
+  "quizBank": {
+    "lessonId": "supplement-28",
+    "kind": "supplemental",
+    "module": 11,
+    "title": "Learned DBMS components: predictions need a systems contract",
+    "topics": [
+      {
+        "id": "supplement-28-practice",
+        "title": "Cardinality · plan ranking · learned indexes · robust evaluation",
+        "sourceStatus": "Supplemental, not official slide/Canvas quiz",
+        "questions": [
+          {
+            "question": "A learned selector saves 4 ms of execution but adds 7 ms of planning. What follows?",
+            "options": [
+              "It improves end-to-end latency by 3 ms.",
+              "Q-error must be below one.",
+              "The query result must be incorrect.",
+              "It worsens end-to-end latency by 3 ms, before amortized training cost."
+            ],
+            "answer": 3,
+            "explanation": "The execution saving is smaller than the added planning overhead; performance and SQL correctness are separate questions.",
+            "id": "supplement-28-q1",
+            "origin": "Original supplemental exercise; not a verified assessed question",
+            "sourceKeys": [
+              "lqo",
+              "grasp",
+              "lp"
+            ],
+            "lessonSectionIds": [
+              "supplement-28-s1",
+              "supplement-28-s2",
+              "supplement-28-s3",
+              "supplement-28-s4",
+              "supplement-28-s5",
+              "supplement-28-s6"
+            ]
+          },
+          {
+            "question": "An estimator predicts 500 rows when the actual positive count is 5,000. What is its q-error?",
+            "options": [
+              "5",
+              "4,500",
+              "10",
+              "0.1"
+            ],
+            "answer": 2,
+            "explanation": "Q-error is max(estimate/actual, actual/estimate), so max(0.1,10)=10.",
+            "id": "supplement-28-q2",
+            "origin": "Original supplemental exercise; not a verified assessed question",
+            "sourceKeys": [
+              "lqo",
+              "grasp",
+              "lp"
+            ],
+            "lessonSectionIds": [
+              "supplement-28-s1",
+              "supplement-28-s2",
+              "supplement-28-s3",
+              "supplement-28-s4",
+              "supplement-28-s5",
+              "supplement-28-s6"
+            ]
+          },
+          {
+            "question": "Why hold complete query templates out of a learned-optimizer test?",
+            "options": [
+              "To avoid measuring query latency.",
+              "To test generalization beyond structurally similar training queries.",
+              "To ensure all cardinality estimates are exact.",
+              "To guarantee the new optimizer wins."
+            ],
+            "answer": 1,
+            "explanation": "A random query split can share near-identical structures across train and test. Template-held-out evaluation tests a different and often harder generalization contract.",
+            "id": "supplement-28-q3",
+            "origin": "Original supplemental exercise; not a verified assessed question",
+            "sourceKeys": [
+              "lqo",
+              "grasp",
+              "lp"
+            ],
+            "lessonSectionIds": [
+              "supplement-28-s1",
+              "supplement-28-s2",
+              "supplement-28-s3",
+              "supplement-28-s4",
+              "supplement-28-s5",
+              "supplement-28-s6"
+            ]
+          },
+          {
+            "question": "A learned index predicts a position. What else is needed for correct lookup?",
+            "options": [
+              "An embedding similarity score.",
+              "A verified search/correction procedure and an appropriate bound or fallback.",
+              "Only a low average training loss.",
+              "A GPU in every case."
+            ],
+            "answer": 1,
+            "explanation": "Average predictive accuracy does not guarantee that a specific key is found. The enclosing search algorithm must handle prediction error and updates correctly.",
+            "id": "supplement-28-q4",
+            "origin": "Original supplemental exercise; not a verified assessed question",
+            "sourceKeys": [
+              "lqo",
+              "grasp",
+              "lp"
+            ],
+            "lessonSectionIds": [
+              "supplement-28-s1",
+              "supplement-28-s2",
+              "supplement-28-s3",
+              "supplement-28-s4",
+              "supplement-28-s5",
+              "supplement-28-s6"
+            ]
+          },
+          {
+            "question": "What is the difference between a cardinality upper bound and a point estimate?",
+            "options": [
+              "An upper bound must equal the exact count.",
+              "An upper bound is intended to never be below the true value under its assumptions; a point estimate need not satisfy that.",
+              "A point estimate is always more expensive.",
+              "They are identical if the estimate has low mean error."
+            ],
+            "answer": 1,
+            "explanation": "A one-sided mathematical guarantee has a different contract from typical prediction accuracy. Its assumptions must still hold.",
+            "id": "supplement-28-q5",
+            "origin": "Original supplemental exercise; not a verified assessed question",
+            "sourceKeys": [
+              "lqo",
+              "grasp",
+              "lp"
+            ],
+            "lessonSectionIds": [
+              "supplement-28-s1",
+              "supplement-28-s2",
+              "supplement-28-s3",
+              "supplement-28-s4",
+              "supplement-28-s5",
+              "supplement-28-s6"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "sources": {
+    "lqo": {
+      "title": "Is Your Learned Query Optimizer Behaving As You Expect? A Machine Learning Perspective",
+      "authors": "Claude Lehmann, Pavel Sulimov, Kurt Stockinger",
+      "venue": "PVLDB 17(7): 1565–1577, 2024",
+      "year": 2024,
+      "status": "Published peer-reviewed research / evaluation",
+      "url": "https://www.vldb.org/pvldb/vol17/p1565-lehmann.pdf",
+      "doi": "10.14778/3654621.3654625",
+      "supports": "An end-to-end learned-optimizer evaluation framework; sensitivity to training/test design; PostgreSQL wins in most tested comparisons, depending on split. This is evidence about the evaluated systems and protocol, not impossibility of learned optimization.",
+      "read": "Abstract; evaluation methodology and experimental results",
+      "artifact": "https://github.com/edualc/lqo_ml_perspective"
+    },
+    "grasp": {
+      "title": "Data-Agnostic Cardinality Learning from Imperfect Workloads",
+      "authors": "Peizhi Wu, Rong Kang, Tieying Zhang, Jianjun Chen, Ryan Marcus, Zachary G. Ives",
+      "venue": "PVLDB 18(8): 2519–2532, 2025",
+      "year": 2025,
+      "status": "Published peer-reviewed research",
+      "url": "https://www.vldb.org/pvldb/vol18/p2519-wu.pdf",
+      "doi": "10.14778/3742728.3742745",
+      "supports": "GRASP learns from queries and observed cardinalities without raw data access; compositional models target incomplete or imbalanced join templates and range-predicate shifts. Evaluated on three database instances.",
+      "read": "Sections 2–3 for scope; 4–6 for design; 7 for evaluation",
+      "artifact": "https://github.com/shoupzwu/GRASP"
+    },
+    "lp": {
+      "title": "Join Size Bounds using Lp-Norms on Degree Sequences",
+      "authors": "Mahmoud Abo Khamis, Vasileios Nakos, Dan Olteanu, Dan Suciu",
+      "venue": "PODS 2024 / Proceedings of the ACM on Management of Data 2(2), 2024",
+      "year": 2024,
+      "status": "Accepted PODS 2024 paper; linked arXiv is an author manuscript first posted in 2023",
+      "url": "https://arxiv.org/abs/2306.14075",
+      "doi": "10.1145/3651597",
+      "acceptanceUrl": "https://2024.sigmodconf.hosting.acm.org/pods_list.shtml",
+      "supports": "Join-output upper bounds incorporating Lp norms of degree sequences; distinct from point estimates. Official PODS list verifies 2024 acceptance.",
+      "read": "Abstract and motivating examples; inspect theorem assumptions before interpreting guarantees"
+    }
+  }
+}

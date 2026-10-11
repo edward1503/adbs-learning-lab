@@ -1,6 +1,6 @@
-# ADBS Spring 2026 sources
+# ADBS learning sources
 
-All 27 lecture PDFs were reviewed for the companion material. The site presents original explanations and exercises with links to the official sources; it does not redistribute slide PDFs or images. Page references mean physical PDF pages unless explicitly identified as printed slide numbers.
+The 27 core resources retain the supplied Edinburgh Spring 2026 source-review records. The 2026-10-11 integration used independently supplied source audits and independently checked the resulting explanations, calculations and answers. This executor did not repeat an exhaustive page-by-page review of every PDF or textbook. The site presents original explanations and exercises with links to the official sources; it does not redistribute slide PDFs or images. Page references mean physical PDF pages unless explicitly identified as printed slide numbers. See docs/audit/README.md for exact evidence and limitations.
 
 Official schedule: https://opencourse.inf.ed.ac.uk/adbs/schedule
 
@@ -301,6 +301,69 @@ Lecture 27 covers the motivation for NoSQL, sharding and replication, CAP and BA
 - Gilbert & Lynch: CAP definitions and theorem, PDF pages 2–4: https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer6.pdf#page=2
 
 Verified coverage and page mappings are recorded in coverage-manifest.json.
+
+## Original supplemental resources
+
+Resources 28–37 are independent practice for Modules 11–13 of the supplied syllabus. They are not verified official lectures, assigned Canvas readings, rubrics or deadlines. Publication identities and supported claims are recorded in docs/audit/supplemental-evidence.md. No proposed GPU benchmark was run; hardware calculations are feasibility estimates.
+
+### M11 · Session 1: Learned DBMS components: predictions need a systems contract
+
+- Is Your Learned Query Optimizer Behaving As You Expect? A Machine Learning Perspective · Published peer-reviewed research / evaluation: https://www.vldb.org/pvldb/vol17/p1565-lehmann.pdf
+- Data-Agnostic Cardinality Learning from Imperfect Workloads · Published peer-reviewed research: https://www.vldb.org/pvldb/vol18/p2519-wu.pdf
+- Join Size Bounds using Lp-Norms on Degree Sequences · Accepted PODS 2024 paper; linked arXiv is an author manuscript first posted in 2023: https://arxiv.org/abs/2306.14075
+
+### M11 · Session 2: Vector databases: the recall, memory and latency contract
+
+- CAGRA: Highly Parallel Graph Construction and Approximate Nearest Neighbor Search for GPUs · Accepted ICDE 2024 paper; linked author manuscript v2 revised July 2024, first posted August 2023: https://arxiv.org/abs/2308.15136
+- RaBitQ: Quantizing High-Dimensional Vectors with a Theoretical Error Bound for Approximate Nearest Neighbor Search · Accepted SIGMOD 2024 paper; linked author manuscript explicitly confirms acceptance: https://arxiv.org/abs/2405.12497
+- NVIDIA cuVS: CAGRA guide · Official software documentation, checked 2026-10-11: https://docs.nvidia.com/cuvs/user-guide/api-guides/indexing-guide/cagra
+- NVIDIA cuVS: Benchmarking methodologies · Official software documentation, checked 2026-10-11: https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies
+- NVIDIA cuVS: Installation · Official software documentation, checked 2026-10-11; version-sensitive: https://docs.nvidia.com/cuvs/installation
+- pgvector official repository documentation · Official software documentation, checked 2026-10-11; version-sensitive: https://github.com/pgvector/pgvector
+
+### M11 · Session 3: LLMs for data systems: semantic operators with measurable quality
+
+- Semantic Operators and Their Optimization: Enabling LLM-Based Data Processing with Accuracy Guarantees in LOTUS · Published peer-reviewed research; use published title, not earlier preprint title: https://www.vldb.org/pvldb/vol18/p4171-patel.pdf
+- DocETL: Agentic Query Rewriting and Evaluation for Complex Document Processing · Published peer-reviewed research: https://www.vldb.org/pvldb/vol18/p3035-shankar.pdf
+- vLLM Optimization and Tuning · Official software documentation, checked 2026-10-11; version-sensitive: https://docs.vllm.ai/en/stable/configuration/optimization/
+
+### M11 · Session 4: Cloud-native and disaggregated DBMSs: locality becomes a protocol
+
+- PolarDB-MP: A Multi-Primary Cloud-Native Database via Disaggregated Shared Memory · Published industrial paper; not a SIGMOD research-track or PODS paper: https://cighao.com/papers/polardb_mp.pdf
+- GaussDB: A Cloud-Native Multi-Primary Database with Compute-Memory-Storage Disaggregation · Published industrial/system paper: https://www.vldb.org/pvldb/vol17/p3786-li.pdf
+- Architecture decisions in Neon · Official engineering design account; historical architecture example: https://neon.com/blog/architecture-decisions-in-neon
+
+### M12 · Session 1: Project clinic: turn a topic into a falsifiable research question
+
+- Is Your Learned Query Optimizer Behaving As You Expect? A Machine Learning Perspective · Published peer-reviewed research / evaluation: https://www.vldb.org/pvldb/vol17/p1565-lehmann.pdf
+- NVIDIA cuVS: Benchmarking methodologies · Official software documentation, checked 2026-10-11: https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies
+
+### M12 · Session 2: Project clinic: trustworthy baselines and measurements
+
+- Is Your Learned Query Optimizer Behaving As You Expect? A Machine Learning Perspective · Published peer-reviewed research / evaluation: https://www.vldb.org/pvldb/vol17/p1565-lehmann.pdf
+- NVIDIA cuVS: Benchmarking methodologies · Official software documentation, checked 2026-10-11: https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies
+
+### M12 · Session 3: Project clinic: ablations, counterexamples and negative results
+
+- Is Your Learned Query Optimizer Behaving As You Expect? A Machine Learning Perspective · Published peer-reviewed research / evaluation: https://www.vldb.org/pvldb/vol17/p1565-lehmann.pdf
+- Data-Agnostic Cardinality Learning from Imperfect Workloads · Published peer-reviewed research: https://www.vldb.org/pvldb/vol18/p2519-wu.pdf
+- NVIDIA cuVS: Benchmarking methodologies · Official software documentation, checked 2026-10-11: https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies
+
+### M12 · Session 4: Project clinic: reproducible artifacts and defensible conclusions
+
+- ACM SIGSIM PADS 2024: Reproducibility and Artifact Evaluation · Official ACM conference guidance; used as a general example, not the course rubric: https://sigsim.acm.org/conf/pads/2024/blog/artifact-evaluation/
+- NVIDIA cuVS: Benchmarking methodologies · Official software documentation, checked 2026-10-11: https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies
+
+### M13 · Session 1: Research symposium: build a conference-style research story
+
+- ACM SIGSIM PADS 2024: Reproducibility and Artifact Evaluation · Official ACM conference guidance; used as a general example, not the course rubric: https://sigsim.acm.org/conf/pads/2024/blog/artifact-evaluation/
+- NVIDIA cuVS: Benchmarking methodologies · Official software documentation, checked 2026-10-11: https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies
+
+### M13 · Session 2: Research symposium: defend, review and close the evidence loop
+
+- ACM SIGSIM PADS 2024: Reproducibility and Artifact Evaluation · Official ACM conference guidance; used as a general example, not the course rubric: https://sigsim.acm.org/conf/pads/2024/blog/artifact-evaluation/
+- NVIDIA cuVS: Benchmarking methodologies · Official software documentation, checked 2026-10-11: https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies
+- Join Size Bounds using Lp-Norms on Degree Sequences · Accepted PODS 2024 paper; linked arXiv is an author manuscript first posted in 2023: https://arxiv.org/abs/2306.14075
 
 ## Engine and supplementary semantics
 

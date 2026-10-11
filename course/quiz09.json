@@ -517,6 +517,56 @@
           "pages": [
             24
           ]
+        },
+        {
+          "id": "l09-internal-merge-new-q1",
+          "prompt": "For d=2, merge internal nodes [10,20] and [40] separated by parent key30. What is the merged key list?",
+          "options": [
+            "[10,20,30,40]",
+            "[10,20,40]",
+            "[10,20,30,30,40]",
+            "[30]"
+          ],
+          "answer": 0,
+          "explanation": "An internal merge pulls the separating parent key down between the two lists and combines their child pointers. A leaf merge does not insert that separator as a new data record.",
+          "pages": [
+            23,
+            24
+          ],
+          "sources": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf",
+              "physicalPages": [
+                23,
+                24
+              ]
+            }
+          ],
+          "addresses": "F15"
+        },
+        {
+          "id": "l09-internal-rotate-new-q2",
+          "prompt": "Parent separator40 lies between internal nodes left[10,20,30] and right[60]. Borrow from the left. What is the new parent separator?",
+          "options": [
+            "40",
+            "60",
+            "30",
+            "20"
+          ],
+          "answer": 2,
+          "explanation": "The left node's final separator30 moves up; old parent40 moves down into the right node, accompanied by moving the appropriate child pointer.",
+          "pages": [
+            25
+          ],
+          "sources": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf",
+              "physicalPages": [
+                25
+              ]
+            }
+          ],
+          "addresses": "F15"
         }
       ]
     },

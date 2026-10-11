@@ -558,6 +558,38 @@
             32,
             33
           ]
+        },
+        {
+          "id": "ex15-sort-q1",
+          "prompt": "Base-table reads are already charged. Sorting a 50-page filtered input with B=7 creates eight initial runs and uses six-way merging. What additional materialized-sort I/O is needed, excluding the join read?",
+          "options": [
+            "50",
+            "150",
+            "250",
+            "350"
+          ],
+          "answer": 2,
+          "explanation": "Initial writes cost 50. Eight runs require two read/write merge passes: 50+2×50×2=250. Do not count the base scan again.",
+          "pages": [
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "sources": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf",
+              "physicalPages": [
+                25,
+                26,
+                27,
+                28,
+                29
+              ]
+            }
+          ],
+          "origin": "Original audit extension question"
         }
       ]
     },
@@ -765,6 +797,38 @@
             41,
             42
           ]
+        },
+        {
+          "id": "ex15-fair-q1",
+          "prompt": "Clustered access retrieves 1,200 qualifying Orders tuples on 12 pages. Their projected key set fits in RAM. Scanning Customers costs 200 I/Os. What is the matched retain-keys-and-scan cost?",
+          "options": [
+            "800 I/Os",
+            "1,212 I/Os",
+            "212 I/Os",
+            "12 I/Os"
+          ],
+          "answer": 2,
+          "explanation": "Use the same clustered outer access for this candidate: 12+200=212. The earlier 800 cost assumes different heap access.",
+          "pages": [
+            39,
+            40,
+            41,
+            42,
+            43
+          ],
+          "sources": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf",
+              "physicalPages": [
+                39,
+                40,
+                41,
+                42,
+                43
+              ]
+            }
+          ],
+          "origin": "Original audit extension question"
         }
       ]
     }

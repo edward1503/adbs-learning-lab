@@ -6,23 +6,23 @@
   <a href="https://github.com/edward1503/adbs-learning-lab/actions/workflows/ci.yml"><img src="https://github.com/edward1503/adbs-learning-lab/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI status"></a>
   &nbsp;
   <a href="https://adbs-learning-lab.bot-keep.xyz/"><strong>Live demo ↗</strong></a>
-  &nbsp; · &nbsp; English v3.0.0
+  &nbsp; · &nbsp; English v3.1.0
 </p>
 
-An independent English companion to the **University of Edinburgh's Advanced Database Systems course**. Explore source-grounded lessons, practice topic quizzes, and turn database concepts into concrete experiments.
+An independent English **Advanced Database Systems learning companion**, aligned to the user-provided **13-module / 15-week / 30-session syllabus**. Its 27 core resources use Edinburgh Spring 2026 slides; ten original supplemental resources cover research frontiers, project clinics and a research symposium.
 
-| Lessons | Topics | Practice questions | Key takeaways | Interactive labs | SQL exercises |
+| Learning resources | Quiz topics | Practice questions | Key takeaways | Interactive labs | SQL exercises |
 | :---: | :---: | :---: | :---: | :---: | :---: |
-| **27** | **217** | **1,100** | **56** | **10** | **15** |
+| **37** | **227** | **1,167** | **76** | **10** | **15** |
 
 ## Features
 
 - **Read with context.** Lessons combine learning objectives, worked examples, self-checks, and links to physical pages in the official lecture PDFs.
-- **Practice by topic.** Quizzes give explanations and source references, with explicit retries, topic resets, and browser-local answer history. Quiz scores do not automatically mark a lecture complete.
+- **Practice by topic.** Quizzes give explanations and source references, with explicit retries, topic resets, and browser-local answer history. Choices are shuffled deterministically per question while saved source-option meanings remain stable. Quiz scores do not automatically mark a resource complete.
 - **Review key takeaways** beside the relevant explanation.
 - **Run real SQL.** SQLite runs in a Web Worker through vendored sql.js and WebAssembly, with clean-seed grading for 15 exercises.
 - **Explore algorithms.** Labs cover relational operations, buffer replacement, slotted pages, indexes, sorting, join costs, conflict graphs, recovery, quorums, and two-phase commit.
-- **Navigate your way.** Browse lessons, search course text and the glossary, and track completed lectures in the English interface.
+- **Navigate your way.** Browse lessons, search course text and the glossary, and track core and supplemental completion separately in the English interface.
 
 | Course sequence | Main themes |
 | --- | --- |
@@ -30,7 +30,13 @@ An independent English companion to the **University of Edinburgh's Advanced Dat
 | Lectures 10–18 | Hash indexes, sorting, joins, query evaluation, access paths, cost estimation, plan search |
 | Lectures 19–27 | Transactions, locking, recovery, distributed transactions, conjunctive queries, parallel processing, NoSQL |
 
-The companion covers all 27 scheduled Spring 2026 lectures; it does not reproduce every slide sentence or image. Restricted Learn worksheets are excluded. Administrative details in the source slides describe that course edition and should not be treated as current deadlines.
+The **37 learning resources are not 37 timetabled sessions**. Modules 1–10 organize 27 slide resources across 20 syllabus sessions. Modules 11–13 add four frontier, four clinic and two symposium resources across the remaining ten sessions. Their within-module sequence is suggested practice. Canvas-assigned papers, instructor rubrics, deadlines, talk duration and submission rules were unavailable and remain explicitly unverified. Restricted Learn worksheets are excluded.
+
+The [audit record](docs/audit/README.md) preserves the pre-change findings, exact corrections, source evidence and integrated verification. All original 1,100 bank keys and 27 embedded checks remain correct; the release adds 17 targeted core questions and 50 supplemental questions. It does not reproduce source PDFs, slide images or textbook chapters.
+
+<p align="center"><img src="docs/assets/overview-desktop.png" alt="Actual English v3.1.0 curriculum overview showing 13 modules, 15 weeks, 30 timetabled sessions and 37 learning resources" width="100%"></p>
+
+The screenshot is from the running application. [See a genuine mobile worked example](docs/assets/worked-example-mobile.png) from the project clinic.
 
 ## Architecture
 
@@ -62,11 +68,11 @@ npm start
 
 Open **[localhost:8080](http://localhost:8080)**. The server listens on `0.0.0.0` and reads `SERVER_PORT`, then `PORT`, before falling back to 8080. Serve the app over HTTP so workers and WebAssembly assets can load.
 
-Edit `course/lectureNN.json` or `course/quizNN.json`, then rebuild. `course-data.js`, `quiz-data.js`, and the coverage manifests are generated; keep the JSON modules as the editing source.
+Edit `course/lectureNN.json`, `course/quizNN.json`, or `course/supplements/supplementNN.json`, then rebuild. `course-data.js`, `quiz-data.js`, and the coverage manifests are generated; keep the JSON modules as the editing source.
 
 ## Tests and CI
 
-`npm test` includes 48 application tests covering content/translation contracts, stable routes and IDs, quiz behavior, progress persistence, rendering hooks, lab algorithms, actual SQLite execution, worker lifecycle, and HTTP asset serving, plus deployment safety and diagnostic checks. Test discovery is independent of shell globbing, so the same command works on Windows and Linux.
+`npm test` covers content/translation contracts, stable routes and IDs, quiz behavior, progress persistence, rendering hooks, lab algorithms, actual SQLite execution, worker lifecycle, and HTTP asset serving, plus deployment safety and diagnostic checks. Test discovery is independent of shell globbing, so the same command works on Windows and Linux.
 
 GitHub Actions checks every pull request and push to `main`, running `npm ci`, `npm run build`, and `npm test` on Linux and Windows. Successful builds upload `dist` with a `release.json` file identifying the app version, source commit, workflow run, and artifact file hashes.
 
@@ -84,7 +90,7 @@ After both platform checks and branch publication pass on `main`, CI saves a ver
 
 Study state in `localStorage` belongs to one browser profile and site origin. It is not a cloud backup and does not automatically sync between browsers or devices. Clearing site data, switching origins, or using a temporary browsing profile can remove or isolate progress. Storage restrictions may prevent it from persisting.
 
-Lecture state uses `adbs-learning-v2`; topic answers use `adbs-topic-quiz-v1`. Stable lesson, topic, and question IDs preserve existing progress on the same origin and browser. Older five-lesson v1 progress is retained separately and does not automatically become completed full lectures.
+Core lecture state uses `adbs-learning-v2`; supplemental completion uses `adbs-supplement-progress-v1`; topic answers use `adbs-topic-quiz-v1`. Stable lesson, topic, and question IDs preserve existing progress on the same origin and browser. Older five-lesson v1 progress is retained separately and does not automatically become completed full lectures.
 
 SQL data lives in the tab/worker and can be discarded by a reset or reload. Results show at most 200 rows; a query running for more than three seconds terminates the worker and rebuilds the sandbox. Finite-dataset grading does not prove query equivalence on all databases.
 
@@ -92,6 +98,6 @@ The index lab is not a complete B+ tree split implementation, and the recovery l
 
 ## Attribution and license boundaries
 
-This project is **not endorsed by the University of Edinburgh**. Course explanations and exercises are independently authored companion material grounded in the linked sources. Official PDFs and slide scans are linked rather than bundled or rehosted. [SOURCES.md](SOURCES.md) records teaching sources; [coverage-manifest.json](coverage-manifest.json) records the supplied coverage maps. Physical PDF pages and printed slide numbers are distinguished where relevant.
+This project is **not endorsed by the University of Edinburgh**. Course explanations and exercises are independently authored companion material grounded in the linked sources. Official PDFs and slide scans are linked rather than bundled or rehosted. [SOURCES.md](SOURCES.md) records teaching sources; [coverage-manifest.json](coverage-manifest.json) records the core slide maps. [Supplemental evidence](docs/audit/supplemental-evidence.md) records research provenance and status boundaries. No suggested GPU benchmark has been run; hardware feasibility examples are estimates. Physical PDF pages and printed slide numbers are distinguished where relevant.
 
 **No project-wide open-source license has been assigned.** Public availability is not blanket permission to reuse the application or course content. The university and other source authors retain rights to their materials. Third-party components retain their own licenses, which are preserved in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and `vendor/`. Any future project license must distinguish application code, learning content, and third-party components.

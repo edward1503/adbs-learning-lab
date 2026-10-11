@@ -85,6 +85,122 @@
           "pages": [
             11
           ]
+        },
+        {
+          "id": "l01-architecture-new-q1",
+          "prompt": "Which DBMS layer chooses between an index access path and a table scan?",
+          "options": [
+            "Buffer management",
+            "Query planning",
+            "Disk-space allocation",
+            "Record compaction"
+          ],
+          "answer": 1,
+          "explanation": "Query planning selects the physical access path; buffer and storage layers support execution of that choice.",
+          "pages": [
+            3,
+            4,
+            8
+          ],
+          "sources": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                3,
+                4,
+                8
+              ]
+            }
+          ],
+          "auditFinding": "F02"
+        },
+        {
+          "id": "l01-architecture-new-q2",
+          "prompt": "All pages needed by a query are cached in a disk-oriented DBMS. What follows?",
+          "options": [
+            "The DBMS has permanently become in-memory.",
+            "Durability no longer needs persistence.",
+            "The schema becomes irrelevant.",
+            "This execution can avoid data-page reads while the architecture remains disk-oriented."
+          ],
+          "answer": 3,
+          "explanation": "A cached working set changes the I/O of this execution, not the storage architecture or durable-commit requirements.",
+          "pages": [
+            11,
+            12
+          ],
+          "sources": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                11,
+                12
+              ]
+            }
+          ],
+          "auditFinding": "F03"
+        },
+        {
+          "id": "l01-architecture-new-q3",
+          "prompt": "Which statement correctly distinguishes workload from storage architecture?",
+          "options": [
+            "OLTP and OLAP describe workloads; disk-oriented and in-memory describe storage designs.",
+            "OLTP means RAM and OLAP means HDD.",
+            "Column storage prohibits transactions.",
+            "RAM is automatically durable."
+          ],
+          "answer": 0,
+          "explanation": "Transaction and analytical workload characteristics are separate from the storage tiers and physical layout selected by a DBMS.",
+          "pages": [
+            11,
+            12
+          ],
+          "sources": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                11,
+                12
+              ]
+            },
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf",
+              "physicalPages": [
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            }
+          ],
+          "auditFinding": "F03"
+        },
+        {
+          "id": "l01-architecture-new-q4",
+          "prompt": "Why is a database update held only in ordinary RAM not automatically durable?",
+          "options": [
+            "RAM cannot hold rows.",
+            "Every analytical query modifies data.",
+            "Ordinary RAM is volatile.",
+            "Indexes cannot reside in RAM."
+          ],
+          "answer": 2,
+          "explanation": "Ordinary volatile memory loses its contents on power loss. Durability needs the system's persistence protocol, even for an in-memory working set.",
+          "pages": [
+            11,
+            12
+          ],
+          "sources": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                11,
+                12
+              ]
+            }
+          ],
+          "auditFinding": "F03"
         }
       ]
     },

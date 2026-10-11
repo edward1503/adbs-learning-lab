@@ -1,0 +1,312 @@
+{
+  "lesson": {
+    "id": "supplement-31",
+    "lecture": null,
+    "order": 31,
+    "kind": "supplemental",
+    "displayLabel": "M11 · Session 4",
+    "module": 11,
+    "week": 12,
+    "suggestedSession": 4,
+    "title": "Cloud-native and disaggregated DBMSs: locality becomes a protocol",
+    "short": "Compute/storage separation · ownership · logging · failure recovery",
+    "group": "11 · Research frontiers",
+    "time": 45,
+    "timeMeaning": "Suggested independent study minutes; not scheduled contact time",
+    "lead": "Separating resources makes scaling more flexible. It also moves familiar memory and recovery decisions across a network.",
+    "goals": [
+      "Compare shared-nothing, shared-storage and compute-memory-storage designs.",
+      "Trace page ownership, write-ahead logging and recovery responsibilities.",
+      "Estimate remote-access costs and design a workload/failure experiment."
+    ],
+    "sections": [
+      {
+        "id": "supplement-31-status",
+        "title": "How to use this supplemental session",
+        "html": "<p>This is an original supplemental study session aligned to the user-provided syllabus. It is not an Edinburgh lecture or a verified Canvas assignment. The Canvas reading list and instructor-specific assessment instructions were not accessible. Suggested activities, timings, templates and checks below are practice guidance, not official requirements.</p>"
+      },
+      {
+        "id": "supplement-31-s1",
+        "title": "Draw the resource and responsibility boundaries",
+        "html": "<p>In a <strong>shared-nothing</strong> design, each worker owns a partition with its compute and local resources; cross-partition work needs communication. In <strong>compute-storage separation</strong>, multiple compute nodes access a durable storage service. A further <strong>memory layer</strong> can provide shared buffers or coordination independently of compute. CXL memory expansion and RDMA-accessed remote memory are different mechanisms; a network diagram alone does not specify either one.</p><p>Disaggregation can make resource scaling and pooling more flexible, but a new compute node may start with a cold cache. Reads may traverse a network; metadata and lock ownership may move; the control plane must route requests and track membership. “Serverless” describes an operational abstraction, not the absence of servers, failure modes or cost.</p><p>For every box in the design, write down its owned state, durability, replication, consistency and failure behavior. Distinguish a compute cache from an authoritative page version and from durable log storage.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p>Independent scaling does not imply independent correctness. Coordination and durability contracts still connect the layers.</p></aside>"
+      },
+      {
+        "id": "supplement-31-s2",
+        "title": "Worked example: latency, bandwidth and caching",
+        "html": "<p><strong>Original model.</strong> A query needs 1,000 remote 8 KiB pages. At an assumed usable bandwidth of 2 GiB/s, transferring 8,192,000 bytes takes about 3.81 ms. If each page also incurs a serialized 0.2 ms round trip, latency alone is 200 ms. These are simplified components, not a performance prediction; requests can overlap, bandwidth can be shared and queues can dominate.</p><p>With 100 outstanding requests, an idealized latency lower bound is roughly 10 rounds×0.2 ms=2 ms, while the bandwidth component remains 3.81 ms. Depending on overlap, total time is not simply their sum; a lower bound is at least the larger component before other work. Reducing dependency chains can matter more than reducing bytes.</p><p>A warm cache with a 90% hit ratio cuts remote pages to 100 in this toy model. A scale-out experiment that compares a warm old node with a cold new node confounds architecture with cache state. Report warm-up policy and both steady-state and scale-transition behavior.</p><details><summary>Exercise: a query saves 50% of its remote bytes but leaves a serial chain of 100 requests unchanged. Must its latency halve?</summary><p><strong>Worked answer.</strong> No. If request latency dominates, byte reduction has little effect on that serial chain. Measure dependency depth, concurrency, queueing, CPU work and transfer volume separately.</p></details>"
+      },
+      {
+        "id": "supplement-31-s3",
+        "title": "Multi-primary writes and recovery",
+        "html": "<p>Shared storage does not automatically make simultaneous writers safe. Two compute nodes caching the same page need a coherent ownership or version protocol. A transaction must know whether its reads are valid, how it obtains write authority and when another node can observe its changes.</p><p><strong>Original failure trace.</strong> Node A updates a cached page. Before acknowledging commit, the system must satisfy its durable-commit rule for the corresponding log/commit information. A then fails before the modified page reaches its final storage location. Recovery must reconstruct the committed change from durable evidence and fence stale owners. If A acknowledged a write that existed only in volatile private memory, losing A could lose an acknowledged transaction.</p><p>Independent logs need an ordering/dependency strategy where operations interact. Do not equate a locally increasing sequence number with a globally sufficient recovery order. Failover also needs a way to prevent a partitioned former owner from continuing to write as though it were current.</p>"
+      },
+      {
+        "id": "supplement-31-s4",
+        "title": "Read two concrete multi-primary designs",
+        "html": "<p><a href=\"https://cighao.com/papers/polardb_mp.pdf\" target=\"_blank\" rel=\"noopener\">PolarDB-MP (SIGMOD 2024 Industry)</a> uses disaggregated memory and storage. Its PMFS service coordinates transaction visibility, buffers and locks, and the paper describes partial ordering of log records and recovery. It is a published industrial paper in the SIGMOD Companion, not a PODS or SIGMOD research-track paper. Read its contention and network assumptions alongside its measurements.</p><p><a href=\"https://www.vldb.org/pvldb/vol17/p3786-li.pdf\" target=\"_blank\" rel=\"noopener\">GaussDB (PVLDB 2024)</a> separates compute, memory and storage, with global buffer/lock services and page ownership. Placement and query routing exploit affinity to reduce transfers; recovery combines memory/storage mechanisms. Compare where ownership lives and what moves under contention, rather than treating the two architectures as interchangeable.</p><p>As another implementation example, <a href=\"https://neon.com/blog/architecture-decisions-in-neon\" target=\"_blank\" rel=\"noopener\">Neon’s official architecture account</a> separates compute from WAL safekeepers and page-serving responsibilities. This historical design account is useful for tracing durability, not for inferring a current SLA, price or every implementation detail.</p>"
+      },
+      {
+        "id": "supplement-31-s5",
+        "title": "Mini-experiment: isolate the benefit and the network cost",
+        "html": "<p><strong>Suggested scoped experiment.</strong> Implement or configure a small page-cache/storage microbenchmark, or use an accessible research artifact. A controlled latency/bandwidth model on one machine can test a mechanism, but it is not a reproduction of RDMA, CXL or a production disaggregated database.</p><ol><li>Compare local access, remote access without caching, and remote access with the same fixed cache budget. Use sequential and random reads, then vary working-set size and skew.</li><li>Report latency distribution, throughput, bytes transferred, cache hit rate, CPU utilization and request concurrency. Sweep round-trip delay separately from bandwidth.</li><li>For a multi-writer prototype, vary hot-page contention and transaction locality. Count ownership transfers, aborts/retries and time spent coordinating.</li><li>Test recovery in a disposable sandbox: crash compute after durable commit and before page flush; validate committed state and measure recovery time. A toy failure test is not a high-availability certification.</li><li>Compare fixed-total-resource scale-out with scale-out that adds resources. Label both. A larger cluster cannot establish architectural efficiency without a cost/resource denominator.</li></ol><p>This project mostly needs CPU, memory, storage and a suitable network. One or two H100s do not reproduce RDMA/CXL or production control-plane behavior. Prefer a narrow emulation claim over an unsupported cloud-system claim.</p>"
+      },
+      {
+        "id": "supplement-31-s6",
+        "title": "Exercises and synthesis",
+        "html": "<p>Return to buffer management, concurrency control, WAL and distributed transactions from the core lessons. Disaggregation rearranges their costs and responsibilities; it does not remove their invariants.</p><details><summary>Exercise: a new node doubles total cache capacity and throughput improves 1.6×. What else must be tested?</summary><p><strong>Worked answer.</strong> Separate the effect of added cache from the placement/coordination design. Compare equal total memory, disclose CPU/network differences, measure cold-start and steady-state behavior, and test a working set large enough to exceed the original cache.</p></details><details><summary>Exercise: storage is replicated, so a compute failure needs no recovery protocol. Is that correct?</summary><p><strong>Worked answer.</strong> No. Replication must include the right durable information, and the system still needs commit status, coherent versions/ownership, replay rules and fencing. Replicated old pages alone may not represent the latest committed state.</p></details><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p>A useful cloud-native evaluation includes transitions and failures, not only steady-state peak throughput.</p></aside>"
+      }
+    ],
+    "quiz": {
+      "question": "What does compute-storage disaggregation alone guarantee?",
+      "options": [
+        "Linear scaling with compute nodes.",
+        "A separation of resource roles; other guarantees need explicit protocols.",
+        "No need for concurrency control.",
+        "Zero cold-start overhead."
+      ],
+      "answer": 1,
+      "explanation": "Disaggregation is an architectural separation. Scalability, correctness, recovery and latency depend on mechanisms and workload.",
+      "id": "supplement-31-q1",
+      "origin": "Original supplemental exercise; not a verified assessed question",
+      "sourceKeys": [
+        "polar",
+        "gauss",
+        "neon"
+      ],
+      "lessonSectionIds": [
+        "supplement-31-s1",
+        "supplement-31-s2",
+        "supplement-31-s3",
+        "supplement-31-s4",
+        "supplement-31-s5",
+        "supplement-31-s6"
+      ]
+    },
+    "source": {
+      "summary": "Original supplemental explanation and exercises. Primary research/software evidence is linked; syllabus alignment is based on the user-provided outline. Canvas-assigned readings are unverified.",
+      "links": [
+        {
+          "url": "https://cighao.com/papers/polardb_mp.pdf",
+          "label": "PolarDB-MP: A Multi-Primary Cloud-Native Database via Disaggregated Shared Memory · Published industrial paper; not a SIGMOD research-track or PODS paper"
+        },
+        {
+          "url": "https://www.vldb.org/pvldb/vol17/p3786-li.pdf",
+          "label": "GaussDB: A Cloud-Native Multi-Primary Database with Compute-Memory-Storage Disaggregation · Published industrial/system paper"
+        },
+        {
+          "url": "https://neon.com/blog/architecture-decisions-in-neon",
+          "label": "Architecture decisions in Neon · Official engineering design account; historical architecture example"
+        }
+      ]
+    },
+    "coverage": {
+      "verified": false,
+      "status": "Supplemental content with verified primary references; official Canvas reading alignment unverified",
+      "sourceEvidenceVerified": true,
+      "officialCourseMaterialVerified": false,
+      "module": 11,
+      "week": 12,
+      "syllabusTopics": [
+        "cloud-native DBMSs",
+        "disaggregated compute/memory/storage",
+        "multi-primary ownership",
+        "WAL and recovery",
+        "experimental scope"
+      ],
+      "topics": [
+        "cloud-native DBMSs",
+        "disaggregated compute/memory/storage",
+        "multi-primary ownership",
+        "WAL and recovery",
+        "experimental scope"
+      ],
+      "limitations": [
+        "Canvas-assigned paper list is unavailable.",
+        "Lesson is an original supplement, not a reconstructed official lecture.",
+        "No assessment rubric, deadline, presentation duration or submission format is asserted."
+      ],
+      "sourceKeys": [
+        "polar",
+        "gauss",
+        "neon"
+      ]
+    },
+    "lab": null
+  },
+  "quizBank": {
+    "lessonId": "supplement-31",
+    "kind": "supplemental",
+    "module": 11,
+    "title": "Cloud-native and disaggregated DBMSs: locality becomes a protocol",
+    "topics": [
+      {
+        "id": "supplement-31-practice",
+        "title": "Compute/storage separation · ownership · logging · failure recovery",
+        "sourceStatus": "Supplemental, not official slide/Canvas quiz",
+        "questions": [
+          {
+            "question": "What does compute-storage disaggregation alone guarantee?",
+            "options": [
+              "Linear scaling with compute nodes.",
+              "A separation of resource roles; other guarantees need explicit protocols.",
+              "No need for concurrency control.",
+              "Zero cold-start overhead."
+            ],
+            "answer": 1,
+            "explanation": "Disaggregation is an architectural separation. Scalability, correctness, recovery and latency depend on mechanisms and workload.",
+            "id": "supplement-31-q1",
+            "origin": "Original supplemental exercise; not a verified assessed question",
+            "sourceKeys": [
+              "polar",
+              "gauss",
+              "neon"
+            ],
+            "lessonSectionIds": [
+              "supplement-31-s1",
+              "supplement-31-s2",
+              "supplement-31-s3",
+              "supplement-31-s4",
+              "supplement-31-s5",
+              "supplement-31-s6"
+            ]
+          },
+          {
+            "question": "In a simplified remote-page model, what is a risk of issuing many dependent requests serially?",
+            "options": [
+              "Bandwidth becomes infinite.",
+              "Latency accumulates even when total bytes are modest.",
+              "Caches can no longer exist.",
+              "All reads become writes."
+            ],
+            "answer": 1,
+            "explanation": "Serial dependency chains pay repeated request latency. Reducing bytes alone may not fix that bottleneck.",
+            "id": "supplement-31-q2",
+            "origin": "Original supplemental exercise; not a verified assessed question",
+            "sourceKeys": [
+              "polar",
+              "gauss",
+              "neon"
+            ],
+            "lessonSectionIds": [
+              "supplement-31-s1",
+              "supplement-31-s2",
+              "supplement-31-s3",
+              "supplement-31-s4",
+              "supplement-31-s5",
+              "supplement-31-s6"
+            ]
+          },
+          {
+            "question": "Why can scaling out compute cause a temporary slowdown?",
+            "options": [
+              "Disaggregation forbids any caching.",
+              "All persistent data must always be deleted first.",
+              "Adding compute guarantees a slower network by definition.",
+              "New compute nodes may have cold caches and trigger additional remote access."
+            ],
+            "answer": 3,
+            "explanation": "Cold caches and state/ownership transitions can affect the scale-out period. They must be measured separately from steady state.",
+            "id": "supplement-31-q3",
+            "origin": "Original supplemental exercise; not a verified assessed question",
+            "sourceKeys": [
+              "polar",
+              "gauss",
+              "neon"
+            ],
+            "lessonSectionIds": [
+              "supplement-31-s1",
+              "supplement-31-s2",
+              "supplement-31-s3",
+              "supplement-31-s4",
+              "supplement-31-s5",
+              "supplement-31-s6"
+            ]
+          },
+          {
+            "question": "A node acknowledges commit before its only log copy reaches durable storage, then loses volatile memory. What may fail?",
+            "options": [
+              "Only the chart colors.",
+              "The definition of a vector embedding.",
+              "Durability of acknowledged work.",
+              "No property, because storage is remote."
+            ],
+            "answer": 2,
+            "explanation": "Commit acknowledgment must meet the system’s durable-commit protocol. Remote storage alone does not preserve information never durably recorded.",
+            "id": "supplement-31-q4",
+            "origin": "Original supplemental exercise; not a verified assessed question",
+            "sourceKeys": [
+              "polar",
+              "gauss",
+              "neon"
+            ],
+            "lessonSectionIds": [
+              "supplement-31-s1",
+              "supplement-31-s2",
+              "supplement-31-s3",
+              "supplement-31-s4",
+              "supplement-31-s5",
+              "supplement-31-s6"
+            ]
+          },
+          {
+            "question": "Does a one-machine delay simulation reproduce a production RDMA/CXL database?",
+            "options": [
+              "No; it can test a narrow model, but hardware and distributed-protocol claims require additional evidence.",
+              "No simulation can ever be useful.",
+              "Yes, if the simulation uses a GPU.",
+              "Yes, whenever the simulated delay matches one measured number."
+            ],
+            "answer": 0,
+            "explanation": "A model can isolate a mechanism while omitting bandwidth contention, hardware semantics, failures and control-plane behavior. State that boundary.",
+            "id": "supplement-31-q5",
+            "origin": "Original supplemental exercise; not a verified assessed question",
+            "sourceKeys": [
+              "polar",
+              "gauss",
+              "neon"
+            ],
+            "lessonSectionIds": [
+              "supplement-31-s1",
+              "supplement-31-s2",
+              "supplement-31-s3",
+              "supplement-31-s4",
+              "supplement-31-s5",
+              "supplement-31-s6"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "sources": {
+    "polar": {
+      "title": "PolarDB-MP: A Multi-Primary Cloud-Native Database via Disaggregated Shared Memory",
+      "authors": "Xinjun Yang, Yingqiang Zhang, Hao Chen, Feifei Li, Bo Wang, Jing Fang, Chuan Sun, Yuhui Wang",
+      "venue": "SIGMOD 2024 Industry, SIGMOD Companion, pp. 295–308",
+      "year": 2024,
+      "status": "Published industrial paper; not a SIGMOD research-track or PODS paper",
+      "url": "https://cighao.com/papers/polardb_mp.pdf",
+      "doi": "10.1145/3626246.3653377",
+      "acceptanceUrl": "https://2024.sigmodconf.hosting.acm.org/program_sigmod.shtml",
+      "supports": "Disaggregated memory/storage with PMFS transaction, buffer and lock fusion; partial log ordering and recovery. Official conference program confirms Industry classification.",
+      "read": "Architecture, transaction/buffer/lock fusion, recovery, experiment assumptions"
+    },
+    "gauss": {
+      "title": "GaussDB: A Cloud-Native Multi-Primary Database with Compute-Memory-Storage Disaggregation",
+      "authors": "Guoliang Li, Wengang Tian, Jinyu Zhang, Ronen Grosman, Zongchao Liu, Sihao Li",
+      "venue": "PVLDB 17(12): 3786–3798, 2024",
+      "year": 2024,
+      "status": "Published industrial/system paper",
+      "url": "https://www.vldb.org/pvldb/vol17/p3786-li.pdf",
+      "doi": "10.14778/3685800.3685806",
+      "supports": "Three-layer separation; global buffers/locks, page ownership transfer, affinity-aware placement/routing and two-tier recovery. Bibliography and abstract verified through the publisher-indexed PDF; direct full-PDF fetch timed out.",
+      "read": "Architecture and page ownership; routing and recovery; evaluation conditions"
+    },
+    "neon": {
+      "title": "Architecture decisions in Neon",
+      "status": "Official engineering design account; historical architecture example",
+      "url": "https://neon.com/blog/architecture-decisions-in-neon",
+      "supports": "Separation of compute, WAL safekeepers and pageserver responsibilities; not a current SLA or service-price source."
+    }
+  }
+}

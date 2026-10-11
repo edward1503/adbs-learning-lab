@@ -1,0 +1,279 @@
+{
+  "lesson": {
+    "id": "supplement-33",
+    "lecture": null,
+    "order": 33,
+    "kind": "supplemental",
+    "displayLabel": "M12 · Session 2",
+    "module": 12,
+    "week": 13,
+    "suggestedSession": 2,
+    "title": "Project clinic: trustworthy baselines and measurements",
+    "short": "Workload design · tuning fairness · latency · uncertainty",
+    "group": "12 · Project clinic",
+    "time": 35,
+    "timeMeaning": "Suggested independent study minutes; not scheduled contact time",
+    "lead": "A result is only as convincing as the comparison that produced it. Design the evaluation before you optimize the system.",
+    "goals": [
+      "Choose baselines that isolate the claimed improvement.",
+      "Distinguish workload-total, per-query and tail metrics.",
+      "Design repeatable timing, split and timeout policies."
+    ],
+    "sections": [
+      {
+        "id": "supplement-33-status",
+        "title": "How to use this supplemental session",
+        "html": "<p>This is an original supplemental study session aligned to the user-provided syllabus. It is not an Edinburgh lecture or a verified Canvas assignment. The Canvas reading list and instructor-specific assessment instructions were not accessible. Suggested activities, timings, templates and checks below are practice guidance, not official requirements.</p>"
+      },
+      {
+        "id": "supplement-33-s1",
+        "title": "Choose what the baseline is supposed to answer",
+        "html": "<p>Use a <strong>native or widely used baseline</strong> to test practical value, a <strong>simple baseline</strong> to test whether complexity is needed, and an <strong>ablation</strong> to isolate the new component. An optional candidate-set oracle reveals remaining headroom, but it is not deployable performance if it requires hindsight.</p><p>Give systems comparable tuning effort, training data, resources and quality targets. A default baseline may be informative, but label it “default”; it is not automatically a best-effort comparison. Pin versions, verify correctness, and record why each selected parameter is reasonable. If published code is unavailable, disclose a reimplementation and test its key behavior before comparing it.</p><p>A database benchmark also needs a workload model: relation sizes, selectivity, skew, join graph, concurrency, read/write mix, data freshness and cache state. Include stress regimes relevant to the claim, rather than only a favorable average case.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p>A strong baseline removes alternative explanations for a win.</p></aside>"
+      },
+      {
+        "id": "supplement-33-s2",
+        "title": "Worked example: aggregate speedup can reverse the story",
+        "html": "<p><strong>Original example.</strong> Baseline runtimes for two queries are 1 s and 100 s. A proposed method takes 0.5 s and 110 s. Individual speedups are 2 and 100/110≈0.909. Their arithmetic mean is about 1.455; their geometric mean is √(2×0.909)≈1.348. Yet the total workload takes 110.5 s instead of 101 s, a workload speedup of 101/110.5≈0.914: the workload is slower.</p><p>None of these summaries is universally correct for every question. Total time matters for completing that fixed workload; per-query ratios characterize the distribution across queries. Report both and explain the weighting. Show regressions explicitly.</p><p>Tail percentiles require enough observations and a declared quantile convention. Ten measurements do not provide a stable p99 estimate. Repeated queries from one shared run can be correlated; treat repetitions and workload units appropriately rather than inflating the sample size.</p><details><summary>Exercise: nine queries improve by 1 ms and one query slows by 100 ms. What happens to the fixed workload total?</summary><p><strong>Worked answer.</strong> It gets 91 ms slower: 100−9×1. Counting “nine of ten wins” hides the magnitude and the workload impact.</p></details>"
+      },
+      {
+        "id": "supplement-33-s3",
+        "title": "Control the measurement boundary",
+        "html": "<p>Draw a timeline from request creation to final response. Mark preprocessing, transfers, queueing, planning, execution and postprocessing. Specify which interval each metric covers. GPU launches can return before execution finishes; use the appropriate synchronization/timer boundary and report end-to-end wall time separately.</p><p>Warm-up can include model loading, JIT compilation, cache population and connection establishment. Keep both cold-start and steady-state measurements if the claim involves short jobs or elastic scaling. Alternate or randomize system order to reduce bias from thermal or temporal drift. Keep machine-sharing and background activity in the log.</p><p>Fix the stopping policy before running: requests per trial, duration, warm-up, repetitions and failure handling. A timeout is censored runtime evidence, not a sample to delete. Report failure counts and, where possible, a workload-cost lower bound rather than inventing exact completion times.</p><p class=\"source-note\">Primary sources: <a href=\"https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies\" target=\"_blank\" rel=\"noopener\">NVIDIA cuVS: Benchmarking methodologies</a>.</p>"
+      },
+      {
+        "id": "supplement-33-s4",
+        "title": "Build a minimal evaluation matrix",
+        "html": "<p><strong>Original suggested matrix.</strong> Choose two dataset scales, three workload regimes (easy/typical/stress), two resource limits and a small parameter sweep on validation data. Avoid multiplying every dimension immediately. First run a smoke test on the smallest case; then expand only the dimensions needed to answer the question.</p><p>For a learned method, split by the unit of intended generalization: template, entity, document source or time period. For ANN, generate exact ground truth under the same metric and eligible set. For LLM extraction, use an explicit labeling guide. For a cloud prototype, validate commit/recovery behavior independently of performance.</p><p>Record raw measurements per run, not only plotted averages. Store excluded-run reasons before inspecting the final comparison. A crash caused by an environment outage differs from a crash caused by the method, but neither should disappear without explanation.</p><details><summary>Exercise: a baseline gets ten tuning trials while the new method gets 500. How should you present or fix this?</summary><p><strong>Worked answer.</strong> Equalize or justify the tuning budgets, use independent validation data, and report search cost. If budgets cannot be matched, disclose the asymmetry and limit the conclusion. A much larger search budget can account for a better chosen operating point.</p></details>"
+      },
+      {
+        "id": "supplement-33-s5",
+        "title": "Report uncertainty and make the consultation useful",
+        "html": "<p>For each key result, show sample count, variability and the aggregation method. Choose an interval or resampling procedure appropriate to the unit of analysis. Per-query paired comparisons can reduce unrelated workload variation; independent repetitions reveal run-to-run variation. Do not interpret an overlapping interval as proof of equality or a tiny p-value as evidence of practical importance.</p><p>Bring a baseline table, measurement-boundary diagram, one raw trace and the evaluation matrix to consultation. Ask which omitted workload would most threaten the conclusion. If an instructor changes the protocol, record that decision and rerun affected comparisons consistently.</p><details><summary>Exercise: the new system is 2% faster, while run-to-run variation is around 5%. What should the conclusion say?</summary><p><strong>Worked answer.</strong> These two percentages alone are insufficient to establish or rule out a 2% benefit. Inspect the number of independent repetitions, paired differences where appropriate, and an uncertainty interval for the effect. Improve controls or gather justified repetitions if uncertainty is too wide, and separately judge practical importance.</p></details><aside class=\"important-note\" role=\"note\" aria-label=\"Key takeaway\"><strong>Key takeaway</strong><p>Quality, runtime, resources and failures belong in the same evidence package.</p></aside>"
+      }
+    ],
+    "quiz": {
+      "question": "Which report best handles a timed-out query?",
+      "options": [
+        "Remove it from all summaries.",
+        "Count it as zero seconds.",
+        "Report the timeout threshold and failure count, and avoid pretending the exact runtime is known.",
+        "Replace it with the median successful runtime."
+      ],
+      "answer": 2,
+      "explanation": "A timeout gives censored information. Dropping it can systematically hide regressions.",
+      "id": "supplement-33-q1",
+      "origin": "Original supplemental exercise; not a verified assessed question",
+      "sourceKeys": [
+        "lqo",
+        "cuvsbench"
+      ],
+      "lessonSectionIds": [
+        "supplement-33-s1",
+        "supplement-33-s2",
+        "supplement-33-s3",
+        "supplement-33-s4",
+        "supplement-33-s5"
+      ]
+    },
+    "source": {
+      "summary": "Original supplemental explanation and exercises. Primary research/software evidence is linked; syllabus alignment is based on the user-provided outline. Canvas-assigned readings are unverified.",
+      "links": [
+        {
+          "url": "https://www.vldb.org/pvldb/vol17/p1565-lehmann.pdf",
+          "label": "Is Your Learned Query Optimizer Behaving As You Expect? A Machine Learning Perspective · Published peer-reviewed research / evaluation"
+        },
+        {
+          "url": "https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies",
+          "label": "NVIDIA cuVS: Benchmarking methodologies · Official software documentation, checked 2026-10-11"
+        }
+      ]
+    },
+    "coverage": {
+      "verified": false,
+      "status": "Supplemental content with verified primary references; official Canvas reading alignment unverified",
+      "sourceEvidenceVerified": true,
+      "officialCourseMaterialVerified": false,
+      "module": 12,
+      "week": 13,
+      "syllabusTopics": [
+        "project clinic",
+        "baseline selection",
+        "measurement methodology",
+        "experimental design",
+        "uncertainty and timeouts"
+      ],
+      "topics": [
+        "project clinic",
+        "baseline selection",
+        "measurement methodology",
+        "experimental design",
+        "uncertainty and timeouts"
+      ],
+      "limitations": [
+        "Canvas-assigned paper list is unavailable.",
+        "Lesson is an original supplement, not a reconstructed official lecture.",
+        "No assessment rubric, deadline, presentation duration or submission format is asserted."
+      ],
+      "sourceKeys": [
+        "lqo",
+        "cuvsbench"
+      ]
+    },
+    "lab": null
+  },
+  "quizBank": {
+    "lessonId": "supplement-33",
+    "kind": "supplemental",
+    "module": 12,
+    "title": "Project clinic: trustworthy baselines and measurements",
+    "topics": [
+      {
+        "id": "supplement-33-practice",
+        "title": "Workload design · tuning fairness · latency · uncertainty",
+        "sourceStatus": "Supplemental, not official slide/Canvas quiz",
+        "questions": [
+          {
+            "question": "Which report best handles a timed-out query?",
+            "options": [
+              "Remove it from all summaries.",
+              "Count it as zero seconds.",
+              "Report the timeout threshold and failure count, and avoid pretending the exact runtime is known.",
+              "Replace it with the median successful runtime."
+            ],
+            "answer": 2,
+            "explanation": "A timeout gives censored information. Dropping it can systematically hide regressions.",
+            "id": "supplement-33-q1",
+            "origin": "Original supplemental exercise; not a verified assessed question",
+            "sourceKeys": [
+              "lqo",
+              "cuvsbench"
+            ],
+            "lessonSectionIds": [
+              "supplement-33-s1",
+              "supplement-33-s2",
+              "supplement-33-s3",
+              "supplement-33-s4",
+              "supplement-33-s5"
+            ]
+          },
+          {
+            "question": "Baseline query times are 1 s and 100 s; new times are 0.5 s and 110 s. What happened to the fixed workload total?",
+            "options": [
+              "It improved because one query is 2× faster.",
+              "It cannot be computed.",
+              "It stayed exactly equal.",
+              "It increased from 101 s to 110.5 s."
+            ],
+            "answer": 3,
+            "explanation": "Summing the actual times answers this fixed-workload question. Averaging speedup ratios answers a different question.",
+            "id": "supplement-33-q2",
+            "origin": "Original supplemental exercise; not a verified assessed question",
+            "sourceKeys": [
+              "lqo",
+              "cuvsbench"
+            ],
+            "lessonSectionIds": [
+              "supplement-33-s1",
+              "supplement-33-s2",
+              "supplement-33-s3",
+              "supplement-33-s4",
+              "supplement-33-s5"
+            ]
+          },
+          {
+            "question": "Why distinguish kernel-only timing from end-to-end latency?",
+            "options": [
+              "End-to-end measurement is never meaningful.",
+              "Kernel timing always includes all network requests.",
+              "To remove every inconvenient cost.",
+              "Transfers, queueing, preprocessing and orchestration may dominate user-visible time."
+            ],
+            "answer": 3,
+            "explanation": "A local optimization may disappear at the application boundary. Label both measurement scopes.",
+            "id": "supplement-33-q3",
+            "origin": "Original supplemental exercise; not a verified assessed question",
+            "sourceKeys": [
+              "lqo",
+              "cuvsbench"
+            ],
+            "lessonSectionIds": [
+              "supplement-33-s1",
+              "supplement-33-s2",
+              "supplement-33-s3",
+              "supplement-33-s4",
+              "supplement-33-s5"
+            ]
+          },
+          {
+            "question": "Which split best tests generalization to new documents when many chunks come from the same document?",
+            "options": [
+              "Put test labels into every prompt.",
+              "Split at the source-document level.",
+              "Randomly split chunks from every document across train and test.",
+              "Evaluate only the training data."
+            ],
+            "answer": 1,
+            "explanation": "Document-level splitting reduces leakage through near-duplicate or related chunks. The split should match the intended unit of generalization.",
+            "id": "supplement-33-q4",
+            "origin": "Original supplemental exercise; not a verified assessed question",
+            "sourceKeys": [
+              "lqo",
+              "cuvsbench"
+            ],
+            "lessonSectionIds": [
+              "supplement-33-s1",
+              "supplement-33-s2",
+              "supplement-33-s3",
+              "supplement-33-s4",
+              "supplement-33-s5"
+            ]
+          },
+          {
+            "question": "A 2% speed improvement appears within about 5% run-to-run variation. What is justified?",
+            "options": [
+              "A cautious report with uncertainty and better-controlled or justified repeated measurement.",
+              "A guaranteed 2% win on every workload.",
+              "Deletion of every slow run.",
+              "A claim that all systems are equal."
+            ],
+            "answer": 0,
+            "explanation": "The two percentages alone neither establish nor rule out an effect. Inspect independent sample count, paired differences where appropriate, and uncertainty; then judge practical importance.",
+            "id": "supplement-33-q5",
+            "origin": "Original supplemental exercise; not a verified assessed question",
+            "sourceKeys": [
+              "lqo",
+              "cuvsbench"
+            ],
+            "lessonSectionIds": [
+              "supplement-33-s1",
+              "supplement-33-s2",
+              "supplement-33-s3",
+              "supplement-33-s4",
+              "supplement-33-s5"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "sources": {
+    "lqo": {
+      "title": "Is Your Learned Query Optimizer Behaving As You Expect? A Machine Learning Perspective",
+      "authors": "Claude Lehmann, Pavel Sulimov, Kurt Stockinger",
+      "venue": "PVLDB 17(7): 1565–1577, 2024",
+      "year": 2024,
+      "status": "Published peer-reviewed research / evaluation",
+      "url": "https://www.vldb.org/pvldb/vol17/p1565-lehmann.pdf",
+      "doi": "10.14778/3654621.3654625",
+      "supports": "An end-to-end learned-optimizer evaluation framework; sensitivity to training/test design; PostgreSQL wins in most tested comparisons, depending on split. This is evidence about the evaluated systems and protocol, not impossibility of learned optimization.",
+      "read": "Abstract; evaluation methodology and experimental results",
+      "artifact": "https://github.com/edualc/lqo_ml_perspective"
+    },
+    "cuvsbench": {
+      "title": "NVIDIA cuVS: Benchmarking methodologies",
+      "status": "Official software documentation, checked 2026-10-11",
+      "url": "https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies",
+      "supports": "Recall-matched comparisons, parameter sweeps, Pareto trade-offs and reporting of build/search cost."
+    }
+  }
+}

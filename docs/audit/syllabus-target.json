@@ -35,13 +35,14 @@
         "lecture-04",
         "lecture-07"
       ],
-      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets",
+      "mappingStatus": "Integrated core slide resources; independently reviewed content additions",
       "scheduledLessonIds": [
         "lecture-01",
         "lecture-02",
         "lecture-03"
       ],
-      "supplementaryResourceIds": []
+      "supplementaryResourceIds": [],
+      "baselineMappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
     },
     {
       "id": "module-02",
@@ -64,13 +65,14 @@
         "lecture-05",
         "lecture-06"
       ],
-      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets",
+      "mappingStatus": "Integrated core slide resources; independently reviewed content additions",
       "scheduledLessonIds": [
         "lecture-04",
         "lecture-05",
         "lecture-06"
       ],
-      "supplementaryResourceIds": []
+      "supplementaryResourceIds": [],
+      "baselineMappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
     },
     {
       "id": "module-03",
@@ -95,13 +97,14 @@
         "lecture-08",
         "lecture-09"
       ],
-      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets",
+      "mappingStatus": "Integrated core slide resources; independently reviewed content additions",
       "scheduledLessonIds": [
         "lecture-07",
         "lecture-08",
         "lecture-09"
       ],
-      "supplementaryResourceIds": []
+      "supplementaryResourceIds": [],
+      "baselineMappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
     },
     {
       "id": "module-04",
@@ -127,13 +130,14 @@
         "lecture-11",
         "lecture-12"
       ],
-      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets",
+      "mappingStatus": "Integrated core slide resources; independently reviewed content additions",
       "scheduledLessonIds": [
         "lecture-10",
         "lecture-11",
         "lecture-12"
       ],
-      "supplementaryResourceIds": []
+      "supplementaryResourceIds": [],
+      "baselineMappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
     },
     {
       "id": "module-05",
@@ -157,13 +161,14 @@
         "lecture-14",
         "lecture-15"
       ],
-      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets",
+      "mappingStatus": "Integrated core slide resources; independently reviewed content additions",
       "scheduledLessonIds": [
         "lecture-13",
         "lecture-14",
         "lecture-15"
       ],
-      "supplementaryResourceIds": []
+      "supplementaryResourceIds": [],
+      "baselineMappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
     },
     {
       "id": "module-06",
@@ -187,13 +192,14 @@
         "lecture-17",
         "lecture-18"
       ],
-      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets",
+      "mappingStatus": "Integrated core slide resources; independently reviewed content additions",
       "scheduledLessonIds": [
         "lecture-16",
         "lecture-17",
         "lecture-18"
       ],
-      "supplementaryResourceIds": []
+      "supplementaryResourceIds": [],
+      "baselineMappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
     },
     {
       "id": "module-07",
@@ -216,13 +222,14 @@
         "lecture-20",
         "lecture-21"
       ],
-      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets",
+      "mappingStatus": "Integrated core slide resources; independently reviewed content additions",
       "scheduledLessonIds": [
         "lecture-19",
         "lecture-20",
         "lecture-21"
       ],
-      "supplementaryResourceIds": []
+      "supplementaryResourceIds": [],
+      "baselineMappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
     },
     {
       "id": "module-08",
@@ -241,11 +248,12 @@
       "candidateLessonIds": [
         "lecture-22"
       ],
-      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets",
+      "mappingStatus": "Integrated core slide resources; independently reviewed content additions",
       "scheduledLessonIds": [
         "lecture-22"
       ],
-      "supplementaryResourceIds": []
+      "supplementaryResourceIds": [],
+      "baselineMappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
     },
     {
       "id": "module-09",
@@ -270,13 +278,14 @@
         "lecture-24",
         "lecture-25"
       ],
-      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets",
+      "mappingStatus": "Integrated core slide resources; independently reviewed content additions",
       "scheduledLessonIds": [
         "lecture-23",
         "lecture-24",
         "lecture-25"
       ],
-      "supplementaryResourceIds": []
+      "supplementaryResourceIds": [],
+      "baselineMappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
     },
     {
       "id": "module-10",
@@ -297,12 +306,13 @@
         "lecture-26",
         "lecture-27"
       ],
-      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets",
+      "mappingStatus": "Integrated core slide resources; independently reviewed content additions",
       "scheduledLessonIds": [
         "lecture-26",
         "lecture-27"
       ],
-      "supplementaryResourceIds": []
+      "supplementaryResourceIds": [],
+      "baselineMappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
     },
     {
       "id": "module-11",
@@ -324,14 +334,15 @@
         "Canvas readings: unavailable"
       ],
       "candidateLessonIds": [],
-      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets",
+      "mappingStatus": "Original supplemental practice integrated; official instructor/Canvas alignment unverified",
       "scheduledLessonIds": [],
       "supplementaryResourceIds": [
         "supplement-28",
         "supplement-29",
         "supplement-30",
         "supplement-31"
-      ]
+      ],
+      "baselineMappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
     },
     {
       "id": "module-12",
@@ -350,14 +361,15 @@
         "Instructor guidance: unavailable"
       ],
       "candidateLessonIds": [],
-      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets",
+      "mappingStatus": "Original supplemental practice integrated; official instructor/Canvas alignment unverified",
       "scheduledLessonIds": [],
       "supplementaryResourceIds": [
         "supplement-32",
         "supplement-33",
         "supplement-34",
         "supplement-35"
-      ]
+      ],
+      "baselineMappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
     },
     {
       "id": "module-13",
@@ -374,12 +386,13 @@
         "Instructor guidance: unavailable"
       ],
       "candidateLessonIds": [],
-      "mappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets",
+      "mappingStatus": "Original supplemental practice integrated; official instructor/Canvas alignment unverified",
       "scheduledLessonIds": [],
       "supplementaryResourceIds": [
         "supplement-36",
         "supplement-37"
-      ]
+      ],
+      "baselineMappingStatus": "Candidate integration mapping; topic/page verification awaits source-audit packets"
     }
   ],
   "coverageRecordContract": {
@@ -408,7 +421,7 @@
     "initialStatus": "awaiting-source-audit"
   },
   "referenceIdentities": {
-    "verificationProvenance": "Independent source coordinator reports verification against the official Edinburgh ADBS schedule; original source audit packets pending.",
+    "verificationProvenance": "Independent source coordinator verified identities against the official Edinburgh ADBS schedule; textbook chapter/page coverage was not audited on this executor.",
     "sourceUrl": "https://opencourse.inf.ed.ac.uk/adbs/schedule",
     "RG": {
       "title": "Database Management Systems",
@@ -435,13 +448,13 @@
   "lessonRecordsAreNotTimetabledSessions": true,
   "resourceTotals": {
     "existingSlideBasedLessons": 27,
-    "plannedSupplementaryResources": 10,
+    "supplementaryResources": 10,
     "totalLearningResources": 37
   },
   "supplementaryResourceContract": {
     "ids": "supplement-28 through supplement-37",
     "lecture": null,
-    "moduleField": "moduleId",
+    "moduleField": "module",
     "requiredFields": [
       "id",
       "title",
@@ -457,6 +470,8 @@
       "assignment dates",
       "instructor consultation arrangements"
     ],
-    "classification": "Supplementary learning resources; these do not change the 30-session timetable."
+    "classification": "Supplementary learning resources; these do not change the 30-session timetable.",
+    "kind": "supplemental",
+    "officialCoverageVerified": false
   }
 }

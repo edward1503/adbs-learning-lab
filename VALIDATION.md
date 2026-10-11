@@ -1,23 +1,27 @@
-# Validation scope — English v3.0.0
+# Validation scope — English v3.1.0
 
-The publication copy was imported from the supplied local English application without changing lesson/quiz content, runtime behavior, styles, or vendored engine/font bytes. Original course PDFs and private deployment notes are excluded.
+The integrated release has 13 modules, 15 weeks, 30 timetabled sessions and 37 learning resources: 27 slide-based resources plus ten original supplements. It contains 227 quiz topics, 1,167 bank questions, 76 Key takeaways, ten interactive labs and 15 SQL exercises. Styles, original lab behavior, vendored SQLite/WASM and font bytes are preserved.
 
-## Verified content
+## Content and compatibility
 
-The source contains 27 English lessons, 27 quiz banks, 217 topic groups, 1,100 questions, 56 accessible Key takeaway callouts, 10 interactive labs, and 15 graded SQL exercises. Tests check generated bundles against all 54 lecture/quiz JSON source files, preserved route IDs, question/answer positions, source URLs, and page mappings.
+The independent source audits found all original 1,100 bank keys and 27 embedded keys correct. Integrated independent reviewers accepted all 60 core additions and 50 supplemental answers. The release adds 17 targeted core questions; it preserves every original option string/order, answer index and explanation. Two L16 prompts make existing I/O assumptions explicit. Exactly 120 approved citation changes are enumerated: two L2 physical-page errors and 118 precision refinements. The historical golden baselines are retained; semantic hashes and explicit approved-difference fixtures detect unintended changes.
 
-The supplied coverage maps and source-review records are retained. This publication task did not repeat a fresh page-by-page audit of every official PDF or independently re-review every explanation for academic correctness.
+The [audit record](docs/audit/README.md) and [40-row coverage matrix](docs/audit/coverage-matrix.json) retain source boundaries, stable targets and independent review reports. Core integration used supplied independent source-audit evidence. This executor performed scoped L2/L5 PDF visual checks, not an exhaustive new reread of every source PDF or textbook. Supplements retain `kind: supplemental`, null lecture numbers and false official-course verification. Canvas assignments and instructor rules remain unavailable.
 
 ## Automated checks
 
-On Windows with Node.js 24, `npm ci` and `npm run build` passed. The existing 48-test suite passed with no failures or skips when local HTTP connections were allowed. The initial sandbox run blocked the HTTP test's loopback connection; that was an executor restriction rather than a server failure.
+`npm ci`, `npm run build` and the **111-test suite** pass on Windows with Node.js 24, with no failures or skips. Tests cover canonical/generated content, stable route IDs and markup, all original question meanings, approved citation differences, complete supplemental-packet hashes, timetable/resource classification, displayed-choice permutation, retries/resets, independent completion stores, SQLite grading and worker lifecycle, algorithms, numerical audit examples and HTTP asset serving. Local HTTP tests require loopback access; the initial executor sandbox blocked that connection, and the authorized check passed outside that restriction.
 
-The test suite exercises content, English prose and markup contracts, stable routes, quizzes/retries/resets, browser-local progress handling, rendering hooks, algorithms, real SQLite grading, worker lifecycle, and HTTP asset serving. A portable test runner expands filenames without relying on shell globbing. Git attributes keep text files at LF and mark font/WASM assets binary so baseline hashes remain consistent across platforms.
+The portable runner expands filenames without shell globbing. Git attributes preserve LF text and binary font/WASM bytes. GitHub Actions verifies installation, build and tests on both Linux and Windows for PRs and `main` pushes. [Workflow runs](https://github.com/edward1503/adbs-learning-lab/actions/workflows/ci.yml) identify the exact checked commit. A successful `main` check publishes the checked artifact to `deploy`; PR checks do not deploy.
 
-GitHub Actions independently verifies dependency installation, build, and tests on Linux and Windows for each PR and `main` push. Consult the [current workflow runs](https://github.com/edward1503/adbs-learning-lab/actions/workflows/ci.yml) for the exact commit and outcome. Only a successful `main` run publishes the checked artifact to `deploy`.
+## Browser acceptance
 
-## Browser and hosting limits
+An isolated local Chromium session rendered all **37 resource routes, 181 lesson sections and 936 paragraphs**. Each rendered section contains the full canonical prose; no missing section, undefined value, escaped paragraph markup or horizontal page overflow was found. Desktop and 390-pixel mobile views were inspected. Actual controls exercised wrong feedback, retry, correct feedback and topic reset; all 50 supplemental questions were answered and graded through the browser. Primary-reference feedback links, full-prose search, previous/next navigation and the mobile contents drawer were checked.
 
-The publication checks above do not establish desktop/mobile visual correctness or a new hosted deployment. The optional Playwright browser suites require separately installed browser tooling and are outside `npm test`.
+The browser retained an original source-option answer under the shuffled display, preserved legacy `adbs-learning-v1` data and core completion, persisted supplemental completion separately across reload, and did not convert supplemental completions into core completions. SQLite/WASM initialized, ran a real count query and correctly graded the SELECT exercise through its Web Worker. The only observed console error was the optional `/favicon.ico` 404; no application script error was observed.
 
-The live English application predates this repository import. The full CI workflow now checks Botkeep operation completion, exact hosted source metadata, and all 19 public asset hashes after each authorized import. This verifies delivery of checked files; it does not substitute for desktop/mobile visual or interaction testing. Confirm navigation, quiz feedback, storage, and SQL/WASM behavior in a browser after application changes.
+These checks are scoped acceptance evidence, not exhaustive browser/version accessibility certification or proof of every research claim. Optional older browser suites require separately installed Playwright and are outside `npm test`.
+
+## Delivery verification
+
+The established `main` workflow saves verified live assets as rollback output, imports the exact checked `deploy` commit, waits for Botkeep operation completion and verifies release metadata plus SHA256 of all 19 public assets. Consult the workflow for the terminal result of the promoted commit. This file describes the verification contract, not an advance claim that a pending deployment succeeded. The live host remains [adbs-learning-lab.bot-keep.xyz](https://adbs-learning-lab.bot-keep.xyz/); hosting resources were not changed.
