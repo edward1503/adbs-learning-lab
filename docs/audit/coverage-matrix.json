@@ -9,7 +9,8 @@
       "variant": "standard source PDF",
       "legacyPageCount": 36,
       "sourceSha256": null,
-      "verificationStatus": "awaiting-independent-source-audit"
+      "verificationStatus": "awaiting-independent-source-audit",
+      "legacyPhysicalPageRange": "1–36"
     },
     {
       "id": "ed-adbs-2026-lecture-02",
@@ -17,7 +18,8 @@
       "variant": "standard source PDF",
       "legacyPageCount": 29,
       "sourceSha256": null,
-      "verificationStatus": "awaiting-independent-source-audit"
+      "verificationStatus": "awaiting-independent-source-audit",
+      "legacyPhysicalPageRange": "1–29"
     },
     {
       "id": "ed-adbs-2026-lecture-03",
@@ -25,7 +27,8 @@
       "variant": "standard source PDF",
       "legacyPageCount": 20,
       "sourceSha256": null,
-      "verificationStatus": "awaiting-independent-source-audit"
+      "verificationStatus": "awaiting-independent-source-audit",
+      "legacyPhysicalPageRange": "1–20"
     },
     {
       "id": "ed-adbs-2026-lecture-04",
@@ -33,7 +36,8 @@
       "variant": "standard source PDF",
       "legacyPageCount": 29,
       "sourceSha256": null,
-      "verificationStatus": "awaiting-independent-source-audit"
+      "verificationStatus": "awaiting-independent-source-audit",
+      "legacyPhysicalPageRange": "1–29"
     },
     {
       "id": "ed-adbs-2026-lecture-05",
@@ -41,7 +45,8 @@
       "variant": "standard source PDF",
       "legacyPageCount": 35,
       "sourceSha256": null,
-      "verificationStatus": "awaiting-independent-source-audit"
+      "verificationStatus": "awaiting-independent-source-audit",
+      "legacyPhysicalPageRange": "1–35"
     },
     {
       "id": "ed-adbs-2026-lecture-06",
@@ -49,7 +54,8 @@
       "variant": "standard source PDF",
       "legacyPageCount": 29,
       "sourceSha256": null,
-      "verificationStatus": "awaiting-independent-source-audit"
+      "verificationStatus": "awaiting-independent-source-audit",
+      "legacyPhysicalPageRange": "1–29"
     },
     {
       "id": "ed-adbs-2026-lecture-07",
@@ -57,7 +63,8 @@
       "variant": "standard source PDF",
       "legacyPageCount": 28,
       "sourceSha256": null,
-      "verificationStatus": "awaiting-independent-source-audit"
+      "verificationStatus": "awaiting-independent-source-audit",
+      "legacyPhysicalPageRange": "1–28"
     },
     {
       "id": "ed-adbs-2026-lecture-08",
@@ -65,7 +72,8 @@
       "variant": "standard source PDF",
       "legacyPageCount": 34,
       "sourceSha256": null,
-      "verificationStatus": "awaiting-independent-source-audit"
+      "verificationStatus": "awaiting-independent-source-audit",
+      "legacyPhysicalPageRange": "1–34"
     },
     {
       "id": "ed-adbs-2026-lecture-09",
@@ -73,133 +81,170 @@
       "variant": "standard source PDF",
       "legacyPageCount": 30,
       "sourceSha256": null,
-      "verificationStatus": "awaiting-independent-source-audit"
+      "verificationStatus": "awaiting-independent-source-audit",
+      "legacyPhysicalPageRange": "1–30"
     },
     {
       "id": "ed-adbs-2026-lecture-10",
       "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
       "variant": "standard source PDF",
       "sourceSha256": null,
-      "verificationStatus": "awaiting-independent-source-audit"
+      "verificationStatus": "awaiting-independent-source-audit",
+      "legacyPhysicalPageRange": "1–26",
+      "legacyPageCount": 26
     },
     {
       "id": "ed-adbs-2026-lecture-11",
       "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
       "variant": "standard source PDF",
       "sourceSha256": null,
-      "verificationStatus": "awaiting-independent-source-audit"
+      "verificationStatus": "awaiting-independent-source-audit",
+      "legacyPhysicalPageRange": "1–32",
+      "legacyPageCount": 32
     },
     {
       "id": "ed-adbs-2026-lecture-12",
       "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
       "variant": "standard source PDF",
       "sourceSha256": null,
-      "verificationStatus": "awaiting-independent-source-audit"
+      "verificationStatus": "awaiting-independent-source-audit",
+      "legacyPhysicalPageRange": "1–43",
+      "legacyPageCount": 43
     },
     {
       "id": "ed-adbs-2026-lecture-13",
       "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf",
       "variant": "standard source PDF",
       "sourceSha256": null,
-      "verificationStatus": "awaiting-independent-source-audit"
+      "verificationStatus": "awaiting-independent-source-audit",
+      "legacyPhysicalPageRange": "1–18",
+      "legacyPageCount": 18
     },
     {
       "id": "ed-adbs-2026-lecture-14-2x2",
       "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf",
       "variant": "2x2 handout",
       "sourceSha256": null,
-      "verificationStatus": "awaiting-independent-source-audit"
+      "verificationStatus": "awaiting-independent-source-audit",
+      "legacyPhysicalPageRange": "1–7",
+      "legacyPageCount": 7
     },
     {
       "id": "ed-adbs-2026-lecture-15",
       "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf",
       "variant": "standard source PDF",
       "sourceSha256": null,
-      "verificationStatus": "awaiting-independent-source-audit"
+      "verificationStatus": "awaiting-independent-source-audit",
+      "legacyPhysicalPageRange": "1–43",
+      "legacyPageCount": 43
     },
     {
       "id": "ed-adbs-2026-lecture-16",
       "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf",
       "variant": "standard source PDF",
       "sourceSha256": null,
-      "verificationStatus": "awaiting-independent-source-audit"
+      "verificationStatus": "awaiting-independent-source-audit",
+      "legacyPhysicalPageRange": "1–23",
+      "legacyPageCount": 23
     },
     {
       "id": "ed-adbs-2026-lecture-17",
       "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf",
       "variant": "standard source PDF",
       "sourceSha256": null,
-      "verificationStatus": "awaiting-independent-source-audit"
+      "verificationStatus": "awaiting-independent-source-audit",
+      "legacyPhysicalPageRange": "1–26",
+      "legacyPageCount": 26
     },
     {
       "id": "ed-adbs-2026-lecture-18",
       "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf",
       "variant": "standard source PDF",
       "sourceSha256": null,
-      "verificationStatus": "awaiting-independent-source-audit"
+      "verificationStatus": "awaiting-independent-source-audit",
+      "legacyPhysicalPageRange": "1–24",
+      "legacyPageCount": 24
     },
     {
       "id": "ed-adbs-2026-lecture-19",
       "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
       "variant": "standard source PDF",
       "sourceSha256": null,
-      "verificationStatus": "awaiting-independent-source-audit"
+      "verificationStatus": "awaiting-independent-source-audit",
+      "legacyPhysicalPageRange": "1–48",
+      "legacyPageCount": 48
     },
     {
       "id": "ed-adbs-2026-lecture-20",
       "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
       "variant": "standard source PDF",
       "sourceSha256": null,
-      "verificationStatus": "awaiting-independent-source-audit"
+      "verificationStatus": "awaiting-independent-source-audit",
+      "legacyPhysicalPageRange": "1–28",
+      "legacyPageCount": 28
     },
     {
       "id": "ed-adbs-2026-lecture-21",
       "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
       "variant": "standard source PDF",
       "sourceSha256": null,
-      "verificationStatus": "awaiting-independent-source-audit"
+      "verificationStatus": "awaiting-independent-source-audit",
+      "legacyPhysicalPageRange": "1–27",
+      "legacyPageCount": 27
     },
     {
       "id": "ed-adbs-2026-lecture-22",
       "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
       "variant": "standard source PDF",
       "sourceSha256": null,
-      "verificationStatus": "awaiting-independent-source-audit"
+      "verificationStatus": "awaiting-independent-source-audit",
+      "legacyPhysicalPageRange": "1–57",
+      "legacyPageCount": 57
     },
     {
       "id": "ed-adbs-2026-lecture-23",
       "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf",
       "variant": "standard source PDF",
       "sourceSha256": null,
-      "verificationStatus": "awaiting-independent-source-audit"
+      "verificationStatus": "awaiting-independent-source-audit",
+      "legacyPhysicalPageRange": "1–33",
+      "legacyPageCount": 33
     },
     {
       "id": "ed-adbs-2026-lecture-24",
       "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf",
       "variant": "standard source PDF",
       "sourceSha256": null,
-      "verificationStatus": "awaiting-independent-source-audit"
+      "verificationStatus": "awaiting-independent-source-audit",
+      "legacyPhysicalPageRange": "1–37",
+      "legacyPageCount": 37
     },
     {
       "id": "ed-adbs-2026-lecture-25",
       "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf",
       "variant": "standard source PDF",
       "sourceSha256": null,
-      "verificationStatus": "awaiting-independent-source-audit"
+      "verificationStatus": "awaiting-independent-source-audit",
+      "legacyPhysicalPageRange": "1–37",
+      "legacyPageCount": 37
     },
     {
       "id": "ed-adbs-2026-lecture-26",
       "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
       "variant": "standard source PDF",
       "sourceSha256": null,
-      "verificationStatus": "awaiting-independent-source-audit"
+      "verificationStatus": "awaiting-independent-source-audit",
+      "legacyPhysicalPageRange": "1–45",
+      "legacyPageCount": 45
     },
     {
       "id": "ed-adbs-2026-lecture-27",
       "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
       "variant": "standard source PDF",
       "sourceSha256": null,
-      "verificationStatus": "awaiting-independent-source-audit"
+      "verificationStatus": "awaiting-independent-source-audit",
+      "legacyPhysicalPageRange": "1–21",
+      "legacyPageCount": 21
     }
   ],
   "rows": [
