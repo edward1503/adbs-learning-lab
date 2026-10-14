@@ -1,0 +1,567 @@
+{
+  "lessonId": "lecture-02",
+  "language": "vi",
+  "topics": [
+    {
+      "id": "l02-topic-terminology",
+      "title": "Thuật ngữ quan hệ và bảng",
+      "questions": [
+        {
+          "id": "l02-terminology-q1",
+          "prompt": "Trong Product(id:int,name:text), hàng (7,tea) là gì?",
+          "options": [
+            "DBMS",
+            "Kiểu thuộc tính",
+            "Tuple",
+            "Schema"
+          ],
+          "explanation": "Tuple là một hàng giá trị. Schema mô tả tên cột và kiểu."
+        },
+        {
+          "id": "l02-terminology-q2",
+          "prompt": "INSERT thêm hàng hợp lệ mà không thêm cột. Điều gì thay đổi?",
+          "options": [
+            "Data model",
+            "Mọi tên thuộc tính",
+            "Kiểu bảng bắt buộc phải đổi",
+            "Instance"
+          ],
+          "explanation": "Instance chứa dữ liệu hiện tại. Thêm hàng không tự làm đổi schema."
+        },
+        {
+          "id": "l02-terminology-q3",
+          "prompt": "Bag của SQL cho phép điều gì mà set không cho phép?",
+          "options": [
+            "Hai tuple có cùng giá trị ở mọi vị trí",
+            "Tên cột chưa định nghĩa",
+            "Mọi số bắt buộc là chuỗi",
+            "Không thể đếm hàng"
+          ],
+          "explanation": "Bag giữ số bản sao; set loại các tuple trùng hoàn toàn."
+        },
+        {
+          "id": "l02-terminology-q4",
+          "prompt": "Câu lệnh tạo cấu trúc bảng thuộc nhóm nào?",
+          "options": [
+            "Kết quả truy vấn",
+            "DDL",
+            "DML",
+            "DCL"
+          ],
+          "explanation": "DDL định nghĩa schema. DCL tập trung vào kiểm soát truy cập."
+        },
+        {
+          "id": "l02-terminology-q5",
+          "prompt": "Đổi thuật toán join có thể ảnh hưởng gì khi truy vấn chạy đúng?",
+          "options": [
+            "Có thể bỏ kết quả khớp làm join quá lớn",
+            "Có thể đổi điều kiện khi có chỉ mục khác",
+            "Hiệu năng, nhưng không đổi kết quả ngữ nghĩa yêu cầu",
+            "Có thể bỏ bản sao để tiết kiệm CPU dù cần bag semantics"
+          ],
+          "explanation": "DBMS chọn cách thực thi nhưng phải giữ kết quả đã quy định, gồm số bản sao cần thiết."
+        }
+      ]
+    },
+    {
+      "id": "l02-topic-select",
+      "title": "Truy vấn cơ bản một bảng",
+      "questions": [
+        {
+          "id": "l02-select-q1",
+          "prompt": "T có x=[1,1,3]. SELECT x FROM T WHERE x<3 trả bao nhiêu hàng?",
+          "options": [
+            "1",
+            "3",
+            "0",
+            "2"
+          ],
+          "explanation": "WHERE giữ cả hai hàng x=1. Không có DISTINCT nên chúng không bị gộp thành một."
+        },
+        {
+          "id": "l02-select-q2",
+          "prompt": "T có x=[1,1,3]. SELECT DISTINCT x FROM T trả bao nhiêu hàng?",
+          "options": [
+            "2",
+            "3",
+            "1",
+            "0"
+          ],
+          "explanation": "Các giá trị khác nhau là 1 và 3. DISTINCT không có nghĩa chỉ trả một hàng."
+        },
+        {
+          "id": "l02-select-q3",
+          "prompt": "WHERE price>20 có giữ hàng price=20 không?",
+          "options": [
+            "Có, vì WHERE chỉ tác động giá trị NULL",
+            "Không",
+            "Có, vì > gồm cả bằng",
+            "Có, vì SELECT * giữ mọi hàng bất kể WHERE"
+          ],
+          "explanation": "So sánh nghiêm ngặt > loại 20. Vị trí hàng hay dấu * không đổi điều kiện."
+        },
+        {
+          "id": "l02-select-q4",
+          "prompt": "SELECT price*2 FROM T chủ yếu làm gì?",
+          "options": [
+            "Cập nhật price trong bảng nguồn",
+            "Tự gom giá bằng nhau trước khi nhân",
+            "Tính biểu thức đầu ra cho các hàng được chọn",
+            "Tăng số hàng đầu ra gấp đôi"
+          ],
+          "explanation": "Biểu thức SELECT tính giá trị kết quả, không phải UPDATE và không tự nhân số hàng."
+        },
+        {
+          "id": "l02-select-q5",
+          "prompt": "T có (city,amount)=(A,10),(A,20). SELECT DISTINCT city,amount trả bao nhiêu hàng?",
+          "options": [
+            "1",
+            "0",
+            "4",
+            "2"
+          ],
+          "explanation": "DISTINCT so tuple đầu ra đầy đủ. Amount khác nên hai hàng vẫn khác nhau."
+        }
+      ]
+    },
+    {
+      "id": "l02-topic-order",
+      "title": "ORDER BY",
+      "questions": [
+        {
+          "id": "l02-order-q1",
+          "prompt": "Với (id,score)=(3,80),(1,80),(2,90), ORDER BY score DESC, id ASC cho thứ tự id nào?",
+          "options": [
+            "2,1,3",
+            "1,2,3",
+            "2,3,1",
+            "3,1,2"
+          ],
+          "explanation": "Sắp score giảm dần trước. Hai score 80 được xếp theo id tăng dần."
+        },
+        {
+          "id": "l02-order-q2",
+          "prompt": "ORDER BY age dùng hướng nào khi không ghi ASC/DESC?",
+          "options": [
+            "Thứ tự khóa chính thay age",
+            "Tăng dần",
+            "Giảm dần",
+            "Thứ tự chèn bất kể age"
+          ],
+          "explanation": "Slide quy định ASC là mặc định. Giá trị số không tự hàm ý giảm dần."
+        },
+        {
+          "id": "l02-order-q3",
+          "prompt": "ORDER BY a,b so b khi nào?",
+          "options": [
+            "Sau LIMIT, bất kể a",
+            "Chỉ khi b có trong GROUP BY",
+            "Khi các giá trị a bằng nhau",
+            "Trước mọi lần so a"
+          ],
+          "explanation": "Danh sách khóa định nghĩa thứ tự từ điển; b giải quyết hòa ở a."
+        },
+        {
+          "id": "l02-order-q4",
+          "prompt": "Chỉ có ORDER BY score: nếu hai hàng cùng score thì điều gì chưa xác định?",
+          "options": [
+            "Số hàng mỗi score trong dữ liệu",
+            "Giá trị score của các hàng",
+            "Hướng đã ghi trong ORDER BY",
+            "Thứ tự tương đối giữa các hàng hòa"
+          ],
+          "explanation": "Khóa ấy không phân biệt được hai hàng. Thêm khóa phụ nếu cần thứ tự hoàn toàn xác định."
+        },
+        {
+          "id": "l02-order-q5",
+          "prompt": "ORDER BY có tự loại tuple trùng không?",
+          "options": [
+            "Không",
+            "Có, luôn giống DISTINCT",
+            "Chỉ với ASC",
+            "Chỉ với DESC"
+          ],
+          "explanation": "Sắp xếp quyết định thứ tự. DISTINCT là yêu cầu loại trùng riêng."
+        }
+      ]
+    },
+    {
+      "id": "l02-topic-limit",
+      "title": "LIMIT",
+      "questions": [
+        {
+          "id": "l02-limit-q1",
+          "prompt": "Dãy đã sắp [10,20,30,40,50]. LIMIT 2 OFFSET 1 trả gì?",
+          "options": [
+            "20,30,40",
+            "20,30",
+            "10,20",
+            "30,40"
+          ],
+          "explanation": "OFFSET bỏ hàng đầu; LIMIT lấy hai hàng tiếp. Offset không phải vị trí bắt đầu đánh số từ 1."
+        },
+        {
+          "id": "l02-limit-q2",
+          "prompt": "LIMIT 3 có buộc trả đúng ba hàng khi đầu vào chỉ có hai không?",
+          "options": [
+            "Có; lặp hàng cuối",
+            "Không; bắt buộc báo lỗi",
+            "Không; chỉ trả hai hàng",
+            "Có; thêm NULL"
+          ],
+          "explanation": "LIMIT là cận trên, không tạo thêm hàng cho đủ số yêu cầu."
+        },
+        {
+          "id": "l02-limit-q3",
+          "prompt": "Vì sao LIMIT thường đi với ORDER BY?",
+          "options": [
+            "Để tự bỏ trùng trước khi chọn hàng",
+            "Để tự GROUP BY mọi cột",
+            "Để biến LIMIT thành bộ lọc theo giá trị",
+            "Để xác định rõ hàng nào được ưu tiên"
+          ],
+          "explanation": "Không có thứ tự, LIMIT không bảo đảm một tập top cụ thể. Cú pháp không bắt buộc có chỉ mục."
+        },
+        {
+          "id": "l02-limit-q4",
+          "prompt": "Với dãy đã sắp [2,4,6,8], LIMIT 1 OFFSET 3 trả gì?",
+          "options": [
+            "8",
+            "6",
+            "2",
+            "Không có hàng"
+          ],
+          "explanation": "Bỏ 2,4,6 thì còn 8 là hàng được trả."
+        },
+        {
+          "id": "l02-limit-q5",
+          "prompt": "Clause nào trả hai giá cao nhất, ưu tiên id nhỏ khi hòa giá?",
+          "options": [
+            "LIMIT 2 rồi sắp tùy ý",
+            "ORDER BY price DESC, id ASC LIMIT 2",
+            "ORDER BY price ASC, id ASC LIMIT 2",
+            "ORDER BY id ASC LIMIT 2"
+          ],
+          "explanation": "Price DESC ưu tiên giá cao. Chỉ sắp id hoặc price ASC không diễn đạt yêu cầu."
+        }
+      ]
+    },
+    {
+      "id": "l02-topic-aggregate",
+      "title": "Các hàm tổng hợp",
+      "questions": [
+        {
+          "id": "l02-aggregate-q1",
+          "prompt": "Với bag amount=[10,10,40], AVG(amount) bằng bao nhiêu?",
+          "options": [
+            "30",
+            "60",
+            "20",
+            "25"
+          ],
+          "explanation": "AVG tính cả hai lần 10: tổng 60, số lượng 3. Bỏ trùng trước sẽ trả lời câu hỏi khác."
+        },
+        {
+          "id": "l02-aggregate-q2",
+          "prompt": "SUM của bag [2,5,5] bằng bao nhiêu?",
+          "options": [
+            "7",
+            "10",
+            "3",
+            "12"
+          ],
+          "explanation": "SUM cộng mọi phần tử, không tự bỏ bản sao."
+        },
+        {
+          "id": "l02-aggregate-q3",
+          "prompt": "COUNT trả gì cho ba giá trị id không NULL?",
+          "options": [
+            "3",
+            "Số id khác nhau sau khi tự bỏ trùng",
+            "Tổng id",
+            "Id lớn nhất nhóm"
+          ],
+          "explanation": "COUNT đếm giá trị đầu vào đủ điều kiện, không tính tổng hay cực trị."
+        },
+        {
+          "id": "l02-aggregate-q4",
+          "prompt": "Với [8,3,11], MIN và MAX lần lượt là gì?",
+          "options": [
+            "11 và 3",
+            "3 và 11",
+            "8 và 11",
+            "3 và 8"
+          ],
+          "explanation": "MIN/MAX chọn cực trị bất kể vị trí đầu vào."
+        },
+        {
+          "id": "l02-aggregate-q5",
+          "prompt": "Phát biểu nào phù hợp khi đọc cả slide aggregate và HAVING?",
+          "options": [
+            "WHERE luôn tính aggregate nhóm trước",
+            "SUM tự thêm GROUP BY mọi cột",
+            "Aggregate có thể nằm trong HAVING của truy vấn gom nhóm",
+            "Aggregate chỉ được ở SELECT"
+          ],
+          "explanation": "Slide HAVING minh họa aggregate trong điều kiện nhóm. Không đọc phát biểu đơn giản hóa trước đó như hạn chế tuyệt đối."
+        }
+      ]
+    },
+    {
+      "id": "l02-topic-group",
+      "title": "GROUP BY và HAVING",
+      "questions": [
+        {
+          "id": "l02-group-q1",
+          "prompt": "GROUP BY city tạo bao nhiêu nhóm với city=[A,A,B,B,B]?",
+          "options": [
+            "3",
+            "5",
+            "1",
+            "2"
+          ],
+          "explanation": "Mỗi giá trị city khác nhau tạo một nhóm; số nhóm khác số hàng đầu vào."
+        },
+        {
+          "id": "l02-group-q2",
+          "prompt": "GROUP BY city,year tạo bao nhiêu nhóm từ (A,2024),(A,2025),(A,2024)?",
+          "options": [
+            "2",
+            "1",
+            "3",
+            "4"
+          ],
+          "explanation": "Gom theo cặp giá trị nên hai năm của A thuộc hai nhóm khác nhau."
+        },
+        {
+          "id": "l02-group-q3",
+          "prompt": "Đặt SUM(amount)>100 ở đâu để giữ nhóm đủ điều kiện?",
+          "options": [
+            "LIMIT 100",
+            "HAVING",
+            "WHERE SUM(amount)>100 trước gom nhóm",
+            "ORDER BY SUM(amount)>100"
+          ],
+          "explanation": "HAVING lọc sau tổng hợp. Sắp hay giới hạn không kiểm tra tổng nhóm với ngưỡng."
+        },
+        {
+          "id": "l02-group-q4",
+          "prompt": "Một nhóm có amount=[20,80]. SUM sau WHERE amount>50 là gì?",
+          "options": [
+            "20",
+            "50",
+            "80",
+            "100"
+          ],
+          "explanation": "WHERE bỏ 20 trước khi cộng. HAVING thì kiểm tra tổng đã tính."
+        },
+        {
+          "id": "l02-group-q5",
+          "prompt": "Theo quy tắc cơ bản của bài, SELECT city,name,AVG(age) GROUP BY city sai gì nếu mỗi city có nhiều name?",
+          "options": [
+            "AVG phải ở WHERE",
+            "GROUP BY city tự chọn name đầu theo SQL chuẩn cơ bản",
+            "Mọi name ngầm được thêm vào GROUP BY",
+            "name không được gom nhóm cũng không được tổng hợp"
+          ],
+          "explanation": "Nhóm có nhiều name không xác định một name duy nhất. Vấn đề không nằm ở AVG hay city."
+        }
+      ]
+    },
+    {
+      "id": "l02-topic-inner-join",
+      "title": "Truy vấn join",
+      "questions": [
+        {
+          "id": "l02-inner-join-q1",
+          "prompt": "R có hai hàng key=7, S có ba hàng key=7. Equijoin theo key trả bao nhiêu hàng?",
+          "options": [
+            "6",
+            "5",
+            "3",
+            "2"
+          ],
+          "explanation": "Mỗi hàng R khớp ba hàng S, cho 2×3. Join không tự loại khóa trùng."
+        },
+        {
+          "id": "l02-inner-join-q2",
+          "prompt": "R có khóa {1,2}, S có {2,3}. Khóa nào còn trong equality inner join?",
+          "options": [
+            "Không có khóa",
+            "2",
+            "1,2,3",
+            "1,3"
+          ],
+          "explanation": "Chỉ khóa có ở cả hai bên tạo được cặp hàng khớp."
+        },
+        {
+          "id": "l02-inner-join-q3",
+          "prompt": "Vì sao hiểu join là product rồi lọc mà không buộc engine chạy như vậy?",
+          "options": [
+            "Optimizer chỉ cần giữ số hàng kết quả",
+            "Chỉ mục luôn bỏ mọi hàng không khớp trước mọi query",
+            "Đó là ngữ nghĩa khái niệm, không phải thuật toán vật lý bắt buộc",
+            "Optimizer được bỏ điều kiện join"
+          ],
+          "explanation": "Optimizer có thể tránh materialise product nhưng phải giữ kết quả lọc tương đương."
+        },
+        {
+          "id": "l02-inner-join-q4",
+          "prompt": "NATURAL JOIN so những cột nào?",
+          "options": [
+            "Chỉ cột đầu",
+            "Chỉ primary key dù tên khác",
+            "Mọi cặp cùng kiểu bất kể tên",
+            "Mọi cột cùng tên trong hai đầu vào"
+          ],
+          "explanation": "Natural join dùng tên cột chung; cùng kiểu hay là primary key chưa định nghĩa điều kiện."
+        },
+        {
+          "id": "l02-inner-join-q5",
+          "prompt": "Nếu cả hai bảng NATURAL JOIN thêm cột status, điều gì có thể xảy ra?",
+          "options": [
+            "Kết quả có thể đổi vì thêm điều kiện status bằng nhau",
+            "Kết quả bắt buộc giữ nguyên vì tên mới không quan trọng",
+            "Join chỉ dùng cột id chung đầu tiên",
+            "Natural join tự thành left join để giữ số hàng"
+          ],
+          "explanation": "Tên chung mới tham gia so khớp. Vì vậy đổi schema có thể đổi ý nghĩa natural join."
+        }
+      ]
+    },
+    {
+      "id": "l02-topic-outer-join",
+      "title": "LEFT / RIGHT / FULL OUTER JOIN",
+      "questions": [
+        {
+          "id": "l02-outer-join-q1",
+          "prompt": "R có khóa {1,2}, S có {2,3}. Với khóa duy nhất này, R LEFT JOIN S trả bao nhiêu hàng?",
+          "options": [
+            "4",
+            "2",
+            "1",
+            "3"
+          ],
+          "explanation": "Giữ cả hai hàng R. Khóa 1 được điền NULL phía S; khóa 3 không khớp của S không được giữ riêng."
+        },
+        {
+          "id": "l02-outer-join-q2",
+          "prompt": "R={1,2}, S={2,3}: RIGHT JOIN giữ hàng không khớp nào?",
+          "options": [
+            "Cả khóa 1 và 3",
+            "Không giữ hàng không khớp",
+            "Khóa 3 từ S",
+            "Khóa 1 từ R"
+          ],
+          "explanation": "RIGHT JOIN giữ bên phải; hàng bên trái không khớp không được giữ riêng."
+        },
+        {
+          "id": "l02-outer-join-q3",
+          "prompt": "FULL JOIN với khóa duy nhất R={1,2}, S={2,3} trả bao nhiêu hàng?",
+          "options": [
+            "1",
+            "2",
+            "4",
+            "3"
+          ],
+          "explanation": "Kết quả có cặp khớp khóa 2 và hai hàng không khớp khóa 1,3."
+        },
+        {
+          "id": "l02-outer-join-q4",
+          "prompt": "R có một hàng key=1, S có hai hàng key=1. LEFT JOIN có thêm hàng điền NULL cho R không?",
+          "options": [
+            "Không; đã có hai cặp khớp",
+            "Có; luôn thêm một hàng điền NULL",
+            "Có; thêm hai hàng điền NULL",
+            "Không trả hàng nào"
+          ],
+          "explanation": "Điền NULL dành cho hàng không khớp, không thêm khi đã có đối tác."
+        },
+        {
+          "id": "l02-outer-join-q5",
+          "prompt": "R có ba hàng, S rỗng. LEFT JOIN trả bao nhiêu hàng?",
+          "options": [
+            "Không xác định vì S rỗng",
+            "3",
+            "0",
+            "1"
+          ],
+          "explanation": "Giữ mọi hàng trái với NULL phía phải. Inner join ở đây sẽ rỗng."
+        }
+      ]
+    },
+    {
+      "id": "l02-topic-nested",
+      "title": "Truy vấn lồng và toán tử so sánh tập",
+      "questions": [
+        {
+          "id": "l02-nested-q1",
+          "prompt": "S có id={1,2,3}, subquery trả [1,1,3]. WHERE id IN (...) giữ id nào?",
+          "options": [
+            "2",
+            "1,2,3",
+            "1,3",
+            "1,1,3"
+          ],
+          "explanation": "IN kiểm tra thành viên cho mỗi hàng ngoài. Trùng trong subquery không nhân hàng ngoài."
+        },
+        {
+          "id": "l02-nested-q2",
+          "prompt": "Subquery tham chiếu S.id của query ngoài được gọi là gì?",
+          "options": [
+            "Subquery không tương quan",
+            "Bảng dẫn xuất độc lập",
+            "Query tổng hợp không tham chiếu ngoài",
+            "Subquery tương quan"
+          ],
+          "explanation": "Tham chiếu biến query ngoài tạo tương quan, không quy định thuật toán thực thi vật lý."
+        },
+        {
+          "id": "l02-nested-q3",
+          "prompt": "50 > ALL({20,60}) đúng hay sai khi không có NULL?",
+          "options": [
+            "Sai",
+            "Đúng vì ít nhất một so sánh đúng",
+            "Đúng vì 50 lớn hơn trung bình 40",
+            "Đúng vì chỉ so phần tử đầu"
+          ],
+          "explanation": "ALL còn yêu cầu 50 lớn hơn 60, điều này sai. Một so sánh đúng đủ cho ANY."
+        },
+        {
+          "id": "l02-nested-q4",
+          "prompt": "50 > ANY({20,60}) cho gì khi không có NULL?",
+          "options": [
+            "Chỉ đúng nếu mọi phần tử subquery bằng nhau",
+            "Đúng",
+            "Sai vì một phần tử lớn hơn 50",
+            "Sai vì 50 phải lớn hơn cả hai"
+          ],
+          "explanation": "ANY cần ít nhất một so sánh đúng. Ở đây 50>20 đúng."
+        },
+        {
+          "id": "l02-nested-q5",
+          "prompt": "EXISTS(subquery) kiểm tra gì?",
+          "options": [
+            "Mọi cột có khác NULL không",
+            "Subquery có đúng một hàng không",
+            "Subquery trả ít nhất một hàng không",
+            "Giá trị đầu có bằng 1 không"
+          ],
+          "explanation": "EXISTS kiểm tra hàng có tồn tại, không buộc SELECT trả giá trị 1 hay đúng một hàng."
+        },
+        {
+          "id": "l02-negative-new-q1",
+          "prompt": "Member ID là 1, 2, 3; Borrow.member_id không NULL là 1, 1, 2. Member nào qua NOT EXISTS tương quan tìm Borrow khớp?",
+          "options": [
+            "1",
+            "3",
+            "1 và 2",
+            "Cả ba"
+          ],
+          "explanation": "Chỉ Member 3 không có Borrow khớp. Các đối tác trùng của Member 1 không đổi việc tồn tại."
+        }
+      ]
+    }
+  ],
+  "reviewStatus": "All prompts, four options in canonical source-slot order, and explanations translated; author audit against canonical answer slots, latest EN/VI bodies and local extracted referenced source pages. No fresh diagram or external-paper verification; source caveats in review/core-quiz-1-5-translation.json."
+}

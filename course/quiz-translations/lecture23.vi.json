@@ -1,0 +1,312 @@
+{
+  "lessonId": "lecture-23",
+  "language": "vi",
+  "topics": [
+    {
+      "id": "l23-topic-algebra-recap",
+      "title": "Ôn nhanh đại số quan hệ",
+      "questions": [
+        {
+          "id": "l23-algebra-recap-q1",
+          "prompt": "Dưới ngữ nghĩa tập hợp, πcity trả gì với {(1,Hue),(2,Hue),(3,DaNang)}?",
+          "options": [
+            "{Hue,DaNang}",
+            "{Hue,Hue,DaNang}",
+            "{1,2,3}",
+            "Chỉ {Hue}"
+          ],
+          "explanation": "Phép chiếu loại bộ trùng dưới ngữ nghĩa tập hợp. SQL không có DISTINCT có thể khác, nên giả định tập hợp là thiết yếu."
+        },
+        {
+          "id": "l23-algebra-recap-q2",
+          "prompt": "Phép chọn σcity='Hue' làm gì?",
+          "options": [
+            "Chỉ giữ cột city",
+            "Giữ các bộ có city là Hue",
+            "Đổi tên mọi thành phố thành Hue",
+            "Nối mọi bảng có cột city"
+          ],
+          "explanation": "Phép chọn lọc hàng bằng điều kiện; phép chiếu chọn cột. Đây là hai toán tử khác nhau."
+        },
+        {
+          "id": "l23-algebra-recap-q3",
+          "prompt": "Nối R(student,course) và S(course,teacher) theo course tìm gì?",
+          "options": [
+            "Mọi cặp bộ, bất kể course",
+            "Chỉ các môn trong R không có trong S",
+            "Các cặp đăng ký học và giảng dạy cùng môn",
+            "Ghép theo vị trí hàng thay vì giá trị course"
+          ],
+          "explanation": "Nối bằng đẳng thức đòi hỏi thuộc tính nối có giá trị bằng nhau. Tích Descartes không áp điều kiện đó."
+        },
+        {
+          "id": "l23-algebra-recap-q4",
+          "prompt": "Vì sao cần hai vai trò riêng của bảng City khi hỏi chuyến đi từ Hue tới Hanoi?",
+          "options": [
+            "Hai điều kiện thành phố khác nhau phải áp lên cùng một bộ City",
+            "Mọi phép nối đều phải đọc hai bản vật lý riêng",
+            "Một vai trò khớp cả nơi đi và nơi đến mà không cần bí danh",
+            "Một vai trò khớp nơi đi, vai trò kia khớp nơi đến"
+          ],
+          "explanation": "Tự nối dùng hai biến hoặc bí danh cho hai vai trò logic. Không cần nhân đôi dữ liệu lưu trữ."
+        },
+        {
+          "id": "l23-algebra-recap-q5",
+          "prompt": "Nối R(student,course) với S(course,teacher), chỉ trả student. Biểu thức nào giữ đúng thứ tự logic?",
+          "options": [
+            "πstudent(R ⋈course S)",
+            "σstudent(R × S) không có điều kiện course",
+            "πstudent(R) ⋈course S sau khi bỏ course khỏi R",
+            "R ⋈course πteacher(S) sau khi bỏ course khỏi S"
+          ],
+          "explanation": "Phải giữ course để kiểm tra nối trước khi chiếu student. Bỏ thuộc tính nối trước khiến điều kiện course không còn được định nghĩa."
+        }
+      ]
+    },
+    {
+      "id": "l23-topic-calculus",
+      "title": "Định lý Codd",
+      "questions": [
+        {
+          "id": "l23-calculus-q1",
+          "prompt": "Ý chính của định lý Codd trong bài này là gì?",
+          "options": [
+            "Đại số và phép tính quan hệ luôn có cùng chi phí chạy",
+            "Đại số quan hệ và phép tính quan hệ an toàn thích hợp diễn đạt cùng lớp truy vấn quan hệ",
+            "Mọi biểu thức phép tính chạy được không cần giới hạn miền an toàn",
+            "Truy vấn khai báo không cần chuyển thành kế hoạch chạy"
+          ],
+          "explanation": "Định lý nối cách mô tả thủ tục và khai báo của truy vấn quan hệ an toàn, độc lập miền. Nó không nói công thức tùy ý luôn cho kết quả hữu hạn."
+        },
+        {
+          "id": "l23-calculus-q2",
+          "prompt": "Trong {z : ∃x∃y Flight(x,y,z)}, biến nào được trả về?",
+          "options": [
+            "x và y",
+            "Cả x,y,z",
+            "z",
+            "Không có biến đầu ra"
+          ],
+          "explanation": "z nằm trong bộ được trả; x,y là nhân chứng tồn tại, không tự xuất hiện trong đầu ra."
+        },
+        {
+          "id": "l23-calculus-q3",
+          "prompt": "{x : City(x,Hue)} diễn đạt gì?",
+          "options": [
+            "Mọi x có City(x,c) với c khác Hue",
+            "Mọi x dù không có sự kiện City tương ứng",
+            "Các thành phố ghép với một x cố định thay vì trả x",
+            "Các giá trị x có sự kiện City(x,Hue)"
+          ],
+          "explanation": "Sự kiện phải tồn tại và hằng Hue được giữ nguyên. Biểu thức không phủ định điều kiện hay đổi hằng."
+        },
+        {
+          "id": "l23-calculus-q4",
+          "prompt": "Các phép logic nào chủ yếu tạo CQ thuần trong phần này?",
+          "options": [
+            "Lượng hóa tồn tại ∃ và phép hội ∧",
+            "Chỉ lượng hóa tồn tại ∃ và phép tuyển ∨",
+            "Lượng hóa toàn thể ∀ và phép hội ∧, không có biến tồn tại",
+            "Phủ định ¬ và phép hội ∧, không cần nguyên tử dương"
+          ],
+          "explanation": "CQ dương khẳng định tồn tại nhân chứng làm mọi nguyên tử cùng đúng. Phủ định và tuyển tổng quát nằm ngoài mảnh này."
+        },
+        {
+          "id": "l23-calculus-q5",
+          "prompt": "“Sinh viên học DB và có học bổng” là CQ. Câu hỏi nào thêm thao tác ngoài CQ thuần?",
+          "options": [
+            "Sinh viên học DB và AI",
+            "Sinh viên học DB nhưng không có học bổng",
+            "Người có ít nhất một đăng ký học",
+            "Các cặp người–môn cùng có trong Enrol"
+          ],
+          "explanation": "Điều kiện không có học bổng cần phủ định. Các câu hỏi dương còn lại dùng nguyên tử, biến tồn tại và phép hội."
+        }
+      ]
+    },
+    {
+      "id": "l23-topic-syntax",
+      "title": "Cú pháp truy vấn hội",
+      "questions": [
+        {
+          "id": "l23-syntax-q1",
+          "prompt": "Trong Q(x) :- R(x,y), S(y), phần nào là đầu?",
+          "options": [
+            "R(x,y), S(y)",
+            "Chỉ S(y)",
+            "Q(x)",
+            "Toàn bộ cơ sở dữ liệu D"
+          ],
+          "explanation": "Đầu xác định biến đầu ra; thân chứa nguyên tử điều kiện. Tên truy vấn khác với tên quan hệ đầu vào."
+        },
+        {
+          "id": "l23-syntax-q2",
+          "prompt": "Trong Q(x) :- R(x,y), S(y), y có vai trò gì?",
+          "options": [
+            "Hai biến độc lập vì xuất hiện hai lần",
+            "Hằng tên y",
+            "Biến bắt buộc trả về",
+            "Biến tồn tại nhận cùng giá trị ở hai nguyên tử"
+          ],
+          "explanation": "Một tên biến có một phép gán nhất quán trong CQ. y không có trong đầu nên giá trị của nó không được trả."
+        },
+        {
+          "id": "l23-syntax-q3",
+          "prompt": "Với Enrol(s,c), Teach(t,c), CQ nào tìm sinh viên học môn do Linh dạy?",
+          "options": [
+            "Q(s) :- Enrol(s,c), Teach(Linh,c)",
+            "Q(s) :- Enrol(s,c), Teach(Linh,d)",
+            "Q(s) :- Enrol(c,s), Teach(c,Linh)",
+            "Q(s) :- Teach(s,c)"
+          ],
+          "explanation": "Dùng cùng c nối theo cùng môn. c,d độc lập chỉ yêu cầu Linh dạy một môn nào đó, chưa chắc là môn sinh viên học."
+        },
+        {
+          "id": "l23-syntax-q4",
+          "prompt": "Q(x) :- R(x,x) thêm điều kiện gì so với Q(x) :- R(x,y)?",
+          "options": [
+            "x,y luôn phải khác nhau",
+            "Hai vị trí trong sự kiện R phải có giá trị bằng nhau",
+            "R phải có ít nhất hai bộ",
+            "Truy vấn tạo quan hệ đẳng thức mới"
+          ],
+          "explanation": "Biến lặp lại mã hóa đẳng thức giữa các vị trí. Tên biến khác nhau không buộc giá trị khác nhau."
+        },
+        {
+          "id": "l23-syntax-q5",
+          "prompt": "CQ Boolean khác truy vấn có biến đầu ra thế nào?",
+          "options": [
+            "Mỗi bảng chỉ chứa TRUE/FALSE",
+            "Thân không được chứa biến",
+            "Đầu không có biến; nó hỏi có phép khớp không",
+            "Luôn trả YES vì không có biến đầu ra"
+          ],
+          "explanation": "Đầu Boolean không trả biến, nhưng thân vẫn cần phép khớp. Không có biến đầu ra không tự khiến điều kiện đúng."
+        }
+      ]
+    },
+    {
+      "id": "l23-topic-homomorphism",
+      "title": "Đồng cấu",
+      "questions": [
+        {
+          "id": "l23-homomorphism-q1",
+          "prompt": "Đồng cấu phải xử lý hằng thế nào?",
+          "options": [
+            "Đổi hằng như biến nếu giúp khớp",
+            "Cho hằng khác nhau ánh xạ tới cùng hằng",
+            "Bỏ điều kiện hằng trước khi khớp",
+            "Giữ nguyên mọi hằng"
+          ],
+          "explanation": "Ánh xạ là đồng nhất trên hằng. Đổi hằng làm đổi ý nghĩa điều kiện truy vấn."
+        },
+        {
+          "id": "l23-homomorphism-q2",
+          "prompt": "A={R(x,c),S(x)}, B={R(a,c),S(a)}, c là hằng. Ánh xạ nào là đồng cấu?",
+          "options": [
+            "x↦a, c↦c",
+            "x↦c, c↦a",
+            "x↦a, c↦a",
+            "x↦b, c↦c, với b không xuất hiện trong B"
+          ],
+          "explanation": "Ánh xạ đúng đưa cả hai nguyên tử vào B và giữ c. Khớp một nguyên tử hoặc đổi c chưa đủ."
+        },
+        {
+          "id": "l23-homomorphism-q3",
+          "prompt": "Đồng cấu có bắt buộc đơn ánh không?",
+          "options": [
+            "Có; mỗi biến phải nhận giá trị khác nhau",
+            "Không; hai biến có thể tới cùng giá trị",
+            "Có; chỉ hằng mới được chung ảnh",
+            "Có; nếu hai biến chung ảnh thì mọi nguyên tử mất nghĩa"
+          ],
+          "explanation": "Định nghĩa yêu cầu bảo toàn nguyên tử và hằng, không yêu cầu một–một. Khác tên biến tự nó không tạo ràng buộc khác nhau."
+        },
+        {
+          "id": "l23-homomorphism-q4",
+          "prompt": "A={R(x,y),S(y)}. h đưa nguyên tử R vào B nhưng S(h(y)) không có trong B. Kết luận gì?",
+          "options": [
+            "h vẫn hợp lệ vì khớp ít nhất một nguyên tử",
+            "h hợp lệ nếu bộ đầu khớp dù S không khớp",
+            "h không phải đồng cấu A→B",
+            "h hợp lệ vì nguyên tử thân nối bằng OR"
+          ],
+          "explanation": "Mọi nguyên tử nguồn phải có ảnh trong B. Chỉ khớp đầu hoặc một phần thân chưa đủ: thân CQ là AND, không phải OR."
+        },
+        {
+          "id": "l23-homomorphism-q5",
+          "prompt": "R(x,x) có ánh xạ tới R(a,b) khi a khác b không?",
+          "options": [
+            "Có vì cùng tên R",
+            "Có nếu a,b đều là hằng",
+            "Có vì đồng cấu bỏ qua vị trí lặp",
+            "Không; một x không thể có hai ảnh khác nhau"
+          ],
+          "explanation": "Phép gán là hàm nên hai lần x phải chung ảnh. Phải khớp các vị trí bộ, không chỉ tên quan hệ."
+        }
+      ]
+    },
+    {
+      "id": "l23-topic-semantics",
+      "title": "Ngữ nghĩa truy vấn hội",
+      "questions": [
+        {
+          "id": "l23-semantics-q1",
+          "prompt": "D={R(a,1),R(a,2),S(1),S(2)}. Q(x):-R(x,y),S(y) trả gì theo tập hợp?",
+          "options": [
+            "{a}",
+            "{a,a}",
+            "{1,2}",
+            "Tập rỗng"
+          ],
+          "explanation": "Hai phép khớp đều tạo a nên tập kết quả chỉ có một bộ. Số nhân chứng không thành bội số đa tập dưới ngữ nghĩa tập hợp."
+        },
+        {
+          "id": "l23-semantics-q2",
+          "prompt": "D={R(a,b),R(b,c)}. Q(x,z):-R(x,y),R(y,z) trả gì?",
+          "options": [
+            "{(a,b),(b,c)}",
+            "{(a,c)}",
+            "{(a,a),(b,b)}",
+            "Tập rỗng vì cả hai nguyên tử dùng R"
+          ],
+          "explanation": "y=b nối hai sự kiện thành đường đi hai bước. Dùng một quan hệ nhiều lần là tự nối hợp lệ."
+        },
+        {
+          "id": "l23-semantics-q3",
+          "prompt": "D={R(a,b),S(c)}, b khác c. Q(x):-R(x,y),S(y) có đáp án không?",
+          "options": [
+            "Có, a, vì có R",
+            "Có, c, vì có S",
+            "Không; không có y khớp cả hai nguyên tử",
+            "Có, cả a,c"
+          ],
+          "explanation": "Phép hội yêu cầu cùng y ở cả hai nguyên tử. Sự kiện riêng rẽ chưa đủ khi giá trị biến nối không khớp."
+        },
+        {
+          "id": "l23-semantics-q4",
+          "prompt": "Vì sao Q(D) chỉ dùng ảnh của biến đầu?",
+          "options": [
+            "Mọi biến tồn tại cũng phải trả nhưng bị ẩn",
+            "Đầu chỉ xác định thứ tự chạy, không ảnh hưởng đầu ra",
+            "Mỗi phép khớp luôn trả cả biến đầu lẫn thân",
+            "Đầu định nghĩa bộ kết quả; biến tồn tại chỉ làm nhân chứng"
+          ],
+          "explanation": "Ngữ nghĩa chiếu mỗi phép khớp lên biến đầu ra được phân biệt. Đánh giá không đổi cơ sở dữ liệu và không trả mọi giá trị nhân chứng."
+        },
+        {
+          "id": "l23-semantics-q5",
+          "prompt": "D={Link(a,b),Link(b,a)}. Q():-Link(x,y),Link(y,x) cho kết quả Boolean gì?",
+          "options": [
+            "YES vì x=a,y=b là phép khớp",
+            "NO vì không được dùng lại tên quan hệ",
+            "NO vì CQ Boolean không được chia sẻ biến",
+            "YES vì mọi CQ Boolean khả thỏa đúng trên mọi D"
+          ],
+          "explanation": "Nhân chứng cụ thể thỏa cả hai nguyên tử. Khả thỏa trên một cơ sở dữ liệu không nghĩa đúng trên mọi cơ sở dữ liệu."
+        }
+      ]
+    }
+  ],
+  "reviewStatus": "Each translated explanation reviewed against canonical answer position and private extracted lecture text. Full bank translated. No canonical answer keys modified. Visual diagrams not reverified in this batch."
+}

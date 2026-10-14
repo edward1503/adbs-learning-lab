@@ -1,0 +1,302 @@
+{
+  "scope": "Core lesson VI main bodies 23–27 only; no English, runtime, build, tests, independent quiz-bank, deployment or original checkout writes.",
+  "lessons": [
+    {
+      "lessonId": "lecture-23",
+      "translationFile": "course/translations/lecture23.vi.json",
+      "completedSectionIds": [
+        "l23-s1",
+        "l23-s2",
+        "l23-s3",
+        "l23-s4",
+        "l23-s5"
+      ],
+      "sourceRead": "Complete canonical JSON and complete private extracted lecture text",
+      "sourcePDFPages": 33,
+      "sourceTextSHA256": "9c481d92155749a758ce0be13ac9b84d619b2eebf1a9df1091424d2a31059344",
+      "canonicalSectionExamplesTranslated": true
+    },
+    {
+      "lessonId": "lecture-24",
+      "translationFile": "course/translations/lecture24.vi.json",
+      "completedSectionIds": [
+        "l24-s1",
+        "l24-s2",
+        "l24-s3",
+        "l24-s4",
+        "l24-s5"
+      ],
+      "sourceRead": "Complete canonical JSON and complete private extracted lecture text",
+      "sourcePDFPages": 37,
+      "sourceTextSHA256": "c2a5c97fd8fd739f99c2eb89383e68f9ab5e749984aa59d5b18a0861696805b1",
+      "canonicalSectionExamplesTranslated": true
+    },
+    {
+      "lessonId": "lecture-25",
+      "translationFile": "course/translations/lecture25.vi.json",
+      "completedSectionIds": [
+        "l25-s1",
+        "l25-s2",
+        "l25-s3",
+        "l25-s4",
+        "l25-s5"
+      ],
+      "sourceRead": "Complete canonical JSON and complete private extracted lecture text",
+      "sourcePDFPages": 37,
+      "sourceTextSHA256": "a3adfc81813bd081777322f2990c481574700a8ba91da3bf53e9acb8acc79746",
+      "canonicalSectionExamplesTranslated": true
+    },
+    {
+      "lessonId": "lecture-26",
+      "translationFile": "course/translations/lecture26.vi.json",
+      "completedSectionIds": [
+        "l26-s1",
+        "l26-s2",
+        "l26-s3",
+        "l26-s4",
+        "l26-s5"
+      ],
+      "sourceRead": "Complete canonical JSON and complete private extracted lecture text",
+      "sourcePDFPages": 45,
+      "sourceTextSHA256": "9159d512bd25ee0280c9a752a056c005fde0296270cbc31c34e8159d3c8cecda",
+      "canonicalSectionExamplesTranslated": true
+    },
+    {
+      "lessonId": "lecture-27",
+      "translationFile": "course/translations/lecture27.vi.json",
+      "completedSectionIds": [
+        "l27-s1",
+        "l27-s2",
+        "l27-s3",
+        "l27-s4",
+        "l27-s5"
+      ],
+      "sourceRead": "Complete canonical JSON and complete private extracted lecture text",
+      "sourcePDFPages": 21,
+      "sourceTextSHA256": "39ef53b91f6fc559cd233e2201c459293942dd167593f2ea3d9355862e0d0cff",
+      "canonicalSectionExamplesTranslated": true
+    }
+  ],
+  "completedSections": 25,
+  "completedGoals": 15,
+  "styleReference": "https://book.agentic-swe.dev/chapter_1.html",
+  "styleUse": "General teaching guidance only: concrete situation, definitions in context, causal explanation, preserved worked examples and explained checks. No wording or unrelated SWE examples copied.",
+  "limitations": [
+    "Complete private extracted slide text read; diagrams and visual highlighting not visually reverified in this batch.",
+    "Independent quiz23–27 banks not translated or audited. Embedded quiz keys unchanged.",
+    "Corrected canonical CAP assumptions retained. Separate Gilbert–Lynch PDF not reread in this batch.",
+    "Root owner performs integrated build, runtime and responsive validation."
+  ],
+  "checks": [
+    {
+      "sectionId": "l23-s1",
+      "exactOrderedCodePreserved": true,
+      "exactOrderedSourceURLsPreserved": true,
+      "balancedHTML": true,
+      "numericTokenMissing": {},
+      "numericTokenAdded": {}
+    },
+    {
+      "sectionId": "l23-s2",
+      "exactOrderedCodePreserved": true,
+      "exactOrderedSourceURLsPreserved": true,
+      "balancedHTML": true,
+      "numericTokenMissing": {},
+      "numericTokenAdded": {}
+    },
+    {
+      "sectionId": "l23-s3",
+      "exactOrderedCodePreserved": true,
+      "exactOrderedSourceURLsPreserved": true,
+      "balancedHTML": true,
+      "numericTokenMissing": {},
+      "numericTokenAdded": {}
+    },
+    {
+      "sectionId": "l23-s4",
+      "exactOrderedCodePreserved": true,
+      "exactOrderedSourceURLsPreserved": true,
+      "balancedHTML": true,
+      "numericTokenMissing": {},
+      "numericTokenAdded": {}
+    },
+    {
+      "sectionId": "l23-s5",
+      "exactOrderedCodePreserved": true,
+      "exactOrderedSourceURLsPreserved": true,
+      "balancedHTML": true,
+      "numericTokenMissing": {},
+      "numericTokenAdded": {}
+    },
+    {
+      "sectionId": "l24-s1",
+      "exactOrderedCodePreserved": true,
+      "exactOrderedSourceURLsPreserved": true,
+      "balancedHTML": true,
+      "numericTokenMissing": {},
+      "numericTokenAdded": {}
+    },
+    {
+      "sectionId": "l24-s2",
+      "exactOrderedCodePreserved": true,
+      "exactOrderedSourceURLsPreserved": true,
+      "balancedHTML": true,
+      "numericTokenMissing": {
+        "3": 2
+      },
+      "numericTokenAdded": {},
+      "numericDifferenceExplanation": "The English numeral in 3-coloring is translated as the Vietnamese words ba màu; reduction and all numerical assignment traces are preserved."
+    },
+    {
+      "sectionId": "l24-s3",
+      "exactOrderedCodePreserved": true,
+      "exactOrderedSourceURLsPreserved": true,
+      "balancedHTML": true,
+      "numericTokenMissing": {},
+      "numericTokenAdded": {}
+    },
+    {
+      "sectionId": "l24-s4",
+      "exactOrderedCodePreserved": true,
+      "exactOrderedSourceURLsPreserved": true,
+      "balancedHTML": true,
+      "numericTokenMissing": {},
+      "numericTokenAdded": {}
+    },
+    {
+      "sectionId": "l24-s5",
+      "exactOrderedCodePreserved": true,
+      "exactOrderedSourceURLsPreserved": true,
+      "balancedHTML": true,
+      "numericTokenMissing": {},
+      "numericTokenAdded": {}
+    },
+    {
+      "sectionId": "l25-s1",
+      "exactOrderedCodePreserved": true,
+      "exactOrderedSourceURLsPreserved": true,
+      "balancedHTML": true,
+      "numericTokenMissing": {},
+      "numericTokenAdded": {}
+    },
+    {
+      "sectionId": "l25-s2",
+      "exactOrderedCodePreserved": true,
+      "exactOrderedSourceURLsPreserved": true,
+      "balancedHTML": true,
+      "numericTokenMissing": {},
+      "numericTokenAdded": {}
+    },
+    {
+      "sectionId": "l25-s3",
+      "exactOrderedCodePreserved": true,
+      "exactOrderedSourceURLsPreserved": true,
+      "balancedHTML": true,
+      "numericTokenMissing": {},
+      "numericTokenAdded": {}
+    },
+    {
+      "sectionId": "l25-s4",
+      "exactOrderedCodePreserved": true,
+      "exactOrderedSourceURLsPreserved": true,
+      "balancedHTML": true,
+      "numericTokenMissing": {},
+      "numericTokenAdded": {}
+    },
+    {
+      "sectionId": "l25-s5",
+      "exactOrderedCodePreserved": true,
+      "exactOrderedSourceURLsPreserved": true,
+      "balancedHTML": true,
+      "numericTokenMissing": {},
+      "numericTokenAdded": {}
+    },
+    {
+      "sectionId": "l26-s1",
+      "exactOrderedCodePreserved": true,
+      "exactOrderedSourceURLsPreserved": true,
+      "balancedHTML": true,
+      "numericTokenMissing": {},
+      "numericTokenAdded": {}
+    },
+    {
+      "sectionId": "l26-s2",
+      "exactOrderedCodePreserved": true,
+      "exactOrderedSourceURLsPreserved": true,
+      "balancedHTML": true,
+      "numericTokenMissing": {},
+      "numericTokenAdded": {}
+    },
+    {
+      "sectionId": "l26-s3",
+      "exactOrderedCodePreserved": true,
+      "exactOrderedSourceURLsPreserved": true,
+      "balancedHTML": true,
+      "numericTokenMissing": {},
+      "numericTokenAdded": {}
+    },
+    {
+      "sectionId": "l26-s4",
+      "exactOrderedCodePreserved": true,
+      "exactOrderedSourceURLsPreserved": true,
+      "balancedHTML": true,
+      "numericTokenMissing": {
+        "8": 1,
+        "7": 1
+      },
+      "numericTokenAdded": {},
+      "numericDifferenceExplanation": "One redundant verbal repetition of the expected 7/8 moving fraction is consolidated into the preserved probability and exact formula (120+1)×7/8 = 105.875 GB."
+    },
+    {
+      "sectionId": "l26-s5",
+      "exactOrderedCodePreserved": true,
+      "exactOrderedSourceURLsPreserved": true,
+      "balancedHTML": true,
+      "numericTokenMissing": {},
+      "numericTokenAdded": {}
+    },
+    {
+      "sectionId": "l27-s1",
+      "exactOrderedCodePreserved": true,
+      "exactOrderedSourceURLsPreserved": true,
+      "balancedHTML": true,
+      "numericTokenMissing": {},
+      "numericTokenAdded": {}
+    },
+    {
+      "sectionId": "l27-s2",
+      "exactOrderedCodePreserved": true,
+      "exactOrderedSourceURLsPreserved": true,
+      "balancedHTML": true,
+      "numericTokenMissing": {},
+      "numericTokenAdded": {}
+    },
+    {
+      "sectionId": "l27-s3",
+      "exactOrderedCodePreserved": true,
+      "exactOrderedSourceURLsPreserved": true,
+      "balancedHTML": true,
+      "numericTokenMissing": {},
+      "numericTokenAdded": {}
+    },
+    {
+      "sectionId": "l27-s4",
+      "exactOrderedCodePreserved": true,
+      "exactOrderedSourceURLsPreserved": true,
+      "balancedHTML": true,
+      "numericTokenMissing": {},
+      "numericTokenAdded": {}
+    },
+    {
+      "sectionId": "l27-s5",
+      "exactOrderedCodePreserved": true,
+      "exactOrderedSourceURLsPreserved": true,
+      "balancedHTML": true,
+      "numericTokenMissing": {},
+      "numericTokenAdded": {
+        "3": 2
+      },
+      "numericDifferenceExplanation": "March 2026 is rendered tháng 3/2026 in two occurrences; historical scope unchanged."
+    }
+  ]
+}

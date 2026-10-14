@@ -1,0 +1,34 @@
+{
+  "build": "pass",
+  "tests": 120,
+  "passed": 120,
+  "failed": 0,
+  "translatedMainResources": 37,
+  "translatedMainSections": 181,
+  "translatedQuizQuestions": 1167,
+  "responsiveWidths": [
+    320,
+    390,
+    768,
+    1440
+  ],
+  "responsiveRoutes": 49,
+  "labsMounted": 10,
+  "sqliteExecution": "pass",
+  "localePersistence": "pass",
+  "quizCanonicalIdentityAllQuestions": "pass",
+  "roadmapProgress": "pass",
+  "privateSlidesShipped": false,
+  "screenshotsVisuallyInspected": [
+    "ui-before-overview-1440.png",
+    "ui-before-overview-390.png",
+    "ui-after-overview-1440.png",
+    "ui-after-overview-390.png",
+    "ui-after-roadmap-1440.png",
+    "ui-after-roadmap-390.png",
+    "ui-after-reading-390.png",
+    "v31-vi-main-mobile.png"
+  ],
+  "instrumentedCodeCoverage": "not measured",
+  "pushOrDeployment": false
+}

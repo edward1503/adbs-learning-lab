@@ -1,0 +1,983 @@
+{
+  "lessonId": "lecture-27",
+  "language": "vi",
+  "topics": [
+    {
+      "id": "l27-motivation",
+      "title": "Động lực NoSQL",
+      "questions": [
+        {
+          "id": "l27-motivation-q1",
+          "prompt": "Theo bài giảng, đặc điểm tải Web 2.0 nào thúc đẩy NoSQL?",
+          "options": [
+            "Nhiều thao tác thời gian thực và nhu cầu tăng đột ngột",
+            "Chỉ OLAP ngoại tuyến tải ổn định",
+            "Dữ liệu luôn nhỏ nhưng mọi bảng cần nối phức tạp",
+            "Một client ghi tuần tự trên một máy"
+          ],
+          "explanation": "Ứng dụng lớn cần xử lý OLTP nặng và biến động, không giả định tải nhỏ cố định."
+        },
+        {
+          "id": "l27-motivation-q2",
+          "prompt": "Vì sao giao dịch nhiều nút khó mở rộng?",
+          "options": [
+            "Mô hình quan hệ cấm dữ liệu nhiều máy",
+            "Chi phí phối hợp nút như 2PC",
+            "SQL không diễn đạt giao dịch nhiều thao tác",
+            "Thêm replica luôn làm commit miễn phí"
+          ],
+          "explanation": "Phối hợp trước commit gây overhead ở quy mô lớn; mô hình quan hệ không cấm phân tán."
+        },
+        {
+          "id": "l27-motivation-q3",
+          "prompt": "Vì sao sao chép làm nhất quán khó hơn?",
+          "options": [
+            "Mỗi bản tự biết mọi ghi dù không liên lạc",
+            "Sharding tự cho mọi bản cùng thứ tự cập nhật",
+            "Các bản cần đồng bộ trong khi mạng có thể lỗi",
+            "Thêm bản loại hoàn toàn phối hợp"
+          ],
+          "explanation": "Đồng bộ cần liên lạc và phối hợp; lỗi mạng làm đánh đổi rõ hơn."
+        },
+        {
+          "id": "l27-motivation-q4",
+          "prompt": "OLTP trong động lực NoSQL chỉ loại công việc nào?",
+          "options": [
+            "Chỉ quét toàn lịch sử báo cáo ngoại tuyến",
+            "Chỉ tối ưu lược đồ bảng không bao giờ đổi",
+            "Chỉ phân tích lô không tương tác",
+            "Nhiều thao tác giao dịch trực tuyến"
+          ],
+          "explanation": "Slide nhấn mạnh thao tác dữ liệu nhiều, thời gian thực; không nhầm OLTP với OLAP."
+        },
+        {
+          "id": "l27-motivation-q5",
+          "prompt": "Khó khăn mở rộng RDBMS cho kết luận hợp lý nào?",
+          "options": [
+            "Cân chi phí nhất quán/phối hợp với tải",
+            "RDBMS tuyệt đối không chạy nhiều nút",
+            "Mọi ứng dụng scale-out phải bỏ mọi giao dịch",
+            "NoSQL luôn nhanh hơn bất kể truy vấn/bảo đảm"
+          ],
+          "explanation": "Động lực nói về đánh đổi quy mô, không chứng minh một mô hình luôn hơn."
+        }
+      ]
+    },
+    {
+      "id": "l27-partition-scaling",
+      "title": "Mở rộng qua phân hoạch",
+      "questions": [
+        {
+          "id": "l27-partition-scaling-q1",
+          "prompt": "Phân hoạch/sharding giúp mở rộng thế nào?",
+          "options": [
+            "Đặt bản đầy đủ cùng dữ liệu mọi máy",
+            "Phân bố dữ liệu và yêu cầu nhiều máy",
+            "Giữ toàn dữ liệu một máy, chỉ thêm client",
+            "Mọi yêu cầu qua một shard chứa toàn dữ liệu"
+          ],
+          "explanation": "Sharding chia dữ liệu; tạo bản đầy đủ là sao chép, kỹ thuật khác."
+        },
+        {
+          "id": "l27-partition-scaling-q2",
+          "prompt": "Vì sao phân hoạch có thể làm truy cập nhanh hơn?",
+          "options": [
+            "Mọi truy vấn tự tránh I/O và mạng",
+            "Mọi máy luôn toàn dữ liệu trong RAM",
+            "Phần dữ liệu từng máy có thể vừa RAM",
+            "Nối liên shard tự thành cục bộ"
+          ],
+          "explanation": "Chia giảm tập làm việc cục bộ; vừa RAM là lợi ích có thể, không bảo đảm tuyệt đối."
+        },
+        {
+          "id": "l27-partition-scaling-q3",
+          "prompt": "Cấu hình chỉ phân hoạch, ghi một shard có lợi gì?",
+          "options": [
+            "Ghi đồng thời không cần kiểm soát",
+            "Mọi giao dịch liên shard tự nguyên tử",
+            "Mỗi ghi phải đồng bộ cùng hàng mọi shard",
+            "Không cần cập nhật nhiều bản sao hàng đó"
+          ],
+          "explanation": "Slide so ghi một bản với chi phí sao chép; giao dịch liên shard vẫn khó."
+        },
+        {
+          "id": "l27-partition-scaling-q4",
+          "prompt": "Đọc nhiều shard có bất lợi gì?",
+          "options": [
+            "Độ trễ cao hơn do nhiều máy",
+            "Luôn một truy cập RAM cục bộ",
+            "Không thể đầy đủ dù mọi shard hoạt động",
+            "Mỗi đọc tự buộc shard cùng dữ liệu"
+          ],
+          "explanation": "Gửi nhiều đích và phối hợp làm đọc đắt hơn; không khiến kết quả đầy đủ bất khả thi."
+        },
+        {
+          "id": "l27-partition-scaling-q5",
+          "prompt": "Đọc/ghi đồng thời nhiều máy tạo thách thức nào theo slide?",
+          "options": [
+            "Phân hoạch tự bỏ xung đột đọc–ghi",
+            "Cần điều khiển đồng thời các máy tham gia",
+            "Tên shard khác đủ isolation",
+            "Shard độc lập tự làm mọi giao dịch liên shard serializable"
+          ],
+          "explanation": "Slide minh họa cần khóa ở các máy; phân hoạch không tự giải đồng thời."
+        }
+      ]
+    },
+    {
+      "id": "l27-replica-scaling",
+      "title": "Mở rộng qua sao chép",
+      "questions": [
+        {
+          "id": "l27-replica-scaling-q1",
+          "prompt": "Sao chép hỗ trợ thông lượng đọc thế nào?",
+          "options": [
+            "Mọi cấu hình buộc replica chuyển đọc về một primary",
+            "Chia cột hàng thành replica rời",
+            "Phân bố đọc giữa replica",
+            "Bỏ đọc lặp cùng khóa không trả kết quả"
+          ],
+          "explanation": "Nhiều bản chia tải đọc, không đạt bằng bỏ yêu cầu."
+        },
+        {
+          "id": "l27-replica-scaling-q2",
+          "prompt": "Một máy lỗi, bản còn hoạt động giúp gì?",
+          "options": [
+            "Tự hoàn tác mọi cập nhật logic sai đã sao",
+            "Bảo đảm ghi đồng thời không xung đột",
+            "Loại mọi nhu cầu recovery",
+            "Tiếp tục phục vụ từ bản sao"
+          ],
+          "explanation": "Sao chép hỗ trợ chịu lỗi, không tự giải mọi lỗi/xung đột."
+        },
+        {
+          "id": "l27-replica-scaling-q3",
+          "prompt": "Vì sao ghi thường đắt hơn với sao chép?",
+          "options": [
+            "Phải lan truyền thay đổi tới replica để giữ nhất quán",
+            "Chỉ đổi một bản, các bản khác tự biết",
+            "Thêm bản giảm byte ghi theo tỷ lệ",
+            "Biến mọi ghi thành chỉ đọc"
+          ],
+          "explanation": "Nhiều bản tăng việc đồng bộ; cách và thời điểm phụ thuộc hệ."
+        },
+        {
+          "id": "l27-replica-scaling-q4",
+          "prompt": "Đọc cũ (stale read) là gì?",
+          "options": [
+            "Đọc mới nhất từ bản xa hơn",
+            "Đọc phiên bản cũ ở bản chưa nhận cập nhật",
+            "Đọc hàng vi phạm lược đồ",
+            "Đọc lại cùng giá trị dù đã xác nhận bản mới nhất"
+          ],
+          "explanation": "Trễ đồng bộ có thể trả giá trị cũ; không chỉ là thiếu filter."
+        },
+        {
+          "id": "l27-replica-scaling-q5",
+          "prompt": "Mệnh đề nào phân biệt phân hoạch và sao chép đúng?",
+          "options": [
+            "Phân hoạch luôn toàn dữ liệu mọi máy",
+            "Sao chép luôn làm ghi rẻ hơn một bản",
+            "Phân hoạch chia dữ liệu/tải; sao chép thêm bản để chia đọc và chịu lỗi",
+            "Không thể cùng trong một hệ"
+          ],
+          "explanation": "Slide nói mỗi phân hoạch có thể nhiều replica, nên kết hợp được."
+        }
+      ]
+    },
+    {
+      "id": "l27-principles",
+      "title": "Nguyên tắc NoSQL",
+      "questions": [
+        {
+          "id": "l27-principles-q1",
+          "prompt": "NoSQL được hiểu thế nào trong bài?",
+          "options": [
+            "Cấm mọi ngôn ngữ cú pháp SQL",
+            "Bỏ durability trong mọi hệ",
+            "Thay RDBMS cho mọi tải",
+            "Not Only SQL, bổ sung RDBMS"
+          ],
+          "explanation": "Bài nhấn mạnh bổ sung thay vì thay thế phổ quát."
+        },
+        {
+          "id": "l27-principles-q2",
+          "prompt": "Lược đồ linh hoạt cho phép gì?",
+          "options": [
+            "Tài liệu có tập trường khác nhau",
+            "Mọi tài liệu phải không trường/cấu trúc",
+            "Ứng dụng không bao giờ cần validation",
+            "Mọi tài liệu cùng trường dù dữ liệu khác"
+          ],
+          "explanation": "Không bắt lược đồ cố định từ đầu không nghĩa bỏ kiểm tra dữ liệu."
+        },
+        {
+          "id": "l27-principles-q3",
+          "prompt": "Mở rộng ngang là gì?",
+          "options": [
+            "Đổi một máy sang máy nhiều RAM/CPU",
+            "Thêm máy chia tải",
+            "Chỉ thêm chỉ mục một máy",
+            "Chỉ tăng buffer pool máy hiện tại"
+          ],
+          "explanation": "Scale-out thêm máy; tăng năng lực một máy là scale-up."
+        },
+        {
+          "id": "l27-principles-q4",
+          "prompt": "Vì sao mô hình/thao tác đơn giản có thể dễ phân tán hơn?",
+          "options": [
+            "Mọi phân tích phức tạp không cần phối hợp",
+            "Thao tác đơn giản tự nhất quán mạnh khi mạng chia cắt",
+            "Giảm độ phức tạp phối hợp thao tác",
+            "Bỏ mọi quy tắc ghi đồng thời"
+          ],
+          "explanation": "Thao tác hạn chế thường dễ phân tán/phối hợp nhưng có thể giảm hỗ trợ truy vấn phức tạp."
+        },
+        {
+          "id": "l27-principles-q5",
+          "prompt": "Đánh đổi NoSQL rộng nào được slide nêu?",
+          "options": [
+            "Luôn ACID mạnh hơn miễn phí",
+            "Chỉ scale-up và lược đồ cố định",
+            "Mọi NoSQL cấm giao dịch nhiều thao tác",
+            "Ưu tiên quy mô/hiệu năng, có thể đổi nhất quán và phân tích phức tạp"
+          ],
+          "explanation": "Đây là hướng đánh đổi tổng quát, không nói mọi sản phẩm NoSQL cấm ACID."
+        }
+      ]
+    },
+    {
+      "id": "l27-acid",
+      "title": "Ôn ACID",
+      "questions": [
+        {
+          "id": "l27-acid-q1",
+          "prompt": "Giao dịch có hai thay đổi. Recovery xong chỉ còn một thay đổi áp dụng. Vi phạm gì?",
+          "options": [
+            "Atomicity",
+            "Durability vì mọi thay đổi chưa commit phải sống sót",
+            "Isolation vì atomicity chỉ xét replica",
+            "CAP consistency vì mọi lỗi là chia cắt mạng"
+          ],
+          "explanation": "Atomicity yêu cầu tất cả hoặc không; durability xét hiệu ứng sau commit."
+        },
+        {
+          "id": "l27-acid-q2",
+          "prompt": "Giao dịch commit nhưng mất hiệu ứng sau lỗi. Vi phạm gì?",
+          "options": [
+            "Isolation vì giao dịch chạy một mình",
+            "Durability",
+            "Atomicity chỉ vì nhiều thao tác",
+            "Availability vì dữ liệu commit phải luôn trong RAM"
+          ],
+          "explanation": "Durability bảo đảm hiệu ứng commit sống qua lỗi; isolation xét thực thi đồng thời."
+        },
+        {
+          "id": "l27-acid-q3",
+          "prompt": "Isolation trong phần ôn mô tả gì?",
+          "options": [
+            "Mỗi giao dịch máy vật lý riêng",
+            "Mọi replica nhận ghi đúng cùng lúc",
+            "Bảo vệ giao dịch khỏi tác động không thích hợp của giao dịch đồng thời",
+            "Dữ liệu chỉ cần đúng trước bắt đầu"
+          ],
+          "explanation": "Isolation là bảo đảm thực thi giao dịch, không cần máy riêng và không đồng nghĩa CAP C."
+        },
+        {
+          "id": "l27-acid-q4",
+          "prompt": "Consistency của ACID chủ yếu nghĩa là gì?",
+          "options": [
+            "Mỗi đọc replica thấy ghi mới nhất thời gian thực",
+            "Mọi yêu cầu hoàn tất khi mạng chia cắt",
+            "Mọi bảng cùng cột/kiểu",
+            "Giao dịch đúng giữ ràng buộc hợp lệ dữ liệu"
+          ],
+          "explanation": "ACID C xét hợp lệ/ràng buộc; CAP C là linearizability, nghĩa khác."
+        },
+        {
+          "id": "l27-acid-q5",
+          "prompt": "Giao dịch commit mọi đổi bền vững nhưng bán ghế vượt sức chứa đã nêu. Thuộc tính nào chưa bảo đảm?",
+          "options": [
+            "Durability vì commit tự giữ nghiệp vụ",
+            "ACID consistency vì vi phạm bất biến",
+            "Atomicity vì commit bền luôn chỉ một phần áp dụng",
+            "Isolation vì dữ liệu sai chứng minh đồng thời"
+          ],
+          "explanation": "Có thể toàn bộ và bền nhưng sai bất biến nếu logic/kiểm ràng buộc sai. Atomicity không thay ACID consistency."
+        }
+      ]
+    },
+    {
+      "id": "l27-cap",
+      "title": "Định lý CAP",
+      "questions": [
+        {
+          "id": "l27-cap-q1",
+          "prompt": "CAP chỉ ra giới hạn nào khi mạng chia cắt?",
+          "options": [
+            "C,A không thể cùng ngay cả mạng bình thường",
+            "Không thể bảo đảm cả nhất quán tuyến tính hóa và khả dụng cho mọi yêu cầu",
+            "Nhiều replica luôn phải bỏ durability",
+            "Đủ replica bảo đảm C,A dưới mọi chia cắt"
+          ],
+          "explanation": "Khi chia cắt, phải đánh đổi C,A. Tam giác slide không là lựa chọn tự do ba tính năng độc lập."
+        },
+        {
+          "id": "l27-cap-q2",
+          "prompt": "CAP consistency khác ACID consistency thế nào?",
+          "options": [
+            "Cả hai chỉ khóa ngoại",
+            "CAP C chỉ lược đồ cố định mọi nút",
+            "CAP xét lịch sử đọc/ghi tôn trọng thời gian thực; ACID xét ràng buộc dữ liệu",
+            "ACID C nghĩa mọi replica luôn trả cùng giá trị"
+          ],
+          "explanation": "CAP C thường hình thức hóa là linearizability; ACID C là giữ bất biến."
+        },
+        {
+          "id": "l27-cap-q3",
+          "prompt": "Ghi x=2 hoàn tất tại A. Mạng tách A,B, B còn x=1. Đọc sau ở B đối mặt đánh đổi gì?",
+          "options": [
+            "Trả x=1 giữ tuyến tính hóa vì B chưa nhận ghi",
+            "B chắc biết x=2 không thông tin A",
+            "Thêm replica hai bên loại đánh đổi mọi trường hợp",
+            "Trả x=1 có thể giữ phục vụ nhưng mất tuyến tính hóa"
+          ],
+          "explanation": "Giữ tuyến tính hóa có thể buộc B từ chối hoặc đợi, mất khả dụng; giá trị cũ không giữ được nó trong ví dụ."
+        },
+        {
+          "id": "l27-cap-q4",
+          "prompt": "Trả ngay lỗi “unavailable” cho mọi yêu cầu lúc chia cắt có chứng minh CAP availability không?",
+          "options": [
+            "Không; thao tác hợp lệ phải hoàn tất, lỗi tùy ý không tính phục vụ",
+            "Có, mọi lỗi là thao tác phục vụ thành công",
+            "Có nếu nút vẫn nhận TCP",
+            "Có, CAP A chỉ phần trăm uptime tháng"
+          ],
+          "explanation": "Slide đơn giản hóa A. Định nghĩa hình thức cần kết quả hợp lệ ở nút không hỏng; báo lỗi từ chối chưa đủ."
+        },
+        {
+          "id": "l27-cap-q5",
+          "prompt": "Mệnh đề nào sửa cách đọc máy móc “chọn hai” tam giác CAP?",
+          "options": [
+            "CP phải từ chối ngay cả mạng không lỗi",
+            "Không chia cắt mạng, hệ có thể cung cấp cả C,A",
+            "AP không thể cho kết quả đúng nào",
+            "Partition tolerance chỉ chia bảng tăng dung lượng"
+          ],
+          "explanation": "Network partition là đứt liên lạc, không phải sharding; đánh đổi trở nên quyết định khi đứt liên lạc."
+        }
+      ]
+    },
+    {
+      "id": "l27-base",
+      "title": "BASE",
+      "questions": [
+        {
+          "id": "l27-base-q1",
+          "prompt": "Basically Available nhấn mạnh gì?",
+          "options": [
+            "Mọi đọc thấy ngay ghi mới nhất",
+            "Mọi replica phải đồng bộ trước phục vụ",
+            "Cố tiếp tục phục vụ dù lỗi, có thể trả dữ liệu chưa mới",
+            "Chỉ khả dụng khi không lỗi"
+          ],
+          "explanation": "BASE ưu tiên tiếp tục phục vụ, không nghĩa nhất quán mạnh ngay lập tức."
+        },
+        {
+          "id": "l27-base-q2",
+          "prompt": "Soft State gần nhất nghĩa là gì?",
+          "options": [
+            "Phải xóa mọi dữ liệu sau đọc",
+            "Replica luôn giống nên không cần đồng bộ",
+            "Chỉ đổi trạng thái khi client ghi mới",
+            "Trạng thái có thể đổi khi replica đồng bộ dù không client cập nhật mới"
+          ],
+          "explanation": "Đồng bộ nội bộ có thể đổi replica không cần ghi người dùng mới."
+        },
+        {
+          "id": "l27-base-q3",
+          "prompt": "Không cập nhật mới và đồng bộ tiến triển, eventual consistency hứa gì?",
+          "options": [
+            "Replica cuối cùng hội tụ",
+            "Mọi đọc ngay sau ghi thấy mới nhất",
+            "Mọi giao dịch tự serializable",
+            "Replica có thể khác mãi dù không ghi mới và đồng bộ tiến triển"
+          ],
+          "explanation": "Hội tụ cuối cùng khác nhất quán ngay; lan truyền và hòa giải phải có khả năng tiến triển."
+        },
+        {
+          "id": "l27-base-q4",
+          "prompt": "Đọc sau ghi thấy cũ, đọc sau nữa thấy mới. Nhất thiết vi phạm eventual consistency không?",
+          "options": [
+            "Có vì eventual nghĩa đồng bộ ngay",
+            "Không, bản có thể chưa hội tụ lúc đọc đầu",
+            "Có vì BASE cấm mọi đọc cũ",
+            "Không vì eventual không cần hội tụ sau"
+          ],
+          "explanation": "Đọc cũ tạm thời có thể chấp nhận; bất đồng vĩnh viễn không phải hội tụ."
+        },
+        {
+          "id": "l27-base-q5",
+          "prompt": "BASE nghĩa “không cần đúng đắn gì” không?",
+          "options": [
+            "Có, mỗi đọc giá trị tùy ý",
+            "Có, mất mọi ghi dù đã hứa durability",
+            "Không, phục vụ và hội tụ vẫn theo mô hình hệ",
+            "Có, ứng dụng không cần xét mức nhất quán"
+          ],
+          "explanation": "Nới thời điểm nhất quán không bỏ mọi bảo đảm; ứng dụng cần hiểu mức được cung cấp."
+        }
+      ]
+    },
+    {
+      "id": "l27-taxonomy",
+      "title": "Phân loại NoSQL",
+      "questions": [
+        {
+          "id": "l27-taxonomy-q1",
+          "prompt": "Mô hình nào coi giá trị là khối không diễn giải, thường truy cập bằng khóa?",
+          "options": [
+            "Kho khóa–giá trị",
+            "Kho tài liệu truy vấn trường lồng",
+            "Đồ thị thuộc tính tối ưu duyệt cạnh",
+            "Kho quan hệ truy vấn thuộc tính SQL"
+          ],
+          "explanation": "Mô hình khóa–giá trị cơ bản không truy vấn cấu trúc trong giá trị như kho tài liệu."
+        },
+        {
+          "id": "l27-taxonomy-q2",
+          "prompt": "Hồ sơ người dùng trường linh hoạt, cần lọc giá trị trường, hợp loại nào?",
+          "options": [
+            "Khóa–giá trị opaque cơ bản chỉ get/put/del",
+            "Kho tài liệu",
+            "Đồ thị chỉ vì tài liệu nhiều trường",
+            "Họ cột chỉ vì tên trường là tên cột"
+          ],
+          "explanation": "Kho tài liệu hiểu cấu trúc và truy vấn trường; opaque không tự có chức năng đó."
+        },
+        {
+          "id": "l27-taxonomy-q3",
+          "prompt": "Cặp sản phẩm–loại nào khớp slide?",
+          "options": [
+            "HBase — đồ thị",
+            "Neo4j — khóa–giá trị opaque cơ bản",
+            "MongoDB — tài liệu",
+            "Memcached — họ cột"
+          ],
+          "explanation": "Slide xếp MongoDB tài liệu, HBase họ cột, Neo4j đồ thị, Memcached khóa–giá trị."
+        },
+        {
+          "id": "l27-taxonomy-q4",
+          "prompt": "Loại nào gắn caching và lưu session?",
+          "options": [
+            "Đồ thị vì mỗi phiên là đường đi",
+            "Tài liệu vì mọi cache cần trường lồng",
+            "Họ cột vì session luôn cần bảng thưa nhiều cột",
+            "Khóa–giá trị"
+          ],
+          "explanation": "Tra khóa nhanh hợp cache/session; duyệt đồ thị trả loại câu hỏi khác."
+        },
+        {
+          "id": "l27-taxonomy-q5",
+          "prompt": "Khác biệt chính tài liệu với khóa–giá trị cơ bản trong slide?",
+          "options": [
+            "Tài liệu cho truy vấn bên trong giá trị có cấu trúc",
+            "Tài liệu không bao giờ dùng khóa nhận diện",
+            "Khóa–giá trị cơ bản bắt buộc truy vấn mọi trường lồng",
+            "Tài liệu cần cùng lược đồ cố định như bảng quan hệ"
+          ],
+          "explanation": "Cả hai có thể lưu đối tượng, nhưng engine tài liệu hiểu trường bên trong."
+        }
+      ]
+    },
+    {
+      "id": "l27-taxonomy-cont",
+      "title": "Phân loại NoSQL tiếp theo",
+      "questions": [
+        {
+          "id": "l27-taxonomy-cont-q1",
+          "prompt": "Slide gắn bảng rộng thưa và họ cột với loại nào?",
+          "options": [
+            "Kho họ cột",
+            "Đồ thị thuộc tính cạnh có hướng",
+            "Khóa–giá trị opaque chỉ đọc toàn giá trị",
+            "Tài liệu chỉ vì trường tùy chọn"
+          ],
+          "explanation": "Cassandra,HBase là ví dụ wide-column/column-family trong slide."
+        },
+        {
+          "id": "l27-taxonomy-cont-q2",
+          "prompt": "Người liên kết bạn của bạn, truy vấn quan hệ nhiều bước, tự nhiên hợp mô hình nào?",
+          "options": [
+            "Khóa–giá trị opaque không duyệt",
+            "Đồ thị",
+            "Họ cột chỉ vì người nhiều thuộc tính",
+            "Tài liệu vì mọi quan hệ tự thành cạnh"
+          ],
+          "explanation": "Đồ thị biểu diễn nút/cạnh và tối ưu duyệt, hợp dữ liệu kết nối nhiều."
+        },
+        {
+          "id": "l27-taxonomy-cont-q3",
+          "prompt": "Kho họ cột và column-store phân tích tự động cùng khái niệm không?",
+          "options": [
+            "Có, mọi lưu theo cột cùng mô hình/API Cassandra",
+            "Có, họ cột chỉ tên khác bố trí OLAP columnar",
+            "Không, một là mô hình wide-column/họ cột, kia tổ chức lưu trữ theo cột",
+            "Không vì họ cột không tổ chức dữ liệu thành cột"
+          ],
+          "explanation": "Từ “cột” không làm mô hình/API đồng nhất; slide xếp họ cột trong NoSQL."
+        },
+        {
+          "id": "l27-taxonomy-cont-q4",
+          "prompt": "Slide liệt kê loại nào cho log và chuỗi thời gian?",
+          "options": [
+            "Đồ thị vì log luôn cần đường ngắn nhất",
+            "Khóa–giá trị cơ bản vì chuỗi chỉ một khóa",
+            "Tài liệu vì mọi chuỗi cần đối tượng lồng",
+            "Họ cột"
+          ],
+          "explanation": "Slide liệt kê hai ứng dụng cho họ cột; chọn sản phẩm cụ thể vẫn tùy tải."
+        },
+        {
+          "id": "l27-taxonomy-cont-q5",
+          "prompt": "Dữ liệu và nhiệm vụ nào hợp đồ thị nhất?",
+          "options": [
+            "Quan hệ giao dịch nhiều bên và tìm mẫu liên kết đáng ngờ phát hiện gian lận",
+            "Chỉ lấy session theo khóa duy nhất",
+            "Chỉ tăng bộ đếm không liên quan đối tượng",
+            "Chỉ đọc cả blob không xét quan hệ"
+          ],
+          "explanation": "Gian lận có thể khai thác cấu trúc liên kết và mẫu; tra cứu đơn giản không cần đồ thị."
+        }
+      ]
+    },
+    {
+      "id": "l27-key-value",
+      "title": "Kho khóa–giá trị",
+      "questions": [
+        {
+          "id": "l27-key-value-q1",
+          "prompt": "Bài dùng thao tác cơ bản nào cho khóa–giá trị?",
+          "options": [
+            "get(key), put(key,value), del(key)",
+            "JOIN,GROUP BY,đường đi là thao tác cơ bản bắt buộc",
+            "Chỉ quét toàn bộ, không get khóa",
+            "Chỉ trường lồng, không put giá trị"
+          ],
+          "explanation": "Mô hình đơn giản; sản phẩm có thể mở rộng nhưng không nhầm mở rộng với mô hình cơ bản."
+        },
+        {
+          "id": "l27-key-value-q2",
+          "prompt": "Giá trị “opaque” trong mô hình nghĩa là gì?",
+          "options": [
+            "Bắt buộc số nguyên đơn giản",
+            "Engine cơ bản không có thao tác truy vấn nội dung bên trong",
+            "Không thể chứa đối tượng/list phức tạp",
+            "Client không lấy được giá trị, chỉ khóa"
+          ],
+          "explanation": "Giá trị có thể phức tạp nhưng engine coi như đơn vị; client vẫn lấy bằng get."
+        },
+        {
+          "id": "l27-key-value-q3",
+          "prompt": "h(k) chọn server, hàm băm dùng để làm gì?",
+          "options": [
+            "Sort khóa toàn cục",
+            "Tự truy vấn mọi trường lồng",
+            "Chọn nơi lưu khóa k",
+            "Bảo đảm mỗi server đầy đủ mọi khóa"
+          ],
+          "explanation": "h(k) là ánh xạ phân hoạch, không mặc nhiên hàm bảo mật hoặc truy vấn nội dung."
+        },
+        {
+          "id": "l27-key-value-q4",
+          "prompt": "Lưu k ở h1(k),h2(k),h3(k) minh họa gì?",
+          "options": [
+            "Chia dọc thuộc tính giá trị",
+            "Hash join ba quan hệ độc lập",
+            "Ba giá trị logic khác nhau cùng khóa",
+            "Sao chép nhiều bản"
+          ],
+          "explanation": "Các nơi giữ bản cùng khóa; cần lan truyền cập nhật."
+        },
+        {
+          "id": "l27-key-value-q5",
+          "prompt": "Đọc bản chưa đồng bộ ngay sau put có thể thấy gì?",
+          "options": [
+            "Giá trị cũ cùng khóa",
+            "Chắc thấy mới dù chưa nhận ghi",
+            "Chắc block tới mọi bản đồng bộ",
+            "Chắc khóa vắng dù còn bản cũ"
+          ],
+          "explanation": "Đây là stale read ứng dụng cần xử lý theo mô hình nhất quán."
+        }
+      ]
+    },
+    {
+      "id": "l27-documents",
+      "title": "Kho tài liệu",
+      "questions": [
+        {
+          "id": "l27-documents-q1",
+          "prompt": "Tài liệu trong kho tài liệu là gì?",
+          "options": [
+            "Chỉ file office nhị phân không truy vấn trường",
+            "Dữ liệu có cấu trúc biểu diễn đối tượng phức tạp",
+            "Chỉ chuỗi không cấu trúc",
+            "Chỉ lược đồ không dữ liệu thực"
+          ],
+          "explanation": "Tài liệu không giới hạn file office; đây là đối tượng dữ liệu cấu trúc."
+        },
+        {
+          "id": "l27-documents-q2",
+          "prompt": "Lợi thế so với lưu danh sách chuyến bay thành giá trị opaque?",
+          "options": [
+            "Không tài liệu nào cần ID/khóa",
+            "Mọi trường tự nối mọi tài liệu",
+            "Truy vấn được trường trong dữ liệu",
+            "Không cho cấu trúc lồng"
+          ],
+          "explanation": "Kho tài liệu hiểu cấu trúc và truy vấn trường, không chỉ lấy toàn blob theo khóa."
+        },
+        {
+          "id": "l27-documents-q3",
+          "prompt": "db.users.find({age: {$gt: 25}}) chọn gì?",
+          "options": [
+            "age bằng 25",
+            "age lớn hơn hoặc bằng 25",
+            "age nhỏ hơn 25",
+            "Tài liệu users có age lớn hơn 25"
+          ],
+          "explanation": "$gt nghĩa lớn hơn, loại 25."
+        },
+        {
+          "id": "l27-documents-q4",
+          "prompt": "Slide nêu định dạng nào cho dữ liệu cấu trúc?",
+          "options": [
+            "JSON, Protobuf, hoặc XML",
+            "Chỉ blob nhị phân opaque không mô tả",
+            "Chỉ khóa vô hướng không giá trị",
+            "Chỉ bảng phẳng lược đồ SQL cố định"
+          ],
+          "explanation": "Slide nêu nhiều định dạng cấu trúc; tài liệu không đồng nghĩa riêng JSON."
+        },
+        {
+          "id": "l27-documents-q5",
+          "prompt": "Tài liệu có address.city bên trong address. Kho tài liệu có năng lực quan trọng nào?",
+          "options": [
+            "Luôn lấy toàn collection, lọc client",
+            "Truy vấn trường lồng",
+            "Chỉ khóa tài liệu, không trường",
+            "Phải chia mọi trường lồng thành dữ liệu riêng"
+          ],
+          "explanation": "Truy vấn trường lồng là lý do lưu cấu trúc thay blob opaque."
+        }
+      ]
+    },
+    {
+      "id": "l27-json",
+      "title": "JSON bán cấu trúc",
+      "questions": [
+        {
+          "id": "l27-json-q1",
+          "prompt": "Hai cấu trúc JSON cốt lõi trong slide là gì?",
+          "options": [
+            "Bảng và khóa ngoại bắt buộc",
+            "Hàng/trang bố trí vật lý cố định",
+            "Đối tượng và mảng",
+            "Nút/cạnh ID đồ thị bắt buộc"
+          ],
+          "explanation": "Đối tượng chứa cặp tên–giá trị; mảng là danh sách có thứ tự."
+        },
+        {
+          "id": "l27-json-q2",
+          "prompt": "Mệnh đề nào đúng về mảng JSON?",
+          "options": [
+            "Tập giá trị không thứ tự",
+            "Chỉ scalar, không đối tượng/mảng",
+            "Mọi phần tử cùng lược đồ SQL định trước",
+            "Danh sách giá trị có thứ tự"
+          ],
+          "explanation": "Mảng có thứ tự và có thể lồng đối tượng/mảng; không chỉ tập scalar."
+        },
+        {
+          "id": "l27-json-q3",
+          "prompt": "JSON tự mô tả nghĩa gì trong so sánh slide?",
+          "options": [
+            "Tên trường/cấu trúc đi cùng dữ liệu, hỗ trợ linh hoạt lược đồ",
+            "Không cần ý nghĩa trường thống nhất hay validation",
+            "Mọi tài liệu tự cùng lược đồ",
+            "JSON tự cung cấp ACID"
+          ],
+          "explanation": "Tự mô tả cấu trúc không bỏ nhu cầu thống nhất nghĩa và kiểm tra."
+        },
+        {
+          "id": "l27-json-q4",
+          "prompt": "Trong so sánh slide, JSON thường được hình dung thế nào?",
+          "options": [
+            "Chỉ bảng phẳng cột cố định bắt buộc",
+            "Cây đối tượng và mảng lồng",
+            "Chỉ tập scalar không lồng",
+            "Chỉ đồ thị tùy ý cạnh trực tiếp như property graph"
+          ],
+          "explanation": "Mô hình bán cấu trúc cho linh hoạt/lồng, khác bảng phẳng minh họa."
+        },
+        {
+          "id": "l27-json-q5",
+          "prompt": "Theo bài, mệnh đề nào đúng về JSON và RDBMS?",
+          "options": [
+            "Chỉ NoSQL lưu JSON",
+            "SQL không truy vấn JSON được",
+            "RDBMS hỗ trợ lưu/truy vấn JSON qua mở rộng SQL",
+            "JSON tự cấm mọi nối"
+          ],
+          "explanation": "Slide ghi RDBMS hỗ trợ JSON; định dạng không xác định duy nhất họ DBMS."
+        }
+      ]
+    },
+    {
+      "id": "l27-graphs",
+      "title": "Cơ sở dữ liệu đồ thị",
+      "questions": [
+        {
+          "id": "l27-graphs-q1",
+          "prompt": "Nút trong property graph thường biểu diễn gì?",
+          "options": [
+            "Replica vật lý toàn đồ thị",
+            "Quan hệ hai thực thể",
+            "Chỉ scalar không thực thể",
+            "Thực thể như người/sản phẩm"
+          ],
+          "explanation": "Nút là thực thể miền dữ liệu, không nhất thiết nút máy phân tán."
+        },
+        {
+          "id": "l27-graphs-q2",
+          "prompt": "Cạnh thường biểu diễn gì?",
+          "options": [
+            "Quan hệ giữa thực thể",
+            "Thuộc tính scalar của cả dữ liệu",
+            "Replica nút nguồn",
+            "Tập trường độc lập không nghĩa quan hệ"
+          ],
+          "explanation": "Cạnh mô tả quan hệ như friends_with,bought để duyệt liên kết."
+        },
+        {
+          "id": "l27-graphs-q3",
+          "prompt": "Theo slide, thuộc tính có thể lưu ở đâu?",
+          "options": [
+            "Chỉ nút, không cạnh",
+            "Nút và cạnh",
+            "Chỉ cạnh, nút không thuộc tính",
+            "Chỉ lược đồ toàn dữ liệu"
+          ],
+          "explanation": "Thuộc tính mô tả thực thể lẫn quan hệ, như thời điểm giao dịch."
+        },
+        {
+          "id": "l27-graphs-q4",
+          "prompt": "Điểm mạnh cốt lõi đồ thị trong bài là gì?",
+          "options": [
+            "Luôn tối ưu mọi aggregate quét toàn dữ liệu",
+            "Chỉ tra giá trị opaque theo khóa, bỏ quan hệ",
+            "Duyệt và khớp mẫu",
+            "Chỉ thuộc tính phẳng không mẫu"
+          ],
+          "explanation": "Đồ thị tối ưu đường đi/mẫu quan hệ, không được khẳng định tốt nhất mọi tải."
+        },
+        {
+          "id": "l27-graphs-q5",
+          "prompt": "Ví dụ nào minh họa nút,cạnh,thuộc tính tự nhiên?",
+          "options": [
+            "A,B là thuộc tính, ngày mua là nút duy nhất",
+            "Mua phải nút, mọi thực thể phải cạnh",
+            "Ngày mua là replica, A,B là phân hoạch vật lý",
+            "Người A —bought→ sản phẩm B, ngày mua trên cạnh"
+          ],
+          "explanation": "A/B là thực thể, bought là quan hệ, ngày mua là thuộc tính quan hệ."
+        }
+      ]
+    },
+    {
+      "id": "l27-graph-languages",
+      "title": "Ngôn ngữ truy vấn đồ thị",
+      "questions": [
+        {
+          "id": "l27-graph-languages-q1",
+          "prompt": "“Bạn của bạn” thường thuộc loại truy vấn nào?",
+          "options": [
+            "Khớp mẫu hoặc duyệt quan hệ",
+            "Chỉ tra một khóa không quan hệ",
+            "Chỉ chiếu trường một tài liệu",
+            "Chỉ GROUP BY thuộc tính không theo cạnh"
+          ],
+          "explanation": "Theo quan hệ qua nhiều nút; ngôn ngữ đồ thị diễn đạt mẫu đó."
+        },
+        {
+          "id": "l27-graph-languages-q2",
+          "prompt": "Đường đi ngắn nhất thuộc loại nào?",
+          "options": [
+            "Chỉ tra khóa bằng đẳng thức",
+            "Truy vấn đường đi",
+            "Chỉ chiếu thuộc tính nút không cạnh",
+            "Chỉ đếm replica dữ liệu"
+          ],
+          "explanation": "Truy vấn đường đi xét tuyến,kết nối,độ dài, không chỉ một khóa."
+        },
+        {
+          "id": "l27-graph-languages-q3",
+          "prompt": "Trong (p)-[:DRIVES]->(car), mũi tên biểu diễn gì?",
+          "options": [
+            "Quan hệ vô hướng vì mũi tên vô nghĩa",
+            "So p lớn hơn car theo khóa",
+            "Quan hệ có hướng từ p tới car",
+            "Gán car thành bản p"
+          ],
+          "explanation": "Ký hiệu là cạnh hướng nhãn DRIVES, không so sánh đại số."
+        },
+        {
+          "id": "l27-graph-languages-q4",
+          "prompt": "Slide gắn Cypher với hệ nào?",
+          "options": [
+            "Cassandra",
+            "HBase",
+            "Memcached",
+            "Neo4j"
+          ],
+          "explanation": "Slide nêu Cypher dùng bởi Neo4j, không gắn các sản phẩm kia như vậy."
+        },
+        {
+          "id": "l27-graph-languages-q5",
+          "prompt": "Cặp ngôn ngữ–ngữ cảnh nào khớp slide?",
+          "options": [
+            "SPARQL — RDF/semantic web",
+            "SPARQL — chỉ tra khóa opaque",
+            "SQL/PGQ — chỉ quản lý phân hoạch, không đồ thị",
+            "GQL — định dạng JSON không ngôn ngữ truy vấn"
+          ],
+          "explanation": "SPARQL cho RDF; SQL/PGQ mở rộng SQL truy vấn đồ thị thuộc tính."
+        }
+      ]
+    },
+    {
+      "id": "l27-ranking",
+      "title": "Xếp hạng công nghệ năm 2026",
+      "questions": [
+        {
+          "id": "l27-ranking-q1",
+          "prompt": "Xếp hạng trong slide chủ yếu dựa tín hiệu gì?",
+          "options": [
+            "Chỉ benchmark độ trễ tải chuẩn",
+            "Lượt nhắc,tìm kiếm,việc làm,hoạt động trực tuyến",
+            "Chỉ thông lượng giao dịch phần cứng giống",
+            "Chỉ chứng minh mức nhất quán"
+          ],
+          "explanation": "Ghi chú nêu tín hiệu phổ biến, không phải so hiệu năng có kiểm soát."
+        },
+        {
+          "id": "l27-ranking-q2",
+          "prompt": "Ảnh chụp tháng 3/2026 trong slide xếp hệ nào đầu?",
+          "options": [
+            "MongoDB",
+            "Redis",
+            "Oracle",
+            "Apache Cassandra"
+          ],
+          "explanation": "Trang PDF thực tế 20 ghi “March 2026” và xếp Oracle hạng 1. Đây là thông tin của ảnh chụp tháng 3/2026, không phải khẳng định về xếp hạng hiện tại."
+        },
+        {
+          "id": "l27-ranking-q3",
+          "prompt": "Vì sao xếp cao chưa tự chứng minh phù hợp tải?",
+          "options": [
+            "Bảo đảm độ trễ thấp nhất mọi truy vấn",
+            "Xếp thấp chứng minh thiếu giao dịch",
+            "Mọi tải cùng truy vấn và nhất quán",
+            "Phổ biến không trực tiếp đo mọi yêu cầu kỹ thuật"
+          ],
+          "explanation": "Cần xét truy vấn,nhất quán,mở rộng; phổ biến không thay đánh giá yêu cầu."
+        },
+        {
+          "id": "l27-ranking-q4",
+          "prompt": "Bảng slide gán nhãn mô hình chính MongoDB là gì?",
+          "options": [
+            "Document, Multi-model",
+            "Graph, Multi-model",
+            "Chỉ Relational",
+            "Chỉ Key-value"
+          ],
+          "explanation": "Hàng MongoDB trên trang PDF thực tế 20 ghi “Document, Multi-model”. Nhãn mô hình chính không có nghĩa sản phẩm chỉ hỗ trợ một mô hình."
+        },
+        {
+          "id": "l27-ranking-q5",
+          "prompt": "Bảng có cho kết luận mỗi DBMS đúng một mô hình không?",
+          "options": [
+            "Có, sản phẩm chỉ một mô hình",
+            "Không, nhiều mục ghi Multi-model",
+            "Có, bảng loại mọi hệ đa mô hình",
+            "Không vì bảng hoàn toàn không phân loại mô hình"
+          ],
+          "explanation": "Trang PDF thực tế 20 có nhiều hàng ghi Multi-model, chẳng hạn Oracle, MongoDB và Redis. Các loại có thể giao nhau; một tên sản phẩm không có nghĩa một mô hình độc quyền."
+        }
+      ]
+    },
+    {
+      "id": "l27-sql-nosql",
+      "title": "SQL và NoSQL",
+      "questions": [
+        {
+          "id": "l27-sql-nosql-q1",
+          "prompt": "Tải cần ACID mạnh,nối ad-hoc phức tạp,lược đồ ổn định nên xét trước gì?",
+          "options": [
+            "Khóa–giá trị opaque bất kể giao dịch/truy vấn",
+            "Chỉ cache không bền vì thông lượng cao",
+            "RDBMS/SQL",
+            "Đồ thị bất kể cần duyệt không"
+          ],
+          "explanation": "Slide gợi ý SQL cho tổ hợp này; vẫn phải đánh giá hệ cụ thể."
+        },
+        {
+          "id": "l27-sql-nosql-q2",
+          "prompt": "Danh mục hay đổi trường,cần scale-out và ghi cao nên xét gì?",
+          "options": [
+            "Không SQL nào lưu được dữ liệu này",
+            "Chỉ một máy lược đồ cố định vĩnh viễn",
+            "Luôn bỏ durability để tăng ghi",
+            "NoSQL phù hợp mô hình và bảo đảm cần"
+          ],
+          "explanation": "Slide gợi ý NoSQL cho linh hoạt/quy mô, không chứng minh SQL hoàn toàn bất khả thi."
+        },
+        {
+          "id": "l27-sql-nosql-q3",
+          "prompt": "Mệnh đề nào phản ánh ranh giới SQL/NoSQL mờ dần?",
+          "options": [
+            "RDBMS hỗ trợ JSON, một số NoSQL hỗ trợ ACID",
+            "Mọi SQL bỏ giao dịch để có JSON",
+            "Mọi NoSQL cấm ACID",
+            "JSON ngăn SQL truy vấn trường"
+          ],
+          "explanation": "Slide nêu JSON PostgreSQL và giao dịch MongoDB; nhãn không quyết định toàn chức năng."
+        },
+        {
+          "id": "l27-sql-nosql-q4",
+          "prompt": "Distributed SQL minh họa năng lực nào trong slide?",
+          "options": [
+            "Vượt CAP bảo đảm C,A dưới mọi chia cắt",
+            "Kết hợp mở rộng và nhất quán mạnh",
+            "Chỉ scale-up một máy không replica",
+            "Mở rộng bằng bỏ mọi giao dịch"
+          ],
+          "explanation": "SQL phân tán mở rộng lựa chọn nhưng không vô hiệu giới hạn CAP lúc chia cắt."
+        },
+        {
+          "id": "l27-sql-nosql-q5",
+          "prompt": "Nguyên tắc chọn hệ kết bài là gì?",
+          "options": [
+            "Luôn hệ đứng đầu phổ biến",
+            "Luôn NoSQL bất kể giao dịch",
+            "Chọn theo tải và đánh đổi thực tế",
+            "Luôn SQL bất kể truy vấn/mô hình"
+          ],
+          "explanation": "Chọn công cụ theo tải, không chỉ trào lưu hoặc nhãn công nghệ."
+        }
+      ]
+    }
+  ],
+  "reviewStatus": "Complete VI bank: every explanation reviewed against canonical source-slot answer and source definitions/examples. Ranking q2/q4/q5 additionally checked against rendered private physical PDF page20. Other diagrams were not visually reverified in this batch."
+}

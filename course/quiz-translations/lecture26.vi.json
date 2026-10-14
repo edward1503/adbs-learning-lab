@@ -1,0 +1,1465 @@
+{
+  "lessonId": "lecture-26",
+  "language": "vi",
+  "topics": [
+    {
+      "id": "l26-recap",
+      "title": "Ôn tập: DBMS song song/phân tán",
+      "questions": [
+        {
+          "id": "l26-recap-q1",
+          "prompt": "Vì sao phân bố cơ sở dữ liệu trên nhiều tài nguyên?",
+          "options": [
+            "Cải thiện hiệu năng và khả dụng",
+            "Chỉ tăng dung lượng, không thể cải thiện thông lượng",
+            "Loại hoàn toàn chi phí phối hợp giao dịch",
+            "Bảo đảm mọi truy vấn giảm độ trễ tuyến tính"
+          ],
+          "explanation": "Phân bố tài nguyên có thể cải thiện hiệu năng và khả dụng, không loại nhu cầu phối hợp hay giao dịch."
+        },
+        {
+          "id": "l26-recap-q2",
+          "prompt": "Theo giả định bài giảng, khác biệt chính giữa DBMS song song và phân tán là gì?",
+          "options": [
+            "Mọi kiến trúc song song đều RAM chung",
+            "Khoảng cách nút và chi phí liên lạc",
+            "Hệ phân tán không thể có giao diện SQL thống nhất",
+            "Hệ song song không cần điều khiển đồng thời"
+          ],
+          "explanation": "Nút song song thường gần và nối LAN nhanh; hệ phân tán phải tính chi phí và lỗi mạng. Đây là quy ước của bài giảng."
+        },
+        {
+          "id": "l26-recap-q3",
+          "prompt": "SQL chuyển từ một nút sang cụm nhiều nút cần giữ gì?",
+          "options": [
+            "Tự thêm một hàng cho mỗi replica",
+            "Ứng dụng phải tự UNION mọi shard",
+            "Kết quả logic không đổi",
+            "Được bỏ hàng ở nút phản hồi chậm"
+          ],
+          "explanation": "Độc lập dữ liệu đòi hỏi cùng ngữ nghĩa khi đổi vị trí vật lý; sao chép không được nhân đôi kết quả."
+        },
+        {
+          "id": "l26-recap-q4",
+          "prompt": "Cụm trải nhiều châu lục phải chú ý gì?",
+          "options": [
+            "Chỉ giảm I/O cục bộ vì mạng không ảnh hưởng",
+            "Giả định độ trễ mạng luôn thấp hơn truy cập RAM",
+            "Chỉ tính CPU, bỏ truyền dữ liệu",
+            "Chi phí liên lạc và lỗi"
+          ],
+          "explanation": "Không được giả định liên lạc phân tán rẻ hoặc không lỗi."
+        },
+        {
+          "id": "l26-recap-q5",
+          "prompt": "Tăng thông lượng gần nhất nghĩa là gì?",
+          "options": [
+            "Hoàn thành nhiều truy vấn hơn mỗi đơn vị thời gian",
+            "Chỉ giảm thời gian một truy vấn bất kể tải tổng",
+            "Tăng số truy vấn chờ mà không hoàn thành thêm",
+            "Trả ít hàng hơn để chạy nhanh cùng truy vấn"
+          ],
+          "explanation": "Thông lượng đo tốc độ hoàn thành công việc; độ trễ đo thời gian một truy vấn."
+        }
+      ]
+    },
+    {
+      "id": "l26-shared-memory",
+      "title": "Bộ nhớ chung",
+      "questions": [
+        {
+          "id": "l26-shared-memory-q1",
+          "prompt": "Trong bộ nhớ chung, nhiều CPU cùng truy cập tài nguyên nào?",
+          "options": [
+            "Một không gian địa chỉ bộ nhớ",
+            "Mỗi CPU RAM riêng, chỉ chung đĩa",
+            "Mỗi CPU hoàn toàn riêng RAM và đĩa",
+            "Chỉ metadata chung, mọi RAM dữ liệu riêng"
+          ],
+          "explanation": "CPU dùng chung bộ nhớ qua liên kết nhanh. Mô tả RAM riêng thuộc kiến trúc khác."
+        },
+        {
+          "id": "l26-shared-memory-q2",
+          "prompt": "Lợi thế bộ nhớ chung được bài giảng nêu là gì?",
+          "options": [
+            "Mỗi instance không cần phối hợp",
+            "CPU cùng nhìn cấu trúc trong bộ nhớ",
+            "Thêm CPU bảo đảm tăng tốc tuyến tính vô hạn",
+            "Mọi truy cập dữ liệu phải qua thông điệp mạng"
+          ],
+          "explanation": "Không gian địa chỉ chung hỗ trợ liên lạc hiệu quả, nhưng các instance vẫn phải biết và phối hợp với nhau."
+        },
+        {
+          "id": "l26-shared-memory-q3",
+          "prompt": "Kiến trúc hệ thống trực tiếp quyết định gì?",
+          "options": [
+            "Cùng SQL phải đổi kết quả logic theo cấu hình RAM",
+            "Mọi phân hoạch phải chứa cùng bản đầy đủ",
+            "CPU truy cập được tài nguyên chung nào",
+            "Mọi phép nối phải cùng một thuật toán"
+          ],
+          "explanation": "Kiến trúc quyết định chia sẻ tài nguyên và phối hợp, không áp lược đồ hay số hàng kết quả."
+        },
+        {
+          "id": "l26-shared-memory-q4",
+          "prompt": "Instance bộ nhớ chung có thể bỏ qua instance khác không?",
+          "options": [
+            "Có vì địa chỉ chung tự bảo đảm isolation",
+            "Có vì mỗi truy cập RAM tự là giao dịch nguyên tử",
+            "Có vì chỉ shared-nothing có truy cập đồng thời",
+            "Không; phải phối hợp truy cập cấu trúc chung"
+          ],
+          "explanation": "RAM chung giúp liên lạc nhưng không tự làm thao tác đồng thời đúng. Slide yêu cầu các instance biết nhau."
+        },
+        {
+          "id": "l26-shared-memory-q5",
+          "prompt": "Vì sao bài này còn gọi bộ nhớ chung là shared everything?",
+          "options": [
+            "Trong mô hình minh họa, CPU có thể chung cả địa chỉ và lưu trữ",
+            "Mỗi nút hoàn toàn riêng RAM,đĩa",
+            "Chỉ đĩa chung còn địa chỉ riêng",
+            "Mỗi CPU bắt buộc giữ bản đầy đủ độc lập"
+          ],
+          "explanation": "Hình bộ nhớ chung minh họa cả bộ nhớ và lưu trữ chung; đĩa chung chỉ chia sẻ tầng lưu trữ."
+        }
+      ]
+    },
+    {
+      "id": "l26-shared-disk",
+      "title": "Đĩa chung",
+      "questions": [
+        {
+          "id": "l26-shared-disk-q1",
+          "prompt": "Kiến trúc nào cho mỗi CPU bộ nhớ riêng nhưng chung đĩa logic?",
+          "options": [
+            "Đĩa chung",
+            "Bộ nhớ chung với mọi RAM chung",
+            "Không chia sẻ với lưu trữ riêng mỗi nút",
+            "Bộ nhớ chung nhưng CPU không chung địa chỉ"
+          ],
+          "explanation": "Shared-disk tách RAM, chung lưu trữ. Shared-memory chung địa chỉ; shared-nothing riêng cả RAM và đĩa."
+        },
+        {
+          "id": "l26-shared-disk-q2",
+          "prompt": "Nút thắt nào được nêu khi đĩa chung có nhiều CPU?",
+          "options": [
+            "Phải phân hoạch lại mọi bảng sau mỗi đọc",
+            "Đĩa chung",
+            "Mọi truy vấn bắt buộc cùng khóa toàn dữ liệu",
+            "CPU phải có bản toàn dữ liệu riêng mới đọc được"
+          ],
+          "explanation": "Nhiều CPU tạo tải trên cùng đĩa; RAM riêng không loại nút thắt lưu trữ."
+        },
+        {
+          "id": "l26-shared-disk-q3",
+          "prompt": "Kiến trúc nào theo bài giảng mở rộng tầng thực thi độc lập tầng lưu trữ?",
+          "options": [
+            "Chỉ không chia sẻ vì đĩa chung buộc CPU và đĩa tăng cùng",
+            "Chỉ bộ nhớ chung vì đĩa chung không tách thực thi được",
+            "Đĩa chung",
+            "Không kiến trúc nào tách tăng compute và storage"
+          ],
+          "explanation": "Tầng lưu trữ chung cho phép thêm năng lực thực thi tương đối độc lập."
+        },
+        {
+          "id": "l26-shared-disk-q4",
+          "prompt": "Mệnh đề nào khớp ba hình kiến trúc?",
+          "options": [
+            "Đĩa chung chia sẻ mọi RAM",
+            "Shared-nothing cho CPU đọc trực tiếp đĩa nút khác",
+            "Bộ nhớ chung cho mỗi CPU địa chỉ riêng",
+            "Đĩa chung và không chia sẻ đều RAM riêng từng nút"
+          ],
+          "explanation": "Cả hai dùng RAM riêng; khác ở đĩa chung hay riêng."
+        },
+        {
+          "id": "l26-shared-disk-q5",
+          "prompt": "RAM riêng trong đĩa chung có hàm ý đúng nào?",
+          "options": [
+            "CPU vẫn cần phối hợp dữ liệu chung; đĩa chung không thay điều khiển đồng thời",
+            "CPU luôn thấy ngay mọi đổi RAM của CPU khác",
+            "Một đĩa chung làm ghi đồng thời bất khả thi",
+            "Mỗi CPU phải lưu cơ sở dữ liệu logic riêng trên đĩa khác"
+          ],
+          "explanation": "Chung lưu trữ nhưng RAM riêng. Một bản trên đĩa không tự loại mọi tranh chấp."
+        }
+      ]
+    },
+    {
+      "id": "l26-shared-nothing",
+      "title": "Không chia sẻ",
+      "questions": [
+        {
+          "id": "l26-shared-nothing-q1",
+          "prompt": "Nút có CPU,RAM,đĩa riêng, chỉ liên lạc qua mạng là kiến trúc nào?",
+          "options": [
+            "Không chia sẻ",
+            "Bộ nhớ chung vì vẫn trao đổi thông điệp",
+            "Đĩa chung vì cùng một dữ liệu logic",
+            "Bộ nhớ chung với cache riêng"
+          ],
+          "explanation": "Shared-nothing không trực tiếp chung RAM/đĩa; pipeline là kỹ thuật thực thi khác."
+        },
+        {
+          "id": "l26-shared-nothing-q2",
+          "prompt": "Vì sao giữ nhất quán có thể khó hơn trong shared-nothing?",
+          "options": [
+            "Instance đọc cùng địa chỉ RAM không khóa",
+            "Nút phải phối hợp qua mạng",
+            "Mọi nút sửa cùng buffer pool",
+            "Mỗi nút phải cùng đĩa vật lý"
+          ],
+          "explanation": "Tài nguyên độc lập giúp mở rộng, nhưng nhất quán cần thông điệp mạng."
+        },
+        {
+          "id": "l26-shared-nothing-q3",
+          "prompt": "Cách tự nhiên tăng dung lượng shared-nothing là gì?",
+          "options": [
+            "Chỉ thêm CPU đọc RAM/đĩa nút cũ",
+            "Thay mọi đĩa riêng bằng đĩa chung",
+            "Thêm nút có CPU,RAM,đĩa riêng",
+            "Chỉ sao chép không thêm compute"
+          ],
+          "explanation": "Thêm nút thêm tài nguyên độc lập; chung đĩa đưa vào đánh đổi kiến trúc shared-disk."
+        },
+        {
+          "id": "l26-shared-nothing-q4",
+          "prompt": "Trong shared-nothing, A lấy dữ liệu chỉ ở B thế nào?",
+          "options": [
+            "Đọc RAM B trực tiếp qua địa chỉ chung",
+            "Đọc trực tiếp đĩa chung cụm",
+            "Dùng cache A được bảo đảm có mọi bộ B",
+            "Liên lạc với B qua mạng hoặc chuyển dữ liệu cần"
+          ],
+          "explanation": "Nút chỉ liên lạc mạng, không trực tiếp chung RAM/đĩa như kiến trúc khác."
+        },
+        {
+          "id": "l26-shared-nothing-q5",
+          "prompt": "Đánh đổi triển khai nào phù hợp shared-nothing?",
+          "options": [
+            "Dễ thêm tài nguyên phổ thông nhưng phần mềm phối hợp phức tạp hơn",
+            "Phần cứng luôn đắt nhất nhưng không cần mạng",
+            "Không tăng dung lượng bằng thêm nút được",
+            "Mọi nút chung bộ nhớ nên tự nhất quán"
+          ],
+          "explanation": "Tài nguyên độc lập tiện scale-out; hệ phải xử lý phối hợp mạng và nhất quán."
+        }
+      ]
+    },
+    {
+      "id": "l26-parallelism",
+      "title": "Các loại song song",
+      "questions": [
+        {
+          "id": "l26-parallelism-q1",
+          "prompt": "Chạy truy vấn của hai khách cùng lúc là song song loại nào?",
+          "options": [
+            "Nội toán tử vì có thể cùng loại toán tử",
+            "Liên toán tử trong một truy vấn",
+            "Liên truy vấn",
+            "Phân hoạch cho một scan"
+          ],
+          "explanation": "Inter-query chạy các truy vấn khác nhau cùng lúc; intra-operator chia việc của một toán tử."
+        },
+        {
+          "id": "l26-parallelism-q2",
+          "prompt": "Nhiều CPU quét các phần bảng cho một truy vấn là loại nào?",
+          "options": [
+            "Liên truy vấn vì mỗi CPU là truy vấn riêng",
+            "Chỉ liên toán tử vì nhiều CPU",
+            "Chỉ pipeline dù chia dữ liệu một toán tử",
+            "Nội truy vấn, nội toán tử"
+          ],
+          "explanation": "Một scan chia cho nhiều CPU: song song trong một toán tử của cùng truy vấn."
+        },
+        {
+          "id": "l26-parallelism-q3",
+          "prompt": "Một mục tiêu trực tiếp của song song nội truy vấn là gì?",
+          "options": [
+            "Giảm độ trễ truy vấn dài",
+            "Chỉ tăng người dùng đồng thời, không thể giảm thời gian một truy vấn",
+            "Bảo đảm thông lượng luôn tỷ lệ đúng số CPU",
+            "Loại mọi chờ giữa toán tử"
+          ],
+          "explanation": "Chia việc có thể rút thời gian chạy; vẫn cần điều khiển đồng thời."
+        },
+        {
+          "id": "l26-parallelism-q4",
+          "prompt": "Pipeline f→g→h cho toán tử xử lý các bộ khác nhau đồng thời là gì?",
+          "options": [
+            "Liên truy vấn vì mỗi bộ là một truy vấn",
+            "Liên toán tử",
+            "Chỉ nội toán tử vì xử lý các bộ khác nhau",
+            "Chỉ bushy vì mọi pipeline gồm nhánh độc lập"
+          ],
+          "explanation": "Các giai đoạn toán tử chồng thời gian trong cùng truy vấn, không phải truy vấn độc lập."
+        },
+        {
+          "id": "l26-parallelism-q5",
+          "prompt": "Hai nhánh nối độc lập của kế hoạch cây chạy đồng thời minh họa gì?",
+          "options": [
+            "Nội toán tử vì cùng tên join",
+            "Liên truy vấn vì nhánh luôn là SQL riêng",
+            "Song song cây bushy",
+            "Pipeline tuyến tính vì đầu ra trái bắt buộc là đầu vào phải"
+          ],
+          "explanation": "Bushy tận dụng nhánh độc lập, không bắt mọi toán tử chạy lần lượt."
+        },
+        {
+          "id": "l26-parallelism-q6",
+          "prompt": "Song song phân hoạch khác pipeline trong hình thế nào?",
+          "options": [
+            "Nhiều truy vấn độc lập chung một phân hoạch",
+            "Các toán tử khác nhau chỉ chạy tuần tự toàn dữ liệu",
+            "Mỗi CPU lặp cùng thao tác trên toàn đầu vào",
+            "Nhiều instance cùng toán tử xử lý phần dữ liệu khác nhau"
+          ],
+          "explanation": "Partition parallelism chia đầu vào một toán tử; pipeline chồng thời gian các toán tử khác nhau."
+        },
+        {
+          "id": "l26-parallelism-q7",
+          "prompt": "Cần chú ý cơ chế nào khi thêm truy vấn đồng thời?",
+          "options": [
+            "Điều khiển đồng thời có xét song song",
+            "Chỉ điều khiển thứ tự đầu ra, không kiểm soát dữ liệu chung",
+            "Bỏ isolation vì truy vấn khác CPU",
+            "Chỉ metadata cần khóa, mọi dữ liệu luôn độc lập"
+          ],
+          "explanation": "Song song liên truy vấn cần điều khiển đồng thời thích hợp; không được bỏ isolation."
+        },
+        {
+          "id": "l26-parallelism-q8",
+          "prompt": "Cây nối hai nhánh vật hóa trước nối gốc: điều gì ràng buộc gốc?",
+          "options": [
+            "Nhiều CPU loại mọi phụ thuộc đầu vào",
+            "Phải đợi đầu vào vật hóa theo kế hoạch",
+            "Cho kết quả đầy đủ trước khi nhánh nào có dữ liệu",
+            "Phải tuần tự hóa cả hai nhánh độc lập"
+          ],
+          "explanation": "Vật hóa tạo phụ thuộc đầu vào cho nối gốc; hai nhánh dưới vẫn có thể chạy cùng lúc."
+        },
+        {
+          "id": "l26-parallelism-q9",
+          "prompt": "Toán tử cần toàn đầu vào trước khi tạo đầu ra. Hành vi blocking ảnh hưởng trực tiếp gì?",
+          "options": [
+            "Loại hoàn toàn khả năng quét đầu vào song song",
+            "Tăng replica bắt buộc cho mọi bảng",
+            "Khả năng chồng thực thi với toán tử phía sau trong pipeline",
+            "Buộc mọi toán tử phía trước cùng CPU"
+          ],
+          "explanation": "Pipeline cần chuyển kết quả khi đang tạo; vật hóa có thể ngắt sự chồng thời gian đó."
+        },
+        {
+          "id": "l26-parallelism-q10",
+          "prompt": "Truy vấn vừa scan phân hoạch vừa pipeline sang filter. Mệnh đề nào đúng?",
+          "options": [
+            "Hai loại này loại trừ nhau",
+            "Nhiều CPU thì chỉ có thể là inter-query",
+            "Pipeline bắt mỗi toán tử xử lý toàn đầu vào tuần tự",
+            "Có thể kết hợp nội toán tử và liên toán tử"
+          ],
+          "explanation": "Hai cấp cùng tồn tại: chia việc bên trong toán tử và chồng thực thi giữa toán tử."
+        }
+      ]
+    },
+    {
+      "id": "l26-partitioning",
+      "title": "Phân hoạch ngang",
+      "questions": [
+        {
+          "id": "l26-partitioning-q1",
+          "prompt": "Phân hoạch ngang chia bảng thế nào?",
+          "options": [
+            "Chia thuộc tính mỗi bộ thành nhóm cột",
+            "Sao toàn bảng tới mọi nút",
+            "Giữ mọi hàng một nút, chỉ chia chỉ mục",
+            "Chia các bộ thành tập con rời nhau"
+          ],
+          "explanation": "Phân hoạch ngang chia hàng và giữ các cột; chia cột là phân hoạch dọc."
+        },
+        {
+          "id": "l26-partitioning-q2",
+          "prompt": "Sau chạy mảnh truy vấn trên các phân hoạch, DBMS phải làm gì?",
+          "options": [
+            "Ghép kết quả thành một đáp án",
+            "Chỉ trả phân hoạch nhiều hàng nhất",
+            "Trả replica thành hàng logic thêm",
+            "Luôn DISTINCT dù truy vấn dùng đa tập"
+          ],
+          "explanation": "Phân hoạch vật lý vẫn phải cho kết quả đầy đủ của truy vấn logic."
+        },
+        {
+          "id": "l26-partitioning-q3",
+          "prompt": "Tên khác của phân hoạch cơ sở dữ liệu là gì?",
+          "options": [
+            "Sao chép",
+            "Sharding",
+            "Chiếu dọc",
+            "Vật hóa"
+          ],
+          "explanation": "Sharding là chia dữ liệu, khác sao lưu hoặc quản lý khóa."
+        },
+        {
+          "id": "l26-partitioning-q4",
+          "prompt": "Ngoài kích thước dữ liệu, chọn cột phân hoạch cần xét gì?",
+          "options": [
+            "Chỉ số hàng vì mọi bộ cùng chi phí",
+            "Chỉ dung lượng đĩa, bỏ tần suất truy cập",
+            "Tải và cách dùng dữ liệu",
+            "Chỉ thứ tự khóa vì mọi phân bố tải tương đương"
+          ],
+          "explanation": "Cân bằng số hàng chưa cân bằng tải; slide nêu kích thước, tải và cách sử dụng."
+        },
+        {
+          "id": "l26-partitioning-q5",
+          "prompt": "Lựa chọn nào không thuộc ba phương pháp phân hoạch ngang?",
+          "options": [
+            "Round-robin chia lần lượt toàn bộ từng bộ",
+            "Băm ánh xạ toàn bộ bộ theo khóa",
+            "Khoảng chia bộ theo khoảng khóa",
+            "Tách cột thông tin cá nhân khỏi cột thanh toán"
+          ],
+          "explanation": "Chia cột là phân hoạch dọc; ba phương pháp trong slide chia nguyên bộ."
+        }
+      ]
+    },
+    {
+      "id": "l26-round-robin",
+      "title": "Phân hoạch luân phiên",
+      "questions": [
+        {
+          "id": "l26-round-robin-q1",
+          "prompt": "4 phân hoạch P1–P4, bắt đầu P1. Bộ thứ 6 tới đâu?",
+          "options": [
+            "P2",
+            "P1 vì chu kỳ bắt đầu lại sau bộ 5",
+            "P3 vì chỉ số 6 mod 3",
+            "P4 vì bốn phân hoạch nhận từng cặp bộ liên tiếp"
+          ],
+          "explanation": "Chuỗi P1,P2,P3,P4,P1,P2; vị trí không phụ thuộc giá trị khóa."
+        },
+        {
+          "id": "l26-round-robin-q2",
+          "prompt": "Điểm mạnh trực tiếp của round-robin là gì?",
+          "options": [
+            "Đưa mọi khóa nối bằng nhau cùng nút",
+            "Phân phối số bộ tương đối đều",
+            "Định tuyến truy vấn khoảng chỉ bằng khóa",
+            "Bảo đảm CPU cân bằng dù bộ khác chi phí"
+          ],
+          "explanation": "Luân phiên cân bằng số hàng nhưng không bảo đảm vị trí theo khóa."
+        },
+        {
+          "id": "l26-round-robin-q3",
+          "prompt": "Round-robin bảo đảm hai bộ cùng khóa chung phân hoạch không?",
+          "options": [
+            "Có vì dùng băm khóa",
+            "Có vì luôn nhóm trùng trước phân bố",
+            "Không; vị trí phụ thuộc lượt phân bố",
+            "Có nếu cùng bảng"
+          ],
+          "explanation": "Không dùng giá trị khóa nên khóa bằng nhau có thể ở nhiều nút."
+        },
+        {
+          "id": "l26-round-robin-q4",
+          "prompt": "10 bộ, 3 phân hoạch, bắt đầu P1: số bộ tương ứng là gì?",
+          "options": [
+            "3, 4, 3",
+            "5, 3, 2",
+            "4, 4, 2",
+            "4, 3, 3"
+          ],
+          "explanation": "Lượt 1,4,7,10 tới P1; 2,5,8 tới P2; 3,6,9 tới P3. Bắt đầu P1 nên P1 nhận bộ dư."
+        },
+        {
+          "id": "l26-round-robin-q5",
+          "prompt": "Vì sao số bộ đều không bảo đảm chi phí xử lý đều?",
+          "options": [
+            "Bộ khác kích thước hoặc chi phí xử lý",
+            "Round-robin luôn dồn mọi khóa nóng một nút",
+            "Số bộ đều buộc số byte đều",
+            "Mọi phân hoạch bắt buộc cùng tần suất truy cập"
+          ],
+          "explanation": "Round-robin cân bằng số lượng, không tự cân bằng mọi loại chi phí hay độ phổ biến."
+        }
+      ]
+    },
+    {
+      "id": "l26-hash-partitioning",
+      "title": "Phân hoạch băm",
+      "questions": [
+        {
+          "id": "l26-hash-partitioning-q1",
+          "prompt": "Truy vấn nào hợp nhất với băm theo customer_id?",
+          "options": [
+            "WHERE customer_id BETWEEN 10 AND 90, bảo đảm một shard",
+            "WHERE customer_id = 42",
+            "ORDER BY customer_id nên ghép phân hoạch không cần merge",
+            "WHERE email = một giá trị, email không là khóa phân hoạch"
+          ],
+          "explanation": "Tra cứu bằng khóa xác định phân hoạch; khoảng giá trị thường không thành khoảng bucket băm."
+        },
+        {
+          "id": "l26-hash-partitioning-q2",
+          "prompt": "Cùng hàm phân hoạch, bộ có cùng giá trị khóa tới đâu?",
+          "options": [
+            "Khác phân hoạch để tránh khóa trùng",
+            "Mọi phân hoạch vì băm luôn tạo replica",
+            "Cùng phân hoạch",
+            "Phân hoạch rảnh nhất bất kể giá trị băm"
+          ],
+          "explanation": "Hàm xác định đưa khóa bằng nhau tới cùng đích; không tự cân bằng tải hiện tại."
+        },
+        {
+          "id": "l26-hash-partitioning-q3",
+          "prompt": "Chỉ số phân hoạch=h(k) mod 4, h(k)=14. Chỉ số bằng gì?",
+          "options": [
+            "0",
+            "1",
+            "3",
+            "2"
+          ],
+          "explanation": "14 chia 4 dư 2. Đây là chỉ số, không phải tên P đánh số từ 1."
+        },
+        {
+          "id": "l26-hash-partitioning-q4",
+          "prompt": "Vì sao băm hỗ trợ GROUP BY chính khóa phân hoạch?",
+          "options": [
+            "Hàng cùng nhóm có thể cùng nút",
+            "Hàm băm đã tính SUM từng nhóm",
+            "Mỗi nhóm luôn một bộ",
+            "Giá trị khác nhau không thể chung bucket"
+          ],
+          "explanation": "Đặt cùng dữ liệu một nhóm cho xử lý cục bộ; băm không thay phép tổng hợp."
+        },
+        {
+          "id": "l26-hash-partitioning-q5",
+          "prompt": "Một khóa xuất hiện ở 70% hàng có thể gây gì?",
+          "options": [
+            "Băm bảo đảm chia khóa nóng đều mọi nút",
+            "Lệch tải gây quá tải một phân hoạch",
+            "Mỗi hàng khóa nóng tự thành nhóm logic riêng",
+            "Mọi truy vấn khóa đó chỉ đọc một hàng"
+          ],
+          "explanation": "Băm đưa khóa bằng nhau cùng đích; khóa nóng vẫn gây tải không đều."
+        }
+      ]
+    },
+    {
+      "id": "l26-range-partitioning",
+      "title": "Phân hoạch khoảng",
+      "questions": [
+        {
+          "id": "l26-range-partitioning-q1",
+          "prompt": "P1 [a–c], P2 [d–e], P3 [f–m], P4 [n–z]. h thuộc đâu?",
+          "options": [
+            "P1",
+            "P2",
+            "P3",
+            "P4"
+          ],
+          "explanation": "h nằm f–m; định tuyến theo biên khoảng, không phải lượt chèn."
+        },
+        {
+          "id": "l26-range-partitioning-q2",
+          "prompt": "Loại truy vấn nào là điểm mạnh thêm của khoảng so với băm?",
+          "options": [
+            "Mọi tra cứu cột khác khóa chỉ một nút",
+            "Mọi GROUP BY cột khác hoàn toàn cục bộ",
+            "Mọi khoảng tự cùng số hàng không cần thống kê",
+            "Truy vấn khoảng trên khóa phân hoạch"
+          ],
+          "explanation": "Khóa liên tiếp thuộc các phân hoạch xác định; băm không giữ thứ tự này."
+        },
+        {
+          "id": "l26-range-partitioning-q3",
+          "prompt": "Biên khoảng cần thế nào để rời nhau và phủ dữ liệu lưu?",
+          "options": [
+            "Không chồng lấn, phủ miền cần lưu",
+            "Mọi khoảng phủ toàn miền",
+            "Chồng tùy ý không cần quy tắc chọn đích",
+            "Chỉ không chồng đủ, không cần phủ mọi giá trị hợp lệ"
+          ],
+          "explanation": "Quy tắc biên phải gán mỗi bộ đúng một phân hoạch; chồng tạo mơ hồ, thiếu phủ bỏ sót giá trị."
+        },
+        {
+          "id": "l26-range-partitioning-q4",
+          "prompt": "Đa số dữ liệu trong một khoảng có thể gây gì?",
+          "options": [
+            "Khoảng tự cân bằng số hàng mọi phân bố",
+            "Phân hoạch đó lớn hơn và xử lý chậm hơn",
+            "Khóa trùng tự chia đều mọi khoảng",
+            "Chỉ băm mới có lệch tải"
+          ],
+          "explanation": "Khoảng không tự cùng số hàng; phân bố lệch tạo nút thắt."
+        },
+        {
+          "id": "l26-range-partitioning-q5",
+          "prompt": "Trong hình, khóa từ g tới k cần đọc phân hoạch nào?",
+          "options": [
+            "P1 [a–c], P2 [d–e]",
+            "Cả bốn dù biết biên",
+            "Chỉ P3 [f–m]",
+            "Chỉ P4 [n–z]"
+          ],
+          "explanation": "Cả g–k nằm f–m nên bỏ các phân hoạch khác."
+        }
+      ]
+    },
+    {
+      "id": "l26-replication",
+      "title": "Sao chép",
+      "questions": [
+        {
+          "id": "l26-replication-q1",
+          "prompt": "Mục tiêu sao chép chính bài giảng nêu là gì?",
+          "options": [
+            "Bảo đảm mỗi ghi rẻ hơn một bản",
+            "Loại truyền cập nhật giữa nút",
+            "Tăng dung lượng logic không tăng lưu trữ vật lý",
+            "Tăng khả dụng"
+          ],
+          "explanation": "Nhiều bản giữ dữ liệu phục vụ được khi một nơi không thể phục vụ."
+        },
+        {
+          "id": "l26-replication-q2",
+          "prompt": "Sao chép phân hoạch nghĩa là gì?",
+          "options": [
+            "Giữ bản toàn phân hoạch ở nhiều nơi",
+            "Chia phân hoạch thành các tập bộ rời",
+            "Lưu toàn bảng trong mọi phân hoạch bất kể số phân hoạch",
+            "Mỗi cột phân hoạch ở một nơi khác"
+          ],
+          "explanation": "Sao phân hoạch khác sao bảng, vốn sao toàn bảng."
+        },
+        {
+          "id": "l26-replication-q3",
+          "prompt": "Theo slide, bảng nào thường hợp sao chép toàn bảng nhất?",
+          "options": [
+            "Rất lớn và cập nhật liên tục vì đồng bộ luôn miễn phí",
+            "Nhỏ, chỉ đọc",
+            "Chiếm đa số lưu trữ nhưng ít đọc",
+            "Mỗi ghi đồng bộ hàng nghìn bản với độ trễ tối thiểu"
+          ],
+          "explanation": "Bảng nhỏ ít đổi giảm chi phí lưu và đồng bộ; ghi thường xuyên làm sao chép đắt hơn."
+        },
+        {
+          "id": "l26-replication-q4",
+          "prompt": "Khi cập nhật bảng nhiều replica, DBMS cần gì?",
+          "options": [
+            "Chỉ cập nhật một rồi giả định bản khác luôn đúng",
+            "Bỏ mọi cập nhật sau bản đầu nhận",
+            "Lan truyền thay đổi tới các bản",
+            "Mỗi bản tự chọn giá trị không quy tắc đồng bộ"
+          ],
+          "explanation": "Slide yêu cầu lan truyền cho cả hai kiểu sao chép; không được bỏ các bản khác."
+        },
+        {
+          "id": "l26-replication-q5",
+          "prompt": "Khác biệt nền tảng phân hoạch và sao chép là gì?",
+          "options": [
+            "Cả hai tạo bản đầy đủ ở mỗi nút",
+            "Sao chép chia cột bộ giữa nút",
+            "Phân hoạch luôn tạo nhiều bản mỗi bộ",
+            "Phân hoạch chia dữ liệu; sao chép tạo thêm bản"
+          ],
+          "explanation": "Có thể dùng cả hai nhưng chia và sao phục vụ mục đích khác."
+        }
+      ]
+    },
+    {
+      "id": "l26-transparency",
+      "title": "Tính trong suốt dữ liệu",
+      "questions": [
+        {
+          "id": "l26-transparency-q1",
+          "prompt": "Trong suốt dữ liệu giúp người dùng không cần biết gì?",
+          "options": [
+            "Vị trí dữ liệu và cách phân hoạch/sao chép",
+            "Tên và ý nghĩa bảng logic",
+            "Điều kiện JOIN nghiệp vụ",
+            "Cột cần trả"
+          ],
+          "explanation": "Trong suốt ẩn tổ chức vật lý, không ẩn ý nghĩa logic truy vấn."
+        },
+        {
+          "id": "l26-transparency-q2",
+          "prompt": "Chuyển phân hoạch tới nút khác nên ảnh hưởng SQL ứng dụng thế nào?",
+          "options": [
+            "Sửa mọi SELECT thêm địa chỉ mới",
+            "SQL logic vẫn chạy như trước",
+            "Kết quả logic bắt buộc đổi theo vị trí",
+            "Bỏ mọi nối giữa phân hoạch"
+          ],
+          "explanation": "Trong suốt giữ giao diện và ngữ nghĩa khi vị trí đổi."
+        },
+        {
+          "id": "l26-transparency-q3",
+          "prompt": "Hàng có ba replica, SELECT logic tự trả ba lần không?",
+          "options": [
+            "Có, mỗi bản luôn là bộ logic thêm",
+            "Có trừ khi ứng dụng chọn replica bằng IP",
+            "Không, replica không tự nhân kết quả logic",
+            "Chỉ nếu DBMS không tự DISTINCT mọi truy vấn"
+          ],
+          "explanation": "Sao chép là chi tiết vật lý; kết quả phải như hỏi một cơ sở dữ liệu logic."
+        },
+        {
+          "id": "l26-transparency-q4",
+          "prompt": "Ai quyết định các nút truy cập khi có trong suốt dữ liệu?",
+          "options": [
+            "Ứng dụng tự gửi mảnh tới từng máy",
+            "Người dùng chọn bản cho mỗi hàng",
+            "Mọi SQL khai báo toàn cách phân hoạch",
+            "DBMS"
+          ],
+          "explanation": "DBMS ẩn quyết định định tuyến và ghép kết quả khỏi người viết SQL."
+        },
+        {
+          "id": "l26-transparency-q5",
+          "prompt": "Mệnh đề nào không suy ra từ trong suốt dữ liệu?",
+          "options": [
+            "Mọi truy vấn cùng thời gian dưới mọi bố trí",
+            "SQL giữ cùng ý nghĩa logic",
+            "Không cần biết vị trí replica",
+            "Không cần biết cách phân hoạch bảng"
+          ],
+          "explanation": "Trong suốt ngữ nghĩa không bảo đảm cùng hiệu năng; vị trí vẫn ảnh hưởng chi phí."
+        }
+      ]
+    },
+    {
+      "id": "l26-scans",
+      "title": "Quét song song",
+      "questions": [
+        {
+          "id": "l26-scans-q1",
+          "prompt": "Đầu ra các scan phân hoạch song song cơ bản được ghép thế nào?",
+          "options": [
+            "Luôn loại trùng như DISTINCT",
+            "Nối tiếp các luồng kết quả",
+            "Chỉ giữ phân hoạch nhanh nhất",
+            "Tích Descartes các luồng"
+          ],
+          "explanation": "Scan ghép đầu ra từng phần, không tự thêm ngữ nghĩa DISTINCT hay JOIN."
+        },
+        {
+          "id": "l26-scans-q2",
+          "prompt": "Scan tuần tự 200,000 giây theo ví dụ slide. Lý tưởng 100 máy mất bao lâu?",
+          "options": [
+            "200 giây",
+            "20,000 giây",
+            "2,000 giây",
+            "200,000 giây"
+          ],
+          "explanation": "200,000/100=2,000. Đây là tính lý tưởng, không khẳng định không overhead."
+        },
+        {
+          "id": "l26-scans-q3",
+          "prompt": "Khi nào filter bỏ toàn một site được?",
+          "options": [
+            "Ít hàng hơn site khác",
+            "Phản hồi chậm hơn lần scan trước",
+            "Site khác đã trả ít nhất một hàng khớp",
+            "Biết site không chứa bộ nào thỏa điều kiện"
+          ],
+          "explanation": "Pruning cần xác lập không có hàng khớp, không dựa tên hay tốc độ site."
+        },
+        {
+          "id": "l26-scans-q4",
+          "prompt": "Khoảng ngày giúp truy vấn chỉ tháng Một thế nào?",
+          "options": [
+            "Bỏ phân hoạch không giao tháng Một",
+            "Chỉ đọc nơi nhiều hàng tháng Một nhất",
+            "Bỏ tháng Một vì điều kiện đã nhận diện tháng",
+            "Đọc một hàng mỗi nơi để suy phần còn lại"
+          ],
+          "explanation": "Metadata khoảng cho bỏ nơi biết không có dữ liệu khớp."
+        },
+        {
+          "id": "l26-scans-q5",
+          "prompt": "Điều gì khiến tăng tốc thực tế thấp hơn tuyến tính trong ví dụ?",
+          "options": [
+            "Mọi phân hoạch luôn scan cùng thời gian",
+            "Overhead phối hợp hoặc tải không đều",
+            "Thêm máy tăng dữ liệu logic theo tỷ lệ",
+            "Ghép kết quả không thể tốn liên lạc/phối hợp"
+          ],
+          "explanation": "Lý tưởng bỏ overhead và nút thắt; chúng giảm hiệu năng nhưng không làm scan song song sai nghĩa."
+        }
+      ]
+    },
+    {
+      "id": "l26-lookup",
+      "title": "Tra cứu theo khóa",
+      "questions": [
+        {
+          "id": "l26-lookup-q1",
+          "prompt": "Dữ liệu phân hoạch bằng hàm của khóa tra cứu. Gửi yêu cầu đâu?",
+          "options": [
+            "Mọi nút vì tra cứu bằng luôn broadcast",
+            "Chỉ coordinator dù dữ liệu nơi khác",
+            "Nút phù hợp xác định từ khóa",
+            "Nút ít dữ liệu nhất thay nút khóa ánh xạ"
+          ],
+          "explanation": "Biết ánh xạ khóa–phân hoạch cho định tuyến trực tiếp, tránh broadcast thừa."
+        },
+        {
+          "id": "l26-lookup-q2",
+          "prompt": "Không có cơ chế phân hoạch/định tuyến cho khóa tra cứu. Slide dùng cách cơ bản nào?",
+          "options": [
+            "Chọn ngẫu nhiên, kết quả rỗng chứng minh hàng không tồn tại",
+            "Chỉ hỏi nút khóa nhỏ nhất",
+            "Chỉ hỏi replica phân hoạch tùy ý",
+            "Broadcast yêu cầu tới các nút"
+          ],
+          "explanation": "Không biết vị trí, chỉ kiểm một nút có thể bỏ sót; slide dùng broadcast."
+        },
+        {
+          "id": "l26-lookup-q3",
+          "prompt": "Bảng phân hoạch customer_id, tra email không chỉ mục phụ. Kết luận gì?",
+          "options": [
+            "Không suy một phân hoạch chỉ từ email",
+            "email luôn cùng phân hoạch customer_id của nó",
+            "Mọi shard luôn có toàn email",
+            "Tra cứu bằng tự có chỉ mục phụ toàn cục"
+          ],
+          "explanation": "Khóa tra khác khóa phân hoạch nên thiếu định tuyến; có thể phải hỏi mọi nút."
+        },
+        {
+          "id": "l26-lookup-q4",
+          "prompt": "Khi nào cả khoảng và băm giúp tra khóa?",
+          "options": [
+            "Chỉ nếu mọi nút toàn bảng",
+            "Khi phân hoạch dùng khóa đang tra",
+            "Chỉ nếu mọi dữ liệu sắp xếp một máy",
+            "Dù khóa tra hoàn toàn không liên quan khóa phân hoạch"
+          ],
+          "explanation": "Cả hai ánh xạ khóa cụ thể tới phân hoạch được, không cần sao toàn bảng."
+        },
+        {
+          "id": "l26-lookup-q5",
+          "prompt": "8 nút, biết phân hoạch khóa. Lợi thế trực tiếp so broadcast là gì?",
+          "options": [
+            "Giảm kích thước vật lý hàng còn 1/8",
+            "Bảo đảm không truy cập RAM/đĩa",
+            "Giảm số nút nhận yêu cầu tra",
+            "Loại mọi chi phí phối hợp giao dịch"
+          ],
+          "explanation": "Định tuyến giảm số đích liên lạc, không tự đổi kích thước hay độ bền phần cứng."
+        }
+      ]
+    },
+    {
+      "id": "l26-parallel-hashing",
+      "title": "Băm song song",
+      "questions": [
+        {
+          "id": "l26-parallel-hashing-q1",
+          "prompt": "h_n có vai trò gì trong băm song song?",
+          "options": [
+            "Thiết lập thứ tự tăng toàn cục",
+            "Thay mọi bước sau bằng nối băm cục bộ",
+            "Chỉ chọn bucket RAM coordinator",
+            "Phân bố dữ liệu giữa nút"
+          ],
+          "explanation": "h_n chia dữ liệu giữa nút, rồi tới các bước băm cục bộ."
+        },
+        {
+          "id": "l26-parallel-hashing-q2",
+          "prompt": "Sau phân bố bằng h_n, mỗi nút làm gì?",
+          "options": [
+            "Băm ngoài bộ nhớ độc lập",
+            "Luôn gom hết tới coordinator để băm",
+            "Bắt buộc sắp xếp toàn cục trước băm",
+            "Chỉ giữ bộ có băm nhỏ nhất"
+          ],
+          "explanation": "Phân bố liên nút kết hợp thuật toán băm ngoài bộ nhớ tại nút."
+        },
+        {
+          "id": "l26-parallel-hashing-q3",
+          "prompt": "Vì sao slide so băm song song với phân hoạch đệ quy?",
+          "options": [
+            "Không bước nào lưu phân hoạch trung gian",
+            "Chia liên nút rồi chia/xử lý thêm trong từng nút",
+            "Mọi cấp phải một bucket",
+            "Toàn dữ liệu phải vừa RAM một nút"
+          ],
+          "explanation": "Phân chia theo cấp giống đệ quy, không yêu cầu toàn dữ liệu vừa RAM."
+        },
+        {
+          "id": "l26-parallel-hashing-q4",
+          "prompt": "Nếu h_n dồn đa số bộ một nút, có thể xảy ra gì?",
+          "options": [
+            "Nút nhẹ tự nhận dữ liệu không cần phân hoạch lại",
+            "Thêm nút tự bảo đảm chia hoàn hảo",
+            "Nút đó quyết định phần lớn thời gian hoàn tất",
+            "Thời gian chỉ phụ thuộc nút nhanh nhất"
+          ],
+          "explanation": "Lệch tải giảm lợi ích chia việc; băm không bảo đảm tải hoàn toàn đều."
+        },
+        {
+          "id": "l26-parallel-hashing-q5",
+          "prompt": "Mệnh đề nào đúng về băm liên nút và cục bộ?",
+          "options": [
+            "h_n thay mọi phân hoạch cục bộ dù vượt RAM",
+            "Băm liên nút phải giữ thứ tự khóa toàn cục",
+            "Băm mọi cấp khiến va chạm bất khả thi",
+            "Chúng chia dữ liệu ở cấp khác nhau"
+          ],
+          "explanation": "Hình phân biệt h_n với h_p,h_r cục bộ; một cấp không thay toàn thuật toán."
+        }
+      ]
+    },
+    {
+      "id": "l26-hash-join",
+      "title": "Nối băm song song",
+      "questions": [
+        {
+          "id": "l26-hash-join-q1",
+          "prompt": "Hai quan hệ cần phân hoạch băm theo thuộc tính nào để equijoin cục bộ?",
+          "options": [
+            "Khóa nối",
+            "Khóa phân hoạch sẵn dù khác khóa nối",
+            "Hai cột chọn độc lập",
+            "Vị trí bộ trong bảng"
+          ],
+          "explanation": "Khóa nối đưa bộ có thể khớp cùng nút; cột khác có thể bỏ sót cặp."
+        },
+        {
+          "id": "l26-hash-join-q2",
+          "prompt": "R,S dùng ánh xạ khóa–nút không tương thích. Rủi ro gì?",
+          "options": [
+            "Khớp chắc cùng nơi vì cùng tên khóa",
+            "Bộ khớp có thể khác nút",
+            "Hash join tìm mọi bộ nút khác không mạng",
+            "Cùng số phân hoạch luôn đủ cùng nơi"
+          ],
+          "explanation": "Cùng vị trí cần ánh xạ tương thích ở hai đầu vào."
+        },
+        {
+          "id": "l26-hash-join-q3",
+          "prompt": "Pha 2 nối băm song song làm gì?",
+          "options": [
+            "Gom cả hai về một nút ngay sau chia",
+            "Bắt buộc sắp xếp toàn cục",
+            "Chạy nối băm cục bộ tại mỗi nút",
+            "Chỉ ghép hai đầu vào không kiểm khóa"
+          ],
+          "explanation": "Sau chia lại, nút dùng thuật toán nối băm thường, như Grace hash join."
+        },
+        {
+          "id": "l26-hash-join-q4",
+          "prompt": "R khóa 7 ở A, S khóa 7 ở B. Pha phân bố cần bảo đảm gì?",
+          "options": [
+            "Giữ vị trí, chỉ nối sẵn cục bộ",
+            "Chỉ gửi khóa, bỏ thuộc tính cần kết quả",
+            "Đổi khóa để hai nút có miền rời",
+            "Đưa cả hai bộ tới cùng nút đích"
+          ],
+          "explanation": "Mục tiêu cho cặp khớp cùng chỗ, không đổi/xóa dữ liệu để tránh mạng."
+        },
+        {
+          "id": "l26-hash-join-q5",
+          "prompt": "Chi phí thêm quan trọng so nối băm một nút là gì?",
+          "options": [
+            "Truyền dữ liệu giữa nút khi chia lại",
+            "Sắp xếp toàn cục bắt buộc dù hash join",
+            "Loại mọi I/O dù vượt RAM",
+            "Bắt buộc toàn bộ hai bảng tại mọi nút"
+          ],
+          "explanation": "Nối băm song song thêm pha phân bố mạng trước nối cục bộ."
+        }
+      ]
+    },
+    {
+      "id": "l26-sorting",
+      "title": "Sắp xếp song song",
+      "questions": [
+        {
+          "id": "l26-sorting-q1",
+          "prompt": "Slide sắp xếp song song chia dữ liệu thế nào?",
+          "options": [
+            "Round-robin rồi ghép tùy ý cho thứ tự toàn cục",
+            "Phân hoạch khoảng",
+            "Sao toàn bộ mỗi máy để lặp sắp xếp",
+            "Băm rồi ghép bucket theo băm là đủ"
+          ],
+          "explanation": "Máy giữ khoảng khác nhau; ghép đầu ra đã sort theo khoảng cho thứ tự toàn cục."
+        },
+        {
+          "id": "l26-sorting-q2",
+          "prompt": "Sau chia khoảng, mỗi máy làm gì?",
+          "options": [
+            "Băm thay sort vì băm giữ thứ tự",
+            "Chỉ sort khóa nhỏ nhất, bỏ phần còn",
+            "Sắp xếp ngoài bộ nhớ dữ liệu của mình",
+            "Luôn gom mọi phân hoạch một máy"
+          ],
+          "explanation": "Bài phân bố việc rồi sort ngoài bộ nhớ độc lập ở từng máy."
+        },
+        {
+          "id": "l26-sorting-q3",
+          "prompt": "A khóa <100, B khóa ≥100, cả hai sort. Tạo tăng dần toàn cục thế nào?",
+          "options": [
+            "Ghép B trước A",
+            "Xen kẽ tùy ý A,B",
+            "Chỉ giữ phân hoạch khóa lớn",
+            "Ghép A trước B"
+          ],
+          "explanation": "Khoảng có thứ tự, không chồng cho ghép theo biên."
+        },
+        {
+          "id": "l26-sorting-q4",
+          "prompt": "Round-robin rồi sort cục bộ, ghép đầu ra nút bảo đảm toàn cục không?",
+          "options": [
+            "Không, miền khóa có thể xen nhau",
+            "Có, sort cục bộ tự đặt biên giữa nút",
+            "Có nếu cùng số bộ",
+            "Có vì round-robin giữ khóa nhỏ nút đầu"
+          ],
+          "explanation": "Sort cục bộ không sắp thứ tự các phân hoạch tùy ý; cần khoảng hoặc merge thêm."
+        },
+        {
+          "id": "l26-sorting-q5",
+          "prompt": "Một khoảng có 90% bộ có rủi ro gì?",
+          "options": [
+            "Thêm khoảng tự bảo đảm sort cùng thời gian",
+            "Sort nút đó thành nút thắt",
+            "Sort cục bộ sai chỉ vì lệch",
+            "Sort ngoài bộ nhớ chỉ chạy nếu phân hoạch cùng cỡ"
+          ],
+          "explanation": "Sort vẫn đúng nhưng lệch giảm song song; cần biên phù hợp cân tải."
+        }
+      ]
+    },
+    {
+      "id": "l26-sort-merge-join",
+      "title": "Nối sort-merge song song",
+      "questions": [
+        {
+          "id": "l26-sort-merge-join-q1",
+          "prompt": "Hai quan hệ sort-merge phải chia khoảng thế nào?",
+          "options": [
+            "Cùng khóa nối, biên độc lập tùy ý",
+            "Cột sort bất kỳ dù không là khóa nối",
+            "Cùng khóa nối, cùng khoảng",
+            "Round-robin cùng số phân hoạch luôn đủ"
+          ],
+          "explanation": "Cùng khóa và biên đưa cặp khớp cùng nút."
+        },
+        {
+          "id": "l26-sort-merge-join-q2",
+          "prompt": "R chia tại 100, S tại 50 rồi nối cục bộ nút tương ứng. Vấn đề gì?",
+          "options": [
+            "Cặp luôn cùng nơi vì cùng id",
+            "Sort cục bộ tự sửa sai vị trí giữa nút",
+            "Biên khác chỉ đổi thứ tự, không bỏ cặp",
+            "Khóa 75 có thể ở hai nút khác"
+          ],
+          "explanation": "Biên khác phá cùng vị trí; chỉ cùng cột chưa đủ."
+        },
+        {
+          "id": "l26-sort-merge-join-q3",
+          "prompt": "Sau chia khoảng tương thích, mỗi máy chạy nối nào?",
+          "options": [
+            "Sort-merge độc lập",
+            "Tích Descartes không điều kiện nối",
+            "Ghép đơn giản hai quan hệ sort",
+            "Broadcast bắt buộc mọi phân hoạch tới mọi nút"
+          ],
+          "explanation": "Mỗi nút sort và merge dữ liệu liên quan bằng thuật toán cục bộ."
+        },
+        {
+          "id": "l26-sort-merge-join-q4",
+          "prompt": "Phân bố của hash join và sort-merge trong slide khác thế nào?",
+          "options": [
+            "Hash dùng khóa nối, sort-merge không cần",
+            "Băm theo khóa so với khoảng theo khóa",
+            "Cả hai round-robin bắt buộc",
+            "Sort-merge luôn tránh mọi truyền mạng"
+          ],
+          "explanation": "Cả hai cần khóa khớp cùng chỗ, lần lượt dùng băm và khoảng."
+        },
+        {
+          "id": "l26-sort-merge-join-q5",
+          "prompt": "Mọi bộ cùng khóa nối, thêm khoảng tự chia đều để nối cục bộ không?",
+          "options": [
+            "Có, mọi khoảng tự cùng số bộ dù khóa bằng",
+            "Có, khoảng rời đều chứa cùng khóa nóng",
+            "Không, vẫn xử lý theo quy tắc cho cặp khớp gặp nhau",
+            "Có, sort cục bộ tự chuyển tới nút rảnh"
+          ],
+          "explanation": "Khoảng không tự giải khóa nóng; chia cặp khớp giữa nút cần chiến lược bổ sung."
+        }
+      ]
+    },
+    {
+      "id": "l26-join-observation",
+      "title": "Nguyên tắc nối phân tán",
+      "questions": [
+        {
+          "id": "l26-join-observation-q1",
+          "prompt": "Nguyên tắc trung tâm của nối phân tán đúng là gì?",
+          "options": [
+            "Giữ vị trí dù cặp khớp khác nút",
+            "Chỉ cần cùng số phân hoạch",
+            "Chỉ cần mọi nút biết tên khóa",
+            "Đưa bộ khớp tới cùng nơi xử lý"
+          ],
+          "explanation": "Mọi cặp khớp phải gặp; cách phân hoạch quyết định lượng liên lạc."
+        },
+        {
+          "id": "l26-join-observation-q2",
+          "prompt": "Vì sao gom hai bảng một nút thường là cách ngây thơ?",
+          "options": [
+            "Tốn truyền mạng và mất song song",
+            "Một nút không thể nối đúng logic",
+            "Mọi nối phân tán phải broadcast toàn bảng",
+            "Tập trung luôn loại mọi I/O"
+          ],
+          "explanation": "Nối cục bộ vẫn có thể đúng, nhưng tập trung mọi đầu vào mất lợi ích phân tán."
+        },
+        {
+          "id": "l26-join-observation-q3",
+          "prompt": "Điều gì trực tiếp ảnh hưởng hiệu quả nối phân tán?",
+          "options": [
+            "Chỉ cỡ bảng, vị trí không ảnh hưởng",
+            "Cách phân hoạch hiện có của đầu vào",
+            "Chỉ số CPU, bỏ mạng",
+            "Chỉ số kết quả, bỏ di chuyển đầu vào"
+          ],
+          "explanation": "Phân hoạch quyết định cặp đã cùng nút hay cần chuyển."
+        },
+        {
+          "id": "l26-join-observation-q4",
+          "prompt": "Khi bộ khớp cùng nút, cần họ thuật toán nối hoàn toàn mới không?",
+          "options": [
+            "Có, không dùng hash join cục bộ sau chia lại",
+            "Có, chỉ nested-loop cục bộ",
+            "Không, dùng thuật toán cục bộ đã học",
+            "Không vì cùng nơi thay luôn kiểm điều kiện nối"
+          ],
+          "explanation": "Bài tái dùng thuật toán nối thường sau giải quyết vị trí; vẫn kiểm điều kiện."
+        },
+        {
+          "id": "l26-join-observation-q5",
+          "prompt": "Hai kế hoạch cùng kết quả đúng vẫn khác lớn chi phí nào?",
+          "options": [
+            "Nghĩa đẳng thức khóa tự đổi giữa nút",
+            "Số hàng đúng phải đổi theo di chuyển",
+            "Replica logic trong kết quả tăng theo máy",
+            "Lượng dữ liệu truyền giữa nút"
+          ],
+          "explanation": "Vị trí và chiến lược chuyển đầu vào có chi phí mạng rất khác."
+        }
+      ]
+    },
+    {
+      "id": "l26-scenario1",
+      "title": "Tình huống #1",
+      "questions": [
+        {
+          "id": "l26-scenario1-q1",
+          "prompt": "Tình huống #1 giả định gì về một bảng?",
+          "options": [
+            "Có bản đầy đủ mọi nút",
+            "Chỉ ở coordinator, chưa phân bố",
+            "Chia theo khóa khác",
+            "Mỗi nút chỉ phần rời"
+          ],
+          "explanation": "S đã sao toàn bảng, nên mỗi nút có toàn S nối phần R cục bộ."
+        },
+        {
+          "id": "l26-scenario1-q2",
+          "prompt": "Mỗi nút #1 nối gì?",
+          "options": [
+            "Toàn R,S mỗi nút rồi ghép mọi kết quả",
+            "Phần R cục bộ với bản S đầy đủ",
+            "R cục bộ với phần S tùy ý bất kể khóa",
+            "Chỉ bộ R đã khớp ở nút khác"
+          ],
+          "explanation": "R chia giữa nút, mỗi nơi có toàn S; mỗi phần R đóng góp kết quả tương ứng."
+        },
+        {
+          "id": "l26-scenario1-q3",
+          "prompt": "Theo hình, sau nối cục bộ kết quả tới đâu?",
+          "options": [
+            "Chỉ giữ một nút vì S sao chép",
+            "Broadcast để lặp nối",
+            "Coordinator để ghép",
+            "Bắt buộc DISTINCT xóa mọi hàng bằng giá trị"
+          ],
+          "explanation": "Coordinator ghép kết quả, không đổi bảng đầu vào hay tự áp DISTINCT."
+        },
+        {
+          "id": "l26-scenario1-q4",
+          "prompt": "Vì sao không broadcast S lại nếu đã có replica hợp lệ?",
+          "options": [
+            "Hai bảng cùng số hàng nên không cần",
+            "Nối chỉ đọc R, không cần S",
+            "Coordinator suy toàn S từ khóa R",
+            "Mỗi nút đã có toàn S"
+          ],
+          "explanation": "Lợi ích đến từ sao chép sẵn, không bỏ một đầu vào."
+        },
+        {
+          "id": "l26-scenario1-q5",
+          "prompt": "R phân hoạch rời, S sao chép. Tránh tính trùng do replica thế nào?",
+          "options": [
+            "Mỗi nút chỉ nối phần R sở hữu với S",
+            "Mọi nút nối toàn R,S rồi ghép",
+            "Tự xóa hàng cùng giá trị dù không DISTINCT",
+            "Chỉ nối một nút nhưng R vẫn phân tán"
+          ],
+          "explanation": "Chia R cho mỗi cặp logic xử lý đúng nơi; DISTINCT tùy ý có thể sai đa tập."
+        }
+      ]
+    },
+    {
+      "id": "l26-scenario2",
+      "title": "Tình huống #2",
+      "questions": [
+        {
+          "id": "l26-scenario2-q1",
+          "prompt": "Điều gì cho nối cục bộ #2?",
+          "options": [
+            "Cùng số phân hoạch nhưng ánh xạ tùy ý",
+            "R,S đồng phân hoạch theo khóa nối",
+            "R theo name,S theo val",
+            "Mỗi nút chỉ biết metadata bảng kia"
+          ],
+          "explanation": "Hình dùng cùng khoảng id cho cả hai ở mỗi nút."
+        },
+        {
+          "id": "l26-scenario2-q2",
+          "prompt": "P1 giữ id 1–100 của R,S. Cặp khóa 70 xử lý đâu?",
+          "options": [
+            "P2 vì khóa phải chuyển trước nối",
+            "Cả P1,P2 phải tạo cùng cặp",
+            "P1",
+            "Coordinator phải nhận toàn hai bảng"
+          ],
+          "explanation": "Khóa 70 của cả hai tại P1 do đồng phân hoạch."
+        },
+        {
+          "id": "l26-scenario2-q3",
+          "prompt": "Cấu hình này phải truyền toàn bảng trước nối không?",
+          "options": [
+            "Có, mọi nối phải gom một máy",
+            "Có, luôn broadcast cả R,S",
+            "Không cần ghép kết quả nút sau nối",
+            "Không, cặp khớp đã cùng nơi"
+          ],
+          "explanation": "Vị trí tương thích tránh chuyển đầu vào; kết quả vẫn có thể cần gửi nơi khác."
+        },
+        {
+          "id": "l26-scenario2-q4",
+          "prompt": "Nói hai bảng đều phân hoạch id đã đủ nối cục bộ chưa?",
+          "options": [
+            "Chưa, ánh xạ id tới nút phải tương thích",
+            "Đủ dù cùng id tới khác nút",
+            "Đủ nếu số phân hoạch bằng nhưng biên khác",
+            "Chưa vì mọi nối cục bộ cần sao toàn bảng"
+          ],
+          "explanation": "Cùng khóa nhưng băm/biên khác có thể đặt cặp khớp khác nút."
+        },
+        {
+          "id": "l26-scenario2-q5",
+          "prompt": "Bước coalescing trong hình làm gì?",
+          "options": [
+            "Chia lại mọi đầu vào dù đã tương thích",
+            "Gom kết quả nối các nút",
+            "DISTINCT mọi kết quả bất kể SQL",
+            "Đổi điều kiện nối theo phân hoạch"
+          ],
+          "explanation": "Kết quả từng phân hoạch được ghép thành kết quả truy vấn toàn cục."
+        }
+      ]
+    },
+    {
+      "id": "l26-scenario3",
+      "title": "Tình huống #3",
+      "questions": [
+        {
+          "id": "l26-scenario3-q1",
+          "prompt": "R,S chia khóa khác nhau, S nhỏ. Slide đề xuất gì?",
+          "options": [
+            "Broadcast bảng lớn vì bảng nhỏ ít đáng chuyển",
+            "Nối ngay phần hiện có và coi đầy đủ",
+            "Broadcast S tới nút",
+            "Chỉ gửi lược đồ S"
+          ],
+          "explanation": "Bảng nhỏ dễ phân bố đầy đủ để mỗi phần R tìm mọi bộ S khớp."
+        },
+        {
+          "id": "l26-scenario3-q2",
+          "prompt": "Vì sao cỡ S quan trọng cho broadcast join?",
+          "options": [
+            "Bảng nhỏ không cần kiểm điều kiện nối",
+            "Bảng nhỏ luôn một khóa",
+            "Broadcast chỉ gửi một bản bất kể số nút",
+            "Phải gửi S tới nhiều nút"
+          ],
+          "explanation": "Nhân chi phí truyền theo số nút có thể khiến bảng lớn rất đắt."
+        },
+        {
+          "id": "l26-scenario3-q3",
+          "prompt": "Sau broadcast S, mỗi nút nối gì?",
+          "options": [
+            "R cục bộ với toàn S",
+            "R cục bộ với phần S cũ trước broadcast",
+            "Toàn R,S mọi nút rồi ghép",
+            "Chỉ phần S giữa nút, không đọc R"
+          ],
+          "explanation": "Broadcast bù việc S ban đầu chia val thay vì id."
+        },
+        {
+          "id": "l26-scenario3-q4",
+          "prompt": "Khác biệt chính #3 với #1 là gì?",
+          "options": [
+            "#1 luôn shuffle cả hai",
+            "Tạo bản đầy đủ S bằng truyền trong lúc chạy",
+            "#3 không cần mạng trước nối",
+            "#1 cần đồng phân hoạch thay sao chép"
+          ],
+          "explanation": "#1 có bản sẵn, #3 phải broadcast bảng nhỏ từ bố trí ban đầu."
+        },
+        {
+          "id": "l26-scenario3-q5",
+          "prompt": "Nếu S không còn nhỏ, quyết định nào hợp lý?",
+          "options": [
+            "Vẫn broadcast vì cỡ không ảnh hưởng",
+            "Bỏ bộ vượt RAM để rẻ",
+            "Đánh giá lại broadcast so chia lại",
+            "Chỉ nối một phần S tránh truyền"
+          ],
+          "explanation": "Cần tính chi phí broadcast; chia lại là lựa chọn khi nhiều bản quá đắt."
+        }
+      ]
+    },
+    {
+      "id": "l26-scenario4",
+      "title": "Tình huống #4",
+      "questions": [
+        {
+          "id": "l26-scenario4-q1",
+          "prompt": "Không R,S nào chia theo khóa nối, #4 làm gì?",
+          "options": [
+            "Nối các phần hiện có dù khóa không liên quan",
+            "Broadcast tên cột rồi nối",
+            "Chỉ sort từng phần để bảo đảm cùng nơi",
+            "Shuffle lại cả hai theo khóa nối"
+          ],
+          "explanation": "Hai đầu vào chuyển sang bố trí id để cặp khớp nối cục bộ."
+        },
+        {
+          "id": "l26-scenario4-q2",
+          "prompt": "R theo name,S theo val, nối id. Shuffle nhằm gì?",
+          "options": [
+            "Cùng id hai bảng tới cùng nút",
+            "Đổi ON thành name=val",
+            "Sort id cục bộ không chuyển bộ",
+            "Sao kết quả trước xử lý đầu vào"
+          ],
+          "explanation": "Điều kiện truy vấn không đổi, chỉ đổi vị trí vật lý."
+        },
+        {
+          "id": "l26-scenario4-q3",
+          "prompt": "Theo hình, xử lý nào sau shuffle?",
+          "options": [
+            "Chỉ ghép R,S vì cùng khóa phân hoạch",
+            "Nối cục bộ rồi gom kết quả",
+            "Chỉ khớp khóa khác nhau tránh trùng",
+            "Gom metadata thay kết quả"
+          ],
+          "explanation": "Hình đi từ chia lại tới nối từng nút rồi ghép kết quả."
+        },
+        {
+          "id": "l26-scenario4-q4",
+          "prompt": "So #2, chi phí nào rõ hơn ở #4?",
+          "options": [
+            "Bắt buộc đổi kết quả logic",
+            "Phải bỏ nối cục bộ sau chuyển",
+            "Truyền đầu vào để đồng phân hoạch",
+            "Giảm bộ logic bằng xóa khóa trùng"
+          ],
+          "explanation": "#2 đã tương thích, #4 trả chi phí shuffle để tạo điều kiện tương tự."
+        },
+        {
+          "id": "l26-scenario4-q5",
+          "prompt": "Shuffle luôn gửi bản đầy đủ hai bảng mỗi nút không?",
+          "options": [
+            "Có, shuffle luôn broadcast cả hai",
+            "Có, mọi bộ lưu vĩnh viễn mọi nút",
+            "Không vì chỉ đổi metadata không chuyển bộ",
+            "Không, bộ được định tuyến tới phân hoạch đích riêng"
+          ],
+          "explanation": "Khác broadcast, chia lại chia dữ liệu theo khóa; hình có các khoảng id khác nhau."
+        }
+      ]
+    },
+    {
+      "id": "l26-planning",
+      "title": "Lập kế hoạch truy vấn",
+      "questions": [
+        {
+          "id": "l26-planning-q1",
+          "prompt": "Tối ưu một nút nào vẫn dùng trong phân tán?",
+          "options": [
+            "Đẩy lọc sớm, chiếu sớm, chọn thứ tự nối",
+            "Chỉ thứ tự nối; lọc sớm không còn đúng",
+            "Luôn lọc sau chuyển hết dữ liệu",
+            "Luôn bỏ khóa nối trước phân bố"
+          ],
+          "explanation": "Tối ưu logic vẫn hữu ích và có thể giảm dữ liệu qua mạng."
+        },
+        {
+          "id": "l26-planning-q2",
+          "prompt": "Ngoài chi phí cục bộ, optimizer cần xét gì?",
+          "options": [
+            "Chỉ I/O vì mạng luôn miễn phí",
+            "Vị trí dữ liệu và chi phí mạng",
+            "Chỉ CPU tổng bất kể vị trí",
+            "Chỉ số phân hoạch, bỏ lượng truyền"
+          ],
+          "explanation": "Vị trí quyết định dữ liệu cần chuyển; thời gian/lượng truyền là chi phí thiết yếu."
+        },
+        {
+          "id": "l26-planning-q3",
+          "prompt": "Hai nhánh song song 500 ms,300 ms. Bỏ overhead, toàn chạy bao lâu?",
+          "options": [
+            "300 ms",
+            "400 ms",
+            "500 ms",
+            "800 ms"
+          ],
+          "explanation": "Phải đợi nhánh chậm; 800 ms là tổng công việc, không phải thời gian khi cùng chạy."
+        },
+        {
+          "id": "l26-planning-q4",
+          "prompt": "Bỏ cột không cần trước shuffle giúp gì?",
+          "options": [
+            "Luôn giảm số bộ còn một",
+            "Bỏ khóa nối cần mà vẫn đúng",
+            "Loại mọi truyền dù bộ vẫn gửi",
+            "Giảm byte truyền và giữ cột truy vấn cần"
+          ],
+          "explanation": "Chiếu giảm độ rộng bộ; cột cần phải giữ để bảo toàn nghĩa."
+        },
+        {
+          "id": "l26-planning-q5",
+          "prompt": "Vì sao cân tải quan trọng với kế hoạch phân tán?",
+          "options": [
+            "Một nút quá tải có thể quyết định thời gian xong",
+            "Thời gian bằng nút nhanh nhất",
+            "Mọi nút tự cùng thời gian dù dữ liệu khác",
+            "Thêm nút bảo đảm hết nút thắt"
+          ],
+          "explanation": "Lệch tạo nút thắt; thêm nút không tự bỏ công việc lệch trên nút chậm."
+        }
+      ]
+    }
+  ],
+  "reviewStatus": "Each translated explanation reviewed against canonical answer position and private extracted lecture text. Full bank translated. No canonical answer keys modified. Visual diagrams not reverified in this batch."
+}

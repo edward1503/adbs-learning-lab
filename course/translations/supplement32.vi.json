@@ -1,0 +1,44 @@
+{
+  "lessonId": "supplement-32",
+  "language": "vi",
+  "title": "Phòng khám đề tài: biến chủ đề thành câu hỏi nghiên cứu có thể bác bỏ",
+  "lead": "“Dùng GPU cho cơ sở dữ liệu” mới là chủ đề. Câu hỏi nghiên cứu phải nêu cơ chế, phép so sánh, workload và một khả năng thất bại.",
+  "goals": [
+    "Viết phát biểu nghiên cứu có giới hạn với điều kiện bác bỏ.",
+    "Nối cơ chế đề xuất với nút thắt đã quan sát.",
+    "Chuẩn bị bằng chứng và quyết định cụ thể cho buổi trao đổi giảng viên."
+  ],
+  "sections": [
+    {
+      "id": "supplement-32-status",
+      "title": "Bắt đầu: kiến thức cần có và vị trí của bài học",
+      "html": "<p><strong>Lộ trình học.</strong> Chọn một cơ chế từ các buổi nghiên cứu mới. Chuyển lợi ích có thể có và thất bại có thể có thành câu hỏi trước khi lập kế hoạch triển khai.</p><p class=\"source-note\">Đây là bài bổ sung tự soạn theo đề cương được cung cấp, không phải bài giảng Edinburgh hay bài tập Canvas đã xác minh. Hoạt động và thời lượng chỉ là gợi ý thực hành. Danh sách bài đọc được giao, quy định đánh giá, hạn nộp và cách nộp bài vẫn chưa được xác minh.</p>"
+    },
+    {
+      "id": "supplement-32-s1",
+      "title": "Câu hỏi nghiên cứu phải cam kết điều gì?",
+      "html": "<p>Viết một câu với năm phần: <strong>cơ chế</strong>, <strong>baseline</strong>, <strong>workload/điều kiện</strong>, <strong>chỉ số</strong> và <strong>ràng buộc</strong>. Ví dụ: “Với embedding công khai 768 chiều và batch truy vấn nhỏ, chính sách tìm đồ thị có ngân sách cố định có giảm p95 latency so với chính sách cố định đã chỉnh, đồng thời giữ recall@10 ≥0.95 không?” Đây là câu hỏi gợi ý, không phải khẳng định phương pháp sẽ có hiệu quả hay mới.</p><p>Nêu khả năng không đạt lợi ích: chính sách có thể thêm chi phí, mất recall ở truy vấn khó hoặc không tổng quát hóa được. Xác định thí nghiệm nhỏ nhất có thể làm lộ thất bại ấy. Câu hỏi tốt vẫn cho thông tin khi kết quả âm.</p><p>Phân biệt <em>reproduction</em>, chạy lại phát biểu đã xuất bản trong điều kiện công bố; <em>replication/generalization</em>, thử phát biểu ấy với dữ liệu hoặc triển khai thay đổi; và <em>extension</em>, đưa cơ chế mới vào. Cần định nghĩa cách dùng vì các cộng đồng có thể dùng từ khác nhau. Tính mới cần rà soát tài liệu; tạo repository mới chưa chứng minh được.</p><aside class=\"important-note\" role=\"note\" aria-label=\"Điều cần nhớ\"><strong>Điều cần nhớ</strong><p>Câu hỏi hẹp với baseline đáng tin mạnh hơn hệ thống rộng mà không có phát biểu kiểm tra được.</p></aside>"
+    },
+    {
+      "id": "supplement-32-s2",
+      "title": "Dùng chuỗi nhân quả để giải thích cơ chế",
+      "html": "<p>Bắt đầu từ dấu hiệu được đo rồi theo dõi nguyên nhân. Ví dụ: GPU utilization thấp → batch truy vấn rất nhỏ → mỗi lần launch không đủ công việc song song → tích lũy batch có thể tăng throughput → chờ tạo batch có thể tăng độ trễ. Mũi tên cuối tạo ra đánh đổi đáng thử.</p><p>Với mỗi mũi tên, chọn thứ quan sát được: phân bố batch size, độ trễ hàng đợi, thời gian chạy trên thiết bị và độ trễ toàn bộ quá trình. Nếu chỉ đo QPS cuối, kết quả nhanh hơn không giải thích được nguyên nhân. Nếu nút thắt thật nằm ở tiền xử lý host, tối ưu kernel tìm có thể ít tác dụng.</p><p>Dựng prototype tối thiểu để thử mũi tên quan trọng. Một kiểm tra khả thi hai ngày bác bỏ giả định có thể cứu phần còn lại của đề tài. Khung thời gian ở đây là lựa chọn minh họa để lập kế hoạch, không phải hạn theo đề cương.</p><details><summary>Bài tập: viết lại “LLM cải thiện tối ưu truy vấn” thành câu hỏi nghiên cứu.</summary><p><strong>Lời giải có giải thích.</strong> Một cách là: “Trên tập mẫu truy vấn nhiều bảng giữ riêng, bộ chọn dựa LLM có thể chọn giữa cùng mười kế hoạch hợp lệ nhanh hơn toàn bộ quá trình so với bộ tối ưu gốc, khi tính độ trễ chọn và không tăng số timeout không?” Câu hỏi nêu quyết định, baseline, phạm vi, chi phí và rủi ro. Bộ xếp hạng đơn giản không dùng LLM cũng là đối chứng quan trọng.</p></details>"
+    },
+    {
+      "id": "supplement-32-s3",
+      "title": "Lập bảng nối tài liệu với bằng chứng",
+      "html": "<p>Với mỗi bài báo gần đề tài, ghi chính xác tên/hội nghị/năm, vấn đề, giả định chính, cơ chế, baseline mạnh nhất, dữ liệu, chỉ số, artifact, giới hạn được báo cáo và điểm khác với đề xuất. Thêm ghi chú ngắn: “Muốn tái tạo, tôi cần những gì?”</p><p>Tách trạng thái xuất bản khỏi nội dung. Bản thảo arXiv có thể ứng với bài đã được nhận nếu hồ sơ sơ cấp xác nhận; preprint không có bằng chứng ấy phải giữ nhãn preprint. Không suy ra được nhận chỉ từ badge repository hay tóm tắt bên thứ ba. Với bài đọc được giao, dùng danh sách thật của giảng viên khi có; danh mục nghiên cứu mới ở đây là tài liệu bổ sung.</p><p>Đọc giao thức benchmark kỹ như abstract. Cách đánh giá bộ tối ưu học máy và phương pháp ANN cho thấy chia dữ liệu hay ngưỡng recall có thể làm đổi cách hiểu kết quả.</p><p class=\"source-note\">Nguồn sơ cấp: <a href=\"https://www.vldb.org/pvldb/vol17/p1565-lehmann.pdf\" target=\"_blank\" rel=\"noopener\">Is Your Learned Query Optimizer Behaving As You Expect? A Machine Learning Perspective</a>; <a href=\"https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies\" target=\"_blank\" rel=\"noopener\">NVIDIA cuVS: Benchmarking methodologies</a>.</p>"
+    },
+    {
+      "id": "supplement-32-s4",
+      "title": "Ví dụ: bản đề cương nghiên cứu một trang",
+      "html": "<p><strong>Ví dụ đề cương tự soạn.</strong> Câu hỏi là khi nào microbatching cải thiện throughput ANN toàn bộ quá trình trong ngân sách p95 latency. Động cơ là device utilization ở batch-1 thấp trong vết chạy sơ bộ; phải đo xác nhận quan sát này trước. Cơ chế tích lũy yêu cầu trong cửa sổ chờ có giới hạn rồi gọi tìm kiếm.</p><p>Baseline gồm gửi ngay và chính sách batch-size cố định đã chỉnh, dùng cùng chỉ mục/tham số tìm. Biến độc lập là tốc độ đến, trần cửa sổ chờ và độ khó truy vấn; giữ dữ liệu, GPU và ngưỡng recall cố định. Bằng chứng gồm p50/p95/p99 từ lúc đến đến lúc có đáp án, thời gian hàng đợi, thời gian thực thi, QPS, recall đạt được và truy vấn bị bỏ/lỗi.</p><p>Điều kiện bác bỏ là lợi ích throughput biến mất khi ghép cùng p95, hoặc recall của truy vấn khó vi phạm mục tiêu. Sản phẩm là đồ thị tái lập được và giải thích vùng vận hành hữu ích, gồm cả nơi batching thua. Như vậy, đề cương không chỉ liệt kê công việc mà cho biết kết quả nào sẽ thay đổi kết luận.</p><p>Kiểm tra load generator tạo được quá trình đến mong muốn và không tự là nút thắt. Client closed-loop đợi đáp án trước khi phát yêu cầu tiếp, nên khi quá tải nó giảm tốc độ đến được cung cấp và có thể giấu tăng trưởng hàng đợi. Generator open-loop lên lịch yêu cầu độc lập với đáp án trước. Nêu mô hình nào khớp phát biểu và ghi yêu cầu bị bỏ hoặc lỗi.</p>"
+    },
+    {
+      "id": "supplement-32-s5",
+      "title": "Chuẩn bị buổi trao đổi có thể thay đổi đề tài",
+      "html": "<p>Dùng buổi trao đổi để giải quyết một quyết định trong đề cương. Chuẩn bị bằng chứng trước, rồi làm theo yêu cầu lịch hẹn và tài liệu thật của giảng viên khi có. Bắt đầu bằng câu hỏi một câu cùng sơ đồ nút thắt đã đo, bài báo gần nhất và khác biệt đề xuất chính xác.</p><p>Tiếp theo, trình bày một kết quả sơ bộ hoặc vết thất bại tối thiểu, kèm cấu hình và phần chưa chắc. Mang hai quyết định cụ thể, chẳng hạn “Baseline này phù hợp không?” và “Nên ưu tiên recall có bộ lọc hay độ mới khi cập nhật?”. Sau trao đổi, ghi câu trả lời thật, thay đổi dẫn đến, người phụ trách và bằng chứng tiếp theo cần có. Không biến góp ý không chính thức thành quy tắc chấm điểm tự bịa.</p><details><summary>Bài tập: đề tài cần bốn GPU nhưng chỉ có một. Thu hẹp phạm vi thế nào cho nghiêm túc?</summary><p><strong>Lời giải có giải thích.</strong> Nghiên cứu cơ chế một thiết bị hoặc mô hình chi phí giao tiếp có kiểm soát, rồi thu hẹp phát biểu tương ứng. Không gọi mô phỏng một nút là tái tạo kết quả mở rộng bốn GPU. Ghi giới hạn phần cứng và hỏi câu hỏi sửa có phù hợp kỳ vọng thật của khóa không.</p></details><aside class=\"important-note\" role=\"note\" aria-label=\"Điều cần nhớ\"><strong>Điều cần nhớ</strong><p>Mang theo quyết định cần đưa ra và bằng chứng để quyết định, thay vì một danh sách hoạt động.</p></aside>"
+    }
+  ],
+  "reviewStatus": "Full Vietnamese main-section translation and explanatory prose reviewed against canonical supplemental packet; official Edinburgh/Canvas alignment remains unverified. Quiz bank not translated or validated by this batch."
+}

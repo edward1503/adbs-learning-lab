@@ -1,0 +1,489 @@
+{
+  "lessonId": "lecture-19",
+  "language": "vi",
+  "topics": [
+    {
+      "id": "l19-topic-transactions",
+      "title": "Giao dịch",
+      "questions": [
+        {
+          "id": "l19-transactions-q1",
+          "prompt": "Trong mô hình đọc/ghi của bài, giao dịch được định nghĩa thế nào?",
+          "options": [
+            "Một chuỗi thao tác thực hiện một công việc logic",
+            "Đúng một câu lệnh SELECT",
+            "Đúng một lần ghi trang xuống đĩa",
+            "Mọi thao tác từ lúc DBMS khởi động đến khi tắt"
+          ],
+          "explanation": "Một công việc logic có thể cần nhiều câu lệnh. Đơn vị giao dịch không đồng nghĩa với một SELECT hay một thao tác I/O."
+        },
+        {
+          "id": "l19-transactions-q2",
+          "prompt": "T chuyển 3 món hàng từ kho A sang B. Sau khi trừ ở A, T yêu cầu ROLLBACK. Điều gì phải xảy ra?",
+          "options": [
+            "Chỉ giữ lại việc trừ ở A",
+            "Cả A và B trở về giá trị trước T",
+            "Hệ thống tự cộng vào B rồi commit",
+            "Giữ mọi thay đổi đã nằm trong RAM"
+          ],
+          "explanation": "Abort phải loại bỏ tác động của toàn bộ giao dịch. Việc đã ghi thay đổi vào RAM không phải lý do để giữ nó sau rollback."
+        },
+        {
+          "id": "l19-transactions-q3",
+          "prompt": "DBMS chủ yếu biểu diễn tính toán của giao dịch bằng cách nào?",
+          "options": [
+            "Mọi phép tính trên biến cục bộ đều là lần ghi cơ sở dữ liệu",
+            "Chỉ thay đổi cuối cùng quan trọng nên bỏ qua mọi lần đọc",
+            "Bằng các lần đọc và ghi đối tượng dữ liệu",
+            "Chỉ tính các SQL update, bỏ qua SELECT"
+          ],
+          "explanation": "Mô hình trừu tượng giữ các lần đọc và ghi cơ sở dữ liệu. Tính toán cục bộ và tác động ngoài đời không tự trở thành thao tác dữ liệu có thể phục hồi."
+        },
+        {
+          "id": "l19-transactions-q4",
+          "prompt": "Vì sao chạy xen kẽ có thể tăng throughput khi một giao dịch đang chờ disk I/O?",
+          "options": [
+            "Mỗi lần đọc đĩa trở nên nhanh hơn về mặt vật lý",
+            "Nó loại bỏ mọi xung đột dữ liệu",
+            "Nó giảm số instruction của mọi giao dịch",
+            "CPU có thể xử lý một giao dịch khác"
+          ],
+          "explanation": "CPU tận dụng thời gian một giao dịch đang chờ tài nguyên để làm việc khác. Chạy xen kẽ không thay đổi tốc độ vật lý của I/O và không bảo đảm hết xung đột."
+        },
+        {
+          "id": "l19-transactions-q5",
+          "prompt": "T đã gửi email, rồi giao dịch cơ sở dữ liệu của nó rollback. Kết luận nào đúng?",
+          "options": [
+            "Rollback cơ sở dữ liệu không tự thu hồi email",
+            "Email luôn được thu hồi cùng các thay đổi dữ liệu",
+            "Hệ thống tự COMMIT để giữ email",
+            "Mọi DBMS đều ghi email vào WAL"
+          ],
+          "explanation": "Gửi email nằm ngoài mô hình đọc/ghi cơ sở dữ liệu của bài. Atomicity của cơ sở dữ liệu không tự mở rộng sang dịch vụ chuyển email bên ngoài."
+        }
+      ]
+    },
+    {
+      "id": "l19-topic-acid",
+      "title": "Bốn bảo đảm ACID",
+      "questions": [
+        {
+          "id": "l19-acid-q1",
+          "prompt": "Sau khi phục hồi xong, phần trừ của một giao dịch chuyển tiền vẫn còn nhưng phần cộng tương ứng bị thiếu. Thuộc tính nào bị vi phạm trực tiếp?",
+          "options": [
+            "Durability, vì giao dịch chắc chắn đã commit",
+            "Atomicity — tính nguyên tử",
+            "Isolation giữa các giao dịch đồng thời",
+            "Chỉ consistency ở mức ràng buộc NOT NULL"
+          ],
+          "explanation": "Giữ lại một phần tác động của giao dịch vi phạm atomicity. Đề chưa cho biết giao dịch đã commit, nên không thể quy toàn bộ vấn đề riêng cho durability."
+        },
+        {
+          "id": "l19-acid-q2",
+          "prompt": "Ứng dụng commit một lần chuyển hàng làm tổng tồn kho tăng sai 2 đơn vị, ngay cả khi không có đồng thời. Ai chịu trách nhiệm chính về lỗi logic này?",
+          "options": [
+            "Isolation tự sửa công thức sai",
+            "Atomicity tự suy ra mọi bất biến chưa khai báo",
+            "Ứng dụng phải viết giao dịch giữ đúng bất biến",
+            "COMMIT bảo đảm mọi quy tắc nghiệp vụ đã được tự kiểm tra"
+          ],
+          "explanation": "Consistency của giao dịch phụ thuộc logic ứng dụng. Isolation không sửa được một giao dịch vốn đã sai khi chạy một mình."
+        },
+        {
+          "id": "l19-acid-q3",
+          "prompt": "Người dùng nhận COMMIT thành công, nhưng sự cố làm mất cập nhật mà hệ thống hứa giữ lại. Thuộc tính nào bị vi phạm?",
+          "options": [
+            "Isolation, vì thứ tự đọc/ghi đã đổi",
+            "Atomicity, chỉ vì giao dịch có nhiều lần ghi",
+            "Consistency, chỉ vì có khai báo CHECK",
+            "Durability — tính bền vững"
+          ],
+          "explanation": "Durability bảo vệ kết quả đã commit qua các sự cố thuộc cam kết. Isolation nói về tương tác đồng thời, không phải việc dữ liệu sống sót sau crash."
+        },
+        {
+          "id": "l19-acid-q4",
+          "prompt": "Hai giao dịch đều đúng khi chạy riêng, nhưng chạy xen kẽ lại báo tổng sai. Thuộc tính nào cần concurrency control?",
+          "options": [
+            "Isolation — tính cô lập",
+            "Durability, đạt được bằng cách flush mọi lần đọc",
+            "Atomicity mà không kiểm soát chạy xen kẽ",
+            "Chỉ một CHECK riêng trên từng cột"
+          ],
+          "explanation": "Isolation kiểm soát thứ tự xen kẽ để giao dịch không quan sát trạng thái trung gian không phù hợp. Atomicity và flush log riêng chúng không xác định được thứ tự truy cập đồng thời an toàn."
+        },
+        {
+          "id": "l19-acid-q5",
+          "prompt": "Trong phần giới thiệu, logging hỗ trợ atomicity bằng cách nào?",
+          "options": [
+            "Ngăn mọi giao dịch không bao giờ abort",
+            "Giữ đủ thông tin để undo tác động của giao dịch abort",
+            "Chỉ lưu COMMIT, không lưu thông tin cập nhật",
+            "Phát lại tác động của giao dịch abort mà không undo"
+          ],
+          "explanation": "Log chứa thông tin để đảo ngược thay đổi. Atomicity yêu cầu xử lý thất bại đúng, không có nghĩa giao dịch không bao giờ thất bại."
+        },
+        {
+          "id": "l19-acid-q6",
+          "prompt": "Với shadow paging trong bài, giao dịch thay đổi dữ liệu ở đâu?",
+          "options": [
+            "Sửa trang gốc và cho mọi giao dịch thấy ngay",
+            "Chỉ sửa log, không bao giờ sửa trang dữ liệu",
+            "Sửa bản sao trang rồi công bố khi commit",
+            "Công bố bản sao trước khi quyết định commit"
+          ],
+          "explanation": "Copy-on-write giữ thay đổi trên các bản sao cho đến khi có thể công bố. Nó không sửa đè trang gốc rồi chỉ hy vọng sự cố không xảy ra."
+        },
+        {
+          "id": "l19-acid-q7",
+          "prompt": "Trực giác của pessimistic concurrency control là gì?",
+          "options": [
+            "Chạy trước rồi chỉ validation lúc commit",
+            "Cho lần đọc bỏ qua mọi thay đổi chưa commit",
+            "Chờ crash rồi dùng recovery thay isolation",
+            "Ngăn xung đột có hại trước khi cho thao tác tiến hành"
+          ],
+          "explanation": "Cách bi quan điều khiển truy cập từ trước để ngăn vấn đề. Giao dịch có thể phải chờ, thay vì mọi thao tác đều được chạy ngay."
+        },
+        {
+          "id": "l19-acid-q8",
+          "prompt": "Giả định nào tạo động cơ cho optimistic concurrency control?",
+          "options": [
+            "Xung đột tương đối hiếm và có thể kiểm tra, xử lý về sau",
+            "Mọi thay đổi được công bố ngay mà không cần validation",
+            "Không giao dịch nào cần rollback sau khi bắt đầu",
+            "Mọi xung đột bị ngăn trước từng lần truy cập"
+          ],
+          "explanation": "Cách lạc quan thường ghi nhận hoạt động rồi kiểm tra tính hợp lệ, rollback khi cần. Nó không loại bỏ khả năng giao dịch thất bại."
+        },
+        {
+          "id": "l19-acid-q9",
+          "prompt": "Cơ sở dữ liệu có CHECK quantity >= 0. Giao dịch thỏa CHECK nhưng quên cộng vào kho nhận. Kết luận nào đúng?",
+          "options": [
+            "CHECK này chứng minh mọi yêu cầu consistency nghiệp vụ",
+            "Thỏa một ràng buộc không chứng minh mọi bất biến nghiệp vụ đều đúng",
+            "Atomicity tự bổ sung phép cộng bị quên",
+            "Durability tự bảo toàn tổng tồn kho"
+          ],
+          "explanation": "Ràng buộc chỉ kiểm tra điều kiện đã khai báo. Giữ tổng tồn kho là một bất biến riêng mà logic giao dịch phải bảo toàn."
+        },
+        {
+          "id": "l19-acid-q10",
+          "prompt": "Giao dịch abort không để lại thay đổi, nhưng giao dịch đã commit bị mất sau crash. Đánh giá nào đúng?",
+          "options": [
+            "Mọi thuộc tính ACID đều đúng vì abort hoạt động đúng",
+            "Chỉ isolation thất bại",
+            "Atomicity có thể đúng trong khi durability thất bại",
+            "Atomicity và durability là cùng một thuộc tính"
+          ],
+          "explanation": "Atomicity và durability xử lý hai yêu cầu khác nhau. Loại bỏ đúng công việc bị abort chưa bảo đảm giữ lại được công việc đã commit."
+        }
+      ]
+    },
+    {
+      "id": "l19-topic-schedules",
+      "title": "Tính chất hình thức của lịch thực thi",
+      "questions": [
+        {
+          "id": "l19-schedules-q1",
+          "prompt": "Một lịch hợp lệ phải giữ điều gì bên trong mỗi giao dịch?",
+          "options": [
+            "Thứ tự đến của mọi giao dịch",
+            "Mọi COMMIT phải ở cuối toàn bộ lịch hệ thống",
+            "Thứ tự thao tác nội bộ của giao dịch",
+            "Các giao dịch không bao giờ được xen kẽ"
+          ],
+          "explanation": "Lịch có thể xen kẽ nhiều giao dịch nhưng phải giữ program order của từng giao dịch. Lịch hợp lệ không nhất thiết là lịch tuần tự."
+        },
+        {
+          "id": "l19-schedules-q2",
+          "prompt": "Lịch tuần tự (serial schedule) là gì?",
+          "options": [
+            "Lịch luôn theo thứ tự COMMIT",
+            "Lịch chỉ xen kẽ các lần đọc",
+            "Lịch có thứ tự BEGIN và COMMIT khớp nhau dù thao tác xen kẽ",
+            "Lịch không xen kẽ thao tác của các giao dịch khác nhau"
+          ],
+          "explanation": "Lịch tuần tự chạy từng giao dịch mà không xen kẽ chúng. Nó không bắt buộc theo timestamp hay thứ tự giao dịch đến."
+        },
+        {
+          "id": "l19-schedules-q3",
+          "prompt": "Lịch tuần tự hóa được (serializable) có bắt buộc là lịch tuần tự không?",
+          "options": [
+            "Không; có thể xen kẽ nhưng vẫn tương đương một thứ tự tuần tự",
+            "Có; không thao tác nào được xen kẽ",
+            "Có; thứ tự BEGIN luôn phải trùng thứ tự thực thi hoàn chỉnh",
+            "Không; mọi lịch xen kẽ đều tuần tự hóa được"
+          ],
+          "explanation": "Serializability là thuộc tính tương đương với một lịch tuần tự, không cấm xen kẽ. Tuy nhiên, không phải mọi cách xen kẽ đều thỏa thuộc tính đó."
+        },
+        {
+          "id": "l19-schedules-q4",
+          "prompt": "Ban đầu A=30, B=70. T1 chuyển 4 từ A sang B; T2 đọc tổng sau lần trừ ở A nhưng trước lần cộng ở B. T2 nhận tổng bao nhiêu?",
+          "options": [
+            "100",
+            "96",
+            "104",
+            "26"
+          ],
+          "explanation": "T2 đọc 26 và 70 nên nhận 96, thay vì tổng 100 trong cả hai thứ tự tuần tự. Trạng thái cuối đúng không sửa được câu trả lời sai đã gửi đi."
+        },
+        {
+          "id": "l19-schedules-q5",
+          "prompt": "T1 và T2 được gửi cùng lúc. Serializability có hứa thứ tự tuần tự tương đương sẽ theo thứ tự COMMIT không?",
+          "options": [
+            "Có; COMMIT luôn xác định thứ tự tuần tự",
+            "Có; giao dịch ngắn hơn luôn đi trước",
+            "Không; lịch chỉ cần khớp một thứ tự tuần tự phù hợp",
+            "Không cần có thứ tự tuần tự tương đương nào"
+          ],
+          "explanation": "Serializability tự nó không áp đặt thứ tự bắt đầu hay commit. Dù vậy, vẫn phải tồn tại một thứ tự tuần tự tương đương."
+        }
+      ]
+    },
+    {
+      "id": "l19-topic-conflicts",
+      "title": "Các thao tác xung đột",
+      "questions": [
+        {
+          "id": "l19-conflicts-q1",
+          "prompt": "Cặp thao tác nào xung đột theo định nghĩa của bài?",
+          "options": [
+            "R1(X) và R2(X)",
+            "W1(X) và R2(Y), với X khác Y",
+            "R1(X) và W1(X)",
+            "R1(X) và W2(X)"
+          ],
+          "explanation": "Xung đột cần hai giao dịch khác nhau, cùng đối tượng và ít nhất một lần ghi. Hai lần đọc X không xung đột; thao tác cùng giao dịch không phải cặp xung đột theo định nghĩa này."
+        },
+        {
+          "id": "l19-conflicts-q2",
+          "prompt": "T1 đọc giá 8. T2 sửa thành 9 và commit; T1 đọc lại thấy 9. Bất thường nào xảy ra?",
+          "options": [
+            "Unrepeatable read — đọc không lặp lại được",
+            "Dirty read giá trị chưa commit của T2",
+            "Lost update do một lần ghi đè lần ghi khác",
+            "Dirty write khi T1 ghi đè dữ liệu chưa commit"
+          ],
+          "explanation": "T1 đọc cùng đối tượng hai lần nhưng nhận giá trị khác. T2 đã commit trước lần đọc thứ hai, nên ví dụ này không phải dirty read."
+        },
+        {
+          "id": "l19-conflicts-q3",
+          "prompt": "T2 đọc giá do T1 ghi trước khi T1 abort. Vấn đề ngay tại lần đọc là gì?",
+          "options": [
+            "Unrepeatable read giữa hai giá trị đã commit",
+            "Dirty read — đọc bẩn",
+            "Lost update chỉ do hai giao dịch ghi cùng lúc",
+            "Dirty write dù T2 chưa ghi gì"
+          ],
+          "explanation": "T2 đọc giá trị chưa commit rồi giá trị đó bị thu hồi. Lần đọc đã là dirty ngay lúc xảy ra, dù sau đó người ghi commit hay abort. Chỉ hai thao tác đọc không tạo bất thường này."
+        },
+        {
+          "id": "l19-conflicts-q4",
+          "prompt": "T1 và T2 đều đọc còn 9 ghế. Mỗi giao dịch trừ 1 rồi ghi 8. Nghiệp vụ đúng phải cho kết quả gì?",
+          "options": [
+            "8, vì hai khách luôn chỉ tính là một lần đặt",
+            "9, vì ghi không thay đổi một lần đọc",
+            "7; kết quả 8 đã làm mất một cập nhật",
+            "10, vì chạy đồng thời thêm một ghế"
+          ],
+          "explanation": "Hai đặt chỗ phải giảm hai ghế: 9−2=7. Cả hai cùng tính từ 9 rồi ghi 8, nên kết quả thiếu một lần trừ."
+        },
+        {
+          "id": "l19-conflicts-q5",
+          "prompt": "T1 ghi X, T2 ghi Y, với X khác Y. Riêng hai thao tác này có xung đột không?",
+          "options": [
+            "Có, vì cả hai đều ghi",
+            "Có, vì khác giao dịch là đủ",
+            "Có, nếu cả hai chưa commit",
+            "Không, vì truy cập hai đối tượng khác nhau"
+          ],
+          "explanation": "Khác giao dịch chưa đủ: còn phải cùng đối tượng dữ liệu. Hai lần ghi lên đối tượng độc lập không xung đột trong mô hình này."
+        }
+      ]
+    },
+    {
+      "id": "l19-topic-conflict-serializable",
+      "title": "Tuần tự hóa theo xung đột",
+      "questions": [
+        {
+          "id": "l19-conflict-serializable-q1",
+          "prompt": "Hai lịch tương đương theo xung đột phải giữ điều gì?",
+          "options": [
+            "Cùng các thao tác và thứ tự mọi cặp xung đột",
+            "Chỉ giá trị cuối trong một database thử nghiệm",
+            "Chỉ thứ tự lần ghi cuối lên từng đối tượng",
+            "Chỉ thứ tự BEGIN và COMMIT"
+          ],
+          "explanation": "Conflict equivalence là điều kiện cấu trúc trên thao tác và thứ tự xung đột. Khớp giá trị cuối trong một lần chạy thử không đủ chứng minh tương đương."
+        },
+        {
+          "id": "l19-conflict-serializable-q2",
+          "prompt": "Cặp thao tác liền nhau nào có thể đổi chỗ mà không đổi thứ tự xung đột?",
+          "options": [
+            "W1(A) và R2(A)",
+            "R1(A) và R2(A)",
+            "W1(A) và W2(A)",
+            "R1(A) và W2(A)"
+          ],
+          "explanation": "Hai lần đọc không xung đột. Các cặp còn lại đều truy cập A và có lần ghi, nên không được tự do đổi chỗ bằng quy tắc này."
+        },
+        {
+          "id": "l19-conflict-serializable-q3",
+          "prompt": "R1(A), W1(A), R2(B), W2(B) có conflict-serializable khi A khác B không?",
+          "options": [
+            "Không, vì có hai lần ghi",
+            "Không, vì hai giao dịch có thể xen kẽ",
+            "Có; hai giao dịch truy cập đối tượng độc lập",
+            "Chỉ khi thứ tự COMMIT khớp BEGIN"
+          ],
+          "explanation": "Không có cặp xung đột giữa hai giao dịch, nên cả hai thứ tự tuần tự đều phù hợp. Kết luận cấu trúc này không phụ thuộc các giá trị dữ liệu cụ thể."
+        },
+        {
+          "id": "l19-conflict-serializable-q4",
+          "prompt": "R1(A), R2(A), W1(A), W2(A) có thể tương đương theo xung đột với một lịch tuần tự không?",
+          "options": [
+            "Có, vì mọi lần đọc đứng trước mọi lần ghi",
+            "Có, vì chỉ có một đối tượng",
+            "Không, vì hai lần đọc xung đột với nhau",
+            "Không, vì R1 trước W2 và R2 trước W1 yêu cầu thứ tự ngược nhau"
+          ],
+          "explanation": "R1 trước W2 yêu cầu T1 trước T2; R2 trước W1 yêu cầu T2 trước T1. Hai lần đọc không xung đột với nhau: chính xung đột của chúng với các lần ghi tạo mâu thuẫn."
+        },
+        {
+          "id": "l19-conflict-serializable-q5",
+          "prompt": "Biến một lịch thành lịch tuần tự chỉ bằng đổi chỗ các thao tác liền nhau không xung đột chứng minh điều gì?",
+          "options": [
+            "Lịch conflict-serializable",
+            "Lịch không thể gây abort dây chuyền",
+            "Lịch luôn recoverable dù đọc bẩn",
+            "Lịch có strict serializability theo thứ tự thời gian thực"
+          ],
+          "explanation": "Các lần đổi chỗ giữ thứ tự mọi cặp xung đột, nên chứng minh conflict serializability. Chúng không chứng minh kết quả commit, khả năng phục hồi hoặc thứ tự thời gian thực."
+        }
+      ]
+    },
+    {
+      "id": "l19-topic-dependency",
+      "title": "Đồ thị phụ thuộc",
+      "questions": [
+        {
+          "id": "l19-dependency-q1",
+          "prompt": "W1(A) xảy ra trước R2(A) tạo cạnh nào?",
+          "options": [
+            "T2 → T1",
+            "T1 → T2",
+            "Tự động tạo cả hai hướng",
+            "Không có cạnh vì lần đọc xảy ra sau"
+          ],
+          "explanation": "Cạnh đi từ giao dịch thực hiện thao tác xung đột sớm hơn tới giao dịch thực hiện thao tác muộn hơn. Hướng không được quyết định chỉ bằng việc ai đọc hay ai ghi."
+        },
+        {
+          "id": "l19-dependency-q2",
+          "prompt": "Lấy thứ tự tuần tự từ đồ thị phụ thuộc không chu trình bằng cách nào?",
+          "options": [
+            "Xếp theo BEGIN bất kể cạnh",
+            "Xếp giảm dần theo số lần ghi",
+            "Dùng topological sort — sắp xếp tô-pô",
+            "Xếp theo COMMIT mà không kiểm tra cạnh"
+          ],
+          "explanation": "Thứ tự tô-pô tuân theo mọi ràng buộc trước/sau của cạnh. Một thứ tự COMMIT tùy ý có thể vi phạm một cạnh."
+        },
+        {
+          "id": "l19-dependency-q3",
+          "prompt": "Đồ thị có T1→T2 và T2→T3, không có cạnh ngược. Thứ tự tuần tự nào hợp lệ?",
+          "options": [
+            "T3,T2,T1",
+            "T2,T1,T3",
+            "T1,T3,T2",
+            "T1,T2,T3"
+          ],
+          "explanation": "Hai cạnh yêu cầu T1 trước T2 trước T3. Không cần cạnh trực tiếp T1→T3 vì thứ tự đó đã được suy ra qua T2."
+        },
+        {
+          "id": "l19-dependency-q4",
+          "prompt": "Đồ thị có T1→T2, T2→T3, T3→T1. Kết luận chính xác là gì?",
+          "options": [
+            "Lịch không conflict-serializable",
+            "Lịch không tuần tự vì mọi cạnh đều cấm xen kẽ",
+            "Lịch không bao giờ có thể view-serializable",
+            "Lịch vẫn conflict-serializable nếu mỗi giao dịch chỉ ghi một đối tượng"
+          ],
+          "explanation": "Chu trình loại trừ conflict serializability. Nó không tự loại trừ tiêu chuẩn tương đương yếu hơn như view serializability."
+        },
+        {
+          "id": "l19-dependency-q5",
+          "prompt": "T3 chỉ đọc Z, không giao dịch khác truy cập Z. Thêm T3 có thể tạo chu trình xung đột mới không?",
+          "options": [
+            "Có; mọi giao dịch mới tạo cạnh với giao dịch cũ",
+            "Không; T3 không có cạnh nối với các giao dịch khác",
+            "Có; các lần đọc trong cùng database luôn xung đột",
+            "Có, nếu T3 bắt đầu trước T1 nhưng commit sau T1"
+          ],
+          "explanation": "T3 không có cặp truy cập xung đột với giao dịch khác nên không thêm cạnh nối. BEGIN sớm hay COMMIT muộn tự nó không tạo cạnh xung đột."
+        }
+      ]
+    },
+    {
+      "id": "l19-topic-view",
+      "title": "Tuần tự hóa theo quan sát",
+      "questions": [
+        {
+          "id": "l19-view-q1",
+          "prompt": "View equivalence phải giữ điều gì?",
+          "options": [
+            "Thứ tự tuyệt đối của mọi lần ghi, kể cả blind write",
+            "Chỉ người ghi cuối, không giữ quan hệ reads-from",
+            "Nguồn của mỗi lần đọc và người ghi cuối lên từng đối tượng",
+            "Chỉ tập giá trị đọc trong một database mẫu"
+          ],
+          "explanation": "View equivalence giữ lần đọc giá trị ban đầu, quan hệ đọc từ giao dịch nào và người ghi cuối. Khác conflict equivalence, nó không cần giữ thứ tự mọi cặp xung đột."
+        },
+        {
+          "id": "l19-view-q2",
+          "prompt": "Lịch W1(A), W2(A), W1(A) không có lần đọc. Thứ tự tuần tự nào view-equivalent với nó?",
+          "options": [
+            "T1 rồi T2",
+            "Không thứ tự tuần tự nào tương đương",
+            "Chỉ T1, bỏ T2",
+            "T2 rồi T1"
+          ],
+          "explanation": "T1 là người ghi cuối và không có nguồn đọc cần giữ. T2 rồi T1 giữ người ghi cuối đó; T1 rồi T2 sẽ đổi người ghi cuối thành T2."
+        },
+        {
+          "id": "l19-view-q3",
+          "prompt": "Mọi lịch conflict-serializable có đồng thời view-serializable không?",
+          "options": [
+            "Có, trong mô hình của bài",
+            "Không; hai lớp không giao nhau",
+            "Chỉ khi không có blind write",
+            "Chỉ khi mọi giao dịch commit theo thứ tự BEGIN"
+          ],
+          "explanation": "Giữ mọi thứ tự xung đột cũng giữ quan hệ nguồn đọc và người ghi cuối cần cho view equivalence. Chiều ngược lại không luôn đúng do các trường hợp blind write."
+        },
+        {
+          "id": "l19-view-q4",
+          "prompt": "Một lần đọc lấy giá trị ban đầu của A trong S1 nhưng lấy giá trị T2 ghi trong S2. Hai lịch có view-equivalent không?",
+          "options": [
+            "Có, nếu số đọc được tình cờ bằng nhau trong một lần chạy",
+            "Không, vì nguồn của lần đọc đã đổi",
+            "Có, vì tên đối tượng giống nhau",
+            "Có, nếu thứ tự COMMIT không đổi"
+          ],
+          "explanation": "View equivalence giữ nguồn tạo giá trị của lần đọc. Hai số bằng nhau trên một trạng thái dữ liệu cụ thể không thay thế điều kiện nguồn đọc."
+        },
+        {
+          "id": "l19-view-q5",
+          "prompt": "Vì sao conflict serializability thường dễ kiểm tra hơn view serializability?",
+          "options": [
+            "Nó cho phép nhiều lịch hơn view serializability",
+            "Nó hiểu mọi quy tắc nghiệp vụ",
+            "Nó có kiểm tra hiệu quả bằng đồ thị không chu trình",
+            "Nó không cần xét các lần ghi"
+          ],
+          "explanation": "Tiêu chuẩn đồ thị cung cấp phép kiểm tra hiệu quả. Conflict serializability là lớp hạn chế hơn, không cho phép nhiều lịch hơn view serializability."
+        }
+      ]
+    }
+  ],
+  "reviewStatus": "author-translated and audited all core questions against canonical correct options and lecture extracted-text sources; no answer keys in locale; no fresh visual diagram or external-paper validation claimed"
+}

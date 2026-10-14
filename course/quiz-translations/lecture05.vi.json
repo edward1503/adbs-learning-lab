@@ -1,0 +1,373 @@
+{
+  "lessonId": "lecture-05",
+  "language": "vi",
+  "topics": [
+    {
+      "id": "l05-topic-buffer-state",
+      "title": "Trạng thái buffer manager",
+      "questions": [
+        {
+          "id": "l05-buffer-state-q1",
+          "prompt": "Trong mô hình bài, một frame của buffer pool chứa gì?",
+          "options": [
+            "Mục directory thay byte trang",
+            "Một trang",
+            "Đúng một bản ghi dù nhỏ hơn trang",
+            "Toàn file logic bất kể kích thước"
+          ],
+          "explanation": "Frame chứa trang; trang có thể chứa nhiều bản ghi."
+        },
+        {
+          "id": "l05-buffer-state-q2",
+          "prompt": "Có được chọn frame pinCount=2 làm victim chỉ vì rất cũ?",
+          "options": [
+            "Có nếu clean",
+            "Có nếu dirty",
+            "Không",
+            "Có; LRU luôn ưu tiên độ cũ"
+          ],
+          "explanation": "Pin count khác không cấm replacement trong mô hình. Clean không làm trang đang dùng an toàn để đuổi."
+        },
+        {
+          "id": "l05-buffer-state-q3",
+          "prompt": "Dirty flag cho biết gì?",
+          "options": [
+            "Ít nhất một người đang dùng trang",
+            "Trang được tham chiếu trong lượt CLOCK gần đây",
+            "Trang chứa bản ghi không thỏa điều kiện",
+            "Trang RAM có thay đổi chưa phản ánh trong bản lưu bền"
+          ],
+          "explanation": "Dirty theo dõi sửa đổi. Tần suất truy cập và pin dùng metadata khác."
+        },
+        {
+          "id": "l05-buffer-state-q4",
+          "prompt": "Vì sao giữ hash table ánh xạ PageId tới frame RAM?",
+          "options": [
+            "Tìm nhanh trang đã cache",
+            "Tính sẵn mọi kết quả query",
+            "Sắp trang đĩa theo khóa tìm kiếm",
+            "Thay mọi metadata pin/dirty"
+          ],
+          "explanation": "Tra trang diễn ra thường xuyên nên cần nhanh. Ánh xạ không đổi dữ liệu quan hệ."
+        },
+        {
+          "id": "l05-buffer-state-q5",
+          "prompt": "Unpin xuống pinCount=0 có buộc đuổi trang ngay?",
+          "options": [
+            "Không bao giờ được đuổi nữa",
+            "Không; chỉ làm trang đủ điều kiện replacement",
+            "Có; luôn bỏ ngay",
+            "Có nếu vừa đọc"
+          ],
+          "explanation": "Không còn người dùng thì đủ điều kiện, nhưng policy có thể giữ để dùng lại."
+        }
+      ]
+    },
+    {
+      "id": "l05-topic-pin-unpin",
+      "title": "Triển khai pin và unpin",
+      "questions": [
+        {
+          "id": "l05-pin-unpin-q1",
+          "prompt": "Trang đã cache có pinCount=1. Pin thêm thì sao?",
+          "options": [
+            "Trang bị đuổi ngay",
+            "Dirty luôn được xóa",
+            "pinCount tăng thành 2 và trả địa chỉ frame",
+            "Phải đọc đĩa rồi đặt count=0"
+          ],
+          "explanation": "Hit thêm một người dùng, không cần đọc lại hay xóa lịch sử dirty."
+        },
+        {
+          "id": "l05-pin-unpin-q2",
+          "prompt": "Dirty=true: unpin(page,false) cho dirty mới là gì?",
+          "options": [
+            "false",
+            "Bằng pinCount",
+            "Không xác định khi đã cache",
+            "true"
+          ],
+          "explanation": "Cập nhật dùng OR. Đối số false không xóa sửa đổi trước đó."
+        },
+        {
+          "id": "l05-pin-unpin-q3",
+          "prompt": "Miss chọn victim dirty hợp lệ. Thứ tự nào cần thiết?",
+          "options": [
+            "Ghi victim rồi đọc trang mới vào frame",
+            "Ghi đè frame bằng trang mới rồi ghi victim từ chính byte ấy",
+            "Bỏ victim không ghi",
+            "Chỉ tăng pinCount của victim"
+          ],
+          "explanation": "Phải bảo toàn nội dung sửa trước khi ghi đè frame. Đảo thứ tự sẽ mất byte cần ghi."
+        },
+        {
+          "id": "l05-pin-unpin-q4",
+          "prompt": "Sau miss nạp trang mới, pseudocode khởi tạo pinCount và dirty thế nào?",
+          "options": [
+            "0 và false",
+            "1 và false",
+            "0 và true",
+            "1 và true"
+          ],
+          "explanation": "Người gọi đã pin trang mới, byte vừa đọc chưa bị sửa. Count 0 sẽ bỏ qua người đang dùng."
+        },
+        {
+          "id": "l05-pin-unpin-q5",
+          "prompt": "Hai người pin cùng trang: buffer manager có tự ngăn write xung đột?",
+          "options": [
+            "Có; dirty làm mọi write atomic",
+            "Có; trang clean cấm mọi write",
+            "Không; concurrency control phối hợp write",
+            "Có; pin count là khóa độc quyền"
+          ],
+          "explanation": "Pin bảo vệ khỏi replacement, không thay kiểm soát truy cập đồng thời."
+        }
+      ]
+    },
+    {
+      "id": "l05-topic-lru",
+      "title": "LRU: ít dùng gần đây nhất",
+      "questions": [
+        {
+          "id": "l05-lru-q1",
+          "prompt": "Mô hình LRU của slide chủ yếu ghi thời điểm dùng mới nhất khi nào?",
+          "options": [
+            "Chỉ lúc nạp đầu như FIFO",
+            "Chỉ lúc trở thành dirty",
+            "Chỉ lúc flush đĩa",
+            "Khi frame được unpin"
+          ],
+          "explanation": "Mô hình dùng lúc kết thúc sử dụng, không âm thầm đổi thành quy tắc thời gian nạp của FIFO."
+        },
+        {
+          "id": "l05-lru-q2",
+          "prompt": "A(pin=0,last=4), B(pin=1,last=1), C(pin=0,last=7). LRU chọn gì?",
+          "options": [
+            "A",
+            "B",
+            "C",
+            "Không có frame"
+          ],
+          "explanation": "B cũ nhất nhưng còn pin. A là frame hợp lệ cũ nhất."
+        },
+        {
+          "id": "l05-lru-q3",
+          "prompt": "Hai frame rỗng nhận A,B,A,C, unpin ngay mỗi yêu cầu. Có bao nhiêu miss?",
+          "options": [
+            "1",
+            "3",
+            "2",
+            "4"
+          ],
+          "explanation": "A/B miss; A lần hai hit và cập nhật recency; C miss thay B."
+        },
+        {
+          "id": "l05-lru-q4",
+          "prompt": "Bài nhắc chi phí quản lý nào của LRU chính xác?",
+          "options": [
+            "Tăng page size sau mỗi replacement",
+            "Đồng bộ schema mọi bảng mỗi unpin",
+            "Tìm hoặc duy trì frame có thời điểm dùng cũ nhất",
+            "Sắp mọi bản ghi đĩa tại mỗi hit"
+          ],
+          "explanation": "Duy trì thứ tự gần đây có overhead, không phải sắp dữ liệu nghiệp vụ."
+        },
+        {
+          "id": "l05-lru-q5",
+          "prompt": "LRU và FIFO có luôn cùng victim?",
+          "options": [
+            "Có vì cùng dùng thời gian",
+            "Có nếu trang clean",
+            "Có nếu frame giữ số nguyên",
+            "Không; hit đổi recency nhưng không đổi thời điểm nạp"
+          ],
+          "explanation": "Truy cập lại đổi lịch sử gần đây; FIFO vẫn dùng thời điểm đến ban đầu."
+        }
+      ]
+    },
+    {
+      "id": "l05-topic-clock",
+      "title": "Chính sách CLOCK",
+      "questions": [
+        {
+          "id": "l05-clock-q1",
+          "prompt": "CLOCK gặp frame không pin, ref=1 thì làm gì trước?",
+          "options": [
+            "Xóa ref thành 0 rồi tiếp tục",
+            "Đuổi ngay bất kể ref",
+            "Tăng pin count rồi dừng",
+            "Ghi mọi trang trong pool"
+          ],
+          "explanation": "Ref=1 cho một cơ hội nữa. Victim hợp lệ phải không pin và ref=0 khi xét."
+        },
+        {
+          "id": "l05-clock-q2",
+          "prompt": "CLOCK có được chọn frame còn pin, ref=0 làm victim?",
+          "options": [
+            "Có nếu clean",
+            "Không",
+            "Có vì ref=0",
+            "Có sau khi kim quay đủ vòng"
+          ],
+          "explanation": "PinCount=0 vẫn bắt buộc. Reference bit không vượt được điều kiện an toàn."
+        },
+        {
+          "id": "l05-clock-q3",
+          "prompt": "A,B,C đều không pin, ref lần lượt 1,0,1; kim bắt đầu A. Victim đầu là gì?",
+          "options": [
+            "C",
+            "Không có",
+            "B",
+            "A"
+          ],
+          "explanation": "CLOCK xóa bit của A rồi đi tiếp. B đã ref=0 nên được chọn."
+        },
+        {
+          "id": "l05-clock-q4",
+          "prompt": "Theo mô hình bài, ref được đặt khi nào?",
+          "options": [
+            "Chỉ khi ghi lại trang",
+            "Chỉ khi pin count về 0 và trang dirty",
+            "Chỉ khi CLOCK chọn victim",
+            "Khi pin count tăng"
+          ],
+          "explanation": "Bit ghi nhận sử dụng trang, không phụ thuộc clause SQL cụ thể."
+        },
+        {
+          "id": "l05-clock-q5",
+          "prompt": "Sau thay victim để phục vụ pin, trạng thái đúng là gì?",
+          "options": [
+            "Trang mới được pin, ref=1 và kim tiến",
+            "Trang mới không pin, ref=0 và kim không bao giờ tiến",
+            "Trang mới mặc định dirty vì được đọc",
+            "Giữ pin count khác không của trang cũ"
+          ],
+          "explanation": "Trang đang phục vụ người gọi nên được pin và tham chiếu. Đọc không tự làm dirty."
+        }
+      ]
+    },
+    {
+      "id": "l05-topic-scan-policies",
+      "title": "Policy thất bại và quét lặp",
+      "questions": [
+        {
+          "id": "l05-scan-policies-q1",
+          "prompt": "Ba frame rỗng quét A,B,C hai lần bằng LRU, unpin ngay. Tổng miss?",
+          "options": [
+            "0",
+            "3",
+            "6",
+            "4"
+          ],
+          "explanation": "Working set vừa pool. Lượt đầu ba miss; lượt hai toàn hit."
+        },
+        {
+          "id": "l05-scan-policies-q2",
+          "prompt": "Ba frame rỗng quét A,B,C,D hai lần bằng LRU, unpin ngay. Tổng miss?",
+          "options": [
+            "5",
+            "3",
+            "8",
+            "4"
+          ],
+          "explanation": "Mỗi trang bị đuổi trước lần dùng kế. Working set chỉ lớn hơn pool một trang gây flooding."
+        },
+        {
+          "id": "l05-scan-policies-q3",
+          "prompt": "Ba frame có A,B,C sau quét và unpin ngay. MRU thay trang nào khi nạp D?",
+          "options": [
+            "A",
+            "B",
+            "Không trang nào được thay",
+            "C"
+          ],
+          "explanation": "C vừa dùng nhất; LRU sẽ chọn A ở trạng thái này."
+        },
+        {
+          "id": "l05-scan-policies-q4",
+          "prompt": "LRU-K dùng thêm thông tin gì ngoài truy cập gần nhất?",
+          "options": [
+            "Lịch sử K lần tham chiếu gần nhất",
+            "Chỉ thời gian vào pool như FIFO",
+            "Chỉ tham chiếu cuối, bỏ lịch sử cũ",
+            "Chỉ tổng tần suất, không xét độ gần của lần thứ K"
+          ],
+          "explanation": "Nó dùng lịch sử sâu hơn, không chỉ dirty hay tên trang."
+        },
+        {
+          "id": "l05-scan-policies-q5",
+          "prompt": "Ví dụ LRU/MRU dạy gì về workload khác nhau?",
+          "options": [
+            "CLOCK không cần pin count",
+            "Hiệu quả replacement phụ thuộc mẫu truy cập",
+            "MRU tốt hơn với mọi workload",
+            "LRU luôn tối ưu tuyệt đối"
+          ],
+          "explanation": "Quét tuần tự khác truy cập lặp trang nóng. Không policy nào thắng mọi trường hợp."
+        }
+      ]
+    },
+    {
+      "id": "l05-topic-buffer-practice",
+      "title": "Buffer thực tế và giới hạn dùng OS",
+      "questions": [
+        {
+          "id": "l05-buffer-practice-q1",
+          "prompt": "Vì sao gợi ý ưu tiên của execution engine hữu ích?",
+          "options": [
+            "Thay được điều kiện pinCount=0 khi đuổi",
+            "Làm mọi đọc trang không cần I/O",
+            "Engine biết mẫu truy cập sắp tới của operator",
+            "Engine biết hoàn hảo mọi truy cập tương lai"
+          ],
+          "explanation": "Thông tin workload giúp chọn replacement, không bảo đảm cache vô hạn."
+        },
+        {
+          "id": "l05-buffer-practice-q2",
+          "prompt": "Partitioned buffer pool là gì?",
+          "options": [
+            "Bản sao đầy đủ mọi bảng ở mỗi frame",
+            "Một tiến trình OS cho mỗi tuple",
+            "Bắt data/index dùng đúng một frame chung",
+            "Pool riêng cho nhóm đối tượng như bảng, chỉ mục, log"
+          ],
+          "explanation": "Đây là chia tài nguyên cache, không buộc sao chép toàn dữ liệu lưu trữ."
+        },
+        {
+          "id": "l05-buffer-practice-q3",
+          "prompt": "Prefetch có thể chồng lấp hai hoạt động nào?",
+          "options": [
+            "I/O trang sắp cần và CPU xử lý trang hiện tại",
+            "Flush trang trước khi có bất kỳ lần ghi nào",
+            "Đọc toàn database trước mọi công CPU",
+            "Sắp bản ghi RAM và loại hết I/O"
+          ],
+          "explanation": "Mục tiêu giảm chờ bằng chồng lấp tính toán/I/O, không đổi schema."
+        },
+        {
+          "id": "l05-buffer-practice-q4",
+          "prompt": "Vì sao DBMS muốn điều khiển thứ tự flush?",
+          "options": [
+            "Để optimizer không bao giờ cần chọn kế hoạch",
+            "Recovery có thể yêu cầu thứ tự ghi phù hợp",
+            "Để đổi thứ tự tuple mọi kết quả SQL",
+            "Để loại mọi concurrency control"
+          ],
+          "explanation": "Độ bền và khôi phục phụ thuộc thứ tự lưu bền. Flush không được đổi kết quả truy vấn."
+        },
+        {
+          "id": "l05-buffer-practice-q5",
+          "prompt": "Prefetch rất nhiều trang có bảo đảm tối ưu?",
+          "options": [
+            "Có; prefetch không chiếm frame",
+            "Có; I/O suy đoán không dùng băng thông",
+            "Không; có thể lấy trang không dùng và chiếm cache",
+            "Có; mọi trang prefetch phải dùng ngay"
+          ],
+          "explanation": "Dự đoán sai tạo I/O và áp lực cache. Prefetch không miễn phí."
+        }
+      ]
+    }
+  ],
+  "reviewStatus": "All prompts, four options in canonical source-slot order, and explanations translated; author audit against canonical answer slots, latest EN/VI bodies and local extracted referenced source pages. No fresh diagram or external-paper verification; source caveats in review/core-quiz-1-5-translation.json."
+}

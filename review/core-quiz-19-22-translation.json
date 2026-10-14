@@ -1,0 +1,1408 @@
+{
+  "batch": "core quizzes19–22",
+  "questionsCompleted": 135,
+  "unfinishedIds": [],
+  "authorAuditScope": "Every translated prompt, option and explanation read against actual canonical source question, its immutable answer index, latest EN/VI main-body concepts and already fully read sibling lecture extracted text. Option meaning and order were retained. Numerical examples were calculated by the author where applicable.",
+  "sourceReadingDepth": {
+    "lecture19": "all extracted text: physical PDF pages 1–48",
+    "lecture20": "all extracted text: physical PDF pages 1–28",
+    "lecture21": "all extracted text: physical PDF pages 1–27",
+    "lecture22": "all extracted text: physical PDF pages 1–57"
+  },
+  "limits": [
+    "No PDF-diagram visual inspection in this batch.",
+    "No fresh external-paper validation claimed; core quiz21 contains no CLR-specific question.",
+    "Runtime integration, option shuffling, storage and automated tests belong to root."
+  ],
+  "ambiguities": [
+    {
+      "ids": [
+        "l19-conflicts-q3"
+      ],
+      "note": "Read occurs before the writer aborts; the intended uncommitted read model is explicit in explanation. Do not interpret a prior committed write as the same case."
+    },
+    {
+      "ids": [
+        "l20-strict-q1",
+        "l20-strict-q5"
+      ],
+      "note": "Strict 2PL follows the lecture convention retaining both S and X until completion; other naming conventions are not imported."
+    },
+    {
+      "ids": [
+        "l21-aries-q4"
+      ],
+      "note": "Ordinary single-node ARIES loser scope. Durable PREPARE in distributed 2PC is in-doubt rather than an ordinary loser; preserve the main-body forward connection to lecture22."
+    },
+    {
+      "ids": [
+        "l22-2pc-locking-q5",
+        "l22-2pc-recovery-q5"
+      ],
+      "note": "Local abort before PREPARE is distinct from overriding a prepared/global decision. Undo and lock release still follow local recovery and 2PC rules."
+    },
+    {
+      "ids": [
+        "l22-availability-q5"
+      ],
+      "note": "Paxos Commit is an extension beyond detailed lecture coverage; majority of decision replicas does not discard a required transaction participant."
+    }
+  ],
+  "lessons": [
+    {
+      "lecture": 19,
+      "questionsCompleted": 40,
+      "idsAndOrderMatch": true,
+      "allOptionsHaveFourSourceOrderedSlots": true,
+      "localeHasNoAnswerKeys": true,
+      "canonicalSha256Unchanged": "bf7d7bb42a63d3cca15d7842816710871d4d58c6bb1a8e71edd1581146b86a33",
+      "unfinishedIds": [],
+      "questionAudits": [
+        {
+          "id": "l19-transactions-q1",
+          "physicalPdfPages": [
+            4,
+            9
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-transactions-q2",
+          "physicalPdfPages": [
+            5,
+            6
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-transactions-q3",
+          "physicalPdfPages": [
+            8,
+            9
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-transactions-q4",
+          "physicalPdfPages": [
+            10,
+            11
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-transactions-q5",
+          "physicalPdfPages": [
+            8
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-acid-q1",
+          "physicalPdfPages": [
+            12,
+            13
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-acid-q2",
+          "physicalPdfPages": [
+            15
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-acid-q3",
+          "physicalPdfPages": [
+            47
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-acid-q4",
+          "physicalPdfPages": [
+            16,
+            17
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-acid-q5",
+          "physicalPdfPages": [
+            14
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-acid-q6",
+          "physicalPdfPages": [
+            14
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-acid-q7",
+          "physicalPdfPages": [
+            17
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-acid-q8",
+          "physicalPdfPages": [
+            17
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-acid-q9",
+          "physicalPdfPages": [
+            15
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-acid-q10",
+          "physicalPdfPages": [
+            12,
+            13,
+            47
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-schedules-q1",
+          "physicalPdfPages": [
+            24
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-schedules-q2",
+          "physicalPdfPages": [
+            25
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-schedules-q3",
+          "physicalPdfPages": [
+            25,
+            26
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-schedules-q4",
+          "physicalPdfPages": [
+            18,
+            22,
+            23
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-schedules-q5",
+          "physicalPdfPages": [
+            19,
+            26
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-conflicts-q1",
+          "physicalPdfPages": [
+            27
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-conflicts-q2",
+          "physicalPdfPages": [
+            28
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-conflicts-q3",
+          "physicalPdfPages": [
+            29
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-conflicts-q4",
+          "physicalPdfPages": [
+            27,
+            30
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-conflicts-q5",
+          "physicalPdfPages": [
+            27
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-conflict-serializable-q1",
+          "physicalPdfPages": [
+            32
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-conflict-serializable-q2",
+          "physicalPdfPages": [
+            32,
+            33
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-conflict-serializable-q3",
+          "physicalPdfPages": [
+            27,
+            32
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-conflict-serializable-q4",
+          "physicalPdfPages": [
+            38
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-conflict-serializable-q5",
+          "physicalPdfPages": [
+            32,
+            37
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-dependency-q1",
+          "physicalPdfPages": [
+            40
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-dependency-q2",
+          "physicalPdfPages": [
+            40
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-dependency-q3",
+          "physicalPdfPages": [
+            40,
+            42
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-dependency-q4",
+          "physicalPdfPages": [
+            40,
+            41
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-dependency-q5",
+          "physicalPdfPages": [
+            27,
+            40
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-view-q1",
+          "physicalPdfPages": [
+            43
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-view-q2",
+          "physicalPdfPages": [
+            43,
+            45
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-view-q3",
+          "physicalPdfPages": [
+            45,
+            46
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-view-q4",
+          "physicalPdfPages": [
+            43
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l19-view-q5",
+          "physicalPdfPages": [
+            40,
+            46
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        }
+      ]
+    },
+    {
+      "lecture": 20,
+      "questionsCompleted": 30,
+      "idsAndOrderMatch": true,
+      "allOptionsHaveFourSourceOrderedSlots": true,
+      "localeHasNoAnswerKeys": true,
+      "canonicalSha256Unchanged": "faff55cef213745806cb1537de3df1740377bfaeaa8e43da3985a98c062a9db7",
+      "unfinishedIds": [],
+      "questionAudits": [
+        {
+          "id": "l20-scheduler-locks-q1",
+          "physicalPdfPages": [
+            2
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l20-scheduler-locks-q2",
+          "physicalPdfPages": [
+            4
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l20-scheduler-locks-q3",
+          "physicalPdfPages": [
+            3,
+            4
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l20-scheduler-locks-q4",
+          "physicalPdfPages": [
+            3,
+            4
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l20-scheduler-locks-q5",
+          "physicalPdfPages": [
+            5,
+            6
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l20-two-phase-q1",
+          "physicalPdfPages": [
+            7,
+            8
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l20-two-phase-q2",
+          "physicalPdfPages": [
+            7,
+            9
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l20-two-phase-q3",
+          "physicalPdfPages": [
+            8,
+            9
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l20-two-phase-q4",
+          "physicalPdfPages": [
+            10,
+            12
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l20-two-phase-q5",
+          "physicalPdfPages": [
+            12
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l20-cascading-q1",
+          "physicalPdfPages": [
+            11
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l20-cascading-q2",
+          "physicalPdfPages": [
+            7,
+            11,
+            12
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l20-cascading-q3",
+          "physicalPdfPages": [
+            10,
+            11,
+            12
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l20-cascading-q4",
+          "physicalPdfPages": [
+            11
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l20-cascading-q5",
+          "physicalPdfPages": [
+            12,
+            13,
+            14
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l20-strict-q1",
+          "physicalPdfPages": [
+            13,
+            14
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l20-strict-q2",
+          "physicalPdfPages": [
+            15,
+            16,
+            17
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l20-strict-q3",
+          "physicalPdfPages": [
+            14
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l20-strict-q4",
+          "physicalPdfPages": [
+            13,
+            18
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l20-strict-q5",
+          "physicalPdfPages": [
+            13,
+            17
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l20-deadlock-detection-q1",
+          "physicalPdfPages": [
+            20
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l20-deadlock-detection-q2",
+          "physicalPdfPages": [
+            18,
+            20
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l20-deadlock-detection-q3",
+          "physicalPdfPages": [
+            22
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l20-deadlock-detection-q4",
+          "physicalPdfPages": [
+            22
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l20-deadlock-detection-q5",
+          "physicalPdfPages": [
+            20,
+            22
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l20-deadlock-prevention-q1",
+          "physicalPdfPages": [
+            24
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l20-deadlock-prevention-q2",
+          "physicalPdfPages": [
+            24,
+            26
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l20-deadlock-prevention-q3",
+          "physicalPdfPages": [
+            24,
+            26
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l20-deadlock-prevention-q4",
+          "physicalPdfPages": [
+            24,
+            26
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l20-deadlock-prevention-q5",
+          "physicalPdfPages": [
+            27
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        }
+      ]
+    },
+    {
+      "lecture": 21,
+      "questionsCompleted": 25,
+      "idsAndOrderMatch": true,
+      "allOptionsHaveFourSourceOrderedSlots": true,
+      "localeHasNoAnswerKeys": true,
+      "canonicalSha256Unchanged": "eb83192074910023a2278411a67a0c07b6eed4030fc044824854865bd13a7cea",
+      "unfinishedIds": [],
+      "questionAudits": [
+        {
+          "id": "l21-failures-q1",
+          "physicalPdfPages": [
+            4
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l21-failures-q2",
+          "physicalPdfPages": [
+            4,
+            5
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l21-failures-q3",
+          "physicalPdfPages": [
+            4
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l21-failures-q4",
+          "physicalPdfPages": [
+            4
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l21-failures-q5",
+          "physicalPdfPages": [
+            5
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l21-buffer-policies-q1",
+          "physicalPdfPages": [
+            7
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l21-buffer-policies-q2",
+          "physicalPdfPages": [
+            7,
+            16
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l21-buffer-policies-q3",
+          "physicalPdfPages": [
+            16
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l21-buffer-policies-q4",
+          "physicalPdfPages": [
+            16,
+            17
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l21-buffer-policies-q5",
+          "physicalPdfPages": [
+            8,
+            15
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l21-logging-q1",
+          "physicalPdfPages": [
+            18
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l21-logging-q2",
+          "physicalPdfPages": [
+            18
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l21-logging-q3",
+          "physicalPdfPages": [
+            18
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l21-logging-q4",
+          "physicalPdfPages": [
+            18,
+            19
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l21-logging-q5",
+          "physicalPdfPages": [
+            18
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l21-wal-q1",
+          "physicalPdfPages": [
+            19
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l21-wal-q2",
+          "physicalPdfPages": [
+            19,
+            23
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l21-wal-q3",
+          "physicalPdfPages": [
+            19
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l21-wal-q4",
+          "physicalPdfPages": [
+            20,
+            23,
+            24
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l21-wal-q5",
+          "physicalPdfPages": [
+            19,
+            23
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l21-aries-q1",
+          "physicalPdfPages": [
+            25,
+            26
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l21-aries-q2",
+          "physicalPdfPages": [
+            25,
+            26
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l21-aries-q3",
+          "physicalPdfPages": [
+            26
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l21-aries-q4",
+          "physicalPdfPages": [
+            26
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l21-aries-q5",
+          "physicalPdfPages": [
+            25,
+            26
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        }
+      ]
+    },
+    {
+      "lecture": 22,
+      "questionsCompleted": 40,
+      "idsAndOrderMatch": true,
+      "allOptionsHaveFourSourceOrderedSlots": true,
+      "localeHasNoAnswerKeys": true,
+      "canonicalSha256Unchanged": "01a4908d82c8d1777ce3fc6944df57b1b39d90131769b7468d3bea8e98aa3c72",
+      "unfinishedIds": [],
+      "questionAudits": [
+        {
+          "id": "l22-distributed-model-q1",
+          "physicalPdfPages": [
+            3,
+            4
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-distributed-model-q2",
+          "physicalPdfPages": [
+            3
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-distributed-model-q3",
+          "physicalPdfPages": [
+            5
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-distributed-model-q4",
+          "physicalPdfPages": [
+            5,
+            16
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-distributed-model-q5",
+          "physicalPdfPages": [
+            3,
+            5
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-distributed-locks-q1",
+          "physicalPdfPages": [
+            7
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-distributed-locks-q2",
+          "physicalPdfPages": [
+            8
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-distributed-locks-q3",
+          "physicalPdfPages": [
+            8,
+            9,
+            10
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-distributed-locks-q4",
+          "physicalPdfPages": [
+            13
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-distributed-locks-q5",
+          "physicalPdfPages": [
+            14
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-two-phase-commit-q1",
+          "physicalPdfPages": [
+            22
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-two-phase-commit-q2",
+          "physicalPdfPages": [
+            22,
+            23
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-two-phase-commit-q3",
+          "physicalPdfPages": [
+            20,
+            22
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-two-phase-commit-q4",
+          "physicalPdfPages": [
+            20,
+            49
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-two-phase-commit-q5",
+          "physicalPdfPages": [
+            22,
+            27,
+            29,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-two-phase-commit-q6",
+          "physicalPdfPages": [
+            20
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-two-phase-commit-q7",
+          "physicalPdfPages": [
+            24,
+            29,
+            30
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-two-phase-commit-q8",
+          "physicalPdfPages": [
+            16,
+            17,
+            19,
+            49
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-two-phase-commit-q9",
+          "physicalPdfPages": [
+            22,
+            31,
+            38
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-two-phase-commit-q10",
+          "physicalPdfPages": [
+            22,
+            55
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-2pc-logging-q1",
+          "physicalPdfPages": [
+            31,
+            33,
+            34,
+            35
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-2pc-logging-q2",
+          "physicalPdfPages": [
+            37,
+            38,
+            39
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-2pc-logging-q3",
+          "physicalPdfPages": [
+            47
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-2pc-logging-q4",
+          "physicalPdfPages": [
+            47
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-2pc-logging-q5",
+          "physicalPdfPages": [
+            47
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-2pc-recovery-q1",
+          "physicalPdfPages": [
+            49,
+            51,
+            54
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-2pc-recovery-q2",
+          "physicalPdfPages": [
+            54
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-2pc-recovery-q3",
+          "physicalPdfPages": [
+            54
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-2pc-recovery-q4",
+          "physicalPdfPages": [
+            54
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-2pc-recovery-q5",
+          "physicalPdfPages": [
+            49
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-2pc-locking-q1",
+          "physicalPdfPages": [
+            55
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-2pc-locking-q2",
+          "physicalPdfPages": [
+            55
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-2pc-locking-q3",
+          "physicalPdfPages": [
+            55,
+            56
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-2pc-locking-q4",
+          "physicalPdfPages": [
+            55
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-2pc-locking-q5",
+          "physicalPdfPages": [
+            49,
+            54,
+            55
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-availability-q1",
+          "physicalPdfPages": [
+            56
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-availability-q2",
+          "physicalPdfPages": [
+            56,
+            57
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-availability-q3",
+          "physicalPdfPages": [
+            49,
+            56
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-availability-q4",
+          "physicalPdfPages": [
+            55,
+            56
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        },
+        {
+          "id": "l22-availability-q5",
+          "physicalPdfPages": [
+            56,
+            57
+          ],
+          "sourcePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+          "numericalTokensInPromptAndOptionsPreserved": true,
+          "authorAudit": "prompt and all four options translated in source-slot order; explanation checked against canonical correct option and lecture assumptions"
+        }
+      ]
+    }
+  ],
+  "blockers": []
+}

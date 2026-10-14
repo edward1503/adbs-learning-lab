@@ -1,0 +1,556 @@
+{
+  "lessonId": "lecture-10",
+  "language": "vi",
+  "topics": [
+    {
+      "id": "l10-collision-resolution",
+      "title": "Xử lý va chạm",
+      "questions": [
+        {
+          "id": "l10-collision-resolution-q1",
+          "prompt": "Hai khóa khác nhau cùng hash. Tra cứu đúng phải làm gì?",
+          "options": [
+            "Coi chúng là một khóa",
+            "Tăng mọi hash thêm một",
+            "So khóa thật của các ứng viên",
+            "Trả mục đầu bucket"
+          ],
+          "explanation": "Cùng hash không chứng minh cùng khóa; mục đầu có thể chỉ là va chạm."
+        },
+        {
+          "id": "l10-collision-resolution-q2",
+          "prompt": "Chaining khác open addressing thế nào?",
+          "options": [
+            "Cả hai luôn cần directory kích thước 2^g",
+            "Chaining cấm trùng, open addressing cho phép",
+            "Open addressing luôn dùng overflow đĩa",
+            "Chaining nối mục; open addressing probe slot trong bảng"
+          ],
+          "explanation": "Chaining giữ chuỗi liên kết; open addressing tìm slot khác. Directory thuộc extendible, không yêu cầu chung."
+        },
+        {
+          "id": "l10-collision-resolution-q3",
+          "prompt": "Bảng bốn slot, linear probing, h(9)=1; slot 1,2 đầy,3 trống. Chèn ở đâu?",
+          "options": [
+            "Slot 3",
+            "Slot 1, ghi đè mục",
+            "Slot 0, bất kể trạng thái",
+            "Phải từ chối chèn"
+          ],
+          "explanation": "Probe đi qua 1,2 tới 3, không ghi đè mục hiện có."
+        },
+        {
+          "id": "l10-collision-resolution-q4",
+          "prompt": "20 khóa vào cùng chuỗi có thể gây gì?",
+          "options": [
+            "Tìm chỉ so một khóa vì đã băm",
+            "Tìm có thể kiểm tra nhiều mục",
+            "Chỉ chèn chậm, tìm vẫn đọc một mục",
+            "Chuỗi dài chứng minh mọi khóa trùng"
+          ],
+          "explanation": "Chuỗi dài tăng công; tính hash hằng thời gian không làm toàn tra cứu hằng thời gian."
+        },
+        {
+          "id": "l10-collision-resolution-q5",
+          "prompt": "Associative array ánh xạ gì?",
+          "options": [
+            "Mỗi giá trị tới đúng một khóa dù giá trị lặp",
+            "Vị trí khóa trong thứ tự sắp tới hạng",
+            "Khóa tới giá trị",
+            "Mỗi hash tới đúng một khóa, cấm va chạm"
+          ],
+          "explanation": "Hash table thực hiện key→value, không tự cung cấp thứ tự khóa như cây."
+        }
+      ]
+    },
+    {
+      "id": "l10-hash-based-indexing",
+      "title": "Chỉ mục băm",
+      "questions": [
+        {
+          "id": "l10-hash-based-indexing-q1",
+          "prompt": "Điều kiện nào phù hợp nhất với chỉ mục hash trên code?",
+          "options": [
+            "code BETWEEN 10 AND 90",
+            "code > 42",
+            "ORDER BY code",
+            "code = 42"
+          ],
+          "explanation": "Bằng nhau xác định bucket trực tiếp; băm không giữ khoảng hay thứ tự."
+        },
+        {
+          "id": "l10-hash-based-indexing-q2",
+          "prompt": "Vì sao băm hỗ trợ GROUP BY?",
+          "options": [
+            "Tuple cùng khóa nhóm vào cùng partition",
+            "Mỗi partition luôn chỉ một khóa",
+            "Băm tự sắp tăng dần",
+            "Băm bỏ nhu cầu state của mọi aggregate"
+          ],
+          "explanation": "Khóa bằng nhau vào cùng partition, dù khóa khác vẫn có thể va chạm."
+        },
+        {
+          "id": "l10-hash-based-indexing-q3",
+          "prompt": "h(k)=k mod 8: suy ra gì về 6 và 14?",
+          "options": [
+            "Mọi scan luôn có 14 ngay sau 6",
+            "Cùng bucket nhưng vẫn khác khóa",
+            "Cùng khóa vì hash bằng nhau",
+            "Hai bucket liên tiếp"
+          ],
+          "explanation": "6 mod 8 và 14 mod 8 đều 6; hash không chứng minh bằng khóa hay thứ tự."
+        },
+        {
+          "id": "l10-hash-based-indexing-q4",
+          "prompt": "Bỏ trùng theo (A, B), chiến lược băm trực tiếp nhất?",
+          "options": [
+            "Chỉ băm A, rồi coi mọi khóa bucket là trùng",
+            "Băm B nhưng chỉ so A khi bỏ trùng",
+            "Băm cặp (A, B), rồi so toàn cặp",
+            "Băm toàn tuple, kể cả cột ngoài DISTINCT(A, B)"
+          ],
+          "explanation": "Băm đủ khóa nhóm đưa bản sao lại gần nhất quán; địa chỉ hay vị trí input không xác lập bằng nhau."
+        },
+        {
+          "id": "l10-hash-based-indexing-q5",
+          "prompt": "Join làm nhiều kiểm tra bằng nhau; hash index giúp gì?",
+          "options": [
+            "Không cần kiểm tra va chạm",
+            "Bảo đảm output sắp theo khóa join",
+            "Biến mọi bất đẳng thức thành bằng nhau",
+            "Tìm ứng viên trong theo khóa join"
+          ],
+          "explanation": "Lookup băm thu hẹp ứng viên, nhưng vẫn so khóa và output không có thứ tự."
+        }
+      ]
+    },
+    {
+      "id": "l10-static-chained-hash-table-management",
+      "title": "Quản lý băm tĩnh có chuỗi",
+      "questions": [
+        {
+          "id": "l10-static-chained-hash-table-management-q1",
+          "prompt": "Bucket băm tĩnh có chuỗi gồm gì?",
+          "options": [
+            "Trang chính cùng overflow liên quan",
+            "Chỉ một tuple",
+            "Toàn directory và mọi trang dữ liệu",
+            "Luôn toàn B+ tree"
+          ],
+          "explanation": "Bucket là trang chính và chuỗi overflow, không nhất thiết chỉ một trang."
+        },
+        {
+          "id": "l10-static-chained-hash-table-management-q2",
+          "prompt": "N=7 bucket chính, h(k)=k mod 7. Tìm 23 bắt đầu bucket nào?",
+          "options": [
+            "23",
+            "2",
+            "3",
+            "7"
+          ],
+          "explanation": "23=3×7+2; bucket đánh số 0..6, không dùng nguyên khóa làm số bucket."
+        },
+        {
+          "id": "l10-static-chained-hash-table-management-q3",
+          "prompt": "Theo mô hình slide, lookup không overflow, trang chưa cache cần mấy I/O?",
+          "options": [
+            "Luôn 2",
+            "N",
+            "1",
+            "0"
+          ],
+          "explanation": "Chỉ đọc trang bucket chính; 0 cần giả định cache chưa được cho."
+        },
+        {
+          "id": "l10-static-chained-hash-table-management-q4",
+          "prompt": "Chèn sửa một trang chính, không overflow, trang chưa cache. I/O đọc cộng ghi?",
+          "options": [
+            "1",
+            "0",
+            "Luôn 4",
+            "2"
+          ],
+          "explanation": "Một đọc, một ghi; chỉ đếm đọc bỏ ghi trang sửa."
+        },
+        {
+          "id": "l10-static-chained-hash-table-management-q5",
+          "prompt": "Khóa có thể ở overflow thứ hai sau trang chính. Theo hết đường cần mấy lượt đọc?",
+          "options": [
+            "3",
+            "2",
+            "1",
+            "4"
+          ],
+          "explanation": "Trang chính rồi hai overflow, tổng ba; trang chính thuộc đường truy cập."
+        }
+      ]
+    },
+    {
+      "id": "l10-hash-collisions-and-overflow-chains",
+      "title": "Va chạm và chuỗi overflow",
+      "questions": [
+        {
+          "id": "l10-hash-collisions-and-overflow-chains-q1",
+          "prompt": "Bucket 10 mục, mỗi trang tối đa ba, mọi trang trừ cuối đầy. Cần mấy overflow ngoài trang chính?",
+          "options": [
+            "2",
+            "3",
+            "4",
+            "10"
+          ],
+          "explanation": "ceil(10/3)=4 trang tổng, ba overflow. Đáp bốn quên đã tính trang chính."
+        },
+        {
+          "id": "l10-hash-collisions-and-overflow-chains-q2",
+          "prompt": "Tìm thất bại trong bucket chưa cache, một chính và ba overflow. Đọc mấy trang để kết luận vắng?",
+          "options": [
+            "1",
+            "3",
+            "4",
+            "0"
+          ],
+          "explanation": "Kiểm tra cả chuỗi:1+3=4. Dừng ở chính có thể bỏ sót mục phía sau."
+        },
+        {
+          "id": "l10-hash-collisions-and-overflow-chains-q3",
+          "prompt": "80% lookup đọc một trang,20% đọc bốn. Kỳ vọng trang mỗi lookup?",
+          "options": [
+            "2.5",
+            "4",
+            "1.2",
+            "1.6"
+          ],
+          "explanation": "0.8×1+0.2×4=1.6; 2.5 lấy trung bình hai trường hợp mà bỏ tần suất."
+        },
+        {
+          "id": "l10-hash-collisions-and-overflow-chains-q4",
+          "prompt": "Bucket chính có khóa 4,12 cùng h(k). Chúng có trùng khóa?",
+          "options": [
+            "Không, chung bucket chỉ xác lập va chạm băm",
+            "Có, bucket chỉ được một search key",
+            "Có, khóa cùng trang luôn bằng",
+            "Không, hàm băm không bao giờ va chạm"
+          ],
+          "explanation": "4 và 12 khác dù hash giống; chung bucket không xác lập bằng search key."
+        },
+        {
+          "id": "l10-hash-collisions-and-overflow-chains-q5",
+          "prompt": "Hai chỉ mục cùng độ đầy bucket trung bình; A có vài chuỗi rất dài, B khá đều. Trung bình che gì?",
+          "options": [
+            "Bảo đảm A, B cùng chi phí lookup tối đa",
+            "Tail latency và chi phí lookup không đều",
+            "A bắt buộc ít mục dữ liệu hơn B",
+            "B không bao giờ cần so khóa"
+          ],
+          "explanation": "Chuỗi nóng/dài làm một số lookup đắt; trung bình không quyết định cực đại hay phân bố chi phí."
+        }
+      ]
+    },
+    {
+      "id": "l10-global-and-local-depth",
+      "title": "Global và local depth",
+      "questions": [
+        {
+          "id": "l10-global-and-local-depth-q1",
+          "prompt": "Global depth g=4 có bao nhiêu mục directory?",
+          "options": [
+            "8",
+            "32",
+            "16",
+            "4"
+          ],
+          "explanation": "Directory có 2^g=16 mục, không phải g mục."
+        },
+        {
+          "id": "l10-global-and-local-depth-q2",
+          "prompt": "g=4, bucket local depth d=2, có mấy con trỏ directory tới nó?",
+          "options": [
+            "2",
+            "8",
+            "16",
+            "4"
+          ],
+          "explanation": "Có 2^(g−d)=4 suffix mở rộng trỏ bucket; local depth không phải số con trỏ."
+        },
+        {
+          "id": "l10-global-and-local-depth-q3",
+          "prompt": "Dùng bit thấp, g=3, h(k)=22 (10110₂). Chọn mục directory nào?",
+          "options": [
+            "110",
+            "101",
+            "010",
+            "011"
+          ],
+          "explanation": "Ba bit thấp là 110; không dùng ba bit cao 101."
+        },
+        {
+          "id": "l10-global-and-local-depth-q4",
+          "prompt": "Local depth mô tả gì?",
+          "options": [
+            "Số overflow cần",
+            "Số bit hash chung dùng phân biệt bucket này",
+            "Chiều cao B+ tree",
+            "Số tuple hiện có"
+          ],
+          "explanation": "Local depth đếm bit phân biệt, độc lập số mục hiện tại."
+        },
+        {
+          "id": "l10-global-and-local-depth-q5",
+          "prompt": "Chỉ mục extendible nhất quán thỏa quan hệ nào?",
+          "options": [
+            "Mọi bucket luôn d=g",
+            "g bằng tổng mọi d",
+            "Mọi bucket d≤g",
+            "Mọi bucket d>g"
+          ],
+          "explanation": "Directory đủ bit địa chỉ mọi bucket, nên d không vượt g; nhiều bucket d nhỏ hơn g."
+        }
+      ]
+    },
+    {
+      "id": "l10-extendible-hashing",
+      "title": "Extendible hashing",
+      "questions": [
+        {
+          "id": "l10-extendible-hashing-q1",
+          "prompt": "Ý tưởng chính xử lý bucket đầy của extendible là gì?",
+          "options": [
+            "Rehash toàn chỉ mục mỗi bucket đầy",
+            "Nhân đôi mọi bucket dù chỉ một đầy",
+            "Chỉ nhân directory, không phân phối lại bucket đầy",
+            "Tách bucket bị ảnh hưởng thay vì rehash toàn file"
+          ],
+          "explanation": "Chỉ phân phối bucket tách; nhân directory không có nghĩa nhân dữ liệu."
+        },
+        {
+          "id": "l10-extendible-hashing-q2",
+          "prompt": "Bucket sức chứa hai, suffix 01, có hash 1,5. Chèn 9, tách bằng ba bit. Bucket 001 chứa gì?",
+          "options": [
+            "1 và 9",
+            "1 và 5",
+            "5 và 9",
+            "Cả ba"
+          ],
+          "explanation": "1=001,5=101,9=1001; ba bit thấp của 1 và 9 đều 001."
+        },
+        {
+          "id": "l10-extendible-hashing-q3",
+          "prompt": "Chèn bình thường khi bucket đích còn chỗ làm gì?",
+          "options": [
+            "Luôn rehash mọi bucket",
+            "Thêm mục vào bucket ấy",
+            "Luôn nhân đôi directory",
+            "Luôn tạo hai bucket mới"
+          ],
+          "explanation": "Không overflow thì không cần tách; nhân directory mỗi chèn là thừa."
+        },
+        {
+          "id": "l10-extendible-hashing-q4",
+          "prompt": "Sau tách, điều gì quyết định phân phối mục?",
+          "options": [
+            "Số tuple hiện tại thay bit hash",
+            "RID thay hash search key",
+            "Một bit hash bổ sung",
+            "Chia đôi danh sách theo thứ tự chèn, không xem hash"
+          ],
+          "explanation": "Bit mới phân biệt hai suffix; tuổi mục hay ID giao dịch không quyết định phân vùng băm."
+        },
+        {
+          "id": "l10-extendible-hashing-q5",
+          "prompt": "Vì sao sau chọn bucket bằng đủ g bit vẫn phải so khóa thật?",
+          "options": [
+            "Con trỏ directory luôn sai",
+            "Local depth luôn 0",
+            "Hash index chỉ lưu khóa đã sắp",
+            "Khóa khác có thể cùng suffix hash"
+          ],
+          "explanation": "Suffix g bit chọn ứng viên; directory không loại hết va chạm."
+        }
+      ]
+    },
+    {
+      "id": "l10-directory-doubling",
+      "title": "Nhân đôi directory",
+      "questions": [
+        {
+          "id": "l10-directory-doubling-q1",
+          "prompt": "g=3, d=2, tách cho d mới=3. Có phải nhân directory?",
+          "options": [
+            "Không",
+            "Có, mọi tách tăng g",
+            "Có, vì d mới bằng g",
+            "Nhân hai lần để mỗi bucket một con trỏ"
+          ],
+          "explanation": "Độ sâu mới không vượt g, chỉ đổi con trỏ; không phải mọi tách đều nhân đôi."
+        },
+        {
+          "id": "l10-directory-doubling-q2",
+          "prompt": "g=3, d=3, tách cần thêm bit. Directory đổi thế nào?",
+          "options": [
+            "Giữ tám mục, g vẫn 3",
+            "Từ tám lên 16 mục",
+            "Từ ba lên bốn mục",
+            "Từ tám lên chín mục"
+          ],
+          "explanation": "Depth 4 cần 2^4 mục; thêm chỉ một mục không đủ."
+        },
+        {
+          "id": "l10-directory-doubling-q3",
+          "prompt": "Nhân directory có phải sao dữ liệu mọi bucket?",
+          "options": [
+            "Có, mọi bucket thành hai",
+            "Không con trỏ nào cần đổi",
+            "Không, chủ yếu lặp con trỏ và xử lý bucket tách",
+            "Có, mọi tuple nhân đôi"
+          ],
+          "explanation": "Lặp con trỏ khác lặp dữ liệu; chỉ bucket tách cần phân phối lại."
+        },
+        {
+          "id": "l10-directory-doubling-q4",
+          "prompt": "Sau nhân directory, local depth bucket không tách thế nào?",
+          "options": [
+            "Phải tăng 1",
+            "Phải giảm 1",
+            "Phải bằng global depth mới",
+            "Giữ nguyên"
+          ],
+          "explanation": "Tăng g không có nghĩa mọi bucket cần thêm bit phân biệt."
+        },
+        {
+          "id": "l10-directory-doubling-q5",
+          "prompt": "Trước thu nhỏ directory an toàn phải bảo đảm gì?",
+          "options": [
+            "Bỏ một bit vẫn giữ mọi phân biệt bucket cần thiết",
+            "Một bucket có slot trống là đủ",
+            "Độ đầy chung dưới 50% đủ, bất kể local depth",
+            "Số mục directory chẵn là đủ"
+          ],
+          "explanation": "Thu nhỏ là đổi cấu trúc có tiền điều kiện; một lần xóa chưa chứng minh an toàn."
+        }
+      ]
+    },
+    {
+      "id": "l10-hash-functions",
+      "title": "Hàm băm",
+      "questions": [
+        {
+          "id": "l10-hash-functions-q1",
+          "prompt": "h(k)=k mod 16 dùng mấy bit thấp của số nguyên không âm?",
+          "options": [
+            "16",
+            "4",
+            "2",
+            "8"
+          ],
+          "explanation": "16=2^4 nên dùng bốn bit thấp; modulus không phải số bit."
+        },
+        {
+          "id": "l10-hash-functions-q2",
+          "prompt": "h(k)=k mod 16 phân phối 0,16,32,48 thế nào?",
+          "options": [
+            "Mỗi khóa bắt buộc bucket riêng",
+            "Tất cả bucket 4",
+            "Tất cả bucket 0",
+            "Bucket 0,1,2,3"
+          ],
+          "explanation": "Mọi khóa chia hết 16, bốn bit thấp bằng 0; modulus lũy thừa hai dễ gặp mẫu này."
+        },
+        {
+          "id": "l10-hash-functions-q3",
+          "prompt": "Mục tiêu phù hợp cho hàm băm dùng thường trong DBMS?",
+          "options": [
+            "Tối đa chi phí tính, bất kể va chạm",
+            "Chỉ giữ thứ tự số",
+            "Tránh va chạm vài mẫu, bỏ phần còn lại",
+            "Tính rẻ và phân bố workload tốt"
+          ],
+          "explanation": "Lookup cần tốc độ và phân bố tốt; giữ thứ tự không phải mục tiêu băm thông thường."
+        },
+        {
+          "id": "l10-hash-functions-q4",
+          "prompt": "Modulus nguyên tố bảo đảm hết va chạm khi miền khóa lớn hơn số bucket?",
+          "options": [
+            "Không",
+            "Có, nguyên tố ánh xạ một-một mọi miền",
+            "Có, nếu khóa duy nhất",
+            "Có, nếu khóa nguyên"
+          ],
+          "explanation": "Nguyên lý pigeonhole vẫn áp dụng; khóa duy nhất không suy ra bucket duy nhất."
+        },
+        {
+          "id": "l10-hash-functions-q5",
+          "prompt": "Hàm phân đều khóa khác nhau, nhưng X chiếm 90% tuple. Vẫn có thể xảy ra gì?",
+          "options": [
+            "Các bản X tự rải đều bucket",
+            "Bucket chứa X rất lớn",
+            "Mọi bucket bảo đảm cùng số tuple",
+            "Không bao giờ cần overflow"
+          ],
+          "explanation": "Phân đều khóa khác không loại skew tần suất; khóa bằng nhau cùng hash."
+        }
+      ]
+    },
+    {
+      "id": "l10-static-hashing-and-dynamic-files",
+      "title": "Băm tĩnh và file thay đổi",
+      "questions": [
+        {
+          "id": "l10-static-hashing-and-dynamic-files-q1",
+          "prompt": "Chỉ mục tĩnh 100 bucket chính, bảng tăng 10× không dựng lại. Rủi ro chính?",
+          "options": [
+            "Local depth mỗi bucket tăng theo số hàng",
+            "File tự giữ đúng 20% trống",
+            "Chuỗi overflow tăng",
+            "Directory tự tăng 10×"
+          ],
+          "explanation": "Số bucket tĩnh không tự thích nghi; directory/depth thuộc phương pháp động khác."
+        },
+        {
+          "id": "l10-static-hashing-and-dynamic-files-q2",
+          "prompt": "Bảng giảm mạnh nhưng giữ vùng chính cũ. Hệ quả không gian?",
+          "options": [
+            "Mọi trang chính trả ngay cho disk manager",
+            "Chỉ overflow thành trang chính",
+            "Hiệu suất không gian không đổi",
+            "Nhiều bucket ít dùng vẫn chiếm chỗ"
+          ],
+          "explanation": "Cấp phát tĩnh có thể lãng phí sau giảm; không tự dồn toàn file."
+        },
+        {
+          "id": "l10-static-hashing-and-dynamic-files-q3",
+          "prompt": "Rehash từ tám lên 16 bucket chính có thể phải xử lý mục nào?",
+          "options": [
+            "Mục khắp chỉ mục theo ánh xạ mới",
+            "Luôn chỉ mục vừa chèn",
+            "Chỉ bucket 0, bất kể khóa",
+            "Chỉ số con trỏ đổi, bỏ vị trí dữ liệu"
+          ],
+          "explanation": "Đổi ánh xạ tĩnh cần phân phối lại mục, khác tách cục bộ extendible."
+        },
+        {
+          "id": "l10-static-hashing-and-dynamic-files-q4",
+          "prompt": "Bucket tĩnh có thể có lợi concurrency gì?",
+          "options": [
+            "Rehash không bao giờ ảnh hưởng truy cập",
+            "Chèn giới hạn khóa ở bucket/trang liên quan",
+            "Không write đồng thời nào cần khóa",
+            "Mỗi chèn phải khóa toàn CSDL"
+          ],
+          "explanation": "Vị trí tĩnh giúp đơn giản hóa khóa cục bộ, không bỏ concurrency control."
+        },
+        {
+          "id": "l10-static-hashing-and-dynamic-files-q5",
+          "prompt": "So rehash định kỳ với tăng extendible, đánh đổi nào đúng?",
+          "options": [
+            "Rehash tĩnh không đọc dữ liệu",
+            "Extendible không directory",
+            "Rehash làm việc rộng theo đợt; extendible thường tách cục bộ",
+            "Cả hai luôn sao toàn file mỗi chèn"
+          ],
+          "explanation": "Hai cách thích nghi khác nhau; extendible lợi tăng cục bộ không có nghĩa mỗi cập nhật tĩnh xử lý toàn file."
+        }
+      ]
+    }
+  ],
+  "reviewStatus": "Every prompt, original option slot and explanation translated and checked against the canonical answer meaning; original teaching computations recalculated. Source topic text reviewed; diagram-only evidence gaps recorded separately. No answer keys in this locale."
+}

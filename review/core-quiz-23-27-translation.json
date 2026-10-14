@@ -1,0 +1,835 @@
+{
+  "scope": "Core quiz VI sidecars lectures23–27; canonical banks/answer keys, runtime, original checkout and deployment untouched.",
+  "completedQuestions": 285,
+  "unfinishedTranslations": [],
+  "banks": [
+    {
+      "lessonId": "lecture-23",
+      "file": "course/quiz-translations/lecture23.vi.json",
+      "topics": 5,
+      "questions": 25,
+      "reviewedQuestionIds": [
+        "l23-algebra-recap-q1",
+        "l23-algebra-recap-q2",
+        "l23-algebra-recap-q3",
+        "l23-algebra-recap-q4",
+        "l23-algebra-recap-q5",
+        "l23-calculus-q1",
+        "l23-calculus-q2",
+        "l23-calculus-q3",
+        "l23-calculus-q4",
+        "l23-calculus-q5",
+        "l23-syntax-q1",
+        "l23-syntax-q2",
+        "l23-syntax-q3",
+        "l23-syntax-q4",
+        "l23-syntax-q5",
+        "l23-homomorphism-q1",
+        "l23-homomorphism-q2",
+        "l23-homomorphism-q3",
+        "l23-homomorphism-q4",
+        "l23-homomorphism-q5",
+        "l23-semantics-q1",
+        "l23-semantics-q2",
+        "l23-semantics-q3",
+        "l23-semantics-q4",
+        "l23-semantics-q5"
+      ],
+      "sourceTopics": [
+        {
+          "id": "l23-topic-algebra-recap",
+          "pages": [
+            2,
+            11
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf"
+        },
+        {
+          "id": "l23-topic-calculus",
+          "pages": [
+            14,
+            18
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf"
+        },
+        {
+          "id": "l23-topic-syntax",
+          "pages": [
+            19,
+            23
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf"
+        },
+        {
+          "id": "l23-topic-homomorphism",
+          "pages": [
+            26,
+            30
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf"
+        },
+        {
+          "id": "l23-topic-semantics",
+          "pages": [
+            24,
+            33
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf"
+        }
+      ],
+      "canonicalSHA256": "218aa079551bc19db8cf6c63336ee09a65c8f7c922d8fe78e80c6f6788697fe3",
+      "translationSHA256": "4a1561ee63c4e4554bbc0726454b6b47dd7232df39afa0d5dba579f14ef39105"
+    },
+    {
+      "lessonId": "lecture-24",
+      "file": "course/quiz-translations/lecture24.vi.json",
+      "topics": 7,
+      "questions": 35,
+      "reviewedQuestionIds": [
+        "l24-evaluation-complexity-q1",
+        "l24-evaluation-complexity-q2",
+        "l24-evaluation-complexity-q3",
+        "l24-evaluation-complexity-q4",
+        "l24-evaluation-complexity-q5",
+        "l24-np-q1",
+        "l24-np-q2",
+        "l24-np-q3",
+        "l24-np-q4",
+        "l24-np-q5",
+        "l24-static-analysis-q1",
+        "l24-static-analysis-q2",
+        "l24-static-analysis-q3",
+        "l24-static-analysis-q4",
+        "l24-static-analysis-q5",
+        "l24-canonical-q1",
+        "l24-canonical-q2",
+        "l24-canonical-q3",
+        "l24-canonical-q4",
+        "l24-canonical-q5",
+        "l24-containment-hom-q1",
+        "l24-containment-hom-q2",
+        "l24-containment-hom-q3",
+        "l24-containment-hom-q4",
+        "l24-containment-hom-q5",
+        "l24-minimization-q1",
+        "l24-minimization-q2",
+        "l24-minimization-q3",
+        "l24-minimization-q4",
+        "l24-minimization-q5",
+        "l24-core-q1",
+        "l24-core-q2",
+        "l24-core-q3",
+        "l24-core-q4",
+        "l24-core-q5"
+      ],
+      "sourceTopics": [
+        {
+          "id": "l24-topic-evaluation-complexity",
+          "pages": [
+            10,
+            12
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf"
+        },
+        {
+          "id": "l24-topic-np",
+          "pages": [
+            13,
+            18
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf"
+        },
+        {
+          "id": "l24-topic-static-analysis",
+          "pages": [
+            19,
+            31
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf"
+        },
+        {
+          "id": "l24-topic-canonical",
+          "pages": [
+            23,
+            24
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf"
+        },
+        {
+          "id": "l24-topic-containment-hom",
+          "pages": [
+            25,
+            29
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf"
+        },
+        {
+          "id": "l24-topic-minimization",
+          "pages": [
+            32,
+            35
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf"
+        },
+        {
+          "id": "l24-topic-core",
+          "pages": [
+            36,
+            36
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf"
+        }
+      ],
+      "canonicalSHA256": "e591b263c4dffcccaddc24338f70dc2374f756d68b9549b3d602515e3408cf7e",
+      "translationSHA256": "5c52dac0f5ad6432226d9e6660f1cfdbce2f1c39a8de03c12a9e5d8c3e652f2a"
+    },
+    {
+      "lessonId": "lecture-25",
+      "file": "course/quiz-translations/lecture25.vi.json",
+      "topics": 5,
+      "questions": 25,
+      "reviewedQuestionIds": [
+        "l25-good-classes-q1",
+        "l25-good-classes-q2",
+        "l25-good-classes-q3",
+        "l25-good-classes-q4",
+        "l25-good-classes-q5",
+        "l25-hypergraphs-q1",
+        "l25-hypergraphs-q2",
+        "l25-hypergraphs-q3",
+        "l25-hypergraphs-q4",
+        "l25-hypergraphs-q5",
+        "l25-gyo-q1",
+        "l25-gyo-q2",
+        "l25-gyo-q3",
+        "l25-gyo-q4",
+        "l25-gyo-q5",
+        "l25-acyclic-eval-q1",
+        "l25-acyclic-eval-q2",
+        "l25-acyclic-eval-q3",
+        "l25-acyclic-eval-q4",
+        "l25-acyclic-eval-q5",
+        "l25-yannakakis-q1",
+        "l25-yannakakis-q2",
+        "l25-yannakakis-q3",
+        "l25-yannakakis-q4",
+        "l25-yannakakis-q5"
+      ],
+      "sourceTopics": [
+        {
+          "id": "l25-topic-good-classes",
+          "pages": [
+            2,
+            5
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf"
+        },
+        {
+          "id": "l25-topic-hypergraphs",
+          "pages": [
+            4,
+            13
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf"
+        },
+        {
+          "id": "l25-topic-gyo",
+          "pages": [
+            14,
+            26
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf"
+        },
+        {
+          "id": "l25-topic-acyclic-eval",
+          "pages": [
+            27,
+            27
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf"
+        },
+        {
+          "id": "l25-topic-yannakakis",
+          "pages": [
+            28,
+            36
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf"
+        }
+      ],
+      "canonicalSHA256": "bc18c2d35f7baa203ef159470c31c298bb7d15c10b257429b0890cec06666bb7",
+      "translationSHA256": "041e1692b73626f215684c5f328a6111ae53cf65b2e9ba1a3a3bc753d8476c4d"
+    },
+    {
+      "lessonId": "lecture-26",
+      "file": "course/quiz-translations/lecture26.vi.json",
+      "topics": 23,
+      "questions": 120,
+      "reviewedQuestionIds": [
+        "l26-recap-q1",
+        "l26-recap-q2",
+        "l26-recap-q3",
+        "l26-recap-q4",
+        "l26-recap-q5",
+        "l26-shared-memory-q1",
+        "l26-shared-memory-q2",
+        "l26-shared-memory-q3",
+        "l26-shared-memory-q4",
+        "l26-shared-memory-q5",
+        "l26-shared-disk-q1",
+        "l26-shared-disk-q2",
+        "l26-shared-disk-q3",
+        "l26-shared-disk-q4",
+        "l26-shared-disk-q5",
+        "l26-shared-nothing-q1",
+        "l26-shared-nothing-q2",
+        "l26-shared-nothing-q3",
+        "l26-shared-nothing-q4",
+        "l26-shared-nothing-q5",
+        "l26-parallelism-q1",
+        "l26-parallelism-q2",
+        "l26-parallelism-q3",
+        "l26-parallelism-q4",
+        "l26-parallelism-q5",
+        "l26-parallelism-q6",
+        "l26-parallelism-q7",
+        "l26-parallelism-q8",
+        "l26-parallelism-q9",
+        "l26-parallelism-q10",
+        "l26-partitioning-q1",
+        "l26-partitioning-q2",
+        "l26-partitioning-q3",
+        "l26-partitioning-q4",
+        "l26-partitioning-q5",
+        "l26-round-robin-q1",
+        "l26-round-robin-q2",
+        "l26-round-robin-q3",
+        "l26-round-robin-q4",
+        "l26-round-robin-q5",
+        "l26-hash-partitioning-q1",
+        "l26-hash-partitioning-q2",
+        "l26-hash-partitioning-q3",
+        "l26-hash-partitioning-q4",
+        "l26-hash-partitioning-q5",
+        "l26-range-partitioning-q1",
+        "l26-range-partitioning-q2",
+        "l26-range-partitioning-q3",
+        "l26-range-partitioning-q4",
+        "l26-range-partitioning-q5",
+        "l26-replication-q1",
+        "l26-replication-q2",
+        "l26-replication-q3",
+        "l26-replication-q4",
+        "l26-replication-q5",
+        "l26-transparency-q1",
+        "l26-transparency-q2",
+        "l26-transparency-q3",
+        "l26-transparency-q4",
+        "l26-transparency-q5",
+        "l26-scans-q1",
+        "l26-scans-q2",
+        "l26-scans-q3",
+        "l26-scans-q4",
+        "l26-scans-q5",
+        "l26-lookup-q1",
+        "l26-lookup-q2",
+        "l26-lookup-q3",
+        "l26-lookup-q4",
+        "l26-lookup-q5",
+        "l26-parallel-hashing-q1",
+        "l26-parallel-hashing-q2",
+        "l26-parallel-hashing-q3",
+        "l26-parallel-hashing-q4",
+        "l26-parallel-hashing-q5",
+        "l26-hash-join-q1",
+        "l26-hash-join-q2",
+        "l26-hash-join-q3",
+        "l26-hash-join-q4",
+        "l26-hash-join-q5",
+        "l26-sorting-q1",
+        "l26-sorting-q2",
+        "l26-sorting-q3",
+        "l26-sorting-q4",
+        "l26-sorting-q5",
+        "l26-sort-merge-join-q1",
+        "l26-sort-merge-join-q2",
+        "l26-sort-merge-join-q3",
+        "l26-sort-merge-join-q4",
+        "l26-sort-merge-join-q5",
+        "l26-join-observation-q1",
+        "l26-join-observation-q2",
+        "l26-join-observation-q3",
+        "l26-join-observation-q4",
+        "l26-join-observation-q5",
+        "l26-scenario1-q1",
+        "l26-scenario1-q2",
+        "l26-scenario1-q3",
+        "l26-scenario1-q4",
+        "l26-scenario1-q5",
+        "l26-scenario2-q1",
+        "l26-scenario2-q2",
+        "l26-scenario2-q3",
+        "l26-scenario2-q4",
+        "l26-scenario2-q5",
+        "l26-scenario3-q1",
+        "l26-scenario3-q2",
+        "l26-scenario3-q3",
+        "l26-scenario3-q4",
+        "l26-scenario3-q5",
+        "l26-scenario4-q1",
+        "l26-scenario4-q2",
+        "l26-scenario4-q3",
+        "l26-scenario4-q4",
+        "l26-scenario4-q5",
+        "l26-planning-q1",
+        "l26-planning-q2",
+        "l26-planning-q3",
+        "l26-planning-q4",
+        "l26-planning-q5"
+      ],
+      "sourceTopics": [
+        {
+          "id": "l26-recap",
+          "pages": [
+            2,
+            3
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf"
+        },
+        {
+          "id": "l26-shared-memory",
+          "pages": [
+            4,
+            6
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf"
+        },
+        {
+          "id": "l26-shared-disk",
+          "pages": [
+            5,
+            7
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf"
+        },
+        {
+          "id": "l26-shared-nothing",
+          "pages": [
+            5,
+            8
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf"
+        },
+        {
+          "id": "l26-parallelism",
+          "pages": [
+            9,
+            11
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf"
+        },
+        {
+          "id": "l26-partitioning",
+          "pages": [
+            12,
+            13
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf"
+        },
+        {
+          "id": "l26-round-robin",
+          "pages": [
+            14,
+            14
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf"
+        },
+        {
+          "id": "l26-hash-partitioning",
+          "pages": [
+            15,
+            15
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf"
+        },
+        {
+          "id": "l26-range-partitioning",
+          "pages": [
+            16,
+            16
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf"
+        },
+        {
+          "id": "l26-replication",
+          "pages": [
+            17,
+            17
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf"
+        },
+        {
+          "id": "l26-transparency",
+          "pages": [
+            18,
+            18
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf"
+        },
+        {
+          "id": "l26-scans",
+          "pages": [
+            20,
+            20
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf"
+        },
+        {
+          "id": "l26-lookup",
+          "pages": [
+            21,
+            21
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf"
+        },
+        {
+          "id": "l26-parallel-hashing",
+          "pages": [
+            22,
+            22
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf"
+        },
+        {
+          "id": "l26-hash-join",
+          "pages": [
+            23,
+            23
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf"
+        },
+        {
+          "id": "l26-sorting",
+          "pages": [
+            24,
+            24
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf"
+        },
+        {
+          "id": "l26-sort-merge-join",
+          "pages": [
+            25,
+            25
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf"
+        },
+        {
+          "id": "l26-join-observation",
+          "pages": [
+            26,
+            26
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf"
+        },
+        {
+          "id": "l26-scenario1",
+          "pages": [
+            27,
+            28
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf"
+        },
+        {
+          "id": "l26-scenario2",
+          "pages": [
+            29,
+            30
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf"
+        },
+        {
+          "id": "l26-scenario3",
+          "pages": [
+            31,
+            35
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf"
+        },
+        {
+          "id": "l26-scenario4",
+          "pages": [
+            36,
+            42
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf"
+        },
+        {
+          "id": "l26-planning",
+          "pages": [
+            43,
+            44
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf"
+        }
+      ],
+      "canonicalSHA256": "6ff29098925091d93406083ccccdd9cbe675db9cc058376eee6541c590431661",
+      "translationSHA256": "01235a79483334e014a5be11dfbeefcdc1492a676881c4b6fa739909e1654eaf"
+    },
+    {
+      "lessonId": "lecture-27",
+      "file": "course/quiz-translations/lecture27.vi.json",
+      "topics": 16,
+      "questions": 80,
+      "reviewedQuestionIds": [
+        "l27-motivation-q1",
+        "l27-motivation-q2",
+        "l27-motivation-q3",
+        "l27-motivation-q4",
+        "l27-motivation-q5",
+        "l27-partition-scaling-q1",
+        "l27-partition-scaling-q2",
+        "l27-partition-scaling-q3",
+        "l27-partition-scaling-q4",
+        "l27-partition-scaling-q5",
+        "l27-replica-scaling-q1",
+        "l27-replica-scaling-q2",
+        "l27-replica-scaling-q3",
+        "l27-replica-scaling-q4",
+        "l27-replica-scaling-q5",
+        "l27-principles-q1",
+        "l27-principles-q2",
+        "l27-principles-q3",
+        "l27-principles-q4",
+        "l27-principles-q5",
+        "l27-acid-q1",
+        "l27-acid-q2",
+        "l27-acid-q3",
+        "l27-acid-q4",
+        "l27-acid-q5",
+        "l27-cap-q1",
+        "l27-cap-q2",
+        "l27-cap-q3",
+        "l27-cap-q4",
+        "l27-cap-q5",
+        "l27-base-q1",
+        "l27-base-q2",
+        "l27-base-q3",
+        "l27-base-q4",
+        "l27-base-q5",
+        "l27-taxonomy-q1",
+        "l27-taxonomy-q2",
+        "l27-taxonomy-q3",
+        "l27-taxonomy-q4",
+        "l27-taxonomy-q5",
+        "l27-taxonomy-cont-q1",
+        "l27-taxonomy-cont-q2",
+        "l27-taxonomy-cont-q3",
+        "l27-taxonomy-cont-q4",
+        "l27-taxonomy-cont-q5",
+        "l27-key-value-q1",
+        "l27-key-value-q2",
+        "l27-key-value-q3",
+        "l27-key-value-q4",
+        "l27-key-value-q5",
+        "l27-documents-q1",
+        "l27-documents-q2",
+        "l27-documents-q3",
+        "l27-documents-q4",
+        "l27-documents-q5",
+        "l27-json-q1",
+        "l27-json-q2",
+        "l27-json-q3",
+        "l27-json-q4",
+        "l27-json-q5",
+        "l27-graphs-q1",
+        "l27-graphs-q2",
+        "l27-graphs-q3",
+        "l27-graphs-q4",
+        "l27-graphs-q5",
+        "l27-graph-languages-q1",
+        "l27-graph-languages-q2",
+        "l27-graph-languages-q3",
+        "l27-graph-languages-q4",
+        "l27-graph-languages-q5",
+        "l27-ranking-q1",
+        "l27-ranking-q2",
+        "l27-ranking-q3",
+        "l27-ranking-q4",
+        "l27-ranking-q5",
+        "l27-sql-nosql-q1",
+        "l27-sql-nosql-q2",
+        "l27-sql-nosql-q3",
+        "l27-sql-nosql-q4",
+        "l27-sql-nosql-q5"
+      ],
+      "sourceTopics": [
+        {
+          "id": "l27-motivation",
+          "pages": [
+            2,
+            2
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf"
+        },
+        {
+          "id": "l27-partition-scaling",
+          "pages": [
+            3,
+            3
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf"
+        },
+        {
+          "id": "l27-replica-scaling",
+          "pages": [
+            4,
+            4
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf"
+        },
+        {
+          "id": "l27-principles",
+          "pages": [
+            5,
+            6
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf"
+        },
+        {
+          "id": "l27-acid",
+          "pages": [
+            8,
+            8
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf"
+        },
+        {
+          "id": "l27-cap",
+          "pages": [
+            9,
+            10
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf"
+        },
+        {
+          "id": "l27-base",
+          "pages": [
+            11,
+            11
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf"
+        },
+        {
+          "id": "l27-taxonomy",
+          "pages": [
+            12,
+            13
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf"
+        },
+        {
+          "id": "l27-taxonomy-cont",
+          "pages": [
+            13,
+            13
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf"
+        },
+        {
+          "id": "l27-key-value",
+          "pages": [
+            14,
+            14
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf"
+        },
+        {
+          "id": "l27-documents",
+          "pages": [
+            15,
+            15
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf"
+        },
+        {
+          "id": "l27-json",
+          "pages": [
+            16,
+            17
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf"
+        },
+        {
+          "id": "l27-graphs",
+          "pages": [
+            18,
+            18
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf"
+        },
+        {
+          "id": "l27-graph-languages",
+          "pages": [
+            19,
+            19
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf"
+        },
+        {
+          "id": "l27-ranking",
+          "pages": [
+            20,
+            20
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf"
+        },
+        {
+          "id": "l27-sql-nosql",
+          "pages": [
+            21,
+            21
+          ],
+          "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf"
+        }
+      ],
+      "canonicalSHA256": "e19d8449f13ca6eff0a94bdb6d4c712d96fe9654b96f757996e76016a1a3010e",
+      "translationSHA256": "f056a13b8f34a4d97cc5a638ea9ff163134cf001e6e6d3c21dc8f936a8a77539"
+    }
+  ],
+  "ambiguities": [],
+  "checks": {
+    "independentPostWriteStructure": "passed",
+    "manualOptionSlotMeaningReview": "completed for all285 questions; four VI options retain canonical source-slot order",
+    "explanationAgainstCanonicalSelectedOption": "completed for all285 questions",
+    "noAnswerFieldsInSidecars": true,
+    "canonicalSourceIDsAndOrder": "exact",
+    "fullBanksWrittenAtomically": true
+  },
+  "sourceScope": {
+    "privateText": "All lecture23–27 extracted text read completely: physical pages1–33,1–37,1–37,1–45,1–21 respectively; full canonical banks and EN/VI main bodies also read.",
+    "CAPPrimary": "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer6.pdf: formal definitions physical pp2–4, Theorem1 and completed-write/later-read proof pp4–5, no-partition solution context p6. Later partially synchronous results not exhaustively reviewed.",
+    "privateVisual": {
+      "file": "../private-source-review/lecture27-page20-review.png",
+      "source": "../private-source-review/lecture27.pdf",
+      "physicalPage": 20,
+      "observations": [
+        "Heading429 systems in ranking, March2026",
+        "Oracle rank1",
+        "MongoDB model Document, Multi-model",
+        "Multiple rows have Multi-model including Oracle, MongoDB and Redis"
+      ],
+      "questionsVerified": [
+        "l27-ranking-q2",
+        "l27-ranking-q4",
+        "l27-ranking-q5"
+      ]
+    },
+    "remainingVisualScope": "Other lecture diagrams and graphical annotations were not visually reverified in this batch. No exhaustive formal or machine-checked proof validation claimed."
+  },
+  "technicalAudit": "Checked CQ set/bag distinctions, shared variable consistency, constants, non-injectivity, reverse containment homomorphism with heads, canonical counterexamples, fixed/combined complexity, cores/minimization, hypergraph/running intersection/GYO, Boolean Yannakakis versus enumeration; parallel mappings and co-location, replication versus logical multiplicity, skew/critical path; CAP linearizability versus ACID invariants, valid operations/non-failing nodes, successful write before later read, network partition versus sharding, conditional BASE convergence.",
+  "remaining": [
+    "Root integrated build/runtime/language-switch/saved-answer validation."
+  ],
+  "recovery": "Initial report write had uncertain outcome during transport outage. After recovery, file absence was checked before creating this final report. All five saved banks validated independently."
+}

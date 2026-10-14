@@ -1,0 +1,2226 @@
+{
+  "batch": "core quizzes 06–10",
+  "completedBanks": 5,
+  "completedQuestions": 192,
+  "unfinishedQuestionIds": [],
+  "reviewType": "Author translation and semantic/calculation audit against canonical answer meanings plus private extracted source text. Not an independent visual PDF audit.",
+  "optionIdentity": "Topic order, question IDs and all four original source option slots preserved; locale contains no answer keys. Runtime shuffle identity must be validated by parent.",
+  "structuralChecks": [
+    "Topic/question ID order equality",
+    "Exactly four translated options per question",
+    "No answer/answerIndex/correct fields in question locale",
+    "All referenced physical PDF pages exist in private extracted text",
+    "Numeric-only options match canonical source slots after whitespace normalization",
+    "All 192 correct-source-option English/VI pairs inspected after generation"
+  ],
+  "banks": [
+    {
+      "lecture": 6,
+      "topics": 6,
+      "questions": 30,
+      "canonicalSha256": "c23d9d0ade1cc738fe15880a04b59b83376f7afb321afaeaaed28c6c0d2b717a",
+      "localeSha256": "50e65ed0a7d9a20a76ddf8084ff3bafca2cc89901b0eac88ad882d6c647ba46b",
+      "sourcePdfPagesReferenced": [
+        4,
+        5,
+        7,
+        8,
+        9,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        21,
+        22,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "sourcePdfTextPageCount": 29
+    },
+    {
+      "lecture": 7,
+      "topics": 9,
+      "questions": 45,
+      "canonicalSha256": "6916b617a7716aaeacea6a063973739b6f29b1c01127200c6584e6432cad4c76",
+      "localeSha256": "deff5509f25029f8d636a6ae55aa408fbb31f3a2fb2d162ddb5c3881c6f0420c",
+      "sourcePdfPagesReferenced": [
+        2,
+        3,
+        4,
+        7,
+        9,
+        10,
+        11,
+        12,
+        13,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27
+      ],
+      "sourcePdfTextPageCount": 28
+    },
+    {
+      "lecture": 8,
+      "topics": 6,
+      "questions": 30,
+      "canonicalSha256": "8bea80ac633a05c95823316c427cc758d0dbe382cb4de8048f62f7400289d618",
+      "localeSha256": "3c93be57128aa24c08c0c3cd444e2ccb232482cd004dc50a4cfa52876eed1b36",
+      "sourcePdfPagesReferenced": [
+        4,
+        5,
+        6,
+        8,
+        9,
+        10,
+        11,
+        12,
+        15,
+        16,
+        17,
+        18,
+        21,
+        23,
+        24,
+        25,
+        26,
+        29,
+        30,
+        32,
+        33
+      ],
+      "sourcePdfTextPageCount": 34
+    },
+    {
+      "lecture": 9,
+      "topics": 8,
+      "questions": 42,
+      "canonicalSha256": "fa3d60ce39909074019432013f112f7ee323ec56b637181de493fa8abcc0f15c",
+      "localeSha256": "102134959ee3b429edaada6324b693afa1a58a6d7799709ef0391b6554108209",
+      "sourcePdfPagesReferenced": [
+        7,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ],
+      "sourcePdfTextPageCount": 30
+    },
+    {
+      "lecture": 10,
+      "topics": 9,
+      "questions": 45,
+      "canonicalSha256": "d403d30d9373845d332f67ab766382651084a083d067a9aff95e6cc01fdaa178",
+      "localeSha256": "a3ee4fa8f280f21f6e6014cd3bb02535419d6bf7bac5236d8e4b10229310c289",
+      "sourcePdfPagesReferenced": [
+        2,
+        3,
+        4,
+        5,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        15,
+        16,
+        17,
+        18,
+        19,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "sourcePdfTextPageCount": 26
+    }
+  ],
+  "findings": [
+    {
+      "severity": "low",
+      "questionId": "l06-heap-directory-q5",
+      "issue": "The free-byte example implicitly assumes usable contiguous space or compaction is available. Main l6-1 states this, but quiz prompt only says no additional overhead.",
+      "recommendation": "Optionally clarify the canonical prompt in both languages so total free bytes are not interpreted as sufficient contiguous bytes in every implementation.",
+      "translationStatus": "Canonical meaning retained; not a translated-answer defect."
+    },
+    {
+      "severity": "low",
+      "questionId": "l09-redistribute-q5",
+      "issue": "Leaf links identify a neighbour, but adjacent leaves can have different parents; textbook redistribution needs adjacent sibling with the same parent. Main l9-3 correctly explains this distinction.",
+      "recommendation": "Clarify canonical prompt/explanation if necessary to avoid treating every linked neighbouring leaf as an eligible repair sibling.",
+      "translationStatus": "Canonical answer meaning retained."
+    },
+    {
+      "severity": "info",
+      "questionId": "l10-hash-collisions-and-overflow-chains-q5",
+      "issue": "Tail latency is an explanatory inference from slide physical page 10 nonuniform/unpredictable chain costs, not a term visibly present in extracted slide text.",
+      "recommendation": "Keep identified as original supplementary reasoning."
+    }
+  ],
+  "questions": [
+    {
+      "id": "l06-files-q1",
+      "lecture": 6,
+      "physicalPdfPages": [
+        4
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l06-files-q2",
+      "lecture": 6,
+      "physicalPdfPages": [
+        5
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l06-files-q3",
+      "lecture": 6,
+      "physicalPdfPages": [
+        5
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l06-files-q4",
+      "lecture": 6,
+      "physicalPdfPages": [
+        7
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l06-files-q5",
+      "lecture": 6,
+      "physicalPdfPages": [
+        7
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l06-heap-directory-q1",
+      "lecture": 6,
+      "physicalPdfPages": [
+        8
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l06-heap-directory-q2",
+      "lecture": 6,
+      "physicalPdfPages": [
+        8
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l06-heap-directory-q3",
+      "lecture": 6,
+      "physicalPdfPages": [
+        9
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l06-heap-directory-q4",
+      "lecture": 6,
+      "physicalPdfPages": [
+        9
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l06-heap-directory-q5",
+      "lecture": 6,
+      "physicalPdfPages": [
+        9
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l06-packed-q1",
+      "lecture": 6,
+      "physicalPdfPages": [
+        13
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l06-packed-q2",
+      "lecture": 6,
+      "physicalPdfPages": [
+        14
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l06-packed-q3",
+      "lecture": 6,
+      "physicalPdfPages": [
+        15,
+        16
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l06-packed-q4",
+      "lecture": 6,
+      "physicalPdfPages": [
+        12
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l06-packed-q5",
+      "lecture": 6,
+      "physicalPdfPages": [
+        13
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l06-unpacked-q1",
+      "lecture": 6,
+      "physicalPdfPages": [
+        17
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l06-unpacked-q2",
+      "lecture": 6,
+      "physicalPdfPages": [
+        17
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l06-unpacked-q3",
+      "lecture": 6,
+      "physicalPdfPages": [
+        18
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l06-unpacked-q4",
+      "lecture": 6,
+      "physicalPdfPages": [
+        18
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l06-unpacked-q5",
+      "lecture": 6,
+      "physicalPdfPages": [
+        19
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l06-slotted-q1",
+      "lecture": 6,
+      "physicalPdfPages": [
+        21
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l06-slotted-q2",
+      "lecture": 6,
+      "physicalPdfPages": [
+        22
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l06-slotted-q3",
+      "lecture": 6,
+      "physicalPdfPages": [
+        22
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l06-slotted-q4",
+      "lecture": 6,
+      "physicalPdfPages": [
+        21
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l06-slotted-q5",
+      "lecture": 6,
+      "physicalPdfPages": [
+        22
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l06-record-layout-q1",
+      "lecture": 6,
+      "physicalPdfPages": [
+        24
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l06-record-layout-q2",
+      "lecture": 6,
+      "physicalPdfPages": [
+        25
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l06-record-layout-q3",
+      "lecture": 6,
+      "physicalPdfPages": [
+        26
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l06-record-layout-q4",
+      "lecture": 6,
+      "physicalPdfPages": [
+        27
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l06-record-layout-q5",
+      "lecture": 6,
+      "physicalPdfPages": [
+        28
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-workloads-q1",
+      "lecture": 7,
+      "physicalPdfPages": [
+        2,
+        3
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-workloads-q2",
+      "lecture": 7,
+      "physicalPdfPages": [
+        2,
+        4
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-workloads-q3",
+      "lecture": 7,
+      "physicalPdfPages": [
+        2
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-workloads-q4",
+      "lecture": 7,
+      "physicalPdfPages": [
+        3
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-workloads-q5",
+      "lecture": 7,
+      "physicalPdfPages": [
+        4
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-row-q1",
+      "lecture": 7,
+      "physicalPdfPages": [
+        7
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-row-q2",
+      "lecture": 7,
+      "physicalPdfPages": [
+        9,
+        11
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-row-q3",
+      "lecture": 7,
+      "physicalPdfPages": [
+        10
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-row-q4",
+      "lecture": 7,
+      "physicalPdfPages": [
+        11
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-row-q5",
+      "lecture": 7,
+      "physicalPdfPages": [
+        7,
+        11
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-column-q1",
+      "lecture": 7,
+      "physicalPdfPages": [
+        12
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-column-q2",
+      "lecture": 7,
+      "physicalPdfPages": [
+        13
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-column-q3",
+      "lecture": 7,
+      "physicalPdfPages": [
+        16
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-column-q4",
+      "lecture": 7,
+      "physicalPdfPages": [
+        16
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-column-q5",
+      "lecture": 7,
+      "physicalPdfPages": [
+        12,
+        16
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-pax-q1",
+      "lecture": 7,
+      "physicalPdfPages": [
+        17
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-pax-q2",
+      "lecture": 7,
+      "physicalPdfPages": [
+        18
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-pax-q3",
+      "lecture": 7,
+      "physicalPdfPages": [
+        18
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-pax-q4",
+      "lecture": 7,
+      "physicalPdfPages": [
+        17
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-pax-q5",
+      "lecture": 7,
+      "physicalPdfPages": [
+        18
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-parquet-q1",
+      "lecture": 7,
+      "physicalPdfPages": [
+        19
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-parquet-q2",
+      "lecture": 7,
+      "physicalPdfPages": [
+        19
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-parquet-q3",
+      "lecture": 7,
+      "physicalPdfPages": [
+        20
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-parquet-q4",
+      "lecture": 7,
+      "physicalPdfPages": [
+        20
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-parquet-q5",
+      "lecture": 7,
+      "physicalPdfPages": [
+        20
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-compression-q1",
+      "lecture": 7,
+      "physicalPdfPages": [
+        21
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-compression-q2",
+      "lecture": 7,
+      "physicalPdfPages": [
+        21
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-compression-q3",
+      "lecture": 7,
+      "physicalPdfPages": [
+        22
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-compression-q4",
+      "lecture": 7,
+      "physicalPdfPages": [
+        21
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-compression-q5",
+      "lecture": 7,
+      "physicalPdfPages": [
+        21
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-column-encoding-q1",
+      "lecture": 7,
+      "physicalPdfPages": [
+        23
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-column-encoding-q2",
+      "lecture": 7,
+      "physicalPdfPages": [
+        23
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-column-encoding-q3",
+      "lecture": 7,
+      "physicalPdfPages": [
+        23
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-column-encoding-q4",
+      "lecture": 7,
+      "physicalPdfPages": [
+        23
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-column-encoding-q5",
+      "lecture": 7,
+      "physicalPdfPages": [
+        23
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-delta-q1",
+      "lecture": 7,
+      "physicalPdfPages": [
+        24
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": [
+        "Delta slide diagram is not independently visually verified; numerical fixture checked by arithmetic and canonical/main-body encoding rules, not claimed to reproduce the diagram."
+      ]
+    },
+    {
+      "id": "l07-delta-q2",
+      "lecture": 7,
+      "physicalPdfPages": [
+        25
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": [
+        "Delta slide diagram is not independently visually verified; numerical fixture checked by arithmetic and canonical/main-body encoding rules, not claimed to reproduce the diagram."
+      ]
+    },
+    {
+      "id": "l07-delta-q3",
+      "lecture": 7,
+      "physicalPdfPages": [
+        24,
+        25
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": [
+        "Delta slide diagram is not independently visually verified; numerical fixture checked by arithmetic and canonical/main-body encoding rules, not claimed to reproduce the diagram."
+      ]
+    },
+    {
+      "id": "l07-delta-q4",
+      "lecture": 7,
+      "physicalPdfPages": [
+        25
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": [
+        "Delta slide diagram is not independently visually verified; numerical fixture checked by arithmetic and canonical/main-body encoding rules, not claimed to reproduce the diagram."
+      ]
+    },
+    {
+      "id": "l07-delta-q5",
+      "lecture": 7,
+      "physicalPdfPages": [
+        26
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": [
+        "Delta slide diagram is not independently visually verified; numerical fixture checked by arithmetic and canonical/main-body encoding rules, not claimed to reproduce the diagram."
+      ]
+    },
+    {
+      "id": "l07-dictionary-q1",
+      "lecture": 7,
+      "physicalPdfPages": [
+        27
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-dictionary-q2",
+      "lecture": 7,
+      "physicalPdfPages": [
+        27
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-dictionary-q3",
+      "lecture": 7,
+      "physicalPdfPages": [
+        27
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-dictionary-q4",
+      "lecture": 7,
+      "physicalPdfPages": [
+        27
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l07-dictionary-q5",
+      "lecture": 7,
+      "physicalPdfPages": [
+        27
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l08-cost-model-q1",
+      "lecture": 8,
+      "physicalPdfPages": [
+        5
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l08-cost-model-q2",
+      "lecture": 8,
+      "physicalPdfPages": [
+        5
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l08-cost-model-q3",
+      "lecture": 8,
+      "physicalPdfPages": [
+        6
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l08-cost-model-q4",
+      "lecture": 8,
+      "physicalPdfPages": [
+        5
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l08-cost-model-q5",
+      "lecture": 8,
+      "physicalPdfPages": [
+        4,
+        5
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l08-heap-cost-q1",
+      "lecture": 8,
+      "physicalPdfPages": [
+        8
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l08-heap-cost-q2",
+      "lecture": 8,
+      "physicalPdfPages": [
+        9
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l08-heap-cost-q3",
+      "lecture": 8,
+      "physicalPdfPages": [
+        10,
+        11
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l08-heap-cost-q4",
+      "lecture": 8,
+      "physicalPdfPages": [
+        12
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l08-heap-cost-q5",
+      "lecture": 8,
+      "physicalPdfPages": [
+        12
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l08-sorted-cost-q1",
+      "lecture": 8,
+      "physicalPdfPages": [
+        15,
+        16
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l08-sorted-cost-q2",
+      "lecture": 8,
+      "physicalPdfPages": [
+        16
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l08-sorted-cost-q3",
+      "lecture": 8,
+      "physicalPdfPages": [
+        16,
+        18
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l08-sorted-cost-q4",
+      "lecture": 8,
+      "physicalPdfPages": [
+        17
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l08-sorted-cost-q5",
+      "lecture": 8,
+      "physicalPdfPages": [
+        17,
+        18
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l08-entries-q1",
+      "lecture": 8,
+      "physicalPdfPages": [
+        21
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l08-entries-q2",
+      "lecture": 8,
+      "physicalPdfPages": [
+        23
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l08-entries-q3",
+      "lecture": 8,
+      "physicalPdfPages": [
+        23
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l08-entries-q4",
+      "lecture": 8,
+      "physicalPdfPages": [
+        24
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l08-entries-q5",
+      "lecture": 8,
+      "physicalPdfPages": [
+        25
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l08-classification-q1",
+      "lecture": 8,
+      "physicalPdfPages": [
+        26
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l08-classification-q2",
+      "lecture": 8,
+      "physicalPdfPages": [
+        29
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l08-classification-q3",
+      "lecture": 8,
+      "physicalPdfPages": [
+        26
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l08-classification-q4",
+      "lecture": 8,
+      "physicalPdfPages": [
+        26
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l08-classification-q5",
+      "lecture": 8,
+      "physicalPdfPages": [
+        24,
+        26
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l08-cluster-q1",
+      "lecture": 8,
+      "physicalPdfPages": [
+        30
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l08-cluster-q2",
+      "lecture": 8,
+      "physicalPdfPages": [
+        30
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l08-cluster-q3",
+      "lecture": 8,
+      "physicalPdfPages": [
+        32
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l08-cluster-q4",
+      "lecture": 8,
+      "physicalPdfPages": [
+        32
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l08-cluster-q5",
+      "lecture": 8,
+      "physicalPdfPages": [
+        33
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l09-isam-q1",
+      "lecture": 9,
+      "physicalPdfPages": [
+        7
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l09-isam-q2",
+      "lecture": 9,
+      "physicalPdfPages": [
+        7
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l09-isam-q3",
+      "lecture": 9,
+      "physicalPdfPages": [
+        10
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": [
+        "Tree diagram topology not independently visually verified; self-contained prompt fixture checked for ordering, occupancy, separator and child-pointer rules as relevant."
+      ]
+    },
+    {
+      "id": "l09-isam-q4",
+      "lecture": 9,
+      "physicalPdfPages": [
+        11
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l09-isam-q5",
+      "lecture": 9,
+      "physicalPdfPages": [
+        11
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l09-fanout-q1",
+      "lecture": 9,
+      "physicalPdfPages": [
+        12
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l09-fanout-q2",
+      "lecture": 9,
+      "physicalPdfPages": [
+        12
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l09-fanout-q3",
+      "lecture": 9,
+      "physicalPdfPages": [
+        12
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l09-fanout-q4",
+      "lecture": 9,
+      "physicalPdfPages": [
+        16
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l09-fanout-q5",
+      "lecture": 9,
+      "physicalPdfPages": [
+        12
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l09-invariants-q1",
+      "lecture": 9,
+      "physicalPdfPages": [
+        13
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l09-invariants-q2",
+      "lecture": 9,
+      "physicalPdfPages": [
+        13,
+        14
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": [
+        "Tree diagram topology not independently visually verified; self-contained prompt fixture checked for ordering, occupancy, separator and child-pointer rules as relevant."
+      ]
+    },
+    {
+      "id": "l09-invariants-q3",
+      "lecture": 9,
+      "physicalPdfPages": [
+        14
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": [
+        "Tree diagram topology not independently visually verified; self-contained prompt fixture checked for ordering, occupancy, separator and child-pointer rules as relevant."
+      ]
+    },
+    {
+      "id": "l09-invariants-q4",
+      "lecture": 9,
+      "physicalPdfPages": [
+        14
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": [
+        "Tree diagram topology not independently visually verified; self-contained prompt fixture checked for ordering, occupancy, separator and child-pointer rules as relevant."
+      ]
+    },
+    {
+      "id": "l09-invariants-q5",
+      "lecture": 9,
+      "physicalPdfPages": [
+        15
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": [
+        "Tree diagram topology not independently visually verified; self-contained prompt fixture checked for ordering, occupancy, separator and child-pointer rules as relevant."
+      ]
+    },
+    {
+      "id": "l09-insert-q1",
+      "lecture": 9,
+      "physicalPdfPages": [
+        17
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l09-insert-q2",
+      "lecture": 9,
+      "physicalPdfPages": [
+        17,
+        18
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": [
+        "Tree diagram topology not independently visually verified; self-contained prompt fixture checked for ordering, occupancy, separator and child-pointer rules as relevant."
+      ]
+    },
+    {
+      "id": "l09-insert-q3",
+      "lecture": 9,
+      "physicalPdfPages": [
+        18
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": [
+        "Tree diagram topology not independently visually verified; self-contained prompt fixture checked for ordering, occupancy, separator and child-pointer rules as relevant."
+      ]
+    },
+    {
+      "id": "l09-insert-q4",
+      "lecture": 9,
+      "physicalPdfPages": [
+        17,
+        18
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": [
+        "Tree diagram topology not independently visually verified; self-contained prompt fixture checked for ordering, occupancy, separator and child-pointer rules as relevant."
+      ]
+    },
+    {
+      "id": "l09-insert-q5",
+      "lecture": 9,
+      "physicalPdfPages": [
+        19
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": [
+        "Tree diagram topology not independently visually verified; self-contained prompt fixture checked for ordering, occupancy, separator and child-pointer rules as relevant."
+      ]
+    },
+    {
+      "id": "l09-redistribute-q1",
+      "lecture": 9,
+      "physicalPdfPages": [
+        20
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": [
+        "Tree diagram topology not independently visually verified; self-contained prompt fixture checked for ordering, occupancy, separator and child-pointer rules as relevant."
+      ]
+    },
+    {
+      "id": "l09-redistribute-q2",
+      "lecture": 9,
+      "physicalPdfPages": [
+        20
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": [
+        "Tree diagram topology not independently visually verified; self-contained prompt fixture checked for ordering, occupancy, separator and child-pointer rules as relevant."
+      ]
+    },
+    {
+      "id": "l09-redistribute-q3",
+      "lecture": 9,
+      "physicalPdfPages": [
+        20
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": [
+        "Tree diagram topology not independently visually verified; self-contained prompt fixture checked for ordering, occupancy, separator and child-pointer rules as relevant."
+      ]
+    },
+    {
+      "id": "l09-redistribute-q4",
+      "lecture": 9,
+      "physicalPdfPages": [
+        20
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": [
+        "Tree diagram topology not independently visually verified; self-contained prompt fixture checked for ordering, occupancy, separator and child-pointer rules as relevant."
+      ]
+    },
+    {
+      "id": "l09-redistribute-q5",
+      "lecture": 9,
+      "physicalPdfPages": [
+        20
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": [
+        "Tree diagram topology not independently visually verified; self-contained prompt fixture checked for ordering, occupancy, separator and child-pointer rules as relevant."
+      ]
+    },
+    {
+      "id": "l09-delete-q1",
+      "lecture": 9,
+      "physicalPdfPages": [
+        21
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l09-delete-q2",
+      "lecture": 9,
+      "physicalPdfPages": [
+        21
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l09-delete-q3",
+      "lecture": 9,
+      "physicalPdfPages": [
+        22
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": [
+        "Tree diagram topology not independently visually verified; self-contained prompt fixture checked for ordering, occupancy, separator and child-pointer rules as relevant."
+      ]
+    },
+    {
+      "id": "l09-delete-q4",
+      "lecture": 9,
+      "physicalPdfPages": [
+        23
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": [
+        "Tree diagram topology not independently visually verified; self-contained prompt fixture checked for ordering, occupancy, separator and child-pointer rules as relevant."
+      ]
+    },
+    {
+      "id": "l09-delete-q5",
+      "lecture": 9,
+      "physicalPdfPages": [
+        24
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": [
+        "Tree diagram topology not independently visually verified; self-contained prompt fixture checked for ordering, occupancy, separator and child-pointer rules as relevant."
+      ]
+    },
+    {
+      "id": "l09-internal-merge-new-q1",
+      "lecture": 9,
+      "physicalPdfPages": [
+        23,
+        24
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": [
+        "Tree diagram topology not independently visually verified; self-contained prompt fixture checked for ordering, occupancy, separator and child-pointer rules as relevant."
+      ]
+    },
+    {
+      "id": "l09-internal-rotate-new-q2",
+      "lecture": 9,
+      "physicalPdfPages": [
+        25
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": [
+        "Tree diagram topology not independently visually verified; self-contained prompt fixture checked for ordering, occupancy, separator and child-pointer rules as relevant."
+      ]
+    },
+    {
+      "id": "l09-practical-occupancy-q1",
+      "lecture": 9,
+      "physicalPdfPages": [
+        26
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l09-practical-occupancy-q2",
+      "lecture": 9,
+      "physicalPdfPages": [
+        27,
+        28
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l09-practical-occupancy-q3",
+      "lecture": 9,
+      "physicalPdfPages": [
+        28
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l09-practical-occupancy-q4",
+      "lecture": 9,
+      "physicalPdfPages": [
+        27
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l09-practical-occupancy-q5",
+      "lecture": 9,
+      "physicalPdfPages": [
+        28
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l09-key-compression-q1",
+      "lecture": 9,
+      "physicalPdfPages": [
+        29
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l09-key-compression-q2",
+      "lecture": 9,
+      "physicalPdfPages": [
+        29
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l09-key-compression-q3",
+      "lecture": 9,
+      "physicalPdfPages": [
+        29
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l09-key-compression-q4",
+      "lecture": 9,
+      "physicalPdfPages": [
+        29
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l09-key-compression-q5",
+      "lecture": 9,
+      "physicalPdfPages": [
+        29
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l10-collision-resolution-q1",
+      "lecture": 10,
+      "physicalPdfPages": [
+        2,
+        3
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l10-collision-resolution-q2",
+      "lecture": 10,
+      "physicalPdfPages": [
+        3
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l10-collision-resolution-q3",
+      "lecture": 10,
+      "physicalPdfPages": [
+        3
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l10-collision-resolution-q4",
+      "lecture": 10,
+      "physicalPdfPages": [
+        3
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l10-collision-resolution-q5",
+      "lecture": 10,
+      "physicalPdfPages": [
+        2
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l10-hash-based-indexing-q1",
+      "lecture": 10,
+      "physicalPdfPages": [
+        5
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l10-hash-based-indexing-q2",
+      "lecture": 10,
+      "physicalPdfPages": [
+        4
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l10-hash-based-indexing-q3",
+      "lecture": 10,
+      "physicalPdfPages": [
+        5,
+        11
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l10-hash-based-indexing-q4",
+      "lecture": 10,
+      "physicalPdfPages": [
+        4
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l10-hash-based-indexing-q5",
+      "lecture": 10,
+      "physicalPdfPages": [
+        5
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l10-static-chained-hash-table-management-q1",
+      "lecture": 10,
+      "physicalPdfPages": [
+        7,
+        8
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l10-static-chained-hash-table-management-q2",
+      "lecture": 10,
+      "physicalPdfPages": [
+        7,
+        11
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l10-static-chained-hash-table-management-q3",
+      "lecture": 10,
+      "physicalPdfPages": [
+        9
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l10-static-chained-hash-table-management-q4",
+      "lecture": 10,
+      "physicalPdfPages": [
+        9
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l10-static-chained-hash-table-management-q5",
+      "lecture": 10,
+      "physicalPdfPages": [
+        8,
+        9
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l10-hash-collisions-and-overflow-chains-q1",
+      "lecture": 10,
+      "physicalPdfPages": [
+        8,
+        10
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l10-hash-collisions-and-overflow-chains-q2",
+      "lecture": 10,
+      "physicalPdfPages": [
+        8,
+        9
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l10-hash-collisions-and-overflow-chains-q3",
+      "lecture": 10,
+      "physicalPdfPages": [
+        9,
+        10
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l10-hash-collisions-and-overflow-chains-q4",
+      "lecture": 10,
+      "physicalPdfPages": [
+        10
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l10-hash-collisions-and-overflow-chains-q5",
+      "lecture": 10,
+      "physicalPdfPages": [
+        10
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l10-global-and-local-depth-q1",
+      "lecture": 10,
+      "physicalPdfPages": [
+        15
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": [
+        "Hash directory diagram not independently visually verified; stated low-bit fixture and depth rules checked without claiming the quiz fixture is identical to the slide example."
+      ]
+    },
+    {
+      "id": "l10-global-and-local-depth-q2",
+      "lecture": 10,
+      "physicalPdfPages": [
+        15,
+        25
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": [
+        "Hash directory diagram not independently visually verified; stated low-bit fixture and depth rules checked without claiming the quiz fixture is identical to the slide example."
+      ]
+    },
+    {
+      "id": "l10-global-and-local-depth-q3",
+      "lecture": 10,
+      "physicalPdfPages": [
+        15,
+        16
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": [
+        "Hash directory diagram not independently visually verified; stated low-bit fixture and depth rules checked without claiming the quiz fixture is identical to the slide example."
+      ]
+    },
+    {
+      "id": "l10-global-and-local-depth-q4",
+      "lecture": 10,
+      "physicalPdfPages": [
+        15
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": [
+        "Hash directory diagram not independently visually verified; stated low-bit fixture and depth rules checked without claiming the quiz fixture is identical to the slide example."
+      ]
+    },
+    {
+      "id": "l10-global-and-local-depth-q5",
+      "lecture": 10,
+      "physicalPdfPages": [
+        15,
+        25
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": [
+        "Hash directory diagram not independently visually verified; stated low-bit fixture and depth rules checked without claiming the quiz fixture is identical to the slide example."
+      ]
+    },
+    {
+      "id": "l10-extendible-hashing-q1",
+      "lecture": 10,
+      "physicalPdfPages": [
+        13,
+        21
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": [
+        "Hash directory diagram not independently visually verified; stated low-bit fixture and depth rules checked without claiming the quiz fixture is identical to the slide example."
+      ]
+    },
+    {
+      "id": "l10-extendible-hashing-q2",
+      "lecture": 10,
+      "physicalPdfPages": [
+        21,
+        22,
+        23,
+        24
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": [
+        "Hash directory diagram not independently visually verified; stated low-bit fixture and depth rules checked without claiming the quiz fixture is identical to the slide example."
+      ]
+    },
+    {
+      "id": "l10-extendible-hashing-q3",
+      "lecture": 10,
+      "physicalPdfPages": [
+        18,
+        19
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": [
+        "Hash directory diagram not independently visually verified; stated low-bit fixture and depth rules checked without claiming the quiz fixture is identical to the slide example."
+      ]
+    },
+    {
+      "id": "l10-extendible-hashing-q4",
+      "lecture": 10,
+      "physicalPdfPages": [
+        21,
+        22
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": [
+        "Hash directory diagram not independently visually verified; stated low-bit fixture and depth rules checked without claiming the quiz fixture is identical to the slide example."
+      ]
+    },
+    {
+      "id": "l10-extendible-hashing-q5",
+      "lecture": 10,
+      "physicalPdfPages": [
+        17
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": [
+        "Hash directory diagram not independently visually verified; stated low-bit fixture and depth rules checked without claiming the quiz fixture is identical to the slide example."
+      ]
+    },
+    {
+      "id": "l10-directory-doubling-q1",
+      "lecture": 10,
+      "physicalPdfPages": [
+        25
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l10-directory-doubling-q2",
+      "lecture": 10,
+      "physicalPdfPages": [
+        25
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l10-directory-doubling-q3",
+      "lecture": 10,
+      "physicalPdfPages": [
+        25
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l10-directory-doubling-q4",
+      "lecture": 10,
+      "physicalPdfPages": [
+        25
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l10-directory-doubling-q5",
+      "lecture": 10,
+      "physicalPdfPages": [
+        25
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l10-hash-functions-q1",
+      "lecture": 10,
+      "physicalPdfPages": [
+        11
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l10-hash-functions-q2",
+      "lecture": 10,
+      "physicalPdfPages": [
+        11
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l10-hash-functions-q3",
+      "lecture": 10,
+      "physicalPdfPages": [
+        11
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l10-hash-functions-q4",
+      "lecture": 10,
+      "physicalPdfPages": [
+        11
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l10-hash-functions-q5",
+      "lecture": 10,
+      "physicalPdfPages": [
+        11
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l10-static-hashing-and-dynamic-files-q1",
+      "lecture": 10,
+      "physicalPdfPages": [
+        12
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l10-static-hashing-and-dynamic-files-q2",
+      "lecture": 10,
+      "physicalPdfPages": [
+        12
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l10-static-hashing-and-dynamic-files-q3",
+      "lecture": 10,
+      "physicalPdfPages": [
+        12
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l10-static-hashing-and-dynamic-files-q4",
+      "lecture": 10,
+      "physicalPdfPages": [
+        12
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    },
+    {
+      "id": "l10-static-hashing-and-dynamic-files-q5",
+      "lecture": 10,
+      "physicalPdfPages": [
+        12
+      ],
+      "translationReview": "Prompt, four original option slots, and explanation checked against canonical answer meaning; self-contained calculations/rules checked.",
+      "sourceEvidence": "Referenced extracted page text present; text/topic review, not exhaustive visual slide verification.",
+      "gaps": []
+    }
+  ],
+  "limitations": [
+    "No PDFs, page images or extracted slide text added to distributable course content.",
+    "Private source texts for lectures 06–10 read during main-body work; current canonical banks fully read during this task.",
+    "Numerical quiz fixtures are original explanatory practice; source page links support mechanisms, not proof of identical slide numbers or fixtures.",
+    "No runtime/build/browser validation performed in this content-only batch.",
+    "Canonical quiz answer keys, main bodies, runtime and unrelated banks not changed."
+  ]
+}

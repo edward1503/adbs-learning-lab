@@ -1,0 +1,312 @@
+{
+  "lessonId": "lecture-21",
+  "language": "vi",
+  "topics": [
+    {
+      "id": "l21-topic-failures",
+      "title": "Các loại sự cố",
+      "questions": [
+        {
+          "id": "l21-failures-q1",
+          "prompt": "Vi phạm ràng buộc toàn vẹn khiến giao dịch không hoàn tất. Bài phân loại thế nào?",
+          "options": [
+            "Lỗi logic của giao dịch",
+            "System crash làm mất toàn bộ RAM",
+            "Media failure phá hủy lưu trữ nonvolatile",
+            "Lỗi phần mềm DBMS, thay vì điều kiện logic ở mức giao dịch"
+          ],
+          "explanation": "Vi phạm ràng buộc là lý do logic để abort giao dịch. Nó không có nghĩa phần cứng lưu trữ đã hỏng."
+        },
+        {
+          "id": "l21-failures-q2",
+          "prompt": "DBMS abort một giao dịch để phá deadlock. Đây là loại thất bại nào?",
+          "options": [
+            "Media failure vì giao dịch mất khóa",
+            "Lỗi trạng thái nội bộ dẫn đến thất bại giao dịch",
+            "System crash đòi rollback giao dịch đã commit",
+            "Không cần recovery vì không mất điện"
+          ],
+          "explanation": "Nạn nhân deadlock vẫn cần rollback và undo. Cơ chế phục hồi không chỉ dùng khi mất điện."
+        },
+        {
+          "id": "l21-failures-q3",
+          "prompt": "Giả định fail-stop cho system crash của bài giữ lại điều gì?",
+          "options": [
+            "Toàn bộ nội dung RAM",
+            "Bảo đảm không giao dịch nào đang chạy",
+            "Nội dung lưu trữ nonvolatile",
+            "Bảo đảm mọi dirty page xuống đĩa trước mất điện"
+          ],
+          "explanation": "Mô hình cho phép mất trạng thái volatile nhưng giữ lưu trữ bền vững nguyên vẹn. Nó không giả định RAM sống sót qua crash."
+        },
+        {
+          "id": "l21-failures-q4",
+          "prompt": "Cả đĩa dữ liệu và log bị phá hủy, không còn thông tin phục hồi cục bộ. Cần gì?",
+          "options": [
+            "Analysis trên chính log đã mất",
+            "Đọc buffer pool sau khi RAM đã mất nội dung",
+            "Chỉ rollback giao dịch cuối để dựng lại toàn bộ database",
+            "Một backup hoặc replica còn sống ở nơi khác"
+          ],
+          "explanation": "Phục hồi bằng WAL cần WAL còn tồn tại. Nếu mất cả dữ liệu lẫn log, phải dựa vào một bản sao vẫn còn sống."
+        },
+        {
+          "id": "l21-failures-q5",
+          "prompt": "Crash recovery gồm những hoạt động nào?",
+          "options": [
+            "Chuẩn bị lúc xử lý bình thường và phục hồi sau sự cố",
+            "Chỉ làm sau crash, không lưu thông tin từ trước",
+            "Chỉ flush trang sau khi phát hiện nguồn điện đã mất",
+            "Khởi động lại mà không xem log hay trạng thái giao dịch"
+          ],
+          "explanation": "Thông tin phục hồi phải được lưu trước sự cố để dùng về sau. Chỉ khởi động lại tiến trình không tái tạo được trạng thái đã mất."
+        }
+      ]
+    },
+    {
+      "id": "l21-topic-buffer-policies",
+      "title": "Chính sách buffer pool",
+      "questions": [
+        {
+          "id": "l21-buffer-policies-q1",
+          "prompt": "STEAL cho phép điều gì?",
+          "options": [
+            "Người xin bỏ qua khóa giao dịch khác",
+            "Flush trang chứa cập nhật chưa commit lên lưu trữ nonvolatile",
+            "Mọi dirty page phải xuống đĩa trước commit",
+            "Không trang nào giao dịch sửa được phép evict"
+          ],
+          "explanation": "STEAL là chính sách thay buffer và flush trang, không cho phép bỏ qua concurrency control. FORCE mới nói về yêu cầu flush lúc commit."
+        },
+        {
+          "id": "l21-buffer-policies-q2",
+          "prompt": "NO-FORCE nghĩa là gì?",
+          "options": [
+            "Trang dữ liệu không bao giờ ghi xuống đĩa",
+            "Cấm flush log lúc commit",
+            "Không bắt mọi trang dữ liệu đã sửa xuống đĩa trước commit",
+            "Chỉ giao dịch read-only được commit"
+          ],
+          "explanation": "NO-FORCE bỏ yêu cầu flush tất cả trang dữ liệu lúc commit và cho phép flush sau. Nó không miễn yêu cầu bền vững của log."
+        },
+        {
+          "id": "l21-buffer-policies-q3",
+          "prompt": "Vì sao STEAL cần hỗ trợ UNDO?",
+          "options": [
+            "Trang dữ liệu trên đĩa có thể thiếu thay đổi đã commit",
+            "STEAL đòi xóa mọi log cập nhật trước commit",
+            "STEAL cấm lưu before-image cập nhật",
+            "Đĩa có thể chứa thay đổi của giao dịch về sau abort"
+          ],
+          "explanation": "Tác động chưa commit đã xuống đĩa phải có thể bị loại bỏ. Thiếu thay đổi đã commit là bài toán REDO liên quan NO-FORCE, không phải lý do này."
+        },
+        {
+          "id": "l21-buffer-policies-q4",
+          "prompt": "Vì sao NO-FORCE cần hỗ trợ REDO?",
+          "options": [
+            "Crash có thể làm mất cập nhật đã commit chỉ còn ở RAM",
+            "Mọi giao dịch phải undo lúc commit",
+            "NO-FORCE cho xóa log ngay sau sửa RAM",
+            "Chỉ dirty page chưa commit có thể mất khi crash"
+          ],
+          "explanation": "Commit không bắt flush mọi trang dữ liệu, nên log phải giúp dựng lại tác động đã commit. UNDO giải quyết yêu cầu khác: loại bỏ tác động không được giữ."
+        },
+        {
+          "id": "l21-buffer-policies-q5",
+          "prompt": "Bài nêu giới hạn nào của NO-STEAL + FORCE?",
+          "options": [
+            "Luôn đạt runtime nhanh nhất",
+            "Phải giữ trang chưa commit trong buffer và tốn flush lúc commit",
+            "Không cần xét crash giữa flush nhiều trang",
+            "Mọi trang chưa commit đều có thể evict"
+          ],
+          "explanation": "NO-STEAL cần đủ buffer; FORCE tăng lượng ghi lúc commit. Hai chính sách không tự làm chuỗi flush nhiều trang trở thành nguyên tử."
+        }
+      ]
+    },
+    {
+      "id": "l21-topic-logging",
+      "title": "Ý tưởng logging",
+      "questions": [
+        {
+          "id": "l21-logging-q1",
+          "prompt": "Log phục hồi phải chứa gì cho một cập nhật?",
+          "options": [
+            "Chỉ transaction ID và tên đối tượng, không có cách dựng lại hay đảo ngược cập nhật",
+            "Chỉ COMMIT, bỏ mọi thông tin cập nhật",
+            "Đủ thông tin undo và redo theo nhu cầu chính sách đã chọn",
+            "Chỉ after-image dù STEAL cần UNDO"
+          ],
+          "explanation": "Phục hồi phải đảo ngược hoặc tái tạo tác động theo nhu cầu. Chỉ tên giao dịch, đối tượng hay query plan không xác định được giá trị cần khôi phục."
+        },
+        {
+          "id": "l21-logging-q2",
+          "prompt": "Vì sao logging có thể hiệu quả hơn flush các trang dữ liệu rải rác trong xử lý bình thường?",
+          "options": [
+            "Mỗi log record cần flush riêng nên không thể gộp I/O",
+            "Có log thì không bao giờ cần ghi trang dữ liệu",
+            "Mỗi cập nhật phải chép toàn database vào log",
+            "Log ghi tuần tự và gói nhiều cập nhật nhỏ vào một trang"
+          ],
+          "explanation": "Log nhỏ gọn, ghi tuần tự giúp giảm random I/O. Nó không loại mọi chi phí và không đòi sao chép toàn database cho từng cập nhật."
+        },
+        {
+          "id": "l21-logging-q3",
+          "prompt": "T đổi A từ 14 thành 9. Log có old=14, new=9 hỗ trợ gì?",
+          "options": [
+            "UNDO khôi phục 14, REDO ghi 9",
+            "UNDO ghi 9, REDO khôi phục 14",
+            "Cả UNDO lẫn REDO đặt A=14",
+            "Cả UNDO lẫn REDO đặt A=9"
+          ],
+          "explanation": "Before-image hỗ trợ undo; after-image hỗ trợ redo. Đảo vai trò hai giá trị sẽ khôi phục sai trạng thái."
+        },
+        {
+          "id": "l21-logging-q4",
+          "prompt": "Log phục hồi chỉ có trong RAM khi mất điện thì có vấn đề gì?",
+          "options": [
+            "Transaction ID biến log RAM thành stable storage",
+            "Thông tin phục hồi có thể mất cùng các trang dữ liệu chưa flush",
+            "Mọi log RAM tự khôi phục từ một trang cũng đã mất",
+            "BEGIN trong RAM đủ để redo mọi cập nhật"
+          ],
+          "explanation": "Logging dựa vào bằng chứng phục hồi bền vững. Log chưa persist không sống sót qua mất điện chỉ vì nó từng nằm trong RAM."
+        },
+        {
+          "id": "l21-logging-q5",
+          "prompt": "Tách file log khỏi dữ liệu thực nghĩa là gì?",
+          "options": [
+            "Log là bản sao duy nhất của trang, không chứa lịch sử cập nhật",
+            "Mỗi log record phải nằm cùng trang dữ liệu nó mô tả",
+            "Log chứa lịch sử và thông tin phục hồi; trang dữ liệu chứa trạng thái database",
+            "Có log thì trang dữ liệu không cần flush"
+          ],
+          "explanation": "Hai vai trò riêng cho phép ghi log tuần tự và flush dữ liệu khi cần. Log không phải index và không làm dữ liệu bất biến."
+        }
+      ]
+    },
+    {
+      "id": "l21-topic-wal",
+      "title": "Write-ahead logging (WAL)",
+      "questions": [
+        {
+          "id": "l21-wal-q1",
+          "prompt": "Trước khi flush dirty page P, WAL yêu cầu gì?",
+          "options": [
+            "Mọi giao dịch đang chạy phải commit cùng nhau",
+            "BEGIN trong RAM là đủ",
+            "Flush P trước để log ghi giá trị trên đĩa",
+            "Log cho các cập nhật liên quan của P phải đã bền vững"
+          ],
+          "explanation": "Thông tin phục hồi phải bền vững trước trang có tác động cần undo hoặc redo. BEGIN chỉ có trong RAM không đủ."
+        },
+        {
+          "id": "l21-wal-q2",
+          "prompt": "Theo WAL của bài, khi nào được báo giao dịch commit thành công?",
+          "options": [
+            "Khi toàn bộ log của nó, kể cả COMMIT, nằm trên lưu trữ nonvolatile",
+            "Ngay khi thêm COMMIT vào log trong RAM",
+            "Chỉ khi mọi trang dữ liệu được flush theo FORCE",
+            "Ngay khi log cập nhật bền vững dù COMMIT chưa bền vững"
+          ],
+          "explanation": "Log bền vững cho phép WAL dùng NO-FORCE: không cần mọi trang dữ liệu đã flush. Nhưng COMMIT chỉ có trong RAM chưa đủ để báo thành công."
+        },
+        {
+          "id": "l21-wal-q3",
+          "prompt": "Trang chứa giá trị mới được flush trước khi log cập nhật bền vững, rồi máy crash. Rủi ro là gì?",
+          "options": [
+            "Không có; trang bền vững tự chứng minh giao dịch đã commit",
+            "Có thể thiếu thông tin undo thay đổi chưa commit",
+            "Luôn suy ra được giá trị cũ từ giá trị mới trên đĩa",
+            "Biết tên giao dịch là đủ undo mọi cập nhật"
+          ],
+          "explanation": "Thứ tự log-trước-trang đã bị vi phạm. Đĩa chứa tác động nhưng có thể thiếu lịch sử để đảo ngược; SELECT không tái tạo được bằng chứng cũ đã mất."
+        },
+        {
+          "id": "l21-wal-q4",
+          "prompt": "Đĩa có A=5. T commit A=11, log và COMMIT bền vững nhưng trang chưa flush trước crash. Khôi phục A bằng cách nào?",
+          "options": [
+            "UNDO về 5 nhưng vẫn coi T thành công",
+            "Không thể khôi phục vì trang chưa flush",
+            "REDO từ log để có 11",
+            "Bỏ cập nhật vì đĩa dữ liệu là nguồn sự thật duy nhất"
+          ],
+          "explanation": "Log bền vững chứa thông tin dựng lại cập nhật. Đây là lý do NO-FORCE vẫn có thể cung cấp durability."
+        },
+        {
+          "id": "l21-wal-q5",
+          "prompt": "Chuỗi nào tuân thủ WAL trước khi ghi trang và xác nhận commit?",
+          "options": [
+            "Flush trang → thêm log cập nhật → báo commit",
+            "Thêm COMMIT vào RAM → báo thành công → flush log sau",
+            "Báo commit → bỏ log → flush trang",
+            "Thêm log vào RAM → flush log cập nhật → flush trang dữ liệu → flush log COMMIT → báo thành công"
+          ],
+          "explanation": "Chuỗi đúng đặt log trước trang và COMMIT bền vững trước thông báo thành công. Đây là một thứ tự hợp lệ, không phải yêu cầu mọi trang luôn phải flush trước COMMIT: NO-FORCE vẫn cho phép flush trang về sau nếu hai ranh giới WAL được giữ."
+        }
+      ]
+    },
+    {
+      "id": "l21-topic-aries",
+      "title": "Phục hồi ARIES",
+      "questions": [
+        {
+          "id": "l21-aries-q1",
+          "prompt": "Ba pha ARIES của bài có thứ tự nào?",
+          "options": [
+            "Analysis → Redo → Undo",
+            "Undo → Analysis → Redo",
+            "Analysis → Undo → Redo",
+            "Redo → Analysis → Undo"
+          ],
+          "explanation": "ARIES dựng lại trạng thái phục hồi, lặp lại lịch sử, rồi rollback công việc chưa commit. Nó không đơn giản commit mọi giao dịch sau crash."
+        },
+        {
+          "id": "l21-aries-q2",
+          "prompt": "Analysis xác định thông tin gì?",
+          "options": [
+            "Chỉ giao dịch đã commit, bỏ qua giao dịch đang chạy",
+            "Các giao dịch đang hoạt động và dirty page lúc crash",
+            "Chỉ clean page vì dirty page tự phục hồi",
+            "Chỉ thứ tự COMMIT, không xét trang hay log cập nhật"
+          ],
+          "explanation": "Analysis dựng thông tin cho các pha phục hồi tiếp theo. Chỉ danh sách đối tượng schema không đủ để biết giao dịch và trang nào cần xử lý."
+        },
+        {
+          "id": "l21-aries-q3",
+          "prompt": "ARIES redo có thể lặp tác động của giao dịch sẽ bị undo sau đó không?",
+          "options": [
+            "Không; mọi thuật toán redo chỉ xét giao dịch đã commit",
+            "Có, và giao dịch đó bắt buộc phải commit",
+            "Có, vì ARIES lặp lịch sử trước khi undo loser",
+            "Không; redo chỉ áp dụng cho lần đọc"
+          ],
+          "explanation": "ARIES dựng lại lịch sử cần thiết, gồm tác động loser, rồi undo chúng. Lặp một tác động trong redo không cho phép loser commit."
+        },
+        {
+          "id": "l21-aries-q4",
+          "prompt": "Sau redo, undo xử lý những giao dịch nào?",
+          "options": [
+            "Mọi giao dịch đã commit vì redo vừa lặp chúng",
+            "Chỉ giao dịch có dirty page chưa flush, bỏ loser đã xuống đĩa",
+            "Chỉ giao dịch bắt đầu cuối cùng trước crash",
+            "Các giao dịch chưa commit trước crash"
+          ],
+          "explanation": "Trong mô hình giao dịch đơn nút thông thường của bài, undo loại tác động giao dịch chưa hoàn tất; loại công việc đã commit sẽ vi phạm durability. Participant phân tán có PREPARE bền vững là trường hợp in-doubt riêng ở bài 22, không được tự xem như loser để chọn kết quả cục bộ."
+        },
+        {
+          "id": "l21-aries-q5",
+          "prompt": "T1 commit A=8; T2 ghi B=4 nhưng chưa commit trước crash. Mục tiêu phục hồi đúng là gì?",
+          "options": [
+            "Giữ tác động T1 và loại tác động T2",
+            "Giữ cả hai vì mọi UPDATE đã chạy phải bền vững",
+            "Loại cả hai vì crash cũng hủy giao dịch đã commit",
+            "Chỉ giữ giao dịch có trang đã flush, bất kể COMMIT"
+          ],
+          "explanation": "Durability giữ T1; atomicity loại T2. Redo có thể tạm lặp tác động T2, nhưng undo phải loại chúng trước kết quả phục hồi cuối."
+        }
+      ]
+    }
+  ],
+  "reviewStatus": "author-translated and audited all core questions against canonical correct options and lecture extracted-text sources; no answer keys in locale; no fresh visual diagram or external-paper validation claimed"
+}

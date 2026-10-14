@@ -1,0 +1,556 @@
+{
+  "lessonId": "lecture-07",
+  "language": "vi",
+  "topics": [
+    {
+      "id": "l07-topic-workloads",
+      "title": "Workload CSDL",
+      "questions": [
+        {
+          "id": "l07-workloads-q1",
+          "prompt": "Cập nhật tồn kho một mặt hàng bằng nhiều giao dịch ngắn gần workload nào nhất?",
+          "options": [
+            "OLAP quét dữ liệu lịch sử lớn",
+            "Workload chỉ đọc tổng hợp phân tích",
+            "Batch chỉ tính tổng tháng, không cập nhật thực thể",
+            "OLTP"
+          ],
+          "explanation": "OLTP dùng thao tác ngắn trên ít dữ liệu; báo cáo phân tích rộng thuộc OLAP."
+        },
+        {
+          "id": "l07-workloads-q2",
+          "prompt": "Tính doanh thu ba năm theo vùng từ hàng triệu dòng gần workload nào nhất?",
+          "options": [
+            "OLAP",
+            "Tra đúng một khách hàng",
+            "OLTP cập nhật đúng một bản ghi",
+            "Giao dịch chỉ đổi trạng thái một đơn"
+          ],
+          "explanation": "Báo cáo tổng hợp quét lượng dữ liệu lớn là workload phân tích."
+        },
+        {
+          "id": "l07-workloads-q3",
+          "prompt": "HTAP kết hợp gì?",
+          "options": [
+            "Chỉ giao dịch OLTP ngắn, không query phân tích",
+            "Giao dịch và phân tích trên cùng instance CSDL",
+            "Mỗi tuple bắt buộc chứa đồng thời bố trí hàng và cột",
+            "Bắt buộc phân tích read-only trên bản xuất riêng"
+          ],
+          "explanation": "HTAP kết hợp hai loại xử lý, không phải tên chung cho việc dùng hai thiết bị."
+        },
+        {
+          "id": "l07-workloads-q4",
+          "prompt": "Đặc điểm nào gắn với OLTP?",
+          "options": [
+            "Không ghi",
+            "Luôn đúng một giao dịch chạy độc quyền",
+            "Nhiều giao dịch ngắn, đồng thời cao",
+            "Chỉ query đọc toàn bộ dữ liệu lịch sử"
+          ],
+          "explanation": "OLTP thường xử lý nghiệp vụ nhỏ có đọc và ghi, thay vì chỉ quét rộng read-only."
+        },
+        {
+          "id": "l07-workloads-q5",
+          "prompt": "Việc nào phù hợp phân tích OLAP nhất?",
+          "options": [
+            "Đổi trạng thái một đơn vừa thanh toán",
+            "Ghi nhận đăng nhập của một người",
+            "Tạo một giỏ hàng mới",
+            "Nhận diện xu hướng số đơn theo tháng và vùng"
+          ],
+          "explanation": "Phân tích xu hướng gom nhiều thực thể/thời điểm; các việc còn lại thay đổi ít dữ liệu nghiệp vụ."
+        }
+      ]
+    },
+    {
+      "id": "l07-topic-row",
+      "title": "Lưu theo hàng",
+      "questions": [
+        {
+          "id": "l07-row-q1",
+          "prompt": "Row store đặt thuộc tính của một tuple thế nào?",
+          "options": [
+            "Gần nhau hoặc liên tục",
+            "Theo cột trên toàn bảng",
+            "Luôn theo thứ tự khóa tìm kiếm",
+            "Mỗi trường phải ở row group riêng"
+          ],
+          "explanation": "Bố trí hàng gom theo tuple, không ngụ ý bỏ hay phân tán thuộc tính."
+        },
+        {
+          "id": "l07-row-q2",
+          "prompt": "Vì sao lấy toàn thực thể theo khóa thường lợi với bố trí hàng?",
+          "options": [
+            "Thuộc tính tự thành dài cố định",
+            "Các trường cần dùng gần nhau",
+            "Không cần tìm chỉ mục hay quét để định vị",
+            "Mọi SELECT * đều không cần I/O trang"
+          ],
+          "explanation": "Giữ tuple cùng chỗ có lợi sau khi định vị, không bỏ chi phí tìm hay I/O."
+        },
+        {
+          "id": "l07-row-q3",
+          "prompt": "Quét chỉ dùng 8 byte mỗi bản ghi 80 byte, bỏ nén/header. Tỷ lệ byte hữu ích?",
+          "options": [
+            "8%",
+            "90%",
+            "10%",
+            "80%"
+          ],
+          "explanation": "8/80=0.1=10%; 90% còn lại không dùng cho query này."
+        },
+        {
+          "id": "l07-row-q4",
+          "prompt": "Vì sao dữ liệu hàng hỗn hợp có thể kém thuận lợi để nén hơn gom cột?",
+          "options": [
+            "Định dạng hàng cấm mọi nén",
+            "Mọi giá trị trong hàng phải duy nhất",
+            "Hàng bắt buộc khóa ngẫu nhiên",
+            "Giá trị từ miền khác nhau xen kẽ"
+          ],
+          "explanation": "Cùng miền thường có mẫu để nén; đây là đánh đổi, không phải cấm nén hàng."
+        },
+        {
+          "id": "l07-row-q5",
+          "prompt": "Row store có bảo đảm luôn nhanh hơn column store?",
+          "options": [
+            "Không, tùy mẫu truy cập",
+            "Có, mọi query cần mọi thuộc tính",
+            "Có, bất kể đọc một hay hàng triệu tuple",
+            "Có, nếu bảng có khóa chính"
+          ],
+          "explanation": "Đọc ít cột qua nhiều hàng có thể lợi cho cột; dùng SQL chưa quyết định bố trí nào nhanh."
+        }
+      ]
+    },
+    {
+      "id": "l07-topic-column",
+      "title": "Lưu theo cột",
+      "questions": [
+        {
+          "id": "l07-column-q1",
+          "prompt": "Column store chủ yếu gom gì?",
+          "options": [
+            "Bản sao bảng riêng cho mỗi query",
+            "Giá trị cùng thuộc tính qua nhiều tuple",
+            "Mọi thuộc tính một tuple liên tiếp",
+            "Mọi tuple cùng khóa chính thành một hàng"
+          ],
+          "explanation": "Bố trí cột đặt giá trị cùng cột gần nhau, khác bố trí hàng."
+        },
+        {
+          "id": "l07-column-q2",
+          "prompt": "Ghép tuple từ các mảng cột tương ứng bằng cách nào?",
+          "options": [
+            "Theo alphabet, bất kể vị trí hàng",
+            "Ghép tùy ý giá trị cùng kiểu",
+            "Theo vị trí hoặc offset tương ứng trong mảng",
+            "Chỉ dùng MAX của mỗi cột"
+          ],
+          "explanation": "Vị trí tương ứng xác định thành phần cùng tuple; các cực đại không liên quan không xác định hàng khớp."
+        },
+        {
+          "id": "l07-column-q3",
+          "prompt": "Chỉ quét hai cột cần thay vì mọi cột chủ yếu giảm gì?",
+          "options": [
+            "Mặc định giảm số tuple thỏa điều kiện",
+            "Giảm số cột logic trong schema gốc",
+            "Mọi chi phí CPU của mọi operator",
+            "I/O dữ liệu không dùng"
+          ],
+          "explanation": "Chiếu vật lý tránh byte không cần, không đổi nghĩa query hay bỏ mọi chi phí xử lý."
+        },
+        {
+          "id": "l07-column-q4",
+          "prompt": "Vì sao cập nhật điểm toàn tuple có thể bất tiện hơn trong column store?",
+          "options": [
+            "Có thể phải truy cập nhiều vùng cột để ghép/tách tuple",
+            "Tuple quan hệ không còn trong mô hình logic",
+            "SQL cấm UPDATE ở mọi column store",
+            "Mọi lookup điểm phải trả toàn bảng"
+          ],
+          "explanation": "Tuple logic vẫn có; thuộc tính vật lý rải ở vùng cột khiến thao tác nhiều trường kém locality."
+        },
+        {
+          "id": "l07-column-q5",
+          "prompt": "Một triệu bản ghi 100 byte; query dùng tổng 12 byte cột mỗi hàng. Bỏ metadata/nén, đọc bao nhiêu payload cột?",
+          "options": [
+            "1.2 MB",
+            "12 MB hệ thập phân",
+            "100 MB",
+            "112 MB"
+          ],
+          "explanation": "1,000,000×12=12,000,000 byte; bố trí cột lý tưởng không cần đọc phần còn lại của mỗi hàng."
+        }
+      ]
+    },
+    {
+      "id": "l07-topic-pax",
+      "title": "Bố trí lai PAX",
+      "questions": [
+        {
+          "id": "l07-pax-q1",
+          "prompt": "PAX làm gì về mặt khái niệm?",
+          "options": [
+            "Giữ byte hàng nguyên, chỉ đổi tên file",
+            "Sắp bản ghi đồng thời theo mọi cột",
+            "Gom giá trị theo cột trong trang hoặc vùng nhóm tuple",
+            "Đặt toàn cột của bảng vào đúng một trang"
+          ],
+          "explanation": "Bố trí lai kết hợp nhóm tuple và nhóm thuộc tính; không đơn thuần hàng hay mảng toàn cục cho mỗi cột."
+        },
+        {
+          "id": "l07-pax-q2",
+          "prompt": "Sáu tuple chia row group ba tuple. Có bao nhiêu group?",
+          "options": [
+            "3",
+            "6",
+            "18",
+            "2"
+          ],
+          "explanation": "6/3=2 group; số cột không quyết định cách chia hàng này."
+        },
+        {
+          "id": "l07-pax-q3",
+          "prompt": "Row group có A, B, C. Cách nào mô tả column chunk?",
+          "options": [
+            "Chunk A, B, C trong cùng group",
+            "Một chunk chứa mọi hàng đầy đủ không tách cột",
+            "Mỗi giá trị luôn là file riêng không metadata",
+            "Chỉ mảng cột toàn cục, không row group"
+          ],
+          "explanation": "Mỗi chunk gom giá trị một cột trong group; từng tuple không thành file riêng."
+        },
+        {
+          "id": "l07-pax-q4",
+          "prompt": "Mục tiêu bố trí lai là gì?",
+          "options": [
+            "Workload không còn ảnh hưởng hiệu năng",
+            "Kết hợp lợi ích xử lý cột với locality dữ liệu liên quan",
+            "Bỏ mọi chi phí ghép lại trong mọi query",
+            "Bảo đảm mỗi ghi chỉ đổi một byte"
+          ],
+          "explanation": "Bố trí lai tìm đánh đổi hữu ích, không bảo đảm hết ghép tuple hay chi phí luôn hằng số."
+        },
+        {
+          "id": "l07-pax-q5",
+          "prompt": "Directory metadata toàn cục trong hình dùng offset định vị gì?",
+          "options": [
+            "Chỉ khóa chính, không vị trí group",
+            "Pin count buffer frame hiện tại",
+            "Row group trong file",
+            "Mọi tuple mọi query tương lai sẽ chọn"
+          ],
+          "explanation": "Metadata định vị cấu trúc lưu trữ, không tính trước đáp án mọi query."
+        }
+      ]
+    },
+    {
+      "id": "l07-topic-parquet",
+      "title": "Định dạng Parquet",
+      "questions": [
+        {
+          "id": "l07-parquet-q1",
+          "prompt": "Thứ bậc nào đúng với hình Parquet?",
+          "options": [
+            "File → column chunk → row group → page",
+            "File → page → column chunk → row group",
+            "Row group → file → page → column chunk",
+            "File → row group → column chunk → page"
+          ],
+          "explanation": "Mỗi row group chứa chunk các cột; chunk chứa page."
+        },
+        {
+          "id": "l07-parquet-q2",
+          "prompt": "Footer trong hình giữ thông tin nào?",
+          "options": [
+            "Metadata file, row group và cột",
+            "Bản sao đầy đủ dữ liệu hàng thô thay metadata",
+            "Chỉ giá trị mã hóa cột cuối",
+            "Pin count và ref của buffer pool đang chạy"
+          ],
+          "explanation": "Footer mô tả cấu trúc, schema, offset; không phải bản sao toàn dữ liệu."
+        },
+        {
+          "id": "l07-parquet-q3",
+          "prompt": "Chunk có min=10, max=20 hợp lệ. Dùng cho x>30 thế nào?",
+          "options": [
+            "Đổi max thành 30",
+            "Bỏ chunk vì không giá trị nào thỏa",
+            "Phải đọc mọi giá trị trước quyết định",
+            "Trả 30 ngay"
+          ],
+          "explanation": "Khoảng thống kê không giao khoảng điều kiện nên có thể prune; metadata không tạo giá trị mới."
+        },
+        {
+          "id": "l07-parquet-q4",
+          "prompt": "Chunk min=10, max=50: x=30 có chứng minh có hàng giá trị 30?",
+          "options": [
+            "Có, nếu chunk đã sắp",
+            "Không, vì min phải bằng 30",
+            "Không, thống kê chỉ chưa loại khả năng đó",
+            "Có, min/max suy ra có mọi số giữa"
+          ],
+          "explanation": "Min/max giới hạn khoảng, không bảo đảm mỗi giá trị ở giữa xuất hiện."
+        },
+        {
+          "id": "l07-parquet-q5",
+          "prompt": "Row group hỗ trợ song song thế nào?",
+          "options": [
+            "Bỏ mọi CPU query",
+            "Tự bỏ nhu cầu ghép kết quả",
+            "Bảo đảm không skew",
+            "Chia công đọc/xử lý giữa các group"
+          ],
+          "explanation": "Group là đơn vị giao việc riêng; vẫn có phối hợp và workload không đều."
+        }
+      ]
+    },
+    {
+      "id": "l07-topic-compression",
+      "title": "Nén trong DBMS và nén đa dụng",
+      "questions": [
+        {
+          "id": "l07-compression-q1",
+          "prompt": "Nén CSDL trong bài phải bảo toàn gì?",
+          "options": [
+            "Khôi phục chính xác dữ liệu gốc, tức lossless",
+            "Chỉ trung bình",
+            "Chỉ số hàng, trường được đổi",
+            "Chỉ tên bảng"
+          ],
+          "explanation": "Mất chi tiết tuple có thể đổi kết quả; nén lossy phù hợp thuộc lựa chọn riêng của ứng dụng."
+        },
+        {
+          "id": "l07-compression-q2",
+          "prompt": "Đánh đổi quan trọng của nén là gì?",
+          "options": [
+            "Nén không liên quan xử lý query",
+            "Giảm I/O/dung lượng, có thể tăng CPU mã hóa/giải mã",
+            "Mọi chi phí luôn bằng 0",
+            "File luôn tăng kích thước"
+          ],
+          "explanation": "Ít byte có lợi nhưng mã hóa/giải mã cần tính toán; không phải mọi chi phí đều giảm."
+        },
+        {
+          "id": "l07-compression-q3",
+          "prompt": "Bộ nén block đa dụng thường thiếu hiểu biết nào?",
+          "options": [
+            "Khả năng khôi phục byte gốc",
+            "Khả năng chạy không biết toàn kế hoạch query",
+            "Ngữ nghĩa cấp cao của giá trị CSDL",
+            "Ranh giới block input có thể xử lý"
+          ],
+          "explanation": "Nó xử lý dữ liệu chung, có thể chưa tận dụng đủ kiểu, miền giá trị và ngữ nghĩa query."
+        },
+        {
+          "id": "l07-compression-q4",
+          "prompt": "Có phải giải nén mọi giá trị trước mọi tính toán?",
+          "options": [
+            "Có, với mọi encoding",
+            "Không dữ liệu nào cần giải nén",
+            "Chỉ khi query có SELECT",
+            "Không, một số encoding hỗ trợ xử lý trực tiếp"
+          ],
+          "explanation": "Một số thao tác làm trực tiếp trên RLE/dictionary, không có nghĩa mọi thao tác trên mọi định dạng đều được."
+        },
+        {
+          "id": "l07-compression-q5",
+          "prompt": "File từ 80 MB xuống 20 MB. Tỷ số gốc/nén là gì?",
+          "options": [
+            "4:1",
+            "1:4",
+            "60:1",
+            "2:1"
+          ],
+          "explanation": "80/20=4, tức 4:1; giảm 75% là cách đo khác của cùng thay đổi."
+        }
+      ]
+    },
+    {
+      "id": "l07-topic-column-encoding",
+      "title": "Mã hóa cột",
+      "questions": [
+        {
+          "id": "l07-column-encoding-q1",
+          "prompt": "RLE của [4,4,4,9,9] theo (value, count) là gì?",
+          "options": [
+            "[(4,1), (9,1)]",
+            "[(4,3), (9,2)]",
+            "[(3,4), (2,9)]",
+            "[(4,2), (9,3)]"
+          ],
+          "explanation": "Count là độ dài đoạn liên tiếp; đảo cặp hay chỉ ghi giá trị khác nhau làm mất multiplicity."
+        },
+        {
+          "id": "l07-column-encoding-q2",
+          "prompt": "Độ rộng bit cố định tối thiểu cho số không dấu 0..7?",
+          "options": [
+            "7",
+            "8",
+            "3",
+            "2"
+          ],
+          "explanation": "Ba bit biểu diễn tám giá trị; hai bit chỉ bốn. Tám bit đủ nhưng không tối thiểu."
+        },
+        {
+          "id": "l07-column-encoding-q3",
+          "prompt": "SUM của RLE [(5,4), (2,3)] là gì?",
+          "options": [
+            "7",
+            "35",
+            "17",
+            "26"
+          ],
+          "explanation": "5×4+2×3=26; chỉ 5+2 sẽ bỏ số lần xuất hiện."
+        },
+        {
+          "id": "l07-column-encoding-q4",
+          "prompt": "[1,2,1,2,1,2] có bao nhiêu run RLE thông thường, không đổi thứ tự?",
+          "options": [
+            "6",
+            "2",
+            "3",
+            "1"
+          ],
+          "explanation": "Mỗi giá trị khác giá trị trước nên sáu run dài 1; không gom lần không kề nhau mà giữ thứ tự."
+        },
+        {
+          "id": "l07-column-encoding-q5",
+          "prompt": "1000 số 0..7 dùng ba bit mỗi số; bỏ header/padding. Cần bao nhiêu byte payload?",
+          "options": [
+            "1000",
+            "375",
+            "3000",
+            "125"
+          ],
+          "explanation": "1000×3=3000 bit; chia 8 được 375 byte. 3000 là bit, không phải byte."
+        }
+      ]
+    },
+    {
+      "id": "l07-topic-delta",
+      "title": "Delta encoding trong Parquet",
+      "questions": [
+        {
+          "id": "l07-delta-q1",
+          "prompt": "Delta của [20,23,24,29] giữ first=20. Các delta sau là gì?",
+          "options": [
+            "[23,24,29]",
+            "[3,4,9]",
+            "[3,1,5]",
+            "[20,3,1]"
+          ],
+          "explanation": "Trừ giá trị ngay trước từng lần; [3,4,9] lại luôn trừ giá trị đầu."
+        },
+        {
+          "id": "l07-delta-q2",
+          "prompt": "Deltas=[3,1,4,1], minDelta=1: residual là gì?",
+          "options": [
+            "[4,2,5,2]",
+            "[3,1,4,1]",
+            "[1,1,1,1]",
+            "[2,0,3,0]"
+          ],
+          "explanation": "Mỗi residual=delta−minDelta; giải mã cộng minDelta lại."
+        },
+        {
+          "id": "l07-delta-q3",
+          "prompt": "First=40, minDelta=−1, residual=[3,0,2]. Giải mã các giá trị sau first?",
+          "options": [
+            "42,41,42",
+            "43,43,45",
+            "42,39,40",
+            "3,0,2"
+          ],
+          "explanation": "Delta là [2, −1,1]; cộng dồn từ 40 được 42,41,42. Residual không phải giá trị gốc."
+        },
+        {
+          "id": "l07-delta-q4",
+          "prompt": "Vì sao trừ minDelta cho residual không âm?",
+          "options": [
+            "Phép trừ tự bỏ delta âm",
+            "Mọi delta trong block đều ≥minDelta",
+            "Mọi giá trị gốc phải không âm",
+            "Mọi delta gốc phải dương"
+          ],
+          "explanation": "Theo định nghĩa minimum, delta−minDelta≥0 dù delta âm; không bỏ thông tin."
+        },
+        {
+          "id": "l07-delta-q5",
+          "prompt": "Residual lớn nhất 6, block dùng một độ rộng không dấu. Tối thiểu bao nhiêu bit?",
+          "options": [
+            "6",
+            "4",
+            "3",
+            "2"
+          ],
+          "explanation": "Ba bit biểu diễn 0..7, hai bit chỉ 0..3. Giá trị lớn nhất 6 không cần sáu bit."
+        }
+      ]
+    },
+    {
+      "id": "l07-topic-dictionary",
+      "title": "Dictionary encoding",
+      "questions": [
+        {
+          "id": "l07-dictionary-q1",
+          "prompt": "Dictionary tea→0, cake→1. Codes=[0,1,0] giải mã thành gì?",
+          "options": [
+            "[cake, tea, cake]",
+            "[tea, tea, cake]",
+            "[tea, cake, cake]",
+            "[tea, cake, tea]"
+          ],
+          "explanation": "Tra từng mã theo thứ tự; cả hai mã 0 ra tea, giữ thứ tự và multiplicity."
+        },
+        {
+          "id": "l07-dictionary-q2",
+          "prompt": "Dictionary mango→0, apple→1. 0<1 có suy ra mango trước apple theo alphabet?",
+          "options": [
+            "Không, ánh xạ này không bắt buộc giữ alphabet",
+            "Có, mọi mã nguyên theo alphabet",
+            "Có, dictionary luôn gán theo độ dài từ",
+            "Có, nếu hai mã khác nhau"
+          ],
+          "explanation": "Mã có thể gán tùy ý. So thứ tự cần encoding bảo toàn thứ tự hoặc giá trị gốc."
+        },
+        {
+          "id": "l07-dictionary-q3",
+          "prompt": "Tea có mã 7 trong cột dictionary. Đếm số lần tea thế nào?",
+          "options": [
+            "Đếm một lần vì dictionary chỉ có một mục tea",
+            "Đếm các vị trí mã bằng 7",
+            "Đếm vị trí mã nhỏ hơn 7",
+            "Cộng mọi mã"
+          ],
+          "explanation": "Nhiều vị trí có thể trỏ cùng mục; đếm vị trí khớp giữ multiplicity."
+        },
+        {
+          "id": "l07-dictionary-q4",
+          "prompt": "100 giá trị mã một byte, dictionary bốn chuỗi ASCII 10 byte; bỏ overhead. Tổng payload?",
+          "options": [
+            "40 byte",
+            "1000 byte",
+            "140 byte",
+            "100 byte"
+          ],
+          "explanation": "Mã 100 byte và dictionary 40 byte, tổng 140; chỉ đếm mã sẽ bỏ chi phí ánh xạ."
+        },
+        {
+          "id": "l07-dictionary-q5",
+          "prompt": "Cùng giả định overhead, trường hợp nào dễ lợi với dictionary nhất?",
+          "options": [
+            "Mọi giá trị duy nhất và chỉ dài một byte",
+            "Mỗi chuỗi xuất hiện một lần, mã lớn hơn chuỗi",
+            "Dữ liệu rỗng vẫn dựng dictionary lớn",
+            "Lặp nhiều từ tập nhỏ chuỗi dài"
+          ],
+          "explanation": "Chuỗi dài lặp có thể dùng chung một bản qua mã; overhead khiến không phải dữ liệu nào cũng lợi."
+        }
+      ]
+    }
+  ],
+  "reviewStatus": "Every prompt, original option slot and explanation translated and checked against the canonical answer meaning; original teaching computations recalculated. Source topic text reviewed; diagram-only evidence gaps recorded separately. No answer keys in this locale."
+}

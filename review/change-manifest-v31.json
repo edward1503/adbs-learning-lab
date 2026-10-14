@@ -1,0 +1,507 @@
+[
+  {
+    "path": "app.js",
+    "beforeSha256": "238c486d4d650623fbbea52eb81667ff7b5c772ace18ba64690d77ca62c701e2",
+    "afterSha256": "ea909fb370d60446fc338d4ea97d4ffcff47fc3da580ee329d9bc098474c0d0a"
+  },
+  {
+    "path": "course/lecture01.json",
+    "beforeSha256": "887174cd6a664cff0d958c6c2d4e1e92fe4861b34c940edbde7c8bb6492da817",
+    "afterSha256": "e09fc431f81cf3704c9984e76567f0a2275812c2287747d64ab4135d721c8646"
+  },
+  {
+    "path": "course/lecture02.json",
+    "beforeSha256": "278645a559c3cfdce8d49226a018fb41e2a81fecb727e85e9adef025912eca13",
+    "afterSha256": "061da11301bd126f1655ad88ca8a1e127b70b0cbef007f53bfc4eeb6f8f39fdc"
+  },
+  {
+    "path": "course/lecture03.json",
+    "beforeSha256": "bef36187113fdd298c28fafa806c60a6c4f576128c0d7172a1d27136bf0680a1",
+    "afterSha256": "893976c442a93bc3b9a4a8d126ce2a745c9bb4a67663eeaef0d134d853c9c699"
+  },
+  {
+    "path": "course/lecture04.json",
+    "beforeSha256": "9851fcbc2750e18e7c997057bf3b9589188a50b80e11329ac826d7a8a6e8fae2",
+    "afterSha256": "51541e56c68961467c15d80c113d05a0ff7b09a51189ecc0122eef3462aae0d6"
+  },
+  {
+    "path": "course/lecture05.json",
+    "beforeSha256": "61030dcd6c9b8a5b7f0d895a3893a3c9ff7d20fc0d76c4afb427d5c9f1fd1671",
+    "afterSha256": "e7be384f87033f085bc7bfb51c36ebf94355dfd46a31aed9e20a8d9c827cb378"
+  },
+  {
+    "path": "course/lecture19.json",
+    "beforeSha256": "b2651b9719fec9d5756ec7fe22a1ca757be3d1931d73a90e97f2966b93d8ffdc",
+    "afterSha256": "0315cc4fa6a943a29304fa91600f81a94bfe0f7621295344066f34d2d626c332"
+  },
+  {
+    "path": "course/lecture20.json",
+    "beforeSha256": "436b7ea61ef18e02bee466f13d46af3ba359306ca21e4335844130513c21b6a5",
+    "afterSha256": "f9df26b1da3c94930de3f98ee6d01a753c47f0560bfb793df452c1ddf174f083"
+  },
+  {
+    "path": "course/lecture21.json",
+    "beforeSha256": "36c9e1ab0b2988975988b958f18a20d6bc519e956c964c723aa34f85ce9cf3bd",
+    "afterSha256": "c8238bb91a41d106e9c5bc82dc67315cb37b9dbc52c62cb40cd4729deaaca488"
+  },
+  {
+    "path": "course/lecture22.json",
+    "beforeSha256": "25ff9362ea628c2bd85144d55abadb8a8398b1cac730f695a3cdd336a165294d",
+    "afterSha256": "d68b76172467f0b7a81722e9426f489c5fbf45d62b47b4f0fbd2c15e6b87e968"
+  },
+  {
+    "path": "course/quiz-translations/lecture01.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "991e87a6b84ddc7105d5172bf9f0d6830126c363a0ee6f3c928fdf42faf2081a"
+  },
+  {
+    "path": "course/quiz-translations/lecture02.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "2610174249681dc0b43c869d6df3cc58d816bb986a2afd8799ad81ff4f533d8b"
+  },
+  {
+    "path": "course/quiz-translations/lecture03.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "aecf52dfb7fbee44ef1160a440329e9c53c3ada7df5953c3fc9ec1d53d981c5e"
+  },
+  {
+    "path": "course/quiz-translations/lecture04.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "b4a3c738442108360b9417c782adc905dc91f0927ed1de25defda3a72265c99c"
+  },
+  {
+    "path": "course/quiz-translations/lecture05.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "22319faacb439714699374b5ce9e27211f51509fd53977f72daf7c64ff4c6ec6"
+  },
+  {
+    "path": "course/quiz-translations/lecture06.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "50e65ed0a7d9a20a76ddf8084ff3bafca2cc89901b0eac88ad882d6c647ba46b"
+  },
+  {
+    "path": "course/quiz-translations/lecture07.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "deff5509f25029f8d636a6ae55aa408fbb31f3a2fb2d162ddb5c3881c6f0420c"
+  },
+  {
+    "path": "course/quiz-translations/lecture08.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "3c93be57128aa24c08c0c3cd444e2ccb232482cd004dc50a4cfa52876eed1b36"
+  },
+  {
+    "path": "course/quiz-translations/lecture09.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "102134959ee3b429edaada6324b693afa1a58a6d7799709ef0391b6554108209"
+  },
+  {
+    "path": "course/quiz-translations/lecture10.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "a3ee4fa8f280f21f6e6014cd3bb02535419d6bf7bac5236d8e4b10229310c289"
+  },
+  {
+    "path": "course/quiz-translations/lecture11.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "0c6c9c3761ef58a20c1aaa5cd7af29fa610baa1d0e5ee7c6b8408e112652817c"
+  },
+  {
+    "path": "course/quiz-translations/lecture12.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "c5670fa43fd482150bdfa7abc9c9b930b63492a3b4edcaaeb80a151a79639100"
+  },
+  {
+    "path": "course/quiz-translations/lecture13.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "becb1fa10c96d22f9aeda118131720dd2c9931ae57378bc4c1f28fe0a4d103f1"
+  },
+  {
+    "path": "course/quiz-translations/lecture14.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "b3302abd022d14cc9e44ebb072a95e39af9448c581f767c9cb0f366eed8e84c1"
+  },
+  {
+    "path": "course/quiz-translations/lecture15.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "c5ec6ae23a86edf2afc92291434e90b4f96ae3e90ed0540380fffef3336a7a55"
+  },
+  {
+    "path": "course/quiz-translations/lecture16.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "8868d6aa602a76d5f924cd21668b90b84eb70612f0467e3761466275500fd14d"
+  },
+  {
+    "path": "course/quiz-translations/lecture17.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "0dc830e82ddb5553435fab942ca67cf898bf3634137ba1f1c5e3ee7812d2ab02"
+  },
+  {
+    "path": "course/quiz-translations/lecture18.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "8117221f21c203c829a338cae09c7b5ff56a07a0e0e2f2952f34d49c4319b4ce"
+  },
+  {
+    "path": "course/quiz-translations/lecture19.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "bf73d5bdcf33db3b7b2ac92a7afa809eab05b3c3f6b029c4cd8de53fddff1ef6"
+  },
+  {
+    "path": "course/quiz-translations/lecture20.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "0da22e43b48d6d3b9cf6c72cfc34f086c4cb67e7f5ba919694f62c2ea54b9844"
+  },
+  {
+    "path": "course/quiz-translations/lecture21.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "bb7820039c80faa069573afba13e9c0f379ccf52cf9f75ae83d2a2768a83b2b6"
+  },
+  {
+    "path": "course/quiz-translations/lecture22.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "fe7fb4a0c1144e24f69bbae29475c1cc7f05f5926c78dd5bd8872f9e38e44842"
+  },
+  {
+    "path": "course/quiz-translations/lecture23.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "4a1561ee63c4e4554bbc0726454b6b47dd7232df39afa0d5dba579f14ef39105"
+  },
+  {
+    "path": "course/quiz-translations/lecture24.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "5c52dac0f5ad6432226d9e6660f1cfdbce2f1c39a8de03c12a9e5d8c3e652f2a"
+  },
+  {
+    "path": "course/quiz-translations/lecture25.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "041e1692b73626f215684c5f328a6111ae53cf65b2e9ba1a3a3bc753d8476c4d"
+  },
+  {
+    "path": "course/quiz-translations/lecture26.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "01235a79483334e014a5be11dfbeefcdc1492a676881c4b6fa739909e1654eaf"
+  },
+  {
+    "path": "course/quiz-translations/lecture27.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "f056a13b8f34a4d97cc5a638ea9ff163134cf001e6e6d3c21dc8f936a8a77539"
+  },
+  {
+    "path": "course/quiz-translations/supplement28.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "a0d9ade34c81b6a2d48b3e92fc87a246e3d063a69fee15c91fc3b538a089eeac"
+  },
+  {
+    "path": "course/quiz-translations/supplement29.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "9deec47a8ad38c7fa92143926627a30acdeeb8cce98482c379d87b49160761ea"
+  },
+  {
+    "path": "course/quiz-translations/supplement30.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "202b4e7c44cb035ba998cc233992858c9131a054cfbdf194051805a86ed4c5d7"
+  },
+  {
+    "path": "course/quiz-translations/supplement31.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "db5f91386b231ba89682ca7abcab1c2f15430639f1158e1be365b11fd9b13222"
+  },
+  {
+    "path": "course/quiz-translations/supplement32.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "b52b1d1023abd2e592dd962f707d043fa66f304679e29426e46599d4c2df06c8"
+  },
+  {
+    "path": "course/quiz-translations/supplement33.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "f6026260acfa024e62312892d78ed9af63df9172e86d285c2ad4385f91dbfe6c"
+  },
+  {
+    "path": "course/quiz-translations/supplement34.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "8131774f6b7253ffc48a1c452b23705a079a5ad22fadb67b4b4e59adfe6a6e7a"
+  },
+  {
+    "path": "course/quiz-translations/supplement35.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "530cbefa0f39bba6510fe0e2a2ecf163a496df6ffaa407162a2d319ed9ab08a8"
+  },
+  {
+    "path": "course/quiz-translations/supplement36.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "2e5282de6a447d564506653cf7b1795c9edbb59d027a44a0dbc753db55045f9d"
+  },
+  {
+    "path": "course/quiz-translations/supplement37.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "880b6abe64b36544febe089c27e75407a6077e4f828ce48ca238e273293d031a"
+  },
+  {
+    "path": "course/study-guides.json",
+    "beforeSha256": null,
+    "afterSha256": "16ee82532bb91740872dca3ed53acac93dde31f119e3a64126d7deaeade2c64d"
+  },
+  {
+    "path": "course/translations/lecture01.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "5bda48edcf2f4b946101ae0d307f9c05b1b997ed0aede712ccdf0713f70bd92b"
+  },
+  {
+    "path": "course/translations/lecture02.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "76edaa20e6f6bc44fd0c4ba3317ace6edf3c614b774f65c2b744f081ef7941b6"
+  },
+  {
+    "path": "course/translations/lecture03.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "a97ef0d64eea1662f0d8f35110c5ae8d005213412fbb2d29d201f5d12b7dc50c"
+  },
+  {
+    "path": "course/translations/lecture04.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "bd6e5134491c85b8a4faade7371086125aa3d6485b1f2190479f2c993a5c83e1"
+  },
+  {
+    "path": "course/translations/lecture05.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "3bf8b9168b1380b1888fa04ec8ce415b5700125377427072cf393239e0bfd659"
+  },
+  {
+    "path": "course/translations/lecture06.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "45fefd61a6d83c4c7de1bdf383684875ad67f18a1f30a44d106d763b9c02f88b"
+  },
+  {
+    "path": "course/translations/lecture07.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "d113ea09ec01eb55102f3bc4c4b053e8303d8eeabc490a6b5deb3c020dad2341"
+  },
+  {
+    "path": "course/translations/lecture08.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "68d3705d752368a0d38b931b08d75e4e8a9601607998ed41b9204178fd38863f"
+  },
+  {
+    "path": "course/translations/lecture09.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "ef278c1296d1fc6aeb3326bc6bbd67517de7cc6dd6660b161292e742dbf2edfb"
+  },
+  {
+    "path": "course/translations/lecture10.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "2cbdcdca8bd100860ca8d9e3c7065e34e0377c6b37855eb9bed377c00de70823"
+  },
+  {
+    "path": "course/translations/lecture11.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "ee8b73f0fb9891e587dddd05d39aec702452f04d1ea883d97d11a208470790f8"
+  },
+  {
+    "path": "course/translations/lecture12.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "0287132263de044bfe971dbec6aa4447514f5b14f3ccf5c95cc5f164378e6ff0"
+  },
+  {
+    "path": "course/translations/lecture13.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "b6b4748456d692ac1cb6033f8648733da1112fe909db499e3189980490824af5"
+  },
+  {
+    "path": "course/translations/lecture14.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "2e5fcfa786dcf8c40a976bb1b93ed15d908505a5f1251e2555feb720b343be95"
+  },
+  {
+    "path": "course/translations/lecture15.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "42c3188135c354df76914f0365ed4b1db903a0ee7b47eb66312a2f2e13c013fc"
+  },
+  {
+    "path": "course/translations/lecture16.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "cd8ab09aff39250ae118566c1143655e98fbba7110beca4897d6f514d1974115"
+  },
+  {
+    "path": "course/translations/lecture17.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "662a01af75b61c6d0f1fc1175d953dda293018d3c9aa19f751a7355d9c1d01e1"
+  },
+  {
+    "path": "course/translations/lecture18.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "29ef6088eaf195e0339e454dd7d0819e02c6627be2b33d73ddb0c38c26786cdf"
+  },
+  {
+    "path": "course/translations/lecture19.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "720844e792430c251003b84973ca057b1bb4d71f0c958a6bfd7593c35348aa38"
+  },
+  {
+    "path": "course/translations/lecture20.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "b0befee06a8b9d8f19a7d2453766532b842e16aba8fbaa3c9c0404d324e9a228"
+  },
+  {
+    "path": "course/translations/lecture21.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "c6202e5ea94d49e6c3fa42329d2e449c7ef3c01be695889ede89c6e60d0f3bc3"
+  },
+  {
+    "path": "course/translations/lecture22.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "735c0b7ac73f27127494e3458ec90a8fac9354c17b51b3b62bf654aec341be6a"
+  },
+  {
+    "path": "course/translations/lecture23.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "54ef21431d2dcfd5580776680172c1f42d713aecd3b2eccb1eed90c8acda1d2c"
+  },
+  {
+    "path": "course/translations/lecture24.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "2a69e6d5ee2b1c51108d1fee4f6c083ff233d1741cd1257305b7ef3d5bbbb299"
+  },
+  {
+    "path": "course/translations/lecture25.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "df2f0861ce5ec41a148c2459b94d48fdd98b37efd76b3f21677c8b69688875ec"
+  },
+  {
+    "path": "course/translations/lecture26.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "5d2afc3b332e2ac9b788a24e41e148d1c3b8d09412843381754eb471940895b4"
+  },
+  {
+    "path": "course/translations/lecture27.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "b288ce67f6959553791750d6f489dc5c8cb8d27586925b5abbd2715ae71d0b5a"
+  },
+  {
+    "path": "course/translations/supplement28.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "ca834538f03d85bb528644e02b263b061d01e55ff5867a917e35f7030ca5aa70"
+  },
+  {
+    "path": "course/translations/supplement29.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "cfb6565761b93bf510f55ebcd34b4061c63ed63863b3bdb059f2779bf9398e90"
+  },
+  {
+    "path": "course/translations/supplement30.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "502ac61f39901b981587d2528e48ceb8fd720548acf2a40c7eedf8e61e9822b4"
+  },
+  {
+    "path": "course/translations/supplement31.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "50e311e4f1d0513a907ba98d7666345307861dbe87cb8bac99c26ae2767dd205"
+  },
+  {
+    "path": "course/translations/supplement32.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "760a885813df67b38ca0ab1414f65380229c882a25e5e0fe7797cd69cff1b2da"
+  },
+  {
+    "path": "course/translations/supplement33.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "998de2620aefda3c26f80ce043049367c22b685422259c92cef242cc926e96c7"
+  },
+  {
+    "path": "course/translations/supplement34.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "e1d5c9063a65ad6b697891c54a65a5d5b9109da5e4b8eaaae6a70ca413df2809"
+  },
+  {
+    "path": "course/translations/supplement35.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "b72fcb1531b622301b7cb29995ef4b8621ce28edd60f23ca0448cd9c934faf02"
+  },
+  {
+    "path": "course/translations/supplement36.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "5bc7082892c09a8916808a3a400e937a6837ae55f07ed92e045bb76a7764bc15"
+  },
+  {
+    "path": "course/translations/supplement37.vi.json",
+    "beforeSha256": null,
+    "afterSha256": "f891d75ac3b9264ee8c03acc319757adda1a94f521bf2868e55ab1e3a5853cba"
+  },
+  {
+    "path": "i18n.js",
+    "beforeSha256": null,
+    "afterSha256": "b909461fbf72b30257a66ffe8c36eab800aabcb1d6d88d5fdb1d3cf00e2a9457"
+  },
+  {
+    "path": "index.html",
+    "beforeSha256": "7d6ece15b33f00452969ac31859f07f9ed0c5ed5cb9c2b86f9d90f389c8ede76",
+    "afterSha256": "414928b999c57d258b03eac1966317adc95bcda77b8bd49c5bc9ef85d7642102"
+  },
+  {
+    "path": "language.css",
+    "beforeSha256": null,
+    "afterSha256": "65f7c15f8a041e23c14dbfb3f860009094a9da172be66c0c6a56645fbcaa4243"
+  },
+  {
+    "path": "quiz.js",
+    "beforeSha256": "b20d5d7faa5e5cf0cb96c53e96f877dd76fd3c0b69476ab9036bbc4dbdf83f50",
+    "afterSha256": "790acee97fd4f30b06a0cb8125ce5cd185ea1c55c7fc984a6b0c91e841fb5bc1"
+  },
+  {
+    "path": "README.md",
+    "beforeSha256": "8d8d59caa6eba06679599d5ea3c7d885ceda47c444900de024a70511b5b6c516",
+    "afterSha256": "9e1b8b91d8cf8f8b9bcd2db4509d6e008637e87701f798d3c9e2567ebdfa3bb1"
+  },
+  {
+    "path": "REVIEW-EN-VI-V31.md",
+    "beforeSha256": null,
+    "afterSha256": "a0fa88748bce39a3042906bfdb82e85223641ff005a884ce4ed845ba3fb405fa"
+  },
+  {
+    "path": "scripts/build.mjs",
+    "beforeSha256": "568471211f32a67c1693d4add8fbab47eaebf657521f270779e96778e18cb1b0",
+    "afterSha256": "1f418ca845474bfcb6a4e677a23804738cac7b0fdbd534e6a96a6b4ed34ba827"
+  },
+  {
+    "path": "server.cjs",
+    "beforeSha256": "d83aea676da9e94c85b5e6fcf1b8e5a72907ccb50dd49b7bc1e75392424854b0",
+    "afterSha256": "e16e63ac3cc204f5ef2f5cc9940745eed7a76906467d75816c3235ac5338fb44"
+  },
+  {
+    "path": "tests/bilingual-browser.cjs",
+    "beforeSha256": null,
+    "afterSha256": "8dea749b6ccdc67b9b1b45cb75316599011386ae6fa9b52a11e3e2aa3d70e72d"
+  },
+  {
+    "path": "tests/bilingual.test.mjs",
+    "beforeSha256": null,
+    "afterSha256": "f93d58ef86508f99722668ecc52d407bcfde27d6de85e7887033817c5b8ff709"
+  },
+  {
+    "path": "tests/capture-ui.cjs",
+    "beforeSha256": null,
+    "afterSha256": "cbf6b6ef17f9a79b560525a454243785691d1c59b8332d8da47b2819026014dd"
+  },
+  {
+    "path": "tests/english-runtime.test.mjs",
+    "beforeSha256": "d4999b68693094e97cf54c952366e472924093b68a8c88e36a2747061835d5b9",
+    "afterSha256": "1a1a4da0b4dfa7f40e401e62f76a977569dd47c985197d74d5cb2a4f0b93f799"
+  },
+  {
+    "path": "tests/quiz-language.test.mjs",
+    "beforeSha256": null,
+    "afterSha256": "3293a92cc5f260eda25e632a86a876c96425db864c88b2cab62870c703a19ad0"
+  },
+  {
+    "path": "tests/roadmap-browser.cjs",
+    "beforeSha256": null,
+    "afterSha256": "95c789dc0762a89db7146e3de1c6e74ab1bbd2bbc2307ecfa5ab0ee3fd96fc88"
+  },
+  {
+    "path": "tests/v31-index-hooks.json",
+    "beforeSha256": null,
+    "afterSha256": "543c8c53c34730009ed9d2f24b4bdab87ddc0589f222472743076a0454fed782"
+  },
+  {
+    "path": "textbook.css",
+    "beforeSha256": null,
+    "afterSha256": "4d017b6a7bb3615fd872dbe915854cb80229fa21bfa71b09a7a6c56561fa1d82"
+  }
+]

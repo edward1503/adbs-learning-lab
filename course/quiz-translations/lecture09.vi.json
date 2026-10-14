@@ -1,0 +1,517 @@
+{
+  "lessonId": "lecture-09",
+  "language": "vi",
+  "topics": [
+    {
+      "id": "l09-topic-isam",
+      "title": "ISAM",
+      "questions": [
+        {
+          "id": "l09-isam-q1",
+          "prompt": "Phần nào của ISAM giữ tĩnh khi chèn/xóa trong mô hình bài?",
+          "options": [
+            "Số tuple file",
+            "Các tầng không phải lá",
+            "Mọi giá trị bản ghi",
+            "Mọi trang overflow không bao giờ đổi"
+          ],
+          "explanation": "Cập nhật đổi lá/overflow, giữ cấu trúc tầng trong; dữ liệu vẫn có thể đổi."
+        },
+        {
+          "id": "l09-isam-q2",
+          "prompt": "Chèn vào lá chính ISAM đầy thường xảy ra gì?",
+          "options": [
+            "Luôn thay toàn cây bằng heap",
+            "Bỏ bản ghi nếu khóa không duy nhất",
+            "Dùng hoặc tạo trang overflow gắn với lá",
+            "Luôn tách gốc ngay"
+          ],
+          "explanation": "ISAM dùng overflow thay vì cân bằng lại cấu trúc như B+ tree."
+        },
+        {
+          "id": "l09-isam-q3",
+          "prompt": "Separator ISAM có nhất thiết sai sau xóa mục dữ liệu cùng giá trị?",
+          "options": [
+            "Có, mọi separator phải ứng bản ghi còn tồn tại",
+            "Có, mỗi xóa phải dựng lại toàn chỉ mục",
+            "Không, vì tìm không dùng separator",
+            "Không, separator vẫn có thể định tuyến khoảng đúng"
+          ],
+          "explanation": "Separator xác định ranh giới định tuyến, không nhất thiết khẳng định lá hiện có mục đúng giá trị đó."
+        },
+        {
+          "id": "l09-isam-q4",
+          "prompt": "Vì sao chèn nhiều làm ISAM chậm dần?",
+          "options": [
+            "Chuỗi overflow dài và có thể không sắp",
+            "Fanout tự tăng vô hạn",
+            "Mỗi nút trong thành trang một bản ghi",
+            "Gốc không còn so khóa được"
+          ],
+          "explanation": "Overflow thêm I/O sau tìm lá; tầng trên cố định không ngăn chuỗi tăng."
+        },
+        {
+          "id": "l09-isam-q5",
+          "prompt": "Workload nào phù hợp lợi thế ISAM nêu trong bài?",
+          "options": [
+            "Đòi không bao giờ overflow sau mọi cập nhật",
+            "Dữ liệu tương đối tĩnh, ít cập nhật cấu trúc",
+            "Liên tục thêm nhiều khóa vào một lá đầy",
+            "Liên tục đổi toàn thứ tự khóa"
+          ],
+          "explanation": "Ít cập nhật hạn chế overflow và hưởng tầng trong ổn định, không bảo đảm tuyệt đối không overflow."
+        }
+      ]
+    },
+    {
+      "id": "l09-topic-fanout",
+      "title": "Fanout và số tầng",
+      "questions": [
+        {
+          "id": "l09-fanout-q1",
+          "prompt": "Fanout F trong mô hình cây này là gì?",
+          "options": [
+            "Số hàng query khớp",
+            "Số chuỗi overflow toàn CSDL",
+            "Số con tối đa của nút chỉ mục",
+            "Số byte khóa"
+          ],
+          "explanation": "Fanout đo sức phân nhánh; kích thước khóa ảnh hưởng nhưng không phải định nghĩa."
+        },
+        {
+          "id": "l09-fanout-q2",
+          "prompt": "N trang lá, mỗi bước thu vùng tìm khoảng F lần. Số cạnh xuống lá xấp xỉ gì?",
+          "options": [
+            "N·F",
+            "N+F",
+            "log_N F",
+            "log_F N"
+          ],
+          "explanation": "Giải N/F^s=1 được s=log_F N; nhân số trang với fanout không đo độ sâu."
+        },
+        {
+          "id": "l09-fanout-q3",
+          "prompt": "Cây đầy lý tưởng F=10, N=1000 trang lá. Từ gốc tới lá có mấy cạnh?",
+          "options": [
+            "3",
+            "4",
+            "10",
+            "100"
+          ],
+          "explanation": "10³=1000 nên ba cạnh; bốn là số tầng tính cả gốc/lá."
+        },
+        {
+          "id": "l09-fanout-q4",
+          "prompt": "Cache gốc và một tầng trong giúp tìm tránh gì?",
+          "options": [
+            "Khóa khớp query",
+            "I/O đĩa của hai tầng đó",
+            "Mọi phép so logic",
+            "Mục dữ liệu của cây"
+          ],
+          "explanation": "Trang cache vẫn được truy cập và so trong RAM, chỉ tránh đọc đĩa lần tìm ấy."
+        },
+        {
+          "id": "l09-fanout-q5",
+          "prompt": "Vì sao fanout cao thường có lợi trên đĩa so với phân nhánh nhị phân?",
+          "options": [
+            "Không cần lá",
+            "Mỗi trang đúng một khóa",
+            "Ít tầng nên ít lượt đi trang",
+            "Mọi khóa tự duy nhất"
+          ],
+          "explanation": "Nhiều con mỗi trang giảm độ sâu; không bỏ lá hay tạo duy nhất."
+        }
+      ]
+    },
+    {
+      "id": "l09-topic-invariants",
+      "title": "Bất biến B+ tree",
+      "questions": [
+        {
+          "id": "l09-invariants-q1",
+          "prompt": "B+ tree cân bằng nghĩa là gì?",
+          "options": [
+            "Mọi nút cùng số mục",
+            "Mọi khóa cách nhau cùng khoảng số",
+            "Mọi trang liên tục vật lý",
+            "Mọi lá cùng độ sâu"
+          ],
+          "explanation": "Cân bằng nói độ sâu lá, không đòi cùng độ đầy hay gần vật lý."
+        },
+        {
+          "id": "l09-invariants-q2",
+          "prompt": "Theo quy ước bài d=3, nút không phải gốc chứa mấy mục?",
+          "options": [
+            "3 đến 6",
+            "2 đến 3",
+            "6 đến 7",
+            "1 đến 3"
+          ],
+          "explanation": "Bài dùng d≤mục≤2d; tài liệu khác có thể định nghĩa order khác nên phải nêu quy ước."
+        },
+        {
+          "id": "l09-invariants-q3",
+          "prompt": "d=2 theo quy ước này, fanout tối đa của nút trong là bao nhiêu?",
+          "options": [
+            "6",
+            "5",
+            "4",
+            "2"
+          ],
+          "explanation": "Tối đa 2d khóa và 2d+1 con trỏ con; bốn đếm khóa, không phải con."
+        },
+        {
+          "id": "l09-invariants-q4",
+          "prompt": "Vì sao lá B+ tree có next/prev dù trang vật lý không kề?",
+          "options": [
+            "Bảo đảm khóa duy nhất",
+            "Giữ đúng một bản ghi mỗi lá",
+            "Quét giữa lá theo thứ tự khóa",
+            "Thay mọi tìm từ gốc"
+          ],
+          "explanation": "Liên kết giữ thứ tự logic cho quét khoảng, không cần gần vật lý."
+        },
+        {
+          "id": "l09-invariants-q5",
+          "prompt": "Gốc separator 20, trái khóa<20, phải khóa≥20. Tìm 20 đi đâu?",
+          "options": [
+            "Trái",
+            "Luôn cả hai bên",
+            "Dừng ở gốc vì đã thấy bản ghi",
+            "Phải"
+          ],
+          "explanation": "Separator dẫn tìm; thấy khóa nút trong chưa có nghĩa đã lấy mục dữ liệu."
+        }
+      ]
+    },
+    {
+      "id": "l09-topic-insert",
+      "title": "Chèn mục dữ liệu",
+      "questions": [
+        {
+          "id": "l09-insert-q1",
+          "prompt": "Bước đầu chèn mục B+ tree là gì?",
+          "options": [
+            "Tìm lá phụ trách khoảng khóa",
+            "Chèn tùy ý vào nút gốc trong",
+            "Tách mọi nút trước tìm",
+            "Luôn tạo lá mới dù còn chỗ"
+          ],
+          "explanation": "Tìm lá phù hợp rồi chèn theo thứ tự; mô hình cơ bản chỉ tách khi tràn."
+        },
+        {
+          "id": "l09-insert-q2",
+          "prompt": "d=2, lá [2,6,10,14], chèn 8 rồi tách thành hai và ba mục. Kết quả hợp lệ?",
+          "options": [
+            "[2,6,8,10] và [14]",
+            "[2,6] và [8,10,14]",
+            "[2,8] và [6,10,14]",
+            "[2] và [6,8,10,14]"
+          ],
+          "explanation": "Lá phải giữ thứ tự toàn cục và tối thiểu d=2; các lựa chọn khác sai thứ tự hoặc thiếu mục."
+        },
+        {
+          "id": "l09-insert-q3",
+          "prompt": "Tách lá [2,6] và [8,10,14]. Theo minimum-right, khóa nào copy lên cha?",
+          "options": [
+            "10",
+            "14",
+            "8",
+            "6"
+          ],
+          "explanation": "Nhỏ nhất lá phải là 8 và vẫn giữ trong lá sau copy; 6 là lớn nhất trái."
+        },
+        {
+          "id": "l09-insert-q4",
+          "prompt": "Nút trong tạm [10,20,30,40,50], push trung vị 30 lên cha. Hai nút còn khóa nào?",
+          "options": [
+            "[10,20,30] và [30,40,50]",
+            "[10] và [20,30,40,50]",
+            "[10,20] và [30,40,50]",
+            "[10,20] và [40,50]"
+          ],
+          "explanation": "Tách nút trong đẩy trung vị ra khỏi hai nút; tách lá copy separator nhưng giữ mục dữ liệu."
+        },
+        {
+          "id": "l09-insert-q5",
+          "prompt": "Sự kiện nào có thể tăng chiều cao B+ tree?",
+          "options": [
+            "Tách gốc và tạo gốc mới",
+            "Mọi cache miss",
+            "Mọi chèn không tách",
+            "Mọi hit lá"
+          ],
+          "explanation": "Tách lan qua gốc có thể thêm tầng; chèn thường không đổi chiều cao."
+        }
+      ]
+    },
+    {
+      "id": "l09-topic-redistribute",
+      "title": "Phân phối lại khi chèn",
+      "questions": [
+        {
+          "id": "l09-redistribute-q1",
+          "prompt": "Phân phối lại khi chèn nhằm gì?",
+          "options": [
+            "Xóa khóa lớn nhất để lấy chỗ",
+            "Dùng chỗ sibling để tránh tách nếu được",
+            "Nhân đôi sức chứa mọi lá",
+            "Bỏ yêu cầu khóa có thứ tự"
+          ],
+          "explanation": "Chuyển mục giữa sibling giữ bất biến, không bỏ dữ liệu hay đổi sức chứa trang."
+        },
+        {
+          "id": "l09-redistribute-q2",
+          "prompt": "Lá trái [2,4,6,8], phải [12,14], d=2. Chèn 10 rồi chuyển một mục sang phải. Kết quả hợp lệ?",
+          "options": [
+            "[2,4] và [6,8,10,12,14]",
+            "[2,4,6,8,10] và [12,14]",
+            "[2,4,6,8] và [10,12,14]",
+            "[2,4,6,10] và [8,12,14]"
+          ],
+          "explanation": "Đúng thứ tự và tối đa bốn mỗi lá; các phương án khác sai ranh giới hoặc quá sức chứa."
+        },
+        {
+          "id": "l09-redistribute-q3",
+          "prompt": "Với [2,4,6,8] và [10,12,14], separator minimum-right phải là gì?",
+          "options": [
+            "12",
+            "8",
+            "14",
+            "10"
+          ],
+          "explanation": "Minimum phải từ 12 thành 10; giữ 12 gửi tìm 10 tới lá sai."
+        },
+        {
+          "id": "l09-redistribute-q4",
+          "prompt": "Slide nêu đánh đổi phân phối lại nào?",
+          "options": [
+            "Thêm I/O để dùng không gian tốt hơn",
+            "Không chi phí gì",
+            "Luôn giảm một tầng",
+            "Luôn làm cây mất cân bằng"
+          ],
+          "explanation": "Đọc/cập nhật sibling tốn I/O; đổi lại có thể tránh cấp trang và tách."
+        },
+        {
+          "id": "l09-redistribute-q5",
+          "prompt": "Vì sao tương đối dễ truy cập sibling lân cận của lá theo cách mô tả?",
+          "options": [
+            "Lá không cần separator cha",
+            "Liên kết lá cung cấp đường trực tiếp",
+            "Mọi sibling cùng khóa",
+            "Mọi lá phải đã cache"
+          ],
+          "explanation": "Liên kết giúp tìm lá lân cận; vẫn phải chỉnh separator cha khi cần để tra đúng."
+        }
+      ]
+    },
+    {
+      "id": "l09-topic-delete",
+      "title": "Xóa mục dữ liệu và sửa nút trong",
+      "questions": [
+        {
+          "id": "l09-delete-q1",
+          "prompt": "Sau xóa, lá vẫn ít nhất d mục. Thuật toán sách có thể làm gì?",
+          "options": [
+            "Luôn giảm chiều cao",
+            "Luôn dựng lại toàn chỉ mục",
+            "Kết thúc xử lý underflow",
+            "Luôn gộp sibling"
+          ],
+          "explanation": "Không vi phạm độ đầy tối thiểu nên không cần sửa underflow; định tuyến vẫn phải hợp lệ."
+        },
+        {
+          "id": "l09-delete-q2",
+          "prompt": "Lá d−1 mục, sibling chung cha có hơn d mục. Ưu tiên gì?",
+          "options": [
+            "Luôn xóa cha ngay",
+            "Luôn chấp nhận thiếu mục trong thuật toán sách",
+            "Nhân đôi mọi khóa còn lại",
+            "Mượn/phân phối lại với sibling"
+          ],
+          "explanation": "Sibling có mục dư cho mượn mà vẫn đủ tối thiểu; không mượn được mới gộp."
+        },
+        {
+          "id": "l09-delete-q3",
+          "prompt": "d=2, lá [5] và [9,12,15]. Mượn khóa phải nhỏ nhất sang trái. Kết quả và separator?",
+          "options": [
+            "[5,9], [12,15], separator 12",
+            "[5,9], [12,15], separator 9",
+            "[5,15], [9,12], separator 9",
+            "[5], [9,12,15], separator 5"
+          ],
+          "explanation": "Chuyển 9 làm minimum phải thành 12; separator cũ 9 không còn mô tả phân hoạch yêu cầu."
+        },
+        {
+          "id": "l09-delete-q4",
+          "prompt": "Lá thiếu mục, sibling đúng d mục. Để giữ tối thiểu sách phải làm gì?",
+          "options": [
+            "Thêm mục trùng giả",
+            "Gộp hai lá và bỏ separator tương ứng ở cha",
+            "Mượn để sibling cũng thiếu",
+            "Xóa cả hai lá và mọi dữ liệu"
+          ],
+          "explanation": "Sibling không dư; gộp giữ dữ liệu và cần cập nhật con trỏ/separator cha."
+        },
+        {
+          "id": "l09-delete-q5",
+          "prompt": "Sau gộp, gốc không khóa và chỉ một con. Làm gì?",
+          "options": [
+            "Giữ gốc rỗng không con",
+            "Thêm separator tùy ý",
+            "Cho con thành gốc mới, giảm chiều cao",
+            "Xóa cả con lẫn dữ liệu"
+          ],
+          "explanation": "Bỏ gốc dư và giữ cây con hiện có; không xóa dữ liệu cây con."
+        },
+        {
+          "id": "l09-internal-merge-new-q1",
+          "prompt": "d=2, gộp nút trong [10,20] và [40], separator cha 30. Danh sách khóa mới?",
+          "options": [
+            "[10,20,30,40]",
+            "[10,20,40]",
+            "[10,20,30,30,40]",
+            "[30]"
+          ],
+          "explanation": "Gộp nút trong kéo khóa cha xuống giữa hai danh sách và ghép con trỏ; gộp lá không thêm separator thành bản ghi."
+        },
+        {
+          "id": "l09-internal-rotate-new-q2",
+          "prompt": "Separator cha 40 giữa nút trong trái [10,20,30], phải [60]. Mượn từ trái, separator cha mới?",
+          "options": [
+            "40",
+            "60",
+            "30",
+            "20"
+          ],
+          "explanation": "Separator cuối trái 30 lên cha; 40 cũ xuống phải, kèm chuyển con trỏ con phù hợp."
+        }
+      ]
+    },
+    {
+      "id": "l09-topic-practical-occupancy",
+      "title": "Độ đầy thực tế",
+      "questions": [
+        {
+          "id": "l09-practical-occupancy-q1",
+          "prompt": "Chính sách xóa thực tế trong bài có thể khác thuật toán sách thế nào?",
+          "options": [
+            "Xóa toàn cây mỗi lần",
+            "Mọi nút phải đúng 100% đầy",
+            "Cấm mọi xóa",
+            "Cho dưới nửa đầy và chỉ thu hồi khi trống"
+          ],
+          "explanation": "Một số triển khai hoãn cân bằng để giảm overhead, không ép tối thiểu số mục sau mọi xóa."
+        },
+        {
+          "id": "l09-practical-occupancy-q2",
+          "prompt": "Vì sao order theo số mục kém phù hợp với khóa dài biến đổi?",
+          "options": [
+            "Cùng số mục có thể chiếm số byte rất khác",
+            "Chuỗi không so được",
+            "Lá không còn lưu trong trang",
+            "Mọi khóa phải duy nhất"
+          ],
+          "explanation": "Sức chứa trang đo byte; mục khác kích thước làm số mục không phản ánh độ đầy."
+        },
+        {
+          "id": "l09-practical-occupancy-q3",
+          "prompt": "Thước đo vật lý khác cho độ đầy được bàn là gì?",
+          "options": [
+            "Số lần cache gốc",
+            "Byte đã dùng",
+            "Chỉ số tuple query trả",
+            "Số tên bảng khác nhau"
+          ],
+          "explanation": "Byte dùng phản ánh sức chứa thật; các lượng khác không đo chỗ nút chiếm."
+        },
+        {
+          "id": "l09-practical-occupancy-q4",
+          "prompt": "Vì sao Variant C dài biến đổi dù khóa dài cố định?",
+          "options": [
+            "Gốc tự tăng kích thước trang",
+            "Mỗi RID phải là chuỗi dài vô hạn",
+            "Danh sách RID có thể dài khác nhau",
+            "Khóa đổi kiểu mỗi lookup"
+          ],
+          "explanation": "Số bản ghi chung khóa quyết định số tham chiếu; khóa cố định không làm toàn mục cố định."
+        },
+        {
+          "id": "l09-practical-occupancy-q5",
+          "prompt": "Payload trang 1000 byte, mục dùng 480. Đạt ngưỡng nửa đầy theo byte chưa?",
+          "options": [
+            "Rồi, vì hơn một mục",
+            "Rồi, vì 480 gần 500",
+            "Không thể so byte dùng với sức chứa",
+            "Chưa, cần thêm 20 byte để đạt 500"
+          ],
+          "explanation": "Một nửa 1000 là 500; số mục hoặc gần đúng không thỏa ngưỡng đã nêu."
+        }
+      ]
+    },
+    {
+      "id": "l09-topic-key-compression",
+      "title": "Nén khóa",
+      "questions": [
+        {
+          "id": "l09-key-compression-q1",
+          "prompt": "Prefix compression tận dụng đặc điểm nào của khóa đã sắp?",
+          "options": [
+            "Khóa gần nhau thường chung tiền tố",
+            "Mọi khóa phải chung hậu tố",
+            "Mọi khóa luôn cùng độ dài",
+            "Không cần phân biệt khóa nữa"
+          ],
+          "explanation": "Tiền tố chung lưu một lần, hậu tố riêng giữ khác biệt giữa khóa."
+        },
+        {
+          "id": "l09-key-compression-q2",
+          "prompt": "cat01, cat02, cat09 dùng tiền tố cat0. Hậu tố là gì?",
+          "options": [
+            "cat01, cat02, cat09",
+            "1,2,9",
+            "cat, cat, cat",
+            "01,02,09"
+          ],
+          "explanation": "Bỏ đúng cat0 còn ký tự cuối; 01 giữ lại 0 đã có trong prefix."
+        },
+        {
+          "id": "l09-key-compression-q3",
+          "prompt": "Suffix truncation ở nút trong phải giữ điều kiện gì?",
+          "options": [
+            "Separator dài hơn khóa gốc",
+            "Không còn cần so thứ tự",
+            "Separator ngắn vẫn định tuyến đúng mọi khóa",
+            "Separator phải bằng bản ghi lá đầy đủ"
+          ],
+          "explanation": "Khóa trong định tuyến nên có thể rút ngắn, nhưng không được nhầm khoảng khóa."
+        },
+        {
+          "id": "l09-key-compression-q4",
+          "prompt": "Vì sao không cắt mọi khóa lá còn một ký tự?",
+          "options": [
+            "Mọi chuỗi phải đúng tám ký tự",
+            "Nút trong không có khóa",
+            "Prefix compression phải bỏ hết hậu tố",
+            "Có thể không phân biệt hay khôi phục mục dữ liệu nữa"
+          ],
+          "explanation": "Dữ liệu lá phải giữ thông tin phân biệt/khôi phục; nén lossless khác rút separator định tuyến."
+        },
+        {
+          "id": "l09-key-compression-q5",
+          "prompt": "Tiền tố chung dài nhất của alpine và alps là gì?",
+          "options": [
+            "alp",
+            "al",
+            "alpi",
+            "alpine"
+          ],
+          "explanation": "a, l, p giống nhau; ký tự kế là i và s nên dừng ở alp."
+        }
+      ]
+    }
+  ],
+  "reviewStatus": "Every prompt, original option slot and explanation translated and checked against the canonical answer meaning; original teaching computations recalculated. Source topic text reviewed; diagram-only evidence gaps recorded separately. No answer keys in this locale."
+}

@@ -23,7 +23,7 @@ The manual `Botkeep contract discovery` workflow remains available for sanitized
 ## Hosting deployment sequence
 
 1. Check both current GitHub branch heads and the immutable `deploy` commit's `release.json`. Superseded source builds are skipped.
-2. Fetch the previous live release and its 19 allowlisted public assets, verify every SHA-256, and upload a rollback artifact **before** any hosting sync.
+2. Fetch the previous live release and its allowlisted public assets, verify every SHA-256, and upload a rollback artifact **before** any hosting sync. Both the prior complete 19-file manifest and the EN/VI complete 24-file manifest are accepted; partial manifests and unknown paths are rejected.
 3. Verify the fixed workload is static, source settings identify this public repository and branch, and no active operation or recovery exists. Obtain the revision from source settings and exact confirmation from the workload name in memory.
 4. Preview `deploy` and require its commit to match the checked branch head. Recheck GitHub freshness before writing.
 5. Submit one sync in **merge** mode, with restart enabled. Automatic pull-on-start is disabled because this workflow controls imports. Matching files are overwritten; unrelated server files remain. Botkeep stops/restarts the server and revokes active SFTP sessions during import.

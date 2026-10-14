@@ -54,7 +54,7 @@ try {
         await writeFile(destination, bytes);
       } });
       await output('active', 'true');
-      await summary(`Saved and SHA-256 verified the previous live release: \`${previous.sourceCommit}\` (19 assets plus release metadata).`);
+      await summary(`Saved and SHA-256 verified the previous live release: \`${previous.sourceCommit}\` (${Object.keys(previous.files).length} assets plus release metadata).`);
       console.log('Rollback snapshot verified.');
     } else if (command === 'deploy') {
       const apiKey = process.env.BOTKEEP_API_KEY;

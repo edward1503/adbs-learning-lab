@@ -1,0 +1,16 @@
+{
+  "lessonId": "supplement-29",
+  "language": "vi",
+  "topics": [{
+    "id": "supplement-29-practice",
+    "title": "Tìm chính xác · HNSW/IVF/PQ · đồ thị GPU · top-k có lọc",
+    "questions": [
+      {"id":"supplement-29-q1","prompt":"Top-10 chính xác và top-10 trả về có tám ID chung. Recall@10 bằng bao nhiêu?","options":["1.0","Không thể tính nếu chưa biết khoảng cách.","0.2","0.8"],"explanation":"Recall theo ID bằng số phần tử trong giao chia cho k khi kết quả chính xác trên tập đủ điều kiện có k phần tử. Ở đây có tám ID đúng trong mười ID cần tìm, nên recall@10=8/10=0.8."},
+      {"id":"supplement-29-q2","prompt":"ANN trả về ba láng giềng đúng trong khi có mười láng giềng chính xác đủ điều kiện. Recall@10 bằng bao nhiêu?","options":["1.0","3.0","0.3","0.7"],"explanation":"Mẫu số vẫn là cả mười láng giềng cần tìm trong đáp án chuẩn, dù hệ thống trả ít kết quả hơn. Vì vậy recall@10=3/10=0.3, không phải ba chia cho số kết quả đã trả."},
+      {"id":"supplement-29-q3","prompt":"Phép so sánh nào tách được tốc độ ANN ở mức chất lượng tương tự?","options":["Quét tham số rồi so sánh tại mức recall tương đương.","Lấy QPS cao nhất của mỗi phương pháp, bất kể recall.","So sánh các phương pháp dùng thước đo khoảng cách khác nhau.","Chọn index nhỏ nhất mà không kiểm tra ID trả về."],"explanation":"Chất lượng thay đổi theo công tìm kiếm và cấu hình index. So sánh tại cùng mức recall giúp tránh gọi việc chấp nhận chất lượng thấp hơn là cải tiến tốc độ. QPS là số truy vấn xử lý mỗi giây."},
+      {"id":"supplement-29-q4","prompt":"Phần tọa độ FP32 của 1,000,000 vector, mỗi vector 768 chiều, chiếm bao nhiêu GB hệ thập phân?","options":["0.768 GB","1.536 GB","3.072 GB","24.576 GB"],"explanation":"Mỗi tọa độ FP32 dùng bốn byte: 1,000,000×768×4=3,072,000,000 byte, tức 3.072 GB hệ thập phân. Đây là kích thước phần tọa độ, chưa gồm liên kết index và workspace; không phải bộ nhớ đỉnh đo được."},
+      {"id":"supplement-29-q5","prompt":"Khi nào thứ hạng cosine và bình phương khoảng cách Euclid tương đương qua đẳng thức 2−2·tích vô hướng?","options":["Chỉ khi tắt tìm kiếm xấp xỉ.","Chỉ với vector có tọa độ âm.","Với mọi vector tùy ý mà không cần tiền xử lý.","Với các vector khác không đã chuẩn hóa về độ dài đơn vị."],"explanation":"Chuẩn hóa về độ dài đơn vị cho d²(q,x)=2−2(q·x). Giảm khoảng cách khi đó tương đương tăng tích vô hướng và thứ hạng cosine tương ứng. Nếu chưa chuẩn hóa, độ dài vector có thể làm thay đổi thứ hạng."}
+    ]
+  }],
+  "reviewStatus":"All 5 original supplemental practice questions translated; all four source options retain original order. Author checked canonical selected options, recall denominators, FP32 arithmetic and normalization assumptions against lesson bodies. No answer keys copied or altered. Existing packets only; external references not freshly reviewed; official Canvas assessment unverified."
+}

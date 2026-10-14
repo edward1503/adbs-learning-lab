@@ -1,0 +1,119 @@
+{
+  "batch": "transactions: lecture19–22",
+  "completeMainBodyCoverage": {
+    "lessons": 4,
+    "sections": 20,
+    "fullViSidecars": true,
+    "guidesOnly": false
+  },
+  "sourceReadingDepth": [
+    {
+      "file": "../private-source-review/lecture19.txt",
+      "physicalPdfPages": "1–48",
+      "depth": "all extracted text read"
+    },
+    {
+      "file": "../private-source-review/lecture20.txt",
+      "physicalPdfPages": "1–28",
+      "depth": "all extracted text read"
+    },
+    {
+      "file": "../private-source-review/lecture21.txt",
+      "physicalPdfPages": "1–27",
+      "depth": "all extracted text read"
+    },
+    {
+      "file": "../private-source-review/lecture22.txt",
+      "physicalPdfPages": "1–57",
+      "depth": "all extracted text read"
+    }
+  ],
+  "sourceLimitations": [
+    "No claim of visual inspection of PDF diagrams in this batch; reading used the sibling extracted-text files.",
+    "Optional ARIES/CLR and Paxos Commit primary-paper explanations were preserved from the latest canonical content, not independently reaudited against the entire primary papers in this batch.",
+    "ARIES lecture is introductory rather than a complete implementation specification.",
+    "Distributed lecture assumes partitioning without replication and eventual recovery; presumed-abort absence rules and strict 2PL lock-retention convention remain explicit.",
+    "Source links reference existing public PDFs; no PDF pages or extracted slide text were copied into the website."
+  ],
+  "styleReference": "https://book.agentic-swe.dev/chapter_1.html (read for teaching structure; no wording copied)",
+  "preservedTopics": [
+    "ACID, transaction boundaries, serializability versus recoverability, all warehouse/seat/view-equivalence traces",
+    "S/X compatibility, upgrades, strict 2PL retaining S and X, waits-for versus precedence graphs, timestamp 10/30 prevention traces",
+    "STEAL/FORCE, WAL ordering, A=12/B=7 examples, LSN 10/20/30, checkpoint scope, CLR and undoNextLSN repeated-crash example",
+    "East/West four-crate 2PC trace, durable-before-message rules, presumed-abort recovery, prepared/in-doubt restrictions, dense message stream and lock retention",
+    "Participant unanimity versus decision-replica quorum; labelled optional extensions and original section source URLs"
+  ],
+  "englishEdits": "Added one paired bilingual-check ID and explained answer per section. Existing main prose, key takeaway HTML, source blocks, metadata and embedded quiz keys retained.",
+  "authorChecks": [
+    {
+      "lecture": 19,
+      "sections": 5,
+      "sectionIdsAndOrderMatch": true,
+      "goalsCountMatches": true,
+      "sourceUrlsMatchPerSection": true,
+      "missingOriginalCodeStrings": [],
+      "pairedUnderstandingCheckIds": [
+        "bilingual-check-l19-s1",
+        "bilingual-check-l19-s2",
+        "bilingual-check-l19-s3",
+        "bilingual-check-l19-s4",
+        "bilingual-check-l19-s5"
+      ],
+      "viHtmlCharacters": 16242
+    },
+    {
+      "lecture": 20,
+      "sections": 5,
+      "sectionIdsAndOrderMatch": true,
+      "goalsCountMatches": true,
+      "sourceUrlsMatchPerSection": true,
+      "missingOriginalCodeStrings": [],
+      "pairedUnderstandingCheckIds": [
+        "bilingual-check-l20-s1",
+        "bilingual-check-l20-s2",
+        "bilingual-check-l20-s3",
+        "bilingual-check-l20-s4",
+        "bilingual-check-l20-s5"
+      ],
+      "viHtmlCharacters": 12874
+    },
+    {
+      "lecture": 21,
+      "sections": 5,
+      "sectionIdsAndOrderMatch": true,
+      "goalsCountMatches": true,
+      "sourceUrlsMatchPerSection": true,
+      "missingOriginalCodeStrings": [],
+      "pairedUnderstandingCheckIds": [
+        "bilingual-check-l21-s1",
+        "bilingual-check-l21-s2",
+        "bilingual-check-l21-s3",
+        "bilingual-check-l21-s4",
+        "bilingual-check-l21-s5"
+      ],
+      "viHtmlCharacters": 14559
+    },
+    {
+      "lecture": 22,
+      "sections": 5,
+      "sectionIdsAndOrderMatch": true,
+      "goalsCountMatches": true,
+      "sourceUrlsMatchPerSection": true,
+      "missingOriginalCodeStrings": [],
+      "pairedUnderstandingCheckIds": [
+        "bilingual-check-l22-s1",
+        "bilingual-check-l22-s2",
+        "bilingual-check-l22-s3",
+        "bilingual-check-l22-s4",
+        "bilingual-check-l22-s5"
+      ],
+      "viHtmlCharacters": 16661
+    }
+  ],
+  "notCompletedByThisBatch": [
+    "Quiz bank translation/audit",
+    "Runtime integration, build, automated test suite and browser/responsive QA; assigned to root"
+  ],
+  "blockers": [],
+  "diffLimitation": "Candidate is not a Git checkout. git diff/status reported not a repository; root must compare files against preserved baseline."
+}

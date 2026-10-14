@@ -1,0 +1,16 @@
+{
+  "lessonId": "supplement-32",
+  "language": "vi",
+  "topics": [{
+    "id": "supplement-32-practice",
+    "title": "Phạm vi · giả thuyết · ma trận tài liệu · tư vấn",
+    "questions": [
+      {"id":"supplement-32-q1","prompt":"Điểm khởi đầu dự án nào vững nhất?","options":["Xây cơ sở dữ liệu nhanh nhất có thể.","Dùng mọi GPU có sẵn.","Triển khai paper mà không đọc phần đánh giá.","Kiểm tra một cơ chế cụ thể với baseline công bằng dưới workload và ràng buộc đã nêu."],"explanation":"Tuyên bố có thể kiểm tra phải nối phạm vi, cơ chế và bằng chứng. Kích thước triển khai tự nó không tạo thành đóng góp nghiên cứu; phép so sánh cần chỉ rõ điều gì đang được thử và trong điều kiện nào."},
+      {"id":"supplement-32-q2","prompt":"Yếu tố nào làm giả thuyết nghiên cứu có thể bị bằng chứng bác bỏ?","options":["Một điều kiện mà nếu quan sát được, bằng chứng sẽ mâu thuẫn với giả thuyết.","Lời hứa dùng mô hình mới nhất.","Tiêu đề đủ tham vọng.","Nhiều tệp triển khai."],"explanation":"Giả thuyết có thể bị bác bỏ nêu một điều kiện thất bại quan sát được, không chỉ kết quả mong muốn. Nhờ đó thí nghiệm vẫn cung cấp thông tin khi phương pháp không cải thiện."},
+      {"id":"supplement-32-q3","prompt":"Buổi tư vấn với giảng viên nên mang theo điều gì để hữu ích nhất?","options":["Tiêu chí chấm tự dựng.","Chỉ một tên chủ đề rộng.","Bằng chứng cụ thể, câu hỏi có phạm vi và những quyết định cần hướng dẫn.","Tuyên bố thành công chưa được kiểm tra."],"explanation":"Tư vấn hữu ích hơn khi giảng viên có thể đánh giá lựa chọn dựa trên giả định và bằng chứng thật. Định dạng bắt buộc, nếu có, vẫn phụ thuộc hướng dẫn của giảng viên; tài liệu này không tự đặt ra nó."},
+      {"id":"supplement-32-q4","prompt":"Dự án cần bốn GPU nhưng chỉ có một. Cách xử lý nào giữ tính trung thực khoa học?","options":["Giả vờ một GPU là bốn thiết bị.","Giấu cấu hình phần cứng.","Nói khả năng mở rộng bốn GPU đã được chứng minh bằng phân tích dù không có mô hình.","Thu hẹp câu hỏi về cơ chế trên một thiết bị và công khai phạm vi mới."],"explanation":"Điều chỉnh phạm vi là hợp lý khi bằng chứng mới phù hợp tuyên bố mới. Có thể nghiên cứu cơ chế một thiết bị, nhưng không được tuyên bố số đo từ phần cứng không có sẵn hay coi mô phỏng là kết quả bốn GPU thật."},
+      {"id":"supplement-32-q5","prompt":"Paper trên arXiv chưa có xác minh được nhận tại một nơi xuất bản nên được ghi nhãn thế nào?","options":["Là tài liệu đọc được khóa học giao.","Là preprint cho tới khi việc chấp nhận/xuất bản được xác minh từ hồ sơ sơ cấp đáng tin cậy.","Là đã qua phản biện bất cứ khi nào mã nguồn công khai.","Là paper SIGMOD nếu chủ đề là cơ sở dữ liệu."],"explanation":"Mã nguồn công khai và lĩnh vực nghiên cứu không chứng minh việc được nhận, qua phản biện hay được giao đọc trong khóa học. Cần hồ sơ sơ cấp để xác nhận trạng thái xuất bản, và danh sách của giảng viên để xác nhận tài liệu được giao."}
+    ]
+  }],
+  "reviewStatus":"All 5 original supplemental practice questions translated; all four source options retain original order. Author checked canonical selected options against research-question, falsification, consultation and rescoping guidance. No answer keys copied or altered. Existing packets only; external publication records not freshly reviewed; official Canvas assessment unverified."
+}

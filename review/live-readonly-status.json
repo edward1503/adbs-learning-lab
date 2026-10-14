@@ -1,0 +1,19 @@
+{
+  "url": "https://adbs-learning-lab.bot-keep.xyz/",
+  "readOnly": true,
+  "checkedOn": "2026-10-14T10:10:28.431415+00:00",
+  "index.html": {
+    "status": 200,
+    "sha256": "7d6ece15b33f00452969ac31859f07f9ed0c5ed5cb9c2b86f9d90f389c8ede76",
+    "assetVersions": [
+      "3.1.0"
+    ],
+    "title": "ADBS Learning Lab \u00b7 English Edition"
+  },
+  "release.json": {
+    "status": 200,
+    "sha256": "f947aee425b43455c3067961cd3b3f7dd13a76b918efea675f9842395b75ff6f",
+    "sourceCommit": "88ea76ac6807b77d417ba6f8ecba42312d444d7d",
+    "version": null
+  }
+}

@@ -1,0 +1,617 @@
+{
+  "lessonId": "lecture-11",
+  "language": "vi",
+  "topics": [
+    {
+      "id": "l11-query-plans-and-operators",
+      "title": "Kế hoạch truy vấn và toán tử",
+      "questions": [
+        {
+          "id": "l11-query-plans-and-operators-q1",
+          "prompt": "Kế hoạch vật lý khác kế hoạch logic chủ yếu ở điểm nào?",
+          "options": [
+            "Có thể tùy ý đổi đáp án SQL",
+            "Không còn cần bảng đầu vào",
+            "Luôn chỉ có một toán tử",
+            "Chọn cách triển khai cụ thể cho các toán tử"
+          ],
+          "explanation": "Kế hoạch vật lý nêu cách thực hiện ngữ nghĩa yêu cầu. Nó không được tùy ý đổi kết quả."
+        },
+        {
+          "id": "l11-query-plans-and-operators-q2",
+          "prompt": "Hai cách triển khai đúng của cùng toán tử phải giữ điều gì?",
+          "options": [
+            "Ngữ nghĩa đầu ra yêu cầu",
+            "Cùng số I/O",
+            "Cùng lượng bộ nhớ",
+            "Cùng thời gian đến tuple đầu"
+          ],
+          "explanation": "Ngữ nghĩa phải tương đương, nhưng chi phí I/O và độ trễ có thể khác."
+        },
+        {
+          "id": "l11-query-plans-and-operators-q3",
+          "prompt": "Dữ liệu gì truyền giữa các bước quan hệ trong mạng toán tử kế hoạch?",
+          "options": [
+            "Chỉ ước lượng cardinality, không có tuple thật",
+            "Tuple hoặc quan hệ trung gian",
+            "Chỉ tham chiếu schema, không có dòng kết quả",
+            "Chỉ predicate đã phân tích, không có luồng dữ liệu"
+          ],
+          "explanation": "Toán tử xử lý kết quả của nhau. Văn bản SQL không phải luồng tuple đầu ra."
+        },
+        {
+          "id": "l11-query-plans-and-operators-q4",
+          "prompt": "Vì sao optimizer có thể thay heap scan bằng index scan?",
+          "options": [
+            "Index luôn có cùng thứ tự với mọi heap scan",
+            "Index vẫn hợp lệ khi không kiểm tra residual predicate",
+            "Hai đường truy cập đáp ứng cùng yêu cầu với chi phí khác nhau",
+            "Index scan có thể bỏ bản sao match vì key đã có entry"
+          ],
+          "explanation": "Có thể đổi đường truy cập nếu giữ predicate và ngữ nghĩa. Vẫn có thể cần kiểm tra điều kiện còn lại."
+        },
+        {
+          "id": "l11-query-plans-and-operators-q5",
+          "prompt": "Một join có 3 cách triển khai đúng. Điều gì suy ra?",
+          "options": [
+            "Cả ba luôn bằng chi phí",
+            "Chỉ cách thứ nhất hợp lệ",
+            "Truy vấn có ba kết quả logic khác nhau",
+            "Cần xét chi phí và thuộc tính vật lý khi chọn"
+          ],
+          "explanation": "Ngữ nghĩa tương đương không có nghĩa hiệu năng hoặc thứ tự đầu ra tương đương."
+        }
+      ]
+    },
+    {
+      "id": "l11-sorting",
+      "title": "Sắp xếp",
+      "questions": [
+        {
+          "id": "l11-sorting-q1",
+          "prompt": "Theo thứ tự từ điển (A, B), cặp nào nhỏ hơn (3,1)?",
+          "options": [
+            "(2,99)",
+            "(3,2)",
+            "(4,0)",
+            "(3,9)"
+          ],
+          "explanation": "So A trước: 2<3 dù B=99. Không so tổng hai giá trị."
+        },
+        {
+          "id": "l11-sorting-q2",
+          "prompt": "Thao tác nào trực tiếp yêu cầu đầu ra có thứ tự?",
+          "options": [
+            "Một lookup hash bằng",
+            "ORDER BY",
+            "GROUP BY không có ORDER BY",
+            "DISTINCT không có ORDER BY"
+          ],
+          "explanation": "ORDER BY quy định thứ tự. GROUP BY và DISTINCT tự chúng không hứa một thứ tự."
+        },
+        {
+          "id": "l11-sorting-q3",
+          "prompt": "Vì sao dùng external sort thay vì để bộ nhớ ảo tự quyết toàn bộ kiểu truy cập?",
+          "options": [
+            "Mọi sort trong RAM tự giảm tối đa page fault",
+            "Số so sánh luôn bằng số I/O đĩa",
+            "Chủ động giảm I/O khi đầu vào vượt RAM",
+            "Truy cập bộ nhớ ảo ngẫu nhiên luôn rẻ như I/O tuần tự"
+          ],
+          "explanation": "Thuật toán ngoài RAM tính rõ trang và I/O, không chỉ số lần so key."
+        },
+        {
+          "id": "l11-sorting-q4",
+          "prompt": "Đầu vào đã sắp theo (A, B) còn bảo đảm sắp theo gì?",
+          "options": [
+            "Chỉ B",
+            "(B, A)",
+            "RID",
+            "A"
+          ],
+          "explanation": "A là key đầu nên thay đổi đơn điệu. B chỉ có thứ tự trong từng nhóm A."
+        },
+        {
+          "id": "l11-sorting-q5",
+          "prompt": "Dùng sort để loại trùng thế nào?",
+          "options": [
+            "Sắp theo toàn bộ DISTINCT key rồi bỏ các bản sao liền kề",
+            "Sắp theo một phần key rồi coi mọi dòng liền kề là trùng",
+            "Chỉ bỏ bản sao cùng trang đầu vào trước sort",
+            "Xóa mọi nhóm có ít nhất hai bản sao thay vì giữ một"
+          ],
+          "explanation": "Toàn bộ key phân biệt phải làm các bản sao liền kề. Cột không liên quan không bảo đảm điều đó."
+        }
+      ]
+    },
+    {
+      "id": "l11-2-way-external-merge-sort",
+      "title": "External merge sort hai ngả",
+      "questions": [
+        {
+          "id": "l11-2-way-external-merge-sort-q1",
+          "prompt": "Run ban đầu dài bao nhiêu trong phiên bản hai ngả cơ bản trên slide?",
+          "options": [
+            "2 N trang",
+            "1 trang",
+            "B−1 trang bất kể pass 0",
+            "Cả file"
+          ],
+          "explanation": "Pass 0 cơ bản sắp từng trang riêng. Nó khác sort nhiều ngả dùng run B trang."
+        },
+        {
+          "id": "l11-2-way-external-merge-sort-q2",
+          "prompt": "Cần tối thiểu bao nhiêu page buffer để trộn hai run?",
+          "options": [
+            "2",
+            "4 trong mọi trường hợp",
+            "3",
+            "1"
+          ],
+          "explanation": "Cần hai buffer đầu vào và một đầu ra. Bỏ buffer đầu ra sẽ đếm thiếu."
+        },
+        {
+          "id": "l11-2-way-external-merge-sort-q3",
+          "prompt": "N=8 trang: sort hai ngả cơ bản cần bao nhiêu pass tính cả pass 0 và ghi đủ đầu ra?",
+          "options": [
+            "3",
+            "8",
+            "2",
+            "4"
+          ],
+          "explanation": "1+ceil(log₂(8))=4. Đáp án 3 chỉ tính các pass trộn."
+        },
+        {
+          "id": "l11-2-way-external-merge-sort-q4",
+          "prompt": "N=8 và 4 pass: mỗi pass đọc và ghi mọi trang thì tốn bao nhiêu I/O?",
+          "options": [
+            "64",
+            "32",
+            "16",
+            "8"
+          ],
+          "explanation": "2 N× 4=2 × 8 × 4=64 I/O. 32 chỉ tính đọc hoặc ghi thay vì cả hai."
+        },
+        {
+          "id": "l11-2-way-external-merge-sort-q5",
+          "prompt": "N=9 trang: chuỗi số run nào mô tả sort hai ngả cơ bản?",
+          "options": [
+            "9→8→7→1",
+            "9→5→3→2→1",
+            "9→4→2→1",
+            "9→3→1"
+          ],
+          "explanation": "Mỗi lần trộn tối đa hai run nên phải làm tròn lên ở từng bước."
+        }
+      ]
+    },
+    {
+      "id": "l11-external-merge-sort",
+      "title": "External merge sort nhiều ngả",
+      "questions": [
+        {
+          "id": "l11-external-merge-sort-q1",
+          "prompt": "B=6 buffer, dành 1 cho đầu ra: một pass trộn tối đa bao nhiêu run?",
+          "options": [
+            "7",
+            "3",
+            "5",
+            "6"
+          ],
+          "explanation": "B−1=5 buffer còn cho đầu vào. Dùng cả 6 cho đầu vào sẽ không còn buffer đầu ra."
+        },
+        {
+          "id": "l11-external-merge-sort-q2",
+          "prompt": "N=91, B=6: tạo bao nhiêu run ban đầu?",
+          "options": [
+            "15",
+            "6",
+            "19",
+            "16"
+          ],
+          "explanation": "ceil(91/6)=16. 15 làm tròn xuống, bỏ trang 91 trong run cuối."
+        },
+        {
+          "id": "l11-external-merge-sort-q3",
+          "prompt": "N=91, B=6, số run 16→4→1: chi phí I/O đầy đủ là bao nhiêu?",
+          "options": [
+            "546",
+            "364",
+            "728",
+            "182"
+          ],
+          "explanation": "16 run ban đầu qua hai lượt trộn tạo 4 rồi 1 run. Tính pass 0 được 3 pass, mỗi pass đọc/ghi 91 trang: 2×91×3=546. 364 bỏ pass 0."
+        },
+        {
+          "id": "l11-external-merge-sort-q4",
+          "prompt": "B=10, run ban đầu B trang: tối đa bao nhiêu trang sắp trong nhiều nhất 2 pass?",
+          "options": [
+            "10",
+            "90",
+            "100",
+            "81"
+          ],
+          "explanation": "ceil(N/10)≤9 nên N≤10 × 9=90. 100 trang tạo 10 run nhưng chỉ trộn được 9 ngả."
+        },
+        {
+          "id": "l11-external-merge-sort-q5",
+          "prompt": "N=50, B=50, vẫn ghi đầu ra xuống đĩa: chi phí là bao nhiêu?",
+          "options": [
+            "200 I/O",
+            "0 I/O",
+            "100 I/O",
+            "50 I/O"
+          ],
+          "explanation": "Một pass đọc 50 và ghi 50 trang, tổng 100 I/O. Sắp trong RAM không xóa chi phí đọc vào và ghi ra."
+        }
+      ]
+    },
+    {
+      "id": "l11-using-b-trees-for-sorting",
+      "title": "Dùng B+ tree để tạo thứ tự",
+      "questions": [
+        {
+          "id": "l11-using-b-trees-for-sorting-q1",
+          "prompt": "Khi nào B+ tree tránh được external sort?",
+          "options": [
+            "Bất cứ khi nào có index trên cột bất kỳ",
+            "Chỉ khi không cần đọc tuple nào",
+            "Chỉ khi có hash index",
+            "Khi quét nó cung cấp đúng thứ tự key truy vấn cần"
+          ],
+          "explanation": "Index phải cung cấp thứ tự liên quan; index bất kỳ chưa đủ."
+        },
+        {
+          "id": "l11-using-b-trees-for-sorting-q2",
+          "prompt": "Vì sao clustered index hữu ích khi trả đầy đủ dòng theo thứ tự key?",
+          "options": [
+            "Record match có locality tốt theo thứ tự key",
+            "Mọi dòng đầy đủ luôn nằm ở root",
+            "Không cần đọc trang lá",
+            "Mỗi tuple chiếm một byte"
+          ],
+          "explanation": "Clustering nối thứ tự key logic với vị trí dữ liệu. Root không chứa mọi record."
+        },
+        {
+          "id": "l11-using-b-trees-for-sorting-q3",
+          "prompt": "Unclustered index có 10,000 entry trỏ tới dòng đầy đủ. Locality kém có thể cần bao nhiêu data fetch?",
+          "options": [
+            "0 kể cả khi cần cột ngoài index",
+            "Gần 10,000",
+            "Luôn đúng 1",
+            "Luôn bằng chiều cao cây"
+          ],
+          "explanation": "Con trỏ có thể rải trên các trang. Tiền duyệt cây không gồm toàn bộ tiền lấy dữ liệu."
+        },
+        {
+          "id": "l11-using-b-trees-for-sorting-q4",
+          "prompt": "Truy vấn chỉ cần key trong index, không cần dòng đầy đủ. Điều gì đổi?",
+          "options": [
+            "Index mất thứ tự",
+            "Phải chuyển sang hashing",
+            "Mô hình index-only đọc entry có thứ tự mà không theo mọi RID",
+            "Phải đọc mọi data page"
+          ],
+          "explanation": "Covering index có thể bỏ data fetch, xóa nhược điểm cụ thể này của unclustered index."
+        },
+        {
+          "id": "l11-using-b-trees-for-sorting-q5",
+          "prompt": "Sau sort key [2,2,4,4,4,9], DISTINCT trả gì?",
+          "options": [
+            "[2,2,4,4,4,9]",
+            "[2,9]",
+            "[4]",
+            "[2,4,9]"
+          ],
+          "explanation": "Giữ một đại diện mỗi nhóm key bằng nhau liền kề. Không xóa cả nhóm vì có bản sao."
+        }
+      ]
+    },
+    {
+      "id": "l11-external-hashing",
+      "title": "Băm ngoài RAM",
+      "questions": [
+        {
+          "id": "l11-external-hashing-q1",
+          "prompt": "B=7 buffer, dành 1 cho đầu vào: duy trì đồng thời bao nhiêu partition đầu ra?",
+          "options": [
+            "6",
+            "7",
+            "8",
+            "49"
+          ],
+          "explanation": "B−1=6. Buffer đầu vào không đồng thời làm buffer đầu ra."
+        },
+        {
+          "id": "l11-external-hashing-q2",
+          "prompt": "Vì sao băm lại bên trong partition cần hàm băm độc lập?",
+          "options": [
+            "Bỏ nhu cầu so key",
+            "Phân phối lại entry thay vì dùng thông tin phân vùng đã cố định",
+            "Đưa key bằng nhau vào partition khác nhau",
+            "Tạo đầu ra đã sắp"
+          ],
+          "explanation": "Entry trong partition đã chung hash value hoặc bit phân vùng liên quan. Dùng lại đúng sự phân biệt ấy có thể không chia lại hiệu quả."
+        },
+        {
+          "id": "l11-external-hashing-q3",
+          "prompt": "Nên xử lý partition quá lớn thế nào?",
+          "options": [
+            "Xử lý từng trang riêng như thể nhóm không kéo qua trang",
+            "Dùng lại chính hàm phân vùng mà không thêm bit hoặc đổi hash",
+            "Phân vùng lại bằng hàm mới rồi xử lý các phần nhỏ hơn",
+            "Dùng cận trung bình để bỏ qua partition lớn nhất"
+          ],
+          "explanation": "Phân vùng đệ quy giữ dữ liệu. Loại tuple sẽ vi phạm tính đúng."
+        },
+        {
+          "id": "l11-external-hashing-q4",
+          "prompt": "Mọi tuple cùng key và chiếm quá nhiều trang. Băm lại key có chắc giải quyết được không?",
+          "options": [
+            "Có, mọi hàm mới chia đôi nhóm trùng",
+            "Có, modulus nguyên tố bảo đảm key bằng nhau vào bucket khác",
+            "Có, chỉ cần nhiều partition hơn trang đầu vào",
+            "Không, key bằng nhau vẫn vào cùng partition"
+          ],
+          "explanation": "Băm key tất định không tách được skew do nhiều bản sao cùng key."
+        },
+        {
+          "id": "l11-external-hashing-q5",
+          "prompt": "Hashing có lợi gì cho DISTINCT không ORDER BY?",
+          "options": [
+            "Không cần thiết lập thứ tự toàn phần giữa các key",
+            "Luôn cần 0 I/O tạm",
+            "Bỏ kiểm tra equality",
+            "Bảo đảm không skew"
+          ],
+          "explanation": "DISTINCT cần nhóm theo equality, không cần thứ tự toàn phần. Hashing vẫn có thể spill và va chạm."
+        }
+      ]
+    },
+    {
+      "id": "l11-hashing-aggregate",
+      "title": "Tổng hợp bằng bảng băm",
+      "questions": [
+        {
+          "id": "l11-hashing-aggregate-q1",
+          "prompt": "GROUP BY k, SUM(v) cần trạng thái cơ bản gì cho mỗi nhóm?",
+          "options": [
+            "k→chỉ giá trị tuple cuối gặp",
+            "k→tổng cập nhật dần",
+            "Một tổng chung cho mọi key nhóm",
+            "k→count mà không giữ sum"
+          ],
+          "explanation": "Mỗi nhóm cần tổng riêng. Một tổng chung làm mất phân nhóm."
+        },
+        {
+          "id": "l11-hashing-aggregate-q2",
+          "prompt": "Đầu vào (A,3),(B,7),(A,5): SUM nhóm A bằng bao nhiêu?",
+          "options": [
+            "5",
+            "2",
+            "8",
+            "15"
+          ],
+          "explanation": "Nhóm A chứa 3 và 5 nên SUM=8. 15 cộng cả A và B; 2 là COUNT của A, không phải SUM."
+        },
+        {
+          "id": "l11-hashing-aggregate-q3",
+          "prompt": "Pha partition nên băm gì để GROUP BY đúng?",
+          "options": [
+            "Giá trị tổng hợp v dù nhóm chỉ theo k",
+            "RID thay k vì RID duy nhất",
+            "Chỉ một phần key nhóm và không bao giờ so key đầy đủ",
+            "Key nhóm"
+          ],
+          "explanation": "Mọi tuple cùng nhóm phải vào cùng partition. Băm amount có thể chia một nhóm ra nhiều partition."
+        },
+        {
+          "id": "l11-hashing-aggregate-q4",
+          "prompt": "Yêu cầu RAM quan trọng khi xử lý một partition là gì?",
+          "options": [
+            "Trạng thái hash table của nó phải vừa RAM cấp",
+            "Cả database phải vừa RAM",
+            "Không được đọc từng trang",
+            "Mọi partition phải ở RAM đồng thời"
+          ],
+          "explanation": "Có thể stream các trang đầu vào, nhưng trạng thái cần luôn sẵn để gộp mỗi nhóm."
+        },
+        {
+          "id": "l11-hashing-aggregate-q5",
+          "prompt": "DISTINCT bằng hash table gặp key đã có thì làm gì?",
+          "options": [
+            "Tạo thêm dòng cho mỗi bản sao",
+            "Không thêm bản sao nữa",
+            "Xóa entry để chỉ còn key có tần suất lẻ",
+            "Tăng count rồi xuất key đúng số lần đó"
+          ],
+          "explanation": "DISTINCT giữ một entry mỗi key. Xóa nhóm hoặc đổi key là sai."
+        }
+      ]
+    },
+    {
+      "id": "l11-hashing-summarisation",
+      "title": "Trạng thái tổng hợp cập nhật dần",
+      "questions": [
+        {
+          "id": "l11-hashing-summarisation-q1",
+          "prompt": "AVG cần giữ trạng thái nào để gộp các lô đúng?",
+          "options": [
+            "Chỉ MAX",
+            "Chỉ số trang",
+            "SUM và COUNT",
+            "Chỉ AVG không có trọng số"
+          ],
+          "explanation": "Trung bình chung phải tính trọng số là count mỗi lô. Trung bình không trọng số của các trung bình có thể sai."
+        },
+        {
+          "id": "l11-hashing-summarisation-q2",
+          "prompt": "Lô 1 sum=20, count=2; lô 2 sum=90, count=3. AVG chung là bao nhiêu?",
+          "options": [
+            "20",
+            "25",
+            "55",
+            "22"
+          ],
+          "explanation": "(20+90)/(2+3)=22. Trung bình hai AVG 10 và 30 cho 20 nhưng bỏ trọng số khác nhau."
+        },
+        {
+          "id": "l11-hashing-summarisation-q3",
+          "prompt": "MIN hiện tại nhóm G là 7; tuple mới của G là 11. Trạng thái mới là gì?",
+          "options": [
+            "7",
+            "11",
+            "18",
+            "2"
+          ],
+          "explanation": "min(7,11)=7. 11 là giá trị cuối, 18 là tổng, 2 là count không liên quan."
+        },
+        {
+          "id": "l11-hashing-summarisation-q4",
+          "prompt": "COUNT(*) nhóm đang là 8, thêm một dòng: trạng thái mới là gì?",
+          "options": [
+            "8",
+            "9",
+            "1",
+            "Giá trị measure của dòng mới"
+          ],
+          "explanation": "COUNT(*) đếm dòng nên tăng một. Không cộng measure hay tạo count riêng cho cùng nhóm."
+        },
+        {
+          "id": "l11-hashing-summarisation-q5",
+          "prompt": "Hai trạng thái SUM riêng phần cùng nhóm là 24 và 31. Gộp thế nào?",
+          "options": [
+            "27.5",
+            "31",
+            "55",
+            "2"
+          ],
+          "explanation": "SUM cộng được: 24+31=55. Lấy trung bình tổng hoặc giữ tổng cuối không giữ đúng nghĩa SUM."
+        }
+      ]
+    },
+    {
+      "id": "l11-cost-analysis",
+      "title": "Phân tích chi phí",
+      "questions": [
+        {
+          "id": "l11-cost-analysis-q1",
+          "prompt": "B=12, phân bố đều lý tưởng, không overhead và hash table mỗi partition vừa B trang: cận dung lượng hai pha là bao nhiêu?",
+          "options": [
+            "144 trang",
+            "121 trang",
+            "24 trang",
+            "132 trang"
+          ],
+          "explanation": "B(B−1)=12 × 11=132. Dành buffer đầu vào giới hạn số spill partition."
+        },
+        {
+          "id": "l11-cost-analysis-q2",
+          "prompt": "N=90, B=10, overhead f=1.2: bảng băm dự kiến mỗi partition là 12 trang. Có vừa 10 trang không?",
+          "options": [
+            "Không",
+            "Có vì N≤B(B−1) khi bỏ overhead",
+            "Có vì đọc đầu vào từng trang",
+            "Có vì hash table không chiếm RAM"
+          ],
+          "explanation": "1.2 × 90/9=12>10. Tính cận RAM phải gồm overhead."
+        },
+        {
+          "id": "l11-cost-analysis-q3",
+          "prompt": "B cố định: nhiều nhóm phân biệt hơn thường ảnh hưởng RAM hash aggregation thế nào?",
+          "options": [
+            "Luôn đúng một trạng thái bất kể số nhóm",
+            "Có thể tăng vì cần nhiều trạng thái nhóm hơn",
+            "Luôn không đổi vì stream đầu vào",
+            "Giảm vì hash ngắn hơn"
+          ],
+          "explanation": "Stream đầu vào không loại trạng thái của các nhóm đã gặp."
+        },
+        {
+          "id": "l11-cost-analysis-q4",
+          "prompt": "Vì sao sqrt(N) là thang bộ nhớ gần đúng cho hashing ngoài RAM hai pha?",
+          "options": [
+            "Phải giữ mọi cặp tuple",
+            "Mỗi tuple dùng sqrt(N) byte",
+            "Có khoảng B partition, mỗi partition khoảng B trang",
+            "Tính hash luôn mất logN thời gian"
+          ],
+          "explanation": "Dung lượng khoảng B² trang cho B≈sqrtN dưới giả định phân bố và overhead đã nêu."
+        },
+        {
+          "id": "l11-cost-analysis-q5",
+          "prompt": "Một partition vượt RAM dù trung bình nhỏ. Cận trung bình có bảo đảm hai pha không?",
+          "options": [
+            "Có, chỉ cần trung bình đủ nhỏ",
+            "Có, key khác nhau bảo đảm partition đều",
+            "Có, buffer đầu ra giữ phần dư miễn phí",
+            "Không, skew làm partition lớn nhất quá lớn"
+          ],
+          "explanation": "Kích thước partition lớn nhất quan trọng. Trung bình nhỏ không bảo đảm mọi build table vừa RAM."
+        }
+      ]
+    },
+    {
+      "id": "l11-conclusion-sorting-vs-hashing",
+      "title": "So sánh sắp xếp và băm",
+      "questions": [
+        {
+          "id": "l11-conclusion-sorting-vs-hashing-q1",
+          "prompt": "DISTINCT không yêu cầu thứ tự và nhiều bản sao: hashing có lợi thế tiềm năng gì?",
+          "options": [
+            "Gộp trùng sớm và chỉ giữ trạng thái key phân biệt",
+            "Tự tạo đầu ra đã sắp",
+            "Bỏ kiểm tra equality",
+            "Không bao giờ dùng đĩa"
+          ],
+          "explanation": "Nhóm bằng hash không cần thứ tự toàn phần, nhưng vẫn có thể va chạm và spill."
+        },
+        {
+          "id": "l11-conclusion-sorting-vs-hashing-q2",
+          "prompt": "Vì sao sorting hấp dẫn với GROUP BY k đồng thời ORDER BY k?",
+          "options": [
+            "ORDER BY cho phép bỏ aggregate",
+            "Cùng thứ tự phục vụ cả nhóm và đầu ra cuối",
+            "Hashing không làm được GROUP BY",
+            "Sorting luôn một pass bất kể N, B"
+          ],
+          "explanation": "Tái dùng thứ tự yêu cầu có lợi. Hashing vẫn nhóm được nhưng có thể cần sort sau đó."
+        },
+        {
+          "id": "l11-conclusion-sorting-vs-hashing-q3",
+          "prompt": "External merge sort không phải dựa vào rủi ro nào của phân vùng hash kém?",
+          "options": [
+            "Phải so key",
+            "Phải giữ ngữ nghĩa đúng",
+            "Partition nóng vượt RAM do hash skew",
+            "Phải đọc đầu vào từ đĩa"
+          ],
+          "explanation": "Sort không dựa vào phân bố hash để cân bằng partition. Vẫn cần I/O và so sánh."
+        },
+        {
+          "id": "l11-conclusion-sorting-vs-hashing-q4",
+          "prompt": "Không yêu cầu thứ tự, trạng thái aggregate nhỏ: nên cân nhắc gì?",
+          "options": [
+            "Sort vì mọi GROUP BY phải trả có thứ tự",
+            "Giữ mọi dòng trong danh sách mỗi nhóm dù SUM/COUNT đủ",
+            "Dùng một trạng thái chung và bỏ key nhóm",
+            "Hash aggregation"
+          ],
+          "explanation": "Một trạng thái hash table mỗi nhóm là lựa chọn tự nhiên. SQL grouping không bắt buộc sort."
+        },
+        {
+          "id": "l11-conclusion-sorting-vs-hashing-q5",
+          "prompt": "Có phương pháp luôn thắng giữa sort và hashing cho mọi workload không?",
+          "options": [
+            "Không, tùy thứ tự, bộ nhớ, cardinality và phân bố",
+            "Có, hashing luôn thắng",
+            "Có, sorting luôn thắng",
+            "Có, chỉ so số cột đầu ra là đủ"
+          ],
+          "explanation": "Hai cách có trade-off khác nhau. Không thứ hạng đơn giản nào quyết định mọi trường hợp."
+        }
+      ]
+    }
+  ],
+  "reviewStatus": "Every question translated in original source-slot order. Author audited explanations against canonical correct slots and private PDF text/model assumptions. No visual diagram/proof or external-paper audit claimed; no locale answer keys."
+}

@@ -1,8 +1,8 @@
 {
   "name": "adbs-learning-web",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "private": true,
-  "description": "Independent English ADBS companion; portable static frontend",
+  "description": "Bilingual EN/VI ADBS interactive textbook; portable static frontend",
   "scripts": {
     "build": "node scripts/build.mjs",
     "test": "node scripts/test.mjs",

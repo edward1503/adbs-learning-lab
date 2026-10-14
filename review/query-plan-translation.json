@@ -1,0 +1,124 @@
+{
+  "batch": "lectures 13–18",
+  "verification": "Read all six latest canonical lesson JSON files and all six private page-delimited PDF text extracts. Checked topic/page mapping and translated all current main-body examples and assumptions. This is not an exhaustive visual proof or diagram review of every slide.",
+  "canonicalEnglishChanged": false,
+  "embeddedQuizzesChanged": false,
+  "lessons": [
+    {
+      "lessonId": "lecture-13",
+      "sections": 4,
+      "sectionIds": [
+        "l13-s1",
+        "l13-s2",
+        "l13-s3",
+        "l13-s4"
+      ],
+      "sourcePages": "1–18",
+      "authorVerification": "Complete canonical main body and complete page-delimited private text read; all listed calculations, restrictions, code blocks, section identity/order, source and internal URLs preserved.",
+      "unfinishedSections": []
+    },
+    {
+      "lessonId": "lecture-14",
+      "sections": 4,
+      "sectionIds": [
+        "l14-s1",
+        "l14-s2",
+        "l14-s3",
+        "l14-s4"
+      ],
+      "sourcePages": "1–7",
+      "authorVerification": "Complete canonical main body and complete page-delimited private text read; all listed calculations, restrictions, code blocks, section identity/order, source and internal URLs preserved.",
+      "unfinishedSections": []
+    },
+    {
+      "lessonId": "lecture-15",
+      "sections": 4,
+      "sectionIds": [
+        "l15-s1",
+        "l15-s2",
+        "l15-s3",
+        "l15-s4"
+      ],
+      "sourcePages": "1–43",
+      "authorVerification": "Complete canonical main body and complete page-delimited private text read; all listed calculations, restrictions, code blocks, section identity/order, source and internal URLs preserved.",
+      "unfinishedSections": []
+    },
+    {
+      "lessonId": "lecture-16",
+      "sections": 4,
+      "sectionIds": [
+        "l16-s1",
+        "l16-s2",
+        "l16-s3",
+        "l16-s4"
+      ],
+      "sourcePages": "1–23",
+      "authorVerification": "Complete canonical main body and complete page-delimited private text read; all listed calculations, restrictions, code blocks, section identity/order, source and internal URLs preserved.",
+      "unfinishedSections": []
+    },
+    {
+      "lessonId": "lecture-17",
+      "sections": 4,
+      "sectionIds": [
+        "l17-s1",
+        "l17-s2",
+        "l17-s3",
+        "l17-s4"
+      ],
+      "sourcePages": "1–26",
+      "authorVerification": "Complete canonical main body and complete page-delimited private text read; all listed calculations, restrictions, code blocks, section identity/order, source and internal URLs preserved.",
+      "unfinishedSections": []
+    },
+    {
+      "lessonId": "lecture-18",
+      "sections": 4,
+      "sectionIds": [
+        "l18-s1",
+        "l18-s2",
+        "l18-s3",
+        "l18-s4"
+      ],
+      "sourcePages": "1–24",
+      "authorVerification": "Complete canonical main body and complete page-delimited private text read; all listed calculations, restrictions, code blocks, section identity/order, source and internal URLs preserved.",
+      "unfinishedSections": []
+    }
+  ],
+  "remaining": [
+    "PostgreSQL exercise was translated, not executed in PostgreSQL; original example output remains illustrative.",
+    "Learn practical and restricted dataset were not accessed.",
+    "Source diagram-only material needs visual review before claiming exhaustive slide validation.",
+    "Root integration/build/browser tests remain outside this content batch."
+  ],
+  "contentValidation": {
+    "checkedSections": 24,
+    "checksPassed": [
+      "Valid UTF-8 JSON",
+      "Same lesson IDs and section IDs/order",
+      "Same goal count",
+      "Balanced HTML tags",
+      "Every original source/internal href retained",
+      "All three original pre/code blocks retained byte-for-byte",
+      "Numeric examples/formulas manually compared after punctuation-sensitive token check"
+    ],
+    "runtimeTests": "Not run by this content worker; root owns integration and runtime verification."
+  },
+  "styleReference": {
+    "url": "https://book.agentic-swe.dev/chapter_1.html",
+    "usage": "Read opening/definitions/motivation pattern; original ADBS wording uses concrete setup, definition in context, mechanism, worked numbers and explained checks. No reference wording or SWE examples copied."
+  },
+  "sourceObservations": [
+    {
+      "lessonId": "lecture-15",
+      "physicalPage": 30,
+      "observation": "Private text extract says sort-merge 3510 on page 30, whereas pages 27–29 and 32–33 give 3540 for the slide fixture. VI preserves the independent latest EN 1048/1148 example and assumptions; do not treat slide label 3510 as a verified new cost."
+    },
+    {
+      "lessonId": "lecture-14",
+      "observation": "Source is 7-page 2×2 PDF. Physical PDF pages differ from printed slide numbers; retained source links use physical pages."
+    },
+    {
+      "lessonId": "lecture-17",
+      "observation": "Histogram charts and formulas on some pages are absent from plain-text extraction. Current lesson independent numeric examples were checked, not an exhaustive reconstruction of chart-only slide content."
+    }
+  ]
+}

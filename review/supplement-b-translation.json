@@ -1,0 +1,491 @@
+{
+  "batch": "supplements-33-37-vietnamese-main-body",
+  "date": "2026-10-14",
+  "status": "complete-with-stated-source-limits",
+  "coverage": {
+    "lessons": 5,
+    "sections": 30,
+    "teachingSections": 25,
+    "statusSections": 5,
+    "unfinishedSections": [],
+    "quizBankQuestionsTranslated": 0,
+    "embeddedExplainedChecks": 15
+  },
+  "scope": {
+    "read": "Existing full English lesson sections and packet provenance; quiz questions inspected for consistency. External source links remain those in existing packets.",
+    "freshExternalPaperReview": false,
+    "officialCanvasAlignmentVerified": false,
+    "sourceSlideReproduction": false,
+    "englishPacketsChanged": false,
+    "runtimeBuildTestsChanged": false
+  },
+  "validation": {
+    "method": "JSON parse; language/lesson identity; goal count; exact section order/IDs; per-section source URLs, embedded IDs, explained-check counts, tables and takeaway counts",
+    "passed": true,
+    "buildAndBrowserTests": "Root agent owns integration/build/browser tests; not run by this batch"
+  },
+  "manualPreservationReview": [
+    "33: 1/100 s versus 0.5/110 s; speedup aggregates and 91 ms regression; paired savings 2,4,-1 ms and mean 5/3; timeout and independence limitations retained.",
+    "34: 100/80/70/40 ms factorial table; I=40-70-80+100=-10 ms; 30% distance-work reduction without latency benefit; negative results and confounds retained.",
+    "35: manifest fields; smoke/full distinction; 20*5*6=600 GPU-min; reused 680 versus rebuilt 1,000 GPU-min; separate CPU-hour and wall time retained.",
+    "36: arrivals 0/1 ms; baseline completions 2/4 and batch 3 ms; single-arrival losing case; hypothetical 8,000/16,000 QPS at recall@10=.95 and p95 4/7 ms; no official timing asserted.",
+    "37: conditional answers distinguish measured and missing evidence; one-device data do not establish two-H100 scaling; evaluator agreement does not establish factual correctness; review rubric and submission boundaries retained."
+  ],
+  "lessons": [
+    {
+      "lessonId": "supplement-33",
+      "translatedSectionCount": 6,
+      "checks": {
+        "lessonId": true,
+        "language": true,
+        "goalCount": true,
+        "sectionOrder": true,
+        "reviewScope": true
+      },
+      "sections": [
+        {
+          "id": "supplement-33-status",
+          "sourceUrlsPreserved": true,
+          "embeddedIdsPreserved": true,
+          "explainedCheckCount": 0,
+          "originalExplainedCheckCount": 0,
+          "checkCountPreserved": true,
+          "tableCountPreserved": true,
+          "takeawayCountPreserved": true,
+          "paragraphs": 2,
+          "translatedTitle": true,
+          "bytes": 736
+        },
+        {
+          "id": "supplement-33-s1",
+          "sourceUrlsPreserved": true,
+          "embeddedIdsPreserved": true,
+          "explainedCheckCount": 0,
+          "originalExplainedCheckCount": 0,
+          "checkCountPreserved": true,
+          "tableCountPreserved": true,
+          "takeawayCountPreserved": true,
+          "paragraphs": 4,
+          "translatedTitle": true,
+          "bytes": 2355
+        },
+        {
+          "id": "supplement-33-s2",
+          "sourceUrlsPreserved": true,
+          "embeddedIdsPreserved": true,
+          "explainedCheckCount": 1,
+          "originalExplainedCheckCount": 1,
+          "checkCountPreserved": true,
+          "tableCountPreserved": true,
+          "takeawayCountPreserved": true,
+          "paragraphs": 4,
+          "translatedTitle": true,
+          "bytes": 2166
+        },
+        {
+          "id": "supplement-33-s3",
+          "sourceUrlsPreserved": true,
+          "embeddedIdsPreserved": true,
+          "explainedCheckCount": 0,
+          "originalExplainedCheckCount": 0,
+          "checkCountPreserved": true,
+          "tableCountPreserved": true,
+          "takeawayCountPreserved": true,
+          "paragraphs": 4,
+          "translatedTitle": true,
+          "bytes": 2079
+        },
+        {
+          "id": "supplement-33-s4",
+          "sourceUrlsPreserved": true,
+          "embeddedIdsPreserved": true,
+          "explainedCheckCount": 1,
+          "originalExplainedCheckCount": 1,
+          "checkCountPreserved": true,
+          "tableCountPreserved": true,
+          "takeawayCountPreserved": true,
+          "paragraphs": 4,
+          "translatedTitle": true,
+          "bytes": 2419
+        },
+        {
+          "id": "supplement-33-s5",
+          "sourceUrlsPreserved": true,
+          "embeddedIdsPreserved": true,
+          "explainedCheckCount": 1,
+          "originalExplainedCheckCount": 1,
+          "checkCountPreserved": true,
+          "tableCountPreserved": true,
+          "takeawayCountPreserved": true,
+          "paragraphs": 6,
+          "translatedTitle": true,
+          "bytes": 2843
+        }
+      ]
+    },
+    {
+      "lessonId": "supplement-34",
+      "translatedSectionCount": 6,
+      "checks": {
+        "lessonId": true,
+        "language": true,
+        "goalCount": true,
+        "sectionOrder": true,
+        "reviewScope": true
+      },
+      "sections": [
+        {
+          "id": "supplement-34-status",
+          "sourceUrlsPreserved": true,
+          "embeddedIdsPreserved": true,
+          "explainedCheckCount": 0,
+          "originalExplainedCheckCount": 0,
+          "checkCountPreserved": true,
+          "tableCountPreserved": true,
+          "takeawayCountPreserved": true,
+          "paragraphs": 2,
+          "translatedTitle": true,
+          "bytes": 698
+        },
+        {
+          "id": "supplement-34-s1",
+          "sourceUrlsPreserved": true,
+          "embeddedIdsPreserved": true,
+          "explainedCheckCount": 0,
+          "originalExplainedCheckCount": 0,
+          "checkCountPreserved": true,
+          "tableCountPreserved": true,
+          "takeawayCountPreserved": true,
+          "paragraphs": 4,
+          "translatedTitle": true,
+          "bytes": 2082
+        },
+        {
+          "id": "supplement-34-s2",
+          "sourceUrlsPreserved": true,
+          "embeddedIdsPreserved": true,
+          "explainedCheckCount": 1,
+          "originalExplainedCheckCount": 1,
+          "checkCountPreserved": true,
+          "tableCountPreserved": true,
+          "takeawayCountPreserved": true,
+          "paragraphs": 5,
+          "translatedTitle": true,
+          "bytes": 2331
+        },
+        {
+          "id": "supplement-34-s3",
+          "sourceUrlsPreserved": true,
+          "embeddedIdsPreserved": true,
+          "explainedCheckCount": 0,
+          "originalExplainedCheckCount": 0,
+          "checkCountPreserved": true,
+          "tableCountPreserved": true,
+          "takeawayCountPreserved": true,
+          "paragraphs": 4,
+          "translatedTitle": true,
+          "bytes": 1893
+        },
+        {
+          "id": "supplement-34-s4",
+          "sourceUrlsPreserved": true,
+          "embeddedIdsPreserved": true,
+          "explainedCheckCount": 1,
+          "originalExplainedCheckCount": 1,
+          "checkCountPreserved": true,
+          "tableCountPreserved": true,
+          "takeawayCountPreserved": true,
+          "paragraphs": 4,
+          "translatedTitle": true,
+          "bytes": 2227
+        },
+        {
+          "id": "supplement-34-s5",
+          "sourceUrlsPreserved": true,
+          "embeddedIdsPreserved": true,
+          "explainedCheckCount": 1,
+          "originalExplainedCheckCount": 1,
+          "checkCountPreserved": true,
+          "tableCountPreserved": true,
+          "takeawayCountPreserved": true,
+          "paragraphs": 4,
+          "translatedTitle": true,
+          "bytes": 1789
+        }
+      ]
+    },
+    {
+      "lessonId": "supplement-35",
+      "translatedSectionCount": 6,
+      "checks": {
+        "lessonId": true,
+        "language": true,
+        "goalCount": true,
+        "sectionOrder": true,
+        "reviewScope": true
+      },
+      "sections": [
+        {
+          "id": "supplement-35-status",
+          "sourceUrlsPreserved": true,
+          "embeddedIdsPreserved": true,
+          "explainedCheckCount": 0,
+          "originalExplainedCheckCount": 0,
+          "checkCountPreserved": true,
+          "tableCountPreserved": true,
+          "takeawayCountPreserved": true,
+          "paragraphs": 2,
+          "translatedTitle": true,
+          "bytes": 714
+        },
+        {
+          "id": "supplement-35-s1",
+          "sourceUrlsPreserved": true,
+          "embeddedIdsPreserved": true,
+          "explainedCheckCount": 0,
+          "originalExplainedCheckCount": 0,
+          "checkCountPreserved": true,
+          "tableCountPreserved": true,
+          "takeawayCountPreserved": true,
+          "paragraphs": 5,
+          "translatedTitle": true,
+          "bytes": 2158
+        },
+        {
+          "id": "supplement-35-s2",
+          "sourceUrlsPreserved": true,
+          "embeddedIdsPreserved": true,
+          "explainedCheckCount": 1,
+          "originalExplainedCheckCount": 1,
+          "checkCountPreserved": true,
+          "tableCountPreserved": true,
+          "takeawayCountPreserved": true,
+          "paragraphs": 5,
+          "translatedTitle": true,
+          "bytes": 2474
+        },
+        {
+          "id": "supplement-35-s3",
+          "sourceUrlsPreserved": true,
+          "embeddedIdsPreserved": true,
+          "explainedCheckCount": 1,
+          "originalExplainedCheckCount": 1,
+          "checkCountPreserved": true,
+          "tableCountPreserved": true,
+          "takeawayCountPreserved": true,
+          "paragraphs": 4,
+          "translatedTitle": true,
+          "bytes": 2005
+        },
+        {
+          "id": "supplement-35-s4",
+          "sourceUrlsPreserved": true,
+          "embeddedIdsPreserved": true,
+          "explainedCheckCount": 0,
+          "originalExplainedCheckCount": 0,
+          "checkCountPreserved": true,
+          "tableCountPreserved": true,
+          "takeawayCountPreserved": true,
+          "paragraphs": 4,
+          "translatedTitle": true,
+          "bytes": 2428
+        },
+        {
+          "id": "supplement-35-s5",
+          "sourceUrlsPreserved": true,
+          "embeddedIdsPreserved": true,
+          "explainedCheckCount": 1,
+          "originalExplainedCheckCount": 1,
+          "checkCountPreserved": true,
+          "tableCountPreserved": true,
+          "takeawayCountPreserved": true,
+          "paragraphs": 5,
+          "translatedTitle": true,
+          "bytes": 2047
+        }
+      ]
+    },
+    {
+      "lessonId": "supplement-36",
+      "translatedSectionCount": 6,
+      "checks": {
+        "lessonId": true,
+        "language": true,
+        "goalCount": true,
+        "sectionOrder": true,
+        "reviewScope": true
+      },
+      "sections": [
+        {
+          "id": "supplement-36-status",
+          "sourceUrlsPreserved": true,
+          "embeddedIdsPreserved": true,
+          "explainedCheckCount": 0,
+          "originalExplainedCheckCount": 0,
+          "checkCountPreserved": true,
+          "tableCountPreserved": true,
+          "takeawayCountPreserved": true,
+          "paragraphs": 2,
+          "translatedTitle": true,
+          "bytes": 718
+        },
+        {
+          "id": "supplement-36-s1",
+          "sourceUrlsPreserved": true,
+          "embeddedIdsPreserved": true,
+          "explainedCheckCount": 0,
+          "originalExplainedCheckCount": 0,
+          "checkCountPreserved": true,
+          "tableCountPreserved": true,
+          "takeawayCountPreserved": true,
+          "paragraphs": 4,
+          "translatedTitle": true,
+          "bytes": 1621
+        },
+        {
+          "id": "supplement-36-s2",
+          "sourceUrlsPreserved": true,
+          "embeddedIdsPreserved": true,
+          "explainedCheckCount": 0,
+          "originalExplainedCheckCount": 0,
+          "checkCountPreserved": true,
+          "tableCountPreserved": true,
+          "takeawayCountPreserved": true,
+          "paragraphs": 3,
+          "translatedTitle": true,
+          "bytes": 1579
+        },
+        {
+          "id": "supplement-36-s3",
+          "sourceUrlsPreserved": true,
+          "embeddedIdsPreserved": true,
+          "explainedCheckCount": 1,
+          "originalExplainedCheckCount": 1,
+          "checkCountPreserved": true,
+          "tableCountPreserved": true,
+          "takeawayCountPreserved": true,
+          "paragraphs": 7,
+          "translatedTitle": true,
+          "bytes": 3303
+        },
+        {
+          "id": "supplement-36-s4",
+          "sourceUrlsPreserved": true,
+          "embeddedIdsPreserved": true,
+          "explainedCheckCount": 0,
+          "originalExplainedCheckCount": 0,
+          "checkCountPreserved": true,
+          "tableCountPreserved": true,
+          "takeawayCountPreserved": true,
+          "paragraphs": 3,
+          "translatedTitle": true,
+          "bytes": 1354
+        },
+        {
+          "id": "supplement-36-s5",
+          "sourceUrlsPreserved": true,
+          "embeddedIdsPreserved": true,
+          "explainedCheckCount": 2,
+          "originalExplainedCheckCount": 2,
+          "checkCountPreserved": true,
+          "tableCountPreserved": true,
+          "takeawayCountPreserved": true,
+          "paragraphs": 5,
+          "translatedTitle": true,
+          "bytes": 2262
+        }
+      ]
+    },
+    {
+      "lessonId": "supplement-37",
+      "translatedSectionCount": 6,
+      "checks": {
+        "lessonId": true,
+        "language": true,
+        "goalCount": true,
+        "sectionOrder": true,
+        "reviewScope": true
+      },
+      "sections": [
+        {
+          "id": "supplement-37-status",
+          "sourceUrlsPreserved": true,
+          "embeddedIdsPreserved": true,
+          "explainedCheckCount": 0,
+          "originalExplainedCheckCount": 0,
+          "checkCountPreserved": true,
+          "tableCountPreserved": true,
+          "takeawayCountPreserved": true,
+          "paragraphs": 2,
+          "translatedTitle": true,
+          "bytes": 746
+        },
+        {
+          "id": "supplement-37-s1",
+          "sourceUrlsPreserved": true,
+          "embeddedIdsPreserved": true,
+          "explainedCheckCount": 0,
+          "originalExplainedCheckCount": 0,
+          "checkCountPreserved": true,
+          "tableCountPreserved": true,
+          "takeawayCountPreserved": true,
+          "paragraphs": 4,
+          "translatedTitle": true,
+          "bytes": 1883
+        },
+        {
+          "id": "supplement-37-s2",
+          "sourceUrlsPreserved": true,
+          "embeddedIdsPreserved": true,
+          "explainedCheckCount": 1,
+          "originalExplainedCheckCount": 1,
+          "checkCountPreserved": true,
+          "tableCountPreserved": true,
+          "takeawayCountPreserved": true,
+          "paragraphs": 4,
+          "translatedTitle": true,
+          "bytes": 2541
+        },
+        {
+          "id": "supplement-37-s3",
+          "sourceUrlsPreserved": true,
+          "embeddedIdsPreserved": true,
+          "explainedCheckCount": 1,
+          "originalExplainedCheckCount": 1,
+          "checkCountPreserved": true,
+          "tableCountPreserved": true,
+          "takeawayCountPreserved": true,
+          "paragraphs": 4,
+          "translatedTitle": true,
+          "bytes": 2236
+        },
+        {
+          "id": "supplement-37-s4",
+          "sourceUrlsPreserved": true,
+          "embeddedIdsPreserved": true,
+          "explainedCheckCount": 0,
+          "originalExplainedCheckCount": 0,
+          "checkCountPreserved": true,
+          "tableCountPreserved": true,
+          "takeawayCountPreserved": true,
+          "paragraphs": 3,
+          "translatedTitle": true,
+          "bytes": 1754
+        },
+        {
+          "id": "supplement-37-s5",
+          "sourceUrlsPreserved": true,
+          "embeddedIdsPreserved": true,
+          "explainedCheckCount": 1,
+          "originalExplainedCheckCount": 1,
+          "checkCountPreserved": true,
+          "tableCountPreserved": true,
+          "takeawayCountPreserved": true,
+          "paragraphs": 5,
+          "translatedTitle": true,
+          "bytes": 1862
+        }
+      ]
+    }
+  ]
+}

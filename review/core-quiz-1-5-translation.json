@@ -1,0 +1,3161 @@
+{
+  "owner": "translate_supplements_a",
+  "scope": "Translation author audit, not independent acceptance. Canonical banks, answer keys and lesson files unmodified. Only quiz sidecars, this generating script and review report written.",
+  "completedQuestions": 186,
+  "banks": [
+    {
+      "lessonId": "lecture-01",
+      "questionCount": 24,
+      "canonicalSha256": "55c61fd04056ca14896eea6888738d8ec535670122563f2e15f1673a2f21622e",
+      "topics": [
+        {
+          "id": "l01-topic-database-dbms",
+          "questionIds": [
+            "l01-database-dbms-q1",
+            "l01-database-dbms-q2",
+            "l01-database-dbms-q3",
+            "l01-database-dbms-q4",
+            "l01-database-dbms-q5",
+            "l01-architecture-new-q1",
+            "l01-architecture-new-q2",
+            "l01-architecture-new-q3",
+            "l01-architecture-new-q4"
+          ]
+        },
+        {
+          "id": "l01-topic-flat-files",
+          "questionIds": [
+            "l01-flat-files-q1",
+            "l01-flat-files-q2",
+            "l01-flat-files-q3",
+            "l01-flat-files-q4",
+            "l01-flat-files-q5"
+          ]
+        },
+        {
+          "id": "l01-topic-abstraction",
+          "questionIds": [
+            "l01-abstraction-q1",
+            "l01-abstraction-q2",
+            "l01-abstraction-q3",
+            "l01-abstraction-q4",
+            "l01-abstraction-q5"
+          ]
+        },
+        {
+          "id": "l01-topic-models",
+          "questionIds": [
+            "l01-models-q1",
+            "l01-models-q2",
+            "l01-models-q3",
+            "l01-models-q4",
+            "l01-models-q5"
+          ]
+        }
+      ],
+      "questionChecks": [
+        {
+          "id": "l01-database-dbms-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf",
+              "physicalPages": [
+                10,
+                11
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l01-database-dbms-q2",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf",
+              "physicalPages": [
+                11
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l01-database-dbms-q3",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf",
+              "physicalPages": [
+                10
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l01-database-dbms-q4",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf",
+              "physicalPages": [
+                12
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l01-database-dbms-q5",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf",
+              "physicalPages": [
+                11
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l01-architecture-new-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                3,
+                4,
+                8
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l01-architecture-new-q2",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                11,
+                12
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l01-architecture-new-q3",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                11,
+                12
+              ]
+            },
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf",
+              "physicalPages": [
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l01-architecture-new-q4",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                11,
+                12
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l01-flat-files-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf",
+              "physicalPages": [
+                15
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l01-flat-files-q2",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf",
+              "physicalPages": [
+                16
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l01-flat-files-q3",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf",
+              "physicalPages": [
+                14
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l01-flat-files-q4",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf",
+              "physicalPages": [
+                17
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l01-flat-files-q5",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf",
+              "physicalPages": [
+                16
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l01-abstraction-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf",
+              "physicalPages": [
+                18
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l01-abstraction-q2",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf",
+              "physicalPages": [
+                18
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l01-abstraction-q3",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf",
+              "physicalPages": [
+                18
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l01-abstraction-q4",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf",
+              "physicalPages": [
+                18
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l01-abstraction-q5",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf",
+              "physicalPages": [
+                18
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l01-models-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf",
+              "physicalPages": [
+                19
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l01-models-q2",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf",
+              "physicalPages": [
+                19
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l01-models-q3",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf",
+              "physicalPages": [
+                19
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l01-models-q4",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf",
+              "physicalPages": [
+                19
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l01-models-q5",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf",
+              "physicalPages": [
+                19
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        }
+      ]
+    },
+    {
+      "lessonId": "lecture-02",
+      "questionCount": 46,
+      "canonicalSha256": "3d234e5f33c02d59dc19739a5a4272bb0ddf122e5710daed5621a9b8c7daeaa1",
+      "topics": [
+        {
+          "id": "l02-topic-terminology",
+          "questionIds": [
+            "l02-terminology-q1",
+            "l02-terminology-q2",
+            "l02-terminology-q3",
+            "l02-terminology-q4",
+            "l02-terminology-q5"
+          ]
+        },
+        {
+          "id": "l02-topic-select",
+          "questionIds": [
+            "l02-select-q1",
+            "l02-select-q2",
+            "l02-select-q3",
+            "l02-select-q4",
+            "l02-select-q5"
+          ]
+        },
+        {
+          "id": "l02-topic-order",
+          "questionIds": [
+            "l02-order-q1",
+            "l02-order-q2",
+            "l02-order-q3",
+            "l02-order-q4",
+            "l02-order-q5"
+          ]
+        },
+        {
+          "id": "l02-topic-limit",
+          "questionIds": [
+            "l02-limit-q1",
+            "l02-limit-q2",
+            "l02-limit-q3",
+            "l02-limit-q4",
+            "l02-limit-q5"
+          ]
+        },
+        {
+          "id": "l02-topic-aggregate",
+          "questionIds": [
+            "l02-aggregate-q1",
+            "l02-aggregate-q2",
+            "l02-aggregate-q3",
+            "l02-aggregate-q4",
+            "l02-aggregate-q5"
+          ]
+        },
+        {
+          "id": "l02-topic-group",
+          "questionIds": [
+            "l02-group-q1",
+            "l02-group-q2",
+            "l02-group-q3",
+            "l02-group-q4",
+            "l02-group-q5"
+          ]
+        },
+        {
+          "id": "l02-topic-inner-join",
+          "questionIds": [
+            "l02-inner-join-q1",
+            "l02-inner-join-q2",
+            "l02-inner-join-q3",
+            "l02-inner-join-q4",
+            "l02-inner-join-q5"
+          ]
+        },
+        {
+          "id": "l02-topic-outer-join",
+          "questionIds": [
+            "l02-outer-join-q1",
+            "l02-outer-join-q2",
+            "l02-outer-join-q3",
+            "l02-outer-join-q4",
+            "l02-outer-join-q5"
+          ]
+        },
+        {
+          "id": "l02-topic-nested",
+          "questionIds": [
+            "l02-nested-q1",
+            "l02-nested-q2",
+            "l02-nested-q3",
+            "l02-nested-q4",
+            "l02-nested-q5",
+            "l02-negative-new-q1"
+          ]
+        }
+      ],
+      "questionChecks": [
+        {
+          "id": "l02-terminology-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                6
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-terminology-q2",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                6,
+                7
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-terminology-q3",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                7
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-terminology-q4",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                8
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-terminology-q5",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                8
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-select-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                10
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-select-q2",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                10
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-select-q3",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                10
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-select-q4",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                10
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-select-q5",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                10
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-order-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                11
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-order-q2",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                11
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-order-q3",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                11
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-order-q4",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                11
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-order-q5",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                11
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-limit-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                12
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-limit-q2",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                12
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-limit-q3",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                12
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-limit-q4",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                12
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-limit-q5",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                12
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-aggregate-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                13
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-aggregate-q2",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                13
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-aggregate-q3",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                13
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-aggregate-q4",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                13
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-aggregate-q5",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                13,
+                17
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-group-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                14
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-group-q2",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                14,
+                15
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-group-q3",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                17
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-group-q4",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                16,
+                17
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-group-q5",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                15
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-inner-join-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                20
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-inner-join-q2",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                20
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-inner-join-q3",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                19,
+                20
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-inner-join-q4",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                21
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-inner-join-q5",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                21
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-outer-join-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                23
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-outer-join-q2",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                24
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-outer-join-q3",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                25
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-outer-join-q4",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                23
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-outer-join-q5",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                23
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-nested-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                26
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-nested-q2",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                27
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-nested-q3",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                28
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-nested-q4",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                28
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-nested-q5",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                28
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l02-negative-new-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+              "physicalPages": [
+                26,
+                27,
+                28
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        }
+      ]
+    },
+    {
+      "lessonId": "lecture-03",
+      "questionCount": 56,
+      "canonicalSha256": "dc56aa4e6fcd32ca8b1743b29010bd403ad46cc40603976c82589103d92eccb8",
+      "topics": [
+        {
+          "id": "l03-topic-algebra",
+          "questionIds": [
+            "l03-algebra-q1",
+            "l03-algebra-q2",
+            "l03-algebra-q3",
+            "l03-algebra-q4",
+            "l03-algebra-q5"
+          ]
+        },
+        {
+          "id": "l03-topic-selection",
+          "questionIds": [
+            "l03-selection-q1",
+            "l03-selection-q2",
+            "l03-selection-q3",
+            "l03-selection-q4",
+            "l03-selection-q5"
+          ]
+        },
+        {
+          "id": "l03-topic-projection",
+          "questionIds": [
+            "l03-projection-q1",
+            "l03-projection-q2",
+            "l03-projection-q3",
+            "l03-projection-q4",
+            "l03-projection-q5"
+          ]
+        },
+        {
+          "id": "l03-topic-union",
+          "questionIds": [
+            "l03-union-q1",
+            "l03-union-q2",
+            "l03-union-q3",
+            "l03-union-q4",
+            "l03-union-q5"
+          ]
+        },
+        {
+          "id": "l03-topic-difference",
+          "questionIds": [
+            "l03-difference-q1",
+            "l03-difference-q2",
+            "l03-difference-q3",
+            "l03-difference-q4",
+            "l03-difference-q5"
+          ]
+        },
+        {
+          "id": "l03-topic-product",
+          "questionIds": [
+            "l03-product-q1",
+            "l03-product-q2",
+            "l03-product-q3",
+            "l03-product-q4",
+            "l03-product-q5"
+          ]
+        },
+        {
+          "id": "l03-topic-rename",
+          "questionIds": [
+            "l03-rename-q1",
+            "l03-rename-q2",
+            "l03-rename-q3",
+            "l03-rename-q4",
+            "l03-rename-q5",
+            "l03-rename-new-q1"
+          ]
+        },
+        {
+          "id": "l03-topic-intersection",
+          "questionIds": [
+            "l03-intersection-q1",
+            "l03-intersection-q2",
+            "l03-intersection-q3",
+            "l03-intersection-q4",
+            "l03-intersection-q5"
+          ]
+        },
+        {
+          "id": "l03-topic-theta",
+          "questionIds": [
+            "l03-theta-q1",
+            "l03-theta-q2",
+            "l03-theta-q3",
+            "l03-theta-q4",
+            "l03-theta-q5"
+          ]
+        },
+        {
+          "id": "l03-topic-natural",
+          "questionIds": [
+            "l03-natural-q1",
+            "l03-natural-q2",
+            "l03-natural-q3",
+            "l03-natural-q4",
+            "l03-natural-q5"
+          ]
+        },
+        {
+          "id": "l03-topic-extra",
+          "questionIds": [
+            "l03-extra-q1",
+            "l03-extra-q2",
+            "l03-extra-q3",
+            "l03-extra-q4",
+            "l03-extra-q5"
+          ]
+        }
+      ],
+      "questionChecks": [
+        {
+          "id": "l03-algebra-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                6
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-algebra-q2",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                7
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-algebra-q3",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                2,
+                3
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-algebra-q4",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                6
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-algebra-q5",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                5
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-selection-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                8
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-selection-q2",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                8
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-selection-q3",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                8
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-selection-q4",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                8
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-selection-q5",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                8
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-projection-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                9
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-projection-q2",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                9
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-projection-q3",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                9
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-projection-q4",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                9
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-projection-q5",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                9
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-union-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                10
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-union-q2",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                10
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-union-q3",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                10
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-union-q4",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                10
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-union-q5",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                10
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-difference-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                11
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-difference-q2",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                11
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-difference-q3",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                11
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-difference-q4",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                11
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-difference-q5",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                11
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-product-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                12
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-product-q2",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                12
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-product-q3",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                12
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-product-q4",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                12
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-product-q5",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                12
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-rename-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                13
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-rename-q2",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                13
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-rename-q3",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                13
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-rename-q4",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                12,
+                13
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-rename-q5",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                13
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-rename-new-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                13,
+                16,
+                17
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-intersection-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                14
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-intersection-q2",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                14
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-intersection-q3",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                14
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-intersection-q4",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                14
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-intersection-q5",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                14
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-theta-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                15
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-theta-q2",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                15
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-theta-q3",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                17
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-theta-q4",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                16,
+                17
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-theta-q5",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                17
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-natural-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                18
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-natural-q2",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                18
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-natural-q3",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                18
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-natural-q4",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                18
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-natural-q5",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                18
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-extra-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                19
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-extra-q2",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                19
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-extra-q3",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                19
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-extra-q4",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                19
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l03-extra-q5",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+              "physicalPages": [
+                19
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        }
+      ]
+    },
+    {
+      "lessonId": "lecture-04",
+      "questionCount": 30,
+      "canonicalSha256": "1955436251aadd575bfa0d46e215682d8908c040ee544ca2792902d60149b4e4",
+      "topics": [
+        {
+          "id": "l04-topic-architecture",
+          "questionIds": [
+            "l04-architecture-q1",
+            "l04-architecture-q2",
+            "l04-architecture-q3",
+            "l04-architecture-q4",
+            "l04-architecture-q5"
+          ]
+        },
+        {
+          "id": "l04-topic-hierarchy",
+          "questionIds": [
+            "l04-hierarchy-q1",
+            "l04-hierarchy-q2",
+            "l04-hierarchy-q3",
+            "l04-hierarchy-q4",
+            "l04-hierarchy-q5"
+          ]
+        },
+        {
+          "id": "l04-topic-hdd",
+          "questionIds": [
+            "l04-hdd-q1",
+            "l04-hdd-q2",
+            "l04-hdd-q3",
+            "l04-hdd-q4",
+            "l04-hdd-q5"
+          ]
+        },
+        {
+          "id": "l04-topic-locality",
+          "questionIds": [
+            "l04-locality-q1",
+            "l04-locality-q2",
+            "l04-locality-q3",
+            "l04-locality-q4",
+            "l04-locality-q5"
+          ]
+        },
+        {
+          "id": "l04-topic-ssd",
+          "questionIds": [
+            "l04-ssd-q1",
+            "l04-ssd-q2",
+            "l04-ssd-q3",
+            "l04-ssd-q4",
+            "l04-ssd-q5"
+          ]
+        },
+        {
+          "id": "l04-topic-disk-manager",
+          "questionIds": [
+            "l04-disk-manager-q1",
+            "l04-disk-manager-q2",
+            "l04-disk-manager-q3",
+            "l04-disk-manager-q4",
+            "l04-disk-manager-q5"
+          ]
+        }
+      ],
+      "questionChecks": [
+        {
+          "id": "l04-architecture-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                3
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l04-architecture-q2",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                4
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l04-architecture-q3",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                5
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l04-architecture-q4",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                6,
+                7
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l04-architecture-q5",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                8,
+                9
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l04-hierarchy-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                11
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l04-hierarchy-q2",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                11,
+                12
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l04-hierarchy-q3",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                13
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l04-hierarchy-q4",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                11
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l04-hierarchy-q5",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                12
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l04-hdd-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                16
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l04-hdd-q2",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                16
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l04-hdd-q3",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                17
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l04-hdd-q4",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                16,
+                17
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l04-hdd-q5",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                17
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l04-locality-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                18
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l04-locality-q2",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                18
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l04-locality-q3",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                19
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l04-locality-q4",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                19
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l04-locality-q5",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                18
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l04-ssd-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                20
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l04-ssd-q2",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                20
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l04-ssd-q3",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                21,
+                22
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l04-ssd-q4",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                20
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l04-ssd-q5",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                23
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l04-disk-manager-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                26
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l04-disk-manager-q2",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                28
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l04-disk-manager-q3",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                24
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l04-disk-manager-q4",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                28
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l04-disk-manager-q5",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+              "physicalPages": [
+                25,
+                27
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        }
+      ]
+    },
+    {
+      "lessonId": "lecture-05",
+      "questionCount": 30,
+      "canonicalSha256": "795a643ad5441973b2c41d59a67aba62a70929c8a8749816e6bb210b7ef71703",
+      "topics": [
+        {
+          "id": "l05-topic-buffer-state",
+          "questionIds": [
+            "l05-buffer-state-q1",
+            "l05-buffer-state-q2",
+            "l05-buffer-state-q3",
+            "l05-buffer-state-q4",
+            "l05-buffer-state-q5"
+          ]
+        },
+        {
+          "id": "l05-topic-pin-unpin",
+          "questionIds": [
+            "l05-pin-unpin-q1",
+            "l05-pin-unpin-q2",
+            "l05-pin-unpin-q3",
+            "l05-pin-unpin-q4",
+            "l05-pin-unpin-q5"
+          ]
+        },
+        {
+          "id": "l05-topic-lru",
+          "questionIds": [
+            "l05-lru-q1",
+            "l05-lru-q2",
+            "l05-lru-q3",
+            "l05-lru-q4",
+            "l05-lru-q5"
+          ]
+        },
+        {
+          "id": "l05-topic-clock",
+          "questionIds": [
+            "l05-clock-q1",
+            "l05-clock-q2",
+            "l05-clock-q3",
+            "l05-clock-q4",
+            "l05-clock-q5"
+          ]
+        },
+        {
+          "id": "l05-topic-scan-policies",
+          "questionIds": [
+            "l05-scan-policies-q1",
+            "l05-scan-policies-q2",
+            "l05-scan-policies-q3",
+            "l05-scan-policies-q4",
+            "l05-scan-policies-q5"
+          ]
+        },
+        {
+          "id": "l05-topic-buffer-practice",
+          "questionIds": [
+            "l05-buffer-practice-q1",
+            "l05-buffer-practice-q2",
+            "l05-buffer-practice-q3",
+            "l05-buffer-practice-q4",
+            "l05-buffer-practice-q5"
+          ]
+        }
+      ],
+      "questionChecks": [
+        {
+          "id": "l05-buffer-state-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+              "physicalPages": [
+                3
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l05-buffer-state-q2",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+              "physicalPages": [
+                6
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l05-buffer-state-q3",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+              "physicalPages": [
+                6
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l05-buffer-state-q4",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+              "physicalPages": [
+                7
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l05-buffer-state-q5",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+              "physicalPages": [
+                5
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l05-pin-unpin-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+              "physicalPages": [
+                9
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l05-pin-unpin-q2",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+              "physicalPages": [
+                10
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l05-pin-unpin-q3",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+              "physicalPages": [
+                9
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l05-pin-unpin-q4",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+              "physicalPages": [
+                9
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l05-pin-unpin-q5",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+              "physicalPages": [
+                11
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l05-lru-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+              "physicalPages": [
+                13
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l05-lru-q2",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+              "physicalPages": [
+                13
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l05-lru-q3",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+              "physicalPages": [
+                13
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l05-lru-q4",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+              "physicalPages": [
+                14
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l05-lru-q5",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+              "physicalPages": [
+                13,
+                14
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l05-clock-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+              "physicalPages": [
+                15
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l05-clock-q2",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+              "physicalPages": [
+                15
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l05-clock-q3",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+              "physicalPages": [
+                15
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l05-clock-q4",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+              "physicalPages": [
+                15
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l05-clock-q5",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+              "physicalPages": [
+                20,
+                21
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l05-scan-policies-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+              "physicalPages": [
+                22,
+                24
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l05-scan-policies-q2",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+              "physicalPages": [
+                22,
+                27
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l05-scan-policies-q3",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+              "physicalPages": [
+                28,
+                29
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l05-scan-policies-q4",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+              "physicalPages": [
+                31
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l05-scan-policies-q5",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+              "physicalPages": [
+                12,
+                31
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l05-buffer-practice-q1",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+              "physicalPages": [
+                32
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l05-buffer-practice-q2",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+              "physicalPages": [
+                32
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l05-buffer-practice-q3",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+              "physicalPages": [
+                33
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l05-buffer-practice-q4",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+              "physicalPages": [
+                34
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        },
+        {
+          "id": "l05-buffer-practice-q5",
+          "sourceOptionOrderPreserved": true,
+          "explanationMatchesCanonicalAnswerSlot": true,
+          "sourceReferences": [
+            {
+              "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+              "physicalPages": [
+                33
+              ]
+            }
+          ],
+          "sourceScope": "Local extracted physical-page text reviewed; pedagogical fixtures checked by reasoning, not presented as verbatim slide examples. No fresh visual diagram verification."
+        }
+      ]
+    }
+  ],
+  "unfinished": [],
+  "findings": [
+    {
+      "id": "Q1-5-SOURCE-01",
+      "severity": "info",
+      "questionIds": [
+        "l01-architecture-new-q1",
+        "l01-architecture-new-q2",
+        "l01-architecture-new-q3",
+        "l01-architecture-new-q4"
+      ],
+      "kind": "cross-document provenance",
+      "detail": "These lecture-01 questions are supported by lecture04 pages 3/4/8/11/12 and, for workload versus architecture, lecture07 pages 2–6. Those local extracted pages were read. They are previews, not material claimed to originate on lecture01 pages 3/4/8/11/12."
+    },
+    {
+      "id": "Q1-5-SOURCE-02",
+      "severity": "info",
+      "questionIds": [
+        "l02-aggregate-q5"
+      ],
+      "kind": "source simplification reconciled",
+      "detail": "Physical lecture02 page13 (printed slide14) says aggregates can only occur in SELECT; physical page17 (printed slide18) explicitly places an aggregate in HAVING. Canonical question/explanation correctly reads the deck together; VI preserves that reconciliation."
+    },
+    {
+      "id": "Q1-5-SOURCE-03",
+      "severity": "info",
+      "questionIds": [
+        "l03-projection-q2"
+      ],
+      "kind": "source overgeneralization qualified",
+      "detail": "Physical lecture03 page9 says set projection results in fewer rows. Canonical explanation correctly qualifies that projection may preserve cardinality when projected tuples remain distinct; VI preserves the qualification rather than treating the slide phrase as universal."
+    },
+    {
+      "id": "Q1-5-SOURCE-04",
+      "severity": "info",
+      "questionIds": [
+        "l04-architecture-q5",
+        "l05-clock-q5"
+      ],
+      "kind": "diagram verification gap",
+      "detail": "Text on lecture04 physical page9 explicitly says cross-cutting modules, and lecture05 pages20/21 explicitly say set pinned, set reference bit and advance clock. These text statements support the answers. Diagram geometry and visible bit placement were not freshly inspected; extraction alone is not a full visual diagram audit."
+    },
+    {
+      "id": "Q1-5-SOURCE-05",
+      "severity": "low",
+      "questionIds": [
+        "l04-ssd-q5"
+      ],
+      "kind": "citation locality",
+      "detail": "Question asks how to use hardware prices and latency figures but cites only physical page23, which is the broader conclusion and contains no price/latency table. Specific figures appear on pages12/17/20/21. Answer is sensible and matches current lesson caveat, but root should consider widening page references to 12/17/20/21/23 rather than presenting page23 as the sole specific evidence. Canonical citation left untouched."
+    }
+  ],
+  "limitations": [
+    "No fresh diagram visual audit. Extracted text supports the rules; graphical arrows/ref-bit positions are not independently accepted.",
+    "No fresh external-paper verification. Cross-document quiz sources were reviewed in sibling private-source-review extracted physical-page files.",
+    "Root owns runtime option identity/permutation, build/browser tests and independent review."
+  ],
+  "staticChecks": [
+    {
+      "lecture": 1,
+      "questions": 24,
+      "idsOrderAndFourOptions": true,
+      "noAnswerKeyFields": true,
+      "referencedPhysicalPagesExistLocally": true,
+      "numericFlags": []
+    },
+    {
+      "lecture": 2,
+      "questions": 46,
+      "idsOrderAndFourOptions": true,
+      "noAnswerKeyFields": true,
+      "referencedPhysicalPagesExistLocally": true,
+      "numericFlags": []
+    },
+    {
+      "lecture": 3,
+      "questions": 56,
+      "idsOrderAndFourOptions": true,
+      "noAnswerKeyFields": true,
+      "referencedPhysicalPagesExistLocally": true,
+      "numericFlags": []
+    },
+    {
+      "lecture": 4,
+      "questions": 30,
+      "idsOrderAndFourOptions": true,
+      "noAnswerKeyFields": true,
+      "referencedPhysicalPagesExistLocally": true,
+      "numericFlags": []
+    },
+    {
+      "lecture": 5,
+      "questions": 30,
+      "idsOrderAndFourOptions": true,
+      "noAnswerKeyFields": true,
+      "referencedPhysicalPagesExistLocally": true,
+      "numericFlags": []
+    }
+  ]
+}

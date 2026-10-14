@@ -1,0 +1,578 @@
+{
+  "lessonId": "lecture-12",
+  "language": "vi",
+  "topics": [
+    {
+      "id": "l12-join-operator",
+      "title": "Toán tử join",
+      "questions": [
+        {
+          "id": "l12-join-operator-q1",
+          "prompt": "Equijoin ghép những tuple nào thành đầu ra?",
+          "options": [
+            "Mọi cặp tuple thỏa predicate join bằng",
+            "Chỉ một tuple tùy ý từ mỗi bảng",
+            "Đúng một dòng mỗi key phân biệt bất kể bản sao",
+            "Mọi tuple không có match"
+          ],
+          "explanation": "Inner equijoin trả các cặp match, không tự loại trùng."
+        },
+        {
+          "id": "l12-join-operator-q2",
+          "prompt": "R có 2 tuple key=7, S có 3 tuple key=7. Join tạo bao nhiêu tuple cho key 7?",
+          "options": [
+            "5",
+            "6",
+            "2",
+            "3"
+          ],
+          "explanation": "Mỗi tuple R match cả ba tuple S, nên 2 × 3=6 cặp."
+        },
+        {
+          "id": "l12-join-operator-q3",
+          "prompt": "Mô hình chi phí lecture bỏ gì khi so thuật toán join?",
+          "options": [
+            "Mọi index lookup",
+            "Số trang bảng",
+            "Chi phí CPU và đầu ra chung",
+            "Mọi lần đọc đầu vào"
+          ],
+          "explanation": "Mô hình tập trung I/O đầu vào và file tạm liên quan. Vẫn phải tính đọc đầu vào."
+        },
+        {
+          "id": "l12-join-operator-q4",
+          "prompt": "M là số trang R, m là số tuple R. Vì sao cần phân biệt?",
+          "options": [
+            "M và m luôn bằng nhau",
+            "m luôn là số buffer",
+            "M chỉ dùng cho chi phí CPU",
+            "Tuple và page nested loops lặp quét inner theo đơn vị khác nhau"
+          ],
+          "explanation": "Nhiều tuple chung một trang. Quét inner mỗi tuple có thể nhiều lần hơn đáng kể so với mỗi trang."
+        },
+        {
+          "id": "l12-join-operator-q5",
+          "prompt": "Tính cross product rồi lọc có thể gây vấn đề hiệu năng gì?",
+          "options": [
+            "Tạo hoặc xét nhiều cặp không match",
+            "Luôn sai ngữ nghĩa inner join",
+            "Không bao giờ tạo bản sao",
+            "Không dùng được predicate bằng"
+          ],
+          "explanation": "Selection trên R×S biểu diễn join logic đúng, nhưng xét mọi cặp có thể tốn nhiều công việc."
+        }
+      ]
+    },
+    {
+      "id": "l12-simple-nested-loops-join",
+      "title": "Nested loops theo tuple",
+      "questions": [
+        {
+          "id": "l12-simple-nested-loops-join-q1",
+          "prompt": "R outer có M=20 trang, m=2,000 tuple; S có 30 trang. Không cache inner: simple nested loops tốn bao nhiêu? Bỏ CPU và ghi output.",
+          "options": [
+            "60,000 I/O",
+            "60,020 I/O",
+            "620 I/O",
+            "50 I/O"
+          ],
+          "explanation": "M+mN=20+2,000 × 30=60,020 I/O. 620 dùng sai số trang outer thay số tuple."
+        },
+        {
+          "id": "l12-simple-nested-loops-join-q2",
+          "prompt": "Simple nested loops quét inner bao nhiêu lần?",
+          "options": [
+            "Chỉ một lần cả truy vấn",
+            "Luôn mỗi key phân biệt một lần",
+            "Một lần mỗi tuple outer",
+            "Một lần mỗi trang outer"
+          ],
+          "explanation": "Simple nested loops lặp theo tuple outer. Mỗi trang là thuật toán khác."
+        },
+        {
+          "id": "l12-simple-nested-loops-join-q3",
+          "prompt": "Đảo outer/inner: cần thêm thông tin gì để tính chi phí simple nested loops?",
+          "options": [
+            "Chỉ số trang outer mới, không cần tuple",
+            "Chỉ số tuple đầu ra join",
+            "Chỉ số key phân biệt, không multiplicity",
+            "Số tuple outer mới"
+          ],
+          "explanation": "Số lượt quét inner phụ thuộc tuple outer mới, không chỉ số trang."
+        },
+        {
+          "id": "l12-simple-nested-loops-join-q4",
+          "prompt": "Simple nested loops có tính được R.a<S.b không?",
+          "options": [
+            "Có, kiểm tra predicate cho mỗi cặp",
+            "Không, bắt buộc equality",
+            "Chỉ nếu đã sắp",
+            "Chỉ nếu có hash index"
+          ],
+          "explanation": "Nested loops hỗ trợ predicate tổng quát. Equality thường là yêu cầu của hash join thông thường."
+        },
+        {
+          "id": "l12-simple-nested-loops-join-q5",
+          "prompt": "S vừa RAM và giữ giữa các tuple outer. M+mN còn mô tả chính xác I/O đĩa không?",
+          "options": [
+            "Có vì mỗi so CPU cần đọc đĩa",
+            "Không, công thức giả định phải đọc lại inner từ đĩa",
+            "Có vì công thức không phụ thuộc cache",
+            "Không vì dữ liệu cache không còn tham gia join"
+          ],
+          "explanation": "Giữ inner trong RAM giảm đọc đĩa. Số so sánh và số I/O là hai thước đo khác."
+        }
+      ]
+    },
+    {
+      "id": "l12-page-nested-loops-join",
+      "title": "Nested loops theo trang",
+      "questions": [
+        {
+          "id": "l12-page-nested-loops-join-q1",
+          "prompt": "M=20, N=30, R outer, không cache: page nested loops tốn bao nhiêu? Bỏ CPU và ghi output.",
+          "options": [
+            "50 I/O",
+            "600 I/O",
+            "620 I/O",
+            "60,020 I/O"
+          ],
+          "explanation": "M+MN=20+600=620 I/O. Quét outer thêm 20 lượt đọc ngoài các lần quét inner."
+        },
+        {
+          "id": "l12-page-nested-loops-join-q2",
+          "prompt": "M=20, N=30, S outer: page nested loops tốn bao nhiêu? Bỏ CPU và ghi output.",
+          "options": [
+            "620 I/O",
+            "900 I/O",
+            "50 I/O",
+            "630 I/O"
+          ],
+          "explanation": "N+NM=30+600=630. Outer nhỏ hơn giảm hạng cộng quét outer trong mô hình này."
+        },
+        {
+          "id": "l12-page-nested-loops-join-q3",
+          "prompt": "Page nested loops cần tối thiểu bao nhiêu buffer nếu có buffer output?",
+          "options": [
+            "3",
+            "2",
+            "1",
+            "M+N"
+          ],
+          "explanation": "Một buffer cho trang mỗi input và một cho output: 3. Không cần giữ cả hai quan hệ trong RAM."
+        },
+        {
+          "id": "l12-page-nested-loops-join-q4",
+          "prompt": "Page nested loops tiết kiệm I/O so với simple nested loops bằng cách nào?",
+          "options": [
+            "Tự tạo index",
+            "Chia sẻ một lượt quét inner cho mọi tuple trên trang outer",
+            "Không kiểm tra predicate join",
+            "Bỏ tuple cuối mỗi trang outer"
+          ],
+          "explanation": "Đổi thứ tự vòng lặp tái dùng trang outer. Vẫn xét mọi cặp cần thiết."
+        },
+        {
+          "id": "l12-page-nested-loops-join-q5",
+          "prompt": "Outer 7 trang, inner 12 trang: page nested loops đọc bao nhiêu trang inner?",
+          "options": [
+            "12",
+            "7",
+            "84",
+            "19"
+          ],
+          "explanation": "Bảy lượt quét inner đọc 7 × 12=84. 19 chỉ quét mỗi input một lần, không phải chi phí quét lặp."
+        }
+      ]
+    },
+    {
+      "id": "l12-block-nested-loops-join",
+      "title": "Nested loops theo block",
+      "questions": [
+        {
+          "id": "l12-block-nested-loops-join-q1",
+          "prompt": "B=8 buffer: block outer của block nested loops giữ bao nhiêu trang?",
+          "options": [
+            "7",
+            "8",
+            "4",
+            "6"
+          ],
+          "explanation": "Dành hai buffer cho inner và output, còn B−2=6 cho block outer."
+        },
+        {
+          "id": "l12-block-nested-loops-join-q2",
+          "prompt": "M=25, N=40, B=8, R outer: block nested loops tốn bao nhiêu? Bỏ CPU và ghi output.",
+          "options": [
+            "225 I/O",
+            "185 I/O",
+            "1,025 I/O",
+            "65 I/O"
+          ],
+          "explanation": "Block giữ 6 trang: 25+ceil(25/6)× 40=25+200=225. Làm tròn xuống bỏ block cuối chưa đầy."
+        },
+        {
+          "id": "l12-block-nested-loops-join-q3",
+          "prompt": "M=6, N=40, B=8, R outer: chi phí block nested loops? Bỏ CPU và ghi output.",
+          "options": [
+            "40 I/O",
+            "46 I/O",
+            "246 I/O",
+            "240 I/O"
+          ],
+          "explanation": "Outer vừa B−2=6 buffer. Mỗi input đọc một lần: 6+40=46."
+        },
+        {
+          "id": "l12-block-nested-loops-join-q4",
+          "prompt": "M=25, N=40: tăng B từ 8 lên 9 làm chi phí R outer thành bao nhiêu? Bỏ CPU và ghi output.",
+          "options": [
+            "65 I/O",
+            "145 I/O",
+            "185 I/O",
+            "225 I/O"
+          ],
+          "explanation": "Block giữ 7 trang, ceil(25/7)=4 block. 25+4 × 40=185 I/O."
+        },
+        {
+          "id": "l12-block-nested-loops-join-q5",
+          "prompt": "Vì sao tính cả hai hướng thay vì chỉ chọn outer nhỏ hơn?",
+          "options": [
+            "Equality không còn đối xứng",
+            "Inner luôn cần index",
+            "Đảo input luôn đổi kết quả logic",
+            "Làm tròn lên số block có thể đổi hướng nào rẻ hơn"
+          ],
+          "explanation": "Chi phí vật lý phụ thuộc đóng gói block và ceil. So cả hai hướng nhưng giữ ngữ nghĩa join."
+        }
+      ]
+    },
+    {
+      "id": "l12-index-nested-loops-join",
+      "title": "Index nested loops",
+      "questions": [
+        {
+          "id": "l12-index-nested-loops-join-q1",
+          "prompt": "Outer có 4 trang,80 tuple. Mỗi lookup inner gồm mọi match tốn 3 I/O. Tổng index nested loops? Bỏ CPU và ghi output.",
+          "options": [
+            "244 I/O",
+            "84 I/O",
+            "12 I/O",
+            "240 I/O"
+          ],
+          "explanation": "4+80 × 3=244: quét outer 4 trang,80 probe. 240 bỏ quét outer;84 giả định sai mỗi probe chỉ 1 I/O."
+        },
+        {
+          "id": "l12-index-nested-loops-join-q2",
+          "prompt": "Index phải bao phủ thuộc tính nào để probe trực tiếp inner?",
+          "options": [
+            "Chỉ cột output không dùng tìm match",
+            "Key join inner với access method phù hợp predicate",
+            "Key outer dù inner không có đường phù hợp",
+            "Cột inner bất kỳ vì mọi index tạo cùng ứng viên"
+          ],
+          "explanation": "Index phải hỗ trợ điều kiện lookup. Index không liên quan không định vị match cần tìm."
+        },
+        {
+          "id": "l12-index-nested-loops-join-q3",
+          "prompt": "Một key outer match nhiều dòng inner. C_lookup phải gồm gì?",
+          "options": [
+            "Chỉ một dòng match dù còn dòng khác",
+            "Chỉ chiều cao bảng",
+            "Tìm entry index và lấy mọi match cần thiết",
+            "Chỉ root page"
+          ],
+          "explanation": "Lấy nhiều match có thể đắt. Duyệt index chỉ là một phần tiền lookup."
+        },
+        {
+          "id": "l12-index-nested-loops-join-q4",
+          "prompt": "Vì sao clustered inner index giúp khi key match nhiều dòng?",
+          "options": [
+            "Giảm số match logic",
+            "Loại bản sao join",
+            "Đổi predicate join",
+            "Match có thể nằm trên ít data page hơn"
+          ],
+          "explanation": "Clustering cải thiện locality vật lý, không đổi cardinality logic."
+        },
+        {
+          "id": "l12-index-nested-loops-join-q5",
+          "prompt": "Mỗi probe 4 I/O, outer tăng từ 10 lên 1,000 tuple. Kết luận hợp lý?",
+          "options": [
+            "Index nested loops có thể mất lợi thế trước join dùng scan",
+            "Chắc chắn index nested loops vẫn tốt nhất",
+            "Số probe vẫn 10",
+            "Chi phí tổng cố định vì chiều cao index không đổi"
+          ],
+          "explanation": "Tiền probe nhân số tuple outer. Chiều cao cố định không có nghĩa tổng chi phí join cố định."
+        }
+      ]
+    },
+    {
+      "id": "l12-sort-merge-join",
+      "title": "Sort-merge join",
+      "questions": [
+        {
+          "id": "l12-sort-merge-join-q1",
+          "prompt": "Hai input đã sắp key equijoin, nhóm trùng không gây quét lại. Pha merge cần bao nhiêu lượt đọc?",
+          "options": [
+            "0",
+            "M+N",
+            "M×N",
+            "m×N"
+          ],
+          "explanation": "Merge đi tiến một lần mỗi input: M+N. Đã sắp không có nghĩa trang đã cache."
+        },
+        {
+          "id": "l12-sort-merge-join-q2",
+          "prompt": "Merge tăng dần có key hiện tại r=8, s=5. Tiến con trỏ nào?",
+          "options": [
+            "Luôn cả hai",
+            "Không con trỏ nào đến EOF",
+            "S",
+            "R"
+          ],
+          "explanation": "Key S nhỏ hơn không match R hiện tại; R sau không nhỏ hơn. Tiến R có thể bỏ match với S sau."
+        },
+        {
+          "id": "l12-sort-merge-join-q3",
+          "prompt": "Sort R 120 trang tốn 480 I/O; sort S 40 trang tốn 160. Merge đọc mỗi input một lần. Không fusion: tổng? Bỏ CPU và ghi output.",
+          "options": [
+            "640 I/O",
+            "480 I/O",
+            "160 I/O",
+            "800 I/O"
+          ],
+          "explanation": "480+160+120+40=800. Chỉ 640 cho sort chưa gồm lượt đọc join."
+        },
+        {
+          "id": "l12-sort-merge-join-q4",
+          "prompt": "Hai nhóm cùng key: R có 4 tuple, S có 5. Merge join phải xuất bao nhiêu cặp?",
+          "options": [
+            "20",
+            "4",
+            "5",
+            "9"
+          ],
+          "explanation": "Mỗi tuple R match cả năm S:4 × 5=20. Merge không tự loại trùng nhóm."
+        },
+        {
+          "id": "l12-sort-merge-join-q5",
+          "prompt": "Merge có r.key<s.key. Vì sao tiến r an toàn?",
+          "options": [
+            "Mỗi key chỉ được xuất một lần dù có bản sao",
+            "Mọi key S còn lại ít nhất s.key nên không match r hiện tại",
+            "Mọi tuple R nhỏ bị loại khỏi mọi loại join",
+            "S bắt buộc key duy nhất nên khỏi so"
+          ],
+          "explanation": "Thứ tự tăng dần cho key S còn lại ≥s.key>r.key. Lập luận dựa thứ tự, không dựa uniqueness."
+        }
+      ]
+    },
+    {
+      "id": "l12-basic-in-memory-hash-join",
+      "title": "Hash join trong RAM",
+      "questions": [
+        {
+          "id": "l12-basic-in-memory-hash-join-q1",
+          "prompt": "Pha build của hash join trong RAM làm gì?",
+          "options": [
+            "Tạo run đã sắp trên cả hai input trước probe",
+            "Chỉ giữ một tuple mỗi key dù cần bản sao",
+            "Dựng hash table theo key join của build input",
+            "Partition cả hai xuống đĩa dù build table đã vừa RAM"
+          ],
+          "explanation": "Build giữ ứng viên match trong hash table cho probe sau, không phải pha sort."
+        },
+        {
+          "id": "l12-basic-in-memory-hash-join-q2",
+          "prompt": "Build hash table vừa RAM, R 15 trang, S 60 trang. Bỏ output: cần bao nhiêu input I/O?",
+          "options": [
+            "225",
+            "900",
+            "60",
+            "75"
+          ],
+          "explanation": "Mỗi input đọc một lần:15+60=75. 3(M+N) là Grace hash join hai pha."
+        },
+        {
+          "id": "l12-basic-in-memory-hash-join-q3",
+          "prompt": "Hai dòng cùng hash value nhưng key join khác nhau. Join phải làm gì?",
+          "options": [
+            "Không xuất cặp trừ khi key thật thỏa equality",
+            "Xuất cặp vì hash bằng tương đương key bằng",
+            "Chỉ so RID vì bucket đã kiểm tra key",
+            "Giữ đúng một dòng tùy ý từ bucket va chạm"
+          ],
+          "explanation": "Va chạm hash không chứng minh key bằng. Vẫn phải so key join thật."
+        },
+        {
+          "id": "l12-basic-in-memory-hash-join-q4",
+          "prompt": "Vì sao thường chọn input nhỏ hơn làm build side?",
+          "options": [
+            "Bảo đảm đầu ra đã sắp",
+            "Tăng khả năng hash table vừa RAM",
+            "Bảo đảm kết quả inner join nhỏ hơn",
+            "Bảo đảm không va chạm"
+          ],
+          "explanation": "RAM build phụ thuộc input và trạng thái hash table. Input nhỏ giúp RAM nhưng không xóa skew hay va chạm."
+        },
+        {
+          "id": "l12-basic-in-memory-hash-join-q5",
+          "prompt": "Probe tuple key=4 gặp ba build tuple key=4. Xuất bao nhiêu cặp?",
+          "options": [
+            "0",
+            "4",
+            "3",
+            "1"
+          ],
+          "explanation": "Probe phải ghép với mỗi build tuple match:3 cặp. Hash table không được vô tình bỏ record trùng key."
+        }
+      ]
+    },
+    {
+      "id": "l12-grace-hash-join",
+      "title": "Grace hash join",
+      "questions": [
+        {
+          "id": "l12-grace-hash-join-q1",
+          "prompt": "Partition R và S cho Grace hash join cần điều gì nhất quán?",
+          "options": [
+            "Hàm partition không liên quan và không ánh xạ partition match",
+            "Băm R theo key join, S theo RID",
+            "Cùng hàm nhưng băm thuộc tính không join của S",
+            "Cùng hàm partition theo key join"
+          ],
+          "explanation": "Key bằng phải vào partition tương ứng. Partition không nhất quán có thể tách tuple cần match."
+        },
+        {
+          "id": "l12-grace-hash-join-q2",
+          "prompt": "M=120, N=40, hai pha Grace đủ. Bỏ output: tổng I/O bao nhiêu?",
+          "options": [
+            "480",
+            "160",
+            "320",
+            "4,800"
+          ],
+          "explanation": "Partition đọc/ghi cả hai tốn 2 × 160; build/probe đọc lại thêm 160, tổng 480."
+        },
+        {
+          "id": "l12-grace-hash-join-q3",
+          "prompt": "Cả hai partition trong mỗi cặp match có phải vừa RAM đầy đủ không?",
+          "options": [
+            "Chỉ output cần vừa",
+            "Không, build hash table phải vừa còn probe stream được",
+            "Có, luôn cả hai vừa toàn bộ",
+            "Không partition nào cần trạng thái trong RAM"
+          ],
+          "explanation": "Build table phải vừa RAM cho build/probe trong RAM. Probe đọc từng trang được."
+        },
+        {
+          "id": "l12-grace-hash-join-q4",
+          "prompt": "Build partition quá lớn sau partition. Bước phù hợp tiếp theo?",
+          "options": [
+            "Chỉ partition probe và giữ build quá lớn trong RAM",
+            "Partition R, S bằng hàm không liên quan",
+            "Partition lại nó và probe tương ứng nhất quán",
+            "Vẫn giả định tiền hai pha dù cần spill thêm"
+          ],
+          "explanation": "Partition đệ quy giữ match nếu hai phía dùng quy tắc nhất quán, nhưng thêm I/O. Chi phí hai pha không tự còn đúng."
+        },
+        {
+          "id": "l12-grace-hash-join-q5",
+          "prompt": "Input đã sắp, output cần thứ tự key join. Vì sao xét merge thay Grace?",
+          "options": [
+            "Grace không tính được equality",
+            "Merge không tạo bản sao",
+            "Hash join luôn cần cả database trong RAM",
+            "Merge tái dùng thứ tự, tránh I/O partition"
+          ],
+          "explanation": "Thứ tự có sẵn có thể lợi cho merge. Hash join vẫn đúng logic nhưng có thể thêm công việc."
+        },
+        {
+          "id": "l12-skew-new-q1",
+          "prompt": "Một key tạo build partition quá lớn. Vì sao thay nó bằng một trạng thái SUM là sai với join thông thường?",
+          "options": [
+            "Phải giữ mọi cặp build/probe match",
+            "Hash join cần output đã sắp",
+            "SUM đổi số buffer",
+            "Modulus nguyên tố cấm key trùng"
+          ],
+          "explanation": "Aggregate có thể nén nhóm thành tóm tắt; join nhiều-nhiều cần tuple để tạo đủ mọi cặp."
+        }
+      ]
+    },
+    {
+      "id": "l12-sort-merge-join-refinement",
+      "title": "Ghép pass cuối của sort với join",
+      "questions": [
+        {
+          "id": "l12-sort-merge-join-refinement-q1",
+          "prompt": "Cải tiến sort-merge ghép hai bước nào?",
+          "options": [
+            "Pass merge cuối của sort và pha merge join",
+            "Tạo run đầu và quét tuần tự input kia",
+            "Partition Grace và merge sort cuối",
+            "Hai sort đầu thành một sort của union thay join"
+          ],
+          "explanation": "Join trực tiếp dùng luồng đã sắp từ merge cuối, tránh bước file đã sắp materialize riêng."
+        },
+        {
+          "id": "l12-sort-merge-join-refinement-q2",
+          "prompt": "R còn 3 run, S còn 4; mỗi run một buffer input, output một buffer. B tối thiểu?",
+          "options": [
+            "4",
+            "8",
+            "7",
+            "9"
+          ],
+          "explanation": "3+4=7 buffer input và thêm 1 output, tổng 8. 7 bỏ output;4 không giữ đủ run head."
+        },
+        {
+          "id": "l12-sort-merge-join-refinement-q3",
+          "prompt": "R=80 trang, S=40. Run ban đầu đủ ít để fusion. Pass 0 đọc/ghi cả hai, rồi pass cuối fused đọc cả hai: bỏ ghi output join, tốn bao nhiêu?",
+          "options": [
+            "240 I/O",
+            "120 I/O",
+            "360 I/O",
+            "600 I/O"
+          ],
+          "explanation": "Tạo run 2 × 120 và đọc cuối 120, tổng 360. Hai sort hai pass riêng rồi merge join tốn 5 × 120=600."
+        },
+        {
+          "id": "l12-sort-merge-join-refinement-q4",
+          "prompt": "Ví dụ 80/40 trang: fusion 360 thay 600. Tiết kiệm bao nhiêu và vì sao? Bỏ CPU và ghi output.",
+          "options": [
+            "120 I/O: chỉ một lượt đọc",
+            "360 I/O: mọi công việc sort",
+            "80 I/O: chỉ quét outer",
+            "240 I/O: một lượt ghi và đọc cả hai input"
+          ],
+          "explanation": "Bỏ ghi file sort cuối rồi đọc lại cho join, tiết kiệm 2(M+N)=240."
+        },
+        {
+          "id": "l12-sort-merge-join-refinement-q5",
+          "prompt": "Tổng run còn lại vượt B−1: có áp nguyên trạng chi phí fused hai pass không?",
+          "options": [
+            "Không, cần merge thêm hoặc kế hoạch khác",
+            "Có, run head không dùng buffer",
+            "Có, output buffer giữ mọi run",
+            "Có vì predicate join bằng"
+          ],
+          "explanation": "Fusion cần đủ buffer input run và output. Thiếu RAM cần pass merge thêm hoặc chiến lược khác."
+        },
+        {
+          "id": "l12-fusion-new-q1",
+          "prompt": "R=120 trang, S=40, B=12; pass 0 tạo run B trang hai phía. Mọi run ban đầu có thể vào final merge fused với một output buffer không?",
+          "options": [
+            "Có vì từng sort riêng chỉ hai pass",
+            "Có vì 120+40 chia hết 10",
+            "Không,10+4=14 run input vượt B−1=11",
+            "Không, fusion không bao giờ được với hai quan hệ khác kích thước"
+          ],
+          "explanation": "Đếm chung run input. Từng sort riêng đủ buffer, nhưng run cả hai không vừa đồng thời."
+        }
+      ]
+    }
+  ],
+  "reviewStatus": "Every question translated in original source-slot order. Author audited explanations against canonical correct slots and private PDF text/model assumptions. No visual diagram/proof or external-paper audit claimed; no locale answer keys."
+}

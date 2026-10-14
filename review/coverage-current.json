@@ -1,0 +1,20 @@
+{
+  "baseCommit": "88ea76ac6807b77d417ba6f8ecba42312d444d7d",
+  "mainResources": 37,
+  "coreMainLessons": 27,
+  "coreMainSections": 117,
+  "supplementMainResources": 10,
+  "supplementMainSections": 64,
+  "totalMainSections": 181,
+  "translatedBankQuestions": 1167,
+  "untranslatedCoreBankQuestions": 0,
+  "bankQuestionTotal": 1167,
+  "englishEditorialChanges": "New connected openings/checks in L1–5; paired checks added L19–22. Other corrected v3.1 English main prose retained.",
+  "canonicalQuizOptionIdentityPreserved": true,
+  "pushOrDeployment": false,
+  "translatedQuizBanks": 37,
+  "translatedCoreBankQuestions": 1117,
+  "translatedSupplementBankQuestions": 50,
+  "uiRedesign": true,
+  "sourceRankingImageGapResolved": true
+}

@@ -1,0 +1,373 @@
+{
+  "lessonId": "lecture-20",
+  "language": "vi",
+  "topics": [
+    {
+      "id": "l20-topic-scheduler-locks",
+      "title": "Bộ lập lịch và khóa",
+      "questions": [
+        {
+          "id": "l20-scheduler-locks-q1",
+          "prompt": "Vì sao bộ lập lịch không phải lúc nào cũng chờ biết mọi thao tác của giao dịch rồi mới chọn lịch?",
+          "options": [
+            "Ứng dụng có thể gửi thêm truy vấn khi giao dịch đang chạy",
+            "Mọi giao dịch phải khai báo tất cả truy vấn trước BEGIN",
+            "Chỉ COMMIT mới xác định các đối tượng được truy cập",
+            "Lock manager chỉ cấp khóa sau khi truy vấn đã xong"
+          ],
+          "explanation": "Giao thức phải quyết định online vì toàn bộ chuỗi truy vấn có thể chưa được gửi. Không thể giả định một giao dịch chỉ có đúng một truy vấn."
+        },
+        {
+          "id": "l20-scheduler-locks-q2",
+          "prompt": "T1 giữ S-lock(A). Yêu cầu nào của T2 tương thích?",
+          "options": [
+            "X-lock(A)",
+            "S-lock(A)",
+            "Nâng cấp ngay lên X-lock(A) không cần chờ",
+            "X-lock trên toàn bộ A chỉ vì T1 đang đọc"
+          ],
+          "explanation": "Các S-lock tương thích với nhau. X-lock xung đột với S-lock hoặc X-lock của giao dịch khác; việc T1 đang đọc không cho phép T2 ghi đồng thời."
+        },
+        {
+          "id": "l20-scheduler-locks-q3",
+          "prompt": "T1 giữ X-lock(A). Để đọc A theo cơ chế khóa của bài, T2 phải làm gì?",
+          "options": [
+            "Đọc A vì S-lock luôn tương thích X-lock",
+            "Lấy X-lock cùng với X-lock của T1",
+            "Chờ đến khi có thể được cấp S-lock tương thích",
+            "Buộc T1 hạ cấp ngay vì lần đọc có ưu tiên tuyệt đối"
+          ],
+          "explanation": "T2 cần khóa cho lần đọc, thường là S-lock, nhưng S-lock đó xung đột X-lock của T1. Thao tác chỉ đọc không được bỏ qua cơ chế khóa."
+        },
+        {
+          "id": "l20-scheduler-locks-q4",
+          "prompt": "Lock manager thường làm gì khi yêu cầu xung đột với khóa đang được giữ?",
+          "options": [
+            "Cấp ngay và dùng undo thay kiểm tra tương thích",
+            "Từ chối vĩnh viễn mọi giao dịch có lần đọc",
+            "Tự hạ cấp X-lock của người giữ mà không xét giao dịch đó",
+            "Chặn yêu cầu đến khi cấp được hoặc giao dịch được xử lý theo cách khác"
+          ],
+          "explanation": "Lock manager quản lý bảng khóa, cấp hoặc chặn theo tính tương thích. Tự hạ cấp một khóa mà người giữ vẫn cần không làm yêu cầu xung đột trở nên an toàn."
+        },
+        {
+          "id": "l20-scheduler-locks-q5",
+          "prompt": "Xin khóa trước mỗi truy cập rồi nhả bất cứ lúc nào thuận tiện có đủ bảo đảm serializability không?",
+          "options": [
+            "Không; còn cần giao thức như 2PL",
+            "Có, vì từng truy cập đều được bảo vệ",
+            "Có, nếu mọi giao dịch dùng X-lock bất kể lúc nhả",
+            "Có, nếu lịch chỉ có hai giao dịch"
+          ],
+          "explanation": "Khóa từng thao tác vẫn có thể tạo lịch không tuần tự hóa được. 2PL bổ sung ràng buộc về thời điểm xin và nhả khóa trong cả vòng đời giao dịch."
+        }
+      ]
+    },
+    {
+      "id": "l20-topic-two-phase",
+      "title": "Khóa hai pha",
+      "questions": [
+        {
+          "id": "l20-two-phase-q1",
+          "prompt": "Giao dịch được làm gì trong pha tăng của 2PL?",
+          "options": [
+            "Nhả khóa nhưng không xin khóa mới",
+            "Xin thêm khóa mà chưa nhả khóa nào",
+            "Xin và nhả xen kẽ theo bất kỳ thứ tự nào",
+            "Đọc nhưng không được ghi dữ liệu"
+          ],
+          "explanation": "Pha tăng cho phép tích lũy khóa. Lần nhả đầu tiên kết thúc pha tăng và bắt đầu pha giảm."
+        },
+        {
+          "id": "l20-two-phase-q2",
+          "prompt": "T xin S(A), xin S(B), nhả S(A), rồi xin X(C). Vi phạm 2PL ở đâu?",
+          "options": [
+            "Khi xin hai S-lock",
+            "Khi nhả S(A) sau lần đọc",
+            "Khi xin X(C) sau khi đã nhả một khóa",
+            "Khi truy cập ba đối tượng khác nhau"
+          ],
+          "explanation": "Sau lần nhả đầu tiên, 2PL cấm xin thêm khóa. Số đối tượng hay việc giữ hai khóa chia sẻ không phải vấn đề."
+        },
+        {
+          "id": "l20-two-phase-q3",
+          "prompt": "T giữ S(A), nhả một khóa trên B, rồi nâng S(A) thành X(A). Có tuân thủ 2PL không?",
+          "options": [
+            "Có, vì T đã có khóa trên A",
+            "Có, vì nâng cấp không phải khóa trên đối tượng mới",
+            "Có, miễn chưa commit dù đã nhả khóa khác",
+            "Không; nâng cấp sau khi pha giảm bắt đầu vi phạm 2PL"
+          ],
+          "explanation": "Sau pha tăng, 2PL cấm cả xin khóa mới lẫn nâng cấp. S-lock hiện có không cho phép nâng cấp muộn sau lần nhả đầu tiên."
+        },
+        {
+          "id": "l20-two-phase-q4",
+          "prompt": "Trong bài, 2PL bảo đảm thuộc tính nào?",
+          "options": [
+            "Conflict serializability — tuần tự hóa theo xung đột",
+            "Không bao giờ có deadlock",
+            "Không lịch nào đọc dữ liệu chưa commit",
+            "Mọi giao dịch hoàn tất mà không abort"
+          ],
+          "explanation": "2PL bảo đảm lịch conflict-serializable. Deadlock và abort vẫn có thể xảy ra; 2PL cơ bản còn có thể cho phép dirty read, nên các khẳng định tuyệt đối còn lại sai."
+        },
+        {
+          "id": "l20-two-phase-q5",
+          "prompt": "Mọi lịch serializable có bắt buộc được 2PL cho phép không?",
+          "options": [
+            "Có, vì hai khái niệm đồng nhất",
+            "Không; 2PL là điều kiện đủ nhưng hạn chế hơn tập các lịch serializable",
+            "Chỉ nếu giao dịch có ghi",
+            "Không lịch serializable nào có thể dùng 2PL"
+          ],
+          "explanation": "2PL có thể từ chối một lịch vẫn serializable. Một cơ chế bảo đảm safety không nhất thiết cho phép mọi lịch an toàn."
+        }
+      ]
+    },
+    {
+      "id": "l20-topic-cascading",
+      "title": "2PL và abort dây chuyền",
+      "questions": [
+        {
+          "id": "l20-cascading-q1",
+          "prompt": "T1 nhả X(A) trước khi hoàn tất. T2 đọc A do T1 ghi, rồi T1 abort. Vì sao T2 có thể cũng phải abort?",
+          "options": [
+            "T2 chỉ đọc giá trị đã commit của T1",
+            "T2 chỉ bắt đầu trước T1 commit mà không đọc dữ liệu T1",
+            "T2 phụ thuộc giá trị chưa commit đang bị thu hồi",
+            "Mọi giao dịch trong lịch phải abort bất kể phụ thuộc"
+          ],
+          "explanation": "Abort dây chuyền lan qua phụ thuộc vào dữ liệu chưa commit. Chỉ dùng cùng CPU hay cùng DBMS không tạo phụ thuộc đó."
+        },
+        {
+          "id": "l20-cascading-q2",
+          "prompt": "2PL cơ bản có thể nhả khóa trước COMMIT không?",
+          "options": [
+            "Không; mọi dạng 2PL giữ mọi khóa đến COMMIT",
+            "Chỉ S-lock được nhả; 2PL cơ bản luôn giữ mọi X-lock đến cuối",
+            "Có, rồi có thể xin bất kỳ khóa mới nào trước commit",
+            "Có, trong pha giảm"
+          ],
+          "explanation": "2PL cơ bản yêu cầu hai pha nhưng không bắt mọi khóa giữ đến hoàn tất. Giữ khóa đến cuối là biến thể strict theo quy ước bài này; sau khi nhả thì không được xin thêm."
+        },
+        {
+          "id": "l20-cascading-q3",
+          "prompt": "Riêng conflict serializability có bảo đảm không có dirty read không?",
+          "options": [
+            "Không; serializability và xử lý dữ liệu chưa commit là hai yêu cầu riêng",
+            "Có; đồ thị không chu trình cấm mọi lần đọc chưa commit",
+            "Có, nếu chỉ có hai giao dịch",
+            "Không; mọi lịch serializable đều có dirty read"
+          ],
+          "explanation": "2PL cơ bản có thể tạo lịch conflict-serializable nhưng vẫn đọc trước commit của người ghi. Không được đồng nhất thứ tự xung đột đúng với việc không có đọc bẩn."
+        },
+        {
+          "id": "l20-cascading-q4",
+          "prompt": "T2 đọc dữ liệu chưa commit của T1 và commit trước khi T1 abort. Vì sao đặc biệt nguy hiểm?",
+          "options": [
+            "Chỉ cần undo T1; kết quả commit của T2 luôn đúng",
+            "T2 đã công bố kết quả phụ thuộc một giao dịch thất bại",
+            "Commit của T2 tự commit dữ liệu T1",
+            "Đổi thứ tự COMMIT trên giấy sửa được mọi tác động"
+          ],
+          "explanation": "Khi dữ liệu nguồn bị undo, không thể mặc nhiên coi kết quả T2 đã công bố là đúng. COMMIT của T2 không sửa được phụ thuộc không hợp lệ này."
+        },
+        {
+          "id": "l20-cascading-q5",
+          "prompt": "Cách nào trong bài ngăn abort dây chuyền do đọc dữ liệu chưa commit?",
+          "options": [
+            "Nhả X-lock ngay sau mỗi lần ghi",
+            "Giữ mọi S-lock nhưng luôn nhả X-lock trước commit",
+            "Dùng strict 2PL và giữ khóa đến hoàn tất giao dịch",
+            "Chỉ yêu cầu đồ thị xung đột không chu trình, không xét commit"
+          ],
+          "explanation": "Giữ X-lock chặn giao dịch khác đọc giá trị tạm thời; nhả sớm tạo chính phụ thuộc có thể gây hủy dây chuyền. Theo quy ước strict của bài, cả S và X đều giữ đến hoàn tất."
+        }
+      ]
+    },
+    {
+      "id": "l20-topic-strict",
+      "title": "Strict 2PL theo quy ước của bài",
+      "questions": [
+        {
+          "id": "l20-strict-q1",
+          "prompt": "Theo quy ước strict 2PL của bài này, lúc nào nhả khóa?",
+          "options": [
+            "Ngay sau từng lần đọc hoặc ghi",
+            "Ngay khi đã xin khóa cuối, dù công việc tiếp tục",
+            "Ngay khi giao dịch khác xin và phải chờ",
+            "Khi giao dịch kết thúc"
+          ],
+          "explanation": "Bài giữ tất cả khóa, cả S và X, đến hoàn tất giao dịch. Một số tài liệu gọi quy ước này là rigorous 2PL; câu hỏi sử dụng định nghĩa đã nêu của lecture."
+        },
+        {
+          "id": "l20-strict-q2",
+          "prompt": "T1 chuyển 6 đơn vị giữa A và B, còn T2 tính tổng. Giữ cả hai khóa đến khi T1 hoàn tất đạt điều gì?",
+          "options": [
+            "T2 không quan sát lần chuyển mới hoàn thành một phần",
+            "T2 chắc chắn chạy trước T1",
+            "Mọi SUM có thể chạy không cần S-lock",
+            "Tự loại bỏ mọi deadlock"
+          ],
+          "explanation": "T2 chỉ đọc khi các khóa tương thích cần thiết được cấp. Điều này không buộc T2 chạy trước và không xóa khả năng deadlock với các giao dịch khác."
+        },
+        {
+          "id": "l20-strict-q3",
+          "prompt": "T1 abort nhưng giữ X(A) đến hoàn tất. Vì sao undo thường đơn giản hơn so với nhả sớm?",
+          "options": [
+            "Khóa lưu before-image và thay log",
+            "Không giao dịch khác ghi đè A xuyên qua khóa T1",
+            "Giao dịch abort không bao giờ cần khôi phục trang",
+            "Giữ khóa tự biến mọi trang thành NO-STEAL"
+          ],
+          "explanation": "X-lock còn giữ bảo vệ đối tượng trong rollback, không cho người khác ghi đè qua khóa đó. Bản thân khóa không chứa hay thay thế thông tin log phục hồi."
+        },
+        {
+          "id": "l20-strict-q4",
+          "prompt": "Strict 2PL có ngăn T1 giữ A chờ B trong khi T2 giữ B chờ A không?",
+          "options": [
+            "Có; giữ khóa lâu hơn loại mọi vòng chờ",
+            "Có, nếu cả hai dùng X-lock",
+            "Không; deadlock vẫn có thể xảy ra",
+            "Không, vì strict 2PL không bảo đảm serializability"
+          ],
+          "explanation": "Strictness ngăn phụ thuộc vào dữ liệu chưa commit nhưng không tự giải quyết deadlock. Strict 2PL vẫn bảo đảm conflict serializability."
+        },
+        {
+          "id": "l20-strict-q5",
+          "prompt": "Chuỗi nào tuân thủ strict 2PL theo quy ước lecture?",
+          "options": [
+            "Xin X(A), ghi, nhả rồi xin X(B)",
+            "Xin S(A), đọc, nhả rồi tiếp tục đến commit",
+            "Xin X(A), ghi, nhả trước commit cho người khác đọc dữ liệu tạm",
+            "Xin S(A), xin X(B), làm công việc, commit rồi nhả cả hai"
+          ],
+          "explanation": "Giữ khóa đến hoàn tất đúng quy ước bài. Nhả S-lock sớm có thể phù hợp định nghĩa strict ở nguồn khác nhưng không phù hợp định nghĩa dùng trong câu hỏi này."
+        }
+      ]
+    },
+    {
+      "id": "l20-topic-deadlock-detection",
+      "title": "Phát hiện deadlock",
+      "questions": [
+        {
+          "id": "l20-deadlock-detection-q1",
+          "prompt": "Khi nào waits-for graph có cạnh T1→T2?",
+          "options": [
+            "T1 đang chờ khóa T2 giữ",
+            "T1 commit trước T2",
+            "T1 đọc cùng bảng T2 nhưng không chờ",
+            "T1 có timestamp sớm hơn T2 bất kể khóa"
+          ],
+          "explanation": "Cạnh waits-for mô tả việc chờ hiện tại. Cạnh precedence mô tả thứ tự các thao tác xung đột đã xảy ra; đó là đồ thị trả lời câu hỏi khác."
+        },
+        {
+          "id": "l20-deadlock-detection-q2",
+          "prompt": "T1 giữ X(A), chờ B; T2 giữ X(B), chờ A. Waits-for graph chứa gì?",
+          "options": [
+            "Chỉ T1→T2",
+            "Chu trình T1→T2→T1",
+            "Không có cạnh vì mỗi khóa chỉ một người giữ",
+            "Chỉ cạnh A→B giữa các đối tượng"
+          ],
+          "explanation": "Mỗi giao dịch chờ giao dịch kia, tạo hai cạnh giữa các đỉnh giao dịch. Đỉnh của waits-for graph không phải các đối tượng A và B."
+        },
+        {
+          "id": "l20-deadlock-detection-q3",
+          "prompt": "Theo bài, xử lý deadlock đã phát hiện bằng cách nào?",
+          "options": [
+            "Cấp X-lock dù người đang giữ chưa nhả",
+            "Đổi ưu tiên nhưng giữ nguyên vòng chờ",
+            "Chọn nạn nhân, rollback và nhả khóa của nó",
+            "Chờ mọi giao dịch trong vòng tự commit"
+          ],
+          "explanation": "Abort một nạn nhân phá ít nhất một phụ thuộc chờ. Cấp khóa trái tính tương thích để tránh chờ sẽ đánh đổi tính đúng."
+        },
+        {
+          "id": "l20-deadlock-detection-q4",
+          "prompt": "Vì sao xét số lần khởi động lại trước đó khi chọn nạn nhân deadlock?",
+          "options": [
+            "Để giao dịch mới nhất luôn thắng bất kể chi phí",
+            "Để ưu tiên hủy cùng nạn nhân ở mọi lần thử",
+            "Để bỏ qua các khóa giao dịch đang giữ",
+            "Để tránh hủy lặp một giao dịch khiến nó starvation"
+          ],
+          "explanation": "Lựa chọn nạn nhân nên tránh phạt mãi cùng giao dịch. Số lần khởi động lại hỗ trợ fairness, không thay cơ chế phục hồi hay xử lý truy vấn."
+        },
+        {
+          "id": "l20-deadlock-detection-q5",
+          "prompt": "Kiểm tra deadlock thường xuyên hơn có đánh đổi nào?",
+          "options": [
+            "Phát hiện sớm hơn nhưng tốn thêm công kiểm tra",
+            "Kiểm tra thường xuyên luôn giảm chi phí CPU",
+            "Bảo đảm chu trình không bao giờ hình thành",
+            "Có chu trình cũng không cần chọn nạn nhân nữa"
+          ],
+          "explanation": "Detection phản ứng với chu trình và có chi phí tính toán. Kiểm tra thường xuyên không đồng nghĩa ngăn mọi deadlock hình thành."
+        }
+      ]
+    },
+    {
+      "id": "l20-topic-deadlock-prevention",
+      "title": "Phòng ngừa deadlock",
+      "questions": [
+        {
+          "id": "l20-deadlock-prevention-q1",
+          "prompt": "Trong wait-die, giao dịch già hơn xin khóa do giao dịch trẻ hơn giữ. Điều gì xảy ra?",
+          "options": [
+            "Giao dịch già hơn abort ngay",
+            "Giao dịch già hơn chờ",
+            "Giao dịch trẻ hơn bị abort ngay",
+            "Cả hai giữ X-lock"
+          ],
+          "explanation": "Wait-die cho người xin già chờ người giữ trẻ. Chỉ người xin trẻ gặp người giữ già mới abort; đừng nhầm với wound-wait."
+        },
+        {
+          "id": "l20-deadlock-prevention-q2",
+          "prompt": "Trong wait-die, giao dịch trẻ hơn xin khóa do giao dịch già hơn giữ. Điều gì xảy ra?",
+          "options": [
+            "Giao dịch già hơn abort",
+            "Giao dịch trẻ hơn luôn chờ",
+            "Giao dịch trẻ hơn abort",
+            "Giao dịch già hơn nhả khóa không cần rollback"
+          ],
+          "explanation": "Người xin trẻ phải die, tức abort. Cho nó chờ người giữ già sẽ vi phạm hướng chờ mà wait-die cho phép."
+        },
+        {
+          "id": "l20-deadlock-prevention-q3",
+          "prompt": "Trong wound-wait, giao dịch già hơn xin khóa do giao dịch trẻ hơn giữ. Điều gì xảy ra?",
+          "options": [
+            "Giao dịch già hơn luôn chờ",
+            "Giao dịch già hơn abort",
+            "Cả hai chờ nhau không chọn nạn nhân",
+            "Người giữ khóa trẻ hơn bị abort"
+          ],
+          "explanation": "Wound-wait cho giao dịch già buộc người giữ trẻ abort. Khác với wait-die, nơi người xin già được chờ."
+        },
+        {
+          "id": "l20-deadlock-prevention-q4",
+          "prompt": "Trong wound-wait, giao dịch trẻ hơn xin khóa do giao dịch già hơn giữ. Điều gì xảy ra?",
+          "options": [
+            "Giao dịch trẻ hơn chờ",
+            "Giao dịch trẻ hơn hủy giao dịch già hơn",
+            "Giao dịch già hơn luôn phải abort",
+            "Cả hai abort bất kể tuổi"
+          ],
+          "explanation": "Wound-wait cho người trẻ chờ người già. Người xin trẻ không được wound người giữ già hơn."
+        },
+        {
+          "id": "l20-deadlock-prevention-q5",
+          "prompt": "Vì sao giao dịch khởi động lại giữ timestamp ban đầu?",
+          "options": [
+            "Để nó trở thành trẻ nhất sau mọi lần thử",
+            "Để giữ ưu tiên tuổi và giảm starvation qua các lần thử",
+            "Để cạnh chờ tự đảo hướng sau khởi động lại",
+            "Để bỏ qua tương thích khóa sau lần abort đầu"
+          ],
+          "explanation": "Nếu cấp timestamp mới mỗi lần thử, công việc có thể mãi trẻ và bất lợi. Giữ timestamp bảo toàn ưu tiên theo tuổi của giao thức."
+        }
+      ]
+    }
+  ],
+  "reviewStatus": "author-translated and audited all core questions against canonical correct options and lecture extracted-text sources; no answer keys in locale; no fresh visual diagram or external-paper validation claimed"
+}

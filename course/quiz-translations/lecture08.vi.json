@@ -1,0 +1,373 @@
+{
+  "lessonId": "lecture-08",
+  "language": "vi",
+  "topics": [
+    {
+      "id": "l08-topic-cost-model",
+      "title": "Mô hình chi phí và thao tác bản ghi",
+      "questions": [
+        {
+          "id": "l08-cost-model-q1",
+          "prompt": "Trong mô hình bài, P và R lần lượt là gì?",
+          "options": [
+            "Số trang dữ liệu và số bản ghi mỗi trang",
+            "Số bản ghi và số trang mỗi bản ghi",
+            "Số tầng chỉ mục và số trang gốc",
+            "Số buffer frame và số query operator"
+          ],
+          "explanation": "P đếm trang dữ liệu của file; R là bản ghi mỗi trang, không phải tổng bản ghi."
+        },
+        {
+          "id": "l08-cost-model-q2",
+          "prompt": "Mô hình chỉ I/O tạm bỏ qua gì?",
+          "options": [
+            "Số trang file",
+            "CPU, prefetch và khác biệt I/O ngẫu nhiên/tuần tự",
+            "Mọi lượt đọc trang",
+            "Mọi lượt ghi trang"
+          ],
+          "explanation": "Mô hình giữ chi phí I/O trang và đơn giản hóa yếu tố khác để so xu hướng lớn."
+        },
+        {
+          "id": "l08-cost-model-q3",
+          "prompt": "Phân tích giả định tìm bằng nhau theo khóa có mấy kết quả?",
+          "options": [
+            "Mọi bản ghi khớp",
+            "Số kết quả bằng số trang",
+            "Tồn tại đúng một kết quả",
+            "Không bao giờ có kết quả"
+          ],
+          "explanation": "Giả định tồn tại một kết quả cho xấp xỉ nửa file; khóa vắng có chi phí khác."
+        },
+        {
+          "id": "l08-cost-model-q4",
+          "prompt": "File đầy đều có P=200, R=40. Chứa bao nhiêu bản ghi?",
+          "options": [
+            "240",
+            "5",
+            "1600",
+            "8000"
+          ],
+          "explanation": "200×40=8000 bản ghi. Cộng hai đại lượng khác đơn vị không cho số bản ghi."
+        },
+        {
+          "id": "l08-cost-model-q5",
+          "prompt": "Vì sao nêu giả định trước so heap và sorted file?",
+          "options": [
+            "Công thức chỉ có nghĩa trong điều kiện đã nêu",
+            "Nêu giả định luôn làm cache ấm",
+            "Mọi công thức độc lập workload",
+            "Cùng P bảo đảm cùng thời gian thực"
+          ],
+          "explanation": "Mô hình là xấp xỉ có phạm vi; cùng số trang vẫn khác workload và bố trí."
+        }
+      ]
+    },
+    {
+      "id": "l08-topic-heap-cost",
+      "title": "Chi phí heap file",
+      "questions": [
+        {
+          "id": "l08-heap-cost-q1",
+          "prompt": "Heap P=120, D=3 ms/trang, không cache. Quét đủ tốn gì?",
+          "options": [
+            "40 ms",
+            "360 ms",
+            "180 ms",
+            "123 ms"
+          ],
+          "explanation": "Đọc cả 120 trang, mỗi trang 3 ms: 360 ms. Nửa file chỉ xấp xỉ tìm một khóa tồn tại."
+        },
+        {
+          "id": "l08-heap-cost-q2",
+          "prompt": "Khóa tồn tại có xác suất đều ở P=9 trang. Kỳ vọng chính xác số trang đọc?",
+          "options": [
+            "9",
+            "3",
+            "5",
+            "4.5"
+          ],
+          "explanation": "Trung bình vị trí 1–9 là (9+1)/2=5; P/2=4.5 chỉ xấp xỉ."
+        },
+        {
+          "id": "l08-heap-cost-q3",
+          "prompt": "Tìm mọi kết quả thuộc tính không phải khóa trong heap không chỉ mục/cache thường phải quét bao nhiêu trang?",
+          "options": [
+            "P/2",
+            "log₂P",
+            "1",
+            "P"
+          ],
+          "explanation": "Kết quả có thể ở bất kỳ trang; tìm một kết quả chưa đủ dừng khi cần tất cả."
+        },
+        {
+          "id": "l08-heap-cost-q4",
+          "prompt": "Giả định chèn nối vào trang cuối, heap cần I/O nào?",
+          "options": [
+            "Đọc trang cuối rồi ghi lại, khoảng 2D",
+            "Chỉ đọc trang cuối, D",
+            "Tìm nhị phân rồi dịch nửa file",
+            "Quét mọi trang rồi sắp toàn file"
+          ],
+          "explanation": "Mô hình biết nơi nối và bỏ overhead quản lý khác; duy trì file đã sắp cần phân tích riêng."
+        },
+        {
+          "id": "l08-heap-cost-q5",
+          "prompt": "Slide cho chi phí xấp xỉ nào khi xóa khóa tồn tại trong heap?",
+          "options": [
+            "log₂P·D",
+            "P·D/2 + D",
+            "P·D/2",
+            "2P·D"
+          ],
+          "explanation": "Tìm đọc khoảng nửa file rồi ghi trang sửa; P·D/2 bỏ lượt ghi cuối."
+        }
+      ]
+    },
+    {
+      "id": "l08-topic-sorted-cost",
+      "title": "Chi phí sorted file",
+      "questions": [
+        {
+          "id": "l08-sorted-cost-q1",
+          "prompt": "File sắp theo x có tìm nhị phân trực tiếp y=7 chỉ vì y là khóa?",
+          "options": [
+            "Có, nếu y nguyên",
+            "Có, nếu chỉ một kết quả",
+            "Không, tìm phải khớp thứ tự sắp của file",
+            "Có, mọi khóa đều tìm nhị phân được"
+          ],
+          "explanation": "Duy nhất không khiến file sắp theo y; tìm nhị phân cần thứ tự phù hợp."
+        },
+        {
+          "id": "l08-sorted-cost-q2",
+          "prompt": "P=1024, D=2 ms: xấp xỉ tìm bằng nhau theo khóa sắp tốn gì?",
+          "options": [
+            "2048 ms",
+            "1024 ms",
+            "10 ms",
+            "20 ms"
+          ],
+          "explanation": "log₂1024=10 lượt trang; nhân 2 ms được 20 ms."
+        },
+        {
+          "id": "l08-sorted-cost-q3",
+          "prompt": "Về khái niệm, tìm khoảng trên khóa đã sắp thế nào?",
+          "options": [
+            "Tìm đầu khoảng rồi quét trang có kết quả",
+            "Luôn đúng một trang, bất kể khoảng",
+            "Luôn quét cả file từ đầu",
+            "Chỉ tìm khóa cuối, bỏ giá trị giữa"
+          ],
+          "explanation": "Thứ tự hỗ trợ tìm điểm đầu và quét tiếp tuần tự; khoảng rộng vẫn có thể cần nhiều trang."
+        },
+        {
+          "id": "l08-sorted-cost-q4",
+          "prompt": "Vì sao chèn vào sorted file đặc có thể nhiều I/O?",
+          "options": [
+            "Tìm nhị phân luôn tuyến tính",
+            "Bản ghi/trang sau vị trí chèn có thể phải dịch để giữ thứ tự",
+            "Mỗi chèn đổi mọi kiểu trường",
+            "Mỗi chèn phải dựng hash table mới"
+          ],
+          "explanation": "Dịch dữ liệu thêm chi phí ngoài định vị; tìm nhị phân vẫn logarit."
+        },
+        {
+          "id": "l08-sorted-cost-q5",
+          "prompt": "P=128, D=1 ms, dùng công thức slide search+P·D. Chi phí chèn xấp xỉ?",
+          "options": [
+            "128 ms",
+            "14 ms",
+            "135 ms",
+            "71 ms"
+          ],
+          "explanation": "Tìm log₂128=7 ms, dịch 128 ms, tổng 135. 71 chỉ đếm nửa trang mà bỏ đọc lẫn ghi."
+        }
+      ]
+    },
+    {
+      "id": "l08-topic-entries",
+      "title": "Chỉ mục và mục chỉ mục",
+      "questions": [
+        {
+          "id": "l08-entries-q1",
+          "prompt": "Search key có bắt buộc định danh duy nhất mọi bản ghi?",
+          "options": [
+            "Có, luôn là primary key",
+            "Có, luôn là candidate key tối thiểu",
+            "Chỉ với B+ tree",
+            "Không, có thể gồm thuộc tính không duy nhất"
+          ],
+          "explanation": "Search key chỉ trường dùng tìm; duy nhất là thuộc tính riêng."
+        },
+        {
+          "id": "l08-entries-q2",
+          "prompt": "Mục chỉ mục Variant A chứa gì?",
+          "options": [
+            "Nội dung bản ghi",
+            "Chỉ cặp (key, RID)",
+            "Chỉ cặp (key, danh sách RID)",
+            "Chỉ thông tin chỗ trống page directory"
+          ],
+          "explanation": "A lưu bản ghi theo giá trị; B, C lưu tham chiếu thay toàn nội dung."
+        },
+        {
+          "id": "l08-entries-q3",
+          "prompt": "Variant B khác C thế nào?",
+          "options": [
+            "B chỉ dùng băm, C chỉ dùng cây",
+            "B một RID mỗi mục, C gom RID của khóa thành danh sách",
+            "B bản ghi đầy đủ, C chỉ con trỏ trong",
+            "B bắt buộc duy nhất, C không biểu diễn trùng được"
+          ],
+          "explanation": "Khác cách đóng gói tham chiếu, độc lập cấu trúc truy cập chỉ mục."
+        },
+        {
+          "id": "l08-entries-q4",
+          "prompt": "Vì sao Variant C có mục dài biến đổi?",
+          "options": [
+            "Kích thước trang đổi mỗi lookup",
+            "B+ tree không có lá",
+            "Mỗi khóa có thể có số RID khác nhau",
+            "Mọi khóa phải là chuỗi"
+          ],
+          "explanation": "Danh sách RID dài khác nhau nên mục biến đổi dù khóa cố định."
+        },
+        {
+          "id": "l08-entries-q5",
+          "prompt": "Vì sao tham chiếu hữu ích khi bảng có nhiều chỉ mục?",
+          "options": [
+            "Bảo đảm đổi khóa không cần bảo trì",
+            "Tự làm mọi chỉ mục clustered",
+            "Không còn cần file dữ liệu",
+            "Tránh lặp toàn tuple trong mỗi chỉ mục"
+          ],
+          "explanation": "RID cho nhiều chỉ mục trỏ cùng bản ghi; đổi khóa lập chỉ mục vẫn có thể cần bảo trì."
+        }
+      ]
+    },
+    {
+      "id": "l08-topic-classification",
+      "title": "Phân loại và chỉ mục băm",
+      "questions": [
+        {
+          "id": "l08-classification-q1",
+          "prompt": "Loại chỉ mục nào hỗ trợ tự nhiên tìm khoảng theo thứ tự khóa trong bài?",
+          "options": [
+            "Chỉ mục cây",
+            "Chỉ mục băm thông thường",
+            "Cả hai bắt buộc khóa sắp",
+            "Chỉ heap không chỉ mục"
+          ],
+          "explanation": "Cây giữ thứ tự; băm chủ yếu tìm bằng nhau, không giữ quan hệ gần giữa khóa."
+        },
+        {
+          "id": "l08-classification-q2",
+          "prompt": "Hash bucket có thể gồm gì?",
+          "options": [
+            "Chỉ bitmap toàn CSDL",
+            "Trang chính và 0 hoặc nhiều trang overflow",
+            "Luôn đúng một bản ghi",
+            "Luôn một gốc B+ tree và mọi lá"
+          ],
+          "explanation": "Overflow mở rộng bucket khi cần; bucket không giới hạn một bản ghi."
+        },
+        {
+          "id": "l08-classification-q3",
+          "prompt": "Theo thuật ngữ slide, search key của primary index chứa gì?",
+          "options": [
+            "Chỉ ID trang gốc",
+            "Một hằng chung mọi mục",
+            "Primary key",
+            "Mọi thuộc tính không phải khóa"
+          ],
+          "explanation": "Phân loại dựa vào việc search key chứa primary key; clustering là phân loại riêng."
+        },
+        {
+          "id": "l08-classification-q4",
+          "prompt": "Slide gắn unique index với thuộc tính nào?",
+          "options": [
+            "Mọi mục cùng giá trị",
+            "Mỗi lá đúng một mục",
+            "Chỉ mục không được nhiều cột",
+            "Search key chứa candidate key"
+          ],
+          "explanation": "Candidate key bảo đảm duy nhất; search key nhiều cột vẫn có thể duy nhất."
+        },
+        {
+          "id": "l08-classification-q5",
+          "prompt": "Chọn B+ tree/hash có tự quyết định mục dùng A, B, C?",
+          "options": [
+            "Không, hai lựa chọn thiết kế độc lập",
+            "Có, cây chỉ A",
+            "Có, băm chỉ C",
+            "Có, cây không dùng tham chiếu được"
+          ],
+          "explanation": "Biểu diễn mục khác với cơ chế truy cập cây hay băm."
+        }
+      ]
+    },
+    {
+      "id": "l08-topic-cluster",
+      "title": "Clustered và unclustered",
+      "questions": [
+        {
+          "id": "l08-cluster-q1",
+          "prompt": "Clustered mô tả quan hệ nào giữa dữ liệu và thứ tự chỉ mục?",
+          "options": [
+            "Mỗi lá chỉ một con",
+            "Bản ghi giữ gần nhau theo thứ tự search key",
+            "Mọi bản ghi phải trong RAM",
+            "Mọi khóa phải duy nhất"
+          ],
+          "explanation": "Clustering nói locality/thứ tự vật lý, không suy ra duy nhất hay cache."
+        },
+        {
+          "id": "l08-cluster-q2",
+          "prompt": "Một file dữ liệu thường clustered đồng thời theo bao nhiêu thứ tự khóa độc lập trong bài?",
+          "options": [
+            "Không giới hạn, bằng số cột",
+            "Không bao giờ clustered",
+            "Tối đa một",
+            "Bằng số bản ghi"
+          ],
+          "explanation": "Một bố trí tuyến tính thường không theo nhiều thứ tự độc lập cùng lúc; vẫn có nhiều chỉ mục unclustered."
+        },
+        {
+          "id": "l08-cluster-q3",
+          "prompt": "60 bản ghi khớp nằm trên ba trang, cache lạnh. Chỉ tính lấy dữ liệu, cần mấy lượt đọc?",
+          "options": [
+            "60",
+            "20",
+            "63",
+            "3"
+          ],
+          "explanation": "Mỗi trang cần đọc một lần; cộng chỉ mục thành 63 sẽ thêm chi phí câu hỏi chưa cho."
+        },
+        {
+          "id": "l08-cluster-q4",
+          "prompt": "60 bản ghi khớp, mỗi bản ở trang khác, cache lạnh. Chỉ lấy dữ liệu cần mấy lượt?",
+          "options": [
+            "60",
+            "3",
+            "1",
+            "log₂60"
+          ],
+          "explanation": "Kết quả unclustered rải rác có thể cần một I/O mỗi bản; đi chỉ mục không thay việc lấy trang dữ liệu."
+        },
+        {
+          "id": "l08-cluster-q5",
+          "prompt": "Đánh đổi duy trì clustering khi chèn là gì?",
+          "options": [
+            "Phải xóa mọi secondary index",
+            "Có thể cần chỗ dự phòng, overflow hoặc tổ chức lại để giữ locality",
+            "File không bao giờ cần cập nhật",
+            "Mỗi chèn 0 I/O"
+          ],
+          "explanation": "Giữ thứ tự vật lý có chi phí; dự phòng/tổ chức lại giúp nhưng không xóa đánh đổi."
+        }
+      ]
+    }
+  ],
+  "reviewStatus": "Every prompt, original option slot and explanation translated and checked against the canonical answer meaning; original teaching computations recalculated. Source topic text reviewed; diagram-only evidence gaps recorded separately. No answer keys in this locale."
+}

@@ -1,0 +1,445 @@
+{
+  "lessonId": "lecture-14",
+  "language": "vi",
+  "topics": [
+    {
+      "id": "l14-query-optimisation-the-goal",
+      "title": "Mục tiêu thực tế của tối ưu truy vấn",
+      "questions": [
+        {
+          "id": "l14-query-optimisation-the-goal-q1",
+          "prompt": "Mục tiêu thực tế của tối ưu truy vấn là gì?",
+          "options": [
+            "Luôn bảo đảm kế hoạch nhanh nhất toàn cục khi chạy thật",
+            "Bỏ chi phí, lấy kế hoạch đầu",
+            "Tìm kế hoạch đúng có chi phí ước lượng tốt trong ngân sách tìm kiếm",
+            "Thay truy vấn bằng câu hỏi dễ hơn"
+          ],
+          "explanation": "Sai số ước lượng và giới hạn tìm kiếm cản bảo đảm tối ưu thật. Optimizer tìm kế hoạch thực thi tốt mà giữ nghĩa truy vấn."
+        },
+        {
+          "id": "l14-query-optimisation-the-goal-q2",
+          "prompt": "Truy vấn khai báo chủ yếu mô tả gì?",
+          "options": [
+            "Thứ tự chính xác từng lần đọc trang",
+            "Thuật toán join bắt buộc và buffer chính xác",
+            "Chỗ materialize chính xác mọi trung gian",
+            "Kết quả mong muốn"
+          ],
+          "explanation": "SQL chủ yếu nói cần kết quả gì. Optimizer chọn cách tính nhưng giữ ngữ nghĩa."
+        },
+        {
+          "id": "l14-query-optimisation-the-goal-q3",
+          "prompt": "Không gian tìm kiếm lớn hơn có trade-off gì?",
+          "options": [
+            "Thêm cơ hội kế hoạch rẻ nhưng tốn công tìm hơn",
+            "Thời gian lập kế hoạch luôn giảm",
+            "Thực thi luôn chậm hơn",
+            "Số ứng viên không đổi"
+          ],
+          "explanation": "Trade-off giữa công lập kế hoạch và chất lượng thực thi. Hai loại thời gian là chi phí riêng."
+        },
+        {
+          "id": "l14-query-optimisation-the-goal-q4",
+          "prompt": "Chi phí ước lượng thấp nhất có nhất thiết runtime thật thấp nhất không?",
+          "options": [
+            "Không vì mọi kế hoạch cho kết quả khác",
+            "Không, thống kê và mô hình có thể sai",
+            "Có theo định nghĩa",
+            "Có nếu có SELECT"
+          ],
+          "explanation": "Chi phí là dự đoán theo mô hình, không bảo đảm thực thi đo được nhanh nhất."
+        },
+        {
+          "id": "l14-query-optimisation-the-goal-q5",
+          "prompt": "Lecture dùng System R thế nào?",
+          "options": [
+            "Bộ tối ưu mà mọi DBMS phải giữ đủ quy tắc",
+            "Mô hình đo runtime chính xác không cần thống kê",
+            "Nền tảng học khái niệm tối ưu",
+            "Cách xét mọi kế hoạch không pruning"
+          ],
+          "explanation": "System R là kiến trúc tham khảo cho khái niệm quan trọng. Còn họ optimizer và thiết kế khác."
+        }
+      ]
+    },
+    {
+      "id": "l14-query-lifecycle",
+      "title": "Vòng đời truy vấn",
+      "questions": [
+        {
+          "id": "l14-query-lifecycle-q1",
+          "prompt": "Parsing và validation xử lý gì trong mô hình?",
+          "options": [
+            "Đo runtime thật mọi ứng viên",
+            "Chọn join vật lý cuối bằng số đo",
+            "Thay buffer mỗi lần đọc đĩa",
+            "Kiểm tra cú pháp/ngữ nghĩa, tạo biểu diễn truy vấn"
+          ],
+          "explanation": "Giai đoạn này kiểm tra và chuẩn bị biểu diễn. Thay buffer thuộc thực thi/quản lý lưu trữ."
+        },
+        {
+          "id": "l14-query-lifecycle-q2",
+          "prompt": "Rewriter khác optimizer dựa chi phí chủ yếu thế nào?",
+          "options": [
+            "Áp tương đương/heuristic, tính đúng độc lập cardinality thật",
+            "Bỏ predicate khi đầu ra dự đoán tương tự",
+            "Phải xét mọi thuật toán vật lý trước viết lại",
+            "Chỉ giữ một dạng SQL, không tương đương"
+          ],
+          "explanation": "Phép viết lại đúng dựa ngữ nghĩa. Sau đó ước lượng so các cách thực thi tương đương."
+        },
+        {
+          "id": "l14-query-lifecycle-q3",
+          "prompt": "Cost estimator dùng gì?",
+          "options": [
+            "Chỉ tên toán tử logic, không kích thước input",
+            "Kế hoạch và thống kê catalog",
+            "Chỉ thứ tự predicate trong SQL",
+            "Chỉ số dòng cuối, không ước lượng trung gian"
+          ],
+          "explanation": "Catalog hỗ trợ ước lượng cardinality và chi phí. Chỉ thứ tự SQL chưa đủ."
+        },
+        {
+          "id": "l14-query-lifecycle-q4",
+          "prompt": "Query block lấy đầu vào từ đâu?",
+          "options": [
+            "Chỉ bảng gốc vì cấm query lồng",
+            "Chỉ file tạm materialize, không bảng gốc trực tiếp",
+            "Quan hệ gốc hoặc query block khác",
+            "Chỉ một quan hệ vì không biểu diễn nhiều input"
+          ],
+          "explanation": "Query lồng được biểu diễn qua nhiều block. Input không chỉ bảng gốc."
+        },
+        {
+          "id": "l14-query-lifecycle-q5",
+          "prompt": "Ba mối quan tâm tương đối độc lập của optimizer là gì?",
+          "options": [
+            "Chỉ join order, predicate và output",
+            "Parsing, execution, recovery là ba phần tìm kế hoạch",
+            "Cardinality, page count, row width thay search strategy",
+            "Không gian kế hoạch, ước lượng chi phí, chiến lược tìm kiếm"
+          ],
+          "explanation": "Ba câu hỏi: xét kế hoạch nào, định giá thế nào, tìm trong chúng thế nào."
+        }
+      ]
+    },
+    {
+      "id": "l14-some-simplifications",
+      "title": "Các phép đơn giản hóa",
+      "questions": [
+        {
+          "id": "l14-some-simplifications-q1",
+          "prompt": "Truy vấn trả dòng không aggregation: WHERE 1=0 rút thành gì?",
+          "options": [
+            "Kết quả rỗng",
+            "Mọi dòng R",
+            "Một dòng NULL",
+            "Một dòng ngẫu nhiên"
+          ],
+          "explanation": "Predicate luôn sai nên không dòng đạt. Khác đọc R không filter; aggregate không GROUP BY vẫn có thể trả dòng nên cần xét riêng."
+        },
+        {
+          "id": "l14-some-simplifications-q2",
+          "prompt": "WHERE 1=1 trên R tương đương gì nếu không hiệu ứng khác?",
+          "options": [
+            "Nhân đôi mọi dòng",
+            "Đọc R không predicate ấy",
+            "Trả rỗng",
+            "Chỉ dòng đầu R"
+          ],
+          "explanation": "Điều kiện luôn đúng không lọc dòng. Bỏ nó giữ kết quả."
+        },
+        {
+          "id": "l14-some-simplifications-q3",
+          "prompt": "Self-join R1.id=R2.id chỉ trả R1.*. Theo điều kiện ví dụ, tính chất nào cho phép bỏ join?",
+          "options": [
+            "Nullable và không unique",
+            "Biểu thức ngẫu nhiên",
+            "Primary key",
+            "Tùy ý chứa bản sao"
+          ],
+          "explanation": "Primary key bảo đảm đúng một match mỗi dòng self-join. Cột không unique có thể nhân dòng."
+        },
+        {
+          "id": "l14-some-simplifications-q4",
+          "prompt": "val BETWEEN 2 AND 8 OR val BETWEEN 6 AND 12 tương đương khoảng nào?",
+          "options": [
+            "BETWEEN 6 AND 8",
+            "BETWEEN 2 AND 6",
+            "BETWEEN 8 AND 12",
+            "BETWEEN 2 AND 12"
+          ],
+          "explanation": "OR lấy hợp khoảng chồng nhau: 2..12. Khoảng 6..8 là giao."
+        },
+        {
+          "id": "l14-some-simplifications-q5",
+          "prompt": "Vì sao không luôn bỏ được EXISTS tương quan?",
+          "options": [
+            "Nó có thể loại dòng không có match subquery",
+            "EXISTS luôn trả mọi dòng",
+            "SQL không hỗ trợ viết lại",
+            "Subquery luôn có side effect"
+          ],
+          "explanation": "Chỉ ràng buộc đủ mạnh chứng minh EXISTS dư thừa. Vài match trong một instance chưa đủ."
+        },
+        {
+          "id": "ex14-rewrite-q1",
+          "prompt": "Bag semantics: điều gì cho phép thay SELECT L.* FROM R L JOIN R U ON L.id=U.id bằng R?",
+          "options": [
+            "SELECT không dùng cột phải bất kể match",
+            "Mỗi dòng trái có đúng một match phải",
+            "Key không unique hai phía",
+            "Quan hệ phải được bỏ tùy ý dòng match"
+          ],
+          "explanation": "Self-join primary key không NULL cùng quan hệ bảo đảm tồn tại và duy nhất. Key không unique có thể nhân dòng."
+        }
+      ]
+    },
+    {
+      "id": "l14-relational-algebra-equivalences",
+      "title": "Tương đương đại số quan hệ",
+      "questions": [
+        {
+          "id": "l14-relational-algebra-equivalences-q1",
+          "prompt": "Selection P AND Q phân rã thế nào trong mô hình quan hệ?",
+          "options": [
+            "Projection xóa mọi cột predicate",
+            "Selection P sau selection Q",
+            "Union hai selection không bỏ trùng",
+            "Tích Descartes hai selection"
+          ],
+          "explanation": "AND giữ dòng thỏa cả hai. Union tương ứng phương án thay thế, không bắt cả hai."
+        },
+        {
+          "id": "l14-relational-algebra-equivalences-q2",
+          "prompt": "Projection sớm phải giữ gì?",
+          "options": [
+            "Chỉ SELECT cuối dù join sau cần key",
+            "Chỉ primary key, bỏ output khác",
+            "Cột output và cột toán tử sau cần",
+            "Chỉ filter hiện tại, bỏ join/output chưa dùng"
+          ],
+          "explanation": "Bỏ key join hoặc cột filter sớm khiến bước sau không tính đúng."
+        },
+        {
+          "id": "l14-relational-algebra-equivalences-q3",
+          "prompt": "Đổi join order có cho phép bỏ predicate join không?",
+          "options": [
+            "Có nếu sau AND",
+            "Có nếu ba bảng",
+            "Có vì join giao hoán",
+            "Không"
+          ],
+          "explanation": "Đổi thứ tự phải giữ mọi điều kiện. Giao hoán không cho đổi nghĩa."
+        },
+        {
+          "id": "l14-relational-algebra-equivalences-q4",
+          "prompt": "R(a), S(a, b), T(b): đặt S.a=R.a trong cây con chỉ join S, T được không?",
+          "options": [
+            "Không, R.a chưa có",
+            "Có vì mọi join kết hợp",
+            "Có nếu T nhỏ",
+            "Có nếu có index"
+          ],
+          "explanation": "Predicate phải đặt nơi đủ thuộc tính. Chi phí thấp không chữa tham chiếu cột thiếu."
+        },
+        {
+          "id": "l14-relational-algebra-equivalences-q5",
+          "prompt": "R×(S×T) và (R×S)×T liên hệ gì?",
+          "options": [
+            "Tương đương union",
+            "Có tính kết hợp và cùng tổ hợp tuple",
+            "Luôn khác số tuple",
+            "Chỉ tương đương khi mọi quan hệ có key"
+          ],
+          "explanation": "Tích Descartes kết hợp với thuộc tính tương ứng được căn đúng. Không nhầm union."
+        }
+      ]
+    },
+    {
+      "id": "l14-introducing-additional-join-conditions",
+      "title": "Suy ra thêm điều kiện join",
+      "questions": [
+        {
+          "id": "l14-introducing-additional-join-conditions-q1",
+          "prompt": "R.a=S.b và S.b=T.c suy ra gì?",
+          "options": [
+            "R.a≠T.c",
+            "R.a=T.c+1",
+            "R.a=T.c",
+            "R.a<T.c"
+          ],
+          "explanation": "Equality bắc cầu. Không suy ra bất đẳng thức hoặc độ lệch số học."
+        },
+        {
+          "id": "l14-introducing-additional-join-conditions-q2",
+          "prompt": "Equality suy ra có lợi gì?",
+          "options": [
+            "Cho bỏ mọi predicate gốc không kiểm tra",
+            "Bảo đảm join suy ra rẻ hơn mọi order",
+            "Bảo đảm bảng cùng cardinality",
+            "Thêm join order tránh tích Descartes"
+          ],
+          "explanation": "Equality thêm cạnh dùng được trong đồ thị join, không bảo đảm size bằng nhau hay kế hoạch rẻ."
+        },
+        {
+          "id": "l14-introducing-additional-join-conditions-q3",
+          "prompt": "Đồ thị R—S—T, không predicate R, T: ghép R, T trước là gì?",
+          "options": [
+            "Tích Descartes, trừ khi suy ra điều kiện thêm",
+            "Luôn equijoin trên cột cùng tên",
+            "Luôn rỗng",
+            "Luôn index nested loops"
+          ],
+          "explanation": "Không predicate thì cross product. Tên cột giống không tự tạo điều kiện SQL."
+        },
+        {
+          "id": "l14-introducing-additional-join-conditions-q4",
+          "prompt": "Suy luận nào truyền hằng số qua equality đúng?",
+          "options": [
+            "X=Y OR Y=9 suy ra X=9",
+            "X=Y AND Y=9 suy ra X=9",
+            "X<Y AND Y=9 suy ra X=9",
+            "X≠Y AND Y=9 suy ra X=9"
+          ],
+          "explanation": "AND hai equality cho suy ra. OR hay bất đẳng thức không có cùng kết luận."
+        },
+        {
+          "id": "l14-introducing-additional-join-conditions-q5",
+          "prompt": "Thêm predicate suy ra hợp lệ ảnh hưởng kết quả đúng thế nào?",
+          "options": [
+            "Luôn thêm dòng",
+            "Luôn bỏ trùng",
+            "Không đổi kết quả",
+            "Luôn chia đôi số dòng"
+          ],
+          "explanation": "Điều kiện gốc đã bảo đảm điều kiện suy ra. Thêm nó giữ kết quả logic."
+        }
+      ]
+    },
+    {
+      "id": "l14-common-heuristics-projections",
+      "title": "Heuristic cho filter và projection",
+      "questions": [
+        {
+          "id": "l14-common-heuristics-projections-q1",
+          "prompt": "Vì sao selection pushdown thường hữu ích?",
+          "options": [
+            "Luôn giảm đọc heap đúng tỷ lệ selectivity",
+            "Không cần chứng minh tương đương",
+            "Biến mọi join thành hash",
+            "Giảm dòng vào toán tử đắt hơn"
+          ],
+          "explanation": "Pushdown giảm cardinality trung gian nhưng heap gốc vẫn có thể quét mọi trang."
+        },
+        {
+          "id": "l14-common-heuristics-projections-q2",
+          "prompt": "Projection pushdown thường giảm gì?",
+          "options": [
+            "Độ rộng dòng và có thể số trang trung gian",
+            "Số dòng match trong mọi projection bag SQL",
+            "Số bảng query",
+            "Chiều cao mọi index"
+          ],
+          "explanation": "Bỏ cột thừa giảm độ rộng. SQL không DISTINCT không tự bỏ bản sao."
+        },
+        {
+          "id": "l14-common-heuristics-projections-q3",
+          "prompt": "Trước R.a=S.a, output chỉ R.name. Projection sớm R tối thiểu giữ gì?",
+          "options": [
+            "Không cột",
+            "R.a và R.name",
+            "Chỉ R.name",
+            "Chỉ R.a"
+          ],
+          "explanation": "R.a cho join, R.name cho output. Cả hai còn dùng phía sau."
+        },
+        {
+          "id": "l14-common-heuristics-projections-q4",
+          "prompt": "Tránh tích Descartes là quy tắc loại nào?",
+          "options": [
+            "Bảo đảm tối ưu toàn cục mọi dữ liệu",
+            "Quy tắc đúng làm mọi cross product sai",
+            "Heuristic hữu ích không bảo đảm rẻ nhất mọi trường hợp",
+            "Bắt hash thay nested loops"
+          ],
+          "explanation": "Tích nhỏ đôi khi có lợi. Tránh tích chủ yếu hạn chế không gian tìm."
+        },
+        {
+          "id": "l14-common-heuristics-projections-q5",
+          "prompt": "Hai filter chi phí thấp tương đương, một giữ 1%, một 80%. Heuristic selectivity thường xét filter nào trước?",
+          "options": [
+            "80% vì trả nhiều hơn",
+            "Filter đầu WHERE bất kể selectivity",
+            "1% luôn tối ưu dù chi phí tính tăng tùy ý",
+            "Filter giữ 1%"
+          ],
+          "explanation": "Filter mạnh trước giảm công việc sau khi tiền kiểm tra tương đương."
+        }
+      ]
+    },
+    {
+      "id": "l14-physical-equivalences",
+      "title": "Tương đương vật lý",
+      "questions": [
+        {
+          "id": "l14-physical-equivalences-q1",
+          "prompt": "Cặp nào có thể triển khai tương đương truy cập bảng gốc?",
+          "options": [
+            "Heap scan và index scan phù hợp",
+            "Heap scan và aggregation đầy đủ không giữ dòng gốc",
+            "Index tùy ý và selection tùy ý không residual",
+            "Inner join và outer join không điều kiện thêm"
+          ],
+          "explanation": "Scan phù hợp đáp ứng cùng yêu cầu truy cập. Biến đổi không liên quan không tự tương đương."
+        },
+        {
+          "id": "l14-physical-equivalences-q2",
+          "prompt": "Không index: cách nào thực hiện equijoin được?",
+          "options": [
+            "Chỉ đọc root index không tồn tại",
+            "Hash join hoặc sort-merge",
+            "Chỉ index nested loops",
+            "Không thực hiện join được"
+          ],
+          "explanation": "Hash/sort không cần index sẵn, nhưng có chi phí RAM và thứ tự."
+        },
+        {
+          "id": "l14-physical-equivalences-q3",
+          "prompt": "Nested loops có tính predicate tổng quát R.x<S.y được không?",
+          "options": [
+            "Chỉ nếu key unique",
+            "Chỉ nếu cả hai đã sắp",
+            "Có",
+            "Không, chỉ equality"
+          ],
+          "explanation": "Nested loops kiểm tra trực tiếp predicate mỗi cặp. Hash equijoin thông thường không tùy ý thay cho bất đẳng thức."
+        },
+        {
+          "id": "l14-physical-equivalences-q4",
+          "prompt": "Một input rất nhỏ, input lớn có index phù hợp. Nên cân nhắc thuật toán nào?",
+          "options": [
+            "Chắc chắn phải sort cả hai",
+            "Chỉ cross product materialize",
+            "Không cần predicate join",
+            "Index nested loops"
+          ],
+          "explanation": "Ít probe outer có thể rẻ. Vẫn cần định giá, không mặc định luôn tốt nhất."
+        },
+        {
+          "id": "l14-physical-equivalences-q5",
+          "prompt": "Cùng join logic, ngoài cardinality còn quan trọng gì khi chọn thuật toán?",
+          "options": [
+            "RAM, index và thứ tự input/output",
+            "Chỉ số dòng cuối, bỏ mọi thuộc tính input",
+            "Chỉ join order vì thuật toán cùng giá khi order cố định",
+            "Chỉ chiều cao một index, bỏ scan/RAM"
+          ],
+          "explanation": "Thuộc tính vật lý ảnh hưởng khả thi và chi phí. Cách viết SQL không quyết định triển khai tốt nhất."
+        }
+      ]
+    }
+  ],
+  "reviewStatus": "Every question translated in original source-slot order. Author audited explanations against canonical correct slots and private PDF text/model assumptions. No visual diagram/proof or external-paper audit claimed; no locale answer keys."
+}

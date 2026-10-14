@@ -1,0 +1,456 @@
+{
+  "lessonId": "lecture-15",
+  "language": "vi",
+  "topics": [
+    {
+      "id": "l15-selection-pushdown",
+      "title": "Đẩy selection xuống",
+      "questions": [
+        {
+          "id": "l15-selection-pushdown-q1",
+          "prompt": "R outer 100 trang, S 200 trang. Chưa lọc, page nested loops không cache tốn bao nhiêu? Bỏ CPU và ghi output.",
+          "options": [
+            "300 I/O",
+            "20,000 I/O",
+            "40,100 I/O",
+            "20,100 I/O"
+          ],
+          "explanation": "Quét outer 100,100 lượt inner đọc 100 × 200, tổng 20,100. 20,000 bỏ quét outer;300 chỉ đọc mỗi input một lần."
+        },
+        {
+          "id": "l15-selection-pushdown-q2",
+          "prompt": "Heap R 100 trang lọc và đóng gói còn 10 trang outer. Mỗi trang quét heap S 200 trang. Không materialize outer: chi phí? Bỏ CPU và ghi output.",
+          "options": [
+            "2,100 I/O",
+            "2,010 I/O",
+            "300 I/O",
+            "20,100 I/O"
+          ],
+          "explanation": "Đọc R gốc tốn 100, rồi 10 × 200 inner, tổng 2,100.10 trang output không thay quét 100 trang gốc."
+        },
+        {
+          "id": "l15-selection-pushdown-q3",
+          "prompt": "Ví dụ 10 trang outer trên: filter trực tiếp giảm output S còn 5 trang, nhưng mỗi scan vẫn đọc heap S 200 trang. I/O đổi thế nào?",
+          "options": [
+            "Thành 105 I/O",
+            "Vẫn 2,100 I/O",
+            "Thành 150 I/O",
+            "Thành 60 I/O"
+          ],
+          "explanation": "Filter trực tiếp không tránh đọc heap inner gốc. Output nhỏ tự nó không nghĩa ít input-page read."
+        },
+        {
+          "id": "l15-selection-pushdown-q4",
+          "prompt": "Đẩy selection vào một input trong mô hình inner join này cần điều kiện gì?",
+          "options": [
+            "Predicate giữ đúng một dòng",
+            "Bảng đã sắp",
+            "Mọi cột predicate dùng có trong input ấy",
+            "Văn bản predicate ngắn hơn"
+          ],
+          "explanation": "Không tính predicate được ở nơi thiếu cột. Filter mạnh chưa đủ cho viết lại hợp lệ; còn phải giữ ngữ nghĩa."
+        },
+        {
+          "id": "l15-selection-pushdown-q5",
+          "prompt": "Selection pushdown không giảm I/O vẫn có thể cải thiện gì?",
+          "options": [
+            "Luôn giảm chiều cao index",
+            "Nhất thiết giảm trang gốc",
+            "Đổi nghĩa kết quả theo hướng tốt",
+            "Số dòng và công việc phía sau"
+          ],
+          "explanation": "Ít tuple giảm CPU phía sau. Mô hình chỉ I/O không thể hiện mọi lợi ích."
+        }
+      ]
+    },
+    {
+      "id": "l15-join-ordering",
+      "title": "Đổi hướng join",
+      "questions": [
+        {
+          "id": "l15-join-ordering-q1",
+          "prompt": "Heap R 120 trang lọc còn 6, S 80 lọc còn 20. Page nested loops dùng R lọc outer, không materialize/cache inner. Chi phí? Bỏ CPU và ghi output.",
+          "options": [
+            "600 I/O",
+            "126 I/O",
+            "240 I/O",
+            "2,480 I/O"
+          ],
+          "explanation": "Đọc R 120, rồi quét heap S 80 sáu lần:120+6 × 80=600. Output S 20 không giảm đọc lặp nếu vẫn quét heap gốc."
+        },
+        {
+          "id": "l15-join-ordering-q2",
+          "prompt": "R 120→6 trang, S 80→20: page nested loops dùng S lọc outer, không materialize/cache inner. Chi phí? Bỏ CPU và ghi output.",
+          "options": [
+            "600 I/O",
+            "2,480 I/O",
+            "200 I/O",
+            "2,400 I/O"
+          ],
+          "explanation": "Đọc S 80 rồi R 120 hai mươi lần:80+20 × 120=2,480. Đảo input vẫn phải tính quét outer gốc."
+        },
+        {
+          "id": "l15-join-ordering-q3",
+          "prompt": "Có nên chọn outer chỉ bằng size bảng trước lọc?",
+          "options": [
+            "Có, bảng gốc nhỏ luôn tốt nhất bất kể filter",
+            "Có, equality làm chi phí vật lý đối xứng",
+            "Không, xét size sau lọc và tiền truy cập",
+            "Chỉ số cột quan trọng, không cần trang"
+          ],
+          "explanation": "Filter có thể đảo hướng tốt hơn. Cần xét chi phí cả kế hoạch."
+        },
+        {
+          "id": "l15-join-ordering-q4",
+          "prompt": "Đổi input inner equijoin có đổi các cặp match không?",
+          "options": [
+            "Có, luôn bỏ trùng",
+            "Có, luôn thành outer join",
+            "Có, luôn còn một dòng mỗi key",
+            "Không, nếu giữ predicate và ánh xạ cột output"
+          ],
+          "explanation": "Cặp match logic tương đương, nhưng hướng outer/inner vật lý đổi chi phí được."
+        },
+        {
+          "id": "l15-join-ordering-q5",
+          "prompt": "Vì sao materialization có thể đổi hướng join tốt nhất?",
+          "options": [
+            "Tiền mỗi rescan inner và tạo dữ liệu tạm đã đổi",
+            "Tự đổi predicate join",
+            "Ghi tạm miễn phí nên hướng không còn quan trọng",
+            "Materialize một bên làm hai input cùng size"
+          ],
+          "explanation": "Query logic giữ nguyên nhưng giá truy cập khác. Cần định giá lại cả hai hướng."
+        }
+      ]
+    },
+    {
+      "id": "l15-materialising-inner-loops",
+      "title": "Materialize inner đã lọc",
+      "questions": [
+        {
+          "id": "l15-materialising-inner-loops-q1",
+          "prompt": "Heap R 100 lọc còn 10 trang outer. Heap S 200 lọc thành file tạm 50 trang. Tạo file inner và page nested loops tốn tổng bao nhiêu? Bỏ CPU và ghi output cuối.",
+          "options": [
+            "2,100 I/O",
+            "850 I/O",
+            "600 I/O",
+            "800 I/O"
+          ],
+          "explanation": "100+200+50+10 × 50=850. Gồm hai scan gốc, ghi tạm 50, và mười scan tạm;800 bỏ ghi."
+        },
+        {
+          "id": "l15-materialising-inner-loops-q2",
+          "prompt": "Khi nào materialize inner đã lọc có thể tiết kiệm I/O?",
+          "options": [
+            "Chỉ khi file tạm lớn hơn bảng gốc",
+            "Chỉ khi không filter",
+            "Khi đọc lặp file tạm nhỏ hoàn lại chi phí đọc/ghi khởi tạo",
+            "Mọi query, kể cả chỉ đọc inner một lần"
+          ],
+          "explanation": "So tiền khởi tạo với tiết kiệm đọc lặp. Chỉ có lợi khi phần sau lớn hơn phần trước theo mô hình."
+        },
+        {
+          "id": "l15-materialising-inner-loops-q3",
+          "prompt": "Inner 200 lọc còn 50 trang, chỉ cần một lần. So với scan/filter trực tiếp, materialize rồi đọc lại thêm gì? Bỏ CPU và ghi output cuối.",
+          "options": [
+            "Không thêm I/O",
+            "Chỉ một I/O",
+            "Bắt buộc ghi 200",
+            "Ghi 50 trang tạm và đọc 50 trang tạm"
+          ],
+          "explanation": "Scan trực tiếp 200 lượt đọc; đường tạm 200+50+50 nên đắt hơn nếu không tái dùng hay lợi ích khác."
+        },
+        {
+          "id": "l15-materialising-inner-loops-q4",
+          "prompt": "Heap R 100 thành inner tạm 10 trang. Heap S 200 tạo 50 trang outer pipeline. Page nested loops tốn bao nhiêu? Bỏ CPU và ghi output cuối.",
+          "options": [
+            "810 I/O",
+            "850 I/O",
+            "500 I/O",
+            "5,200 I/O"
+          ],
+          "explanation": "200+100+10+50 × 10=810. Inner R tạm nhỏ làm mỗi scan lặp rẻ."
+        },
+        {
+          "id": "l15-materialising-inner-loops-q5",
+          "prompt": "Sai sót tính toán nào làm materialization rẻ giả tạo?",
+          "options": [
+            "Nêu rõ bỏ chi phí output cuối",
+            "Bỏ tiền ghi tạm trong khi giả định file tạm đã tồn tại trên đĩa",
+            "Tính scan gốc đúng một lần",
+            "Tính đọc tạm mỗi rescan"
+          ],
+          "explanation": "File tạm đĩa phải được ghi trước khi đọc lại. Không coi tạo file miễn phí."
+        }
+      ]
+    },
+    {
+      "id": "l15-join-algorithm",
+      "title": "Đổi sang sort-merge",
+      "questions": [
+        {
+          "id": "l15-join-algorithm-q1",
+          "prompt": "Filter trực tiếp cung cấp 20 trang, đã tính đọc gốc. B=5: pass 0 sort cần thêm I/O gì để tạo run? Bỏ CPU và ghi output join cuối.",
+          "options": [
+            "Không vì input pipeline",
+            "Đọc 20 nhưng không ghi",
+            "Ghi 20, không tính đọc gốc lần nữa",
+            "Luôn thêm 40 I/O"
+          ],
+          "explanation": "Toán tử trước đã đọc input. Tạo run ban đầu vẫn phải ghi run xuống đĩa."
+        },
+        {
+          "id": "l15-join-algorithm-q2",
+          "prompt": "20 trang lọc, B=5, tạo 4 run cho merge 4 ngả. Sau scan gốc, sort thêm bao nhiêu nếu ghi output đã sắp xuống đĩa?",
+          "options": [
+            "80 I/O",
+            "40 I/O",
+            "20 I/O",
+            "60 I/O"
+          ],
+          "explanation": "Pass 0 ghi 20 trang. Merge đọc 20 và ghi 20, tổng 60 I/O. Chi phí 80 sẽ tính lại lượt đọc input từ bước trước."
+        },
+        {
+          "id": "l15-join-algorithm-q3",
+          "prompt": "Input lọc 20 và 5 trang, B=5. Không fusion: sort thêm 60 và 5, merge join đọc 25, scan gốc 300. Tổng? Bỏ CPU và ghi output cuối.",
+          "options": [
+            "390 I/O",
+            "365 I/O",
+            "400 I/O",
+            "325 I/O"
+          ],
+          "explanation": "300+60+5+25=390. Input 5 trang vừa một run ban đầu, cần ghi 5 trước khi join đọc."
+        },
+        {
+          "id": "l15-join-algorithm-q4",
+          "prompt": "Vì sao hai input join cần số pass sort khác nhau?",
+          "options": [
+            "Outer bắt buộc hơn inner đúng một pass",
+            "Số trang sau lọc khác dù cùng B",
+            "B bằng luôn số pass bằng",
+            "Page count không ảnh hưởng run ban đầu"
+          ],
+          "explanation": "Run ban đầu và fan-in quyết định pass. Gọi outer/inner không quyết định tiền sort."
+        },
+        {
+          "id": "l15-join-algorithm-q5",
+          "prompt": "Thay page nested loops bằng sort-merge phải xét thêm việc gì?",
+          "options": [
+            "Chỉ merge read, bỏ chuẩn bị sort",
+            "Chỉ sort outer vì inner tự sắp",
+            "Chuẩn bị sort, merge read và thuộc tính vật lý input",
+            "Bỏ mọi upstream read vì sort nhận tuple đã lọc"
+          ],
+          "explanation": "Chi phí đầy đủ gồm truy cập trước và sort cần thiết. Không so thuật toán chỉ bằng một hạng tiền."
+        }
+      ]
+    },
+    {
+      "id": "l15-join-algorithm-again-again",
+      "title": "Đổi tiếp sang block nested loops",
+      "questions": [
+        {
+          "id": "l15-join-algorithm-again-again-q1",
+          "prompt": "Block nested loops có B=7 buffer. Block outer lớn bao nhiêu?",
+          "options": [
+            "6 trang",
+            "7 trang",
+            "2 trang",
+            "5 trang"
+          ],
+          "explanation": "B−2=7−2=5 trang. Hai buffer kia cho inner và output;6 bỏ quên output."
+        },
+        {
+          "id": "l15-join-algorithm-again-again-q2",
+          "prompt": "Scan gốc 300 I/O, outer lọc 50 trang pipeline, inner tạm 10 trang cần 10 ghi. B=7: tổng? Bỏ CPU và ghi output cuối.",
+          "options": [
+            "410 I/O",
+            "310 I/O",
+            "800 I/O",
+            "500 I/O"
+          ],
+          "explanation": "300+10+ceil(50/5)× 10=410. Upstream read đã nằm trong scan gốc 300."
+        },
+        {
+          "id": "l15-join-algorithm-again-again-q3",
+          "prompt": "Outer 51 trang, B=7, inner tạm 10, scan gốc 300. Tổng? Bỏ CPU và ghi output cuối.",
+          "options": [
+            "510 I/O",
+            "420 I/O",
+            "412 I/O",
+            "410 I/O"
+          ],
+          "explanation": "ceil(51/5)=11 block nên 300+10+110=420. Block cuối chưa đầy vẫn quét đủ inner."
+        },
+        {
+          "id": "l15-join-algorithm-again-again-q4",
+          "prompt": "Tăng B không giảm ceil(outer pages/(B−2)). Có nhất thiết giảm I/O trong mô hình không? Bỏ CPU và ghi output cuối.",
+          "options": [
+            "Có, luôn giảm một nửa",
+            "Có vì output biến mất",
+            "Không",
+            "Có, đúng một I/O mỗi buffer thêm"
+          ],
+          "explanation": "Tiền quét lặp đổi theo bước số block. Buffer thêm có thể chưa qua ngưỡng."
+        },
+        {
+          "id": "l15-join-algorithm-again-again-q5",
+          "prompt": "Tuple outer đã lọc pipeline vào block nested loops. Có tự thêm tiền đọc file outer tạm không?",
+          "options": [
+            "Có, mọi trung gian phải ghi/đọc",
+            "Có, bằng số tuple gốc",
+            "Không bao giờ tính upstream read",
+            "Không, nếu outer không materialize"
+          ],
+          "explanation": "Pipeline tránh file outer tạm. Vẫn tính scan gốc; không mọi đọc đều miễn phí."
+        },
+        {
+          "id": "ex15-sort-q1",
+          "prompt": "Đã tính đọc bảng gốc. Sort materialize input lọc 50 trang, B=7, tạo 8 run, trộn 6 ngả. Cần thêm bao nhiêu I/O, không gồm join read?",
+          "options": [
+            "50",
+            "150",
+            "250",
+            "350"
+          ],
+          "explanation": "Ghi ban đầu 50.8 run cần hai pass merge đọc/ghi:50+2 × 50 × 2=250. Không tính scan gốc lại."
+        }
+      ]
+    },
+    {
+      "id": "l15-projection-cascade-pushdown",
+      "title": "Đẩy projection xuống",
+      "questions": [
+        {
+          "id": "l15-projection-cascade-pushdown-q1",
+          "prompt": "Dòng lọc chiếm 12 trang, tuple 48 byte. Bỏ overhead, chiếu còn 8 byte/tuple thì khoảng bao nhiêu trang?",
+          "options": [
+            "2",
+            "6",
+            "12",
+            "72"
+          ],
+          "explanation": "Độ rộng giảm sáu lần, số trang 12/6=2. Không giảm số dòng."
+        },
+        {
+          "id": "l15-projection-cascade-pushdown-q2",
+          "prompt": "B=8, outer đã chiếu 2 trang. Đọc gốc R 100 I/O, S 200. Outer pipeline giữ RAM khi quét S một lần: tổng? Bỏ CPU và ghi output.",
+          "options": [
+            "600 I/O",
+            "300 I/O",
+            "302 I/O",
+            "500 I/O"
+          ],
+          "explanation": "Outer vừa B−2 buffer. Chỉ hai scan gốc, tổng 300. Không thêm lượt đọc file tạm tưởng tượng."
+        },
+        {
+          "id": "l15-projection-cascade-pushdown-q3",
+          "prompt": "Join trên customer_id rồi trả name: projection sớm phải giữ gì?",
+          "options": [
+            "Chỉ cột cuối, bỏ join key",
+            "Không cột sau khi lọc",
+            "Join key và cột khác dùng phía sau",
+            "Chỉ name ở mọi input"
+          ],
+          "explanation": "Không xóa thuộc tính join và xử lý sau còn cần."
+        },
+        {
+          "id": "l15-projection-cascade-pushdown-q4",
+          "prompt": "Số tuple outer không đổi: projection làm dòng hẹp có tự giảm số probe index nested loops không?",
+          "options": [
+            "Có, theo tỷ lệ độ rộng",
+            "Có, luôn chỉ một probe",
+            "Có, projection mặc định DISTINCT",
+            "Không"
+          ],
+          "explanation": "Mỗi tuple outer một probe theo mô hình. Dòng hẹp không giảm tuple; projection SQL thường không loại trùng."
+        },
+        {
+          "id": "l15-projection-cascade-pushdown-q5",
+          "prompt": "Vì sao projection pushdown đặc biệt hữu ích cho block nested loops?",
+          "options": [
+            "Nhiều tuple outer vừa mỗi block hơn, ít rescan inner",
+            "Biến mọi predicate thành equality",
+            "Tăng trang inner phải quét",
+            "Không còn cần buffer"
+          ],
+          "explanation": "Dung lượng block đo byte/trang. Dòng hẹp giảm số block outer và lượt quét inner được."
+        }
+      ]
+    },
+    {
+      "id": "l15-how-about-indexes",
+      "title": "Thêm index vào phép so sánh",
+      "questions": [
+        {
+          "id": "l15-how-about-indexes-q1",
+          "prompt": "Clustered outer selection đọc 6 trang, trả 300 tuple. Lookup inner unique mỗi lần 1 I/O, index page cache. Index nested loops tổng? Bỏ CPU và ghi output.",
+          "options": [
+            "1,806 I/O",
+            "306 I/O",
+            "12 I/O",
+            "300 I/O"
+          ],
+          "explanation": "6+300 × 1=306. Sáu trang outer không thay 300 tuple khi đếm probe."
+        },
+        {
+          "id": "l15-how-about-indexes-q2",
+          "prompt": "Cùng ví dụ, mỗi lookup inner cần thêm 2 traversal I/O. Tổng? Bỏ CPU và ghi output.",
+          "options": [
+            "306 I/O",
+            "9 I/O",
+            "906 I/O",
+            "606 I/O"
+          ],
+          "explanation": "Mỗi probe 3 I/O nên 6+300 × 3=906. Đổi giả định cache index đổi ước lượng lớn."
+        },
+        {
+          "id": "l15-how-about-indexes-q3",
+          "prompt": "Key join inner duy nhất bảo đảm gì?",
+          "options": [
+            "Mọi outer phải có match dù không FK",
+            "Output join không trùng bất kể outer",
+            "Index luôn cache",
+            "Mỗi outer có tối đa một inner match"
+          ],
+          "explanation": "Unique chỉ bảo đảm tối đa một match. Tồn tại cần ràng buộc thêm như foreign key phù hợp với điều kiện cần."
+        },
+        {
+          "id": "l15-how-about-indexes-q4",
+          "prompt": "Filter thuộc tính inner không có trong lookup index có thể cần kiểm tra khi nào?",
+          "options": [
+            "Sau khi lấy dòng inner ứng viên",
+            "Trước lookup mà không đọc thuộc tính ở đâu",
+            "Bỏ vì đã dùng index",
+            "Thay bằng equality join key"
+          ],
+          "explanation": "Index key join không tự kiểm tra predicate cột khác. Có thể phải lấy giá trị từ record."
+        },
+        {
+          "id": "l15-how-about-indexes-q5",
+          "prompt": "Cùng giả định, index nested loops 900 I/O, kế hoạch scan 300. Mô hình I/O ưu tiên gì?",
+          "options": [
+            "Không so được kế hoạch vật lý",
+            "Kế hoạch 300",
+            "Index vì luôn nhanh hơn",
+            "Bằng nhau vì cùng SQL"
+          ],
+          "explanation": "So ước lượng dưới giả định nhất quán. Có index không bảo đảm rẻ hơn."
+        },
+        {
+          "id": "ex15-fair-q1",
+          "prompt": "Clustered access lấy 1,200 Orders đạt điều kiện trên 12 trang. Key đã chiếu vừa RAM. Scan Customers 200 I/O. Chi phí giữ key rồi scan với cùng access là bao nhiêu?",
+          "options": [
+            "800 I/O",
+            "1,212 I/O",
+            "212 I/O",
+            "12 I/O"
+          ],
+          "explanation": "Dùng cùng clustered outer access:12+200=212. Chi phí 800 trước giả định heap access khác."
+        }
+      ]
+    }
+  ],
+  "reviewStatus": "Every question translated in original source-slot order. Author audited explanations against canonical correct slots and private PDF text/model assumptions. No visual diagram/proof or external-paper audit claimed; no locale answer keys."
+}

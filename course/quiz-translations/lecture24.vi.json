@@ -1,0 +1,434 @@
+{
+  "lessonId": "lecture-24",
+  "language": "vi",
+  "topics": [
+    {
+      "id": "l24-topic-evaluation-complexity",
+      "title": "Độ phức tạp dữ liệu khi đánh giá truy vấn",
+      "questions": [
+        {
+          "id": "l24-evaluation-complexity-q1",
+          "prompt": "Trong độ phức tạp kết hợp của đánh giá CQ, thành phần nào có thể thay đổi theo đầu vào?",
+          "options": [
+            "Cơ sở dữ liệu, truy vấn và bộ cần kiểm tra",
+            "Chỉ dữ liệu, giữ truy vấn cố định",
+            "Chỉ truy vấn, giữ dữ liệu và bộ đích cố định",
+            "Chỉ kích thước đầu ra; dữ liệu và truy vấn không tính vào đầu vào"
+          ],
+          "explanation": "Độ phức tạp kết hợp tính truy vấn trong kích thước đầu vào; độ phức tạp dữ liệu giữ truy vấn cố định."
+        },
+        {
+          "id": "l24-evaluation-complexity-q2",
+          "prompt": "Độ phức tạp dữ liệu giữ cố định gì?",
+          "options": [
+            "Cơ sở dữ liệu D",
+            "Truy vấn Q",
+            "Mọi kết quả Q",
+            "Số hàng mỗi bảng"
+          ],
+          "explanation": "Q cố định còn dữ liệu tăng. Giữ D và đổi Q là cách đo khác."
+        },
+        {
+          "id": "l24-evaluation-complexity-q3",
+          "prompt": "Vì sao hỏi t thuộc Q(D) thay vì luôn yêu cầu in toàn bộ kết quả?",
+          "options": [
+            "CQ không thể trả hơn một bộ",
+            "Kiểm tra thành viên đếm toàn bộ đầu ra trong thời gian hằng",
+            "Đầu ra có thể rất lớn, che khuất độ khó quyết định thành viên",
+            "Đầu ra luôn nhỏ hơn truy vấn"
+          ],
+          "explanation": "Cách này tách chi phí quyết định thành viên khỏi kích thước đầu ra. Truy vấn vẫn có kết quả, nhưng in nó không phải nhiệm vụ đang đo."
+        },
+        {
+          "id": "l24-evaluation-complexity-q4",
+          "prompt": "Bài giảng nêu kết quả độ phức tạp nào cho đánh giá CQ?",
+          "options": [
+            "Kết hợp PTIME nhưng dữ liệu không quyết định được",
+            "Dữ liệu NP-đầy đủ với mọi Q cố định",
+            "Cả hai đều thời gian hằng",
+            "Kết hợp NP-đầy đủ, dữ liệu PTIME"
+          ],
+          "explanation": "Hai mệnh đề dùng hai cách đo nên không mâu thuẫn. NP-đầy đủ kết hợp không làm mọi truy vấn cố định thành NP-đầy đủ."
+        },
+        {
+          "id": "l24-evaluation-complexity-q5",
+          "prompt": "Q cố định có k biến, miền dữ liệu có n giá trị. Liệt kê n^k phép gán tăng theo n thế nào?",
+          "options": [
+            "Đa thức vì k là hằng",
+            "Luôn mũ theo n dù k cố định",
+            "Thời gian hằng",
+            "Không kiểm tra được trong thời gian hữu hạn"
+          ],
+          "explanation": "Số mũ cố định cho độ phức tạp dữ liệu đa thức. Khi k là phần thay đổi của đầu vào, lập luận này không chứng minh độ phức tạp kết hợp đa thức."
+        }
+      ]
+    },
+    {
+      "id": "l24-topic-np",
+      "title": "Độ phức tạp đánh giá truy vấn",
+      "questions": [
+        {
+          "id": "l24-np-q1",
+          "prompt": "Chứng chỉ YES tự nhiên cho kiểm tra thành viên CQ là gì?",
+          "options": [
+            "Kế hoạch rẻ nhưng không có phép gán khớp",
+            "Phép gán thỏa mọi nguyên tử và bộ đầu yêu cầu",
+            "Phép gán chỉ thỏa nguyên tử đầu",
+            "Bộ đầu ra không có cách thỏa thân"
+          ],
+          "explanation": "Đoán–kiểm tra dùng đồng cấu làm nhân chứng. Kế hoạch chạy riêng nó không chứng minh phép khớp tồn tại."
+        },
+        {
+          "id": "l24-np-q2",
+          "prompt": "Kiểm tra ánh xạ h ứng viên cần gì?",
+          "options": [
+            "Chỉ h khớp nguyên tử đầu",
+            "Chỉ số biến bằng số cột",
+            "h(body) nằm trong D và h(head) bằng t",
+            "Chỉ h không đổi tên quan hệ"
+          ],
+          "explanation": "Cả toàn bộ thân lẫn bộ đầu phải khớp. Một nguyên tử hoặc tên quan hệ chưa kiểm tra hết ràng buộc nối."
+        },
+        {
+          "id": "l24-np-q3",
+          "prompt": "Ý tưởng của phép quy đổi từ tô ba màu là gì?",
+          "options": [
+            "Mọi đỉnh cùng màu luôn hợp lệ",
+            "Chỉ kiểm tra đồ thị đúng ba đỉnh",
+            "Cho hai đầu cạnh chung màu nếu có chu trình",
+            "Ánh xạ đỉnh tới ba màu sao cho mỗi cạnh nối hai màu khác nhau"
+          ],
+          "explanation": "Đồng cấu đồ thị vào tam giác màu biểu diễn cách tô. Hai đầu một cạnh cùng màu vi phạm điều kiện khác màu."
+        },
+        {
+          "id": "l24-np-q4",
+          "prompt": "Trong dữ liệu mô hình màu cho đồ thị vô hướng, E chứa cặp khác màu. Vì sao thiếu E(red,red)?",
+          "options": [
+            "Cấm hai đầu cạnh cùng màu",
+            "Buộc mọi đỉnh đỏ",
+            "Loại mọi đồ thị có chu trình",
+            "Bảo đảm mỗi truy vấn đúng một phép khớp"
+          ],
+          "explanation": "Bỏ cạnh tự nối loại cách tô cùng màu trên cạnh. Chu trình vẫn có thể tô ba màu; mục đích không phải loại chu trình."
+        },
+        {
+          "id": "l24-np-q5",
+          "prompt": "Thuộc NP ở đây nghĩa là gì?",
+          "options": [
+            "Biết cách tìm mọi nhân chứng trong thời gian đa thức",
+            "Kiểm tra nhân chứng đúng có kích thước đa thức trong thời gian đa thức",
+            "Đã chứng minh P khác NP",
+            "Mọi trường hợp cần thời gian mũ"
+          ],
+          "explanation": "Bộ kiểm tra nhanh không đồng nghĩa tìm nhân chứng nhanh. NP-đầy đủ cũng không cho cận dưới mũ với từng đầu vào."
+        }
+      ]
+    },
+    {
+      "id": "l24-topic-static-analysis",
+      "title": "Phân tích tĩnh",
+      "questions": [
+        {
+          "id": "l24-static-analysis-q1",
+          "prompt": "CQ-Satisfiability hỏi gì?",
+          "options": [
+            "Q chạy nhanh trên dữ liệu hiện tại không",
+            "Q có kết quả khác rỗng trên mọi dữ liệu không",
+            "Có dữ liệu D nào khiến Q(D) khác rỗng không",
+            "Q tương đương mọi truy vấn cùng đầu không"
+          ],
+          "explanation": "Khả thỏa hỏi tồn tại ít nhất một dữ liệu cho đáp án, không phải benchmark hay mệnh đề về mọi dữ liệu."
+        },
+        {
+          "id": "l24-static-analysis-q2",
+          "prompt": "CQ-Equivalence yêu cầu gì?",
+          "options": [
+            "Cùng kết quả trên một dữ liệu mẫu",
+            "Cùng số nguyên tử",
+            "Cùng tên đầu",
+            "Q1(D)=Q2(D) với mọi D"
+          ],
+          "explanation": "Tương đương lượng hóa trên mọi D. Khớp kết quả trên dữ liệu thử chỉ là bằng chứng hạn chế, chưa là chứng minh chung."
+        },
+        {
+          "id": "l24-static-analysis-q3",
+          "prompt": "Q1⊆Q2 nghĩa là gì?",
+          "options": [
+            "Với mọi D, mọi đáp án Q1 cũng là đáp án Q2",
+            "Với mọi D, Q2(D) nằm trong Q1(D)",
+            "Thân Q1 nằm trong thân Q2 luôn đủ, bất kể đầu",
+            "Cùng đầu ra trên đúng một D"
+          ],
+          "explanation": "Bao hàm nói về tập kết quả trên mọi dữ liệu, không phải số nguyên tử hoặc thứ tự chạy."
+        },
+        {
+          "id": "l24-static-analysis-q4",
+          "prompt": "Hai kiểm tra nào cùng thiết lập tương đương?",
+          "options": [
+            "Chỉ Q1⊆Q2",
+            "Q1⊆Q2 và Q2⊆Q1",
+            "Chỉ dữ liệu chuẩn tắc cùng số sự kiện",
+            "Chỉ Q1⊆Q1"
+          ],
+          "explanation": "Bao hàm hai chiều cho đẳng thức. Một chiều chỉ chứng minh đáp án truy vấn này nằm trong truy vấn kia."
+        },
+        {
+          "id": "l24-static-analysis-q5",
+          "prompt": "Độ phức tạp tổng quát của CQ-Containment và CQ-Equivalence là gì?",
+          "options": [
+            "Không quyết định được",
+            "Luôn thời gian hằng",
+            "NP-đầy đủ",
+            "PTIME chỉ vì mọi CQ khả thỏa"
+          ],
+          "explanation": "Khả thỏa dễ không khiến bao hàm dễ. Định lý đồng cấu dẫn tới NP-đầy đủ cho hai bài toán này."
+        }
+      ]
+    },
+    {
+      "id": "l24-topic-canonical",
+      "title": "Cơ sở dữ liệu chuẩn tắc",
+      "questions": [
+        {
+          "id": "l24-canonical-q1",
+          "prompt": "D[Q] chuẩn tắc được dựng thế nào?",
+          "options": [
+            "Bỏ thân, giữ đầu làm sự kiện",
+            "Thay mọi biến bằng cùng hằng bất kể cấu trúc",
+            "Chọn bất kỳ dữ liệu cùng tên quan hệ",
+            "Thay mỗi biến bằng hằng mới riêng, giữ các nguyên tử thân"
+          ],
+          "explanation": "Đóng băng biến bằng hằng mới giữ cấu trúc truy vấn; đây không phải lấy mẫu ngẫu nhiên."
+        },
+        {
+          "id": "l24-canonical-q2",
+          "prompt": "Đâu là dữ liệu chuẩn tắc của Q(x):-R(x,y),S(y)?",
+          "options": [
+            "{R(cx,cy),S(cy)}, cx,cy là hằng mới khác nhau",
+            "{R(cx,cy),S(cz)}, cy khác cz",
+            "{R(cx,cx)} không có S",
+            "Chỉ {Q(cx)}"
+          ],
+          "explanation": "Mọi lần y phải thành cùng cy. D[Q] chứa sự kiện thân, không chỉ sự kiện đầu."
+        },
+        {
+          "id": "l24-canonical-q3",
+          "prompt": "Vì sao mọi CQ dương thuần khả thỏa trong bối cảnh bài giảng?",
+          "options": [
+            "Đúng trên mọi dữ liệu kể cả rỗng",
+            "Dữ liệu chuẩn tắc của chính nó cho phép khớp ngay",
+            "Mọi nguyên tử là hằng đúng",
+            "Mỗi quan hệ phải chứa mọi bộ có thể"
+          ],
+          "explanation": "Dữ liệu chuẩn tắc cung cấp ít nhất một D phù hợp, không nói truy vấn có đáp án trên mọi D."
+        },
+        {
+          "id": "l24-canonical-q4",
+          "prompt": "Nếu Q có hằng 'Hue', cách dựng chuẩn tắc xử lý nó thế nào?",
+          "options": [
+            "Thay Hue bằng hằng mới của x",
+            "Bỏ mọi nguyên tử có Hue",
+            "Giữ nguyên Hue",
+            "Thay Hue bằng NULL"
+          ],
+          "explanation": "Chỉ biến được đóng băng thành hằng mới. Hằng có sẵn giữ nghĩa; đổi Hue sẽ đổi truy vấn."
+        },
+        {
+          "id": "l24-canonical-q5",
+          "prompt": "Mệnh đề “mọi CQ khả thỏa” được biện minh trong phạm vi nào?",
+          "options": [
+            "Mọi SQL có NOT và bất đẳng thức tùy ý",
+            "Mọi truy vấn dưới mọi ràng buộc lược đồ",
+            "Mọi truy vấn có điều kiện mâu thuẫn",
+            "CQ dương thuần, không có ràng buộc bổ sung gây mâu thuẫn"
+          ],
+          "explanation": "Nhân chứng chuẩn tắc chứng minh trong ngôn ngữ CQ đang xét. Ràng buộc bổ sung hoặc điều kiện mâu thuẫn ngoài mảnh này có thể phá lập luận."
+        }
+      ]
+    },
+    {
+      "id": "l24-topic-containment-hom",
+      "title": "Định lý đồng cấu",
+      "questions": [
+        {
+          "id": "l24-containment-hom-q1",
+          "prompt": "Chứng minh Q1⊆Q2 theo định lý đồng cấu cần ánh xạ chiều nào?",
+          "options": [
+            "Q2→Q1",
+            "Q1→Q2",
+            "Dữ liệu tùy ý tới đầu Q1",
+            "Chỉ Q1 tới chính nó"
+          ],
+          "explanation": "Ánh xạ ngược chiều bao hàm: thân chặt hơn cho tập đáp án nhỏ hơn. Đây là chiều dễ bị đảo nhầm."
+        },
+        {
+          "id": "l24-containment-hom-q2",
+          "prompt": "Q1(x):-R(x,y),S(y), Q2(x):-R(x,y). Bao hàm nào luôn đúng?",
+          "options": [
+            "Q2⊆Q1",
+            "Q1⊆Q2",
+            "Tương đương trên mọi D",
+            "Luôn rời nhau dù D có R,S khớp"
+          ],
+          "explanation": "Mỗi phép khớp Q1 đã có R mà Q2 yêu cầu. Chiều ngược sai khi R không có S khớp."
+        },
+        {
+          "id": "l24-containment-hom-q3",
+          "prompt": "Điều kiện nào thêm vào đồng cấu thân để thành đồng cấu truy vấn?",
+          "options": [
+            "Phải song ánh trên mọi biến",
+            "Giữ số nguyên tử",
+            "Ánh xạ bộ đầu nguồn tới bộ đầu đích theo từng vị trí",
+            "Chỉ thân quan trọng, bỏ qua đầu ra"
+          ],
+          "explanation": "Bảo toàn đầu ra là thiết yếu. Ánh xạ thân đúng nhưng gửi biến đầu tới sai biến không chứng minh bao hàm với cùng bộ kết quả."
+        },
+        {
+          "id": "l24-containment-hom-q4",
+          "prompt": "Với Q1(x):-R(x,y),S(y), Q2(x):-R(x,y), dữ liệu nào bác bỏ Q2⊆Q1?",
+          "options": [
+            "{R(a,b),S(b)}",
+            "Dữ liệu rỗng",
+            "{R(a,b),S(b),S(c)}",
+            "{R(a,b)}, S rỗng"
+          ],
+          "explanation": "Chỉ R(a,b) và S rỗng cho a ở Q2 nhưng không ở Q1. Có S(b) khiến cả hai trả a nên không phải phản ví dụ."
+        },
+        {
+          "id": "l24-containment-hom-q5",
+          "prompt": "Nếu h:Q2→Q1 và g khớp Q1 vào D, vì sao Q2 có phép khớp phù hợp?",
+          "options": [
+            "Hợp thành g∘h đưa thân Q2 vào D và giữ đầu",
+            "h phải khả nghịch",
+            "Q2 phải ít biến hơn Q1",
+            "Mọi truy vấn cùng số vị trí đầu đều tương đương"
+          ],
+          "explanation": "Hợp thành chứng minh chiều đủ. Đồng cấu không cần khả nghịch; cùng số vị trí đầu chưa đủ."
+        }
+      ]
+    },
+    {
+      "id": "l24-topic-minimization",
+      "title": "Quy trình tối giản",
+      "questions": [
+        {
+          "id": "l24-minimization-q1",
+          "prompt": "Mục tiêu tối giản CQ là gì?",
+          "options": [
+            "Tìm truy vấn trả ít bộ nhất bất kể nghĩa",
+            "Tìm CQ tương đương có ít nguyên tử nhất",
+            "Gộp biến bằng mọi cách dù đổi đầu ra",
+            "Chỉ chọn thứ tự nối rẻ nhất cho dữ liệu hiện tại"
+          ],
+          "explanation": "Tối giản giữ ngữ nghĩa và giảm nguyên tử/phép nối. Thu nhỏ kết quả bằng thêm điều kiện là việc khác."
+        },
+        {
+          "id": "l24-minimization-q2",
+          "prompt": "Q(x):-R(x,y),R(x,z), theo tập hợp và không có bất đẳng thức. Bỏ nguyên tử thứ hai được không?",
+          "options": [
+            "Không vì y,z phải khác nhau",
+            "Chỉ khi dữ liệu có một bộ",
+            "Có; z↦y chứng minh dư thừa",
+            "Có nhưng phải đổi đầu thành Q(y)"
+          ],
+          "explanation": "Hai biến tồn tại khác tên có thể cùng giá trị nên một nhân chứng R thỏa cả hai. Không có yêu cầu y≠z."
+        },
+        {
+          "id": "l24-minimization-q3",
+          "prompt": "Vì sao trước khi bỏ nguyên tử phải kiểm tra mọi biến đầu vẫn có trong thân còn lại?",
+          "options": [
+            "Để mỗi biến xuất hiện đúng hai lần",
+            "Để gộp mọi biến đầu vào hằng",
+            "Để chỉ dùng số cột mà bỏ kiểm tra tương đương",
+            "Giữ truy vấn an toàn và đầu ra được thân còn lại ràng buộc"
+          ],
+          "explanation": "Không thể bỏ ngay nguyên tử duy nhất ràng buộc biến đầu. Quy trình không yêu cầu biến xuất hiện đúng hai lần."
+        },
+        {
+          "id": "l24-minimization-q4",
+          "prompt": "Qold trước xóa, Qnew sau xóa. Thuật toán cần kiểm tra ánh xạ không hiển nhiên nào?",
+          "options": [
+            "Qold→Qnew, bảo toàn đầu",
+            "Chỉ Qnew→Qold vì luôn khó hơn",
+            "Dữ liệu→Qnew trên một mẫu",
+            "Gửi mọi biến đầu tới hằng tùy ý"
+          ],
+          "explanation": "Qnew→Qold có ngay vì thân còn lại nằm trong thân cũ. Cần Qold→Qnew để chứng minh tương đương; không được đổi đầu tùy ý."
+        },
+        {
+          "id": "l24-minimization-q5",
+          "prompt": "Có bỏ S(x) khỏi Q(x):-R(x,y),S(x) mà giữ tương đương trên mọi D không?",
+          "options": [
+            "Có vì S một cột",
+            "Không; dữ liệu chỉ có R(a,b) là phản ví dụ",
+            "Có vì R ràng buộc x nên S không thêm điều kiện",
+            "Có sau khi đổi tên y"
+          ],
+          "explanation": "Khi S rỗng, gốc không trả a nhưng truy vấn sau xóa có. Số cột ít không khiến nguyên tử dư thừa."
+        }
+      ]
+    },
+    {
+      "id": "l24-topic-core",
+      "title": "Tính duy nhất của truy vấn tối giản",
+      "questions": [
+        {
+          "id": "l24-core-q1",
+          "prompt": "Theo định lý, hai CQ tối giản cùng tương đương Q liên hệ thế nào?",
+          "options": [
+            "Văn bản trùng từng ký tự",
+            "Số nguyên tử có thể khác tùy ý",
+            "Đẳng cấu: giống nhau tới đổi tên biến",
+            "Chỉ cần cùng số bộ đầu ra trên một D"
+          ],
+          "explanation": "Duy nhất tới đẳng cấu, không phải giống từng byte. Tên biến khác nhưng cấu trúc vẫn giống."
+        },
+        {
+          "id": "l24-core-q2",
+          "prompt": "Lõi của Q trong phần này là gì?",
+          "options": [
+            "Bảng vật hóa Q(D) cho dữ liệu hiện tại",
+            "Các nguyên tử xuất hiện đúng một lần trong văn bản",
+            "Hằng của một dữ liệu làm Q đúng",
+            "CQ tối giản tương đương Q, duy nhất tới đổi tên biến"
+          ],
+          "explanation": "Lõi là biểu diễn tối giản ngữ nghĩa của truy vấn, không phải kết quả vật hóa trên một D."
+        },
+        {
+          "id": "l24-core-q3",
+          "prompt": "Q(x):-R(x,y) và P(a):-R(a,b) có đẳng cấu khi x,y,a,b là biến không?",
+          "options": [
+            "Có; đổi x↦a,y↦b và giữ vị trí đầu",
+            "Không vì khác tên truy vấn",
+            "Không vì khác tên biến",
+            "Chỉ nếu x,a là hằng"
+          ],
+          "explanation": "Tên biến là ký hiệu. Đổi tên giữ nguyên tử và đầu chứng minh đẳng cấu; không nhầm biến với hằng cố định."
+        },
+        {
+          "id": "l24-core-q4",
+          "prompt": "Q(x):-R(x,y), P(a):-R(b,a), a,b là biến. Chỉ đổi tên biến có thiết lập tương đương không?",
+          "options": [
+            "Có vì đều một R hai vị trí",
+            "Không; đầu ở vị trí R khác nhau nên thường không có đổi tên giữ đầu",
+            "Có vì mọi truy vấn một nguyên tử tương đương",
+            "Có nếu bỏ qua đầu khi xét đẳng cấu"
+          ],
+          "explanation": "Q trả thành phần đầu của R, P trả thành phần sau. D={R(c,d)}, c khác d, cho đầu ra khác. Đẳng cấu lõi phải giữ đầu."
+        },
+        {
+          "id": "l24-core-q5",
+          "prompt": "Định lý duy nhất tự cung cấp thuật toán tối giản đa thức không?",
+          "options": [
+            "Có; duy nhất làm kiểm tra đồng cấu thành thời gian hằng",
+            "Có; xóa tùy ý tới một nguyên tử",
+            "Không; kết quả duy nhất không làm mọi bước tìm kiếm rẻ",
+            "Không; định lý nói truy vấn không thể tối giản"
+          ],
+          "explanation": "Kết quả chuẩn tắc vẫn có thể khó tìm. Quy trình cần kiểm tra đồng cấu vốn khó trong trường hợp tổng quát."
+        }
+      ]
+    }
+  ],
+  "reviewStatus": "Each translated explanation reviewed against canonical answer position and private extracted lecture text. Full bank translated. No canonical answer keys modified. Visual diagrams not reverified in this batch."
+}

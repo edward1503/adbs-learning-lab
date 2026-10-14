@@ -1,0 +1,1489 @@
+{
+  "date": "2026-10-14",
+  "coverage": {
+    "banks": 3,
+    "questions": 113,
+    "options": 452,
+    "explanations": 113,
+    "unfinishedIds": []
+  },
+  "authorAudit": {
+    "outcome": "All113 translated explanations checked against canonical selected option and associated teaching examples; no contradiction identified.",
+    "ambiguities": [],
+    "nuances": [
+      "Lecture16: h in canonical exercises counts internal-node reads before leaf scanning, making descent/leaf accounting explicit beyond source slide17 wording. Coverage and variant B/C fetch requirements retained.",
+      "Lecture17: inclusive integer endpoints, uniformity, independence, non-NULL and containment assumptions retained. Historical PostgreSQL13 default examples are not current universal constants. Histogram whole/partial-bucket arithmetic checked.",
+      "Lecture18: page13 optimal-substructure statement read together with page20 interesting-order retention. DP state/property compatibility and full extension/final-sort cost retained. Unclustered cost may include repeated page reads, not distinct-page count."
+    ],
+    "numericalChecks": [
+      "16:113 and13 scan examples; h+sL+sN=54; grouped RID pages count3.",
+      "17:AND=.06,OR=.44,NOT=.85; FK900/810; equijoin9000; histogram58 and45.",
+      "18:clustered11 versus unclustered1001; totals70/55,60/110,180/125,85/72."
+    ],
+    "limitations": "Author consistency audit of original practice questions; not independent empirical or assessment validation."
+  },
+  "sourceDepth": {
+    "canonical": "All question prompts, options, selected answers and explanations read from current quiz16–18.json.",
+    "mainBodies": "Associated EN/VI main explanations consulted: access paths/coverage, costing/propagated cardinality, statistics and histogram assumptions, DP physical properties/complete costs.",
+    "privatePdfText": {
+      "lecture16": "Physical pages1–23 read",
+      "lecture17": "Physical pages1–26 read",
+      "lecture18": "Physical pages1–24 read"
+    },
+    "visualPhysicalPages": {
+      "lecture16": [
+        17
+      ],
+      "lecture17": [
+        18,
+        19,
+        20,
+        24,
+        25
+      ],
+      "lecture18": [
+        10,
+        15,
+        23
+      ]
+    },
+    "visualMethod": "Poppler rendered selected formula/diagram pages; images inspected. Not exhaustive visual verification of every page.",
+    "restrictedLearnPracticalRead": false,
+    "currentExternalPostgresqlBehaviorReverified": false,
+    "copyrightedSourcesPublished": false
+  },
+  "validation": {
+    "jsonSchema": true,
+    "exactTopicAndQuestionOrder": true,
+    "fourSourceOptionSlots": true,
+    "allNumericOptionValuesPreserved": true,
+    "canonicalPageMarkersExist": true,
+    "noAnswerFields": true,
+    "buildRuntimeBrowser": "Root integration pending; no build/runtime tests run by content batch."
+  },
+  "preservation": {
+    "atomicCompleteBankWrites": true,
+    "canonicalBanksEdited": false,
+    "runtimeBuildTestsEdited": false,
+    "sourceOptionOrderRetained": true,
+    "grading": "Root must retain canonical source identity when shuffling and saving choices."
+  },
+  "banks": [
+    {
+      "lessonId": "lecture-16",
+      "count": 46,
+      "canonicalSha256": "04cd4fa7647634e4a4c30861e71141df48a3354781b2bcff55e9e3db2d7c9e9a",
+      "audit": [
+        {
+          "id": "l16-sequential-scan-q1",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "l16-sequential-scan-q2",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "l16-sequential-scan-q3",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "l16-sequential-scan-q4",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "l16-sequential-scan-q5",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "l16-index-scan-q1",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "id": "l16-index-scan-q2",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "id": "l16-index-scan-q3",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            4,
+            5,
+            6,
+            19
+          ]
+        },
+        {
+          "id": "l16-index-scan-q4",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "id": "l16-index-scan-q5",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "id": "l16-search-key-and-ordering-q1",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        {
+          "id": "l16-search-key-and-ordering-q2",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        {
+          "id": "l16-search-key-and-ordering-q3",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        {
+          "id": "l16-search-key-and-ordering-q4",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        {
+          "id": "l16-search-key-and-ordering-q5",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        {
+          "id": "l16-index-only-scan-q1",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            16
+          ]
+        },
+        {
+          "id": "l16-index-only-scan-q2",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            16
+          ]
+        },
+        {
+          "id": "l16-index-only-scan-q3",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            16
+          ]
+        },
+        {
+          "id": "l16-index-only-scan-q4",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            16
+          ]
+        },
+        {
+          "id": "l16-index-only-scan-q5",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            16
+          ]
+        },
+        {
+          "id": "l16-clustered-b-tree-scan-q1",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            17,
+            18
+          ]
+        },
+        {
+          "id": "l16-clustered-b-tree-scan-q2",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            17,
+            18
+          ]
+        },
+        {
+          "id": "l16-clustered-b-tree-scan-q3",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            17,
+            18
+          ]
+        },
+        {
+          "id": "l16-clustered-b-tree-scan-q4",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            17,
+            18
+          ]
+        },
+        {
+          "id": "l16-clustered-b-tree-scan-q5",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            17,
+            18
+          ]
+        },
+        {
+          "id": "ex16-costs-q1",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            16,
+            17,
+            18
+          ]
+        },
+        {
+          "id": "l16-hash-index-scan-q1",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            19
+          ]
+        },
+        {
+          "id": "l16-hash-index-scan-q2",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            19
+          ]
+        },
+        {
+          "id": "l16-hash-index-scan-q3",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            19
+          ]
+        },
+        {
+          "id": "l16-hash-index-scan-q4",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            19
+          ]
+        },
+        {
+          "id": "l16-hash-index-scan-q5",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            19
+          ]
+        },
+        {
+          "id": "l16-multi-index-scan-q1",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            20,
+            21
+          ]
+        },
+        {
+          "id": "l16-multi-index-scan-q2",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            20,
+            21
+          ]
+        },
+        {
+          "id": "l16-multi-index-scan-q3",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            20,
+            21
+          ]
+        },
+        {
+          "id": "l16-multi-index-scan-q4",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            20,
+            21
+          ]
+        },
+        {
+          "id": "l16-multi-index-scan-q5",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            20,
+            21
+          ]
+        },
+        {
+          "id": "l16-practical-exercise-with-postgresql-q1",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            22,
+            23
+          ]
+        },
+        {
+          "id": "l16-practical-exercise-with-postgresql-q2",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            22,
+            23
+          ]
+        },
+        {
+          "id": "l16-practical-exercise-with-postgresql-q3",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            22,
+            23
+          ]
+        },
+        {
+          "id": "l16-practical-exercise-with-postgresql-q4",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            22,
+            23
+          ]
+        },
+        {
+          "id": "l16-practical-exercise-with-postgresql-q5",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            22,
+            23
+          ]
+        },
+        {
+          "id": "l16-unclustered-b-tree-scan-q1",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            18
+          ]
+        },
+        {
+          "id": "l16-unclustered-b-tree-scan-q2",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            18
+          ]
+        },
+        {
+          "id": "l16-unclustered-b-tree-scan-q3",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            18
+          ]
+        },
+        {
+          "id": "l16-unclustered-b-tree-scan-q4",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            18
+          ]
+        },
+        {
+          "id": "l16-unclustered-b-tree-scan-q5",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            18
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "lecture-17",
+      "count": 36,
+      "canonicalSha256": "4b0596621a9c110f818252d65dabb252cb69e3465b1f0f58b3bffb39ed0e7f37",
+      "audit": [
+        {
+          "id": "l17-cost-estimation-q1",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "l17-cost-estimation-q2",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "l17-cost-estimation-q3",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "l17-cost-estimation-q4",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "l17-cost-estimation-q5",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            2,
+            3
+          ]
+        },
+        {
+          "id": "l17-statistics-and-catalogs-q1",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "id": "l17-statistics-and-catalogs-q2",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "id": "l17-statistics-and-catalogs-q3",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "id": "l17-statistics-and-catalogs-q4",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "id": "l17-statistics-and-catalogs-q5",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "id": "l17-selections-complex-predicates-q1",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "id": "l17-selections-complex-predicates-q2",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "id": "l17-selections-complex-predicates-q3",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "id": "l17-selections-complex-predicates-q4",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "id": "l17-selections-complex-predicates-q5",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "id": "l17-result-size-estimation-for-joins-q1",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            10,
+            11
+          ]
+        },
+        {
+          "id": "l17-result-size-estimation-for-joins-q2",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            10,
+            11
+          ]
+        },
+        {
+          "id": "l17-result-size-estimation-for-joins-q3",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            10,
+            11
+          ]
+        },
+        {
+          "id": "l17-result-size-estimation-for-joins-q4",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            10,
+            11
+          ]
+        },
+        {
+          "id": "l17-result-size-estimation-for-joins-q5",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            10,
+            11
+          ]
+        },
+        {
+          "id": "l17-missing-statistics-use-default-values-q1",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            12,
+            13,
+            14
+          ]
+        },
+        {
+          "id": "l17-missing-statistics-use-default-values-q2",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            12,
+            13,
+            14
+          ]
+        },
+        {
+          "id": "l17-missing-statistics-use-default-values-q3",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            12,
+            13,
+            14
+          ]
+        },
+        {
+          "id": "l17-missing-statistics-use-default-values-q4",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            12,
+            13,
+            14
+          ]
+        },
+        {
+          "id": "l17-missing-statistics-use-default-values-q5",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            12,
+            13,
+            14
+          ]
+        },
+        {
+          "id": "l17-equi-width-histograms-q1",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ]
+        },
+        {
+          "id": "l17-equi-width-histograms-q2",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ]
+        },
+        {
+          "id": "l17-equi-width-histograms-q3",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ]
+        },
+        {
+          "id": "l17-equi-width-histograms-q4",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ]
+        },
+        {
+          "id": "l17-equi-width-histograms-q5",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ]
+        },
+        {
+          "id": "l17-equi-depth-histograms-q1",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            21,
+            22,
+            23,
+            24,
+            25,
+            26
+          ]
+        },
+        {
+          "id": "l17-equi-depth-histograms-q2",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            21,
+            22,
+            23,
+            24,
+            25,
+            26
+          ]
+        },
+        {
+          "id": "l17-equi-depth-histograms-q3",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            21,
+            22,
+            23,
+            24,
+            25,
+            26
+          ]
+        },
+        {
+          "id": "l17-equi-depth-histograms-q4",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            21,
+            22,
+            23,
+            24,
+            25,
+            26
+          ]
+        },
+        {
+          "id": "l17-equi-depth-histograms-q5",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            21,
+            22,
+            23,
+            24,
+            25,
+            26
+          ]
+        },
+        {
+          "id": "ex17-depth-q1",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "lecture-18",
+      "count": 31,
+      "canonicalSha256": "04ff9f33eb10d9d0415320b55303b317050235f6f992a8a1bf2fe7ba6a496bde",
+      "audit": [
+        {
+          "id": "l18-finding-the-best-query-plan-q1",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "id": "l18-finding-the-best-query-plan-q2",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "id": "l18-finding-the-best-query-plan-q3",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "id": "l18-finding-the-best-query-plan-q4",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "id": "l18-finding-the-best-query-plan-q5",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "id": "l18-single-table-plans-cost-estimates-q1",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "id": "l18-single-table-plans-cost-estimates-q2",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "id": "l18-single-table-plans-cost-estimates-q3",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "id": "l18-single-table-plans-cost-estimates-q4",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "id": "l18-single-table-plans-cost-estimates-q5",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "id": "l18-left-deep-join-trees-q1",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "id": "l18-left-deep-join-trees-q2",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "id": "l18-left-deep-join-trees-q3",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "id": "l18-left-deep-join-trees-q4",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "id": "l18-left-deep-join-trees-q5",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "id": "l18-the-principle-of-optimality-q1",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            13
+          ]
+        },
+        {
+          "id": "l18-the-principle-of-optimality-q2",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            13
+          ]
+        },
+        {
+          "id": "l18-the-principle-of-optimality-q3",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            13,
+            20
+          ]
+        },
+        {
+          "id": "l18-the-principle-of-optimality-q4",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            13,
+            20
+          ]
+        },
+        {
+          "id": "l18-the-principle-of-optimality-q5",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            13,
+            20
+          ]
+        },
+        {
+          "id": "l18-example-dynamic-programming-q1",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ]
+        },
+        {
+          "id": "l18-example-dynamic-programming-q2",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ]
+        },
+        {
+          "id": "l18-example-dynamic-programming-q3",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ]
+        },
+        {
+          "id": "l18-example-dynamic-programming-q4",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ]
+        },
+        {
+          "id": "l18-example-dynamic-programming-q5",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ]
+        },
+        {
+          "id": "l18-interesting-orders-q1",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            20,
+            21,
+            22,
+            23
+          ]
+        },
+        {
+          "id": "l18-interesting-orders-q2",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            20,
+            21,
+            22,
+            23
+          ]
+        },
+        {
+          "id": "l18-interesting-orders-q3",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            20,
+            21,
+            22,
+            23
+          ]
+        },
+        {
+          "id": "l18-interesting-orders-q4",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            20,
+            21,
+            22,
+            23
+          ]
+        },
+        {
+          "id": "l18-interesting-orders-q5",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            20,
+            21,
+            22,
+            23
+          ]
+        },
+        {
+          "id": "ex18-enum-q1",
+          "authorSelectedCanonicalOptionAndExplanationChecked": true,
+          "authorMainExampleAndSourceScopeChecked": true,
+          "sourceOptionOrderChecked": true,
+          "numericOptionSlotsPreserved": true,
+          "physicalPages": [
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23
+          ]
+        }
+      ]
+    }
+  ]
+}

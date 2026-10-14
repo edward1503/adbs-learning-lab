@@ -1,0 +1,489 @@
+{
+  "lessonId": "lecture-22",
+  "language": "vi",
+  "topics": [
+    {
+      "id": "l22-topic-distributed-model",
+      "title": "DBMS song song và phân tán",
+      "questions": [
+        {
+          "id": "l22-distributed-model-q1",
+          "prompt": "Bài nhấn mạnh khác biệt chi phí nào giữa DBMS song song và phân tán?",
+          "options": [
+            "DBMS phân tán không thể bỏ qua trễ và lỗi liên lạc đường xa",
+            "DBMS song song không cần phối hợp vì không bao giờ dùng mạng",
+            "DBMS phân tán có thể bỏ qua trễ thông điệp nếu có log",
+            "Hai loại hệ thống luôn có giả định chi phí liên lạc giống nhau"
+          ],
+          "explanation": "Bài phân biệt kết nối nhanh giữa các nút gần nhau với mạng đường xa có chi phí và rủi ro lỗi đáng kể. Cả hai loại hệ thống vẫn có thể dùng mạng."
+        },
+        {
+          "id": "l22-distributed-model-q2",
+          "prompt": "Data independence đòi hỏi gì khi chuyển truy vấn sang hệ thống phân tán?",
+          "options": [
+            "Trả ít tuple hơn khi dữ liệu nằm ở nút xa",
+            "Giữ kết quả logic của truy vấn khi vị trí vật lý dữ liệu đổi",
+            "Bắt người dùng gọi tên mọi nút trong truy vấn logic",
+            "Cho replica hoặc partition đổi ngữ nghĩa join"
+          ],
+          "explanation": "Phân bố vật lý không nên đổi đáp án logic. Tối ưu lưu lượng mạng không cho phép âm thầm bỏ các dòng kết quả."
+        },
+        {
+          "id": "l22-distributed-model-q3",
+          "prompt": "Yêu cầu atomicity nào áp dụng cho giao dịch truy cập dữ liệu trên ba nút?",
+          "options": [
+            "Mỗi nút tự commit bất cứ khi nào thuận tiện",
+            "Chỉ nút giữ nhiều tuple nhất cần commit",
+            "Mọi phần cùng commit hoặc abort theo một quyết định chung",
+            "Commit ở bất kỳ hai trong ba nút luôn đủ"
+          ],
+          "explanation": "Atomic commit bao trùm mọi participant. Đây không phải luật đa số cho phép bỏ một phần giao dịch."
+        },
+        {
+          "id": "l22-distributed-model-q4",
+          "prompt": "Vì sao xử lý sự cố phân tán khó hơn khởi động lại một máy?",
+          "options": [
+            "Mọi nút luôn khởi động lại cùng nhau và cần thứ tự cố định",
+            "Phục hồi cục bộ quyết được mọi giao dịch không cần hỏi nút xa",
+            "Thông điệp trễ chứng minh participant chưa commit",
+            "Nút khác có thể đã tiếp tục và biết quyết định mà nút đang phục hồi chưa biết"
+          ],
+          "explanation": "Phục hồi phải khớp trạng thái và quyết định còn tồn tại ở nơi khác. Không thể giả định mọi nút đã dừng cùng lúc."
+        },
+        {
+          "id": "l22-distributed-model-q5",
+          "prompt": "Mục tiêu nào tạo động cơ triển khai nhiều nút?",
+          "options": [
+            "Hiệu năng và availability tốt hơn nhờ các cơ chế thích hợp",
+            "Tự có atomic commit không cần giao thức",
+            "Loại concurrency control vì dữ liệu có nhiều vị trí",
+            "Mọi truy vấn đều giảm latency bất kể lưu lượng mạng"
+          ],
+          "explanation": "Thêm tài nguyên mở ra cơ hội nhưng không tự giải quyết tính đúng và sự cố. Hệ thống vẫn cần phối hợp."
+        }
+      ]
+    },
+    {
+      "id": "l22-topic-distributed-locks",
+      "title": "Khóa và deadlock phân tán",
+      "questions": [
+        {
+          "id": "l22-distributed-locks-q1",
+          "prompt": "Đầu bài 22 dùng giả định bố trí dữ liệu nào?",
+          "options": [
+            "Mỗi nút lưu đầy đủ mọi bảng",
+            "Dữ liệu được partition nhưng chưa replication",
+            "Không giao dịch nào ghi",
+            "Chỉ một máy shared-memory"
+          ],
+          "explanation": "Phân tích bắt đầu ở shared-nothing với dữ liệu chia phần, chưa sao chép. Không tự đưa quy tắc quorum của replica vào mô hình này."
+        },
+        {
+          "id": "l22-distributed-locks-q2",
+          "prompt": "Khóa cho tuple nằm hoàn toàn trên nút N thường được quản lý ở đâu?",
+          "options": [
+            "Sao chép mọi bảng khóa tới mọi nút để từng nút tự cấp",
+            "Chỉ client quản lý khóa, server luôn tin client",
+            "Trong bảng khóa của nút N",
+            "Không cần khóa vì tuple chỉ có một bản dữ liệu"
+          ],
+          "explanation": "Đặt khóa gần dữ liệu cho phép nút quản lý tài nguyên của mình. Một bản dữ liệu duy nhất vẫn cần concurrency control khi nhiều giao dịch truy cập."
+        },
+        {
+          "id": "l22-distributed-locks-q3",
+          "prompt": "Bài gợi ý gì cho khóa toàn bảng khi bảng trải trên nhiều nút?",
+          "options": [
+            "Mọi nút tự cấp X-lock độc lập trên toàn bảng",
+            "Khóa mức thô không bao giờ cần phối hợp",
+            "Chỉ cấp tại nút có tuple đầu tiên của truy vấn, bỏ nút khác",
+            "Chỉ định home node quản lý khóa mức thô"
+          ],
+          "explanation": "Một nơi có quyền quản lý đối tượng mức thô ngăn các lần cấp trái nhau. Các nút tự cấp X-lock toàn bảng độc lập không bảo vệ được toàn bộ bảng logic."
+        },
+        {
+          "id": "l22-distributed-locks-q4",
+          "prompt": "N1 thấy T1→T2, N2 thấy T2→T1. Hai đồ thị cục bộ đều không chu trình. Toàn cục có gì?",
+          "options": [
+            "Hợp các cạnh sẽ lộ chu trình deadlock",
+            "Chắc chắn không deadlock vì hai đồ thị cục bộ không chu trình",
+            "Chỉ deadlock nếu hai giao dịch xuất phát cùng nút",
+            "Cạnh từ xa không tính vào đồ thị chờ toàn cục"
+          ],
+          "explanation": "Một chu trình có thể trải qua nhiều nút. Không chu trình cục bộ không suy ra hợp các đồ thị cũng không chu trình."
+        },
+        {
+          "id": "l22-distributed-locks-q5",
+          "prompt": "Bài nêu cách đơn giản nào để phát hiện deadlock phân tán?",
+          "options": [
+            "Chỉ kiểm tra từng đồ thị cục bộ và bỏ cạnh từ xa",
+            "Định kỳ hợp waits-for graph ở nút chỉ định rồi tìm chu trình",
+            "Chờ participants commit rồi mới tìm vòng chờ",
+            "Chỉ xét coordinator của giao dịch trẻ nhất"
+          ],
+          "explanation": "Hợp đồ thị toàn cục làm lộ phụ thuộc xuyên nút. Bỏ cạnh từ xa sẽ bỏ chính các deadlock phân tán cần tìm."
+        }
+      ]
+    },
+    {
+      "id": "l22-topic-two-phase-commit",
+      "title": "Two-phase commit (2PC)",
+      "questions": [
+        {
+          "id": "l22-two-phase-commit-q1",
+          "prompt": "Mục đích chính của 2PC và 2PL khác nhau thế nào?",
+          "options": [
+            "2PC kiểm soát xin khóa, 2PL cung cấp atomic commit",
+            "2PC thay isolation nên không cần scheduler",
+            "2PC phối hợp atomic commit, 2PL kiểm soát lịch truy cập bằng khóa",
+            "Hai pha của 2PL tự thay bỏ phiếu và phục hồi 2PC"
+          ],
+          "explanation": "Hai giao thức xử lý các lớp yêu cầu khác nhau và có thể phối hợp. Cùng có tên hai pha không có nghĩa chúng tương đương."
+        },
+        {
+          "id": "l22-two-phase-commit-q2",
+          "prompt": "Trong pha 1 của 2PC, coordinator gửi gì?",
+          "options": [
+            "COMMIT cuối trước khi nhận phiếu participant",
+            "ACK xác nhận participants đã commit",
+            "Yêu cầu nhả khóa trước khi kiểm tra khả năng commit",
+            "PREPARE để hỏi từng participant có thể commit không"
+          ],
+          "explanation": "PREPARE mở pha bỏ phiếu. Quyết định cuối chỉ theo sau khi các điều kiện bỏ phiếu và logging cần thiết đã được đáp ứng."
+        },
+        {
+          "id": "l22-two-phase-commit-q3",
+          "prompt": "Nếu 3/4 participants bỏ YES và một bỏ NO, kết quả 2PC là gì?",
+          "options": [
+            "ABORT",
+            "COMMIT vì đa số đồng ý",
+            "Chỉ commit ba participants bỏ YES",
+            "Coi participant bỏ NO là replica không cần thiết"
+          ],
+          "explanation": "Atomic commit cần YES nhất trí. Một NO có thể do vi phạm ràng buộc thật; đa số chưa đủ khi cả bốn phần đều cần cho giao dịch."
+        },
+        {
+          "id": "l22-two-phase-commit-q4",
+          "prompt": "Coordinator timeout trước khi nhận phiếu của một participant. Trước khi quyết COMMIT, nó có thể làm gì?",
+          "options": [
+            "Coi im lặng là YES",
+            "Abort giao dịch",
+            "Chỉ commit participants đã trả lời",
+            "Bỏ participant thiếu khỏi công việc đã làm"
+          ],
+          "explanation": "Chưa nhận phiếu không chứng minh participant sẵn sàng. Trước khi nhận đủ YES, coordinator có thể abort; timeout không phải phiếu thuận."
+        },
+        {
+          "id": "l22-two-phase-commit-q5",
+          "prompt": "Sau khi coordinator lưu quyết định bền vững, pha 2 làm gì?",
+          "options": [
+            "Đa số bỏ phiếu lại để đảo COMMIT đã ghi nếu muốn",
+            "Mỗi participant tự chọn lại theo trạng thái cục bộ",
+            "Phân phối quyết định COMMIT hoặc ABORT và thu ACK",
+            "Chỉ ghi PREPARE, không gửi quyết định"
+          ],
+          "explanation": "Pha 2 truyền một quyết định đã có. Nó không phải cuộc bỏ phiếu mới để lật COMMIT bền vững."
+        },
+        {
+          "id": "l22-two-phase-commit-q6",
+          "prompt": "Vì sao một phiếu NO của participant phải đủ để ngăn COMMIT?",
+          "options": [
+            "NO chỉ quan trọng nếu participant giữ phần lớn dữ liệu",
+            "Có thể bỏ NO nếu coordinator sẵn sàng",
+            "NO chỉ ngăn commit nếu thêm participant khác cũng bỏ NO",
+            "Participant có thể vi phạm ràng buộc hoặc không hoàn thành được phần của mình"
+          ],
+          "explanation": "Toàn bộ giao dịch cần mọi phần, nên thất bại ở bất kỳ phần nào ngăn commit chung. Người bỏ NO không cần có vai trò đặc biệt."
+        },
+        {
+          "id": "l22-two-phase-commit-q7",
+          "prompt": "ACK ở pha 2 có cùng nghĩa YES ở pha 1 không?",
+          "options": [
+            "Không; ACK xác nhận nhận hoặc xử lý quyết định, YES là phiếu sẵn sàng",
+            "Có; cả hai là phiếu gửi trước khi coordinator quyết định",
+            "Có; thông điệp trễ có thể dùng hai loại thay nhau",
+            "Không; YES nghĩa đã commit, ACK nghĩa chỉ prepared"
+          ],
+          "explanation": "Các thông điệp có vai trò riêng trong state machine. YES hứa sẵn sàng, ACK xác nhận bước xử lý quyết định; dùng lẫn sẽ phá điều kiện quyết định."
+        },
+        {
+          "id": "l22-two-phase-commit-q8",
+          "prompt": "Thông điệp trễ có chứng minh người gửi đã crash không?",
+          "options": [
+            "Có; timeout chứng minh nút ngừng xử lý",
+            "Không; đến lúc này có thể chưa phân biệt nút chậm với nút crash",
+            "Có; số thứ tự làm trễ trở thành không thể",
+            "Không quan trọng vì luôn an toàn coi nút chậm đã abort"
+          ],
+          "explanation": "Không nhận thông điệp đúng hạn chưa xác định nguyên nhân. Giao thức phải chịu được trễ, không mặc định người gửi chắc chắn đã chết."
+        },
+        {
+          "id": "l22-two-phase-commit-q9",
+          "prompt": "Nếu mọi participant đã gửi YES, client có thể kết luận COMMIT đã xảy ra chưa?",
+          "options": [
+            "Có; từng YES chính là COMMIT cuối",
+            "Có; không cần logging",
+            "Chưa; vẫn cần quyết định chung bền vững của coordinator",
+            "Không giao dịch nào có thể commit sau YES"
+          ],
+          "explanation": "YES chỉ nghĩa participant prepared để theo kết quả. Ghi và truyền quyết định cuối là các bước riêng còn phải thực hiện."
+        },
+        {
+          "id": "l22-two-phase-commit-q10",
+          "prompt": "Chỉ 2PC có thể thay concurrency control để ngăn dirty read tại một nút không?",
+          "options": [
+            "Có; PREPARE tạo hồi tố mọi khóa đọc/ghi cần thiết",
+            "Có; ACK cuối sửa những dirty read đã công bố",
+            "Có; YES nhất trí chứng minh mọi lịch trước đó serializable",
+            "Không; atomic commit không tự bảo đảm lịch đọc/ghi đúng"
+          ],
+          "explanation": "2PC và 2PL có thể dùng cùng nhau nhưng là hai cơ chế khác nhau. Thông điệp commit không bảo vệ hồi tố các truy cập đã diễn ra."
+        }
+      ]
+    },
+    {
+      "id": "l22-topic-2pc-logging",
+      "title": "Logging trong 2PC",
+      "questions": [
+        {
+          "id": "l22-2pc-logging-q1",
+          "prompt": "Participant phải làm gì trước khi gửi YES trong 2PC có logging?",
+          "options": [
+            "Chỉ thêm PREPARE trong RAM, không flush",
+            "Gửi YES trước rồi ghi PREPARE sau khi nhận COMMIT",
+            "Flush trang dữ liệu rồi bỏ thông tin phục hồi giao dịch",
+            "Persist PREPARE và thông tin cần để phục hồi trạng thái prepared"
+          ],
+          "explanation": "YES là lời hứa phải sống sót qua crash, nên PREPARE phải bền vững trước. Bản ghi chỉ trong RAM không giữ được lời hứa sau khởi động lại."
+        },
+        {
+          "id": "l22-2pc-logging-q2",
+          "prompt": "Coordinator phải persist quyết định COMMIT trước hành động nào?",
+          "options": [
+            "Gửi COMMIT tới participants",
+            "Gửi PREPARE bắt đầu bỏ phiếu dù chưa có phiếu nào",
+            "Bất kỳ cập nhật cục bộ nào của participant",
+            "Chỉ sau khi mọi participant xác nhận COMMIT"
+          ],
+          "explanation": "Nếu gửi COMMIT trước khi persist, participant có thể commit rồi coordinator crash và quên quyết định. Thứ tự log-trước-thông-điệp ngăn bất đồng đó."
+        },
+        {
+          "id": "l22-2pc-logging-q3",
+          "prompt": "Vì sao bản ghi PREPARE của participant phải xác định coordinator?",
+          "options": [
+            "Để bầu người thay mà không cần biết quyết định cũ",
+            "Để phục hồi biết phải hỏi ai về quyết định",
+            "Để coordinator online tự hàm ý COMMIT",
+            "Để PREPARE thay COMMIT của participant"
+          ],
+          "explanation": "Participant prepared sau khởi động lại có thể cần hỏi coordinator. ID chỉ giúp tìm nguồn thông tin quyết định, không thay logic chọn kết quả."
+        },
+        {
+          "id": "l22-2pc-logging-q4",
+          "prompt": "Vì sao COMMIT record của coordinator chứa participant IDs?",
+          "options": [
+            "Để loại participants chưa ACK khỏi giao dịch nguyên tử",
+            "Để đếm đa số thay nhất trí khi thiếu phiếu",
+            "Để xác định participants cần gửi lại quyết định khi phục hồi",
+            "Để participants tự quyết mà không hỏi coordinator"
+          ],
+          "explanation": "Danh sách phục vụ hoàn tất việc truyền quyết định và thử gửi lại. Nó không cho phép bỏ phần việc của một participant khỏi giao dịch nguyên tử."
+        },
+        {
+          "id": "l22-2pc-logging-q5",
+          "prompt": "Dấu hoa thị bên cạnh record trong sơ đồ 2PC nghĩa là gì?",
+          "options": [
+            "Record có thể còn volatile và mất khi crash",
+            "Có thể gửi thông điệp trước rồi hoãn flush vô hạn",
+            "Thứ tự record không quan trọng nếu có transaction ID",
+            "Chờ log flush trước khi gửi thông điệp kế tiếp"
+          ],
+          "explanation": "Dấu đó đánh dấu yêu cầu thứ tự bền vững: flush trước khi gửi. Đây là quy ước phục hồi đã nêu trong nguồn, không phải ký hiệu trang trí."
+        }
+      ]
+    },
+    {
+      "id": "l22-topic-2pc-recovery",
+      "title": "Phục hồi 2PC",
+      "questions": [
+        {
+          "id": "l22-2pc-recovery-q1",
+          "prompt": "Participant phục hồi có PREPARE nhưng không có COMMIT hoặc ABORT. Nó phải làm gì?",
+          "options": [
+            "Hỏi coordinator về quyết định, có thể phải chờ",
+            "Tự commit vì trước đó đã bỏ YES",
+            "Tự abort vì luôn an toàn",
+            "Xóa giao dịch không undo hay redo"
+          ],
+          "explanation": "Prepared nghĩa là kết quả chưa biết cục bộ; nơi khác có thể đã commit. Chưa có bằng chứng đủ để tự commit hay tự abort. Cần tìm quyết định được phép hoặc tiếp tục chờ."
+        },
+        {
+          "id": "l22-2pc-recovery-q2",
+          "prompt": "Coordinator phục hồi có COMMIT nhưng không có END. Theo bài, phải làm gì?",
+          "options": [
+            "Đổi sang ABORT vì thiếu END",
+            "Lặp pha 2 để truyền quyết định và thu ACK",
+            "Bỏ quyết định cũ rồi bỏ phiếu mới",
+            "Xóa ngay mọi participant record"
+          ],
+          "explanation": "COMMIT bền vững cố định quyết định. Thiếu END nghĩa còn việc hoàn tất, không cho phép đổi quyết định sang ABORT."
+        },
+        {
+          "id": "l22-2pc-recovery-q3",
+          "prompt": "Coordinator phục hồi có cả COMMIT và END. Bảng phục hồi của bài yêu cầu thêm công việc giao thức nào?",
+          "options": [
+            "Luôn chạy lại toàn pha 1",
+            "Thay COMMIT bằng PREPARE",
+            "Không cần chạy lại giao thức đã hoàn tất",
+            "Undo mọi participant"
+          ],
+          "explanation": "END ghi nhận giao thức đã xong, nên bảng nêu không cần hành động giao thức thêm. Không có lý do mở lại bỏ phiếu; kết luận này thuộc quy ước giao thức đang dùng."
+        },
+        {
+          "id": "l22-2pc-recovery-q4",
+          "prompt": "Participant phục hồi có PREPARE và COMMIT, nhưng ACK có thể bị mất. Làm gì thích hợp?",
+          "options": [
+            "Abort vì không thấy ACK cục bộ bền vững",
+            "Bỏ COMMIT rồi quay lại bỏ phiếu",
+            "Chờ mọi giao dịch cục bộ khác commit rồi mới quyết",
+            "Gửi ACK tới coordinator"
+          ],
+          "explanation": "Participant đã biết quyết định cục bộ là COMMIT nên hoàn tất xác nhận. ACK bị mất không đổi kết quả; các bước phục hồi cục bộ cần thiết vẫn phải được thực hiện."
+        },
+        {
+          "id": "l22-2pc-recovery-q5",
+          "prompt": "Participant chưa ghi PREPARE thì phát hiện coordinator không liên lạc được. Nó có thể làm gì?",
+          "options": [
+            "Abort cục bộ",
+            "Bắt buộc tự commit",
+            "Bắt buộc giữ khóa mãi trong mọi trường hợp",
+            "Coi im lặng của coordinator là YES"
+          ],
+          "explanation": "Trước prepared, participant chưa hứa chờ quyết định cuối và có thể abort. Sau PREPARE, quy tắc thay đổi: không tự chọn abort chỉ vì timeout. Abort cục bộ vẫn cần undo/cleanup thích hợp."
+        }
+      ]
+    },
+    {
+      "id": "l22-topic-2pc-locking",
+      "title": "Kết hợp 2PC và strict 2PL",
+      "questions": [
+        {
+          "id": "l22-2pc-locking-q1",
+          "prompt": "Số thông điệp 1,2,3,... cho từng tổ hợp sender/receiver/transaction giúp gì?",
+          "options": [
+            "Bảo đảm trễ mạng bằng không",
+            "Phát hiện thông điệp thiếu hoặc sai thứ tự",
+            "Tự thay WAL",
+            "Không cần transaction ID nữa"
+          ],
+          "explanation": "Số thứ tự giúp receiver nhận ra khoảng trống trong stream đã xác định. Chúng không ngăn trễ và không làm dữ liệu bền vững."
+        },
+        {
+          "id": "l22-2pc-locking-q2",
+          "prompt": "Receiver nhận thông điệp 5 sau khi mới nhận 1,2,3. Theo cơ chế bài, phải làm gì?",
+          "options": [
+            "Xử lý 5 ngay, bỏ 4 nếu đến sau",
+            "Coi số lớn hơn là chứng minh COMMIT",
+            "Giữ 5 trong buffer đến khi 4 tới rồi xử lý đúng thứ tự",
+            "Bảo sender bỏ 4 để khoảng trống biến mất"
+          ],
+          "explanation": "Receiver giữ k+1 cho đến khi đã nhận 1..k trong cùng stream. Số lớn hơn không cung cấp trạng thái tiền đề còn thiếu; ở đây phải xử lý 4 trước 5."
+        },
+        {
+          "id": "l22-2pc-locking-q3",
+          "prompt": "Vì sao participant giữ khóa khi chờ quyết định 2PC dưới strict 2PL?",
+          "options": [
+            "Để PREPARE giống hệt COMMIT cuối",
+            "Để coordinator không cần persist quyết định",
+            "Để mọi giao dịch khác đọc dữ liệu tạm không cần S-lock",
+            "Để ngăn người khác quan sát hoặc ghi đè trạng thái giao dịch chưa hoàn tất"
+          ],
+          "explanation": "Giữ khóa bảo toàn isolation suốt pha prepared. Theo quy ước bài, cả S và X giữ đến hoàn tất; việc chờ có thể giảm concurrency, không làm hệ thống tự nhanh hơn."
+        },
+        {
+          "id": "l22-2pc-locking-q4",
+          "prompt": "Xử lý COMMIT phải phối hợp flush log và nhả khóa thế nào?",
+          "options": [
+            "Dùng ranh giới hoàn tất nguyên tử và thứ tự thích hợp để visibility không đi trước trạng thái bền vững",
+            "Nhả khóa trước COMMIT bền vững rồi flush tùy lúc",
+            "Bỏ flush COMMIT nếu đã giữ X-lock",
+            "Chỉ persist PREPARE rồi nhả khóa không biết quyết định cuối"
+          ],
+          "explanation": "Giao dịch khác không được thấy trạng thái có kết quả chưa được bảo vệ bền vững. Khóa không thay logging; thứ tự và ranh giới hoàn tất phải phối hợp theo giao thức."
+        },
+        {
+          "id": "l22-2pc-locking-q5",
+          "prompt": "“Abort cục bộ” dưới strict 2PL có cho participant đã prepared tùy ý ghi đè quyết định 2PC không?",
+          "options": [
+            "Có; mọi PREPARE đều được bỏ sau timeout",
+            "Không; xử lý cục bộ vẫn phải tôn trọng trạng thái và quyết định 2PC",
+            "Có; strict 2PL khiến COMMIT không cần thiết",
+            "Không; không giao dịch nào được phép abort"
+          ],
+          "explanation": "Strict 2PL giúp undo không gây phụ thuộc dây chuyền, nhưng không cho phép đảo quyết định atomic commit. Participant đã prepared vẫn phải hỏi hoặc chờ theo quy tắc phục hồi; khả năng undo cục bộ không phải quyền chọn kết quả toàn cục."
+        }
+      ]
+    },
+    {
+      "id": "l22-topic-availability",
+      "title": "Khả năng phục vụ khi có sự cố",
+      "questions": [
+        {
+          "id": "l22-availability-q1",
+          "prompt": "Coordinator không liên lạc được sau khi participant prepare. Điều gì có thể xảy ra?",
+          "options": [
+            "Mọi participant có thể an toàn commit sau timeout",
+            "Mọi participant prepared tự abort không cần hỏi",
+            "Participant bị chặn và vẫn giữ khóa",
+            "Nó nhả khóa rồi quyết sau mà vẫn đúng strict 2PL"
+          ],
+          "explanation": "Participant prepared chưa biết quyết định có thể phải chờ; khóa nó giữ làm giao dịch khác chậm theo. Nó không được tự commit chỉ để tăng availability."
+        },
+        {
+          "id": "l22-availability-q2",
+          "prompt": "Vì sao thêm máy không tự làm 2PC available hơn?",
+          "options": [
+            "Nút mới tự thay coordinator không cần thống nhất trạng thái",
+            "Thêm partition làm mọi giao dịch cục bộ",
+            "Thêm participants cho phép dùng đa số YES thay nhất trí",
+            "Thêm thành phần và phối hợp tạo thêm cơ hội lỗi cản tiến triển"
+          ],
+          "explanation": "Scale-out thêm tài nguyên nhưng cũng thêm điểm lỗi và việc phối hợp. Nó không tự bỏ trạng thái chặn khi thiếu thông tin từ coordinator."
+        },
+        {
+          "id": "l22-availability-q3",
+          "prompt": "Safety và availability khác nhau thế nào trong ví dụ 2PC bị chặn?",
+          "options": [
+            "Giữ một quyết định thống nhất có thể đòi chờ và giảm khả năng phục vụ",
+            "Chờ luôn chứng minh atomic-commit safety đã thất bại",
+            "Availability nghĩa mọi giao dịch bắt buộc commit",
+            "Safety cho một participant abort trong khi nơi khác commit sau timeout"
+          ],
+          "explanation": "Giao thức có thể vẫn an toàn nhưng chưa tiến triển khi thiếu thông tin quyết định. Availability không có nghĩa commit mọi yêu cầu; chờ có thể là cách tránh hai kết quả trái nhau."
+        },
+        {
+          "id": "l22-availability-q4",
+          "prompt": "T1 prepared giữ khóa lâu. T2 không thuộc coordinator của T1 nhưng cần cùng đối tượng. Có thể xảy ra gì?",
+          "options": [
+            "T2 luôn bỏ qua khóa vì ở nút khác",
+            "T2 cũng có thể bị khóa T1 chặn",
+            "T2 coi PREPARE của T1 là COMMIT rồi đọc",
+            "T2 abort T1 cục bộ không biết quyết định toàn cục"
+          ],
+          "explanation": "Việc chặn lan qua tài nguyên có khóa. T2 không được bỏ concurrency control chỉ vì không thuộc T1."
+        },
+        {
+          "id": "l22-availability-q5",
+          "prompt": "Lecture đề cập Paxos Commit theo cách nào?",
+          "options": [
+            "Tên đồng nghĩa chính xác của 2PC cơ bản",
+            "Quy tắc cho đa số participants nghiệp vụ commit và bỏ phần còn lại",
+            "Một hướng cải thiện availability ngoài phần lecture trình bày chi tiết",
+            "Cách bỏ logging khi phục hồi quyết định đã quên"
+          ],
+          "explanation": "Bài giới thiệu nó như phần mở rộng, không phải luật quorum để bỏ các phần giao dịch cần thiết. Đa số trong cơ chế đồng thuận không thay yêu cầu mọi transaction participant sẵn sàng commit; không suy ra một đặc tả Paxos Commit đầy đủ từ phần giới thiệu này."
+        }
+      ]
+    }
+  ],
+  "reviewStatus": "author-translated and audited all core questions against canonical correct options and lecture extracted-text sources; no answer keys in locale; no fresh visual diagram or external-paper validation claimed"
+}

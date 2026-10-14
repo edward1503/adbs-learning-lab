@@ -1,0 +1,373 @@
+{
+  "lessonId": "lecture-04",
+  "language": "vi",
+  "topics": [
+    {
+      "id": "l04-topic-architecture",
+      "title": "Kiến trúc DBMS",
+      "questions": [
+        {
+          "id": "l04-architecture-q1",
+          "prompt": "Lớp nào phân tích và kiểm tra SQL rồi chọn kế hoạch truy vấn?",
+          "options": [
+            "Lập kế hoạch truy vấn",
+            "Quản lý buffer",
+            "Quản lý file/chỉ mục",
+            "Quản lý không gian đĩa"
+          ],
+          "explanation": "Planning hiểu truy vấn và chọn kế hoạch; lớp đĩa cung cấp lưu trữ trang."
+        },
+        {
+          "id": "l04-architecture-q2",
+          "prompt": "Operator execution làm gì?",
+          "options": [
+            "Chọn victim của buffer pool",
+            "Chạy luồng dữ liệu các toán tử trên bản ghi và file",
+            "Phân tích SQL rồi chọn cách viết lại logic",
+            "Ánh xạ page ID sang offset file"
+          ],
+          "explanation": "Execution thực hiện kế hoạch. Cấp phát trang thuộc lớp thấp hơn."
+        },
+        {
+          "id": "l04-architecture-q3",
+          "prompt": "Lớp file/chỉ mục làm việc trực tiếp với trừu tượng nào?",
+          "options": [
+            "Chỉ văn bản query và cây cú pháp",
+            "Chỉ metadata frame, không biết bản ghi",
+            "Bản ghi tổ chức thành trang trong file logic",
+            "Sector thiết bị và vị trí đầu đọc, bỏ qua trang"
+          ],
+          "explanation": "Lớp này tổ chức bản ghi và file; lớp dưới che chi tiết byte của thiết bị."
+        },
+        {
+          "id": "l04-architecture-q4",
+          "prompt": "Khác biệt chính giữa buffer manager và disk-space manager là gì?",
+          "options": [
+            "Buffer manager chọn thứ tự join; disk-space manager tính aggregate",
+            "Buffer manager lưu schema; disk-space manager chỉ lưu kết quả query",
+            "Buffer manager quản lý trường bản ghi; disk-space manager chọn projection",
+            "Buffer manager quản lý trang trong RAM; disk-space manager ánh xạ và đọc/ghi lưu trữ"
+          ],
+          "explanation": "Cả hai xử lý trang nhưng có trách nhiệm quản lý bộ nhớ và lưu trữ khác nhau."
+        },
+        {
+          "id": "l04-architecture-q5",
+          "prompt": "Sơ đồ kiến trúc thể hiện concurrency control và recovery thế nào?",
+          "options": [
+            "Chức năng xuyên nhiều lớp",
+            "Hai thuật toán join vật lý",
+            "Hai bố trí bản ghi dài cố định",
+            "Hai kiểu mục chỉ mục lá"
+          ],
+          "explanation": "Chúng điều phối nhiều phần hệ thống, không phải toán tử kết quả truy vấn riêng lẻ."
+        }
+      ]
+    },
+    {
+      "id": "l04-topic-hierarchy",
+      "title": "Kiến trúc disk-oriented và phân cấp lưu trữ",
+      "questions": [
+        {
+          "id": "l04-hierarchy-q1",
+          "prompt": "Trong DBMS disk-oriented, dữ liệu thường được xử lý ở đâu?",
+          "options": [
+            "Chỉ trong query planner trước khi đọc trang",
+            "Trong bộ nhớ chính sau khi đọc trang cần thiết",
+            "Bằng sửa trực tiếp sector, không nạp trang vào RAM",
+            "Chỉ trên bản đĩa bền, không có buffer pool"
+          ],
+          "explanation": "Dữ liệu được đưa vào RAM để xử lý dù bản lưu bền chính có thể ở đĩa."
+        },
+        {
+          "id": "l04-hierarchy-q2",
+          "prompt": "Bộ nhớ volatile mất gì khi bỏ nguồn và không có cơ chế bảo toàn khác?",
+          "options": [
+            "Chỉ trang pinCount=0",
+            "Mọi bản sao trên nonvolatile storage cũng mất",
+            "Nội dung nằm trong bộ nhớ ấy",
+            "Chỉ trang dirty=false"
+          ],
+          "explanation": "Volatile mô tả nội dung của chính thiết bị, không có nghĩa mọi bản lưu bền cũng mất."
+        },
+        {
+          "id": "l04-hierarchy-q3",
+          "prompt": "Xu hướng chung từ cache CPU xuống HDD trong phân cấp là gì?",
+          "options": [
+            "Nhanh hơn nhưng nhỏ hơn",
+            "Mọi tầng cùng latency",
+            "Mọi tầng truy cập byte giống nhau",
+            "Chậm hơn nhưng dung lượng lớn hơn"
+          ],
+          "explanation": "Phân cấp đánh đổi độ trễ với dung lượng. Các tầng không chung mọi khả năng định địa chỉ."
+        },
+        {
+          "id": "l04-hierarchy-q4",
+          "prompt": "API đọc disk-oriented thường truyền đơn vị gì?",
+          "options": [
+            "Trang hoặc block",
+            "Luôn một trường SQL riêng",
+            "Luôn toàn database",
+            "Luôn một ký tự"
+          ],
+          "explanation": "Trang là trừu tượng I/O. Cần một trường không có nghĩa chỉ đọc vài byte từ đĩa."
+        },
+        {
+          "id": "l04-hierarchy-q5",
+          "prompt": "Vì sao bài không giả định mọi database đều vừa toàn bộ RAM?",
+          "options": [
+            "Đĩa luôn nhanh hơn DRAM",
+            "Chi phí, dung lượng và tính volatile tạo giới hạn",
+            "Mô hình quan hệ cấm tuple trong RAM",
+            "Không hệ thống main-memory nào hỗ trợ lưu bền"
+          ],
+          "explanation": "Đây là đánh đổi hệ thống, không phải hạn chế SQL."
+        }
+      ]
+    },
+    {
+      "id": "l04-topic-hdd",
+      "title": "Truy cập trang HDD",
+      "questions": [
+        {
+          "id": "l04-hdd-q1",
+          "prompt": "Ba thành phần chi phí đọc HDD trong mô hình bài là gì?",
+          "options": [
+            "Transfer time, pin count, dirty flag",
+            "Rotational delay, phân tích query, loại trùng",
+            "Seek time, rotational delay, transfer time",
+            "Seek time, buffer hit rate, thời gian GROUP BY"
+          ],
+          "explanation": "Chúng là chi phí cơ học và truyền HDD. Metadata buffer thuộc khái niệm khác."
+        },
+        {
+          "id": "l04-hdd-q2",
+          "prompt": "Seek time đo điều gì?",
+          "options": [
+            "Chờ sector cần quay tới dưới đầu đọc",
+            "Truyền byte block sau định vị",
+            "Tìm frame RAM chứa PageId",
+            "Di chuyển đầu đọc tới track cần thiết"
+          ],
+          "explanation": "Seek di chuyển cần/đầu đọc; rotational delay chờ đĩa quay."
+        },
+        {
+          "id": "l04-hdd-q3",
+          "prompt": "HDD chạy 12000 rpm. Vị trí quay phân bố đều thì rotational delay trung bình là bao nhiêu?",
+          "options": [
+            "2.5 ms",
+            "5 ms",
+            "12 ms",
+            "0.5 ms"
+          ],
+          "explanation": "Một vòng mất 60/12000 giây=5 ms. Chờ trung bình nửa vòng, tức 2.5 ms."
+        },
+        {
+          "id": "l04-hdd-q4",
+          "prompt": "Seek=4 ms, rotation=3 ms, transfer=0.2 ms: đọc ngẫu nhiên một lần theo mô hình cộng tốn bao nhiêu?",
+          "options": [
+            "7 ms",
+            "7.2 ms",
+            "0.2 ms",
+            "12.2 ms"
+          ],
+          "explanation": "Cộng cả ba thành phần. Chỉ đếm transfer sẽ bỏ chi phí định vị đáng kể."
+        },
+        {
+          "id": "l04-hdd-q5",
+          "prompt": "Chỉ transfer rate tăng đôi, seek và rotation không đổi. Tổng latency có bắt buộc giảm nửa?",
+          "options": [
+            "Có; seek cũng tự giảm nửa",
+            "Có; rotational delay biến mất",
+            "Không",
+            "Có; toàn thời gian đọc là transfer"
+          ],
+          "explanation": "Chỉ thành phần truyền giảm. Chi phí định vị còn nguyên nên tổng thường không giảm nửa."
+        }
+      ]
+    },
+    {
+      "id": "l04-topic-locality",
+      "title": "Tuần tự, ngẫu nhiên và bố trí block",
+      "questions": [
+        {
+          "id": "l04-locality-q1",
+          "prompt": "Mỗi đọc ngẫu nhiên tốn 6 ms định vị và 0.1 ms truyền. 100 lượt độc lập chạy nối tiếp mất bao lâu?",
+          "options": [
+            "16 ms",
+            "10 ms",
+            "6000 ms",
+            "610 ms"
+          ],
+          "explanation": "Mỗi lượt 6.1 ms, nhân 100. Các vị trí ngẫu nhiên độc lập không chia sẻ một lần định vị ban đầu."
+        },
+        {
+          "id": "l04-locality-q2",
+          "prompt": "Cùng tham số, một dãy liên tục 100 trang mất bao lâu, bỏ qua chuyển track?",
+          "options": [
+            "16 ms",
+            "610 ms",
+            "6.1 ms",
+            "100 ms"
+          ],
+          "explanation": "Dãy trả 6 ms ban đầu rồi 100×0.1 ms truyền, khác 100 lượt đọc ngẫu nhiên."
+        },
+        {
+          "id": "l04-locality-q3",
+          "prompt": "Vì sao prefetch một dãy trang có thể giúp?",
+          "options": [
+            "Bảo đảm mọi yêu cầu tương lai hit",
+            "Chia chi phí định vị cho nhiều trang và chuẩn bị dữ liệu sớm",
+            "Tự giảm số bản ghi kết quả logic",
+            "Làm mỗi đọc trang chỉ truyền đúng một trường"
+          ],
+          "explanation": "Prefetch tận dụng tính gần nhau và khả năng chồng lấp, không đổi ngữ nghĩa query hay bố trí bản ghi."
+        },
+        {
+          "id": "l04-locality-q4",
+          "prompt": "Theo mô hình HDD của bài, trang hay đọc cùng nên đặt thế nào?",
+          "options": [
+            "Ở đâu cũng được vì ngẫu nhiên và tuần tự luôn cùng chi phí",
+            "Chung tên file logic là đủ bất kể vị trí vật lý",
+            "Gần nhau về vật lý",
+            "Xa nhau để tăng số seek độc lập"
+          ],
+          "explanation": "Gần nhau vật lý có thể giảm seek và chờ quay. Chung primary key không quyết định vị trí vật lý."
+        },
+        {
+          "id": "l04-locality-q5",
+          "prompt": "So sánh random/sequential của một cấu hình slide có là benchmark cho mọi SSD hiện tại?",
+          "options": [
+            "Có; tỷ số không phụ thuộc controller/workload",
+            "Có; cùng số trang bảo đảm cùng latency",
+            "Có; cache và song song không ảnh hưởng",
+            "Không; đó là mô hình hoặc ví dụ với giả định đã nêu"
+          ],
+          "explanation": "Phần cứng và workload khác nhau. Số slide không thay phép đo hệ thống thật."
+        }
+      ]
+    },
+    {
+      "id": "l04-topic-ssd",
+      "title": "Ổ SSD",
+      "questions": [
+        {
+          "id": "l04-ssd-q1",
+          "prompt": "Vì sao ghi nhỏ có thể gây write amplification trên NAND?",
+          "options": [
+            "Đơn vị erase lớn hơn lượng ứng dụng sửa",
+            "Flash có rotational delay dài hơn HDD",
+            "Read page và erase block luôn cùng kích thước",
+            "Mỗi ghi logic phải ghi lại toàn database"
+          ],
+          "explanation": "Flash có đơn vị erase/program và có thể phải chuyển dữ liệu, không có cơ chế quay như HDD."
+        },
+        {
+          "id": "l04-ssd-q2",
+          "prompt": "Wear levelling nhằm gì?",
+          "options": [
+            "Tăng giới hạn erase vật lý của từng cell bằng SQL",
+            "Phân bố ghi/xóa để tránh mòn tập trung",
+            "Dồn ghi nóng vào một cell để giảm metadata",
+            "Sắp bản ghi theo khóa tìm kiếm"
+          ],
+          "explanation": "Wear levelling quản lý độ bền thiết bị, không phải chính sách gom nhóm SQL."
+        },
+        {
+          "id": "l04-ssd-q3",
+          "prompt": "Phát biểu thận trọng nào về locality SSD phù hợp bài?",
+          "options": [
+            "Ghi ngẫu nhiên luôn cùng chi phí ghi tuần tự ở mọi kích thước",
+            "SSD loại mọi đánh đổi bố trí",
+            "Truy cập ngẫu nhiên và tuần tự vẫn có thể khác chi phí",
+            "Mọi I/O SSD cùng chi phí"
+          ],
+          "explanation": "Không có đầu đọc chuyển động không loại mọi đánh đổi bố trí và ghi."
+        },
+        {
+          "id": "l04-ssd-q4",
+          "prompt": "Theo mô tả NAND của bài, đọc và erase có buộc cùng đơn vị?",
+          "options": [
+            "Có; luôn một byte",
+            "Có; erase block đúng một tuple SQL",
+            "Không; mọi lần đọc phải lấy cả erase block",
+            "Không; erase block có thể lớn hơn read page"
+          ],
+          "explanation": "Các đơn vị khác nhau góp phần tạo đánh đổi ghi, không ép chúng thành một đơn vị chung."
+        },
+        {
+          "id": "l04-ssd-q5",
+          "prompt": "Nên dùng giá và latency phần cứng trong slide thế nào?",
+          "options": [
+            "Làm giả định giảng dạy; tư vấn thiết bị thật cần xác minh riêng",
+            "Làm thông số bảo đảm mọi thiết bị hiện tại",
+            "Làm bằng chứng mọi I/O trên mọi máy cùng latency",
+            "Làm báo giá mua hiện tại"
+          ],
+          "explanation": "Số minh họa không bảo đảm còn hiện hành nhưng hữu ích trong mô hình đã nêu."
+        }
+      ]
+    },
+    {
+      "id": "l04-topic-disk-manager",
+      "title": "Quản lý không gian đĩa",
+      "questions": [
+        {
+          "id": "l04-disk-manager-q1",
+          "prompt": "API nào thuộc disk-space manager?",
+          "options": [
+            "Đánh giá điều kiện trên từng bản ghi",
+            "Cấp phát/giải phóng và đọc/ghi trang",
+            "Chọn thứ tự join và chiến lược aggregate",
+            "Theo dõi pin/unpin và chọn victim"
+          ],
+          "explanation": "Lớp này cung cấp trừu tượng trang. Ngữ nghĩa query thuộc lớp trên."
+        },
+        {
+          "id": "l04-disk-manager-q2",
+          "prompt": "Triển khai dùng filesystem có thể ánh xạ page ID thành gì?",
+          "options": [
+            "Vị trí trong output query đã sắp",
+            "Alias SQL và khóa GROUP BY",
+            "Tên file cùng offset bên trong file",
+            "Giá trị tuple tùy ý không có offset file"
+          ],
+          "explanation": "Ánh xạ định vị byte bền, không mô tả dữ liệu nghiệp vụ."
+        },
+        {
+          "id": "l04-disk-manager-q3",
+          "prompt": "Bản ghi cần nằm trên trang chưa cache: hệ thống có bắt buộc chỉ đọc đúng số byte bản ghi?",
+          "options": [
+            "Có; luôn đọc đúng một trường",
+            "Có nếu bản ghi có id",
+            "Không; phải đọc toàn database",
+            "Không; I/O theo trang có thể đọc cả trang xung quanh"
+          ],
+          "explanation": "Đơn vị trang có thể kéo byte lân cận vào, không hàm ý quét toàn database."
+        },
+        {
+          "id": "l04-disk-manager-q4",
+          "prompt": "File dùng trang 4096 byte đánh số từ 0, không header. Trang 5 bắt đầu ở offset nào?",
+          "options": [
+            "20480",
+            "4096",
+            "24576",
+            "5"
+          ],
+          "explanation": "Offset là 5×4096. 24576 thuộc trang 6 hoặc do nhầm cách đánh số."
+        },
+        {
+          "id": "l04-disk-manager-q5",
+          "prompt": "Spatial control khác temporal control thế nào?",
+          "options": [
+            "Cả hai chỉ mô tả thứ tự logic kết quả",
+            "Spatial quyết định đặt trang ở đâu; temporal quyết định đọc/ghi khi nào",
+            "Spatial quyết định lúc flush; temporal quyết định vị trí",
+            "Spatial là pin count; temporal là độ dài bản ghi"
+          ],
+          "explanation": "Đó là hai chiều vị trí và thời điểm quản lý I/O, không phải clause SQL."
+        }
+      ]
+    }
+  ],
+  "reviewStatus": "All prompts, four options in canonical source-slot order, and explanations translated; author audit against canonical answer slots, latest EN/VI bodies and local extracted referenced source pages. No fresh diagram or external-paper verification; source caveats in review/core-quiz-1-5-translation.json."
+}

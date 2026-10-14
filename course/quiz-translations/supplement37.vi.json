@@ -1,0 +1,16 @@
+{
+  "lessonId": "supplement-37",
+  "language": "vi",
+  "topics": [{
+    "id": "supplement-37-practice",
+    "title": "Câu hỏi · phản biện · giới hạn · tổng hợp nghiên cứu",
+    "questions": [
+      {"id":"supplement-37-q1","prompt":"Có người hỏi về cấu hình phần cứng bạn chưa thử. Câu trả lời tốt nhất là gì?","options":["Tuyên bố mở rộng tuyến tính vì thuật toán song song.","Bịa một con số có vẻ hợp lý.","Nêu giới hạn phép đo và mô tả thí nghiệm mở rộng cần làm.","Chuyển chủ đề sang demo."],"explanation":"Mức chắc chắn phù hợp giữ ranh giới giữa bằng chứng và suy luận. Nếu chỉ đo một thiết bị, kết quả chưa xác lập mở rộng nhiều thiết bị; cần phép thử dưới workload và mục tiêu chất lượng tương đương, có tính chi phí giao tiếp."},
+      {"id":"supplement-37-q2","prompt":"Góp ý nên phân biệt giải thích còn thiếu với lỗi phương pháp thế nào?","options":["Coi cả hai là bằng chứng về ý định xấu.","Gán trọng số chấm do người phản biện tự dựng.","Bỏ qua mọi độ bất định.","Hỏi làm rõ và xác định bằng chứng hoặc điều kiện đối chứng cụ thể đang thiếu."],"explanation":"Góp ý khoa học hữu ích phải cụ thể và dựa vào bằng chứng. Hỏi rõ bước chưa được giải thích trước khi kết luận phương pháp có lỗi; quy định đánh giá chính thức là vấn đề riêng, không do người góp ý tự đặt."},
+      {"id":"supplement-37-q3","prompt":"Trung vị độ trễ cải thiện tự nó xác lập điều gì về p99?","options":["Chưa xác lập điều gì; hành vi phần đuôi cần bằng chứng riêng.","Độ trễ phần đuôi không liên quan trong mọi workload.","P99 luôn bằng giá trị lớn nhất.","P99 nhất định cải thiện tương ứng."],"explanation":"Trung vị mô tả quan sát ở giữa, không đặc trưng cho yêu cầu hiếm chậm hoặc lỗi. Vì vậy cải thiện trung vị chưa cho biết p99; cần thu thập và phân tích phần đuôi cùng timeout riêng."},
+      {"id":"supplement-37-q4","prompt":"Phát hiện lỗi đơn vị trong hình cuối cùng. Nhóm nên làm gì?","options":["Sửa lỗi, kiểm tra tuyên bố suy ra và thông báo đính chính theo quy trình khóa học phù hợp.","Giữ nguyên vì buổi nói đã xong.","Chỉ đổi tiêu đề, bất kể dữ liệu.","Xóa kết quả thô."],"explanation":"Bàn giao bằng chứng gồm sửa lỗi về sự thật và giữ khả năng lần lại nguồn. Lỗi đơn vị có thể đổi cách hiểu và kết luận suy ra, nên cần kiểm tra dữ liệu nguồn, hình liên quan và báo đính chính theo quy trình thật."},
+      {"id":"supplement-37-q5","prompt":"Sau symposium, thí nghiệm tiếp theo nào cung cấp nhiều thông tin nhất?","options":["Phép thử có thể giải quyết yếu tố gây nhiễu hoặc độ bất định còn lại quan trọng nhất.","Lượt chạy lại chỉ được chọn để tạo kết quả tích cực.","Lượt lớn nhất có thể bất kể câu hỏi.","Đổi màu đồ thị."],"explanation":"Chọn thí nghiệm theo khả năng làm thay đổi kết luận khoa học, không chỉ theo quy mô. Phép thử nhỏ kiểm tra một cách giải thích thay thế quan trọng có thể hữu ích hơn benchmark lớn nhưng không trả lời câu hỏi còn mở."}
+    ]
+  }],
+  "reviewStatus":"All 5 original supplemental practice questions translated; all four source options retain original order. Author checked canonical selected options against measured-vs-unmeasured discussion, median/tail distinction and evidence-handoff guidance. No answer keys copied or altered. Existing packets only; external references not freshly reviewed; official Canvas assessment unverified."
+}

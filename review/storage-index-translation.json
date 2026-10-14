@@ -1,0 +1,63 @@
+{
+  "batch": "lectures 6–12",
+  "completedLessons": 7,
+  "completedSections": 28,
+  "canonicalEnglishModified": false,
+  "quizObjectsModified": false,
+  "lessons": [
+    {
+      "lecture": 6,
+      "sectionCount": 4,
+      "sourceTextRead": "private-source-review/lecture06.txt",
+      "sourceScope": "Complete extracted text read; canonical body examples retained, source page links and subsection anchors checked. No independent visual verification of slide diagrams."
+    },
+    {
+      "lecture": 7,
+      "sectionCount": 4,
+      "sourceTextRead": "private-source-review/lecture07.txt",
+      "sourceScope": "Complete extracted text read; canonical body examples retained, source page links and subsection anchors checked. No independent visual verification of slide diagrams."
+    },
+    {
+      "lecture": 8,
+      "sectionCount": 4,
+      "sourceTextRead": "private-source-review/lecture08.txt",
+      "sourceScope": "Complete extracted text read; canonical body examples retained, source page links and subsection anchors checked. No independent visual verification of slide diagrams."
+    },
+    {
+      "lecture": 9,
+      "sectionCount": 4,
+      "sourceTextRead": "private-source-review/lecture09.txt",
+      "sourceScope": "Complete extracted text read; canonical body examples retained, source page links and subsection anchors checked. No independent visual verification of slide diagrams."
+    },
+    {
+      "lecture": 10,
+      "sectionCount": 4,
+      "sourceTextRead": "private-source-review/lecture10.txt",
+      "sourceScope": "Complete extracted text read; canonical body examples retained, source page links and subsection anchors checked. No independent visual verification of slide diagrams."
+    },
+    {
+      "lecture": 11,
+      "sectionCount": 4,
+      "sourceTextRead": "private-source-review/lecture11.txt",
+      "sourceScope": "Complete extracted text read; canonical body examples retained, source page links and subsection anchors checked. No independent visual verification of slide diagrams."
+    },
+    {
+      "lecture": 12,
+      "sectionCount": 4,
+      "sourceTextRead": "private-source-review/lecture12.txt",
+      "sourceScope": "Complete extracted text read; canonical body examples retained, source page links and subsection anchors checked. No independent visual verification of slide diagrams."
+    }
+  ],
+  "authorChecks": [
+    "28 substantive Vietnamese section bodies authored against current v3.1 English",
+    "Matching section order and goal counts asserted",
+    "Every canonical subsection anchor and source URL asserted preserved",
+    "Original canonical English takeaways unchanged because no canonical English files modified",
+    "Examples, numeric calculations, assumptions and limitations translated; quiz banks not translated or audited in this batch"
+  ],
+  "remainingIssues": [
+    "Diagram-only details on slides have not been independently visually verified in this batch",
+    "Quiz bank translations and validation remain outside this batch",
+    "Runtime and build validation handled by parent agent"
+  ]
+}

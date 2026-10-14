@@ -1,0 +1,107 @@
+{
+  "owner": "translate_supplements_a",
+  "lessons": [
+    {
+      "lessonId": "supplement-28",
+      "completedSectionIds": [
+        "supplement-28-status",
+        "supplement-28-s1",
+        "supplement-28-s2",
+        "supplement-28-s3",
+        "supplement-28-s4",
+        "supplement-28-s5",
+        "supplement-28-s6"
+      ],
+      "sectionCount": 7,
+      "canonicalPacketSha256": "c0d3b84a51b034f74a70dc4f49f9caabd1a6e11c34c0d0d75d91b0cc61313a08",
+      "orderedPerSectionSourceUrlsPreserved": true,
+      "englishPacketUnmodified": true,
+      "quizBankUnmodified": true,
+      "sourceScope": "Read canonical original lesson HTML, source registry and provenance; translated their stated claims, not independently reverified external papers. Original supplement, not verified Edinburgh lecture or Canvas assignment. Timings, deadlines, rubrics and submission rules unverified; all hypothetical/estimated versus measured distinctions retained."
+    },
+    {
+      "lessonId": "supplement-29",
+      "completedSectionIds": [
+        "supplement-29-status",
+        "supplement-29-s1",
+        "supplement-29-s2",
+        "supplement-29-s3",
+        "supplement-29-s4",
+        "supplement-29-s5",
+        "supplement-29-s6"
+      ],
+      "sectionCount": 7,
+      "canonicalPacketSha256": "d1c88e78d76e033c7ac01c3626ad7ae10b0a6f69ff75650d4d8f0a8266e14492",
+      "orderedPerSectionSourceUrlsPreserved": true,
+      "englishPacketUnmodified": true,
+      "quizBankUnmodified": true,
+      "sourceScope": "Read canonical original lesson HTML, source registry and provenance; translated their stated claims, not independently reverified external papers. Original supplement, not verified Edinburgh lecture or Canvas assignment. Timings, deadlines, rubrics and submission rules unverified; all hypothetical/estimated versus measured distinctions retained."
+    },
+    {
+      "lessonId": "supplement-30",
+      "completedSectionIds": [
+        "supplement-30-status",
+        "supplement-30-s1",
+        "supplement-30-s2",
+        "supplement-30-s3",
+        "supplement-30-s4",
+        "supplement-30-s5",
+        "supplement-30-s6"
+      ],
+      "sectionCount": 7,
+      "canonicalPacketSha256": "d82bf09fe93f07e008c1bc63dc802c35919b0c5daa6e9f9bce46f44a0c5c4cb2",
+      "orderedPerSectionSourceUrlsPreserved": true,
+      "englishPacketUnmodified": true,
+      "quizBankUnmodified": true,
+      "sourceScope": "Read canonical original lesson HTML, source registry and provenance; translated their stated claims, not independently reverified external papers. Original supplement, not verified Edinburgh lecture or Canvas assignment. Timings, deadlines, rubrics and submission rules unverified; all hypothetical/estimated versus measured distinctions retained."
+    },
+    {
+      "lessonId": "supplement-31",
+      "completedSectionIds": [
+        "supplement-31-status",
+        "supplement-31-s1",
+        "supplement-31-s2",
+        "supplement-31-s3",
+        "supplement-31-s4",
+        "supplement-31-s5",
+        "supplement-31-s6"
+      ],
+      "sectionCount": 7,
+      "canonicalPacketSha256": "439ae433b003abf7e74234b7c8e8d36541ba783885651847e5b3e28df28f662c",
+      "orderedPerSectionSourceUrlsPreserved": true,
+      "englishPacketUnmodified": true,
+      "quizBankUnmodified": true,
+      "sourceScope": "Read canonical original lesson HTML, source registry and provenance; translated their stated claims, not independently reverified external papers. Original supplement, not verified Edinburgh lecture or Canvas assignment. Timings, deadlines, rubrics and submission rules unverified; all hypothetical/estimated versus measured distinctions retained."
+    },
+    {
+      "lessonId": "supplement-32",
+      "completedSectionIds": [
+        "supplement-32-status",
+        "supplement-32-s1",
+        "supplement-32-s2",
+        "supplement-32-s3",
+        "supplement-32-s4",
+        "supplement-32-s5"
+      ],
+      "sectionCount": 6,
+      "canonicalPacketSha256": "43b09d340508290670aa219b3e3fca1d54cca013c4cd012ab943f12aa4797f51",
+      "orderedPerSectionSourceUrlsPreserved": true,
+      "englishPacketUnmodified": true,
+      "quizBankUnmodified": true,
+      "sourceScope": "Read canonical original lesson HTML, source registry and provenance; translated their stated claims, not independently reverified external papers. Original supplement, not verified Edinburgh lecture or Canvas assignment. Timings, deadlines, rubrics and submission rules unverified; all hypothetical/estimated versus measured distinctions retained."
+    }
+  ],
+  "completedSections": 34,
+  "unfinishedLessonIds": [],
+  "staticChecks": {
+    "sameSectionIdsAndOrder": true,
+    "sameGoalCounts": true,
+    "orderedHrefPerSection": true,
+    "originalCodeBlocksUnchanged": true,
+    "balancedHtmlTags": true,
+    "originalNumericTokensRetained": true,
+    "method": "Manual canonical-to-translation review; generation assertions; separate HTMLParser/code/numeric-token check on all 34 sections. Static checks do not establish browser behavior or learner comprehension."
+  },
+  "runtimeTests": "Not run by content owner; coordinating agent handles build and browser tests.",
+  "remaining": "Embedded quizzes and quiz banks intentionally untouched; not claimed translated or validated."
+}

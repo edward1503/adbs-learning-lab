@@ -1,0 +1,312 @@
+{
+  "lessonId": "lecture-25",
+  "language": "vi",
+  "topics": [
+    {
+      "id": "l25-topic-good-classes",
+      "title": "Các lớp CQ có cấu trúc thuận lợi",
+      "questions": [
+        {
+          "id": "l25-good-classes-q1",
+          "prompt": "Mục tiêu tìm “lớp tốt” của CQ trong bài này là gì?",
+          "options": [
+            "Hạn chế cấu trúc để đánh giá kết hợp khả thi",
+            "Chỉ giữ dữ liệu cố định, cho truy vấn tùy ý",
+            "Chỉ giữ số bộ đầu ra thay vì cấu trúc thân",
+            "Chỉ đổi thứ tự nguyên tử không đổi lớp cấu trúc"
+          ],
+          "explanation": "Cấu trúc đồ thị/siêu đồ thị có thể giúp đánh giá dễ hơn ngay khi Q là đầu vào. Mục tiêu không phải đổi nghĩa hay chỉ đổi tên biến."
+        },
+        {
+          "id": "l25-good-classes-q2",
+          "prompt": "Độ rộng cây bị chặn là tính chất của đối tượng nào?",
+          "options": [
+            "Siêu đồ thị chỉ đo số cạnh, bỏ qua kết nối",
+            "Đồ thị của CQ",
+            "Số bộ trong quan hệ lớn nhất",
+            "Chiều cao vật lý B+ tree"
+          ],
+          "explanation": "Treewidth đo cấu trúc tương tác giữa biến, không phải chiều cao cây chỉ mục. Hai cách dùng từ “cây” khác nhau."
+        },
+        {
+          "id": "l25-good-classes-q3",
+          "prompt": "Độ rộng siêu cây bị chặn mô tả gì?",
+          "options": [
+            "Số bộ lớn nhất của quan hệ",
+            "Số biến đầu, bỏ qua thân",
+            "Siêu đồ thị CQ gần phi chu trình đến đâu",
+            "Số cột cố định trong mỗi nguyên tử, bỏ qua biến chung"
+          ],
+          "explanation": "Hypertree width đo cấu trúc siêu đồ thị, không phải kích thước lưu trữ hay yêu cầu mọi nguyên tử cùng số vị trí."
+        },
+        {
+          "id": "l25-good-classes-q4",
+          "prompt": "Độ rộng siêu cây của CQ phi chu trình được nêu là bao nhiêu?",
+          "options": [
+            "0 với mọi truy vấn có nguyên tử",
+            "Số nguyên tử bất kể kết nối",
+            "Luôn bằng số biến nguyên tử lớn nhất",
+            "1"
+          ],
+          "explanation": "Bài giảng giới thiệu CQ phi chu trình có hypertree width 1. Số bộ dữ liệu không xác định độ rộng cấu trúc truy vấn."
+        },
+        {
+          "id": "l25-good-classes-q5",
+          "prompt": "Vì sao PTIME cho truy vấn cố định chưa đạt mục tiêu bài 25?",
+          "options": [
+            "Bài tìm bảo đảm tốt cho truy vấn đầu vào thay đổi nhưng cấu trúc phù hợp",
+            "Kết quả PTIME cố định sai với mọi CQ",
+            "PTIME nghĩa mọi truy vấn cùng thời gian",
+            "Mọi truy vấn hơn hai nguyên tử không quyết định được"
+          ],
+          "explanation": "Độ phức tạp dữ liệu giữ Q cố định; các lớp này nhắm độ phức tạp kết hợp. Không mâu thuẫn kết quả trước."
+        }
+      ]
+    },
+    {
+      "id": "l25-topic-hypergraphs",
+      "title": "Siêu đồ thị phi chu trình",
+      "questions": [
+        {
+          "id": "l25-hypergraphs-q1",
+          "prompt": "Siêu cạnh nào ứng với R(x,y,z)?",
+          "options": [
+            "Ba cạnh riêng {x,y},{y,z},{x,z} thay cho siêu cạnh",
+            "Tập {x,y,z}",
+            "Nút tên R không chứa biến",
+            "Tập mọi giá trị đang có trong quan hệ R"
+          ],
+          "explanation": "Siêu đồ thị giữ trọn tập biến nguyên tử thành một cạnh. Clique ba cạnh là đồ thị nguyên thủy, có cấu trúc cạnh khác."
+        },
+        {
+          "id": "l25-hypergraphs-q2",
+          "prompt": "Tính giao liên tục trong cây nối yêu cầu gì?",
+          "options": [
+            "Mọi nguyên tử cùng số biến",
+            "Mọi cặp nguyên tử chung ít nhất một biến",
+            "Với mỗi biến, các nút chứa nó tạo cây con liên thông",
+            "Mỗi biến xuất hiện đúng một nguyên tử"
+          ],
+          "explanation": "Một biến có thể xuất hiện nhiều nơi, nhưng đường đi giữa chúng cũng phải chứa biến đó. Không cần mọi cặp nguyên tử giao nhau."
+        },
+        {
+          "id": "l25-hypergraphs-q3",
+          "prompt": "Cây nối nào hợp lệ cho R(a,b),S(b,c),T(c,d)?",
+          "options": [
+            "R—T—S",
+            "S—R—T",
+            "Mọi cây đều hợp lệ",
+            "R—S—T"
+          ],
+          "explanation": "R—S—T giữ liên thông các nút chứa b và c. Đặt T giữa R,S phá liên thông của b."
+        },
+        {
+          "id": "l25-hypergraphs-q4",
+          "prompt": "{a,b},{b,c},{c,a} có phi chu trình không?",
+          "options": [
+            "Không; mọi cây nối ba cạnh vi phạm tính giao liên tục với một biến",
+            "Có vì chỉ ba cạnh",
+            "Có vì mỗi cạnh hai biến",
+            "Không đánh giá được nếu thiếu dữ liệu"
+          ],
+          "explanation": "Phi chu trình là tính chất cấu trúc truy vấn. Tam giác tạo xung đột giao liên tục bất kể dữ liệu."
+        },
+        {
+          "id": "l25-hypergraphs-q5",
+          "prompt": "Thêm {a,b,c} vào tam giác {a,b},{b,c},{c,a} có thể làm gì?",
+          "options": [
+            "Luôn còn chu trình vì thêm cạnh không bao giờ giúp",
+            "Làm phi chu trình bằng dùng cạnh lớn làm trung tâm cây nối",
+            "Chắc chắn thêm chu trình vì số cạnh tăng",
+            "Chỉ phi chu trình nếu xóa ba cạnh nhỏ trước"
+          ],
+          "explanation": "Phi chu trình siêu đồ thị khác đồ thị thường: cạnh lớn ở giữa chứa mọi biến chung. Quy tắc thêm cạnh của đồ thị thường không chuyển trực tiếp sang đây."
+        }
+      ]
+    },
+    {
+      "id": "l25-topic-gyo",
+      "title": "Kiểm tra phi chu trình",
+      "questions": [
+        {
+          "id": "l25-gyo-q1",
+          "prompt": "Quy tắc GYO nào hợp lệ?",
+          "options": [
+            "Xóa bất kỳ biến thuộc hai cạnh",
+            "Xóa mọi biến đầu trước",
+            "Xóa biến thuộc tối đa một siêu cạnh",
+            "Xóa cạnh lớn nhất bất kể bao chứa"
+          ],
+          "explanation": "Biến chỉ thuộc một cạnh không thể nối cạnh đó với các cạnh khác thành chu trình. Xóa tùy ý biến bậc 2 có thể kết luận sai."
+        },
+        {
+          "id": "l25-gyo-q2",
+          "prompt": "GYO được xóa siêu cạnh nào?",
+          "options": [
+            "Mọi cạnh nhiều biến nhất",
+            "Mọi cạnh là lá trong một cây tùy ý",
+            "Mọi cạnh giao ít nhất một cạnh khác",
+            "Cạnh rỗng hoặc nằm trong cạnh khác"
+          ],
+          "explanation": "Cạnh nằm trong cạnh khác không thêm yêu cầu cấu trúc cần giữ cho kiểm tra này. Chỉ giao cạnh khác chưa đủ để xóa."
+        },
+        {
+          "id": "l25-gyo-q3",
+          "prompt": "GYO rút H về siêu đồ thị rỗng chứng minh gì?",
+          "options": [
+            "H phi chu trình",
+            "Truy vấn tương đương ngữ nghĩa với truy vấn rỗng",
+            "Dữ liệu không có bộ",
+            "Truy vấn trả YES trên mọi dữ liệu"
+          ],
+          "explanation": "GYO kiểm tra cấu trúc; không biến truy vấn thực thi thành truy vấn bỏ hết nguyên tử mà giữ nghĩa. Siêu đồ thị rỗng không nói gì về dữ liệu."
+        },
+        {
+          "id": "l25-gyo-q4",
+          "prompt": "H={a,b},{b,c},{c,d}. Sau khi bỏ a,d còn gì?",
+          "options": [
+            "Ba cạnh như cũ",
+            "{b},{b,c},{c}, rồi bỏ các cạnh bị bao chứa",
+            "Tam giác {a,b},{b,c},{c,a}",
+            "Chỉ {a,d}"
+          ],
+          "explanation": "a,d chỉ thuộc một cạnh nên bỏ được. Các cạnh một biến còn lại nằm trong {b,c}, cho phép rút tiếp."
+        },
+        {
+          "id": "l25-gyo-q5",
+          "prompt": "GYO dừng ở cấu trúc khác rỗng không còn quy tắc áp dụng. Kết luận gì?",
+          "options": [
+            "Đổi thứ tự bộ dữ liệu sẽ làm phi chu trình",
+            "Phi chu trình vì đã xóa ít nhất một biến",
+            "Siêu đồ thị có chu trình",
+            "Chưa kết luận tới khi chạy trên dữ liệu"
+          ],
+          "explanation": "Định lý nói phi chu trình khi và chỉ khi rút về rỗng. Kiểm tra không phụ thuộc thứ tự bộ hay một cơ sở dữ liệu cụ thể."
+        }
+      ]
+    },
+    {
+      "id": "l25-topic-acyclic-eval",
+      "title": "Đánh giá CQ phi chu trình",
+      "questions": [
+        {
+          "id": "l25-acyclic-eval-q1",
+          "prompt": "Bảo đảm O(size(D)·size(Q)) áp dụng cho gì trong bối cảnh bài?",
+          "options": [
+            "In đầu ra lớn tùy ý không tính kích thước đầu ra",
+            "Mọi CQ kể cả có chu trình",
+            "Mọi SQL đệ quy tùy ý",
+            "Bài toán quyết định/thành viên của CQ phi chu trình"
+          ],
+          "explanation": "Liệt kê có thể vượt giới hạn do đầu ra lớn. Bối cảnh là quyết định, với phi chu trình là điều kiện thiết yếu."
+        },
+        {
+          "id": "l25-acyclic-eval-q2",
+          "prompt": "Q phi chu trình cố định, O(size(D)·size(Q)) tăng theo size(D) thế nào?",
+          "options": [
+            "Tuyến tính theo size(D) trong giới hạn này",
+            "Bậc hai vì size(Q) luôn bằng size(D)",
+            "Mũ theo size(D)",
+            "Không phụ thuộc dữ liệu"
+          ],
+          "explanation": "Q cố định khiến size(Q) là hằng. Không đồng nhất kích thước truy vấn và dữ liệu."
+        },
+        {
+          "id": "l25-acyclic-eval-q3",
+          "prompt": "Nếu cả size(D),size(Q) gấp đôi, tích trong O(size(D)·size(Q)) đổi theo hệ số nào?",
+          "options": [
+            "Khoảng 2 vì từng nhân tử tuyến tính",
+            "Khoảng 4 trong biểu thức tích",
+            "Khoảng 8",
+            "Không đổi"
+          ],
+          "explanation": "(2size(D))(2size(Q))=4size(D)size(Q). Tuyến tính theo từng đối số riêng không nghĩa tuyến tính theo tổng khi cả hai cùng tăng."
+        },
+        {
+          "id": "l25-acyclic-eval-q4",
+          "prompt": "Vì sao CQ phi chu trình có thể dễ đánh giá hơn CQ tổng quát?",
+          "options": [
+            "Không có phép nối",
+            "Mỗi quan hệ đúng một bộ",
+            "Cây nối cho phép ghép thông tin cục bộ với bảo đảm toàn cục",
+            "Không có biến tồn tại"
+          ],
+          "explanation": "CQ phi chu trình vẫn có nhiều nối và biến tồn tại. Cấu trúc phụ thuộc thuận lợi hỗ trợ quy hoạch động hiệu quả."
+        },
+        {
+          "id": "l25-acyclic-eval-q5",
+          "prompt": "CQ có cây nối nhưng đầu ra là tích lớn của hai quan hệ độc lập. Có bỏ chi phí ghi đầu ra không?",
+          "options": [
+            "Có vì CQ phi chu trình tối đa một bộ",
+            "Có vì GYO đã xóa cạnh",
+            "Không vì đánh giá phi chu trình không quyết định được",
+            "Không; liệt kê ít nhất phải tính số kết quả tạo ra"
+          ],
+          "explanation": "Quyết định và liệt kê khác nhau. Phi chu trình không tự chặn số bộ kết quả không Boolean."
+        }
+      ]
+    },
+    {
+      "id": "l25-topic-yannakakis",
+      "title": "Thuật toán Yannakakis",
+      "questions": [
+        {
+          "id": "l25-yannakakis-q1",
+          "prompt": "Bước đầu thuật toán Boolean được trình bày là gì?",
+          "options": [
+            "Tìm cây nối cho siêu đồ thị truy vấn",
+            "Vật hóa toàn bộ nối trước khi tìm cây",
+            "Bán nối theo thứ tự tùy ý bỏ qua cấu trúc",
+            "Chọn gốc rồi bỏ mọi quan hệ trong nhánh"
+          ],
+          "explanation": "Cây nối xác định cách truyền thông tin bán nối. Bỏ nguyên tử tùy ý đổi truy vấn."
+        },
+        {
+          "id": "l25-yannakakis-q2",
+          "prompt": "R ⋉ S trả lược đồ nào?",
+          "options": [
+            "Mọi cột R,S như nối đầy đủ",
+            "Chỉ cột R, giữ bộ có phép khớp trong S",
+            "Chỉ cột S",
+            "Một cột COUNT cho mỗi bộ"
+          ],
+          "explanation": "Bán nối lọc bộ trái theo tồn tại phép khớp, không tạo bộ ghép đầy đủ của phép nối."
+        },
+        {
+          "id": "l25-yannakakis-q3",
+          "prompt": "R(B)={1,2}, S(B,C)={(1,k),(2,m)}, T(C)={k}, cây R—S—T gốc R. Gốc sau lượt từ dưới lên là gì?",
+          "options": [
+            "{1,2}",
+            "{2}",
+            "{1}",
+            "Tập rỗng"
+          ],
+          "explanation": "S⋉T giữ (1,k), rồi R⋉S giữ 1. Chỉ nhìn S ban đầu sẽ giữ sai cả 2."
+        },
+        {
+          "id": "l25-yannakakis-q4",
+          "prompt": "Sau lượt bán nối từ dưới lên, gốc rỗng. CQ Boolean trả gì?",
+          "options": [
+            "YES vì bảng ban đầu không rỗng",
+            "Chưa biết, phải in toàn bộ nối đầy đủ",
+            "YES nếu chọn quan hệ nhỏ nhất làm gốc",
+            "NO"
+          ],
+          "explanation": "Gốc rỗng nghĩa không bộ còn lại nào mở rộng thành phép khớp toàn cây. Bảng đầu vào không rỗng chưa bảo đảm nối có khớp."
+        },
+        {
+          "id": "l25-yannakakis-q5",
+          "prompt": "Vì sao an toàn khi kết hợp nhân chứng từ các nhánh cây nối?",
+          "options": [
+            "Tính giao liên tục nối biến chung qua các nút cũng chứa biến đó",
+            "Các nhánh không bao giờ chung biến",
+            "Bán nối tạo mọi tổ hợp để kiểm tra",
+            "Gốc luôn chứa mọi biến truy vấn"
+          ],
+          "explanation": "Biến chung giữa nhánh phải xuất hiện cả ở nút trung gian trên đường đi. Điều này giữ tương thích lựa chọn; gốc không cần mọi biến."
+        }
+      ]
+    }
+  ],
+  "reviewStatus": "Each translated explanation reviewed against canonical answer position and private extracted lecture text. Full bank translated. No canonical answer keys modified. Visual diagrams not reverified in this batch."
+}

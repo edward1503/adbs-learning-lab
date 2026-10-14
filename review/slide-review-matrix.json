@@ -1,0 +1,272 @@
+[
+  {
+    "lecture": 1,
+    "edinburghWeek": 1,
+    "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf",
+    "pdfPageCount": 36,
+    "pdfSha256": "7a1b68923da8d9ee2fc16bdfba06b18e619be7140cd672e2cf479d9555e07ff2",
+    "sourceScope": "Root reviewed page/topic inventory and selected concept pages; no exhaustive diagram review.",
+    "mainBodyVietnamese": true,
+    "quizBankVietnamese": true
+  },
+  {
+    "lecture": 2,
+    "edinburghWeek": 1,
+    "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+    "pdfPageCount": 29,
+    "pdfSha256": "7305e45d1bb537d00bf344f247ff9bd81681e45503d3ceed66d9ab8eb6afbf4f",
+    "sourceScope": "Root reviewed page/topic inventory and selected concept pages; no exhaustive diagram review.",
+    "mainBodyVietnamese": true,
+    "quizBankVietnamese": true
+  },
+  {
+    "lecture": 3,
+    "edinburghWeek": 1,
+    "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+    "pdfPageCount": 20,
+    "pdfSha256": "4f166a05a3e7570e660b86807d3972d0ee108eaf38bfcd7da8f6bd434aa6314c",
+    "sourceScope": "Root reviewed page/topic inventory and selected concept pages; no exhaustive diagram review.",
+    "mainBodyVietnamese": true,
+    "quizBankVietnamese": true
+  },
+  {
+    "lecture": 4,
+    "edinburghWeek": 2,
+    "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+    "pdfPageCount": 29,
+    "pdfSha256": "51e57d043fa328ffc97168abcd6dab38fbad8831ee39a18330efd2eab8cc86be",
+    "sourceScope": "Root reviewed page/topic inventory and selected concept pages; no exhaustive diagram review.",
+    "mainBodyVietnamese": true,
+    "quizBankVietnamese": true
+  },
+  {
+    "lecture": 5,
+    "edinburghWeek": 2,
+    "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+    "pdfPageCount": 35,
+    "pdfSha256": "9f3a8778f7a3fe358471cf91a09b4aa8a4ef54d8d7893c1f7acf7377818fe41d",
+    "sourceScope": "Root reviewed page/topic inventory and selected concept pages; no exhaustive diagram review.",
+    "mainBodyVietnamese": true,
+    "quizBankVietnamese": true
+  },
+  {
+    "lecture": 6,
+    "edinburghWeek": 2,
+    "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf",
+    "pdfPageCount": 29,
+    "pdfSha256": "e7e3b7f74541782d92520335e65b44e571e632d0f6f282af038839eac41a9286",
+    "sourceScope": "Delegated author read full extracted slide text and canonical v3.1 content; no independent full visual diagram or extension-paper audit.",
+    "mainBodyVietnamese": true,
+    "quizBankVietnamese": true
+  },
+  {
+    "lecture": 7,
+    "edinburghWeek": 3,
+    "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf",
+    "pdfPageCount": 28,
+    "pdfSha256": "b981bb00309a7443168065f817187ee59caf9ce98ea6012965d5ce80d091727b",
+    "sourceScope": "Delegated author read full extracted slide text and canonical v3.1 content; no independent full visual diagram or extension-paper audit.",
+    "mainBodyVietnamese": true,
+    "quizBankVietnamese": true
+  },
+  {
+    "lecture": 8,
+    "edinburghWeek": 3,
+    "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations.pdf",
+    "pdfPageCount": 34,
+    "pdfSha256": "1df40b68de03cfaf6f33bfa2d41932f0bda23e03bad5a5f392e7a1ae3d86d8a4",
+    "sourceScope": "Delegated author read full extracted slide text and canonical v3.1 content; no independent full visual diagram or extension-paper audit.",
+    "mainBodyVietnamese": true,
+    "quizBankVietnamese": true
+  },
+  {
+    "lecture": 9,
+    "edinburghWeek": 3,
+    "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf",
+    "pdfPageCount": 30,
+    "pdfSha256": "8593ac7c8beca33c70dd14159ddbf154e6ee4aa434db78aa29cd19221c809318",
+    "sourceScope": "Delegated author read full extracted slide text and canonical v3.1 content; no independent full visual diagram or extension-paper audit.",
+    "mainBodyVietnamese": true,
+    "quizBankVietnamese": true
+  },
+  {
+    "lecture": 10,
+    "edinburghWeek": 4,
+    "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+    "pdfPageCount": 26,
+    "pdfSha256": "1c122caeee6627ffe06cdcfcaa787dca918c920e5d3889813944aba8fab552fd",
+    "sourceScope": "Delegated author read full extracted slide text and canonical v3.1 content; no independent full visual diagram or extension-paper audit.",
+    "mainBodyVietnamese": true,
+    "quizBankVietnamese": true
+  },
+  {
+    "lecture": 11,
+    "edinburghWeek": 4,
+    "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+    "pdfPageCount": 32,
+    "pdfSha256": "7c02f7545c65cbc74aade855a576b66394152d289f6018606380119295a5bb3c",
+    "sourceScope": "Delegated author read full extracted slide text and canonical v3.1 content; no independent full visual diagram or extension-paper audit.",
+    "mainBodyVietnamese": true,
+    "quizBankVietnamese": true
+  },
+  {
+    "lecture": 12,
+    "edinburghWeek": 4,
+    "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+    "pdfPageCount": 43,
+    "pdfSha256": "3e3c3ef9e7e758df8b00650e75e607002443ba5049c2f7363eefb53a76324874",
+    "sourceScope": "Delegated author read full extracted slide text and canonical v3.1 content; no independent full visual diagram or extension-paper audit.",
+    "mainBodyVietnamese": true,
+    "quizBankVietnamese": true
+  },
+  {
+    "lecture": 13,
+    "edinburghWeek": 5,
+    "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf",
+    "pdfPageCount": 18,
+    "pdfSha256": "1d8fbfdb376899fee0c837d238d68a64400ca4d77b942b02fc26e0cfa5dc1992",
+    "sourceScope": "Delegated author read full extracted slide text and canonical v3.1 content; no independent full visual diagram or extension-paper audit.",
+    "mainBodyVietnamese": true,
+    "quizBankVietnamese": true
+  },
+  {
+    "lecture": 14,
+    "edinburghWeek": 5,
+    "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf",
+    "pdfPageCount": 7,
+    "pdfSha256": "a6247053637db2171f38adef990985becee2bec099ed9a853816463a439f5212",
+    "sourceScope": "Delegated author read full extracted slide text and canonical v3.1 content; no independent full visual diagram or extension-paper audit.",
+    "mainBodyVietnamese": true,
+    "quizBankVietnamese": true
+  },
+  {
+    "lecture": 15,
+    "edinburghWeek": 5,
+    "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf",
+    "pdfPageCount": 43,
+    "pdfSha256": "70846f1acb6cf1786765ae2cd433ce2c271749ac4c4694e05bbce41ada90da72",
+    "sourceScope": "Delegated author read full extracted slide text and canonical v3.1 content; no independent full visual diagram or extension-paper audit.",
+    "mainBodyVietnamese": true,
+    "quizBankVietnamese": true
+  },
+  {
+    "lecture": 16,
+    "edinburghWeek": 6,
+    "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf",
+    "pdfPageCount": 23,
+    "pdfSha256": "a350b45bc48af4206e62c9aa31674fd99a0c3ddfc84b2ef7d10bbb38501ecebb",
+    "sourceScope": "Delegated author read full extracted slide text and canonical v3.1 content; no independent full visual diagram or extension-paper audit.",
+    "mainBodyVietnamese": true,
+    "quizBankVietnamese": true
+  },
+  {
+    "lecture": 17,
+    "edinburghWeek": 6,
+    "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf",
+    "pdfPageCount": 26,
+    "pdfSha256": "6d111f97830996ee2e25a7f98c5e69d769d5f925291e7e530de377d15040e0df",
+    "sourceScope": "Delegated author read full extracted slide text and canonical v3.1 content; no independent full visual diagram or extension-paper audit.",
+    "mainBodyVietnamese": true,
+    "quizBankVietnamese": true
+  },
+  {
+    "lecture": 18,
+    "edinburghWeek": 6,
+    "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf",
+    "pdfPageCount": 24,
+    "pdfSha256": "8463398f7b5f86f55900420ecce28228a3bf9e77e18392eb5b398fbfc7a41fd6",
+    "sourceScope": "Delegated author read full extracted slide text and canonical v3.1 content; no independent full visual diagram or extension-paper audit.",
+    "mainBodyVietnamese": true,
+    "quizBankVietnamese": true
+  },
+  {
+    "lecture": 19,
+    "edinburghWeek": 7,
+    "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+    "pdfPageCount": 48,
+    "pdfSha256": "ddc7dae8a660b4fe458a83953207e980670940a7373c36638c2d0d07f48b4b83",
+    "sourceScope": "Delegated author read full extracted slide text and canonical v3.1 content; no independent full visual diagram or extension-paper audit.",
+    "mainBodyVietnamese": true,
+    "quizBankVietnamese": true
+  },
+  {
+    "lecture": 20,
+    "edinburghWeek": 7,
+    "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+    "pdfPageCount": 28,
+    "pdfSha256": "87353f7682e759e9c5210adcd9f1f8671484ca1b577518b7b975b626b50dea8d",
+    "sourceScope": "Delegated author read full extracted slide text and canonical v3.1 content; no independent full visual diagram or extension-paper audit.",
+    "mainBodyVietnamese": true,
+    "quizBankVietnamese": true
+  },
+  {
+    "lecture": 21,
+    "edinburghWeek": 7,
+    "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+    "pdfPageCount": 27,
+    "pdfSha256": "e2d420e699491b2bd290220545da7012a4fd2524d34b4fb4b6dfc5787b40a375",
+    "sourceScope": "Delegated author read full extracted slide text and canonical v3.1 content; no independent full visual diagram or extension-paper audit.",
+    "mainBodyVietnamese": true,
+    "quizBankVietnamese": true
+  },
+  {
+    "lecture": 22,
+    "edinburghWeek": 8,
+    "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+    "pdfPageCount": 57,
+    "pdfSha256": "a15ddc528415e2a8e3966027753961370017d8cf519a733f7a2a8ceefb72a601",
+    "sourceScope": "Delegated author read full extracted slide text and canonical v3.1 content; no independent full visual diagram or extension-paper audit.",
+    "mainBodyVietnamese": true,
+    "quizBankVietnamese": true
+  },
+  {
+    "lecture": 23,
+    "edinburghWeek": 9,
+    "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf",
+    "pdfPageCount": 33,
+    "pdfSha256": "b4c4c3612680dab36d4fd06ff01b6e26ec4e0e293124dc39ef290a04c0eed9b4",
+    "sourceScope": "Delegated author read full extracted slide text and canonical v3.1 content; no independent full visual diagram or extension-paper audit.",
+    "mainBodyVietnamese": true,
+    "quizBankVietnamese": true
+  },
+  {
+    "lecture": 24,
+    "edinburghWeek": 9,
+    "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf",
+    "pdfPageCount": 37,
+    "pdfSha256": "e8de917c8d24773c9500d2b9185dbe2754240919a1f1cd205673275d7fb67ff6",
+    "sourceScope": "Delegated author read full extracted slide text and canonical v3.1 content; no independent full visual diagram or extension-paper audit.",
+    "mainBodyVietnamese": true,
+    "quizBankVietnamese": true
+  },
+  {
+    "lecture": 25,
+    "edinburghWeek": 9,
+    "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf",
+    "pdfPageCount": 37,
+    "pdfSha256": "d67145364b3843a9fee0fee4be188df5d84a6c6653b3ee2aaa1d74d60884c173",
+    "sourceScope": "Delegated author read full extracted slide text and canonical v3.1 content; no independent full visual diagram or extension-paper audit.",
+    "mainBodyVietnamese": true,
+    "quizBankVietnamese": true
+  },
+  {
+    "lecture": 26,
+    "edinburghWeek": 10,
+    "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+    "pdfPageCount": 45,
+    "pdfSha256": "49cb459fa93e027274e938f4ca548660c0c0e6446bcbd2839957569326b3d0dd",
+    "sourceScope": "Delegated author read full extracted slide text and canonical v3.1 content; no independent full visual diagram or extension-paper audit.",
+    "mainBodyVietnamese": true,
+    "quizBankVietnamese": true
+  },
+  {
+    "lecture": 27,
+    "edinburghWeek": 10,
+    "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+    "pdfPageCount": 21,
+    "pdfSha256": "a264c4c4d728d878f765474b1d44eb1581f9692cc5ee2897ceed9515e5e0941e",
+    "sourceScope": "Delegated author read full extracted slide text and canonical v3.1 content; no independent full visual diagram or extension-paper audit.",
+    "mainBodyVietnamese": true,
+    "quizBankVietnamese": true
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "lessonId": "supplement-36",
+  "language": "vi",
+  "topics": [{
+    "id": "supplement-36-practice",
+    "title": "Tuyên bố · cơ chế · bằng chứng · hạn chế · chuyển lượt nói",
+    "questions": [
+      {"id":"supplement-36-q1","prompt":"Slide kết quả chính nào có cơ sở vững nhất?","options":["Phép so sánh nêu workload, baseline, đơn vị, mục tiêu chất lượng và độ bất định.","Speedup không nêu tên baseline.","Ảnh chụp trường hợp tốt nhất không ghi nhãn.","Đồ thị của paper ghi là kết quả tự đo của nhóm."],"explanation":"Phép so sánh khoa học cần đủ bối cảnh để hiểu điều gì cải thiện và điều gì được giữ cố định. Workload, baseline, đơn vị, chất lượng và độ bất định làm rõ phạm vi của tuyên bố."},
+      {"id":"supplement-36-q2","prompt":"Vì sao trình bày ví dụ nhỏ có lời giải trước đồ thị benchmark?","options":["Nó thay thế mọi nhu cầu đánh giá.","Nó giúp người nghe hiểu cơ chế và dự đoán giới hạn.","Nó chứng minh phương pháp mới về mặt nghiên cứu.","Nó bảo đảm demo chạy được."],"explanation":"Ví dụ vận hành giải thích điều gì thay đổi và vì sao kết quả có thể xuất hiện, như việc batching giảm công thiết bị nhưng thêm thời gian chờ. Benchmark cung cấp bằng chứng riêng; ví dụ không thay thế phép đánh giá."},
+      {"id":"supplement-36-q3","prompt":"Cách dùng đồ thị của paper khác nào phù hợp với giao tiếp khoa học?","options":["Cắt bỏ trục và trích dẫn.","Dùng số tốt nhất mà không nói điều kiện.","Ghi nguồn gốc, phân biệt với số đo của nhóm và tôn trọng quyền tái sử dụng.","Ghi là kết quả mới của nhóm."],"explanation":"Trích nguồn và nêu phạm vi phân biệt bằng chứng trước đó dùng làm bối cảnh với thí nghiệm của nhóm. Quyền tái sử dụng vẫn áp dụng; nếu chưa tái lập, phải ghi rõ đó là kết quả tác giả báo cáo."},
+      {"id":"supplement-36-q4","prompt":"Ví dụ số giả định nên xuất hiện thế nào?","options":["Giấu trong đồ thị để hình đẹp hơn.","Ghi là kết quả đo nếu số có vẻ hợp lý.","Trộn với dữ liệu thật mà không phân biệt.","Ghi rõ là số tự dựng để minh họa."],"explanation":"Phép tính minh họa hữu ích để hiểu cơ chế và cách báo cáo, nhưng không bao giờ được trình bày như bằng chứng thí nghiệm. Các số giả định phải có nhãn rõ để người nghe không nhầm với phép đo."},
+      {"id":"supplement-36-q5","prompt":"Cách chuyển lượt nói nào hợp lý trong nhóm?","options":["Đột ngột chuyển sang lịch sử triển khai không liên quan.","Câu chuyển nối cơ chế đang giải thích với câu hỏi bằng chứng tiếp theo.","Lặp lại mở đầu mà không nối với lập luận.","Khẳng định chỉ một thành viên biết kết quả."],"explanation":"Chuyển lượt được phối hợp giữ mạch logic. Chẳng hạn, sau cơ chế dự đoán ít lần truyền hơn, phần tiếp theo kiểm tra truyền dữ liệu có chiếm phần lớn độ trễ thật không."}
+    ]
+  }],
+  "reviewStatus":"All 5 original supplemental practice questions translated; all four source options retain original order. Author checked canonical selected options against research-story, batching trade-off, hypothetical-number and attribution guidance. No answer keys copied or altered. Existing packets only; external references not freshly reviewed; official Canvas assessment unverified."
+}

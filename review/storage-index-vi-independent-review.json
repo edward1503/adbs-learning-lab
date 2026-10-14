@@ -1,0 +1,205 @@
+{
+  "reviewer": "translate_supplements_a; independent read-only review of a different author batch",
+  "scope": {
+    "canonicalFiles": "course/lecture06.json through lecture12.json, full section HTML",
+    "translationFiles": "course/translations/lecture06.vi.json through lecture12.vi.json, full section HTML",
+    "sectionCount": 28,
+    "authorFilesModified": false,
+    "outputOnly": "review/storage-index-vi-independent-review.json",
+    "freshDiagramAudit": false,
+    "freshSlidePdfAudit": false,
+    "browserOrBuildTests": false,
+    "quizAudit": false,
+    "method": "Read every EN/VI section pair and compare the explanation, assumptions, numeric reasoning, algorithm steps and teaching flow. A numeric-token screen supplemented this reading; spelled-out Vietnamese numbers and punctuation changes were checked semantically rather than treated as omissions."
+  },
+  "decision": "No blocking semantic-parity defect found in the 28 main sections reviewed. Three low-severity wording improvements are recommended. This is content review, not proof of complete course correctness or learner comprehension.",
+  "findings": [
+    {
+      "id": "VI-STORAGE-01",
+      "severity": "low",
+      "sectionId": "l9-1",
+      "kind": "ambiguous wording",
+      "evidence": "VI: “Nó có nhiều hơn một con trỏ con so với separator, tức d+1 đến 2d+1 con.” EN says one more child pointer than separator keys. The immediately following formula is correct, but the Vietnamese phrasing can be read as an unspecified excess greater than one.",
+      "suggestedRepair": "Write “Số con trỏ con bằng số khóa separator cộng 1, nên có d+1 đến 2d+1 con.”",
+      "blocking": false
+    },
+    {
+      "id": "VI-STORAGE-02",
+      "severity": "low",
+      "sectionId": "l7-1",
+      "kind": "term explanation",
+      "evidence": "The transition explains row/column/PAX trade-offs coherently, but retains “locality tốt” and “cache locality” without directly explaining the term. The intended audience specifically requested intuition and terminology.",
+      "suggestedRepair": "At first use, explain locality as placing values the operation uses close together so one cache-line/page read can serve more of the work; preserve the existing caveat that whole-page PAX access does not automatically skip disk I/O.",
+      "blocking": false
+    },
+    {
+      "id": "VI-STORAGE-03",
+      "severity": "low",
+      "sectionId": "l12-s3",
+      "kind": "awkward technical wording",
+      "evidence": "VI says “dùng phân biệt băm mới phù hợp trong partition” when discussing the build hash table after Grace partitioning. It preserves the EN idea, but “phân biệt băm” is opaque Vietnamese and sounds like an operation that has not been defined.",
+      "suggestedRepair": "Explain that a suitable internal hash function/bit distinction is used to distribute the entries of the already-selected partition inside its in-memory hash table, rather than blindly reusing only the partition identifier. Preserve the fit and duplicate-key limitations.",
+      "blocking": false
+    }
+  ],
+  "semanticChecks": [
+    {
+      "lessonId": "lecture-06",
+      "sectionIds": [
+        "l6-1",
+        "l6-2",
+        "l6-3",
+        "l6-4"
+      ],
+      "result": "pass",
+      "evidence": "Page-space candidate P2=90 bytes for a 60-byte insertion retains current-directory/overhead/contiguity assumptions. Capacity 20, seventh-record offset 324, slot-inclusive capacity 18 with 28 bytes left, and 60-byte-record capacity 15 with 40 left are correctly derived. Slot 2 moves [790,840) to [850,900) without changing RID (9,2); positional RID and slot RID remain distinguished. Record fields total 9 bytes before Linh, 13 bytes total, empty string versus NULL is explicit, and growth to 20 name bytes updates record length to 29 and the right offsets."
+    },
+    {
+      "lessonId": "lecture-07",
+      "sectionIds": [
+        "l7-1",
+        "l7-2",
+        "l7-3",
+        "l7-4"
+      ],
+      "result": "pass",
+      "evidence": "Preserves row reconstruction positions 1/3 and sum 40, row/column 100 MB versus 12 MB with decimal MB, 88% byte reduction without speedup guarantee, and PAX versus separately readable columns. RLE sum 34, delta [3,1,4,1], minDelta 1, residual [2,0,3,0], two-bit residuals and full reconstruction are correct. Negative deltas/zero residual widths, dictionary order and cross-dictionary limits are retained. Dictionary 100+40=140 payload bytes and bit packing 375 to 500 bytes preserve excluded metadata/padding and the single-block fixed-width assumption. Parquet statistics can exclude impossible regions but do not prove a value exists."
+    },
+    {
+      "lessonId": "lecture-08",
+      "sectionIds": [
+        "l8-1",
+        "l8-2",
+        "l8-3",
+        "l8-4"
+      ],
+      "result": "pass",
+      "evidence": "Same cold-cache, unique existing key, matching sort column, contiguous/gap-free file and CPU/random-I/O exclusions. Full scan 2048 ms, heap approximation 1024 versus exact expectation 1025, binary-search approximation 20, heap insert 4, sorted insert 2068 all retain their distinctions. Absent/nonunique/range full heap scans and deletion write remain. Sorted K-page region model and shifting cost remain qualified. Clustered four data pages versus unclustered up to 80 are not mistaken for total index+fetch cost; candidate/primary/index classifications retain slide-specific naming caveat."
+    },
+    {
+      "lessonId": "lecture-09",
+      "sectionIds": [
+        "l9-1",
+        "l9-2",
+        "l9-3",
+        "l9-4"
+      ],
+      "result": "pass with low wording issue",
+      "evidence": "d=2 leaf split [4,9]/[12,15,18] copy-up 12 and internal push-up 30 are distinct. Leaf borrow changes parent 12 to 15; leaf merge and root shrink are consistent. Internal merge [10,20,30,40] keeps five ordered children and routes 25 to C2, 35 to C3. Internal redistribution moves D3 with boundary 40 downward and 30 upward, retaining the same [30,40) range for D3. Same-parent sibling and recursive-repair limits remain. Byte occupancy, ISAM overflow, log base 100 height (3 edges/4 levels), lossless prefix compression versus internal boundary suffix truncation and duplicate-key scope are preserved."
+    },
+    {
+      "lessonId": "lecture-10",
+      "sectionIds": [
+        "l10-s1",
+        "l10-s2",
+        "l10-s3",
+        "l10-s4"
+      ],
+      "result": "pass",
+      "evidence": "Modulo example and linear-probe lookup follow matching insertion/search paths, including wrap to slot 0 and deletion caveat. Static bucket cost excludes RID data fetch and accounts for overflow; identical keys cannot be spread by ordinary key hashing. Extendible hashing trailing-bit convention, d<=g, doubling only pointers, [1,9] versus [5] split and all unchanged directory targets are retained. 2^(g-d), d<g split, same-depth buddy merge, reverse split and directory-shrink conditions remain semantically exact."
+    },
+    {
+      "lessonId": "lecture-11",
+      "sectionIds": [
+        "l11-s1",
+        "l11-s2",
+        "l11-s3",
+        "l11-s4"
+      ],
+      "result": "pass",
+      "evidence": "Merge preserves three copies of 4 until DISTINCT/aggregation explicitly changes them. N=90,B=6 creates 15->3->1 runs and 540 materialized I/Os; output-frame reservation, ceil/log formula, N>0/B>=3 and empty/in-memory cases remain. B=10 gives 9 initial runs, one merge, 360 I/Os. AVG holds sum/count, with North 24/2 and South 8/1; average-of-averages warning remains. State-versus-input size, B-1 partitions, B(B-1) approximation, f=1.2 expansion to 12 state pages exceeding 10 and skew/identical-key repartition limits are correctly explained."
+    },
+    {
+      "lessonId": "lecture-12",
+      "sectionIds": [
+        "l12-s1",
+        "l12-s2",
+        "l12-s3",
+        "l12-s4"
+      ],
+      "result": "pass with low wording issue",
+      "evidence": "BNLJ B-2=10 reservation and outer orientations give 600/520; PNLJ 4920 and tuple NLJ 480120 distinguish pages/tuples. INLJ 77 includes 3-I/O lookup and 7502 explicitly holds outer read cost fixed. Sort-merge keeps 3x4=12 and all six named 2x3 pairs, with duplicate spills/rescans caveat. Hash build retains duplicates, equijoin equality rejects collisions, Grace requires every overhead-inclusive build partition to fit and gives 480 only without recursive partitioning. Same-key skew cannot be fixed by hashing or replaced by aggregation state; output remains A×B. Final-sort fusion uses combined r+s<=B-1: B=12 gives 14>11 and fails; B=16 gives 8+3<=15 and 480 versus materialized 800, saving one write+read=320. Already sorted inputs can cost 160 only under stated duplicate assumptions."
+    }
+  ],
+  "teachingCoherence": "The reviewed VI sections contain connected explanation, worked state transitions, explicit assumptions and consequences rather than only headings or standalone bullet answers. They generally follow the canonical EN causal narrative. Remaining readability friction is concentrated in retained English systems terminology; the three findings identify concrete local improvements without claiming wholesale narrative failure.",
+  "snapshots": [
+    {
+      "lessonId": "lecture-06",
+      "sectionsReviewed": [
+        "l6-1",
+        "l6-2",
+        "l6-3",
+        "l6-4"
+      ],
+      "canonicalSha256": "83322e2a2892e1659515c32588f38bb03ec7a04413906f919a55b1cbcf9138ae",
+      "viSha256": "45fefd61a6d83c4c7de1bdf383684875ad67f18a1f30a44d106d763b9c02f88b"
+    },
+    {
+      "lessonId": "lecture-07",
+      "sectionsReviewed": [
+        "l7-1",
+        "l7-2",
+        "l7-3",
+        "l7-4"
+      ],
+      "canonicalSha256": "af8289c68e9278c577a90bf4b25d820104164d2d5cdc59055baeb9ae2e352cc7",
+      "viSha256": "a0569baeef320f97918c54626186274276f123248bdf814c1e09b47b104087e6"
+    },
+    {
+      "lessonId": "lecture-08",
+      "sectionsReviewed": [
+        "l8-1",
+        "l8-2",
+        "l8-3",
+        "l8-4"
+      ],
+      "canonicalSha256": "d0beae5520d1a25fb9f1f065eb5dba7d13c772dc561180aa104ab2dbcfac6c35",
+      "viSha256": "68d3705d752368a0d38b931b08d75e4e8a9601607998ed41b9204178fd38863f"
+    },
+    {
+      "lessonId": "lecture-09",
+      "sectionsReviewed": [
+        "l9-1",
+        "l9-2",
+        "l9-3",
+        "l9-4"
+      ],
+      "canonicalSha256": "7989d0433178fe647a1d6666b6c84b6e5a80e528b0015c849aed83f82dd5457f",
+      "viSha256": "3fda2cb6f41ed34b2c58a5fc8278cfafc3cf30aca063675611f8474a49ef432c"
+    },
+    {
+      "lessonId": "lecture-10",
+      "sectionsReviewed": [
+        "l10-s1",
+        "l10-s2",
+        "l10-s3",
+        "l10-s4"
+      ],
+      "canonicalSha256": "7ddd58a7b7c64fb78a72d0fd53e1c30542e064e427863ef3f9e408cbb6227afd",
+      "viSha256": "2cbdcdca8bd100860ca8d9e3c7065e34e0377c6b37855eb9bed377c00de70823"
+    },
+    {
+      "lessonId": "lecture-11",
+      "sectionsReviewed": [
+        "l11-s1",
+        "l11-s2",
+        "l11-s3",
+        "l11-s4"
+      ],
+      "canonicalSha256": "8388725165d5736503edf0068f10385a471fce53a92f2a47dd7df06df4b2e9fc",
+      "viSha256": "ee8b73f0fb9891e587dddd05d39aec702452f04d1ea883d97d11a208470790f8"
+    },
+    {
+      "lessonId": "lecture-12",
+      "sectionsReviewed": [
+        "l12-s1",
+        "l12-s2",
+        "l12-s3",
+        "l12-s4"
+      ],
+      "canonicalSha256": "0af83878e0a29830df5888ebc40ab05e0824f234e2514a05450f2b996ac9bd4c",
+      "viSha256": "8b34f7166866edc82650c98f3a834b485c2fa70fe1149baf911d8d2c178424e4"
+    }
+  ],
+  "remaining": "No author files changed. Root owns wording repairs and build/browser tests. No fresh diagram audit, slide-PDF reread or quiz validation occurred in this independent batch."
+}

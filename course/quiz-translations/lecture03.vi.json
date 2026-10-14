@@ -1,0 +1,689 @@
+{
+  "lessonId": "lecture-03",
+  "language": "vi",
+  "topics": [
+    {
+      "id": "l03-topic-algebra",
+      "title": "Đại số quan hệ và tập hợp",
+      "questions": [
+        {
+          "id": "l03-algebra-q1",
+          "prompt": "Tính đóng trong đại số quan hệ nghĩa là gì?",
+          "options": [
+            "Đầu ra luôn là số",
+            "Mỗi truy vấn chỉ có một toán tử",
+            "Mọi toán tử giữ nguyên schema",
+            "Đầu ra là relation mà toán tử khác có thể dùng"
+          ],
+          "explanation": "Trả relation cho phép ghép nhiều bước. Toán tử như projection vẫn có thể đổi schema."
+        },
+        {
+          "id": "l03-algebra-q2",
+          "prompt": "RA thuần và SQL mặc định khác nhau quan trọng ở đâu?",
+          "options": [
+            "RA dùng set; SQL thường dùng bag",
+            "RA chỉ dùng chuỗi; SQL chỉ dùng số nguyên",
+            "RA bắt buộc sắp xếp; SQL cấm sắp xếp",
+            "RA không có join"
+          ],
+          "explanation": "Khác biệt nằm ở số bản sao, không phải kiểu số hay có phép join hay không."
+        },
+        {
+          "id": "l03-algebra-q3",
+          "prompt": "Physical plan khác logical plan thế nào?",
+          "options": [
+            "Logical plan chỉ nêu kết quả cuối, không có toán tử",
+            "Physical plan chọn thuật toán thực thi cụ thể",
+            "Physical plan được đổi ngữ nghĩa query để nhanh hơn",
+            "Logical plan đã cố định từng I/O riêng"
+          ],
+          "explanation": "Toán tử logic mô tả biến đổi; toán tử vật lý chọn cách làm nhưng phải giữ ngữ nghĩa."
+        },
+        {
+          "id": "l03-algebra-q4",
+          "prompt": "Vì sao kiểm tra schema của RA được trước khi chạy?",
+          "options": [
+            "Chỉ biết schema đầu ra sau khi xem mọi giá trị",
+            "Mọi toán tử giữ nguyên schema nên không cần kiểm tra",
+            "Schema đầu vào xác định schema đầu ra của toán tử",
+            "Mọi relation bắt buộc chung schema"
+          ],
+          "explanation": "Cấu trúc có kiểu hỗ trợ kiểm tra tĩnh, không có nghĩa mọi relation tương thích schema."
+        },
+        {
+          "id": "l03-algebra-q5",
+          "prompt": "Mục tiêu chính khi nối calculus với algebra trong bài là gì?",
+          "options": [
+            "Chứng minh kế hoạch tương đương luôn chung runtime",
+            "Bảo đảm mọi query không cần I/O",
+            "Bảo đảm mọi query chỉ cần một toán tử",
+            "Nối mô tả khai báo với các biến đổi thao tác"
+          ],
+          "explanation": "Tương đương về khả năng biểu đạt hỗ trợ biên dịch query, không bảo đảm thời gian chạy hằng số."
+        }
+      ]
+    },
+    {
+      "id": "l03-topic-selection",
+      "title": "Selection: chọn dòng",
+      "questions": [
+        {
+          "id": "l03-selection-q1",
+          "prompt": "Với R(x)={1,3,5}, σ x>2(R) bằng gì?",
+          "options": [
+            "{3,5}",
+            "{1}",
+            "{1,3,5}",
+            "{2}"
+          ],
+          "explanation": "Selection giữ tuple thỏa điều kiện, không tạo giá trị ranh giới 2."
+        },
+        {
+          "id": "l03-selection-q2",
+          "prompt": "Selection chủ yếu tác động điều gì?",
+          "options": [
+            "Số bản sao nhân với số điều kiện",
+            "Những hàng được giữ",
+            "Những cột được giữ",
+            "Tên thuộc tính trong schema"
+          ],
+          "explanation": "Selection lọc tuple nhưng giữ schema đầu vào. Projection chọn cột."
+        },
+        {
+          "id": "l03-selection-q3",
+          "prompt": "R(x,y)={(1,8),(3,4),(3,9)}: hàng nào thỏa x=3 AND y>5?",
+          "options": [
+            "{(1,8),(3,9)}",
+            "{(1,8)}",
+            "{(3,9)}",
+            "{(3,4),(3,9)}"
+          ],
+          "explanation": "AND cần cả hai điều kiện. Chỉ thỏa x=3 chưa đủ."
+        },
+        {
+          "id": "l03-selection-q4",
+          "prompt": "Với cùng R, hàng nào thỏa x=1 OR y=4?",
+          "options": [
+            "{(1,8)}",
+            "{(3,4)}",
+            "Không có tuple",
+            "{(1,8),(3,4)}"
+          ],
+          "explanation": "OR cần ít nhất một điều kiện đúng, không cần cả hai cùng đúng."
+        },
+        {
+          "id": "l03-selection-q5",
+          "prompt": "Selection có tăng số tuple của relation theo set không?",
+          "options": [
+            "Không",
+            "Có nếu điều kiện có OR",
+            "Có nếu có hai điều kiện",
+            "Có nếu giữ mọi cột"
+          ],
+          "explanation": "Mỗi tuple được giữ một lần hoặc bị bỏ. OR không nhân tuple."
+        }
+      ]
+    },
+    {
+      "id": "l03-topic-projection",
+      "title": "Projection: chiếu cột",
+      "questions": [
+        {
+          "id": "l03-projection-q1",
+          "prompt": "Với R(a,b)={(1,2),(1,3),(4,5)}, π a(R) trong set RA là gì?",
+          "options": [
+            "{(1,2),(4,5)}",
+            "{1,4}",
+            "{1,1,4}",
+            "{2,3,5}"
+          ],
+          "explanation": "Projection giữ a, ngữ nghĩa set loại tuple trùng. SQL không DISTINCT có thể giữ cả hai lần 1."
+        },
+        {
+          "id": "l03-projection-q2",
+          "prompt": "Projection có bắt buộc giảm số tuple?",
+          "options": [
+            "Có; luôn còn đúng một hàng",
+            "Không; nó luôn giữ trùng như bag",
+            "Không; các giá trị được chiếu có thể vẫn khác nhau",
+            "Có; ít nhất một hàng phải mất"
+          ],
+          "explanation": "Projection có thể giảm hoặc giữ cardinality, không nhất thiết làm hai hàng giống nhau."
+        },
+        {
+          "id": "l03-projection-q3",
+          "prompt": "Schema đầu ra của π a,c trên R(a,b,c) có bao nhiêu cột?",
+          "options": [
+            "3",
+            "1",
+            "Số hàng của R",
+            "2"
+          ],
+          "explanation": "Danh sách chiếu có hai thuộc tính. Số hàng không quyết định độ rộng schema."
+        },
+        {
+          "id": "l03-projection-q4",
+          "prompt": "Khi nào SELECT a FROM R và π a(R) có cardinality khác nhau?",
+          "options": [
+            "Khi nhiều tuple R chung giá trị a",
+            "Chỉ khi R rỗng",
+            "Chỉ khi a âm",
+            "Không bao giờ"
+          ],
+          "explanation": "Projection SQL theo bag không tự bỏ trùng; projection theo set có bỏ."
+        },
+        {
+          "id": "l03-projection-q5",
+          "prompt": "Vì sao loại trùng không được coi là miễn phí trong DBMS?",
+          "options": [
+            "Metadata schema luôn xác định chính xác mọi bản sao",
+            "Cần công xử lý để tìm và bỏ tuple kết quả trùng",
+            "Projection SQL đã tự bỏ mọi bản sao",
+            "Chỉ cần bỏ một cột là loại được trùng"
+          ],
+          "explanation": "Loại trùng cần xử lý, không có nghĩa phải sửa hay xóa dữ liệu nguồn."
+        }
+      ]
+    },
+    {
+      "id": "l03-topic-union",
+      "title": "Union: hợp",
+      "questions": [
+        {
+          "id": "l03-union-q1",
+          "prompt": "A={1,2}, B={2,3}: A∪B là gì?",
+          "options": [
+            "{2}",
+            "{1,3}",
+            "{1,2,3}",
+            "{1,2,2,3}"
+          ],
+          "explanation": "Union theo set giữ mọi giá trị xuất hiện nhưng không giữ bản sao của 2."
+        },
+        {
+          "id": "l03-union-q2",
+          "prompt": "Để union hai relation cần điều kiện cơ bản nào?",
+          "options": [
+            "Cùng số tuple",
+            "Không chung giá trị",
+            "Chỉ mục giống hệt",
+            "Cùng số trường, kiểu ở vị trí tương ứng tương thích"
+          ],
+          "explanation": "Tương thích schema nói về cột và kiểu, không phải cardinality hay chỉ mục."
+        },
+        {
+          "id": "l03-union-q3",
+          "prompt": "Bag A=[1,2], B=[2,3]: SQL UNION ALL trả bao nhiêu hàng?",
+          "options": [
+            "4",
+            "3",
+            "2",
+            "1"
+          ],
+          "explanation": "UNION ALL giữ số bản sao của cả hai đầu vào. UNION thực hiện loại trùng."
+        },
+        {
+          "id": "l03-union-q4",
+          "prompt": "A(a:int,b:text) và B(x:int) có union trực tiếp theo quy tắc bài không?",
+          "options": [
+            "Có nếu đổi x thành a",
+            "Không; số trường khác nhau",
+            "Có vì trường đầu đều int",
+            "Có nếu B ít hàng hơn"
+          ],
+          "explanation": "Rename không bổ sung trường thiếu. Union cần độ rộng schema bằng nhau."
+        },
+        {
+          "id": "l03-union-q5",
+          "prompt": "A∪A theo set so với A thế nào?",
+          "options": [
+            "Luôn rỗng",
+            "Chỉ chứa một tuple tùy ý",
+            "Bằng A",
+            "Có gấp đôi tuple"
+          ],
+          "explanation": "Union theo set có tính lũy đẳng. Ghép bag hay UNION ALL sẽ nhân đôi số bản sao."
+        }
+      ]
+    },
+    {
+      "id": "l03-topic-difference",
+      "title": "Set difference: hiệu",
+      "questions": [
+        {
+          "id": "l03-difference-q1",
+          "prompt": "A={1,2,4}, B={2,3}: A−B là gì?",
+          "options": [
+            "{3}",
+            "{2}",
+            "{1,2,3,4}",
+            "{1,4}"
+          ],
+          "explanation": "Giữ tuple có ở A mà không có ở B. {3} là B−A."
+        },
+        {
+          "id": "l03-difference-q2",
+          "prompt": "Set difference có giao hoán không?",
+          "options": [
+            "Không; A−B thường khác B−A",
+            "Có, như union",
+            "Có khi giá trị là số nguyên",
+            "Có khi hai set cùng kích thước"
+          ],
+          "explanation": "Hướng phép trừ quyết định bên cấp tuple được giữ. Cùng kiểu/kích thước không làm phép trừ đối xứng."
+        },
+        {
+          "id": "l03-difference-q3",
+          "prompt": "A−A cho gì?",
+          "options": [
+            "Schema chưa xác định",
+            "Relation rỗng với cùng schema",
+            "A",
+            "Một tuple NULL"
+          ],
+          "explanation": "Mọi tuple A đều nằm trong tập bị trừ nên không còn tuple, nhưng schema vẫn xác định."
+        },
+        {
+          "id": "l03-difference-q4",
+          "prompt": "Slide gắn set difference với toán tử SQL nào?",
+          "options": [
+            "GROUP BY",
+            "INNER JOIN",
+            "EXCEPT",
+            "ORDER BY"
+          ],
+          "explanation": "EXCEPT biểu diễn hiệu tập. Inner join tìm cặp khớp thay vì trừ tuple."
+        },
+        {
+          "id": "l03-difference-q5",
+          "prompt": "A={(1,a),(1,b)}, B={(1,a)}: A−B còn gì?",
+          "options": [
+            "Không có tuple",
+            "{(1,a)}",
+            "{(1,a),(1,b)}",
+            "{(1,b)}"
+          ],
+          "explanation": "So tập dùng toàn tuple. Chung trường đầu 1 không loại mọi tuple bắt đầu bằng 1."
+        }
+      ]
+    },
+    {
+      "id": "l03-topic-product",
+      "title": "Cross product: tích",
+      "questions": [
+        {
+          "id": "l03-product-q1",
+          "prompt": "R có 4 tuple, S có 3. R×S có bao nhiêu tuple?",
+          "options": [
+            "12",
+            "7",
+            "4",
+            "3"
+          ],
+          "explanation": "Mỗi tuple R ghép mọi tuple S, cho 4×3 chứ không cộng."
+        },
+        {
+          "id": "l03-product-q2",
+          "prompt": "R có 5 tuple, S rỗng. Product có bao nhiêu tuple?",
+          "options": [
+            "Không xác định",
+            "0",
+            "5",
+            "1"
+          ],
+          "explanation": "Một đầu vào rỗng thì không có cặp: 5×0=0."
+        },
+        {
+          "id": "l03-product-q3",
+          "prompt": "R có 2 cột, S có 3. Product trước projection có bao nhiêu trường?",
+          "options": [
+            "3",
+            "2",
+            "5",
+            "6"
+          ],
+          "explanation": "Product ghép trường của hai tuple nên cộng số cột, còn số cặp hàng được nhân."
+        },
+        {
+          "id": "l03-product-q4",
+          "prompt": "Product có yêu cầu đầu vào tương thích để union không?",
+          "options": [
+            "Có, như union",
+            "Có; cần cùng số tuple",
+            "Có; cần ít nhất một tên trường chung",
+            "Không"
+          ],
+          "explanation": "Product ghép tuple khác schema được. Tương thích union cần cho phép tập như union."
+        },
+        {
+          "id": "l03-product-q5",
+          "prompt": "R(a)={1,2}, S(b)={x,y}: tuple nào thuộc product?",
+          "options": [
+            "Tất cả (1,x),(1,y),(2,x),(2,y)",
+            "Chỉ (1,x),(2,y)",
+            "Chỉ (1,y),(2,x)",
+            "Chỉ (1,x)"
+          ],
+          "explanation": "Product tạo mọi cặp, không ghép hàng theo vị trí tương ứng."
+        }
+      ]
+    },
+    {
+      "id": "l03-topic-rename",
+      "title": "Rename: đổi tên",
+      "questions": [
+        {
+          "id": "l03-rename-q1",
+          "prompt": "Rename đổi trực tiếp điều gì?",
+          "options": [
+            "Số bản sao tuple giống nhau",
+            "Tên relation hoặc tên thuộc tính",
+            "Giá trị trường đổi tên",
+            "Tuple được điều kiện giữ lại"
+          ],
+          "explanation": "Rename đổi tên, không sửa giá trị dữ liệu hay lọc hàng."
+        },
+        {
+          "id": "l03-rename-q2",
+          "prompt": "Vì sao alias hữu ích khi self-join hai bản Employee?",
+          "options": [
+            "Tự biến self-join thành union",
+            "Bảo đảm hai bản chứa dữ liệu khác nhau",
+            "Phân biệt trường thuộc hai vai trò khác nhau",
+            "Tự bỏ cặp có id giống nhau"
+          ],
+          "explanation": "Hai bản cùng schema cần tham chiếu rõ ràng. Alias không phải loại trùng hay tạo chỉ mục."
+        },
+        {
+          "id": "l03-rename-q3",
+          "prompt": "R(a,b)={(1,2)} được đổi a thành x. Đầu ra là gì?",
+          "options": [
+            "Schema (a,b), tuple (x,2)",
+            "Schema (x), tuple (1)",
+            "Relation rỗng",
+            "Schema (x,b), tuple (1,2)"
+          ],
+          "explanation": "Đổi tên thuộc tính giữ giá trị và các cột khác, không biến tên thành giá trị dữ liệu."
+        },
+        {
+          "id": "l03-rename-q4",
+          "prompt": "R×S có hai trường id. Cách nào biểu diễn rõ từng trường?",
+          "options": [
+            "Đổi tên thành r_id và s_id",
+            "Bỏ ngay một trường tùy ý",
+            "Tự cộng hai id",
+            "Bỏ mọi tuple có tên không khớp"
+          ],
+          "explanation": "Rename loại mơ hồ nhưng giữ thông tin. Projection hay cộng là biến đổi khác."
+        },
+        {
+          "id": "l03-rename-q5",
+          "prompt": "Rename relation theo set có đổi cardinality không?",
+          "options": [
+            "Có; rename tương đương self-product",
+            "Không",
+            "Có; bỏ mọi tuple trùng dưới tên mới",
+            "Có; mỗi tên mới tạo tuple nữa"
+          ],
+          "explanation": "Rename chỉ đổi nhãn schema/relation. Độ dài tên không quyết định số tuple."
+        },
+        {
+          "id": "l03-rename-new-q1",
+          "prompt": "Employee được gọi E, bản đóng vai quản lý gọi M. Điều kiện nào ghép nhân viên với quản lý ghi trong hàng nhân viên?",
+          "options": [
+            "E.id = M.id",
+            "E.manager_id = E.id",
+            "M.manager_id = M.id",
+            "E.manager_id = M.id"
+          ],
+          "explanation": "Rename tạo hai vai trò riêng; E.manager_id tham chiếu M.id của quản lý."
+        }
+      ]
+    },
+    {
+      "id": "l03-topic-intersection",
+      "title": "Intersection: giao",
+      "questions": [
+        {
+          "id": "l03-intersection-q1",
+          "prompt": "A={2,4,6}, B={1,4,6}: A∩B là gì?",
+          "options": [
+            "{2}",
+            "{1}",
+            "{4,6}",
+            "{1,2,4,6}"
+          ],
+          "explanation": "Intersection giữ tuple chung. Union giữ mọi giá trị có ở ít nhất một đầu vào."
+        },
+        {
+          "id": "l03-intersection-q2",
+          "prompt": "Biểu thức nào bằng A∩B trong set RA?",
+          "options": [
+            "A−B",
+            "A∪B",
+            "A×B",
+            "A−(A−B)"
+          ],
+          "explanation": "Bỏ khỏi A mọi thứ không thuộc B thì còn phần chung."
+        },
+        {
+          "id": "l03-intersection-q3",
+          "prompt": "A∩B rỗng thì phát biểu nào đúng?",
+          "options": [
+            "Hai relation không có tuple giống hệt chung",
+            "Ít nhất một relation bắt buộc rỗng",
+            "Hai relation bắt buộc khác số cột",
+            "A và B bắt buộc khác kiểu"
+          ],
+          "explanation": "Hai set không rỗng vẫn có thể rời nhau. Schema vẫn phải thỏa điều kiện tương thích."
+        },
+        {
+          "id": "l03-intersection-q4",
+          "prompt": "Intersection có cần tương thích schema như union?",
+          "options": [
+            "Chỉ cần một tên cột chung",
+            "Có",
+            "Không; chỉ xét trường đầu",
+            "Chỉ cần cùng số tuple, không cần kiểu tương thích"
+          ],
+          "explanation": "Vị trí tuple và kiểu tương ứng phải so được. Số hàng không bỏ được yêu cầu ấy."
+        },
+        {
+          "id": "l03-intersection-q5",
+          "prompt": "A∩A là gì?",
+          "options": [
+            "A×A",
+            "Một tuple A tùy ý",
+            "A",
+            "Tập rỗng"
+          ],
+          "explanation": "Mọi tuple A thuộc cả hai đầu vào. Intersection không chọn một tuple tùy ý."
+        }
+      ]
+    },
+    {
+      "id": "l03-topic-theta",
+      "title": "Join và theta join",
+      "questions": [
+        {
+          "id": "l03-theta-q1",
+          "prompt": "Biểu thức nào tương đương theta join?",
+          "options": [
+            "πθ(R∪S)",
+            "R−S",
+            "σθ(R∩S) với mọi schema",
+            "σθ(R×S)"
+          ],
+          "explanation": "Theo ngữ nghĩa, theta join là product rồi selection. Không cần materialise product trong thực thi vật lý."
+        },
+        {
+          "id": "l03-theta-q2",
+          "prompt": "Theta join loại nào là equijoin?",
+          "options": [
+            "Điều kiện là phép AND của các equality",
+            "Điều kiện có thể là bất kỳ phép lớn hơn/nhỏ hơn",
+            "Nhất thiết nối mọi tên chung và bỏ cột lặp",
+            "Bắt buộc chỉ nối một primary key"
+          ],
+          "explanation": "Equijoin dùng điều kiện bằng nhau. Bỏ cột chung là đặc điểm natural join, không phải mọi equijoin."
+        },
+        {
+          "id": "l03-theta-q3",
+          "prompt": "R(x)={1,3}, S(y)={2,4}: bao nhiêu cặp thỏa x<y?",
+          "options": [
+            "1",
+            "3",
+            "2",
+            "4"
+          ],
+          "explanation": "Các cặp thỏa là (1,2),(1,4),(3,4). (3,2) không thỏa."
+        },
+        {
+          "id": "l03-theta-q4",
+          "prompt": "Theta join trước projection có schema nào?",
+          "options": [
+            "Luôn là schema R",
+            "Luôn một cột Boolean",
+            "Các trường từ cả hai đầu vào như product",
+            "Chỉ cột khóa chung"
+          ],
+          "explanation": "Selection trên product giữ schema product. Điều kiện không thay đầu ra bằng một cột Boolean."
+        },
+        {
+          "id": "l03-theta-q5",
+          "prompt": "Self-join ages={20,25,30} với age_left<age_right tạo bao nhiêu cặp?",
+          "options": [
+            "6",
+            "9",
+            "0",
+            "3"
+          ],
+          "explanation": "Các cặp tăng là (20,25),(20,30),(25,30). Loại cặp đảo và tuổi bằng nhau."
+        }
+      ]
+    },
+    {
+      "id": "l03-topic-natural",
+      "title": "Natural join",
+      "questions": [
+        {
+          "id": "l03-natural-q1",
+          "prompt": "Natural join bỏ gì so với equijoin trên mọi tên chung?",
+          "options": [
+            "Một bản của mỗi trường chung",
+            "Mọi hàng có primary key lặp",
+            "Mọi cột không chung",
+            "Mọi tuple chứa chuỗi"
+          ],
+          "explanation": "Natural join giữ một cột cho mỗi tên chung, không bỏ cột riêng từng đầu vào."
+        },
+        {
+          "id": "l03-natural-q2",
+          "prompt": "R(a,b)={(1,7)}, S(b,c)={(7,x),(8,y)}: natural join trả gì?",
+          "options": [
+            "Tập rỗng",
+            "{(1,7,x)}",
+            "{(1,7,x),(1,7,y)}",
+            "{(7,x)}"
+          ],
+          "explanation": "Chỉ b=7 khớp. Đầu ra có a,b,c với một bản b."
+        },
+        {
+          "id": "l03-natural-q3",
+          "prompt": "Natural join R(a,b) và S(b,c) có schema nào?",
+          "options": [
+            "Chỉ b",
+            "a,c",
+            "a,b,c",
+            "a,b,b,c"
+          ],
+          "explanation": "Tên chung b xuất hiện một lần. Bỏ hẳn b cũng sai."
+        },
+        {
+          "id": "l03-natural-q4",
+          "prompt": "Hai relation chung tên id và status. Natural join yêu cầu gì?",
+          "options": [
+            "Chỉ id bằng nhau",
+            "id bằng nhau OR status bằng nhau",
+            "Chỉ kiểu status tương thích",
+            "id bằng nhau AND status bằng nhau"
+          ],
+          "explanation": "Mọi tên chung tham gia equality, các điều kiện kết hợp bằng AND."
+        },
+        {
+          "id": "l03-natural-q5",
+          "prompt": "R(a)={1,2}, S(b)={x,y} không chung tên cột. Natural join có ngữ nghĩa gì?",
+          "options": [
+            "Product có bốn tuple",
+            "Relation rỗng",
+            "Union có bốn giá trị",
+            "Chỉ hai tuple ghép theo vị trí"
+          ],
+          "explanation": "Không có equality tên chung để lọc nên mọi cặp thỏa phép AND rỗng. Đây là product, không phải union."
+        }
+      ]
+    },
+    {
+      "id": "l03-topic-extra",
+      "title": "Toán tử bổ sung",
+      "questions": [
+        {
+          "id": "l03-extra-q1",
+          "prompt": "Trong các toán tử bổ sung, γ biểu diễn gì?",
+          "options": [
+            "Cartesian product",
+            "Gom nhóm và tổng hợp",
+            "Selection theo điều kiện từng tuple",
+            "Đổi tên thuộc tính"
+          ],
+          "explanation": "γ biểu diễn tính toán theo nhóm. Product và rename có toán tử riêng."
+        },
+        {
+          "id": "l03-extra-q2",
+          "prompt": "Theo ngữ nghĩa nào cần toán tử bỏ trùng δ riêng rõ nhất?",
+          "options": [
+            "Chỉ khi relation có đúng một tuple",
+            "Chỉ khi mọi cột duy nhất",
+            "Bag semantics",
+            "Set semantics vốn đã loại trùng"
+          ],
+          "explanation": "Bag giữ số bản sao có thể loại. Set vốn không có tuple trùng."
+        },
+        {
+          "id": "l03-extra-q3",
+          "prompt": "Mục đích sorting khác projection thế nào?",
+          "options": [
+            "Sorting luôn giảm số cột",
+            "Projection chỉ định thứ tự",
+            "Cả hai luôn bỏ trùng",
+            "Sorting chỉ định thứ tự; projection chọn trường"
+          ],
+          "explanation": "Sorting không chọn cột. Cùng cardinality đầu ra không làm hai thao tác tương đương."
+        },
+        {
+          "id": "l03-extra-q4",
+          "prompt": "δ áp vào bag x=[2,2,5] cho giá trị nào?",
+          "options": [
+            "{2,5}",
+            "[2,2,5]",
+            "{2}",
+            "{5}"
+          ],
+          "explanation": "δ bỏ lần 2 dư nhưng giữ cả hai giá trị khác nhau."
+        },
+        {
+          "id": "l03-extra-q5",
+          "prompt": "Áp γ dept,COUNT(*) lên bag dept=[CS,CS,Math], rồi giữ nhóm count>1. Đầu ra là gì?",
+          "options": [
+            "(Math,1)",
+            "(CS,2)",
+            "(CS,CS)",
+            "(CS,1),(Math,1)"
+          ],
+          "explanation": "Gom nhóm tạo (CS,2) và (Math,1). count>1 giữ nhóm CS, không trả hai hàng CS gốc."
+        }
+      ]
+    }
+  ],
+  "reviewStatus": "All prompts, four options in canonical source-slot order, and explanations translated; author audit against canonical answer slots, latest EN/VI bodies and local extracted referenced source pages. No fresh diagram or external-paper verification; source caveats in review/core-quiz-1-5-translation.json."
+}

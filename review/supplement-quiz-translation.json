@@ -1,0 +1,510 @@
+{
+  "date": "2026-10-14",
+  "scope": "Vietnamese translations of original supplemental practice questions 28–37",
+  "coverage": {
+    "lessons": 10,
+    "topics": 10,
+    "questions": 50,
+    "options": 200,
+    "explanations": 50,
+    "missingItems": []
+  },
+  "authorAudit": {
+    "completed": 50,
+    "outcome": "No contradiction found between translated selected option, explanation and associated teaching example",
+    "ambiguities": [],
+    "limitations": "Author consistency audit, not a new external factual-source review or independent psychometric validation"
+  },
+  "sourceReading": {
+    "canonicalQuizBanks": "Read current course/supplements/supplement28.json through supplement37.json quizBank question, option, answer and explanation fields",
+    "associatedBodies": "Consulted associated English and Vietnamese teaching bodies; numerical and scoping examples checked",
+    "freshExternalPaperReview": false,
+    "officialCanvasAssessmentVerified": false
+  },
+  "preservation": {
+    "answerKeysWritten": false,
+    "canonicalPacketsChanged": false,
+    "sourceOptionIdentity": "All four options translated in exact original source-slot order; root must retain canonical identity when shuffling",
+    "newFilesOnly": "course/quiz-translations/supplement28.vi.json through supplement37.vi.json plus this review report"
+  },
+  "manualChecks": [
+    "28: planning overhead 7−4=3 ms; positive q-error max(0.1,10)=10; bound-vs-estimate assumptions kept.",
+    "29: 8/10=.8 and 3/10=.3 retain eligible denominator; matched recall; decimal 3.072 GB coordinate-only estimate; nonzero unit-vector assumption kept.",
+    "30: reference agreement does not prove truth; hypothetical 4,000*$0.002=$8; calibration/test separation; recall 400/500=.8; executable SQL can answer wrong question.",
+    "31: architecture alone does not establish scalability/durability; serial latency/cold cache; only-log-loss commit caveat; simulation boundary retained.",
+    "32: scoped mechanism and observable falsification; consultation format not invented; single-device rescope; arXiv acceptance status requires primary record.",
+    "33: timeout censoring; 101 versus 110.5 s; full measurement boundary; document split; 2%/5% alone does not establish or exclude effect.",
+    "34: interactions, fixed-versus-retuned comparison, bounded contention benefit and host-bound negative result retained.",
+    "35: manifest traceability; container and smoke-test limits; 600 GPU-min query budget excluding build/preparation; base64 is not secret protection.",
+    "36: comparison context, mechanism-before-benchmark distinction, attribution/reuse rights and explicitly hypothetical numbers retained.",
+    "37: unmeasured hardware cannot support scaling claim; median does not establish p99; corrections and discriminating next experiment retained."
+  ],
+  "validation": {
+    "jsonAndSchemaPassed": true,
+    "questionIdsAndTopicOrderPassed": true,
+    "noAnswerFieldsPassed": true,
+    "buildRuntimeBrowser": "Not run by this content batch; root owns integration testing"
+  },
+  "lessons": [
+    {
+      "lessonId": "supplement-28",
+      "questionCount": 5,
+      "checks": {
+        "identity": true,
+        "language": true,
+        "topicOrder": true
+      },
+      "questions": [
+        {
+          "id": "supplement-28-q1",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-28-q2",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-28-q3",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-28-q4",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-28-q5",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        }
+      ]
+    },
+    {
+      "lessonId": "supplement-29",
+      "questionCount": 5,
+      "checks": {
+        "identity": true,
+        "language": true,
+        "topicOrder": true
+      },
+      "questions": [
+        {
+          "id": "supplement-29-q1",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-29-q2",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-29-q3",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-29-q4",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-29-q5",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        }
+      ]
+    },
+    {
+      "lessonId": "supplement-30",
+      "questionCount": 5,
+      "checks": {
+        "identity": true,
+        "language": true,
+        "topicOrder": true
+      },
+      "questions": [
+        {
+          "id": "supplement-30-q1",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-30-q2",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-30-q3",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-30-q4",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-30-q5",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        }
+      ]
+    },
+    {
+      "lessonId": "supplement-31",
+      "questionCount": 5,
+      "checks": {
+        "identity": true,
+        "language": true,
+        "topicOrder": true
+      },
+      "questions": [
+        {
+          "id": "supplement-31-q1",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-31-q2",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-31-q3",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-31-q4",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-31-q5",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        }
+      ]
+    },
+    {
+      "lessonId": "supplement-32",
+      "questionCount": 5,
+      "checks": {
+        "identity": true,
+        "language": true,
+        "topicOrder": true
+      },
+      "questions": [
+        {
+          "id": "supplement-32-q1",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-32-q2",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-32-q3",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-32-q4",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-32-q5",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        }
+      ]
+    },
+    {
+      "lessonId": "supplement-33",
+      "questionCount": 5,
+      "checks": {
+        "identity": true,
+        "language": true,
+        "topicOrder": true
+      },
+      "questions": [
+        {
+          "id": "supplement-33-q1",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-33-q2",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-33-q3",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-33-q4",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-33-q5",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        }
+      ]
+    },
+    {
+      "lessonId": "supplement-34",
+      "questionCount": 5,
+      "checks": {
+        "identity": true,
+        "language": true,
+        "topicOrder": true
+      },
+      "questions": [
+        {
+          "id": "supplement-34-q1",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-34-q2",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-34-q3",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-34-q4",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-34-q5",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        }
+      ]
+    },
+    {
+      "lessonId": "supplement-35",
+      "questionCount": 5,
+      "checks": {
+        "identity": true,
+        "language": true,
+        "topicOrder": true
+      },
+      "questions": [
+        {
+          "id": "supplement-35-q1",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-35-q2",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-35-q3",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-35-q4",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-35-q5",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        }
+      ]
+    },
+    {
+      "lessonId": "supplement-36",
+      "questionCount": 5,
+      "checks": {
+        "identity": true,
+        "language": true,
+        "topicOrder": true
+      },
+      "questions": [
+        {
+          "id": "supplement-36-q1",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-36-q2",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-36-q3",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-36-q4",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-36-q5",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        }
+      ]
+    },
+    {
+      "lessonId": "supplement-37",
+      "questionCount": 5,
+      "checks": {
+        "identity": true,
+        "language": true,
+        "topicOrder": true
+      },
+      "questions": [
+        {
+          "id": "supplement-37-q1",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-37-q2",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-37-q3",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-37-q4",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        },
+        {
+          "id": "supplement-37-q5",
+          "schemaPassed": true,
+          "sourceOptionOrder": "Author translated source slots sequentially, without reordering",
+          "selectedCanonicalOptionAndExplanationAudited": true,
+          "mainBodyConsistencyAudited": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,445 @@
+{
+  "lessonId": "lecture-13",
+  "language": "vi",
+  "topics": [
+    {
+      "id": "l13-iterator-model",
+      "title": "Mô hình iterator",
+      "questions": [
+        {
+          "id": "l13-iterator-model-q1",
+          "prompt": "Ba thao tác nào tạo giao diện iterator?",
+          "options": [
+            "init, execute-all, free-result, chỉ truyền toàn kết quả",
+            "open, next, close",
+            "read-page, write-page, flush thay vòng đời toán tử",
+            "build, probe, repartition cho mọi toán tử"
+          ],
+          "explanation": "open/next/close điều khiển vòng đời toán tử. Sort, hash và join là thao tác hay thuật toán được triển khai qua giao diện như vậy."
+        },
+        {
+          "id": "l13-iterator-model-q2",
+          "prompt": "next() báo hết đầu vào thế nào trong mô hình này?",
+          "options": [
+            "Trả tuple toàn NULL không phân biệt dữ liệu thật",
+            "Tự khởi động lại và trả tuple đầu",
+            "Trả marker EOF/null",
+            "Lặp tuple cuối đến khi bên gọi đóng"
+          ],
+          "explanation": "Marker hết đầu vào riêng nhận biết hết dữ liệu. Giá trị dữ liệu thường như key 0 không được nhầm EOF."
+        },
+        {
+          "id": "l13-iterator-model-q3",
+          "prompt": "Yêu cầu tuple bắt đầu đâu trong kế hoạch iterator kiểu pull?",
+          "options": [
+            "Mỗi lá phải materialize toàn kết quả trước mọi lời gọi ở gốc",
+            "Gốc chỉ open, sau đó mọi toán tử tự push toàn bộ dòng",
+            "Optimizer gọi next từng toán tử thay lời gọi cha-con",
+            "Ở gốc, toán tử yêu cầu tuple con khi cần"
+          ],
+          "explanation": "Điều khiển đi xuống từ gốc, tuple trả lên. Không cần materialize toàn cây trước."
+        },
+        {
+          "id": "l13-iterator-model-q4",
+          "prompt": "Vì sao ghép linh hoạt các toán tử khác nhau được?",
+          "options": [
+            "Chung giao diện dù triển khai khác",
+            "Mọi toán tử tạo cùng số dòng",
+            "Mọi toán tử không chặn",
+            "Không toán tử nào giữ trạng thái"
+          ],
+          "explanation": "Giao diện chung cho phép ghép. Trạng thái và tính chặn vẫn khác nhau."
+        },
+        {
+          "id": "l13-iterator-model-q5",
+          "prompt": "LIMIT đã nhận đủ tuple. Vẫn cần làm gì?",
+          "options": [
+            "Bỏ close vì chưa EOF",
+            "Đóng toán tử và giải phóng tài nguyên",
+            "Lấy mọi dòng còn lại mới được close",
+            "Chỉ đóng gốc, không dọn con"
+          ],
+          "explanation": "Dừng sớm không bỏ trách nhiệm dọn tài nguyên. Đóng toán tử không có nghĩa xóa dữ liệu nguồn."
+        }
+      ]
+    },
+    {
+      "id": "l13-example-selection-p-on-the-fly",
+      "title": "Selection σp xử lý trực tiếp",
+      "questions": [
+        {
+          "id": "l13-example-selection-p-on-the-fly-q1",
+          "prompt": "Filter nhận [3,8,4,9], áp x>5. next() đầu trả gì?",
+          "options": [
+            "4",
+            "EOF",
+            "8",
+            "3"
+          ],
+          "explanation": "Bỏ 3 rồi trả 8. Một next của filter có thể gọi con nhiều lần."
+        },
+        {
+          "id": "l13-example-selection-p-on-the-fly-q2",
+          "prompt": "Input [3,8,4,9], x>5: đọc thêm giá trị nào để tạo output thứ hai?",
+          "options": [
+            "Chỉ 4",
+            "3 rồi 8 lần nữa",
+            "Không cần đọc nữa",
+            "4 rồi 9"
+          ],
+          "explanation": "Con trỏ con đã sau 8. Filter bỏ 4 rồi trả 9."
+        },
+        {
+          "id": "l13-example-selection-p-on-the-fly-q3",
+          "prompt": "Không tuple nào thỏa predicate: filter.next() cuối cùng làm gì?",
+          "options": [
+            "Đọc đến EOF của con rồi trả EOF",
+            "Trả tuple cuối dù sai predicate",
+            "Tạo tuple NULL thay thế",
+            "Lặp vô hạn theo yêu cầu giao diện"
+          ],
+          "explanation": "Selection không tạo dòng thay thế. Khi không còn tuple hợp lệ và con hết, trả EOF."
+        },
+        {
+          "id": "l13-example-selection-p-on-the-fly-q4",
+          "prompt": "Filter ví dụ cần giữ thông tin nào?",
+          "options": [
+            "Danh sách mọi kế hoạch optimizer xét",
+            "Predicate để kiểm tra",
+            "Toàn input đã sắp",
+            "Hash table chứa mọi nhóm"
+          ],
+          "explanation": "Selection streaming cần predicate và trạng thái hoạt động, không cần materialize input."
+        },
+        {
+          "id": "l13-example-selection-p-on-the-fly-q5",
+          "prompt": "Thêm filter vào pipeline đạt điều gì?",
+          "options": [
+            "Đổi key mọi tuple",
+            "Biến predicate sai thành đúng",
+            "Loại dòng trước khi truyền cha",
+            "Bảo đảm không đọc trang input nào"
+          ],
+          "explanation": "Filter giảm số dòng phía sau. Heap scan vẫn có thể đọc mọi trang để kiểm tra."
+        }
+      ]
+    },
+    {
+      "id": "l13-example-heap-scan",
+      "title": "Ví dụ heap scan",
+      "questions": [
+        {
+          "id": "l13-example-heap-scan-q1",
+          "prompt": "Iterator heap scan cần nhớ vị trí nào?",
+          "options": [
+            "Chỉ số tuple đã xuất, không vị trí tiếp tục",
+            "Chỉ file handle, không cursor giữa các lần gọi",
+            "Toàn kết quả scan nên khỏi vị trí",
+            "Trang và slot hiện tại"
+          ],
+          "explanation": "Cursor trang/slot cho scan tiếp tục đúng vị trí giữa next."
+        },
+        {
+          "id": "l13-example-heap-scan-q2",
+          "prompt": "Trang hiện tại hết slot nhưng còn trang khác. Scan làm gì?",
+          "options": [
+            "Sang trang tiếp và slot đầu",
+            "Trả EOF dù còn trang",
+            "Quay về trang đầu để tránh sót",
+            "Giữ số slot cũ trên trang mới thay slot đầu"
+          ],
+          "explanation": "Hết một trang chưa phải hết quan hệ. Chỉ EOF khi không còn trang và record."
+        },
+        {
+          "id": "l13-example-heap-scan-q3",
+          "prompt": "open() thường làm gì cho heap scan?",
+          "options": [
+            "Materialize toàn kết quả trước cursor",
+            "Mở heap và đặt cursor bắt đầu",
+            "Trả tuple đầu trực tiếp thay next",
+            "Sort heap theo cột predicate trước mỗi scan"
+          ],
+          "explanation": "open chuẩn bị scan; tuple trả sau qua next."
+        },
+        {
+          "id": "l13-example-heap-scan-q4",
+          "prompt": "Ba trang, mỗi trang hai tuple. Quét từ trang 1, sau bốn next thành công, tuple tiếp ở trang nào?",
+          "options": [
+            "Trang 2",
+            "Đã EOF",
+            "Trang 3",
+            "Trang 1"
+          ],
+          "explanation": "Bốn tuple hết hai trang đầu. Tuple thứ năm ở trang 3."
+        },
+        {
+          "id": "l13-example-heap-scan-q5",
+          "prompt": "close() của heap scan có mục đích gì?",
+          "options": [
+            "Reset cursor, giữ handle mở mãi",
+            "Luôn ghi toàn output vào file tạm",
+            "Đánh dấu tuple đã dùng và xóa chúng khỏi heap",
+            "Giải phóng handle và tài nguyên scan"
+          ],
+          "explanation": "Close dọn tài nguyên toán tử, không xóa bảng hay record."
+        }
+      ]
+    },
+    {
+      "id": "l13-example-nested-loops-join",
+      "title": "Ví dụ nested-loop join",
+      "questions": [
+        {
+          "id": "l13-example-nested-loops-join-q1",
+          "prompt": "Vì sao iterator nested loops giữ tuple outer hiện tại giữa các next?",
+          "options": [
+            "Một outer có thể có nhiều match inner",
+            "Outer luôn chỉ một dòng",
+            "Mỗi lời gọi phải sort lại outer",
+            "Để loại mọi bản sao"
+          ],
+          "explanation": "Giữ outer hiện tại khi xét inner. Nhiều next có thể trả match cho cùng outer."
+        },
+        {
+          "id": "l13-example-nested-loops-join-q2",
+          "prompt": "Inner EOF nhưng outer còn tuple. Tiếp theo thế nào?",
+          "options": [
+            "Trả EOF ngay dù outer còn",
+            "Reset inner và lấy tuple outer tiếp",
+            "Để inner EOF, chỉ tiến outer",
+            "Reset cả hai về đầu, mất tiến độ"
+          ],
+          "explanation": "Mỗi outer phải được so với inner. Xong một lượt inner chưa xong toàn join."
+        },
+        {
+          "id": "l13-example-nested-loops-join-q3",
+          "prompt": "Outer [1,2], inner [2,2]. Equality join tạo bao nhiêu tuple?",
+          "options": [
+            "3",
+            "4",
+            "2",
+            "1"
+          ],
+          "explanation": "Chỉ outer 2 match, match cả hai inner nên 2 output; outer 1 không match."
+        },
+        {
+          "id": "l13-example-nested-loops-join-q4",
+          "prompt": "Sau khi xuất một cặp match, next tiếp tục ở đâu?",
+          "options": [
+            "Luôn reset cả hai con",
+            "Luôn chuyển ngay outer tiếp",
+            "Tự trả lại cùng cặp",
+            "Sau tuple inner vừa dùng, giữ outer khi inner còn"
+          ],
+          "explanation": "Tiếp tục inner giữ các match thêm mà không xuất lại cùng cặp."
+        },
+        {
+          "id": "l13-example-nested-loops-join-q5",
+          "prompt": "close() của join phải làm gì với con?",
+          "options": [
+            "Đóng cả hai",
+            "Chỉ đóng outer",
+            "Chỉ đóng inner khi kết quả rỗng",
+            "Không đóng con vì cha xử lý tất cả"
+          ],
+          "explanation": "Cả hai input có thể giữ tài nguyên. Join phải truyền close xuống các con."
+        }
+      ]
+    },
+    {
+      "id": "l13-example-sort-2-pass",
+      "title": "Sort hai pass và ranh giới chặn",
+      "questions": [
+        {
+          "id": "l13-example-sort-2-pass-q1",
+          "prompt": "Vì sao sort chặn trong mô hình ví dụ?",
+          "options": [
+            "Mỗi next phải sort lại toàn input",
+            "Phải tiêu thụ input để tạo run trước khi trả output đúng thứ tự",
+            "Sort không có giao diện iterator",
+            "Mọi toán tử đọc đĩa đều chặn"
+          ],
+          "explanation": "Sort có next được, nhưng chuẩn bị qua input tạo ranh giới chặn trước khi có output."
+        },
+        {
+          "id": "l13-example-sort-2-pass-q2",
+          "prompt": "Trong pha merge của sort iterator hai pass, next chọn gì?",
+          "options": [
+            "Tuple run đầu đến khi run hết",
+            "Nhỏ nhất trong một run, bỏ các head khác",
+            "Tuple nhỏ nhất giữa các run head hiện tại",
+            "Tuple cuối mỗi run rồi nối theo tên file"
+          ],
+          "explanation": "So run head giữ thứ tự toàn cục. Tiêu thụ nguyên run lần lượt không trộn đúng."
+        },
+        {
+          "id": "l13-example-sort-2-pass-q3",
+          "prompt": "Buffer input của một run hết thì làm gì?",
+          "options": [
+            "EOF ngay dù run còn tuple",
+            "Chờ mọi buffer hết rồi nạp chung",
+            "Tạo run lại cho toàn input",
+            "Nạp trang tiếp của run ấy nếu còn"
+          ],
+          "explanation": "Nạp tiếp để merge tiếp. Hết một trang chưa là EOF toàn sort."
+        },
+        {
+          "id": "l13-example-sort-2-pass-q4",
+          "prompt": "LIMIT 1 trên thuật toán sort này thường có tránh đọc hết input chưa sắp không?",
+          "options": [
+            "Không",
+            "Có, luôn chỉ đọc một tuple",
+            "Có, chỉ một trang bất kể dữ liệu",
+            "Có, LIMIT đổi nghĩa ORDER BY"
+          ],
+          "explanation": "Xác định nhỏ nhất cần xét input chưa sắp trong thuật toán này. Không tự giả định access path hoặc thuật toán khác."
+        },
+        {
+          "id": "l13-example-sort-2-pass-q5",
+          "prompt": "Overhead iterator từng tuple thường phát sinh đâu?",
+          "options": [
+            "Chỉ I/O đĩa, không overhead RAM giữa toán tử",
+            "Nhiều lời gọi hàm và quản lý theo tuple/toán tử",
+            "Mỗi next luôn chép cả input",
+            "Mỗi toán tử open/close lại mỗi tuple"
+          ],
+          "explanation": "Gọi từng tuple có overhead, có thể ảnh hưởng locality và branch. Chi phí không chỉ I/O đĩa."
+        }
+      ]
+    },
+    {
+      "id": "l13-vectorisation-model",
+      "title": "Mô hình vectorized",
+      "questions": [
+        {
+          "id": "l13-vectorisation-model-q1",
+          "prompt": "Mô hình vectorized truyền gì mỗi lần trao đổi đầu ra?",
+          "options": [
+            "Toàn quan hệ trong một lần bắt buộc",
+            "Đúng một tuple như iterator cơ bản",
+            "Một lô tuple",
+            "Chỉ cardinality thay dòng"
+          ],
+          "explanation": "Lô là đơn vị giữa từng tuple và materialize cả kết quả."
+        },
+        {
+          "id": "l13-vectorisation-model-q2",
+          "prompt": "100,000 dòng, lô 1,000, không filter. Tạo bao nhiêu lô dữ liệu?",
+          "options": [
+            "1,000",
+            "100,000",
+            "10",
+            "100"
+          ],
+          "explanation": "100,000/1,000=100 lô.1,000 là kích thước lô, không số lô; không tính EOF riêng."
+        },
+        {
+          "id": "l13-vectorisation-model-q3",
+          "prompt": "Lợi ích chính của lô so với từng tuple?",
+          "options": [
+            "Chia chi phí gọi cho nhiều tuple",
+            "Tự giảm số dòng logic",
+            "Bảo đảm input đã sắp",
+            "Xóa mọi trạng thái toán tử"
+          ],
+          "explanation": "Lô giảm lời gọi mỗi dòng, không tự đổi nghĩa hoặc cardinality."
+        },
+        {
+          "id": "l13-vectorisation-model-q4",
+          "prompt": "SIMD dùng thế nào trong xử lý lô?",
+          "options": [
+            "Chỉ bằng một thread riêng mỗi tuple",
+            "Áp cùng thao tác cho nhiều giá trị trong lô",
+            "Bỏ kiểm tra predicate cả lô",
+            "Biến mọi toán tử thành quét đĩa tuần tự"
+          ],
+          "explanation": "Vòng lặp vectorized mở cơ hội SIMD, không nghĩa mọi toán tử tự hoàn toàn hỗ trợ SIMD."
+        },
+        {
+          "id": "l13-vectorisation-model-q5",
+          "prompt": "Kích thước lô tốt nhất phải giống trên mọi phần cứng/truy vấn không?",
+          "options": [
+            "Có, luôn một tuple",
+            "Có, luôn một triệu tuple",
+            "Không, locality, overhead và cấu trúc truy vấn có trade-off",
+            "Có, luôn bằng cả bảng"
+          ],
+          "explanation": "Tùy phần cứng và workload, không giá trị tối ưu chung."
+        },
+        {
+          "id": "ex13-models-q1",
+          "prompt": "Toán tử trả lô tối đa 1,000 dòng;2,050 dòng sống sót. Chuỗi đầy đủ là gì?",
+          "options": [
+            "1,000, 1,000 rồi EOF",
+            "1,000, 1,000, 50 rồi EOF",
+            "2,000 rồi EOF",
+            "50 rồi EOF"
+          ],
+          "explanation": "Lô cuối chưa đầy vẫn cần để giữ đủ 2,050 dòng. EOF là marker riêng."
+        }
+      ]
+    },
+    {
+      "id": "l13-materialisation-model",
+      "title": "Mô hình materialization",
+      "questions": [
+        {
+          "id": "l13-materialisation-model-q1",
+          "prompt": "Trong materialization, toán tử truyền output khi nào?",
+          "options": [
+            "Sau mỗi tuple như pull iterator",
+            "Ngay khi có một lô nhỏ dù kết quả chưa xong",
+            "Chỉ sau khi gốc gọi child.next từng dòng",
+            "Sau khi xử lý và tạo xong toàn đầu ra"
+          ],
+          "explanation": "Truyền cả kết quả phân biệt mô hình này với từng tuple hoặc từng lô."
+        },
+        {
+          "id": "l13-materialisation-model-q2",
+          "prompt": "Slide mô tả hướng xử lý materialization nào?",
+          "options": [
+            "Từ dưới lên",
+            "Từ trên xuống, gốc kéo từng tuple",
+            "Gọi next mọi lá cùng lúc, bỏ phụ thuộc",
+            "Hoàn tất gốc trước con"
+          ],
+          "explanation": "Con tạo xong kết quả trước khi cha dùng. Kéo tuple từ gốc thuộc iterator."
+        },
+        {
+          "id": "l13-materialisation-model-q3",
+          "prompt": "Kết quả trung gian materialize rất lớn có rủi ro gì?",
+          "options": [
+            "Luôn giảm độ trễ dòng đầu so streaming",
+            "Tăng áp lực RAM và có thể spill/ghi đáng kể",
+            "Tự co còn một dòng",
+            "Không thể đúng ngữ nghĩa"
+          ],
+          "explanation": "Kết quả lớn tốn RAM và I/O. Materialization vẫn giữ đúng truy vấn được."
+        },
+        {
+          "id": "l13-materialisation-model-q4",
+          "prompt": "Vì sao materialization có thể phù hợp workload chỉ vài tuple?",
+          "options": [
+            "SQL bỏ predicate trong OLTP",
+            "Bắt buộc output lớn nhất",
+            "Trung gian nhỏ có thể lợi locality và vòng lặp đơn giản",
+            "Mọi truy vấn OLTP bắt buộc cùng thuật toán"
+          ],
+          "explanation": "Slide mô tả trade-off theo workload, không bắt mọi engine OLTP materialize mọi truy vấn."
+        },
+        {
+          "id": "l13-materialisation-model-q5",
+          "prompt": "Mô tả nào đúng đơn vị output ba mô hình?",
+          "options": [
+            "Iterator: cả kết quả; vectorized: tuple; materialization: lô",
+            "Cả ba luôn một tuple",
+            "Cả ba luôn cần input đã sắp",
+            "Iterator: tuple; vectorized: lô; materialization: cả kết quả"
+          ],
+          "explanation": "Chúng khác đơn vị truyền giữa toán tử. Không nhầm đơn vị output với hướng xử lý."
+        }
+      ]
+    }
+  ],
+  "reviewStatus": "Every question translated in original source-slot order. Author audited explanations against canonical correct slots and private PDF text/model assumptions. No visual diagram/proof or external-paper audit claimed; no locale answer keys."
+}

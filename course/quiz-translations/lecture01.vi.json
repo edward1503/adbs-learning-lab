@@ -1,0 +1,295 @@
+{
+  "lessonId": "lecture-01",
+  "language": "vi",
+  "topics": [
+    {
+      "id": "l01-topic-database-dbms",
+      "title": "Database và DBMS là gì?",
+      "questions": [
+        {
+          "id": "l01-database-dbms-q1",
+          "prompt": "Tập dữ liệu sách và phần mềm quản lý nó lần lượt được gọi là gì?",
+          "options": [
+            "Truy vấn và kết quả truy vấn",
+            "Database và DBMS",
+            "DBMS và database",
+            "Schema và instance"
+          ],
+          "explanation": "Database là dữ liệu; DBMS là phần mềm quản lý dữ liệu ấy. Không đảo ngược hai thuật ngữ."
+        },
+        {
+          "id": "l01-database-dbms-q2",
+          "prompt": "Thành phần nào đứng giữa ứng dụng và dữ liệu để quản lý truy cập?",
+          "options": [
+            "Một instance của database",
+            "Một truy vấn riêng lẻ",
+            "DBMS",
+            "Schema mô tả dữ liệu"
+          ],
+          "explanation": "DBMS điều phối tương tác với dữ liệu; bản ghi hay báo cáo tự nó là dữ liệu."
+        },
+        {
+          "id": "l01-database-dbms-q3",
+          "prompt": "Tập nào thể hiện đúng nhất một database thư viện?",
+          "options": [
+            "Chỉ schema Books, không có instance dữ liệu",
+            "Chỉ chương trình cho mượn và trả sách",
+            "Chỉ câu SQL chưa thực thi",
+            "Tập dữ liệu sách và phiếu mượn có liên quan, được tổ chức"
+          ],
+          "explanation": "Database mô hình hóa một phần thế giới thực. Giao diện và mã chương trình không phải tập dữ liệu của thư viện."
+        },
+        {
+          "id": "l01-database-dbms-q4",
+          "prompt": "Thêm sách mới khác tạo danh sách phiếu mượn hiện tại thế nào?",
+          "options": [
+            "Một thao tác đổi dữ liệu, thao tác kia đọc ra kết quả",
+            "Một thao tác đổi schema, thao tác kia đổi bố trí vật lý",
+            "Cả hai chỉ đọc dữ liệu có sẵn",
+            "Cả hai nhất thiết đổi schema bảng"
+          ],
+          "explanation": "Thêm bản ghi đổi instance. Tạo danh sách có thể là truy vấn chỉ đọc và không cần đổi schema."
+        },
+        {
+          "id": "l01-database-dbms-q5",
+          "prompt": "Phát biểu nào đúng về DBMS và database quan hệ?",
+          "options": [
+            "Kết quả truy vấn là toàn bộ DBMS",
+            "DBMS là phần mềm, không đồng nghĩa với một bảng",
+            "Database và DBMS là hai tên của cùng instance",
+            "Schema là toàn bộ phần mềm quản lý database"
+          ],
+          "explanation": "Phần mềm quản lý có thể phục vụ nhiều bảng. Bảng là đối tượng dữ liệu, không phải phần mềm quản lý nó."
+        },
+        {
+          "id": "l01-architecture-new-q1",
+          "prompt": "Lớp DBMS nào chọn giữa truy cập bằng chỉ mục và quét bảng?",
+          "options": [
+            "Quản lý buffer",
+            "Lập kế hoạch truy vấn",
+            "Cấp phát không gian đĩa",
+            "Dồn bản ghi"
+          ],
+          "explanation": "Lập kế hoạch truy vấn chọn đường truy cập vật lý; lớp buffer và lưu trữ hỗ trợ thực thi lựa chọn ấy."
+        },
+        {
+          "id": "l01-architecture-new-q2",
+          "prompt": "Mọi trang truy vấn cần đều đã cache trong DBMS disk-oriented. Có thể kết luận gì?",
+          "options": [
+            "DBMS đã trở thành in-memory vĩnh viễn.",
+            "Độ bền không còn cần lưu bền.",
+            "Schema không còn liên quan.",
+            "Lần chạy này có thể tránh đọc trang dữ liệu, trong khi kiến trúc vẫn disk-oriented."
+          ],
+          "explanation": "Working set đã cache làm đổi I/O của lần chạy này, không đổi kiến trúc lưu trữ hay yêu cầu commit bền."
+        },
+        {
+          "id": "l01-architecture-new-q3",
+          "prompt": "Phát biểu nào phân biệt đúng workload với kiến trúc lưu trữ?",
+          "options": [
+            "OLTP và OLAP mô tả workload; disk-oriented và in-memory mô tả thiết kế lưu trữ.",
+            "OLTP nghĩa là RAM, OLAP nghĩa là HDD.",
+            "Lưu trữ cột cấm giao dịch.",
+            "RAM tự động bền vững."
+          ],
+          "explanation": "Đặc điểm workload giao dịch/phân tích khác với tầng lưu trữ và bố trí vật lý mà DBMS chọn."
+        },
+        {
+          "id": "l01-architecture-new-q4",
+          "prompt": "Vì sao cập nhật database chỉ nằm trong RAM thông thường chưa tự động bền vững?",
+          "options": [
+            "RAM không thể giữ hàng dữ liệu.",
+            "Mọi truy vấn phân tích đều sửa dữ liệu.",
+            "RAM thông thường dễ mất nội dung khi mất nguồn.",
+            "Chỉ mục không thể nằm trong RAM."
+          ],
+          "explanation": "Bộ nhớ volatile thông thường mất nội dung khi mất nguồn. Độ bền cần giao thức lưu bền của hệ thống, kể cả khi working set nằm trong RAM."
+        }
+      ]
+    },
+    {
+      "id": "l01-topic-flat-files",
+      "title": "Bất lợi của file phẳng",
+      "questions": [
+        {
+          "id": "l01-flat-files-q1",
+          "prompt": "Đổi tên khoa trong ba file nhưng quên file thứ ba minh họa vấn đề nào?",
+          "options": [
+            "Lỗi chỉ do chọn quá ít cột",
+            "Lỗi chỉ do định dạng số nguyên",
+            "Dư thừa dữ liệu dẫn đến không nhất quán",
+            "Lỗi chỉ do thiếu thứ tự sắp xếp"
+          ],
+          "explanation": "Nhiều bản sao của cùng thông tin có thể lệch nhau. Vấn đề là dữ liệu không nhất quán, không phải phần cứng."
+        },
+        {
+          "id": "l01-flat-files-q2",
+          "prompt": "Chuyển tiền trừ một tài khoản rồi crash trước khi cộng tài khoản kia. Thiếu điều gì?",
+          "options": [
+            "Khả năng sắp dữ liệu theo tài khoản",
+            "Khả năng bỏ hàng trùng",
+            "Tra tài khoản nhanh",
+            "Cập nhật atomic"
+          ],
+          "explanation": "Hai thay đổi phải tạo thành một đơn vị tất cả hoặc không. Nén hay sắp xếp không sửa được cập nhật mới làm một nửa."
+        },
+        {
+          "id": "l01-flat-files-q3",
+          "prompt": "Mã luôn coi record[1] là tên khoa dễ sai nhất khi nào?",
+          "options": [
+            "Thứ tự trường trong file thay đổi",
+            "Số bản ghi tăng nhưng thứ tự trường giữ nguyên",
+            "Lương tăng nhưng schema giữ nguyên",
+            "Cấu hình đổi tên file nhưng bố trí trường giữ nguyên"
+          ],
+          "explanation": "Mã phụ thuộc bố trí vật lý. Chuyển trường sang vị trí khác khiến nó đọc giá trị mang ý nghĩa sai."
+        },
+        {
+          "id": "l01-flat-files-q4",
+          "prompt": "Hai người sửa bản file cũ rồi ghi đè thay đổi của nhau. Mối lo chính là gì?",
+          "options": [
+            "Bỏ trùng trong báo cáo",
+            "Phối hợp truy cập đồng thời",
+            "Chọn thứ tự đầu ra",
+            "Chọn cột cho projection"
+          ],
+          "explanation": "Công việc của một người có thể mất vì bị ghi đè. Đổi định dạng số không phối hợp các lần ghi."
+        },
+        {
+          "id": "l01-flat-files-q5",
+          "prompt": "Lặp quy tắc điểm không âm trong nhiều chương trình có bất lợi gì?",
+          "options": [
+            "Tự cung cấp atomicity cho cập nhật nhiều file",
+            "Tự đồng bộ mọi truy cập đồng thời",
+            "Khó đổi và thực thi ràng buộc nhất quán",
+            "Bảo đảm ràng buộc nhất quán qua mọi phiên bản mã"
+          ],
+          "explanation": "Ràng buộc rải trong mã ứng dụng khó bảo trì. Có chúng không tự cung cấp chỉ mục hay giao dịch."
+        }
+      ]
+    },
+    {
+      "id": "l01-topic-abstraction",
+      "title": "Các mức trừu tượng",
+      "questions": [
+        {
+          "id": "l01-abstraction-q1",
+          "prompt": "Offset byte của bản ghi thuộc mức nào?",
+          "options": [
+            "Logic",
+            "View",
+            "Instance dữ liệu nghiệp vụ",
+            "Vật lý"
+          ],
+          "explanation": "Mức vật lý mô tả cách lưu dữ liệu; mức logic mô tả dữ liệu mang ý nghĩa gì."
+        },
+        {
+          "id": "l01-abstraction-q2",
+          "prompt": "Danh sách trường name, dept, salary thuộc mức nào?",
+          "options": [
+            "Logic",
+            "Bố trí byte vật lý",
+            "View giới hạn riêng cho người dùng",
+            "Instance của một bản ghi cụ thể"
+          ],
+          "explanation": "Schema bản ghi mô tả cấu trúc dữ liệu, chưa xác định offset hoặc ai được thấy từng cột."
+        },
+        {
+          "id": "l01-abstraction-q3",
+          "prompt": "Màn hình giấu lương nhưng hiển thị tên nhân viên minh họa mức nào?",
+          "options": [
+            "Cấp phát không gian đĩa",
+            "View",
+            "Mức vật lý",
+            "Toàn bộ schema logic của database"
+          ],
+          "explanation": "View giới hạn điều người dùng thấy. Đổi sector đĩa không quyết định cột nào được hiển thị."
+        },
+        {
+          "id": "l01-abstraction-q4",
+          "prompt": "Data independence nhằm điều gì?",
+          "options": [
+            "Buộc mọi ứng dụng biết bố trí byte",
+            "Bảo đảm dữ liệu không cần schema",
+            "Giảm sự phụ thuộc của mức trên vào thay đổi mức dưới",
+            "Bảo đảm dữ liệu không bao giờ thay đổi"
+          ],
+          "explanation": "Mục tiêu là cô lập chi tiết tầng thấp, không có nghĩa database giữ nguyên mãi."
+        },
+        {
+          "id": "l01-abstraction-q5",
+          "prompt": "Lưu trữ trang thay đổi nhưng truy vấn tên sách giữ nguyên. Điều đó minh họa gì?",
+          "options": [
+            "Logic truy vấn phải phụ thuộc mọi offset mới",
+            "Đổi bố trí vật lý nhất thiết đổi dữ liệu nghiệp vụ",
+            "Mọi view phải lộ mọi chi tiết lưu trữ",
+            "Lợi ích của trừu tượng hóa"
+          ],
+          "explanation": "Giao diện ổn định có thể che thay đổi vật lý, nên không cần viết lại câu hỏi nghiệp vụ."
+        }
+      ]
+    },
+    {
+      "id": "l01-topic-models",
+      "title": "Mô hình dữ liệu",
+      "questions": [
+        {
+          "id": "l01-models-q1",
+          "prompt": "Data model cung cấp điều gì?",
+          "options": [
+            "Các khái niệm để mô tả dữ liệu",
+            "Chỉ các tuple hiện có trong bảng",
+            "Schema cụ thể cho đúng một ứng dụng",
+            "Một bố trí vật lý bắt buộc"
+          ],
+          "explanation": "Model là hệ thống khái niệm. Dữ liệu hiện tại là một instance cụ thể."
+        },
+        {
+          "id": "l01-models-q2",
+          "prompt": "Schema khác model thế nào?",
+          "options": [
+            "Schema luôn là mọi byte trong file",
+            "Schema dùng model để mô tả một tập dữ liệu cụ thể",
+            "Schema là mọi tuple hiện tại",
+            "Model mô tả đúng một instance"
+          ],
+          "explanation": "Một model hỗ trợ nhiều schema. Schema là mô tả cụ thể xây bằng model ấy."
+        },
+        {
+          "id": "l01-models-q3",
+          "prompt": "Nên hiểu Book(id,title) là gì?",
+          "options": [
+            "Bố trí trang vật lý đầy đủ",
+            "Bản ghi chứa hai giá trị cụ thể",
+            "Schema quan hệ",
+            "Instance chứa đúng một cuốn sách"
+          ],
+          "explanation": "Nó đặt tên quan hệ và thuộc tính mà chưa cung cấp giá trị cho cuốn sách cụ thể nào."
+        },
+        {
+          "id": "l01-models-q4",
+          "prompt": "Cặp nào là các data model được nhắc trong bài?",
+          "options": [
+            "LRU và CLOCK",
+            "Heap file và sorted file",
+            "Selection và projection",
+            "Graph và document"
+          ],
+          "explanation": "Graph và document mô tả cách mô hình hóa dữ liệu. Các cặp còn lại là cơ chế hoặc thao tác hệ thống."
+        },
+        {
+          "id": "l01-models-q5",
+          "prompt": "Hai ứng dụng dùng mô hình quan hệ có bắt buộc chung schema?",
+          "options": [
+            "Không; mỗi ứng dụng có thể mô tả các quan hệ khác nhau",
+            "Có; model cố định mọi tên quan hệ",
+            "Có; model cố định mọi tuple hiện tại",
+            "Có; model cố định mọi trường của từng ứng dụng"
+          ],
+          "explanation": "Model cung cấp khái niệm chung, không quy định một schema hay instance duy nhất."
+        }
+      ]
+    }
+  ],
+  "reviewStatus": "All prompts, four options in canonical source-slot order, and explanations translated; author audit against canonical answer slots, latest EN/VI bodies and local extracted referenced source pages. No fresh diagram or external-paper verification; source caveats in review/core-quiz-1-5-translation.json."
+}

@@ -1,0 +1,16 @@
+{
+  "lessonId": "supplement-31",
+  "language": "vi",
+  "topics": [{
+    "id": "supplement-31-practice",
+    "title": "Tách compute/storage · quyền sở hữu · logging · phục hồi lỗi",
+    "questions": [
+      {"id":"supplement-31-q1","prompt":"Chỉ việc tách rời compute và storage bảo đảm điều gì?","options":["Mở rộng tuyến tính theo số node compute.","Tách vai trò tài nguyên; các bảo đảm khác cần giao thức cụ thể.","Không còn cần điều khiển đồng thời.","Không có chi phí khởi động lạnh."],"explanation":"Tách rời tài nguyên là quyết định kiến trúc. Khả năng mở rộng, tính đúng, recovery và độ trễ còn phụ thuộc vào cơ chế và workload; chúng không tự xuất hiện chỉ vì compute và storage nằm riêng."},
+      {"id":"supplement-31-q2","prompt":"Trong mô hình page từ xa đơn giản, gửi nhiều yêu cầu phụ thuộc nhau theo thứ tự tuần tự có rủi ro gì?","options":["Băng thông trở thành vô hạn.","Độ trễ tích lũy dù tổng số byte không lớn.","Cache không còn tồn tại được.","Mọi thao tác đọc trở thành ghi."],"explanation":"Chuỗi yêu cầu phụ thuộc tuần tự phải trả độ trễ yêu cầu nhiều lần. Giảm số byte truyền chưa chắc giải quyết nút thắt ấy, vì yêu cầu sau vẫn phải chờ yêu cầu trước."},
+      {"id":"supplement-31-q3","prompt":"Vì sao thêm node compute có thể gây chậm tạm thời?","options":["Kiến trúc tách rời cấm mọi loại cache.","Luôn phải xóa toàn bộ dữ liệu bền vững trước.","Theo định nghĩa, thêm compute bảo đảm mạng chậm hơn.","Node compute mới có thể có cache lạnh và phát sinh thêm truy cập từ xa."],"explanation":"Cache lạnh và chuyển trạng thái hoặc quyền sở hữu có thể ảnh hưởng giai đoạn mở rộng. Cần đo riêng giai đoạn chuyển tiếp với trạng thái ổn định để biết chi phí khi thêm node."},
+      {"id":"supplement-31-q4","prompt":"Node xác nhận commit trước khi bản log duy nhất tới lưu trữ bền vững, rồi mất bộ nhớ khả biến. Tính chất nào có thể không được giữ?","options":["Chỉ màu đồ thị.","Định nghĩa vector embedding.","Tính bền vững của công việc đã xác nhận.","Không mất tính chất nào vì storage ở xa."],"explanation":"Xác nhận commit phải đáp ứng giao thức commit bền vững của hệ thống. Storage từ xa không giữ được thông tin chưa từng được ghi bền vững; mất bản log duy nhất trong bộ nhớ có thể làm mất thay đổi đã báo thành công."},
+      {"id":"supplement-31-q5","prompt":"Mô phỏng độ trễ trên một máy có tái lập cơ sở dữ liệu RDMA/CXL vận hành thực tế không?","options":["Không; nó có thể kiểm tra mô hình hẹp, còn tuyên bố về phần cứng và giao thức phân tán cần thêm bằng chứng.","Không mô phỏng nào có ích.","Có, nếu mô phỏng dùng GPU.","Có, miễn độ trễ mô phỏng khớp một số đo."],"explanation":"Mô hình có thể tách riêng cơ chế nhưng bỏ qua tranh chấp băng thông, ngữ nghĩa phần cứng, lỗi và hành vi control plane. Hãy nêu ranh giới đó: mô phỏng hữu ích cho câu hỏi hẹp, chưa đủ để tuyên bố tái lập hệ thống thực tế."}
+    ]
+  }],
+  "reviewStatus":"All 5 original supplemental practice questions translated; all four source options retain original order. Author checked canonical selected options against remote-page, cache-transition and durable-commit examples. No answer keys copied or altered. Existing packets only; external references not freshly reviewed; official Canvas assessment unverified."
+}

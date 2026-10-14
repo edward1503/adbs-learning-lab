@@ -1,3 +1,7 @@
+> The reviewed EN/VI textbook update is released as v3.2.0 through the existing main → CI → deploy → Botkeep pipeline. The review below documents the pre-publication candidate.
+
+
+This isolated EN/VI candidate preserves remote v3.1 and adds complete Vietnamese main bodies for all 37 resources (181 sections), persistent language switching and all 1,167 translated bank questions. Some UI/lab messages remain English. No deployment was performed. See [REVIEW-EN-VI-V31.md](REVIEW-EN-VI-V31.md) for exact evidence, limits and resumable work.
 <p align="center">
   <img src="docs/assets/banner.svg" alt="ADBS Learning Lab — explore, practice, understand" width="100%">
 </p>
@@ -6,10 +10,10 @@
   <a href="https://github.com/edward1503/adbs-learning-lab/actions/workflows/ci.yml"><img src="https://github.com/edward1503/adbs-learning-lab/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI status"></a>
   &nbsp;
   <a href="https://adbs-learning-lab.bot-keep.xyz/"><strong>Live demo ↗</strong></a>
-  &nbsp; · &nbsp; English v3.1.0
+  &nbsp; · &nbsp; EN / VI v3.2.0
 </p>
 
-An independent English **Advanced Database Systems learning companion**, aligned to the user-provided **13-module / 15-week / 30-session syllabus**. Its 27 core resources use Edinburgh Spring 2026 slides; ten original supplemental resources cover research frontiers, project clinics and a research symposium.
+An independent bilingual **Advanced Database Systems learning companion**, aligned to the user-provided **13-module / 15-week / 30-session syllabus**. Its 27 core resources use Edinburgh Spring 2026 slides; ten original supplemental resources cover research frontiers, project clinics and a research symposium.
 
 | Learning resources | Quiz topics | Practice questions | Key takeaways | Interactive labs | SQL exercises |
 | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -22,7 +26,7 @@ An independent English **Advanced Database Systems learning companion**, aligned
 - **Review key takeaways** beside the relevant explanation.
 - **Run real SQL.** SQLite runs in a Web Worker through vendored sql.js and WebAssembly, with clean-seed grading for 15 exercises.
 - **Explore algorithms.** Labs cover relational operations, buffer replacement, slotted pages, indexes, sorting, join costs, conflict graphs, recovery, quorums, and two-phase commit.
-- **Navigate your way.** Browse lessons, search course text and the glossary, and track core and supplemental completion separately in the English interface.
+- **Navigate your way.** Browse lessons, search course text and the glossary, and track core and supplemental completion separately in the EN/VI interface.
 
 | Course sequence | Main themes |
 | --- | --- |
@@ -34,7 +38,7 @@ The **37 learning resources are not 37 timetabled sessions**. Modules 1–10 org
 
 The [audit record](docs/audit/README.md) preserves the pre-change findings, exact corrections, source evidence and integrated verification. All original 1,100 bank keys and 27 embedded checks remain correct; the release adds 17 targeted core questions and 50 supplemental questions. It does not reproduce source PDFs, slide images or textbook chapters.
 
-<p align="center"><img src="docs/assets/overview-desktop.png" alt="Actual English v3.1.0 curriculum overview showing 13 modules, 15 weeks, 30 timetabled sessions and 37 learning resources" width="100%"></p>
+<p align="center"><img src="docs/assets/overview-desktop.png" alt="Actual EN / VI v3.2.0 curriculum overview showing 13 modules, 15 weeks, 30 timetabled sessions and 37 learning resources" width="100%"></p>
 
 The screenshot is from the running application. [See a genuine mobile worked example](docs/assets/worked-example-mobile.png) from the project clinic.
 

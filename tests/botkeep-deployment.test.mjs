@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { BotkeepClient, TARGET, jsonBody, pollOperation, requestKey, syncInput } from '../scripts/botkeep-client.mjs';
-import { ASSETS, REPOSITORY, deployChecked, operationState, pollSettings, snapshotLive,
+import { ASSETS, LEGACY_ASSETS, REPOSITORY, deployChecked, operationState, pollSettings, snapshotLive,
   validateInspection, validatePreflight, validateRelease } from '../scripts/botkeep-deployment.mjs';
 
 const sourceCommit = 'a'.repeat(40);
@@ -25,6 +25,18 @@ const operation = (id, phase = 'complete') => ({ id, workloadId: TARGET.workload
 const json = (value, status = 200) => new Response(JSON.stringify(value), {
   status, headers: { 'Content-Type': 'application/json' } });
 const noSleep = async () => {};
+test('rollback accepts the prior 19-asset release and new complete 24-asset release only', async () => {
+  const legacy = {...release, files: Object.fromEntries(LEGACY_ASSETS.map(path => [path, digest]))};
+  assert.equal(validateRelease(legacy), legacy);
+  const saved = new Map();
+  await snapshotLive({fetchImpl: publicFetch(legacy), save: async (path, data) => saved.set(path, data)});
+  assert.equal(saved.size, LEGACY_ASSETS.length + 1);
+  assert.equal(saved.has('translations.js'), false);
+  const partial = structuredClone(release); delete partial.files['textbook.css'];
+  assert.throws(() => validateRelease(partial), {code:'INVALID_RELEASE'});
+  const unsafe = structuredClone(release); delete unsafe.files['textbook.css']; unsafe.files['../private'] = digest;
+  assert.throws(() => validateRelease(unsafe), {code:'INVALID_RELEASE'});
+});
 const clone = value => structuredClone(value);
 function publicFetch(metadata = release) {
   return async (url, options) => {
@@ -115,7 +127,7 @@ test('rollback copies only allowlisted public files with verified SHA256 and rel
   const saved = new Map();
   const result = await snapshotLive({ fetchImpl: publicFetch(), save: async (path, value) => saved.set(path, value) });
   assert.equal(result.sourceCommit, sourceCommit);
-  assert.equal(saved.size, 20);
+  assert.equal(saved.size, ASSETS.length + 1);
   assert.deepEqual(saved.get('index.html'), bytes);
   assert.equal(JSON.parse(saved.get('release.json')).sourceCommit, sourceCommit);
 });

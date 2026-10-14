@@ -1,0 +1,53 @@
+{
+  "reviewer": "independent storage/index content agent",
+  "scope": "Latest canonical English and full Vietnamese sidecars for lectures 01–05, all 20 sections. Translation/content parity review only; no fresh full visual slide audit.",
+  "result": "No factual or semantic correctness blockers found in the reviewed main bodies.",
+  "checks": {
+    "all20SectionsReadInBothLanguages": true,
+    "allCodeBlocksExactlyEqualInOrder": true,
+    "allSourceHrefSetsEqual": true,
+    "nullAnyAll": "l2-4 correctly preserves TRUE/FALSE/UNKNOWN, WHERE retaining TRUE, decisive cases, empty ANY FALSE / ALL TRUE, and NOT EXISTS versus NOT IN with NULL.",
+    "raDivisionClosureCodd": "l3-2 through l3-4 correctly preserve attribute/schema validity, set versus bag projection and difference, inner-join rewrite restriction, safe/domain-independent Codd scope, candidate domain for empty-divisor division, and non-NULL set assumptions.",
+    "hddUnits": "l4-2 and l4-3 arithmetic checked: 7.1ms per random request, 1420ms random / 27ms continuous scan, approximately 52.6 ratio; 14.2ms versus 7.2ms for 2 pages; byte offsets 28672, 28792, 49152 and header-adjusted 49664. Vietnamese decimal commas retain meanings.",
+    "bufferPolicies": "l5-1 through l5-4 correctly preserve pin eligibility, independent dirty state, no forced eviction when all frames pinned, LRU last-unpin convention, 6 misses/2 hits, dirty write counted separately, CLOCK hand/ref/pin trace, MRU 5-miss trace and WAL restriction.",
+    "ddlSourceNumber": "Spot-checked private lecture02 extracted PDF page 8: printed slide 9 contains DDL/DML/DCL. The additional VI page-number sentence is correct.",
+    "narrative": "Vietnamese paragraphs are connected and explain causes, mechanisms and worked answers. Conversion of existing h3/aside/exercise structures into prose does not by itself create a correctness defect. Main teaching content is substantive, not only introductory labels."
+  },
+  "findings": [
+    {
+      "id": "FVI-01",
+      "severity": "low",
+      "kind": "goal/content alignment",
+      "lessonId": "lecture-04",
+      "sectionIds": ["l4-1", "l4-4"],
+      "evidence": "VI goal 1 says 'Phân biệt latency, bandwidth và locality', but the body explains latency/capacity/durability and spatial/temporal locality without defining bandwidth. Canonical EN goals instead include distinguishing bytes, pages and records, which the VI body does explain.",
+      "recommendation": "Use matching EN-goal translations, or explicitly define bandwidth and its relationship to transfer time in both languages. Matching the current EN goals is the smaller fix.",
+      "blocking": false
+    },
+    {
+      "id": "FVI-02",
+      "severity": "low",
+      "kind": "source traceability presentation",
+      "lessonId": "lectures-01–05",
+      "sectionIds": ["l1-1", "l1-4", "l2-1", "l2-3", "l2-4", "l3-1", "l3-2", "l3-4", "l4-1", "l4-4", "l5-1", "l5-4"],
+      "evidence": "Every href is preserved, but Vietnamese source labels only say the first PDF page of each link. For example l5-4's EN caption names physical pp. 22,27,28,29,30,31,32,33,34, while VI says only 'PDF trang 22'. l4-1 similarly reduces pp. 11–16 and 19–22 to 'PDF trang 11'. This makes the verified topical scope harder to inspect in VI, though the starting links are correct.",
+      "recommendation": "Restore the full canonical physical-page lists/ranges in translated captions. Keep PDF page numbers distinct from printed slide numbers, as l2-1 already does.",
+      "blocking": false
+    },
+    {
+      "id": "FVI-03",
+      "severity": "info",
+      "kind": "presentation recommendation",
+      "lessonId": "lectures-01–05",
+      "sectionIds": ["l1-2", "l1-3", "l2-2", "l2-3", "l3-2", "l3-3", "l4-2", "l4-3", "l5-2", "l5-3", "l5-4"],
+      "evidence": "The VI prose includes the underlying takeaway and worked-answer meanings, but removes most h3/aside and some original details blocks. This reduces scanning cues compared with EN; no lost essential technical content was found because those meanings remain in the paragraphs.",
+      "recommendation": "Optionally restore a few contextual subsection headings and translated takeaway callouts after the coherent explanations. Do not revert the body to bullet-only fragments. Treat this as presentation parity, not a factual blocker.",
+      "blocking": false
+    }
+  ],
+  "limitations": [
+    "This review did not independently validate every slide diagram or metadata verification claim.",
+    "Quiz-bank questions, runtime translation selection, build and browser behavior are outside this review.",
+    "No main-content edits were made; only this review report was added."
+  ]
+}

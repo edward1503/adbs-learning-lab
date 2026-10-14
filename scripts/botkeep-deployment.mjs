@@ -2,12 +2,15 @@ import { createHash } from 'node:crypto';
 import { DeploymentError, TARGET, jsonBody, pollOperation, requestKey, verifyLiveRelease } from './botkeep-client.mjs';
 
 export const REPOSITORY = 'edward1503/adbs-learning-lab';
-export const ASSETS = Object.freeze([
+export const LEGACY_ASSETS = Object.freeze([
   'app.js', 'course-data.js', 'editorial.css', 'index.html',
   'labs/core.js', 'labs/labs.css', 'labs/relational.js', 'labs/sql-worker.js',
   'labs/sql.css', 'labs/sql.js', 'labs/systems.js', 'quiz-data.js', 'quiz.js', 'styles.css',
   'vendor/noto-serif-LICENSE.txt', 'vendor/noto-serif-vietnamese.ttf',
   'vendor/sql-js-LICENSE.txt', 'vendor/sql-wasm.js', 'vendor/sql-wasm.wasm',
+]);
+export const ASSETS = Object.freeze([...LEGACY_ASSETS,
+  'i18n.js', 'language.css', 'study-guides.js', 'translations.js', 'textbook.css',
 ]);
 const SHA = /^[a-f0-9]{40}$/;
 const DIGEST = /^[a-f0-9]{64}$/;
@@ -17,11 +20,13 @@ const fail = (code, message) => { throw new DeploymentError(code, message); };
 const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 export function validateRelease(release, expectedCommit) {
+  const paths = Object.keys(release?.files ?? {});
+  const knownManifest = [LEGACY_ASSETS, ASSETS].some(assets =>
+    paths.length === assets.length && assets.every(path => DIGEST.test(release?.files?.[path] ?? '')));
   if (release?.sourceRepository !== REPOSITORY || !SHA.test(release?.sourceCommit ?? '') ||
       (expectedCommit !== undefined && release.sourceCommit !== expectedCommit) ||
       !release.files || Array.isArray(release.files) ||
-      Object.keys(release.files).length !== ASSETS.length ||
-      ASSETS.some(path => !DIGEST.test(release.files[path] ?? ''))) {
+      !knownManifest) {
     fail('INVALID_RELEASE', 'Release metadata does not match the expected application and asset manifest.');
   }
   return release;
@@ -45,7 +50,7 @@ export async function snapshotLive({ fetchImpl = fetch, save } = {}) {
   const response = await publicResponse(TARGET.release, fetchImpl);
   const release = validateRelease(await jsonBody(response));
   // A fixed allowlist prevents public metadata from requesting unrelated files or paths.
-  for (const path of ASSETS) {
+  for (const path of Object.keys(release.files)) {
     const asset = await publicResponse(new URL(path, TARGET.release), fetchImpl);
     const bytes = Buffer.from(await asset.arrayBuffer());
     if (bytes.length > 8 * 1024 * 1024 || createHash('sha256').update(bytes).digest('hex') !== release.files[path]) {
@@ -150,7 +155,7 @@ export async function deployChecked({ client, sourceCommit, deployCommit, logica
   validateRelease(await verifyLiveRelease(sourceCommit, verifyOptions), sourceCommit);
   const live = await snapshotLive({ fetchImpl: verifyOptions?.fetchImpl, save: async () => {} });
   validateRelease(live, sourceCommit);
-  if (ASSETS.some(path => live.files[path] !== expectedRelease.files[path])) {
+  if (Object.keys(expectedRelease.files).some(path => live.files[path] !== expectedRelease.files[path])) {
     fail('LIVE_ASSET_MISMATCH', 'The live files do not match the checked deployment artifact.');
   }
   return { verified: true, sourceCommit, deployCommit, operationId };

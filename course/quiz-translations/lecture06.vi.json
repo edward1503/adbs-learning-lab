@@ -1,0 +1,373 @@
+{
+  "lessonId": "lecture-06",
+  "language": "vi",
+  "topics": [
+    {
+      "id": "l06-topic-files",
+      "title": "File gồm trang và bản ghi / Heap file",
+      "questions": [
+        {
+          "id": "l06-files-q1",
+          "prompt": "Thứ bậc chứa nào đúng trong mô hình lưu trữ này?",
+          "options": [
+            "Trang phải chứa một CSDL",
+            "Mỗi trường chứa một file",
+            "File logic chứa trang; mỗi trang chứa bản ghi",
+            "Bản ghi chứa file logic; mỗi file chứa trang"
+          ],
+          "explanation": "Thứ bậc là file → trang → bản ghi. Trường là thành phần nhỏ hơn bên trong bản ghi."
+        },
+        {
+          "id": "l06-files-q2",
+          "prompt": "File CSDL logic có bắt buộc tương ứng đúng một file hệ điều hành?",
+          "options": [
+            "Có, định nghĩa luôn yêu cầu vậy",
+            "Chỉ khi chứa hơn một bản ghi",
+            "Chỉ khi lưu văn bản",
+            "Không, có thể trải trên nhiều file hệ điều hành hoặc máy"
+          ],
+          "explanation": "Trừu tượng logic không đòi hỏi ánh xạ một-một với file vật lý."
+        },
+        {
+          "id": "l06-files-q3",
+          "prompt": "API của lớp file có thể hỗ trợ thao tác nào?",
+          "options": [
+            "Lấy bản ghi theo RID",
+            "Theo dõi bit ref để chọn victim CLOCK",
+            "Chọn giữa hash join và merge join",
+            "Di chuyển đầu đĩa tới track chứa block"
+          ],
+          "explanation": "Lớp bản ghi/file hiểu RID và thao tác quét. Phần cứng và chọn kế hoạch thuộc lớp khác."
+        },
+        {
+          "id": "l06-files-q4",
+          "prompt": "Heap file bắt buộc bản ghi theo thứ tự nào?",
+          "options": [
+            "Luôn giảm dần theo lương",
+            "Không bắt buộc thứ tự khóa tìm kiếm",
+            "Luôn sắp theo khóa chính",
+            "Bắt buộc thứ tự của binary heap"
+          ],
+          "explanation": "Heap file không phải cấu trúc heap của priority queue; nó không yêu cầu thứ tự sắp xếp."
+        },
+        {
+          "id": "l06-files-q5",
+          "prompt": "Khi heap tăng hoặc giảm, hệ thống phải theo dõi gì?",
+          "options": [
+            "Chỉ tên và kiểu cột trong schema",
+            "Chỉ trang gốc của chỉ mục bất kỳ",
+            "Các trang của file, chỗ trống và bản ghi trên mỗi trang",
+            "Chỉ tuple SELECT trả về"
+          ],
+          "explanation": "Ba loại metadata này hỗ trợ quản lý file/bản ghi; văn bản query không thay được chúng."
+        }
+      ]
+    },
+    {
+      "id": "l06-topic-heap-directory",
+      "title": "Heap: danh sách liên kết và danh mục trang",
+      "questions": [
+        {
+          "id": "l06-heap-directory-q1",
+          "prompt": "Tổ chức heap bằng danh sách liên kết trên slide tách trang thế nào?",
+          "options": [
+            "Trang có khóa chính với trang có khóa ngoại",
+            "Trang khóa cố định với trang khóa biến đổi",
+            "Trang vừa đọc với trang chưa từng đọc",
+            "Trang đầy với trang còn chỗ"
+          ],
+          "explanation": "Danh sách phân biệt trang có thể chèn; không dựa vào giá trị bản ghi."
+        },
+        {
+          "id": "l06-heap-directory-q2",
+          "prompt": "Vì sao tìm trang cho bản ghi lớn qua danh sách chỗ trống có thể đọc nhiều trang?",
+          "options": [
+            "Nhiều trang còn chỗ nhưng không đủ cho bản ghi",
+            "Mọi trang hoàn toàn trống",
+            "Không trang nào có header",
+            "Danh sách tự xóa bản ghi lớn"
+          ],
+          "explanation": "Có chỗ chưa có nghĩa đủ byte; có thể phải xem nhiều trang ứng viên."
+        },
+        {
+          "id": "l06-heap-directory-q3",
+          "prompt": "Mục page directory lưu thông tin thiết yếu nào?",
+          "options": [
+            "Chỉ schema, không có metadata trang",
+            "ID trang dữ liệu và số byte trống",
+            "Toàn bộ bản ghi trên trang dữ liệu",
+            "Chỉ next/prev, không có chỗ trống"
+          ],
+          "explanation": "Danh mục tóm tắt định danh và chỗ trống của trang để chọn nơi chèn."
+        },
+        {
+          "id": "l06-heap-directory-q4",
+          "prompt": "Vì sao page directory giảm I/O tìm chỗ chèn?",
+          "options": [
+            "Nó tự tăng sức chứa vật lý của trang",
+            "Mọi bản ghi lưu ngay trong directory",
+            "Một trang directory mô tả nhiều trang dữ liệu",
+            "Chèn không bao giờ đọc/ghi trang dữ liệu"
+          ],
+          "explanation": "Vài trang metadata cho biết nhiều ứng viên; trang dữ liệu được chọn vẫn có thể cần đọc và ghi."
+        },
+        {
+          "id": "l06-heap-directory-q5",
+          "prompt": "Directory báo P1=20, P2=90, P3=40 byte trống. Bản ghi cần 60 byte, không overhead thêm. Trang nào đủ?",
+          "options": [
+            "P1",
+            "P3",
+            "Cả ba",
+            "P2"
+          ],
+          "explanation": "Chỉ P2 đủ vì 90≥60. Hai trang khác còn chỗ nhưng không đủ."
+        }
+      ]
+    },
+    {
+      "id": "l06-topic-packed",
+      "title": "Bản ghi cố định, trang packed",
+      "questions": [
+        {
+          "id": "l06-packed-q1",
+          "prompt": "Header 16 byte, bản ghi 24 byte, đánh số từ 1. Bản ghi 4 bắt đầu tại offset nào?",
+          "options": [
+            "88",
+            "96",
+            "72",
+            "112"
+          ],
+          "explanation": "16+(4−1)×24=88. Bản ghi đầu ngay sau header nên phải trừ 1 khỏi số thứ tự."
+        },
+        {
+          "id": "l06-packed-q2",
+          "prompt": "Trong trang packed còn chỗ, thường chèn bản ghi mới ở đâu?",
+          "options": [
+            "Luôn ở file khác",
+            "Sau bản ghi cuối hiện có",
+            "Luôn trước header",
+            "Luôn vào lỗ giữa trang dù packed không có lỗ"
+          ],
+          "explanation": "Packed giữ vùng bản ghi liên tục; chèn nối vào cuối vùng đã dùng."
+        },
+        {
+          "id": "l06-packed-q3",
+          "prompt": "Xóa bản ghi giữa rồi chuyển bản ghi cuối vào đó có rủi ro gì?",
+          "options": [
+            "Bản ghi chuyển phải đổi schema",
+            "Trang tự thành trang chỉ mục",
+            "RID theo vị trí của bản ghi chuyển thay đổi",
+            "RID không đổi vì mọi bố trí đều dùng slot gián tiếp"
+          ],
+          "explanation": "Di chuyển làm đổi định danh dựa trực tiếp vào vị trí, không tự đổi độ dài byte của bản ghi."
+        },
+        {
+          "id": "l06-packed-q4",
+          "prompt": "Nếu mỗi trường có kích thước cố định, suy ra được gì?",
+          "options": [
+            "Mỗi bản ghi chiếm cả trang",
+            "Mọi trường phải dài bằng nhau",
+            "Bản ghi phải sắp theo trường đầu",
+            "Kích thước bản ghi cố định nếu bố trí metadata cũng cố định"
+          ],
+          "explanation": "Tổng độ dài trường cố định cùng metadata cố định cho độ dài bản ghi cố định; không cần một trang mỗi bản ghi."
+        },
+        {
+          "id": "l06-packed-q5",
+          "prompt": "Trang 512 byte, header 32 byte, bản ghi 30 byte, không overhead khác. Chứa được bao nhiêu?",
+          "options": [
+            "16",
+            "17",
+            "15",
+            "18"
+          ],
+          "explanation": "floor((512−32)/30)=16. Làm tròn lên sẽ vượt sức chứa."
+        }
+      ]
+    },
+    {
+      "id": "l06-topic-unpacked",
+      "title": "Bản ghi cố định, trang unpacked",
+      "questions": [
+        {
+          "id": "l06-unpacked-q1",
+          "prompt": "Bitmap của trang unpacked chủ yếu ghi nhận gì?",
+          "options": [
+            "Khóa đã sắp trên trang",
+            "Slot nào có bản ghi, slot nào trống",
+            "Trường nào trong bản ghi là NULL",
+            "Bit ref của mỗi buffer frame"
+          ],
+          "explanation": "Bitmap này theo dõi slot, không phải kết quả query hay NULL cấp trường."
+        },
+        {
+          "id": "l06-unpacked-q2",
+          "prompt": "Xóa bản ghi trong bố trí bitmap chủ yếu đổi metadata gì?",
+          "options": [
+            "Xóa mọi slot phía sau",
+            "Đổi mọi RID trên trang",
+            "Đánh dấu slot trống",
+            "Luôn chuyển bản ghi cuối vào slot"
+          ],
+          "explanation": "Bố trí cho phép lỗ trống nên bản ghi khác không cần chuyển; vị trí có thể giữ nguyên."
+        },
+        {
+          "id": "l06-unpacked-q3",
+          "prompt": "Free list nối những slot nào?",
+          "options": [
+            "Slot có bản ghi cùng khóa",
+            "Buffer frame có pinCount=0",
+            "Trường NULL bên trong bản ghi",
+            "Slot trống"
+          ],
+          "explanation": "Danh sách tìm slot chưa dùng. Trường NULL không khiến slot bản ghi trở thành trống."
+        },
+        {
+          "id": "l06-unpacked-q4",
+          "prompt": "Chèn vào slot đầu free list phải đổi gì?",
+          "options": [
+            "Dùng slot đầu rồi chuyển head tới slot trống kế",
+            "Giữ head ở slot vừa dùng để dùng lại ngay",
+            "Sao bản ghi mới vào mọi slot trống",
+            "Xóa mọi bản ghi sau slot chọn"
+          ],
+          "explanation": "Slot đã dùng không còn trống; head phải trỏ slot trống tiếp theo."
+        },
+        {
+          "id": "l06-unpacked-q5",
+          "prompt": "Free list 2→5→8. Xóa bản ghi slot 4 rồi thêm slot đó vào đầu. Danh sách mới là gì?",
+          "options": [
+            "4→8",
+            "4→2→5→8",
+            "2→4→5→8",
+            "5→8"
+          ],
+          "explanation": "Slot mới giải phóng 4 trỏ head cũ 2, tạo 4→2→5→8."
+        }
+      ]
+    },
+    {
+      "id": "l06-topic-slotted",
+      "title": "Slotted page",
+      "questions": [
+        {
+          "id": "l06-slotted-q1",
+          "prompt": "RID trong slotted page biểu diễn thế nào?",
+          "options": [
+            "Tên bảng và vị trí tuple trong kết quả query",
+            "ID trường và offset trong bản ghi",
+            "Page ID và slot ID",
+            "Page ID và offset byte vật lý trực tiếp của bản ghi"
+          ],
+          "explanation": "Slot directory ánh xạ gián tiếp RID tới offset byte; RID không trực tiếp chứa offset ấy."
+        },
+        {
+          "id": "l06-slotted-q2",
+          "prompt": "Bản ghi chuyển từ offset 700 sang 800 trên cùng trang, giữ slot ID. Phải cập nhật gì?",
+          "options": [
+            "RID ngoài phải đổi sang offset mới dù slot không đổi",
+            "Schema trường phải đổi vì bản ghi di chuyển",
+            "Page ID phải đổi dù vẫn cùng trang",
+            "Offset lưu trong slot directory"
+          ],
+          "explanation": "RID vẫn chứa cùng page/slot ID; directory cập nhật vị trí byte mới."
+        },
+        {
+          "id": "l06-slotted-q3",
+          "prompt": "Vì sao xóa bản ghi không nên tùy tiện đánh lại mọi slot còn lại?",
+          "options": [
+            "RID bên ngoài có thể tham chiếu các slot ID ấy",
+            "Byte bản ghi không bao giờ được di chuyển",
+            "Slot directory phải luôn packed, không có slot trống",
+            "Mọi slot ID đều là khóa chính nghiệp vụ"
+          ],
+          "explanation": "Đổi định danh slot có thể làm hỏng tham chiếu ngoài; byte vẫn có thể dồn trong compaction."
+        },
+        {
+          "id": "l06-slotted-q4",
+          "prompt": "Trang 1000 byte, header 20 byte; mỗi bản ghi 45 byte và slot 4 byte, không overhead khác. Chứa được bao nhiêu?",
+          "options": [
+            "19",
+            "20",
+            "21",
+            "22"
+          ],
+          "explanation": "Bản ghi cùng slot cần 49 byte. Còn 980 byte nên floor(980/49)=20."
+        },
+        {
+          "id": "l06-slotted-q5",
+          "prompt": "Tổng chỗ trống đủ nhưng không có vùng liên tục đủ lớn. Có thể làm gì trong trang?",
+          "options": [
+            "Chuyển byte nhưng giữ offset cũ",
+            "Cho rằng đủ tổng byte thì không cần liên tục",
+            "Dồn/defragment trang rồi cập nhật offset",
+            "Tăng trường độ dài mà không cấp byte thật"
+          ],
+          "explanation": "Compaction gom lỗ thành vùng lớn; cập nhật directory giữ định danh khi byte chuyển."
+        }
+      ]
+    },
+    {
+      "id": "l06-topic-record-layout",
+      "title": "Bố trí bản ghi và trường biến đổi",
+      "questions": [
+        {
+          "id": "l06-record-layout-q1",
+          "prompt": "Có phải lặp toàn bộ kiểu trường trong mọi bản ghi?",
+          "options": [
+            "Có, mỗi bản ghi phải chứa toàn văn DDL",
+            "Có, system catalog chỉ lưu kết quả query",
+            "Không tầng nào cần schema",
+            "Không, schema có thể lưu trong system catalog"
+          ],
+          "explanation": "Catalog giữ schema dùng chung, tránh lặp toàn bộ metadata trong mỗi bản ghi."
+        },
+        {
+          "id": "l06-record-layout-q2",
+          "prompt": "Ba trường dài 4,2,8 byte, không header. Trường thứ ba bắt đầu ở offset nào?",
+          "options": [
+            "6",
+            "8",
+            "14",
+            "4"
+          ],
+          "explanation": "Cộng trường trước: 4+2=6; không lấy độ dài của chính trường thứ ba."
+        },
+        {
+          "id": "l06-record-layout-q3",
+          "prompt": "Giá trị trường biến đổi chứa dấu phân cách thì phát sinh gì?",
+          "options": [
+            "Mọi trường phải padding bằng độ dài nhau",
+            "Cần escape hoặc cách khác phân biệt dữ liệu với dấu phân cách",
+            "Không truy cập được trường nào dù có parser",
+            "Kiểu dữ liệu tự xác định mọi biên, không cần escape"
+          ],
+          "explanation": "Không có quy ước escape tương đương, parser không phân biệt chắc chắn ranh giới và dấu trong giá trị."
+        },
+        {
+          "id": "l06-record-layout-q4",
+          "prompt": "Vì sao length=0 có thể chưa phân biệt NULL với chuỗi rỗng?",
+          "options": [
+            "NULL luôn mã bằng ký tự 0",
+            "Offset dương tự chứng minh trường không NULL",
+            "Cả hai có thể không có payload byte nhưng khác nghĩa",
+            "Chuỗi rỗng và NULL luôn cùng ngữ nghĩa"
+          ],
+          "explanation": "Metadata như bitmap NULL giữ sự phân biệt; độ dài payload riêng có thể chưa đủ."
+        },
+        {
+          "id": "l06-record-layout-q5",
+          "prompt": "Phần cố định bản ghi dài 12 byte, sau đó tên ASCII 5 byte. Offset và length của tên là gì?",
+          "options": [
+            "5,12",
+            "0,12",
+            "17,5",
+            "12,5"
+          ],
+          "explanation": "Offset chỉ đầu payload; length đếm byte, không phải vị trí kết thúc."
+        }
+      ]
+    }
+  ],
+  "reviewStatus": "Every prompt, original option slot and explanation translated and checked against the canonical answer meaning; original teaching computations recalculated. Source topic text reviewed; diagram-only evidence gaps recorded separately. No answer keys in this locale."
+}
