@@ -15,7 +15,7 @@
             "Mọi toán tử giữ nguyên schema",
             "Đầu ra là relation mà toán tử khác có thể dùng"
           ],
-          "explanation": "Trả relation cho phép ghép nhiều bước. Toán tử như projection vẫn có thể đổi schema."
+          "explanation": "Phép chọn trả một quan hệ nên phép chiếu có thể nhận nó làm đầu vào tiếp. Tính đóng cho phép ghép bước nhưng không xóa yêu cầu lược đồ: sau khi bỏ price, phép ngoài không được dùng price nếu không có đầu vào khác cung cấp."
         },
         {
           "id": "l03-algebra-q2",

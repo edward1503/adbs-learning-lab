@@ -1,0 +1,1068 @@
+{
+  "base": "http://127.0.0.1:18973/",
+  "appVersion": "3.3.0",
+  "routes": [
+    {
+      "width": 1440,
+      "language": "en",
+      "id": "lecture-01",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "id": "lecture-02",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "id": "lecture-03",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "id": "lecture-04",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "id": "lecture-05",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "id": "lecture-06",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "id": "lecture-07",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "id": "lecture-08",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "id": "lecture-09",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "id": "lecture-10",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "id": "lecture-11",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "id": "lecture-12",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "id": "lecture-13",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "id": "lecture-14",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "id": "lecture-15",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "id": "lecture-16",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "id": "lecture-17",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "id": "lecture-18",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "id": "lecture-19",
+      "sections": 5,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "id": "lecture-20",
+      "sections": 5,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "id": "lecture-21",
+      "sections": 5,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "id": "lecture-22",
+      "sections": 5,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "id": "lecture-23",
+      "sections": 5,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "id": "lecture-24",
+      "sections": 5,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "id": "lecture-25",
+      "sections": 5,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "id": "lecture-26",
+      "sections": 5,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "id": "lecture-27",
+      "sections": 5,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "id": "supplement-28",
+      "sections": 7,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "id": "supplement-29",
+      "sections": 7,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "id": "supplement-30",
+      "sections": 7,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "id": "supplement-31",
+      "sections": 7,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "id": "supplement-32",
+      "sections": 6,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "id": "supplement-33",
+      "sections": 6,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "id": "supplement-34",
+      "sections": 6,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "id": "supplement-35",
+      "sections": 6,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "id": "supplement-36",
+      "sections": 6,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "en",
+      "id": "supplement-37",
+      "sections": 6,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "vi",
+      "id": "lecture-01",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "vi",
+      "id": "lecture-02",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "vi",
+      "id": "lecture-03",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "vi",
+      "id": "lecture-04",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "vi",
+      "id": "lecture-05",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "vi",
+      "id": "lecture-06",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "vi",
+      "id": "lecture-07",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "vi",
+      "id": "lecture-08",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "vi",
+      "id": "lecture-09",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "vi",
+      "id": "lecture-10",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "vi",
+      "id": "lecture-11",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "vi",
+      "id": "lecture-12",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "vi",
+      "id": "lecture-13",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "vi",
+      "id": "lecture-14",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "vi",
+      "id": "lecture-15",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "vi",
+      "id": "lecture-16",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "vi",
+      "id": "lecture-17",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "vi",
+      "id": "lecture-18",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "vi",
+      "id": "lecture-19",
+      "sections": 5,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "vi",
+      "id": "lecture-20",
+      "sections": 5,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "vi",
+      "id": "lecture-21",
+      "sections": 5,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "vi",
+      "id": "lecture-22",
+      "sections": 5,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "vi",
+      "id": "lecture-23",
+      "sections": 5,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "vi",
+      "id": "lecture-24",
+      "sections": 5,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "vi",
+      "id": "lecture-25",
+      "sections": 5,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "vi",
+      "id": "lecture-26",
+      "sections": 5,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "vi",
+      "id": "lecture-27",
+      "sections": 5,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "vi",
+      "id": "supplement-28",
+      "sections": 7,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "vi",
+      "id": "supplement-29",
+      "sections": 7,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "vi",
+      "id": "supplement-30",
+      "sections": 7,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "vi",
+      "id": "supplement-31",
+      "sections": 7,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "vi",
+      "id": "supplement-32",
+      "sections": 6,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "vi",
+      "id": "supplement-33",
+      "sections": 6,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "vi",
+      "id": "supplement-34",
+      "sections": 6,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "vi",
+      "id": "supplement-35",
+      "sections": 6,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "vi",
+      "id": "supplement-36",
+      "sections": 6,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "language": "vi",
+      "id": "supplement-37",
+      "sections": 6,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "id": "lecture-01",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "id": "lecture-02",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "id": "lecture-03",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "id": "lecture-04",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "id": "lecture-05",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "id": "lecture-06",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "id": "lecture-07",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "id": "lecture-08",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "id": "lecture-09",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "id": "lecture-10",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "id": "lecture-11",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "id": "lecture-12",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "id": "lecture-13",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "id": "lecture-14",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "id": "lecture-15",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "id": "lecture-16",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "id": "lecture-17",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "id": "lecture-18",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "id": "lecture-19",
+      "sections": 5,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "id": "lecture-20",
+      "sections": 5,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "id": "lecture-21",
+      "sections": 5,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "id": "lecture-22",
+      "sections": 5,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "id": "lecture-23",
+      "sections": 5,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "id": "lecture-24",
+      "sections": 5,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "id": "lecture-25",
+      "sections": 5,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "id": "lecture-26",
+      "sections": 5,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "id": "lecture-27",
+      "sections": 5,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "id": "supplement-28",
+      "sections": 7,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "id": "supplement-29",
+      "sections": 7,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "id": "supplement-30",
+      "sections": 7,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "id": "supplement-31",
+      "sections": 7,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "id": "supplement-32",
+      "sections": 6,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "id": "supplement-33",
+      "sections": 6,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "id": "supplement-34",
+      "sections": 6,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "id": "supplement-35",
+      "sections": 6,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "id": "supplement-36",
+      "sections": 6,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "id": "supplement-37",
+      "sections": 6,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "vi",
+      "id": "lecture-01",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "vi",
+      "id": "lecture-02",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "vi",
+      "id": "lecture-03",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "vi",
+      "id": "lecture-04",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "vi",
+      "id": "lecture-05",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "vi",
+      "id": "lecture-06",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "vi",
+      "id": "lecture-07",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "vi",
+      "id": "lecture-08",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "vi",
+      "id": "lecture-09",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "vi",
+      "id": "lecture-10",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "vi",
+      "id": "lecture-11",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "vi",
+      "id": "lecture-12",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "vi",
+      "id": "lecture-13",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "vi",
+      "id": "lecture-14",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "vi",
+      "id": "lecture-15",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "vi",
+      "id": "lecture-16",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "vi",
+      "id": "lecture-17",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "vi",
+      "id": "lecture-18",
+      "sections": 4,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "vi",
+      "id": "lecture-19",
+      "sections": 5,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "vi",
+      "id": "lecture-20",
+      "sections": 5,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "vi",
+      "id": "lecture-21",
+      "sections": 5,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "vi",
+      "id": "lecture-22",
+      "sections": 5,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "vi",
+      "id": "lecture-23",
+      "sections": 5,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "vi",
+      "id": "lecture-24",
+      "sections": 5,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "vi",
+      "id": "lecture-25",
+      "sections": 5,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "vi",
+      "id": "lecture-26",
+      "sections": 5,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "vi",
+      "id": "lecture-27",
+      "sections": 5,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "vi",
+      "id": "supplement-28",
+      "sections": 7,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "vi",
+      "id": "supplement-29",
+      "sections": 7,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "vi",
+      "id": "supplement-30",
+      "sections": 7,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "vi",
+      "id": "supplement-31",
+      "sections": 7,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "vi",
+      "id": "supplement-32",
+      "sections": 6,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "vi",
+      "id": "supplement-33",
+      "sections": 6,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "vi",
+      "id": "supplement-34",
+      "sections": 6,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "vi",
+      "id": "supplement-35",
+      "sections": 6,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "vi",
+      "id": "supplement-36",
+      "sections": 6,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "language": "vi",
+      "id": "supplement-37",
+      "sections": 6,
+      "pass": true
+    }
+  ],
+  "screenshots": [
+    "lecture-02-en-1440.png",
+    "lecture-05-en-1440.png",
+    "lecture-16-en-1440.png",
+    "lecture-21-en-1440.png",
+    "lecture-02-vi-1440.png",
+    "lecture-05-vi-1440.png",
+    "lecture-16-vi-1440.png",
+    "lecture-21-vi-1440.png",
+    "lecture-02-en-390.png",
+    "lecture-05-en-390.png",
+    "lecture-16-en-390.png",
+    "lecture-21-en-390.png",
+    "lecture-02-vi-390.png",
+    "lecture-05-vi-390.png",
+    "lecture-16-vi-390.png",
+    "lecture-21-vi-390.png"
+  ],
+  "checks": [
+    "all 37 routes render expected EN/VI paragraphs and section IDs at both widths; solutions expanded; no page overflow",
+    "quiz answer identity and completed progress survive language switch and reload",
+    "real SQLite/WASM returns six students; editor and results survive EN/VI switch",
+    "mobile contents drawer opens and closes with Escape"
+  ],
+  "errors": [],
+  "pass": true
+}

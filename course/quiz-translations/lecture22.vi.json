@@ -159,7 +159,7 @@
             "Chỉ commit ba participants bỏ YES",
             "Coi participant bỏ NO là replica không cần thiết"
           ],
-          "explanation": "Atomic commit cần YES nhất trí. Một NO có thể do vi phạm ràng buộc thật; đa số chưa đủ khi cả bốn phần đều cần cho giao dịch."
+          "explanation": "Ba phiếu YES chỉ xác nhận ba phần giao dịch sẵn sàng. NO của phần thứ tư có thể nghĩa cập nhật bắt buộc vi phạm ràng buộc. COMMIT sẽ giữ giao dịch không đầy đủ nên kết quả phải ABORT; 2PC cần nhất trí, không phải đa số."
         },
         {
           "id": "l22-two-phase-commit-q4",
@@ -314,7 +314,7 @@
             "Tự abort vì luôn an toàn",
             "Xóa giao dịch không undo hay redo"
           ],
-          "explanation": "Prepared nghĩa là kết quả chưa biết cục bộ; nơi khác có thể đã commit. Chưa có bằng chứng đủ để tự commit hay tự abort. Cần tìm quyết định được phép hoặc tiếp tục chờ."
+          "explanation": "PREPARE ghi lời hứa, không ghi kết quả. Cùng nhật ký cục bộ phù hợp cả khi điều phối chưa quyết định lẫn khi đã commit nơi khác nhưng thông điệp bị trễ. Phải hỏi quyết định hợp lệ; riêng timeout không phân biệt được hai khả năng."
         },
         {
           "id": "l22-2pc-recovery-q2",
@@ -419,7 +419,7 @@
             "Có; strict 2PL khiến COMMIT không cần thiết",
             "Không; không giao dịch nào được phép abort"
           ],
-          "explanation": "Strict 2PL giúp undo không gây phụ thuộc dây chuyền, nhưng không cho phép đảo quyết định atomic commit. Participant đã prepared vẫn phải hỏi hoặc chờ theo quy tắc phục hồi; khả năng undo cục bộ không phải quyền chọn kết quả toàn cục."
+          "explanation": "Hoàn tác cục bộ không kéo theo người đọc là lợi ích cô lập, không phải quyền ghi đè quyết định commit chung. Sau PREPARE bền vững, thành viên khác có thể đã commit. Giải quyết kết quả 2PC trước rồi mới hoàn tất cục bộ theo kết quả được phép và nhả khóa."
         }
       ]
     },

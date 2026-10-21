@@ -387,7 +387,7 @@
             "4"
           ],
           "answer": 3,
-          "explanation": "There are 2^(g−d)=4 extended suffixes pointing to the bucket. Local depth is not a pointer count.",
+          "explanation": "Two low bits identify this bucket, while the directory examines four. The remaining two bit positions can be 00,01,10,11: four directory labels refer to the same bucket. Thus 2^(g−d)=2^(4−2)=4; local depth counts bits, not pointers.",
           "pages": [
             15,
             25

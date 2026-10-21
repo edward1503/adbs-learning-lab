@@ -122,7 +122,7 @@
             "4.5"
           ],
           "answer": 2,
-          "explanation": "The average of positions 1 through 9 is (9+1)/2=5. P/2=4.5 is only an approximation.",
+          "explanation": "If the key is on page 1, read one page; on page 2, read two; continue through page 9. Equal probabilities give (1+2+3+4+5+6+7+8+9)/9=45/9=5. This is (P+1)/2 exactly. P/2=4.5 is a convenient approximation, and absence would require nine reads.",
           "pages": [
             9
           ]

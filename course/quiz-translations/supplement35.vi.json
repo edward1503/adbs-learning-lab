@@ -1,16 +1,68 @@
 {
   "lessonId": "supplement-35",
   "language": "vi",
-  "topics": [{
-    "id": "supplement-35-practice",
-    "title": "Môi trường · nguồn gốc dữ liệu · smoke test · ghép báo cáo",
-    "questions": [
-      {"id":"supplement-35-q1","prompt":"Mục nào nối trực tiếp nhất một điểm trên đồ thị với đầu vào khoa học tạo ra nó?","options":["Hồ sơ lượt chạy ghi phiên bản mã nguồn/dữ liệu/cấu hình và tham chiếu tới kết quả thô.","Số sao của repository.","Logo dự án.","Ảnh chụp không có đơn vị."],"explanation":"Run manifest hỗ trợ chuỗi bằng chứng từ đầu vào và quy trình đến số đo thô rồi tới hình. Nó giúp lần lại một điểm trên đồ thị để biết chính xác lượt chạy và cấu hình đã tạo ra nó."},
-      {"id":"supplement-35-q2","prompt":"Chỉ container có bảo đảm tái lập kết quả khoa học giống từng bit không?","options":["Không; phần cứng, dữ liệu, dịch vụ bên ngoài và hành vi tính toán số/runtime cũng quan trọng.","Có, bất kể phần cứng hoặc dữ liệu đầu vào.","Có, nếu image đủ lớn.","Không, nên container không có giá trị."],"explanation":"Container giữ một phần môi trường phần mềm và vẫn hữu ích. Khả năng tái lập còn phụ thuộc toàn bộ bằng chứng và ranh giới thực thi, gồm phần cứng, đầu vào và dịch vụ bên ngoài; container tự nó chưa bảo đảm kết quả giống từng bit."},
-      {"id":"supplement-35-q3","prompt":"Smoke test rất nhỏ chạy qua. Điều gì đã được xác lập?","options":["Kết quả hiệu năng ở quy mô paper đã được tái lập.","Đường thực thi cơ bản hoạt động trên đầu vào thử đó.","Mọi giấy phép dataset đều cho phân phối lại.","Giả thuyết chính đúng phổ quát."],"explanation":"Smoke test kiểm tra thiết lập và đường chức năng nhỏ, không kiểm tra toàn bộ tuyên bố khoa học. Tái lập hiệu năng cần dataset, quy trình, môi trường và phép so sánh ở quy mô đã công bố."},
-      {"id":"supplement-35-q4","prompt":"Mỗi lượt dùng 6 GPU-phút; có 20 cấu hình và 5 lần lặp. Tổng ngân sách chạy truy vấn là bao nhiêu, chưa gồm chuẩn bị và xây index?","options":["30 GPU-phút","120 GPU-phút","600 GPU-phút","6,000 GPU-phút"],"explanation":"6×20×5=600 GPU-phút, tức 10 GPU-giờ. Chuẩn bị dữ liệu và xây index là các chi phí thêm phải tính riêng; GPU-giờ cũng chưa nhất thiết bằng thời gian thực tế khi có công việc chạy song song."},
-      {"id":"supplement-35-q5","prompt":"Cần xử lý API key thế nào trước khi chia sẻ artifact?","options":["Loại chúng khỏi mã/log và hướng dẫn thiết lập thông tin xác thực được phê duyệt mà không lộ secrets.","Đặt chúng trong chú thích hình.","Biểu diễn chúng bằng base64.","Đưa chúng vào để người phản biện chạy ngay."],"explanation":"Base64 chỉ đổi cách biểu diễn, không bảo vệ secrets. Artifact và log chia sẻ không được làm lộ thông tin xác thực hay dữ liệu không được phép; hướng dẫn chạy cần mô tả cách thiết lập phù hợp thay vì kèm key."}
-    ]
-  }],
-  "reviewStatus":"All 5 original supplemental practice questions translated; all four source options retain original order. Author checked canonical selected options against manifest, smoke/full distinction, GPU-budget arithmetic and sharing guidance. No answer keys copied or altered. Existing packets only; external references not freshly reviewed; official Canvas assessment unverified."
+  "topics": [
+    {
+      "id": "supplement-35-practice",
+      "title": "Môi trường · nguồn gốc dữ liệu · smoke test · ghép báo cáo",
+      "questions": [
+        {
+          "id": "supplement-35-q1",
+          "prompt": "Mục nào nối trực tiếp nhất một điểm trên đồ thị với đầu vào khoa học tạo ra nó?",
+          "options": [
+            "Hồ sơ lượt chạy ghi phiên bản mã nguồn/dữ liệu/cấu hình và tham chiếu tới kết quả thô.",
+            "Số sao của repository.",
+            "Logo dự án.",
+            "Ảnh chụp không có đơn vị."
+          ],
+          "explanation": "Run manifest hỗ trợ chuỗi bằng chứng từ đầu vào và quy trình đến số đo thô rồi tới hình. Nó giúp lần lại một điểm trên đồ thị để biết chính xác lượt chạy và cấu hình đã tạo ra nó."
+        },
+        {
+          "id": "supplement-35-q2",
+          "prompt": "Chỉ container có bảo đảm tái lập kết quả khoa học giống từng bit không?",
+          "options": [
+            "Không; phần cứng, dữ liệu, dịch vụ bên ngoài và hành vi tính toán số/runtime cũng quan trọng.",
+            "Có, bất kể phần cứng hoặc dữ liệu đầu vào.",
+            "Có, nếu image đủ lớn.",
+            "Không, nên container không có giá trị."
+          ],
+          "explanation": "Container giữ một phần môi trường phần mềm và vẫn hữu ích. Khả năng tái lập còn phụ thuộc toàn bộ bằng chứng và ranh giới thực thi, gồm phần cứng, đầu vào và dịch vụ bên ngoài; container tự nó chưa bảo đảm kết quả giống từng bit."
+        },
+        {
+          "id": "supplement-35-q3",
+          "prompt": "Smoke test rất nhỏ chạy qua. Điều gì đã được xác lập?",
+          "options": [
+            "Kết quả hiệu năng ở quy mô paper đã được tái lập.",
+            "Đường thực thi cơ bản hoạt động trên đầu vào thử đó.",
+            "Mọi giấy phép dataset đều cho phân phối lại.",
+            "Giả thuyết chính đúng phổ quát."
+          ],
+          "explanation": "Smoke test kiểm tra thiết lập và đường chức năng nhỏ, không kiểm tra toàn bộ tuyên bố khoa học. Tái lập hiệu năng cần dataset, quy trình, môi trường và phép so sánh ở quy mô đã công bố."
+        },
+        {
+          "id": "supplement-35-q4",
+          "prompt": "Mỗi lượt dùng 6 GPU-phút; có 20 cấu hình và 5 lần lặp. Tổng ngân sách chạy truy vấn là bao nhiêu, chưa gồm chuẩn bị và xây index?",
+          "options": [
+            "30 GPU-phút",
+            "120 GPU-phút",
+            "600 GPU-phút",
+            "6,000 GPU-phút"
+          ],
+          "explanation": "Có 20×5=100 lần lặp truy vấn. Mỗi lần 6 GPU-phút, ngân sách là 600 GPU-phút=10 GPU-giờ. Chuẩn bị và xây chỉ mục chưa có ở đây, phải cộng theo quy tắc tái dùng đã nêu. GPU-giờ là lượng dùng tài nguyên, chưa chắc là thời gian đồng hồ."
+        },
+        {
+          "id": "supplement-35-q5",
+          "prompt": "Cần xử lý API key thế nào trước khi chia sẻ artifact?",
+          "options": [
+            "Loại chúng khỏi mã/log và hướng dẫn thiết lập thông tin xác thực được phê duyệt mà không lộ secrets.",
+            "Đặt chúng trong chú thích hình.",
+            "Biểu diễn chúng bằng base64.",
+            "Đưa chúng vào để người phản biện chạy ngay."
+          ],
+          "explanation": "Base64 chỉ đổi cách biểu diễn, không bảo vệ secrets. Artifact và log chia sẻ không được làm lộ thông tin xác thực hay dữ liệu không được phép; hướng dẫn chạy cần mô tả cách thiết lập phù hợp thay vì kèm key."
+        }
+      ]
+    }
+  ],
+  "reviewStatus": "All five supplemental prompts, options and explanations checked against rewritten 21 October lesson; canonical IDs and option order preserved. Primary-source overview checked where relevant; course assessment status remains unverified."
 }

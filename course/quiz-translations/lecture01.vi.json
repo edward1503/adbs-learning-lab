@@ -153,7 +153,7 @@
             "Chọn thứ tự đầu ra",
             "Chọn cột cho projection"
           ],
-          "explanation": "Công việc của một người có thể mất vì bị ghi đè. Đổi định dạng số không phối hợp các lần ghi."
+          "explanation": "Cả hai bắt đầu từ bản cũ giống nhau. Người đầu ghi thêm dòng; người sau ghi bản cũ kèm sửa đổi riêng, làm mất dòng mới của người đầu. Mỗi lần ghi vẫn có thể hoàn tất mà một cập nhật bị mất. Phải phối hợp cả bước đọc và sửa; đổi định dạng file không giải quyết lỗi này."
         },
         {
           "id": "l01-flat-files-q5",
@@ -286,7 +286,7 @@
             "Có; model cố định mọi tuple hiện tại",
             "Có; model cố định mọi trường của từng ứng dụng"
           ],
-          "explanation": "Model cung cấp khái niệm chung, không quy định một schema hay instance duy nhất."
+          "explanation": "Mô hình quan hệ cung cấp bảng, dòng và cột. Thư viện chọn Book và Loan, cửa hàng chọn Product và Order. Đó là lược đồ khác dùng cùng khái niệm mô hình; các dòng hiện có của chúng cũng là thể hiện khác."
         }
       ]
     }

@@ -380,7 +380,7 @@
             "The offset stored in the slot directory"
           ],
           "answer": 3,
-          "explanation": "The RID still contains the same page and slot IDs. The directory is updated to identify the record's new byte position.",
+          "explanation": "The external reference is (page ID,slot ID), so neither component changes. After moving the bytes from 700 to 800, set that same slot entry to offset 800. The next fetch follows the slot to the new position. Updating the index to store a raw offset would bypass this indirection.",
           "pages": [
             22
           ]
@@ -496,7 +496,7 @@
             "An empty string and NULL always have identical semantics"
           ],
           "answer": 2,
-          "explanation": "Metadata such as a NULL bitmap preserves the distinction. Payload length alone may not be enough.",
+          "explanation": "An empty string has a present value containing zero bytes. NULL marks a missing/unknown value and can also have no payload. A separate NULL bit distinguishes the two. Neither state means that the whole record has been deleted; slot occupancy is separate metadata.",
           "pages": [
             27
           ]

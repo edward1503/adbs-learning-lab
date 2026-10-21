@@ -116,7 +116,7 @@
             "11 I/Os"
           ],
           "answer": 3,
-          "explanation": "0.05 ×(20+200)=11. The answer 10 leaves out the index-page component.",
+          "explanation": "Five percent of 20 leaf pages is 1; under the stated clustered distribution, five percent of 200 data pages is 10. Total 1+10=11, with fixed descent explicitly excluded. The 1,000 qualifying tuples are not 1,000 clustered data pages.",
           "pages": [
             5,
             6,

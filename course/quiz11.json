@@ -312,7 +312,7 @@
             "182"
           ],
           "answer": 0,
-          "explanation": "The 16 initial runs pass through two merges, producing 4 and then 1 run. Including pass 0 gives 3 passes, each reading and writing 91 pages: 2 × 91 × 3=546. The answer 364 omits pass 0.",
+          "explanation": "Pass 0 makes 16 runs, including the one-page final batch. Five-way merging gives ceil(16/5)=4 runs; another merge gives one. Count pass 0 plus two merge passes: three passes × (91 reads+91 writes)=546 I/Os. The 364 answer counts only two passes.",
           "pages": [
             12,
             13

@@ -121,7 +121,7 @@
             "3"
           ],
           "answer": 2,
-          "explanation": "The filter skips 3 and returns 8. A single filter next() call may need several calls to its child.",
+          "explanation": "The first call consumes 3 and rejects it, then consumes 8 and returns it. The scan now resumes at 4; it does not restart at 3. One output request can therefore consume several input rows.",
           "pages": [
             6
           ]

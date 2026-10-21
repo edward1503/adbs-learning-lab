@@ -1,3 +1,5 @@
+> Historical validation of the earlier release. Current 21 October rewrite evidence: [progress and acceptance record](docs/rewrite-2026-10-21/PROGRESS.md).
+
 # Validation scope — English v3.1.0
 
 The integrated release has 13 modules, 15 weeks, 30 timetabled sessions and 37 learning resources: 27 slide-based resources plus ten original supplements. It contains 227 quiz topics, 1,167 bank questions, 76 Key takeaways, ten interactive labs and 15 SQL exercises. Styles, original lab behavior, vendored SQLite/WASM and font bytes are preserved.

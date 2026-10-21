@@ -569,7 +569,7 @@
             "Không,10+4=14 run input vượt B−1=11",
             "Không, fusion không bao giờ được với hai quan hệ khác kích thước"
           ],
-          "explanation": "Đếm chung run input. Từng sort riêng đủ buffer, nhưng run cả hai không vừa đồng thời."
+          "explanation": "Lượt 0 tạo ceil(120/12)=10 run R và ceil(40/12)=4 run S. Ghép cần đồng thời cả 14 đầu vào run và một khung đầu ra, nhưng B=12 chỉ cho 11 khung đầu vào. Từng lượt trộn cuối riêng lẻ thì vừa; gộp chung thì không. Trộn thêm hoặc kế hoạch khác sẽ đổi chi phí."
         }
       ]
     }

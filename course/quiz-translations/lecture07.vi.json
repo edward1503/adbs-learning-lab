@@ -425,7 +425,7 @@
             "3000",
             "125"
           ],
-          "explanation": "1000×3=3000 bit; chia 8 được 375 byte. 3000 là bit, không phải byte."
+          "explanation": "Ghi đơn vị mỗi bước: 1000 giá trị × 3 bit/giá trị = 3000 bit; 3000 bit ÷ 8 bit/byte = 375 byte. Chưa tính phần đầu, đệm hay dữ liệu từ điển/chênh lệch. Số 3000 là bit, không phải byte."
         }
       ]
     },

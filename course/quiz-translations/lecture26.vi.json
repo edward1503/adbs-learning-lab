@@ -80,14 +80,14 @@
         },
         {
           "id": "l26-shared-memory-q2",
-          "prompt": "Lợi thế bộ nhớ chung được bài giảng nêu là gì?",
+          "prompt": "Lợi ích trực tiếp nào có từ việc các bộ xử lý dùng chung không gian địa chỉ bộ nhớ?",
           "options": [
             "Mỗi instance không cần phối hợp",
             "CPU cùng nhìn cấu trúc trong bộ nhớ",
             "Thêm CPU bảo đảm tăng tốc tuyến tính vô hạn",
             "Mọi truy cập dữ liệu phải qua thông điệp mạng"
           ],
-          "explanation": "Không gian địa chỉ chung hỗ trợ liên lạc hiệu quả, nhưng các instance vẫn phải biết và phối hợp với nhau."
+          "explanation": "Các bộ xử lý thấy cấu trúc chung trong RAM và phối hợp qua chúng. Băng thông và đồng bộ vẫn có thể nghẽn; cùng thấy dữ liệu không bỏ quy tắc truy cập đồng thời."
         },
         {
           "id": "l26-shared-memory-q3",
@@ -152,14 +152,14 @@
         },
         {
           "id": "l26-shared-disk-q3",
-          "prompt": "Kiến trúc nào theo bài giảng mở rộng tầng thực thi độc lập tầng lưu trữ?",
+          "prompt": "Kiến trúc nào cho các nút RAM riêng thêm năng lực thực thi trong khi dùng cùng tầng lưu trữ logic?",
           "options": [
             "Chỉ không chia sẻ vì đĩa chung buộc CPU và đĩa tăng cùng",
             "Chỉ bộ nhớ chung vì đĩa chung không tách thực thi được",
             "Đĩa chung",
             "Không kiến trúc nào tách tăng compute và storage"
           ],
-          "explanation": "Tầng lưu trữ chung cho phép thêm năng lực thực thi tương đối độc lập."
+          "explanation": "Đĩa chung tách bộ nhớ thực thi riêng khỏi lưu trữ chung. Thêm nút thực thi không cần tạo cơ sở dữ liệu logic riêng, nhưng tranh chấp lưu trữ và phối hợp bộ đệm vẫn có chi phí."
         },
         {
           "id": "l26-shared-disk-q4",
@@ -634,14 +634,14 @@
         },
         {
           "id": "l26-replication-q3",
-          "prompt": "Theo slide, bảng nào thường hợp sao chép toàn bảng nhất?",
+          "prompt": "Sẽ chép toàn bộ một bảng tới mọi nút để nối cục bộ. Loại bảng nào thường phù hợp nhất?",
           "options": [
             "Rất lớn và cập nhật liên tục vì đồng bộ luôn miễn phí",
             "Nhỏ, chỉ đọc",
             "Chiếm đa số lưu trữ nhưng ít đọc",
             "Mỗi ghi đồng bộ hàng nghìn bản với độ trễ tối thiểu"
           ],
-          "explanation": "Bảng nhỏ ít đổi giảm chi phí lưu và đồng bộ; ghi thường xuyên làm sao chép đắt hơn."
+          "explanation": "Bảng nhỏ chỉ đọc rẻ để chép và ít công lan truyền cập nhật. Chép bảng rất lớn hay đổi nhanh tốn thêm RAM, mạng và phối hợp."
         },
         {
           "id": "l26-replication-q4",
@@ -806,14 +806,14 @@
         },
         {
           "id": "l26-lookup-q2",
-          "prompt": "Không có cơ chế phân hoạch/định tuyến cho khóa tra cứu. Slide dùng cách cơ bản nào?",
+          "prompt": "Không có định tuyến khóa phân hoạch, danh mục hay cơ chế tra phù hợp khác, hệ cơ bản tìm khóa trên mọi nút bằng cách nào?",
           "options": [
             "Chọn ngẫu nhiên, kết quả rỗng chứng minh hàng không tồn tại",
             "Chỉ hỏi nút khóa nhỏ nhất",
             "Chỉ hỏi replica phân hoạch tùy ý",
             "Broadcast yêu cầu tới các nút"
           ],
-          "explanation": "Không biết vị trí, chỉ kiểm một nút có thể bỏ sót; slide dùng broadcast."
+          "explanation": "Phát yêu cầu tới mọi nút vì bất kỳ nút nào cũng có thể giữ dòng. Biết vị trí tránh được hỏi rộng; tên cột giống nhau chưa cho biết vị trí vật lý."
         },
         {
           "id": "l26-lookup-q3",
@@ -978,14 +978,14 @@
       "questions": [
         {
           "id": "l26-sorting-q1",
-          "prompt": "Slide sắp xếp song song chia dữ liệu thế nào?",
+          "prompt": "Muốn nối trực tiếp các đầu ra đã sắp cục bộ thành thứ tự toàn cục, nên phân phối khóa thế nào?",
           "options": [
             "Round-robin rồi ghép tùy ý cho thứ tự toàn cục",
             "Phân hoạch khoảng",
             "Sao toàn bộ mỗi máy để lặp sắp xếp",
             "Băm rồi ghép bucket theo băm là đủ"
           ],
-          "explanation": "Máy giữ khoảng khác nhau; ghép đầu ra đã sort theo khoảng cho thứ tự toàn cục."
+          "explanation": "Khoảng khóa rời nhau có thứ tự bảo đảm khóa phần trước đứng trước phần sau. Đích băm không xác lập thứ tự đó dù mỗi đích đã sắp cục bộ."
         },
         {
           "id": "l26-sorting-q2",
@@ -1283,14 +1283,14 @@
       "questions": [
         {
           "id": "l26-scenario3-q1",
-          "prompt": "R,S chia khóa khác nhau, S nhỏ. Slide đề xuất gì?",
+          "prompt": "R,S có phân hoạch không tương thích, S nhỏ và mỗi nút chứa được S. Cách phân phối nào cho phép nối cục bộ?",
           "options": [
             "Broadcast bảng lớn vì bảng nhỏ ít đáng chuyển",
             "Nối ngay phần hiện có và coi đầy đủ",
             "Broadcast S tới nút",
             "Chỉ gửi lược đồ S"
           ],
-          "explanation": "Bảng nhỏ dễ phân bố đầy đủ để mỗi phần R tìm mọi bộ S khớp."
+          "explanation": "Phát tán S để mỗi nút nối phần R của mình với đủ S. Khóa bằng nhau gặp được mà không chuyển toàn R. Chi phí RAM và cập nhật các bản S vẫn quan trọng."
         },
         {
           "id": "l26-scenario3-q2",

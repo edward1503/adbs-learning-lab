@@ -98,7 +98,7 @@
             "STEAL cấm lưu before-image cập nhật",
             "Đĩa có thể chứa thay đổi của giao dịch về sau abort"
           ],
-          "explanation": "Tác động chưa commit đã xuống đĩa phải có thể bị loại bỏ. Thiếu thay đổi đã commit là bài toán REDO liên quan NO-FORCE, không phải lý do này."
+          "explanation": "Chẳng hạn B=7 đổi thành B=3 chưa commit và STEAL đẩy B=3. Nếu giao dịch hủy, đĩa chứa công việc chưa hoàn tất. UNDO cần thông tin phục hồi 7; làm lại 3 sẽ giữ tác động sai."
         },
         {
           "id": "l21-buffer-policies-q4",
@@ -109,7 +109,7 @@
             "NO-FORCE cho xóa log ngay sau sửa RAM",
             "Chỉ dirty page chưa commit có thể mất khi crash"
           ],
-          "explanation": "Commit không bắt flush mọi trang dữ liệu, nên log phải giúp dựng lại tác động đã commit. UNDO giải quyết yêu cầu khác: loại bỏ tác động không được giữ."
+          "explanation": "Chẳng hạn T1 commit A=10 trong khi đĩa vẫn A=12. Mất điện làm mất RAM. Vì T1 đã commit, giữ 12 sẽ làm mất công việc đã chấp nhận; REDO dùng nhật ký bền vững để dựng 10. NO-FORCE không bỏ yêu cầu nhật ký bền vững."
         },
         {
           "id": "l21-buffer-policies-q5",
@@ -242,7 +242,7 @@
             "Báo commit → bỏ log → flush trang",
             "Thêm log vào RAM → flush log cập nhật → flush trang dữ liệu → flush log COMMIT → báo thành công"
           ],
-          "explanation": "Chuỗi đúng đặt log trước trang và COMMIT bền vững trước thông báo thành công. Đây là một thứ tự hợp lệ, không phải yêu cầu mọi trang luôn phải flush trước COMMIT: NO-FORCE vẫn cho phép flush trang về sau nếu hai ranh giới WAL được giữ."
+          "explanation": "Nhật ký cập nhật phải bền vững trước khi đẩy trang; nhật ký giao dịch đến hết COMMIT phải bền vững trước thông báo thành công. Phương án này là một thứ tự hợp lệ, không bắt buộc mọi trang luôn phải được đẩy trước commit: NO-FORCE có thể hoãn ghi trang."
         }
       ]
     },
@@ -292,7 +292,7 @@
             "Chỉ giao dịch bắt đầu cuối cùng trước crash",
             "Các giao dịch chưa commit trước crash"
           ],
-          "explanation": "Trong mô hình giao dịch đơn nút thông thường của bài, undo loại tác động giao dịch chưa hoàn tất; loại công việc đã commit sẽ vi phạm durability. Participant phân tán có PREPARE bền vững là trường hợp in-doubt riêng ở bài 22, không được tự xem như loser để chọn kết quả cục bộ."
+          "explanation": "Với giao dịch đơn máy thông thường trong câu hỏi, hoàn tác loại công việc chưa xong và giữ công việc đã commit. Bài 22 thêm ranh giới quan trọng: thành viên phân tán chỉ có PREPARE bền vững đang chưa biết quyết định và phải giải quyết quyết định chung trước khi bị coi là loser."
         },
         {
           "id": "l21-aries-q5",

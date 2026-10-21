@@ -353,7 +353,7 @@
             "24576",
             "5"
           ],
-          "explanation": "Offset là 5×4096. 24576 thuộc trang 6 hoặc do nhầm cách đánh số."
+          "explanation": "Đánh số từ 0 nên trước trang 5 có các trang 0,1,2,3,4: năm trang, mỗi trang 4096 byte. Tổng là 5×4096=20480 byte từ đầu file. Không có đầu mục để cộng; dùng sáu trang sẽ tới trang 6."
         },
         {
           "id": "l04-disk-manager-q5",

@@ -30,25 +30,25 @@
         },
         {
           "id": "l24-evaluation-complexity-q3",
-          "prompt": "Vì sao hỏi t thuộc Q(D) thay vì luôn yêu cầu in toàn bộ kết quả?",
+          "prompt": "Vì sao đo việc t thuộc Q(D) riêng với việc in mọi đáp án?",
           "options": [
             "CQ không thể trả hơn một bộ",
             "Kiểm tra thành viên đếm toàn bộ đầu ra trong thời gian hằng",
             "Đầu ra có thể rất lớn, che khuất độ khó quyết định thành viên",
             "Đầu ra luôn nhỏ hơn truy vấn"
           ],
-          "explanation": "Cách này tách chi phí quyết định thành viên khỏi kích thước đầu ra. Truy vấn vẫn có kết quả, nhưng in nó không phải nhiệm vụ đang đo."
+          "explanation": "Truy vấn có thể có đầu ra rất lớn dù kiểm tra một bộ dễ. Bài toán quyết định chỉ hỏi CÓ/KHÔNG cho t; in toàn bộ còn phải trả công theo từng bộ đầu ra."
         },
         {
           "id": "l24-evaluation-complexity-q4",
-          "prompt": "Bài giảng nêu kết quả độ phức tạp nào cho đánh giá CQ?",
+          "prompt": "Với CQ dương tổng quát theo tập hợp, độ phức tạp kết hợp và dữ liệu khác nhau thế nào?",
           "options": [
             "Kết hợp PTIME nhưng dữ liệu không quyết định được",
             "Dữ liệu NP-đầy đủ với mọi Q cố định",
             "Cả hai đều thời gian hằng",
             "Kết hợp NP-đầy đủ, dữ liệu PTIME"
           ],
-          "explanation": "Hai mệnh đề dùng hai cách đo nên không mâu thuẫn. NP-đầy đủ kết hợp không làm mọi truy vấn cố định thành NP-đầy đủ."
+          "explanation": "Độ phức tạp kết hợp cho truy vấn và số biến tăng; độ phức tạp dữ liệu cố định truy vấn. k cố định làm n^k thành đa thức theo n. Thành viên kết hợp tổng quát NP-đầy đủ; không suy ra mọi truy vấn cố định đều khó."
         },
         {
           "id": "l24-evaluation-complexity-q5",
@@ -174,14 +174,14 @@
         },
         {
           "id": "l24-static-analysis-q5",
-          "prompt": "Độ phức tạp tổng quát của CQ-Containment và CQ-Equivalence là gì?",
+          "prompt": "Với CQ dương tùy ý là đầu vào, theo tập hợp, bao hàm và tương đương có độ phức tạp nào?",
           "options": [
             "Không quyết định được",
             "Luôn thời gian hằng",
             "NP-đầy đủ",
             "PTIME chỉ vì mọi CQ khả thỏa"
           ],
-          "explanation": "Khả thỏa dễ không khiến bao hàm dễ. Định lý đồng cấu dẫn tới NP-đầy đủ cho hai bài toán này."
+          "explanation": "Cả hai NP-đầy đủ trong mô hình này. Ánh xạ giữ đầu và hằng đề xuất kiểm tra được đa thức, nhưng tìm ánh xạ phù hợp có thể khó. Khả thỏa dễ nhờ dữ liệu chuẩn tắc không giải quyết bao hàm."
         }
       ]
     },
@@ -213,14 +213,14 @@
         },
         {
           "id": "l24-canonical-q3",
-          "prompt": "Vì sao mọi CQ dương thuần khả thỏa trong bối cảnh bài giảng?",
+          "prompt": "Vì sao mọi CQ dương thuần túy khả thỏa khi không có ràng buộc ngoài hay so sánh mâu thuẫn?",
           "options": [
             "Đúng trên mọi dữ liệu kể cả rỗng",
             "Dữ liệu chuẩn tắc của chính nó cho phép khớp ngay",
             "Mọi nguyên tử là hằng đúng",
             "Mỗi quan hệ phải chứa mọi bộ có thể"
           ],
-          "explanation": "Dữ liệu chuẩn tắc cung cấp ít nhất một D phù hợp, không nói truy vấn có đáp án trên mọi D."
+          "explanation": "Thay mỗi biến bằng giá trị mới phân biệt, giữ nguyên hằng. Các sự kiện dựng thành dữ liệu khớp thân, nên tồn tại ít nhất một cơ sở dữ liệu phù hợp. Không phải khẳng định mọi dữ liệu đều có đáp án."
         },
         {
           "id": "l24-canonical-q4",

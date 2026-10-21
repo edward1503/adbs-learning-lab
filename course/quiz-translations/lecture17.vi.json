@@ -12,7 +12,7 @@
           "options": [
             "Số dòng đầu ra luôn bằng số I/O toán tử",
             "Nó thành ước lượng kích thước đầu vào để tính chi phí toán tử cha",
-            "Chỉ số dòng đầu ra root quyết định mọi kích thước đầu vào",
+            "Chỉ số dòng đầu ra gốc quyết định mọi kích thước đầu vào",
             "Mọi cha giữ nguyên số dòng của con"
           ],
           "explanation": "Công việc phía sau phụ thuộc kết quả trung gian. Đầu ra cuối nhỏ không có nghĩa mọi bước trước đều rẻ."
@@ -22,9 +22,9 @@
           "prompt": "Mô hình System R: I/O + CPU-factor×tuples kết hợp gì?",
           "options": [
             "Chỉ thời gian thực đo trực tiếp",
-            "Chỉ số mức index",
-            "Truy cập đĩa và công xử lý tuple ước lượng",
-            "Chỉ số page đầu ra"
+            "Chỉ số mức chỉ mục",
+            "Truy cập đĩa và công xử lý dòng ước lượng",
+            "Chỉ số trang đầu ra"
           ],
           "explanation": "Đây là mô hình chi phí có trọng số, không phải số đo chính xác thời gian chạy sẽ xảy ra."
         },
@@ -35,17 +35,17 @@
             "Chỉ ước lượng cuối đổi; chọn plan không ảnh hưởng",
             "Cha bảo đảm ít việc hơn vì ước lượng nhỏ",
             "Không gì đổi miễn ngữ nghĩa logic đúng",
-            "Cha có thể chọn join hoặc cách dùng bộ nhớ kém vì dự đoán đầu vào quá nhỏ"
+            "Cha có thể chọn nối hoặc cách dùng bộ nhớ kém vì dự đoán đầu vào quá nhỏ"
           ],
           "explanation": "Ngữ nghĩa đúng không bảo đảm ước lượng đúng. Sai số số dòng lan vào chi phí cha và có thể đổi lựa chọn plan."
         },
         {
           "id": "l17-cost-estimation-q4",
-          "prompt": "Hai join plan có cùng số dòng cuối có bắt buộc cùng chi phí không?",
+          "prompt": "Hai nối plan có cùng số dòng cuối có bắt buộc cùng chi phí không?",
           "options": [
             "Không; kích thước trung gian và thuật toán có thể khác",
             "Có; chi phí chỉ phụ thuộc số dòng cuối",
-            "Có; cùng predicate join bảo đảm cùng chi phí trung gian",
+            "Có; cùng điều kiện nối bảo đảm cùng chi phí trung gian",
             "Chỉ khác khi cần DISTINCT"
           ],
           "explanation": "Công việc trước khi tạo kết quả cuối có thể khác nhiều. Kích thước đầu ra cuối chưa quyết định chi phí."
@@ -59,7 +59,7 @@
             "Chỉ tên cột SELECT cuối",
             "Chỉ số dòng bảng lớn nhất"
           ],
-          "explanation": "Hash, merge và nested-loop có công thức khác nhau; mỗi công thức cần kích thước đầu vào liên quan."
+          "explanation": "Hash, merge và vòng lặp lồng nhau có công thức khác nhau; mỗi công thức cần kích thước đầu vào liên quan."
         }
       ]
     },
@@ -72,61 +72,61 @@
           "prompt": "NKeys(A) biểu diễn gì trong mô hình này?",
           "options": [
             "Số byte mỗi giá trị A",
-            "Số page trong root index",
+            "Số trang trong gốc chỉ mục",
             "Số giá trị A phân biệt",
             "Tổng dòng gồm duplicate"
           ],
-          "explanation": "Số giá trị phân biệt khác số tuple. Nhầm hai số làm sai ước lượng selectivity equality."
+          "explanation": "Số giá trị phân biệt khác số dòng. Nhầm hai số làm sai ước lượng tỷ lệ giữ lại equality."
         },
         {
           "id": "l17-statistics-and-catalogs-q2",
-          "prompt": "Bảng có 10,000 tuple trên 100 page. Thống kê nào quyết định I/O heap scan cơ bản?",
+          "prompt": "Bảng có 10,000 dòng trên 100 trang. Thống kê nào quyết định I/O quét tệp bảng cơ bản?",
           "options": [
-            "NTuples=10,000 được coi là số page đọc",
+            "NTuples=10,000 được coi là số trang đọc",
             "NKeys của cột đầu ra",
-            "Chiều cao index dù không dùng index",
+            "Chiều cao chỉ mục dù không dùng chỉ mục",
             "NPages=100"
           ],
-          "explanation": "I/O heap scan tính theo page, thường không cần một I/O riêng cho mỗi tuple."
+          "explanation": "I/O quét tệp bảng tính theo trang, thường không cần một I/O riêng cho mỗi dòng."
         },
         {
           "id": "l17-statistics-and-catalogs-q3",
           "prompt": "Vì sao nên cập nhật thống kê sau bulk load làm đổi phân bố?",
           "options": [
             "Ước lượng cũ có thể không phản ánh số dòng hoặc phân bố mới",
-            "Cập nhật tự thêm mọi index cần thiết",
+            "Cập nhật tự thêm mọi chỉ mục cần thiết",
             "Cập nhật làm mọi giá trị phân bố đều",
             "Nó sửa ngữ nghĩa query sai"
           ],
-          "explanation": "Thống kê hỗ trợ lập kế hoạch. Cập nhật không làm dữ liệu đều hay tự tạo index."
+          "explanation": "Thống kê hỗ trợ lập kế hoạch. Cập nhật không làm dữ liệu đều hay tự tạo chỉ mục."
         },
         {
           "id": "l17-statistics-and-catalogs-q4",
-          "prompt": "Selection tạo 2,000 dòng từ 10,000 dòng đầu vào. Selectivity là gì?",
+          "prompt": "phép chọn tạo 2,000 dòng từ 10,000 dòng đầu vào. tỷ lệ giữ lại là gì?",
           "options": [
             "2,000",
             "0.2",
             "5",
             "0.8"
           ],
-          "explanation": "Selectivity=đầu ra/đầu vào=2,000/10,000=0.2. Với selection, tỷ lệ nằm trong [0,1]."
+          "explanation": "tỷ lệ giữ lại=đầu ra/đầu vào=2,000/10,000=0.2. Với phép chọn, tỷ lệ nằm trong [0,1]."
         },
         {
           "id": "l17-statistics-and-catalogs-q5",
-          "prompt": "Cụm highly selective predicate thường nghĩa là gì?",
+          "prompt": "Cụm highly selective điều kiện thường nghĩa là gì?",
           "options": [
-            "Selectivity số gần 1",
-            "Nó dùng index dù giữ phần lớn dòng",
+            "tỷ lệ giữ lại số gần 1",
+            "Nó dùng chỉ mục dù giữ phần lớn dòng",
             "Nó giữ một phần nhỏ dòng",
-            "Nó có nhiều điều kiện AND, bất kể selectivity kết hợp"
+            "Nó có nhiều điều kiện AND, bất kể tỷ lệ giữ lại kết hợp"
           ],
-          "explanation": "Cách nói dễ gây nhầm: highly selective thường ứng với selectivity số s nhỏ."
+          "explanation": "Cách nói dễ gây nhầm: highly selective thường ứng với tỷ lệ giữ lại số s nhỏ."
         }
       ]
     },
     {
       "id": "l17-selections-complex-predicates",
-      "title": "Selection: predicate phức hợp",
+      "title": "phép chọn: điều kiện phức hợp",
       "questions": [
         {
           "id": "l17-selections-complex-predicates-q1",
@@ -137,7 +137,7 @@
             "20",
             "0.05"
           ],
-          "explanation": "1/20=0.05. Số giá trị phân biệt là mẫu số, không phải selectivity."
+          "explanation": "1/20=0.05. Số giá trị phân biệt là mẫu số, không phải tỷ lệ giữ lại."
         },
         {
           "id": "l17-selections-complex-predicates-q2",
@@ -152,7 +152,7 @@
         },
         {
           "id": "l17-selections-complex-predicates-q3",
-          "prompt": "P có selectivity 0.2, Q có 0.3, độc lập và không NULL. Selectivity P AND Q là gì?",
+          "prompt": "P có tỷ lệ giữ lại 0.2, Q có 0.3, độc lập và không NULL. tỷ lệ giữ lại P AND Q là gì?",
           "options": [
             "0.1",
             "0.06",
@@ -163,7 +163,7 @@
         },
         {
           "id": "l17-selections-complex-predicates-q4",
-          "prompt": "P và Q có selectivity 0.2 và 0.3, độc lập, không NULL. Selectivity P OR Q là gì?",
+          "prompt": "P và Q có tỷ lệ giữ lại 0.2 và 0.3, độc lập, không NULL. tỷ lệ giữ lại P OR Q là gì?",
           "options": [
             "0.5",
             "0.94",
@@ -174,7 +174,7 @@
         },
         {
           "id": "l17-selections-complex-predicates-q5",
-          "prompt": "P có selectivity 0.15 và không NULL. Selectivity NOT P là gì?",
+          "prompt": "P có tỷ lệ giữ lại 0.15 và không NULL. tỷ lệ giữ lại NOT P là gì?",
           "options": [
             "0.15",
             "1.15",
@@ -187,33 +187,33 @@
     },
     {
       "id": "l17-result-size-estimation-for-joins",
-      "title": "Ước lượng số dòng join",
+      "title": "Ước lượng số dòng nối",
       "questions": [
         {
           "id": "l17-result-size-estimation-for-joins-q1",
-          "prompt": "S có 900 dòng và foreign key hợp lệ, không NULL, tham chiếu unique key R. Inner join theo key trả bao nhiêu dòng?",
+          "prompt": "S có 900 dòng và khóa ngoại hợp lệ, không NULL, tham chiếu unique key R. Inner nối theo key trả bao nhiêu dòng?",
           "options": [
             "900",
             "Luôn |R|×900",
             "min(|R|,900)",
-            "Không suy ra được dù foreign key hợp lệ"
+            "Không suy ra được dù khóa ngoại hợp lệ"
           ],
-          "explanation": "Mỗi dòng S có đúng một đối tác R. Unique key và foreign key hợp lệ không NULL bảo đảm điều đó."
+          "explanation": "Mỗi trong 900 dòng S có tham chiếu hợp lệ không NULL nên tồn tại dòng R khớp; tính duy nhất chỉ cho phép đúng một dòng khớp. Vì vậy mỗi dòng S góp đúng một dòng nối, tổng 900. Bỏ một trong hai giả định thì kết luận chính xác ấy không còn được bảo đảm."
         },
         {
           "id": "l17-result-size-estimation-for-joins-q2",
-          "prompt": "Foreign key trên giờ cho NULL: 90 trong 900 dòng S có NULL, mọi tham chiếu khác hợp lệ. Equality inner join trả bao nhiêu dòng?",
+          "prompt": "khóa ngoại trên giờ cho NULL: 90 trong 900 dòng S có NULL, mọi tham chiếu khác hợp lệ. Equality inner nối trả bao nhiêu dòng?",
           "options": [
             "0",
             "810",
             "900",
             "90"
           ],
-          "explanation": "NULL không match bằng equality SQL. Mỗi trong 810 dòng không NULL có đúng một đối tác R."
+          "explanation": "NULL không khớp bằng equality SQL. Mỗi trong 810 dòng không NULL có đúng một đối tác R."
         },
         {
           "id": "l17-result-size-estimation-for-joins-q3",
-          "prompt": "|R|=600, |S|=900, V(R.a)=30, V(S.a)=60. Dưới uniformity và miền nhỏ nằm trong miền lớn, ước lượng equijoin là gì?",
+          "prompt": "|R|=600, |S|=900, V(R.a)=30, V(S.a)=60. Dưới phân bố đều và miền nhỏ nằm trong miền lớn, ước lượng nối bằng là gì?",
           "options": [
             "540,000",
             "1,500",
@@ -231,16 +231,16 @@
             "Có, bất kể độ lệch key",
             "Không; nó cần giả định phân bố đều và chồng lấp giá trị"
           ],
-          "explanation": "Miền rời nhau có thể cho 0 match; dữ liệu lệch cũng đổi kết quả nhiều. Công thức là ước lượng dựa trên giả định."
+          "explanation": "Miền rời nhau có thể cho 0 khớp; dữ liệu lệch cũng đổi kết quả nhiều. Công thức là ước lượng dựa trên giả định."
         },
         {
           "id": "l17-result-size-estimation-for-joins-q5",
-          "prompt": "Vì sao xem join là selection trên R×S giúp ước lượng kích thước?",
+          "prompt": "Vì sao xem nối là phép chọn trên R×S giúp ước lượng kích thước?",
           "options": [
-            "Bắt đầu từ |R||S| ứng viên rồi nhân selectivity join",
-            "Mọi join phải materialize R×S trước",
-            "Kết quả join không thể có duplicate",
-            "Mọi predicate join có selectivity 1"
+            "Bắt đầu từ |R||S| ứng viên rồi nhân tỷ lệ giữ lại nối",
+            "Mọi nối phải lưu đầy đủ R×S trước",
+            "Kết quả nối không thể có duplicate",
+            "Mọi điều kiện nối có tỷ lệ giữ lại 1"
           ],
           "explanation": "Đây là cách suy ra số dòng về logic, không bắt buộc tạo tích Descartes vật lý."
         }
@@ -252,7 +252,7 @@
       "questions": [
         {
           "id": "l17-missing-statistics-use-default-values-q1",
-          "prompt": "Default selectivity dùng khi thiếu thống kê là loại thông tin gì?",
+          "prompt": "Default tỷ lệ giữ lại dùng khi thiếu thống kê là loại thông tin gì?",
           "options": [
             "Ràng buộc cơ sở dữ liệu",
             "Giả định dự phòng của hệ thống",
@@ -268,7 +268,7 @@
             "SQL cấm ước lượng dự phòng",
             "Mọi phiên bản có source code giống nhau",
             "Default phụ thuộc triển khai và phiên bản",
-            "Selectivity không bao giờ dùng số"
+            "tỷ lệ giữ lại không bao giờ dùng số"
           ],
           "explanation": "Slide minh họa phiên bản cụ thể. Default đó không phải chuẩn chung xuyên hệ thống."
         },
@@ -289,7 +289,7 @@
           "options": [
             "Thu thập hoặc cập nhật thống kê phù hợp",
             "Thêm DISTINCT ép ước lượng thấp dù đổi query",
-            "Ép mọi selectivity thành 1",
+            "Ép mọi tỷ lệ giữ lại thành 1",
             "Dùng default cũ giống nhau cho mọi cột dù phân bố đổi"
           ],
           "explanation": "Thống kê tốt hơn giúp ước lượng query gốc. Đổi nghĩa query không phải cách hợp lệ để sửa ước lượng."
@@ -299,21 +299,21 @@
           "prompt": "Default dự đoán rất ít dòng nhưng thực tế nhiều. Hệ quả có thể là gì?",
           "options": [
             "Plan bảo đảm trả lời sai",
-            "Nhiều index probe hoặc join từng có vẻ rẻ trở nên đắt",
+            "Nhiều chỉ mục probe hoặc nối từng có vẻ rẻ trở nên đắt",
             "Số dòng thật tự giảm theo ước lượng",
             "Equality tự đổi thành range"
           ],
-          "explanation": "Sai số cardinality thường ảnh hưởng hiệu năng, không tự đổi query logic hay kết quả đúng."
+          "explanation": "Sai số số dòng thường ảnh hưởng hiệu năng, không tự đổi query logic hay kết quả đúng."
         }
       ]
     },
     {
       "id": "l17-equi-width-histograms",
-      "title": "Histogram equi-width",
+      "title": "thống kê theo khoảng độ rộng bằng nhau",
       "questions": [
         {
           "id": "l17-equi-width-histograms-q1",
-          "prompt": "Miền nguyên 1..20 chia 4 bucket equi-width. Mỗi bucket rộng bao nhiêu?",
+          "prompt": "Miền nguyên 1..20 chia 4 ngăn chứa độ rộng bằng nhau. Mỗi ngăn chứa rộng bao nhiêu?",
           "options": [
             "20",
             "19/4",
@@ -324,119 +324,119 @@
         },
         {
           "id": "l17-equi-width-histograms-q2",
-          "prompt": "Bucket [6,10] có 50 dòng, giả định đều trong bucket. A=8 ước lượng bao nhiêu dòng?",
+          "prompt": "ngăn chứa [6,10] có 50 dòng, giả định đều trong ngăn chứa. A=8 ước lượng bao nhiêu dòng?",
           "options": [
             "50 dòng",
             "5 dòng",
             "25 dòng",
             "10 dòng"
           ],
-          "explanation": "50/5=10. Tổng bucket được chia cho các giá trị, không phải tần suất của từng giá trị."
+          "explanation": "50/5=10. Tổng ngăn chứa được chia cho các giá trị, không phải tần suất của từng giá trị."
         },
         {
           "id": "l17-equi-width-histograms-q3",
-          "prompt": "Bucket [1,5] có 20 dòng, [6,10] có 50. Giả định đều trong bucket: A>8 ước lượng bao nhiêu dòng?",
+          "prompt": "ngăn chứa [1,5] có 20 dòng, [6,10] có 50. Giả định đều trong ngăn chứa: A>8 ước lượng bao nhiêu dòng?",
           "options": [
             "20 dòng",
             "50 dòng",
             "30 dòng",
             "70 dòng"
           ],
-          "explanation": "Chỉ 9 và 10 match: 2/5×50=20. Dấu > không lấy giá trị 8."
+          "explanation": "Chỉ 9 và 10 khớp: 2/5×50=20. Dấu > không lấy giá trị 8."
         },
         {
           "id": "l17-equi-width-histograms-q4",
-          "prompt": "Cùng hai bucket và giả định đều: A>=4 ước lượng bao nhiêu dòng?",
+          "prompt": "Cùng hai ngăn chứa và giả định đều: A>=4 ước lượng bao nhiêu dòng?",
           "options": [
             "54 dòng",
             "58 dòng",
             "70 dòng",
             "50 dòng"
           ],
-          "explanation": "4 và 5 góp 2/5×20=8 dòng. Cả 50 dòng bucket 6..10 match, tổng 58."
+          "explanation": "4 và 5 góp 2/5×20=8 dòng. Cả 50 dòng ngăn chứa 6..10 khớp, tổng 58."
         },
         {
           "id": "l17-equi-width-histograms-q5",
-          "prompt": "Đánh đổi thường có khi tăng số bucket histogram là gì?",
+          "prompt": "Đánh đổi thường có khi tăng số ngăn chứa thống kê theo khoảng là gì?",
           "options": [
             "Metadata luôn giảm trong khi độ phân giải tăng",
             "Số dòng thật của bảng đổi",
             "Độ phân giải tốt hơn cần nhiều metadata hơn",
-            "Bất kỳ một bucket luôn mô tả phân bố chính xác"
+            "Bất kỳ một ngăn chứa luôn mô tả phân bố chính xác"
           ],
-          "explanation": "Thêm bucket có thể giảm lỗi ước lượng nhưng tốn catalog hơn; không đổi dữ liệu gốc."
+          "explanation": "Thêm ngăn chứa có thể giảm lỗi ước lượng nhưng tốn catalog hơn; không đổi dữ liệu gốc."
         }
       ]
     },
     {
       "id": "l17-equi-depth-histograms",
-      "title": "Histogram equi-depth",
+      "title": "thống kê theo khoảng độ sâu bằng nhau",
       "questions": [
         {
           "id": "l17-equi-depth-histograms-q1",
-          "prompt": "Equi-depth cố giữ đại lượng nào gần bằng nhau giữa các bucket?",
+          "prompt": "độ sâu bằng nhau cố giữ đại lượng nào gần bằng nhau giữa các ngăn chứa?",
           "options": [
             "Độ rộng miền",
-            "Số page bảng mỗi dòng dùng",
+            "Số trang bảng mỗi dòng dùng",
             "Chiều cao B+ tree",
-            "Số tuple mỗi bucket"
+            "Số dòng mỗi ngăn chứa"
           ],
-          "explanation": "Equi-width giữ độ rộng khoảng; equi-depth nhắm số tuple hay depth bằng nhau."
+          "explanation": "độ rộng bằng nhau giữ độ rộng khoảng; độ sâu bằng nhau nhắm số dòng hay depth bằng nhau."
         },
         {
           "id": "l17-equi-depth-histograms-q2",
-          "prompt": "120 dòng chia 4 bucket equi-depth lý tưởng. Depth mỗi bucket là gì?",
+          "prompt": "120 dòng chia 4 ngăn chứa độ sâu bằng nhau lý tưởng. Depth mỗi ngăn chứa là gì?",
           "options": [
             "30",
             "4",
             "120",
             "480"
           ],
-          "explanation": "120/4=30 dòng mỗi bucket. 4 là số bucket; 120 là toàn bảng, không phải một bucket."
+          "explanation": "120/4=30 dòng mỗi ngăn chứa. 4 là số ngăn chứa; 120 là toàn bảng, không phải một ngăn chứa."
         },
         {
           "id": "l17-equi-depth-histograms-q3",
-          "prompt": "Bucket equi-depth trên giá trị nguyên [11,13] có 30 dòng. Giả định đều: equality với 12 ước lượng bao nhiêu?",
+          "prompt": "ngăn chứa độ sâu bằng nhau trên giá trị nguyên [11,13] có 30 dòng. Giả định đều: equality với 12 ước lượng bao nhiêu?",
           "options": [
             "15",
             "10",
             "30",
             "3"
           ],
-          "explanation": "Có ba giá trị nên 30/3=10. Bucket khác có thể rộng khác mà không đổi phép tính này."
+          "explanation": "Có ba giá trị nên 30/3=10. ngăn chứa khác có thể rộng khác mà không đổi phép tính này."
         },
         {
           "id": "l17-equi-depth-histograms-q4",
-          "prompt": "Bucket [1,3] và [4,9] mỗi cái 30 dòng. Giả định đều trong bucket: A>6 ước lượng bao nhiêu?",
+          "prompt": "ngăn chứa [1,3] và [4,9] mỗi cái 30 dòng. Giả định đều trong ngăn chứa: A>6 ước lượng bao nhiêu?",
           "options": [
             "45 dòng",
             "10 dòng",
             "15 dòng",
             "30 dòng"
           ],
-          "explanation": "7,8,9 chiếm 3/6 bucket thứ hai, nên 15 dòng. Lấy cả bucket sẽ ước lượng cao."
+          "explanation": "7,8,9 chiếm 3/6 ngăn chứa thứ hai, nên 15 dòng. Lấy cả ngăn chứa sẽ ước lượng cao."
         },
         {
           "id": "l17-equi-depth-histograms-q5",
-          "prompt": "Vì sao equi-depth thích nghi với vùng dữ liệu dày?",
+          "prompt": "Vì sao độ sâu bằng nhau thích nghi với vùng dữ liệu dày?",
           "options": [
             "Dùng khoảng rộng bằng nhau bất kể tần suất",
-            "Xóa giá trị nóng để bucket trông đều",
+            "Xóa giá trị nóng để ngăn chứa trông đều",
             "Bảo đảm tương quan chính xác giữa mọi cột",
-            "Dùng khoảng hẹp hơn để giữ số dòng mỗi bucket gần bằng nhau"
+            "Dùng khoảng hẹp hơn để giữ số dòng mỗi ngăn chứa gần bằng nhau"
           ],
-          "explanation": "Độ phân giải tập trung nơi nhiều dòng. Histogram một cột vẫn chưa mô tả mọi tương quan giữa cột."
+          "explanation": "Độ phân giải tập trung nơi nhiều dòng. thống kê theo khoảng một cột vẫn chưa mô tả mọi tương quan giữa cột."
         },
         {
           "id": "ex17-depth-q1",
-          "prompt": "Ba bucket nguyên equi-depth [1,3], [4,9], [10,12] mỗi cái 30 dòng. Giả định đều: A>=7 giữ bao nhiêu?",
+          "prompt": "Ba ngăn chứa nguyên độ sâu bằng nhau [1,3], [4,9], [10,12] mỗi cái 30 dòng. Giả định đều: A>=7 giữ bao nhiêu?",
           "options": [
             "15",
             "30",
             "45",
             "60"
           ],
-          "explanation": "7,8,9 giữ nửa bucket thứ hai, tức 15; bucket cuối giữ toàn 30. Tổng 45 dòng."
+          "explanation": "7,8,9 giữ nửa ngăn chứa thứ hai, tức 15; ngăn chứa cuối giữ toàn 30. Tổng 45 dòng."
         }
       ]
     }

@@ -107,7 +107,7 @@
             "2"
           ],
           "answer": 3,
-          "explanation": "WHERE retains both rows with x=1. Without DISTINCT, they are not collapsed into one.",
+          "explanation": "Test all three input occurrences: 1<3 is true, the second 1<3 is also true, and 3<3 is false. WHERE therefore keeps two rows. SELECT x keeps their values, and without DISTINCT both copies remain.",
           "pages": [
             10
           ]
@@ -498,7 +498,7 @@
             "100"
           ],
           "answer": 2,
-          "explanation": "WHERE removes 20 before the sum is computed. HAVING would test the already-computed total instead.",
+          "explanation": "Start with [20,80]. WHERE tests each amount and removes 20 because 20>50 is false. The group now contains [80], whose SUM is 80. Testing the original total 100 instead would be a different condition on a completed group, expressed with HAVING.",
           "pages": [
             16,
             17

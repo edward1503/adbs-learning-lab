@@ -270,7 +270,7 @@
             "Page ID phải đổi dù vẫn cùng trang",
             "Offset lưu trong slot directory"
           ],
-          "explanation": "RID vẫn chứa cùng page/slot ID; directory cập nhật vị trí byte mới."
+          "explanation": "Tham chiếu ngoài là (mã trang,mã slot) nên cả hai thành phần giữ nguyên. Dời byte từ 700 sang 800 xong thì đặt cùng mục slot thành offset 800. Lần lấy sau theo slot tới vị trí mới. Đổi chỉ mục sang lưu độ lệch thô sẽ bỏ qua bước gián tiếp này."
         },
         {
           "id": "l06-slotted-q3",
@@ -353,7 +353,7 @@
             "Cả hai có thể không có payload byte nhưng khác nghĩa",
             "Chuỗi rỗng và NULL luôn cùng ngữ nghĩa"
           ],
-          "explanation": "Metadata như bitmap NULL giữ sự phân biệt; độ dài payload riêng có thể chưa đủ."
+          "explanation": "Chuỗi rỗng là giá trị có mặt nhưng chứa không byte. NULL đánh dấu giá trị thiếu/chưa biết và cũng có thể không có nội dung byte. Bit NULL riêng phân biệt hai trường hợp. Cả hai không có nghĩa toàn bản ghi đã xóa; tình trạng slot là siêu dữ liệu khác."
         },
         {
           "id": "l06-record-layout-q5",

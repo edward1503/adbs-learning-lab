@@ -1,0 +1,2334 @@
+{
+  "baseline": "751115b15eede16c8f7408a1d9bdb96ae31cc681",
+  "records": [
+    {
+      "id": "lecture-01",
+      "title": "From data to a DBMS",
+      "file": "course/lecture01.json",
+      "locale": "course/translations/lecture01.vi.json",
+      "sections": [
+        {
+          "id": "l1-1",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l1-2",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l1-3",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l1-4",
+          "enRewritten": true,
+          "viRewritten": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf#page=10",
+          "label": "PDF pp. 10–19 · databases, DBMSs, and abstraction; no printed slide numbers"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf#page=21",
+          "label": "PDF pp. 21–35 · roadmap and information for the Spring 2026 course"
+        }
+      ],
+      "authorReport": "group-01-06.md",
+      "crossReview": "cross-review-01-06.md",
+      "questionChanges": [
+        {
+          "id": "l01-flat-files-q4",
+          "promptChanged": false,
+          "explanationChanged": true
+        },
+        {
+          "id": "l01-models-q5",
+          "promptChanged": false,
+          "explanationChanged": true
+        }
+      ]
+    },
+    {
+      "id": "lecture-02",
+      "title": "SQL: understanding the result",
+      "file": "course/lecture02.json",
+      "locale": "course/translations/lecture02.vi.json",
+      "sections": [
+        {
+          "id": "l2-1",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l2-2",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l2-3",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l2-4",
+          "enRewritten": true,
+          "viRewritten": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf#page=6",
+          "label": "PDF pp. 6–12 / printed slides 7–13 · tables and SELECT"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf#page=13",
+          "label": "PDF pp. 13–19 / slides 14–20 · aggregates and evaluation"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf#page=20",
+          "label": "PDF pp. 20–28 / slides 21–29 · joins and nested queries"
+        }
+      ],
+      "authorReport": "group-01-06.md",
+      "crossReview": "cross-review-01-06.md",
+      "questionChanges": [
+        {
+          "id": "l02-select-q1",
+          "promptChanged": false,
+          "explanationChanged": true
+        },
+        {
+          "id": "l02-group-q4",
+          "promptChanged": false,
+          "explanationChanged": true
+        }
+      ]
+    },
+    {
+      "id": "lecture-03",
+      "title": "Relational algebra: from questions to plans",
+      "file": "course/lecture03.json",
+      "locale": "course/translations/lecture03.vi.json",
+      "sections": [
+        {
+          "id": "l3-1",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l3-2",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l3-3",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l3-4",
+          "enRewritten": true,
+          "viRewritten": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf#page=2",
+          "label": "PDF pp. 2–7 / slides 2–7 · plans, calculus, and semantics"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf#page=8",
+          "label": "PDF pp. 8–18 / slides 8–18 · operators"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf#page=19",
+          "label": "PDF pp. 19–20 / slides 19–20 · additional operators"
+        }
+      ],
+      "authorReport": "group-01-06.md",
+      "crossReview": "cross-review-01-06.md",
+      "questionChanges": [
+        {
+          "id": "l03-algebra-q1",
+          "promptChanged": false,
+          "explanationChanged": true
+        }
+      ]
+    },
+    {
+      "id": "lecture-04",
+      "title": "Hardware and the disk-space manager",
+      "file": "course/lecture04.json",
+      "locale": "course/translations/lecture04.vi.json",
+      "sections": [
+        {
+          "id": "l4-1",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l4-2",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l4-3",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l4-4",
+          "enRewritten": true,
+          "viRewritten": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf#page=2",
+          "label": "PDF pp. 2–14 / slides 2–14 · architecture and the memory hierarchy"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf#page=15",
+          "label": "PDF pp. 15–23 / slides 15–24 · devices and I/O"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf#page=24",
+          "label": "PDF pp. 24–29 / slides 25–31 · the disk-space manager"
+        }
+      ],
+      "authorReport": "group-01-06.md",
+      "crossReview": "cross-review-01-06.md",
+      "questionChanges": [
+        {
+          "id": "l04-disk-manager-q4",
+          "promptChanged": false,
+          "explanationChanged": true
+        }
+      ]
+    },
+    {
+      "id": "lecture-05",
+      "title": "The buffer pool: pin, dirty, LRU, and CLOCK",
+      "file": "course/lecture05.json",
+      "locale": "course/translations/lecture05.vi.json",
+      "sections": [
+        {
+          "id": "l5-1",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l5-2",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l5-3",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l5-4",
+          "enRewritten": true,
+          "viRewritten": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf#page=3",
+          "label": "PDF pp. 3–11 / slides 3–11 · buffer state"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf#page=13",
+          "label": "PDF pp. 13–21 / slides 14–22 · LRU/CLOCK"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf#page=22",
+          "label": "PDF pp. 22–35 / slides 26–39 · scans, MRU, and practical considerations"
+        }
+      ],
+      "authorReport": "group-01-06.md",
+      "crossReview": "cross-review-01-06.md",
+      "questionChanges": [
+        {
+          "id": "l05-pin-unpin-q2",
+          "promptChanged": false,
+          "explanationChanged": true
+        },
+        {
+          "id": "l05-lru-q3",
+          "promptChanged": false,
+          "explanationChanged": true
+        }
+      ]
+    },
+    {
+      "id": "lecture-06",
+      "title": "Files, pages, and records",
+      "file": "course/lecture06.json",
+      "locale": "course/translations/lecture06.vi.json",
+      "sections": [
+        {
+          "id": "l6-1",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l6-2",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l6-3",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l6-4",
+          "enRewritten": true,
+          "viRewritten": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf#page=4",
+          "label": "PDF pp. 4–9 / slides 4–9 · files and heaps"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf#page=11",
+          "label": "PDF pp. 11–22 / slides 11–22 · page layout"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf#page=24",
+          "label": "PDF pp. 24–29 / slides 24–29 · record bytes"
+        }
+      ],
+      "authorReport": "group-01-06.md",
+      "crossReview": "cross-review-01-06.md",
+      "questionChanges": [
+        {
+          "id": "l06-slotted-q2",
+          "promptChanged": false,
+          "explanationChanged": true
+        },
+        {
+          "id": "l06-record-layout-q4",
+          "promptChanged": false,
+          "explanationChanged": true
+        }
+      ]
+    },
+    {
+      "id": "lecture-07",
+      "title": "Storage models and compression",
+      "file": "course/lecture07.json",
+      "locale": "course/translations/lecture07.vi.json",
+      "sections": [
+        {
+          "id": "l7-1",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l7-2",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l7-3",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l7-4",
+          "enRewritten": true,
+          "viRewritten": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf#page=2",
+          "label": "PDF pp. 2–16 / slides 2–17 · workloads and storage"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf#page=17",
+          "label": "PDF pp. 17–20 / slides 18–21 · PAX/Parquet"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf#page=21",
+          "label": "PDF pp. 21–28 / slides 22–29 · compression"
+        }
+      ],
+      "authorReport": "group-07-12.md",
+      "crossReview": "cross-review-07-12.md",
+      "questionChanges": [
+        {
+          "id": "l07-column-encoding-q5",
+          "promptChanged": false,
+          "explanationChanged": true
+        }
+      ]
+    },
+    {
+      "id": "lecture-08",
+      "title": "File organisations and index types",
+      "file": "course/lecture08.json",
+      "locale": "course/translations/lecture08.vi.json",
+      "sections": [
+        {
+          "id": "l8-1",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l8-2",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l8-3",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l8-4",
+          "enRewritten": true,
+          "viRewritten": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations.pdf#page=5",
+          "label": "PDF pp. 5–19 / slides 5–21 · cost model"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations.pdf#page=20",
+          "label": "PDF pp. 20–29 / slides 22–33 · index concepts"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations.pdf#page=30",
+          "label": "PDF pp. 30–34 / slides 36–49 · clustering"
+        }
+      ],
+      "authorReport": "group-07-12.md",
+      "crossReview": "cross-review-07-12.md",
+      "questionChanges": [
+        {
+          "id": "l08-heap-cost-q2",
+          "promptChanged": false,
+          "explanationChanged": true
+        }
+      ]
+    },
+    {
+      "id": "lecture-09",
+      "title": "Tree indexing: ISAM and B+ trees",
+      "file": "course/lecture09.json",
+      "locale": "course/translations/lecture09.vi.json",
+      "sections": [
+        {
+          "id": "l9-1",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l9-2",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l9-3",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l9-4",
+          "enRewritten": true,
+          "viRewritten": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf#page=2",
+          "label": "PDF pp. 2–12 / slides 2–12 · ISAM/fanout"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf#page=13",
+          "label": "PDF pp. 13–20 / slides 13–20 · B+ tree search and insertion"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf#page=21",
+          "label": "PDF pp. 21–29 / slides 21–29 · deletion and optimisations"
+        }
+      ],
+      "authorReport": "group-07-12.md",
+      "crossReview": "cross-review-07-12.md",
+      "questionChanges": [
+        {
+          "id": "l09-redistribute-q3",
+          "promptChanged": false,
+          "explanationChanged": true
+        }
+      ]
+    },
+    {
+      "id": "lecture-10",
+      "title": "Hash-Based Indexing",
+      "file": "course/lecture10.json",
+      "locale": "course/translations/lecture10.vi.json",
+      "sections": [
+        {
+          "id": "l10-s1",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l10-s2",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l10-s3",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l10-s4",
+          "enRewritten": true,
+          "viRewritten": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=1",
+          "label": "Official PDF, pages 1–26"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=2",
+          "label": "PDF pages 2–12"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=13",
+          "label": "PDF pages 13–25"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=26",
+          "label": "PDF pages 26–26"
+        }
+      ],
+      "authorReport": "group-07-12.md",
+      "crossReview": "cross-review-07-12.md",
+      "questionChanges": [
+        {
+          "id": "l10-global-and-local-depth-q2",
+          "promptChanged": false,
+          "explanationChanged": true
+        }
+      ]
+    },
+    {
+      "id": "lecture-11",
+      "title": "External Sorting & Aggregation",
+      "file": "course/lecture11.json",
+      "locale": "course/translations/lecture11.vi.json",
+      "sections": [
+        {
+          "id": "l11-s1",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l11-s2",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l11-s3",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l11-s4",
+          "enRewritten": true,
+          "viRewritten": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=1",
+          "label": "Official PDF, pages 1–32"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=2",
+          "label": "PDF pages 2–14"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=15",
+          "label": "PDF pages 15–20"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=21",
+          "label": "PDF pages 21–32"
+        }
+      ],
+      "authorReport": "group-07-12.md",
+      "crossReview": "cross-review-07-12.md",
+      "questionChanges": [
+        {
+          "id": "l11-external-merge-sort-q3",
+          "promptChanged": false,
+          "explanationChanged": true
+        }
+      ]
+    },
+    {
+      "id": "lecture-12",
+      "title": "Joins",
+      "file": "course/lecture12.json",
+      "locale": "course/translations/lecture12.vi.json",
+      "sections": [
+        {
+          "id": "l12-s1",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l12-s2",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l12-s3",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l12-s4",
+          "enRewritten": true,
+          "viRewritten": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=1",
+          "label": "Official PDF, pages 1–43"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=2",
+          "label": "PDF pages 2–15"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=16",
+          "label": "PDF pages 16–33"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=34",
+          "label": "PDF pages 34–43"
+        }
+      ],
+      "authorReport": "group-07-12.md",
+      "crossReview": "cross-review-07-12.md",
+      "questionChanges": [
+        {
+          "id": "l12-fusion-new-q1",
+          "promptChanged": false,
+          "explanationChanged": true
+        }
+      ]
+    },
+    {
+      "id": "lecture-13",
+      "title": "Query Evaluation: Processing Models",
+      "file": "course/lecture13.json",
+      "locale": "course/translations/lecture13.vi.json",
+      "sections": [
+        {
+          "id": "l13-s1",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l13-s2",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l13-s3",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l13-s4",
+          "enRewritten": true,
+          "viRewritten": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=1",
+          "label": "Official PDF, pages 1–18"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=2",
+          "label": "PDF pages 2–9"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=10",
+          "label": "PDF pages 10–14"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=15",
+          "label": "PDF pages 15–18"
+        }
+      ],
+      "authorReport": "group-13-18.md",
+      "crossReview": "cross-review-13-18.md",
+      "questionChanges": [
+        {
+          "id": "l13-example-selection-p-on-the-fly-q1",
+          "promptChanged": false,
+          "explanationChanged": true
+        }
+      ]
+    },
+    {
+      "id": "lecture-14",
+      "title": "Query Optimisation: Plan Space",
+      "file": "course/lecture14.json",
+      "locale": "course/translations/lecture14.vi.json",
+      "sections": [
+        {
+          "id": "l14-s1",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l14-s2",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l14-s3",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l14-s4",
+          "enRewritten": true,
+          "viRewritten": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf#page=1",
+          "label": "Official PDF, pages 1–7 (2×2; slides 1–28, numbering contains gaps)"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf#page=1",
+          "label": "PDF pages 1–2"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf#page=3",
+          "label": "PDF pages 3–5"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf#page=6",
+          "label": "PDF pages 6–7"
+        }
+      ],
+      "authorReport": "group-13-18.md",
+      "crossReview": "cross-review-13-18.md",
+      "questionChanges": [
+        {
+          "id": "l14-common-heuristics-projections-q1",
+          "promptChanged": false,
+          "explanationChanged": true
+        }
+      ]
+    },
+    {
+      "id": "lecture-15",
+      "title": "Query Optimisation: Plan Space Example",
+      "file": "course/lecture15.json",
+      "locale": "course/translations/lecture15.vi.json",
+      "sections": [
+        {
+          "id": "l15-s1",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l15-s2",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l15-s3",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l15-s4",
+          "enRewritten": true,
+          "viRewritten": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=1",
+          "label": "Official PDF, pages 1–43"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=3",
+          "label": "PDF pages 3–13"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=14",
+          "label": "PDF pages 14–24"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=25",
+          "label": "PDF pages 25–38"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=39",
+          "label": "PDF pages 39–43"
+        }
+      ],
+      "authorReport": "group-13-18.md",
+      "crossReview": "cross-review-13-18.md",
+      "questionChanges": [
+        {
+          "id": "l15-materialising-inner-loops-q1",
+          "promptChanged": false,
+          "explanationChanged": true
+        }
+      ]
+    },
+    {
+      "id": "lecture-16",
+      "title": "Access Methods",
+      "file": "course/lecture16.json",
+      "locale": "course/translations/lecture16.vi.json",
+      "sections": [
+        {
+          "id": "l16-s1",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l16-s2",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l16-s3",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l16-s4",
+          "enRewritten": true,
+          "viRewritten": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=1",
+          "label": "Official PDF, pages 1–23"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=2",
+          "label": "PDF pages 2–7"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=8",
+          "label": "PDF pages 8–16"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=17",
+          "label": "PDF pages 17–23"
+        }
+      ],
+      "authorReport": "group-13-18.md",
+      "crossReview": "cross-review-13-18.md",
+      "questionChanges": [
+        {
+          "id": "l16-index-only-scan-q3",
+          "promptChanged": false,
+          "explanationChanged": true
+        }
+      ]
+    },
+    {
+      "id": "lecture-17",
+      "title": "Query Optimisation: Costing",
+      "file": "course/lecture17.json",
+      "locale": "course/translations/lecture17.vi.json",
+      "sections": [
+        {
+          "id": "l17-s1",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l17-s2",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l17-s3",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l17-s4",
+          "enRewritten": true,
+          "viRewritten": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=1",
+          "label": "Official PDF, pages 1–26"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=2",
+          "label": "PDF pages 2–12"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=13",
+          "label": "PDF pages 13–20"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=21",
+          "label": "PDF pages 21–26"
+        }
+      ],
+      "authorReport": "group-13-18.md",
+      "crossReview": "cross-review-13-18.md",
+      "questionChanges": [
+        {
+          "id": "l17-result-size-estimation-for-joins-q1",
+          "promptChanged": false,
+          "explanationChanged": true
+        }
+      ]
+    },
+    {
+      "id": "lecture-18",
+      "title": "Query Optimisation: Searching",
+      "file": "course/lecture18.json",
+      "locale": "course/translations/lecture18.vi.json",
+      "sections": [
+        {
+          "id": "l18-s1",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l18-s2",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l18-s3",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l18-s4",
+          "enRewritten": true,
+          "viRewritten": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=1",
+          "label": "Official PDF, pages 1–24"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=2",
+          "label": "PDF pages 2–7"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=8",
+          "label": "PDF pages 8–19"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=20",
+          "label": "PDF pages 20–24"
+        }
+      ],
+      "authorReport": "group-13-18.md",
+      "crossReview": "cross-review-13-18.md",
+      "questionChanges": [
+        {
+          "id": "l18-single-table-plans-cost-estimates-q1",
+          "promptChanged": false,
+          "explanationChanged": true
+        }
+      ]
+    },
+    {
+      "id": "lecture-19",
+      "title": "Transactions: correctness under concurrency",
+      "file": "course/lecture19.json",
+      "locale": "course/translations/lecture19.vi.json",
+      "sections": [
+        {
+          "id": "l19-s1",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l19-s2",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l19-s3",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l19-s4",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l19-s5",
+          "enRewritten": true,
+          "viRewritten": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=1",
+          "label": "PDF pages 1–17"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=18",
+          "label": "PDF pages 18–26"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=27",
+          "label": "PDF pages 27–42"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=29",
+          "label": "PDF page 29 · slide 32 (dirty read); pages 28–30 (anomalies)"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=43",
+          "label": "PDF pages 43–48"
+        }
+      ],
+      "authorReport": "group-19-22.md",
+      "crossReview": "cross-review-19-22.md",
+      "questionChanges": [
+        {
+          "id": "l19-schedules-q4",
+          "promptChanged": false,
+          "explanationChanged": true
+        },
+        {
+          "id": "l19-conflict-serializable-q4",
+          "promptChanged": false,
+          "explanationChanged": true
+        },
+        {
+          "id": "l19-view-q2",
+          "promptChanged": false,
+          "explanationChanged": true
+        }
+      ]
+    },
+    {
+      "id": "lecture-20",
+      "title": "Locking: from locks to correct schedules",
+      "file": "course/lecture20.json",
+      "locale": "course/translations/lecture20.vi.json",
+      "sections": [
+        {
+          "id": "l20-s1",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l20-s2",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l20-s3",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l20-s4",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l20-s5",
+          "enRewritten": true,
+          "viRewritten": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=2",
+          "label": "PDF pages 2–14"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=3",
+          "label": "PDF pages 3–17"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=18",
+          "label": "PDF pages 18–22"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=23",
+          "label": "PDF pages 23–27"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=7",
+          "label": "PDF pages 7–28"
+        }
+      ],
+      "authorReport": "group-19-22.md",
+      "crossReview": "cross-review-19-22.md",
+      "questionChanges": [
+        {
+          "id": "l20-two-phase-q3",
+          "promptChanged": false,
+          "explanationChanged": true
+        },
+        {
+          "id": "l20-strict-q4",
+          "promptChanged": false,
+          "explanationChanged": true
+        }
+      ]
+    },
+    {
+      "id": "lecture-21",
+      "title": "Recovery: why the log must come first",
+      "file": "course/lecture21.json",
+      "locale": "course/translations/lecture21.vi.json",
+      "sections": [
+        {
+          "id": "l21-s1",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l21-s2",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l21-s3",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l21-s4",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l21-s5",
+          "enRewritten": true,
+          "viRewritten": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=2",
+          "label": "PDF pages 2–17"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=18",
+          "label": "PDF pages 18–24"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=18",
+          "label": "PDF pages 18–24"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=25",
+          "label": "PDF pages 25–27"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=3",
+          "label": "PDF pages 3–5"
+        }
+      ],
+      "authorReport": "group-19-22.md",
+      "crossReview": "cross-review-19-22.md",
+      "questionChanges": [
+        {
+          "id": "l21-buffer-policies-q3",
+          "promptChanged": false,
+          "explanationChanged": true
+        },
+        {
+          "id": "l21-buffer-policies-q4",
+          "promptChanged": false,
+          "explanationChanged": true
+        },
+        {
+          "id": "l21-wal-q5",
+          "promptChanged": false,
+          "explanationChanged": true
+        },
+        {
+          "id": "l21-aries-q4",
+          "promptChanged": false,
+          "explanationChanged": true
+        }
+      ]
+    },
+    {
+      "id": "lecture-22",
+      "title": "Distributed transactions: reaching one decision",
+      "file": "course/lecture22.json",
+      "locale": "course/translations/lecture22.vi.json",
+      "sections": [
+        {
+          "id": "l22-s1",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l22-s2",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l22-s3",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l22-s4",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l22-s5",
+          "enRewritten": true,
+          "viRewritten": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=3",
+          "label": "PDF pages 3–20"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=21",
+          "label": "PDF pages 21–31"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=32",
+          "label": "PDF pages 32–54"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=47",
+          "label": "PDF pages 47–57"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=55",
+          "label": "PDF pages 55–57"
+        }
+      ],
+      "authorReport": "group-19-22.md",
+      "crossReview": "cross-review-19-22.md",
+      "questionChanges": [
+        {
+          "id": "l22-two-phase-commit-q3",
+          "promptChanged": false,
+          "explanationChanged": true
+        },
+        {
+          "id": "l22-2pc-recovery-q1",
+          "promptChanged": false,
+          "explanationChanged": true
+        },
+        {
+          "id": "l22-2pc-locking-q5",
+          "promptChanged": false,
+          "explanationChanged": true
+        }
+      ]
+    },
+    {
+      "id": "lecture-23",
+      "title": "Conjunctive Queries: A Query Describes a Pattern",
+      "file": "course/lecture23.json",
+      "locale": "course/translations/lecture23.vi.json",
+      "sections": [
+        {
+          "id": "l23-s1",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l23-s2",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l23-s3",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l23-s4",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l23-s5",
+          "enRewritten": true,
+          "viRewritten": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=1",
+          "label": "PDF pages 1–19"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=20",
+          "label": "PDF pages 20–25"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=26",
+          "label": "PDF pages 26–31"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=26",
+          "label": "PDF pages 26–33"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=19",
+          "label": "PDF pages 19–33"
+        }
+      ],
+      "authorReport": "group-23-27.md",
+      "crossReview": "cross-review-23-27.md",
+      "questionChanges": []
+    },
+    {
+      "id": "lecture-24",
+      "title": "Conjunctive Query Evaluation and Static Analysis",
+      "file": "course/lecture24.json",
+      "locale": "course/translations/lecture24.vi.json",
+      "sections": [
+        {
+          "id": "l24-s1",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l24-s2",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l24-s3",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l24-s4",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l24-s5",
+          "enRewritten": true,
+          "viRewritten": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=10",
+          "label": "PDF pages 10–18"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=10",
+          "label": "PDF pages 10–18"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=19",
+          "label": "PDF pages 19–29"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=23",
+          "label": "PDF pages 23–31"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=32",
+          "label": "PDF pages 32–37"
+        }
+      ],
+      "authorReport": "group-23-27.md",
+      "crossReview": "cross-review-23-27.md",
+      "questionChanges": [
+        {
+          "id": "l24-evaluation-complexity-q3",
+          "promptChanged": true,
+          "explanationChanged": true
+        },
+        {
+          "id": "l24-evaluation-complexity-q4",
+          "promptChanged": true,
+          "explanationChanged": true
+        },
+        {
+          "id": "l24-static-analysis-q5",
+          "promptChanged": true,
+          "explanationChanged": true
+        },
+        {
+          "id": "l24-canonical-q3",
+          "promptChanged": true,
+          "explanationChanged": true
+        }
+      ]
+    },
+    {
+      "id": "lecture-25",
+      "title": "Acyclic Conjunctive Queries: Use the Tree Structure",
+      "file": "course/lecture25.json",
+      "locale": "course/translations/lecture25.vi.json",
+      "sections": [
+        {
+          "id": "l25-s1",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l25-s2",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l25-s3",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l25-s4",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l25-s5",
+          "enRewritten": true,
+          "viRewritten": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=1",
+          "label": "PDF pages 1–13"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=4",
+          "label": "PDF pages 4–13"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=14",
+          "label": "PDF pages 14–26"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=27",
+          "label": "PDF pages 27–36"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=28",
+          "label": "PDF pages 28–37"
+        }
+      ],
+      "authorReport": "group-23-27.md",
+      "crossReview": "cross-review-23-27.md",
+      "questionChanges": []
+    },
+    {
+      "id": "lecture-26",
+      "title": "Parallel query processing: bringing data to each operator",
+      "file": "course/lecture26.json",
+      "locale": "course/translations/lecture26.vi.json",
+      "sections": [
+        {
+          "id": "l26-s1",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l26-s2",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l26-s3",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l26-s4",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l26-s5",
+          "enRewritten": true,
+          "viRewritten": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=1",
+          "label": "PDF pages 1–11"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=12",
+          "label": "PDF pages 12–19"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=20",
+          "label": "PDF pages 20–26"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=27",
+          "label": "PDF pages 27–42"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=43",
+          "label": "PDF pages 43–45"
+        }
+      ],
+      "authorReport": "group-23-27.md",
+      "crossReview": "cross-review-23-27.md",
+      "questionChanges": [
+        {
+          "id": "l26-shared-memory-q2",
+          "promptChanged": true,
+          "explanationChanged": true
+        },
+        {
+          "id": "l26-shared-disk-q3",
+          "promptChanged": true,
+          "explanationChanged": true
+        },
+        {
+          "id": "l26-replication-q3",
+          "promptChanged": true,
+          "explanationChanged": true
+        },
+        {
+          "id": "l26-lookup-q2",
+          "promptChanged": true,
+          "explanationChanged": true
+        },
+        {
+          "id": "l26-sorting-q1",
+          "promptChanged": true,
+          "explanationChanged": true
+        },
+        {
+          "id": "l26-scenario3-q1",
+          "promptChanged": true,
+          "explanationChanged": true
+        }
+      ]
+    },
+    {
+      "id": "lecture-27",
+      "title": "NoSQL: choosing a model for the system requirements",
+      "file": "course/lecture27.json",
+      "locale": "course/translations/lecture27.vi.json",
+      "sections": [
+        {
+          "id": "l27-s1",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l27-s2",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l27-s3",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l27-s4",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "l27-s5",
+          "enRewritten": true,
+          "viRewritten": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=1",
+          "label": "PDF pages 1–8"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=9",
+          "label": "PDF pages 9–11"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=11",
+          "label": "PDF pages 11–14"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=12",
+          "label": "PDF pages 12–19"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=18",
+          "label": "PDF pages 18–21"
+        },
+        {
+          "url": "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer6.pdf#page=2",
+          "label": "Gilbert & Lynch: CAP definitions and theorem, PDF pages 2–4"
+        }
+      ],
+      "authorReport": "group-23-27.md",
+      "crossReview": "cross-review-23-27.md",
+      "questionChanges": [
+        {
+          "id": "l27-motivation-q1",
+          "promptChanged": true,
+          "explanationChanged": true
+        },
+        {
+          "id": "l27-principles-q1",
+          "promptChanged": true,
+          "explanationChanged": true
+        },
+        {
+          "id": "l27-taxonomy-q5",
+          "promptChanged": true,
+          "explanationChanged": true
+        },
+        {
+          "id": "l27-taxonomy-cont-q1",
+          "promptChanged": true,
+          "explanationChanged": true
+        },
+        {
+          "id": "l27-key-value-q1",
+          "promptChanged": true,
+          "explanationChanged": true
+        },
+        {
+          "id": "l27-json-q1",
+          "promptChanged": true,
+          "explanationChanged": true
+        },
+        {
+          "id": "l27-json-q5",
+          "promptChanged": true,
+          "explanationChanged": true
+        },
+        {
+          "id": "l27-graphs-q3",
+          "promptChanged": true,
+          "explanationChanged": true
+        },
+        {
+          "id": "l27-graphs-q4",
+          "promptChanged": true,
+          "explanationChanged": true
+        },
+        {
+          "id": "l27-ranking-q2",
+          "promptChanged": true,
+          "explanationChanged": true
+        }
+      ]
+    },
+    {
+      "id": "supplement-28",
+      "title": "Learned DBMS components: predictions need a systems contract",
+      "file": "course/supplements/supplement28.json",
+      "locale": "course/translations/supplement28.vi.json",
+      "sections": [
+        {
+          "id": "supplement-28-status",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-28-s1",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-28-s2",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-28-s3",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-28-s4",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-28-s5",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-28-s6",
+          "enRewritten": true,
+          "viRewritten": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.vldb.org/pvldb/vol17/p1565-lehmann.pdf",
+          "label": "Is Your Learned Query Optimizer Behaving As You Expect? A Machine Learning Perspective · Published peer-reviewed research / evaluation"
+        },
+        {
+          "url": "https://www.vldb.org/pvldb/vol18/p2519-wu.pdf",
+          "label": "Data-Agnostic Cardinality Learning from Imperfect Workloads · Published peer-reviewed research"
+        },
+        {
+          "url": "https://arxiv.org/abs/2306.14075",
+          "label": "Join Size Bounds using Lp-Norms on Degree Sequences · Accepted PODS 2024 paper; linked arXiv is an author manuscript first posted in 2023"
+        }
+      ],
+      "authorReport": "group-28-37.md",
+      "crossReview": "cross-review-28-31.md",
+      "questionChanges": [
+        {
+          "id": "supplement-28-q1",
+          "promptChanged": false,
+          "explanationChanged": true
+        },
+        {
+          "id": "supplement-28-q2",
+          "promptChanged": false,
+          "explanationChanged": true
+        },
+        {
+          "id": "supplement-28-q3",
+          "promptChanged": false,
+          "explanationChanged": true
+        },
+        {
+          "id": "supplement-28-q4",
+          "promptChanged": false,
+          "explanationChanged": true
+        },
+        {
+          "id": "supplement-28-q5",
+          "promptChanged": false,
+          "explanationChanged": true
+        }
+      ]
+    },
+    {
+      "id": "supplement-29",
+      "title": "Vector databases: the recall, memory and latency contract",
+      "file": "course/supplements/supplement29.json",
+      "locale": "course/translations/supplement29.vi.json",
+      "sections": [
+        {
+          "id": "supplement-29-status",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-29-s1",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-29-s2",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-29-s3",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-29-s4",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-29-s5",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-29-s6",
+          "enRewritten": true,
+          "viRewritten": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://arxiv.org/abs/2308.15136",
+          "label": "CAGRA: Highly Parallel Graph Construction and Approximate Nearest Neighbor Search for GPUs · Accepted ICDE 2024 paper; linked author manuscript v2 revised July 2024, first posted August 2023"
+        },
+        {
+          "url": "https://arxiv.org/abs/2405.12497",
+          "label": "RaBitQ: Quantizing High-Dimensional Vectors with a Theoretical Error Bound for Approximate Nearest Neighbor Search · Accepted SIGMOD 2024 paper; linked author manuscript explicitly confirms acceptance"
+        },
+        {
+          "url": "https://docs.nvidia.com/cuvs/user-guide/api-guides/indexing-guide/cagra",
+          "label": "NVIDIA cuVS: CAGRA guide · Official software documentation, checked 2026-10-11"
+        },
+        {
+          "url": "https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies",
+          "label": "NVIDIA cuVS: Benchmarking methodologies · Official software documentation, checked 2026-10-11"
+        },
+        {
+          "url": "https://docs.nvidia.com/cuvs/installation",
+          "label": "NVIDIA cuVS: Installation · Official software documentation, checked 2026-10-11; version-sensitive"
+        },
+        {
+          "url": "https://github.com/pgvector/pgvector",
+          "label": "pgvector official repository documentation · Official software documentation, checked 2026-10-11; version-sensitive"
+        }
+      ],
+      "authorReport": "group-28-37.md",
+      "crossReview": "cross-review-28-31.md",
+      "questionChanges": [
+        {
+          "id": "supplement-29-q1",
+          "promptChanged": false,
+          "explanationChanged": true
+        },
+        {
+          "id": "supplement-29-q2",
+          "promptChanged": false,
+          "explanationChanged": true
+        },
+        {
+          "id": "supplement-29-q3",
+          "promptChanged": false,
+          "explanationChanged": true
+        },
+        {
+          "id": "supplement-29-q4",
+          "promptChanged": false,
+          "explanationChanged": true
+        },
+        {
+          "id": "supplement-29-q5",
+          "promptChanged": false,
+          "explanationChanged": true
+        }
+      ]
+    },
+    {
+      "id": "supplement-30",
+      "title": "LLMs for data systems: semantic operators with measurable quality",
+      "file": "course/supplements/supplement30.json",
+      "locale": "course/translations/supplement30.vi.json",
+      "sections": [
+        {
+          "id": "supplement-30-status",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-30-s1",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-30-s2",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-30-s3",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-30-s4",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-30-s5",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-30-s6",
+          "enRewritten": true,
+          "viRewritten": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.vldb.org/pvldb/vol18/p4171-patel.pdf",
+          "label": "Semantic Operators and Their Optimization: Enabling LLM-Based Data Processing with Accuracy Guarantees in LOTUS · Published peer-reviewed research; use published title, not earlier preprint title"
+        },
+        {
+          "url": "https://www.vldb.org/pvldb/vol18/p3035-shankar.pdf",
+          "label": "DocETL: Agentic Query Rewriting and Evaluation for Complex Document Processing · Published peer-reviewed research"
+        },
+        {
+          "url": "https://docs.vllm.ai/en/stable/configuration/optimization/",
+          "label": "vLLM Optimization and Tuning · Official software documentation, checked 2026-10-11; version-sensitive"
+        }
+      ],
+      "authorReport": "group-28-37.md",
+      "crossReview": "cross-review-28-31.md",
+      "questionChanges": [
+        {
+          "id": "supplement-30-q1",
+          "promptChanged": false,
+          "explanationChanged": true
+        },
+        {
+          "id": "supplement-30-q2",
+          "promptChanged": false,
+          "explanationChanged": true
+        },
+        {
+          "id": "supplement-30-q3",
+          "promptChanged": false,
+          "explanationChanged": true
+        },
+        {
+          "id": "supplement-30-q4",
+          "promptChanged": false,
+          "explanationChanged": true
+        },
+        {
+          "id": "supplement-30-q5",
+          "promptChanged": false,
+          "explanationChanged": true
+        }
+      ]
+    },
+    {
+      "id": "supplement-31",
+      "title": "Cloud-native and disaggregated DBMSs: locality becomes a protocol",
+      "file": "course/supplements/supplement31.json",
+      "locale": "course/translations/supplement31.vi.json",
+      "sections": [
+        {
+          "id": "supplement-31-status",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-31-s1",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-31-s2",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-31-s3",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-31-s4",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-31-s5",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-31-s6",
+          "enRewritten": true,
+          "viRewritten": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://cighao.com/papers/polardb_mp.pdf",
+          "label": "PolarDB-MP: A Multi-Primary Cloud-Native Database via Disaggregated Shared Memory · Published industrial paper; not a SIGMOD research-track or PODS paper"
+        },
+        {
+          "url": "https://www.vldb.org/pvldb/vol17/p3786-li.pdf",
+          "label": "GaussDB: A Cloud-Native Multi-Primary Database with Compute-Memory-Storage Disaggregation · Published industrial/system paper"
+        },
+        {
+          "url": "https://neon.com/blog/architecture-decisions-in-neon",
+          "label": "Architecture decisions in Neon · Official engineering design account; historical architecture example"
+        }
+      ],
+      "authorReport": "group-28-37.md",
+      "crossReview": "cross-review-28-31.md",
+      "questionChanges": []
+    },
+    {
+      "id": "supplement-32",
+      "title": "Project clinic: turn a topic into a falsifiable research question",
+      "file": "course/supplements/supplement32.json",
+      "locale": "course/translations/supplement32.vi.json",
+      "sections": [
+        {
+          "id": "supplement-32-status",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-32-s1",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-32-s2",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-32-s3",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-32-s4",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-32-s5",
+          "enRewritten": true,
+          "viRewritten": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.vldb.org/pvldb/vol17/p1565-lehmann.pdf",
+          "label": "Is Your Learned Query Optimizer Behaving As You Expect? A Machine Learning Perspective · Published peer-reviewed research / evaluation"
+        },
+        {
+          "url": "https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies",
+          "label": "NVIDIA cuVS: Benchmarking methodologies · Official software documentation, checked 2026-10-11"
+        }
+      ],
+      "authorReport": "group-28-37.md",
+      "crossReview": "cross-review-32-37.md",
+      "questionChanges": []
+    },
+    {
+      "id": "supplement-33",
+      "title": "Project clinic: trustworthy baselines and measurements",
+      "file": "course/supplements/supplement33.json",
+      "locale": "course/translations/supplement33.vi.json",
+      "sections": [
+        {
+          "id": "supplement-33-status",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-33-s1",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-33-s2",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-33-s3",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-33-s4",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-33-s5",
+          "enRewritten": true,
+          "viRewritten": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.vldb.org/pvldb/vol17/p1565-lehmann.pdf",
+          "label": "Is Your Learned Query Optimizer Behaving As You Expect? A Machine Learning Perspective · Published peer-reviewed research / evaluation"
+        },
+        {
+          "url": "https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies",
+          "label": "NVIDIA cuVS: Benchmarking methodologies · Official software documentation, checked 2026-10-11"
+        }
+      ],
+      "authorReport": "group-28-37.md",
+      "crossReview": "cross-review-32-37.md",
+      "questionChanges": [
+        {
+          "id": "supplement-33-q2",
+          "promptChanged": false,
+          "explanationChanged": true
+        }
+      ]
+    },
+    {
+      "id": "supplement-34",
+      "title": "Project clinic: ablations, counterexamples and negative results",
+      "file": "course/supplements/supplement34.json",
+      "locale": "course/translations/supplement34.vi.json",
+      "sections": [
+        {
+          "id": "supplement-34-status",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-34-s1",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-34-s2",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-34-s3",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-34-s4",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-34-s5",
+          "enRewritten": true,
+          "viRewritten": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.vldb.org/pvldb/vol17/p1565-lehmann.pdf",
+          "label": "Is Your Learned Query Optimizer Behaving As You Expect? A Machine Learning Perspective · Published peer-reviewed research / evaluation"
+        },
+        {
+          "url": "https://www.vldb.org/pvldb/vol18/p2519-wu.pdf",
+          "label": "Data-Agnostic Cardinality Learning from Imperfect Workloads · Published peer-reviewed research"
+        },
+        {
+          "url": "https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies",
+          "label": "NVIDIA cuVS: Benchmarking methodologies · Official software documentation, checked 2026-10-11"
+        }
+      ],
+      "authorReport": "group-28-37.md",
+      "crossReview": "cross-review-32-37.md",
+      "questionChanges": [
+        {
+          "id": "supplement-34-q1",
+          "promptChanged": false,
+          "explanationChanged": true
+        }
+      ]
+    },
+    {
+      "id": "supplement-35",
+      "title": "Project clinic: reproducible artifacts and defensible conclusions",
+      "file": "course/supplements/supplement35.json",
+      "locale": "course/translations/supplement35.vi.json",
+      "sections": [
+        {
+          "id": "supplement-35-status",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-35-s1",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-35-s2",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-35-s3",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-35-s4",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-35-s5",
+          "enRewritten": true,
+          "viRewritten": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://sigsim.acm.org/conf/pads/2024/blog/artifact-evaluation/",
+          "label": "ACM SIGSIM PADS 2024: Reproducibility and Artifact Evaluation · Official ACM conference guidance; used as a general example, not the course rubric"
+        },
+        {
+          "url": "https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies",
+          "label": "NVIDIA cuVS: Benchmarking methodologies · Official software documentation, checked 2026-10-11"
+        }
+      ],
+      "authorReport": "group-28-37.md",
+      "crossReview": "cross-review-32-37.md",
+      "questionChanges": [
+        {
+          "id": "supplement-35-q4",
+          "promptChanged": false,
+          "explanationChanged": true
+        }
+      ]
+    },
+    {
+      "id": "supplement-36",
+      "title": "Research symposium: build a conference-style research story",
+      "file": "course/supplements/supplement36.json",
+      "locale": "course/translations/supplement36.vi.json",
+      "sections": [
+        {
+          "id": "supplement-36-status",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-36-s1",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-36-s2",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-36-s3",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-36-s4",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-36-s5",
+          "enRewritten": true,
+          "viRewritten": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://sigsim.acm.org/conf/pads/2024/blog/artifact-evaluation/",
+          "label": "ACM SIGSIM PADS 2024: Reproducibility and Artifact Evaluation · Official ACM conference guidance; used as a general example, not the course rubric"
+        },
+        {
+          "url": "https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies",
+          "label": "NVIDIA cuVS: Benchmarking methodologies · Official software documentation, checked 2026-10-11"
+        }
+      ],
+      "authorReport": "group-28-37.md",
+      "crossReview": "cross-review-32-37.md",
+      "questionChanges": []
+    },
+    {
+      "id": "supplement-37",
+      "title": "Research symposium: defend, review and close the evidence loop",
+      "file": "course/supplements/supplement37.json",
+      "locale": "course/translations/supplement37.vi.json",
+      "sections": [
+        {
+          "id": "supplement-37-status",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-37-s1",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-37-s2",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-37-s3",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-37-s4",
+          "enRewritten": true,
+          "viRewritten": true
+        },
+        {
+          "id": "supplement-37-s5",
+          "enRewritten": true,
+          "viRewritten": true
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://sigsim.acm.org/conf/pads/2024/blog/artifact-evaluation/",
+          "label": "ACM SIGSIM PADS 2024: Reproducibility and Artifact Evaluation · Official ACM conference guidance; used as a general example, not the course rubric"
+        },
+        {
+          "url": "https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies",
+          "label": "NVIDIA cuVS: Benchmarking methodologies · Official software documentation, checked 2026-10-11"
+        },
+        {
+          "url": "https://arxiv.org/abs/2306.14075",
+          "label": "Join Size Bounds using Lp-Norms on Degree Sequences · Accepted PODS 2024 paper; linked arXiv is an author manuscript first posted in 2023"
+        }
+      ],
+      "authorReport": "group-28-37.md",
+      "crossReview": "cross-review-32-37.md",
+      "questionChanges": []
+    }
+  ]
+}

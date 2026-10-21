@@ -8,14 +8,14 @@
       "questions": [
         {
           "id": "l27-motivation-q1",
-          "prompt": "Theo bài giảng, đặc điểm tải Web 2.0 nào thúc đẩy NoSQL?",
+          "prompt": "Tải ứng dụng web tăng trưởng nào gây nhu cầu hệ dữ liệu mở rộng ngang?",
           "options": [
             "Nhiều thao tác thời gian thực và nhu cầu tăng đột ngột",
             "Chỉ OLAP ngoại tuyến tải ổn định",
             "Dữ liệu luôn nhỏ nhưng mọi bảng cần nối phức tạp",
             "Một client ghi tuần tự trên một máy"
           ],
-          "explanation": "Ứng dụng lớn cần xử lý OLTP nặng và biến động, không giả định tải nhỏ cố định."
+          "explanation": "Thao tác thời gian thực nặng và lưu lượng tăng đột ngột có thể vượt một máy. Phân tán thao tác hạn chế hoặc chọn độ mới yếu hơn có thể giảm phối hợp, nhưng vẫn phải đánh giá bảo đảm cần thiết."
         },
         {
           "id": "l27-motivation-q2",
@@ -191,14 +191,14 @@
       "questions": [
         {
           "id": "l27-principles-q1",
-          "prompt": "NoSQL được hiểu thế nào trong bài?",
+          "prompt": "Cách hiểu NoSQL nào tránh khẳng định một họ thay mọi hệ quan hệ?",
           "options": [
             "Cấm mọi ngôn ngữ cú pháp SQL",
             "Bỏ durability trong mọi hệ",
             "Thay RDBMS cho mọi tải",
             "Not Only SQL, bổ sung RDBMS"
           ],
-          "explanation": "Bài nhấn mạnh bổ sung thay vì thay thế phổ quát."
+          "explanation": "Không chỉ SQL cho phép mô hình khác nhau theo truy cập. Nhãn không quyết định bảo đảm giao dịch, mở rộng hay độ mới; cần xem hệ và cấu hình thực."
         },
         {
           "id": "l27-principles-q2",
@@ -479,14 +479,14 @@
         },
         {
           "id": "l27-taxonomy-q5",
-          "prompt": "Khác biệt chính tài liệu với khóa–giá trị cơ bản trong slide?",
+          "prompt": "Khả năng truy vấn nào phân biệt mô hình tài liệu với giao diện khóa–giá trị mờ cơ bản?",
           "options": [
             "Tài liệu cho truy vấn bên trong giá trị có cấu trúc",
             "Tài liệu không bao giờ dùng khóa nhận diện",
             "Khóa–giá trị cơ bản bắt buộc truy vấn mọi trường lồng",
             "Tài liệu cần cùng lược đồ cố định như bảng quan hệ"
           ],
-          "explanation": "Cả hai có thể lưu đối tượng, nhưng engine tài liệu hiểu trường bên trong."
+          "explanation": "Hệ tài liệu hiểu trường có cấu trúc và có thể cung cấp điều kiện trên trường. get(key) cơ bản lấy giá trị theo khóa; chỉ lưu chuỗi JSON chưa tạo API truy vấn trường."
         }
       ]
     },
@@ -496,14 +496,14 @@
       "questions": [
         {
           "id": "l27-taxonomy-cont-q1",
-          "prompt": "Slide gắn bảng rộng thưa và họ cột với loại nào?",
+          "prompt": "Mô hình nào tổ chức hàng rộng, thưa thành các họ cột có tên?",
           "options": [
             "Kho họ cột",
             "Đồ thị thuộc tính cạnh có hướng",
             "Khóa–giá trị opaque chỉ đọc toàn giá trị",
             "Tài liệu chỉ vì trường tùy chọn"
           ],
-          "explanation": "Cassandra,HBase là ví dụ wide-column/column-family trong slide."
+          "explanation": "Hàng họ cột có thể có ô tên khác nhau, như thiết bị ghi phép đo khác nhau. Khác với lưu cột OLAP gom một thuộc tính qua nhiều hàng."
         },
         {
           "id": "l27-taxonomy-cont-q2",
@@ -557,14 +557,14 @@
       "questions": [
         {
           "id": "l27-key-value-q1",
-          "prompt": "Bài dùng thao tác cơ bản nào cho khóa–giá trị?",
+          "prompt": "API cơ bản nào lấy, lưu và xóa giá trị mờ qua khóa chính xác?",
           "options": [
             "get(key), put(key,value), del(key)",
             "JOIN,GROUP BY,đường đi là thao tác cơ bản bắt buộc",
             "Chỉ quét toàn bộ, không get khóa",
             "Chỉ trường lồng, không put giá trị"
           ],
-          "explanation": "Mô hình đơn giản; sản phẩm có thể mở rộng nhưng không nhầm mở rộng với mô hình cơ bản."
+          "explanation": "get lấy giá trị, put lưu/thay và del xóa khóa. Điều kiện trường trên nhiều giá trị cần cơ chế bổ sung; các thao tác này không tự tìm bên trong mọi giá trị."
         },
         {
           "id": "l27-key-value-q2",
@@ -679,14 +679,14 @@
       "questions": [
         {
           "id": "l27-json-q1",
-          "prompt": "Hai cấu trúc JSON cốt lõi trong slide là gì?",
+          "prompt": "Hai cấu trúc JSON nào lần lượt biểu diễn trường có tên và dãy có thứ tự?",
           "options": [
             "Bảng và khóa ngoại bắt buộc",
             "Hàng/trang bố trí vật lý cố định",
             "Đối tượng và mảng",
             "Nút/cạnh ID đồ thị bắt buộc"
           ],
-          "explanation": "Đối tượng chứa cặp tên–giá trị; mảng là danh sách có thứ tự."
+          "explanation": "Đối tượng gắn tên trường với giá trị; mảng giữ thứ tự và có thể chứa giá trị lồng. [a,b] và [b,a] khác thứ tự dù cùng phần tử."
         },
         {
           "id": "l27-json-q2",
@@ -723,14 +723,14 @@
         },
         {
           "id": "l27-json-q5",
-          "prompt": "Theo bài, mệnh đề nào đúng về JSON và RDBMS?",
+          "prompt": "Dùng JSON có buộc ứng dụng bỏ hệ quản trị quan hệ không? Phát biểu nào đúng?",
           "options": [
             "Chỉ NoSQL lưu JSON",
             "SQL không truy vấn JSON được",
             "RDBMS hỗ trợ lưu/truy vấn JSON qua mở rộng SQL",
             "JSON tự cấm mọi nối"
           ],
-          "explanation": "Slide ghi RDBMS hỗ trợ JSON; định dạng không xác định duy nhất họ DBMS."
+          "explanation": "Sản phẩm quan hệ có thể hỗ trợ JSON qua tính năng SQL. Cách biểu diễn và bảo đảm hệ thống là lựa chọn khác nhau; JSON lồng chưa quyết định lưu trữ, chỉ mục hay giao dịch."
         }
       ]
     },
@@ -762,25 +762,25 @@
         },
         {
           "id": "l27-graphs-q3",
-          "prompt": "Theo slide, thuộc tính có thể lưu ở đâu?",
+          "prompt": "Trong đồ thị thuộc tính, tên người hoặc ngày mua có thể được lưu ở đâu?",
           "options": [
             "Chỉ nút, không cạnh",
             "Nút và cạnh",
             "Chỉ cạnh, nút không thuộc tính",
             "Chỉ lược đồ toàn dữ liệu"
           ],
-          "explanation": "Thuộc tính mô tả thực thể lẫn quan hệ, như thời điểm giao dịch."
+          "explanation": "Tên có thể là thuộc tính nút, còn ngày mua mô tả chính cạnh BOUGHT. Cả nút và cạnh có thể mang thuộc tính; ứng dụng định nghĩa ý nghĩa."
         },
         {
           "id": "l27-graphs-q4",
-          "prompt": "Điểm mạnh cốt lõi đồ thị trong bài là gì?",
+          "prompt": "Kiểu truy cập nào là thế mạnh chính của mô hình đồ thị?",
           "options": [
             "Luôn tối ưu mọi aggregate quét toàn dữ liệu",
             "Chỉ tra giá trị opaque theo khóa, bỏ quan hệ",
             "Duyệt và khớp mẫu",
             "Chỉ thuộc tính phẳng không mẫu"
           ],
-          "explanation": "Đồ thị tối ưu đường đi/mẫu quan hệ, không được khẳng định tốt nhất mọi tải."
+          "explanation": "Duyệt và khớp mẫu theo quan hệ có nhãn, như đúng hai cạnh FRIEND đi ra. Không chứng minh hệ đồ thị nhanh nhất cho quét, tổng hợp hay mọi tải."
         },
         {
           "id": "l27-graphs-q5",
@@ -873,14 +873,14 @@
         },
         {
           "id": "l27-ranking-q2",
-          "prompt": "Ảnh chụp tháng 3/2026 trong slide xếp hệ nào đầu?",
+          "prompt": "Bảng lịch sử tháng 3/2026 đặt Oracle đầu. Có thể nói hệ nào đứng đầu ảnh chụp đó mà không suy ra dẫn đầu hiện tại hay hiệu năng tốt hơn?",
           "options": [
             "MongoDB",
             "Redis",
             "Oracle",
             "Apache Cassandra"
           ],
-          "explanation": "Trang PDF thực tế 20 ghi “March 2026” và xếp Oracle hạng 1. Đây là thông tin của ảnh chụp tháng 3/2026, không phải khẳng định về xếp hạng hiện tại."
+          "explanation": "Chỉ suy ra vị trí lịch sử đã nêu: Oracle đầu ảnh chụp đó. Độ phổ biến không phải đo hiệu năng; bảng có ngày không cung cấp bằng chứng về hôm nay hay bảo đảm ứng dụng cần."
         },
         {
           "id": "l27-ranking-q3",

@@ -268,7 +268,7 @@
             "Choosing the columns in a projection"
           ],
           "answer": 1,
-          "explanation": "One person’s work can be lost through an overwrite. Changing number formats does not coordinate their writes.",
+          "explanation": "Both people start from the same old state. The first writes a new row; the second then writes an older copy plus their own edit, removing the first new row. Each file write can finish successfully while an update is lost. Coordinating the complete read-and-change operations addresses this failure; changing the file format does not.",
           "pages": [
             17
           ]
@@ -455,7 +455,7 @@
             "Yes; the model fixes every field in each application"
           ],
           "answer": 0,
-          "explanation": "A model supplies common concepts. It does not prescribe one schema or one instance.",
+          "explanation": "The relational model supplies tables, rows and columns. A library can choose Book and Loan while a shop chooses Product and Order. Those are different schemas using the same modelling concepts; their current rows are different instances too.",
           "pages": [
             19
           ]

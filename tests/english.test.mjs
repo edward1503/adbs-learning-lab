@@ -11,7 +11,8 @@ test('all 54 source files contain English prose and valid embedded quote syntax'
     if(Array.isArray(value))return value.forEach((v,i)=>walk(v,`${path}[${i}]`));
     if(value&&typeof value==='object')return Object.entries(value).forEach(([k,v])=>walk(v,`${path}.${k}`));
     if(typeof value!=='string')return;
-    const prose=value.replaceAll('Hà Nội','').replaceAll('Huế','').replaceAll('Bình','');
+    // Personal names in the approved Students fixture are data, not untranslated prose.
+    const prose=value.replace(/Hà Nội|Huế|Bình|Dũng|Hạnh|Phúc/g,'');
     assert.ok(!vietnamese.test(prose),`${path}: unexpected untranslated text`);
     assert.ok(!value.includes('\\"'),`${path}: invalid escaped HTML attribute quotes`);
     assert.ok(!/\b(?:TODO|TRANSLATE_ME|PLACEHOLDER_TEXT)\b/.test(value),`${path}: placeholder`);

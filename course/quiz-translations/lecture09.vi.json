@@ -281,7 +281,7 @@
             "14",
             "10"
           ],
-          "explanation": "Minimum phải từ 12 thành 10; giữ 12 gửi tìm 10 tới lá sai."
+          "explanation": "Sau chuyển 10 sang lá phải, giá trị nhỏ nhất phía đó là 10. Ranh giới nhỏ nhất-bên-phải bằng 10 đưa 10 sang phải và 8 sang trái. Giữ ranh giới cũ 12 sẽ đưa 10 sang trái, vì vậy số mục lá hợp lệ vẫn chưa làm cập nhật đúng."
         },
         {
           "id": "l09-redistribute-q4",

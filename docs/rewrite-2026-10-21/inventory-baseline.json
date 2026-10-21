@@ -1,0 +1,4879 @@
+{
+  "baseline": "751115b15eede16c8f7408a1d9bdb96ae31cc681",
+  "baselineVersion": "3.2.0",
+  "resources": 37,
+  "sections": 181,
+  "questions": 1167,
+  "records": [
+    {
+      "id": "lecture-01",
+      "file": "course/lecture01.json",
+      "locale": "course/translations/lecture01.vi.json",
+      "title": "From data to a DBMS",
+      "goals": [
+        "Distinguish a database, a DBMS, a schema, and an instance",
+        "Explain the three levels of abstraction through an example",
+        "Identify the system responsibilities behind a query"
+      ],
+      "sections": [
+        {
+          "id": "l1-1",
+          "title": "Data, software, and the library model",
+          "viTitle": "Dữ liệu, phần mềm và mô hình thư viện",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf#page=13"
+          ]
+        },
+        {
+          "id": "l1-2",
+          "title": "Original design exercise: a neighbourhood library",
+          "viTitle": "Vì sao đổi định dạng file không sửa được quan hệ bị đứt?",
+          "sourceLinks": []
+        },
+        {
+          "id": "l1-3",
+          "title": "Three views of the same system",
+          "viTitle": "Ba mức mô tả cùng một hệ thống",
+          "sourceLinks": []
+        },
+        {
+          "id": "l1-4",
+          "title": "Follow a catalogue request through the DBMS",
+          "viTitle": "Theo yêu cầu tra sách qua các lớp của DBMS",
+          "sourceLinks": [
+            "#lecture-04/l4-1",
+            "#lecture-05/l5-1",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf#page=2",
+            "#lecture-07/l7-1",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf#page=11",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf#page=2"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf#page=10",
+          "label": "PDF pp. 10–19 · databases, DBMSs, and abstraction; no printed slide numbers"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf#page=21",
+          "label": "PDF pp. 21–35 · roadmap and information for the Spring 2026 course"
+        }
+      ],
+      "coverage": {
+        "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro.pdf",
+        "alternatePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture01-intro-2x2.pdf",
+        "verified": true,
+        "verifiedPages": "1–36",
+        "pdfPageCount": 36,
+        "topics": [
+          "Motivation",
+          "Flat files",
+          "DBMS",
+          "Abstraction",
+          "Data independence",
+          "Data models/schema",
+          "Course organisation",
+          "Assessment",
+          "Academic integrity"
+        ],
+        "limitations": [
+          "Intro has no printed slide numbers; citations use physical PDF page numbers.",
+          "Administrative dates apply to Spring 2026 only."
+        ],
+        "week": 1,
+        "officialTitle": "Course Introduction",
+        "weeklyPage": "https://opencourse.inf.ed.ac.uk/adbs/week-1",
+        "pageMap": [
+          {
+            "pdfPage": 1,
+            "printedSlide": null,
+            "heading": "Advanced Database Systems"
+          },
+          {
+            "pdfPage": 2,
+            "printedSlide": null,
+            "heading": "E SSENTIAL Q UESTIONS"
+          },
+          {
+            "pdfPage": 3,
+            "printedSlide": null,
+            "heading": "W HY ? R EASON #1: U TILITY"
+          },
+          {
+            "pdfPage": 4,
+            "printedSlide": null,
+            "heading": "W HY ? R EASON #2: C ENTRALITY"
+          },
+          {
+            "pdfPage": 5,
+            "printedSlide": null,
+            "heading": "How much data is"
+          },
+          {
+            "pdfPage": 6,
+            "printedSlide": null,
+            "heading": "S CALE OF S CIEN TIFIC D ATA"
+          },
+          {
+            "pdfPage": 7,
+            "printedSlide": null,
+            "heading": "W HY ? R EASON #2: C ENTRALITY"
+          },
+          {
+            "pdfPage": 8,
+            "printedSlide": null,
+            "heading": "W HY ? R EASON #3: T HE C ORE OF C OMPUTING"
+          },
+          {
+            "pdfPage": 9,
+            "printedSlide": null,
+            "heading": "E SSENTIAL Q UESTIONS"
+          },
+          {
+            "pdfPage": 10,
+            "printedSlide": null,
+            "heading": "W HAT IS A D ATABASE ?"
+          },
+          {
+            "pdfPage": 11,
+            "printedSlide": null,
+            "heading": "W HAT IS A DBMS?"
+          },
+          {
+            "pdfPage": 12,
+            "printedSlide": null,
+            "heading": "W HY USING A DBMS?"
+          },
+          {
+            "pdfPage": 13,
+            "printedSlide": null,
+            "heading": "F LAT F ILE S TRAWMAN"
+          },
+          {
+            "pdfPage": 14,
+            "printedSlide": null,
+            "heading": "F LAT F ILE S TRAWMAN"
+          },
+          {
+            "pdfPage": 15,
+            "printedSlide": null,
+            "heading": "F LAT F ILE : D RAWBACKS"
+          },
+          {
+            "pdfPage": 16,
+            "printedSlide": null,
+            "heading": "F LAT F ILE : D RAWBACKS (C ONT.)"
+          },
+          {
+            "pdfPage": 17,
+            "printedSlide": null,
+            "heading": "F LAT F ILE : D RAWBACKS (C ONT.)"
+          },
+          {
+            "pdfPage": 18,
+            "printedSlide": null,
+            "heading": "L EVELS OF A BSTRACTIONS"
+          },
+          {
+            "pdfPage": 19,
+            "printedSlide": null,
+            "heading": "D ATA M ODELS"
+          },
+          {
+            "pdfPage": 20,
+            "printedSlide": null,
+            "heading": "R ANKING OF DBMS T ECHNOLOGIES 2026"
+          },
+          {
+            "pdfPage": 21,
+            "printedSlide": null,
+            "heading": "W HAT I S T HIS C OURSE A BOUT ?"
+          },
+          {
+            "pdfPage": 22,
+            "printedSlide": null,
+            "heading": "W HAT I S T HIS C OURSE A BOUT ?"
+          },
+          {
+            "pdfPage": 23,
+            "printedSlide": null,
+            "heading": "L EARNING O UTCOMES"
+          },
+          {
+            "pdfPage": 24,
+            "printedSlide": null,
+            "heading": "C OURSE P REREQUISITES"
+          },
+          {
+            "pdfPage": 25,
+            "printedSlide": null,
+            "heading": "E SSENTIAL Q UESTIONS"
+          },
+          {
+            "pdfPage": 26,
+            "printedSlide": null,
+            "heading": "W HO I S R UNNING T HIS C OURSE ?"
+          },
+          {
+            "pdfPage": 27,
+            "printedSlide": null,
+            "heading": "H OW W ILL T HIS C OURSE W ORK ?"
+          },
+          {
+            "pdfPage": 28,
+            "printedSlide": null,
+            "heading": "L ECTURE O VERVIEW"
+          },
+          {
+            "pdfPage": 29,
+            "printedSlide": null,
+            "heading": "A SSESSMENT S TRUCTURE"
+          },
+          {
+            "pdfPage": 30,
+            "printedSlide": null,
+            "heading": "P ROGRAMMING A SSIGNMENT"
+          },
+          {
+            "pdfPage": 31,
+            "printedSlide": null,
+            "heading": "T EXTBOOKS"
+          },
+          {
+            "pdfPage": 32,
+            "printedSlide": null,
+            "heading": "R ECENT C OURSE C HANGES"
+          },
+          {
+            "pdfPage": 33,
+            "printedSlide": null,
+            "heading": "S TUDENT F EEDBACK FROM P REVIOUS Y EARS"
+          },
+          {
+            "pdfPage": 34,
+            "printedSlide": null,
+            "heading": "P LAGIARISM P OLICY"
+          },
+          {
+            "pdfPage": 35,
+            "printedSlide": null,
+            "heading": "S TAYING IN T OUCH"
+          },
+          {
+            "pdfPage": 36,
+            "printedSlide": null,
+            "heading": "A CKNOWLEDGEMENT"
+          }
+        ],
+        "alternateVerified": true,
+        "alternatePdfPageCount": 9
+      },
+      "quizTopics": 4,
+      "questions": 24,
+      "reviewStatus": "assigned; pending editorial and integration review"
+    },
+    {
+      "id": "lecture-02",
+      "file": "course/lecture02.json",
+      "locale": "course/translations/lecture02.vi.json",
+      "title": "SQL: understanding the result",
+      "goals": [
+        "Work through WHERE, GROUP BY, and HAVING step by step",
+        "Distinguish inner and outer joins and calculate their result sizes",
+        "Use IN and EXISTS with small datasets"
+      ],
+      "sections": [
+        {
+          "id": "l2-1",
+          "title": "Describe the result before choosing a plan",
+          "viTitle": "Nêu kết quả trước khi chọn cách thực hiện",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf#page=6"
+          ]
+        },
+        {
+          "id": "l2-2",
+          "title": "An original dataset and query",
+          "viTitle": "Đi qua từng bước của query doanh thu",
+          "sourceLinks": []
+        },
+        {
+          "id": "l2-3",
+          "title": "Joins and subqueries: an experiment with answers",
+          "viTitle": "Join và EXISTS trả lời hai câu hỏi khác nhau",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf#page=23"
+          ]
+        },
+        {
+          "id": "l2-4",
+          "title": "Practise sorting and negative conditions",
+          "viTitle": "Thứ tự, NULL và các điều kiện phủ định",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf#page=26",
+            "https://www.postgresql.org/docs/current/functions-subquery.html"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf#page=6",
+          "label": "PDF pp. 6–12 / printed slides 7–13 · tables and SELECT"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf#page=13",
+          "label": "PDF pp. 13–19 / slides 14–20 · aggregates and evaluation"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf#page=20",
+          "label": "PDF pp. 20–28 / slides 21–29 · joins and nested queries"
+        }
+      ],
+      "coverage": {
+        "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql.pdf",
+        "alternatePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture02-sql-2x2.pdf",
+        "verified": true,
+        "verifiedPages": "1–29",
+        "pdfPageCount": 29,
+        "topics": [
+          "SQL history",
+          "DDL/DML/DCL",
+          "Schema/instance",
+          "Bags",
+          "SELECT/DISTINCT",
+          "ORDER BY/LIMIT",
+          "Aggregates",
+          "GROUP BY/HAVING",
+          "Joins",
+          "Outer joins",
+          "IN/EXISTS",
+          "ALL/ANY"
+        ],
+        "limitations": [
+          "Three-valued NULL logic is not taught here.",
+          "Conceptual SQL order is not physical execution order."
+        ],
+        "week": 1,
+        "officialTitle": "SQL",
+        "weeklyPage": "https://opencourse.inf.ed.ac.uk/adbs/week-1",
+        "pageMap": [
+          {
+            "pdfPage": 1,
+            "printedSlide": null,
+            "heading": "Advanced Database Systems"
+          },
+          {
+            "pdfPage": 2,
+            "printedSlide": 2,
+            "heading": "SQL H ISTORY"
+          },
+          {
+            "pdfPage": 3,
+            "printedSlide": 4,
+            "heading": "SQL’ S P ERSISTENCE"
+          },
+          {
+            "pdfPage": 4,
+            "printedSlide": 5,
+            "heading": "SQL P ROS AND C ONS"
+          },
+          {
+            "pdfPage": 5,
+            "printedSlide": 6,
+            "heading": "O UTLINE"
+          },
+          {
+            "pdfPage": 6,
+            "printedSlide": 7,
+            "heading": "R ELATIONAL T ERMINOLOGY"
+          },
+          {
+            "pdfPage": 7,
+            "printedSlide": 8,
+            "heading": "R ELATIONAL TABLES"
+          },
+          {
+            "pdfPage": 8,
+            "printedSlide": 9,
+            "heading": "SQL L ANGUAGE"
+          },
+          {
+            "pdfPage": 9,
+            "printedSlide": 10,
+            "heading": "E XAMPLE D ATABASE"
+          },
+          {
+            "pdfPage": 10,
+            "printedSlide": 11,
+            "heading": "B ASIC S INGLE -TABLE Q UERIES"
+          },
+          {
+            "pdfPage": 11,
+            "printedSlide": 12,
+            "heading": "O RDER B Y                                 ORDER BY <column*> [ASC|DESC]"
+          },
+          {
+            "pdfPage": 12,
+            "printedSlide": 13,
+            "heading": "L IMIT                                                   LIMIT <count> [offset]"
+          },
+          {
+            "pdfPage": 13,
+            "printedSlide": 14,
+            "heading": "A GGREGATES"
+          },
+          {
+            "pdfPage": 14,
+            "printedSlide": 15,
+            "heading": "G ROUP B Y"
+          },
+          {
+            "pdfPage": 15,
+            "printedSlide": 16,
+            "heading": "G ROUP B Y"
+          },
+          {
+            "pdfPage": 16,
+            "printedSlide": 17,
+            "heading": "F ILTER G ROUPS"
+          },
+          {
+            "pdfPage": 17,
+            "printedSlide": 18,
+            "heading": "H AVING"
+          },
+          {
+            "pdfPage": 18,
+            "printedSlide": 19,
+            "heading": "C ONCEPTUAL SQL E VALUATION"
+          },
+          {
+            "pdfPage": 19,
+            "printedSlide": 20,
+            "heading": "M ULTIPLE -TABLE Q UERIES"
+          },
+          {
+            "pdfPage": 20,
+            "printedSlide": 21,
+            "heading": "J OIN Q UERY"
+          },
+          {
+            "pdfPage": 21,
+            "printedSlide": 22,
+            "heading": "J OIN Q UERY – A NOTHER S YNTAX"
+          },
+          {
+            "pdfPage": 22,
+            "printedSlide": 23,
+            "heading": "J OIN VARIANTS"
+          },
+          {
+            "pdfPage": 23,
+            "printedSlide": 24,
+            "heading": "L EFT O UTER J OIN"
+          },
+          {
+            "pdfPage": 24,
+            "printedSlide": 25,
+            "heading": "R IGHT O UTER J OIN"
+          },
+          {
+            "pdfPage": 25,
+            "printedSlide": 26,
+            "heading": "F ULL O UTER J OIN"
+          },
+          {
+            "pdfPage": 26,
+            "printedSlide": 27,
+            "heading": "N ESTED Q UERIES"
+          },
+          {
+            "pdfPage": 27,
+            "printedSlide": 28,
+            "heading": "N ESTED Q UERIES"
+          },
+          {
+            "pdfPage": 28,
+            "printedSlide": 29,
+            "heading": "M ORE ON S ET-C OMPARISON O PERATORS"
+          },
+          {
+            "pdfPage": 29,
+            "printedSlide": 30,
+            "heading": "S UMMARY"
+          }
+        ],
+        "alternateVerified": true,
+        "alternatePdfPageCount": 8
+      },
+      "quizTopics": 9,
+      "questions": 46,
+      "reviewStatus": "assigned; pending editorial and integration review"
+    },
+    {
+      "id": "lecture-03",
+      "file": "course/lecture03.json",
+      "locale": "course/translations/lecture03.vi.json",
+      "title": "Relational algebra: from questions to plans",
+      "goals": [
+        "Evaluate relational operators on small datasets",
+        "Distinguish set projection from SQL bag projection",
+        "Turn a join question into an expression you can check"
+      ],
+      "sections": [
+        {
+          "id": "l3-1",
+          "title": "Build a query from row and column operations",
+          "viTitle": "Biến câu hỏi thành các phép biến đổi bảng",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf#page=2"
+          ]
+        },
+        {
+          "id": "l3-2",
+          "title": "An original example: rows, columns, and joins",
+          "viTitle": "Theo dõi dòng, cột và các cặp ghép trên cùng dữ liệu",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf#page=7",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf#page=13",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf#page=10"
+          ]
+        },
+        {
+          "id": "l3-3",
+          "title": "Two plans, one result: a data-based proof",
+          "viTitle": "Hai kế hoạch, một kết quả: giải thích vì sao được đổi thứ tự",
+          "sourceLinks": []
+        },
+        {
+          "id": "l3-4",
+          "title": "Set exercises and self-check",
+          "viTitle": "Từ phép tập hợp đến bag và yêu cầu “mọi giá trị”",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf#page=10"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf#page=2",
+          "label": "PDF pp. 2–7 / slides 2–7 · plans, calculus, and semantics"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf#page=8",
+          "label": "PDF pp. 8–18 / slides 8–18 · operators"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf#page=19",
+          "label": "PDF pp. 19–20 / slides 19–20 · additional operators"
+        }
+      ],
+      "coverage": {
+        "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra.pdf",
+        "alternatePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture03-ra-2x2.pdf",
+        "verified": true,
+        "verifiedPages": "1–20",
+        "pdfPageCount": 20,
+        "topics": [
+          "Query execution",
+          "Calculus/RA",
+          "Codd theorem",
+          "Closure/types",
+          "Sets/bags",
+          "Selection",
+          "Projection",
+          "Union/difference",
+          "Product/rename",
+          "Intersection",
+          "Theta/equi/natural join",
+          "Extra operators"
+        ],
+        "limitations": [
+          "Division is listed, not developed.",
+          "Do not reproduce slide 11 erroneous S−R table."
+        ],
+        "week": 1,
+        "officialTitle": "Relational Algebra",
+        "weeklyPage": "https://opencourse.inf.ed.ac.uk/adbs/week-1",
+        "pageMap": [
+          {
+            "pdfPage": 1,
+            "printedSlide": null,
+            "heading": "Advanced Database Systems"
+          },
+          {
+            "pdfPage": 2,
+            "printedSlide": 2,
+            "heading": "Q UERY E XECUTION O VERVIEW"
+          },
+          {
+            "pdfPage": 3,
+            "printedSlide": 3,
+            "heading": "Q UERY E XECUTION O VERVIEW"
+          },
+          {
+            "pdfPage": 4,
+            "printedSlide": 4,
+            "heading": "R ELATIONAL Q UERY L ANGUAGES"
+          },
+          {
+            "pdfPage": 5,
+            "printedSlide": 5,
+            "heading": "C ODD ’ S T HEOREM"
+          },
+          {
+            "pdfPage": 6,
+            "printedSlide": 6,
+            "heading": "R ELATIONAL A LGEBRA"
+          },
+          {
+            "pdfPage": 7,
+            "printedSlide": 7,
+            "heading": "R ELATIONAL A LGEBRA AND S ETS"
+          },
+          {
+            "pdfPage": 8,
+            "printedSlide": 8,
+            "heading": "S ELECTION"
+          },
+          {
+            "pdfPage": 9,
+            "printedSlide": 9,
+            "heading": "P ROJECTION"
+          },
+          {
+            "pdfPage": 10,
+            "printedSlide": 10,
+            "heading": "U NION                 R     S                R∪S"
+          },
+          {
+            "pdfPage": 11,
+            "printedSlide": 11,
+            "heading": "S ET D IFFERENCE                        R     S       R –S       S"
+          },
+          {
+            "pdfPage": 12,
+            "printedSlide": 12,
+            "heading": "C ROSS P RODUCT"
+          },
+          {
+            "pdfPage": 13,
+            "printedSlide": 13,
+            "heading": "R ENAMING (⍴ = “rho”)"
+          },
+          {
+            "pdfPage": 14,
+            "printedSlide": 14,
+            "heading": "C OMPOUND O PERATOR : I NTERSECTION"
+          },
+          {
+            "pdfPage": 15,
+            "printedSlide": 15,
+            "heading": "C OMPOUND O PERATOR : J OIN"
+          },
+          {
+            "pdfPage": 16,
+            "printedSlide": 16,
+            "heading": "T HETA J OIN E XAMPLE"
+          },
+          {
+            "pdfPage": 17,
+            "printedSlide": 17,
+            "heading": "T HETA J OIN E XAMPLE 2"
+          },
+          {
+            "pdfPage": 18,
+            "printedSlide": 18,
+            "heading": "N ATURAL J OIN"
+          },
+          {
+            "pdfPage": 19,
+            "printedSlide": 19,
+            "heading": "E XTRA O PERATORS"
+          },
+          {
+            "pdfPage": 20,
+            "printedSlide": 20,
+            "heading": "S UMMARY"
+          }
+        ],
+        "alternateVerified": true,
+        "alternatePdfPageCount": 5
+      },
+      "quizTopics": 11,
+      "questions": 56,
+      "reviewStatus": "assigned; pending editorial and integration review"
+    },
+    {
+      "id": "lecture-04",
+      "file": "course/lecture04.json",
+      "locale": "course/translations/lecture04.vi.json",
+      "title": "Hardware and the disk-space manager",
+      "goals": [
+        "Trace the path from SQL down to pages",
+        "Calculate read costs using an explicitly stated model",
+        "Distinguish bytes, pages, and records"
+      ],
+      "sections": [
+        {
+          "id": "l4-1",
+          "title": "Trace a page request before pricing it",
+          "viTitle": "Theo dấu yêu cầu page trước khi tính chi phí",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf#page=11"
+          ]
+        },
+        {
+          "id": "l4-2",
+          "title": "An original I/O exercise, not a benchmark",
+          "viTitle": "Vì sao cùng 200 page nhưng thời gian khác nhau?",
+          "sourceLinks": []
+        },
+        {
+          "id": "l4-3",
+          "title": "An original page-ID mapping example",
+          "viTitle": "Địa chỉ page và offset của record có gốc khác nhau",
+          "sourceLinks": []
+        },
+        {
+          "id": "l4-4",
+          "title": "Interpreting hardware figures carefully",
+          "viTitle": "Từ locality đến giới hạn của số liệu phần cứng",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf#page=24"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf#page=2",
+          "label": "PDF pp. 2–14 / slides 2–14 · architecture and the memory hierarchy"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf#page=15",
+          "label": "PDF pp. 15–23 / slides 15–24 · devices and I/O"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf#page=24",
+          "label": "PDF pp. 24–29 / slides 25–31 · the disk-space manager"
+        }
+      ],
+      "coverage": {
+        "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management.pdf",
+        "alternatePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture04-hardware-disk-space-management-2x2.pdf",
+        "verified": true,
+        "verifiedPages": "1–29",
+        "pdfPageCount": 29,
+        "topics": [
+          "DBMS layers",
+          "Concurrency/recovery overview",
+          "Volatility",
+          "Hierarchy",
+          "HDD anatomy",
+          "Seek/rotation/transfer",
+          "Sequential locality",
+          "SSD/wear levelling",
+          "Pages",
+          "Allocation",
+          "Page-ID mapping"
+        ],
+        "limitations": [
+          "Hardware figures are dated examples, not current purchasing advice."
+        ],
+        "week": 2,
+        "officialTitle": "Hardware & Disk Space Management",
+        "weeklyPage": "https://opencourse.inf.ed.ac.uk/adbs/week-2",
+        "pageMap": [
+          {
+            "pdfPage": 1,
+            "printedSlide": null,
+            "heading": "Advanced Database Systems"
+          },
+          {
+            "pdfPage": 2,
+            "printedSlide": 2,
+            "heading": "DBMS: B IG P ICTURE"
+          },
+          {
+            "pdfPage": 3,
+            "printedSlide": 3,
+            "heading": "DBMS: Q UERY P LANNING"
+          },
+          {
+            "pdfPage": 4,
+            "printedSlide": 4,
+            "heading": "DBMS: O PERATOR E XECUTION"
+          },
+          {
+            "pdfPage": 5,
+            "printedSlide": 5,
+            "heading": "DBMS: F ILES & I NDEX M ANAGEMENT"
+          },
+          {
+            "pdfPage": 6,
+            "printedSlide": 6,
+            "heading": "DBMS: B UFFER M ANAGEMENT"
+          },
+          {
+            "pdfPage": 7,
+            "printedSlide": 7,
+            "heading": "DBMS: D ISK S PACE M ANAGEMENT"
+          },
+          {
+            "pdfPage": 8,
+            "printedSlide": 8,
+            "heading": "A RCHITECTURE OF A DBMS"
+          },
+          {
+            "pdfPage": 9,
+            "printedSlide": 9,
+            "heading": "DBMS: C ONCURRENCY & R ECOVERY"
+          },
+          {
+            "pdfPage": 10,
+            "printedSlide": 10,
+            "heading": "O UTLINE"
+          },
+          {
+            "pdfPage": 11,
+            "printedSlide": 11,
+            "heading": "D ISK -O RIENTED A RCHITECTURE"
+          },
+          {
+            "pdfPage": 12,
+            "printedSlide": 12,
+            "heading": "W HY N OT S TORE A LL IN M AIN M EMORY ?"
+          },
+          {
+            "pdfPage": 13,
+            "printedSlide": 13,
+            "heading": "S TORAGE H IERARCHY"
+          },
+          {
+            "pdfPage": 14,
+            "printedSlide": 14,
+            "heading": "S TORAGE H IERARCHY                           Latency   Capacity"
+          },
+          {
+            "pdfPage": 15,
+            "printedSlide": 15,
+            "heading": "A NATOMY OF A D ISK"
+          },
+          {
+            "pdfPage": 16,
+            "printedSlide": 16,
+            "heading": "A CCESSING A D ISK PAGE"
+          },
+          {
+            "pdfPage": 17,
+            "printedSlide": null,
+            "heading": "Seagate Cheetah 15K.7                                           17"
+          },
+          {
+            "pdfPage": 18,
+            "printedSlide": 18,
+            "heading": "S EQUENTIAL VS . R ANDOM A CCESS"
+          },
+          {
+            "pdfPage": 19,
+            "printedSlide": 19,
+            "heading": "A RRANGING B LOCKS ON D ISK"
+          },
+          {
+            "pdfPage": 20,
+            "printedSlide": 20,
+            "heading": "S OLID S TATE D RIVES"
+          },
+          {
+            "pdfPage": 21,
+            "printedSlide": 21,
+            "heading": "S OLID S TATE D RIVES"
+          },
+          {
+            "pdfPage": 22,
+            "printedSlide": 22,
+            "heading": "SSD VS . HDD"
+          },
+          {
+            "pdfPage": 23,
+            "printedSlide": 24,
+            "heading": "B OTTOM L INE"
+          },
+          {
+            "pdfPage": 24,
+            "printedSlide": 25,
+            "heading": "D ATABASE S TORAGE"
+          },
+          {
+            "pdfPage": 25,
+            "printedSlide": 26,
+            "heading": "S YSTEM D ESIGN G OALS"
+          },
+          {
+            "pdfPage": 26,
+            "printedSlide": 27,
+            "heading": "D ISK S PACE M ANAGEMENT"
+          },
+          {
+            "pdfPage": 27,
+            "printedSlide": 28,
+            "heading": "D ISK S PACE M ANAGEMENT : PAGE R EQUESTS"
+          },
+          {
+            "pdfPage": 28,
+            "printedSlide": 30,
+            "heading": "D ISK S PACE M ANAGEMENT : I MPLEMENTATION"
+          },
+          {
+            "pdfPage": 29,
+            "printedSlide": 31,
+            "heading": "S UMMARY"
+          }
+        ],
+        "alternateVerified": true,
+        "alternatePdfPageCount": 8
+      },
+      "quizTopics": 6,
+      "questions": 30,
+      "reviewStatus": "assigned; pending editorial and integration review"
+    },
+    {
+      "id": "lecture-05",
+      "file": "course/lecture05.json",
+      "locale": "course/translations/lecture05.vi.json",
+      "title": "The buffer pool: pin, dirty, LRU, and CLOCK",
+      "goals": [
+        "Update pin counts and dirty flags correctly",
+        "Simulate LRU and CLOCK when some pages are pinned",
+        "Explain sequential flooding and the limits of replacement policies"
+      ],
+      "sections": [
+        {
+          "id": "l5-1",
+          "title": "Request a page and protect its frame",
+          "viTitle": "Nạp page và bảo vệ frame đang được sử dụng",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf#page=7"
+          ]
+        },
+        {
+          "id": "l5-2",
+          "title": "An original trace: pinning and dirty state",
+          "viTitle": "Pin count và dirty trả lời hai câu hỏi khác nhau",
+          "sourceLinks": []
+        },
+        {
+          "id": "l5-3",
+          "title": "An original LRU trace: eight requests, three frames",
+          "viTitle": "Theo dõi LRU trên tám yêu cầu, ba frame",
+          "sourceLinks": []
+        },
+        {
+          "id": "l5-4",
+          "title": "An original CLOCK trace and comparison exercise",
+          "viTitle": "CLOCK, MRU và lý do không có policy luôn tốt nhất",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf#page=22"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf#page=3",
+          "label": "PDF pp. 3–11 / slides 3–11 · buffer state"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf#page=13",
+          "label": "PDF pp. 13–21 / slides 14–22 · LRU/CLOCK"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf#page=22",
+          "label": "PDF pp. 22–35 / slides 26–39 · scans, MRU, and practical considerations"
+        }
+      ],
+      "coverage": {
+        "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management.pdf",
+        "alternatePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture05-buffer-management-2x2.pdf",
+        "verified": true,
+        "verifiedPages": "1–35",
+        "pdfPageCount": 35,
+        "topics": [
+          "Frames/page table",
+          "Pin/unpin",
+          "Dirty writeback",
+          "LRU",
+          "CLOCK",
+          "Sequential flooding",
+          "MRU",
+          "LRU-K",
+          "Priority hints",
+          "Partitioned pools",
+          "Prefetch",
+          "OS buffering"
+        ],
+        "limitations": [
+          "Practical DBMS claims in slides are course context, not a current-version implementation guarantee."
+        ],
+        "week": 2,
+        "officialTitle": "Buffer Management",
+        "weeklyPage": "https://opencourse.inf.ed.ac.uk/adbs/week-2",
+        "pageMap": [
+          {
+            "pdfPage": 1,
+            "printedSlide": null,
+            "heading": "Advanced Database Systems"
+          },
+          {
+            "pdfPage": 2,
+            "printedSlide": 2,
+            "heading": "B UFFER M ANAGEMENT"
+          },
+          {
+            "pdfPage": 3,
+            "printedSlide": 3,
+            "heading": "B UFFER M ANAGEMENT"
+          },
+          {
+            "pdfPage": 4,
+            "printedSlide": 4,
+            "heading": "B UFFER M ANAGEMENT : PAGE R EQUEST"
+          },
+          {
+            "pdfPage": 5,
+            "printedSlide": 5,
+            "heading": "B UFFER M ANAGEMENT : PAGE R ELEASE"
+          },
+          {
+            "pdfPage": 6,
+            "printedSlide": 6,
+            "heading": "O PEN Q UESTIONS"
+          },
+          {
+            "pdfPage": 7,
+            "printedSlide": 7,
+            "heading": "B UFFER M ANAGER S TATE"
+          },
+          {
+            "pdfPage": 8,
+            "printedSlide": 8,
+            "heading": "P ROPER P IN /U NPIN N ESTING"
+          },
+          {
+            "pdfPage": 9,
+            "printedSlide": 9,
+            "heading": "P IN I MPLEMENTATION"
+          },
+          {
+            "pdfPage": 10,
+            "printedSlide": 10,
+            "heading": "U NPIN I MPLEMENTATION"
+          },
+          {
+            "pdfPage": 11,
+            "printedSlide": 11,
+            "heading": "A DVANCED Q UESTIONS"
+          },
+          {
+            "pdfPage": 12,
+            "printedSlide": 12,
+            "heading": "B UFFER R EPLACEMENT P OLICIES"
+          },
+          {
+            "pdfPage": 13,
+            "printedSlide": 14,
+            "heading": "L EAST R ECENTLY U SED (LRU)"
+          },
+          {
+            "pdfPage": 14,
+            "printedSlide": 15,
+            "heading": "L EAST R ECENTLY U SED (LRU)"
+          },
+          {
+            "pdfPage": 15,
+            "printedSlide": 16,
+            "heading": "C LOCK R EPLACEMENT P OLICY                                             p1"
+          },
+          {
+            "pdfPage": 16,
+            "printedSlide": 17,
+            "heading": "C LOCK P OLICY S TATE : E XPLICIT & I LLUSTRATED"
+          },
+          {
+            "pdfPage": 17,
+            "printedSlide": 18,
+            "heading": "C LOCK P OLICY : R EAD PAGE 10"
+          },
+          {
+            "pdfPage": 18,
+            "printedSlide": 19,
+            "heading": "C LOCK P OLICY : R EAD PAGE 10 (C ONT.)"
+          },
+          {
+            "pdfPage": 19,
+            "printedSlide": 20,
+            "heading": "C LOCK P OLICY : R EAD PAGE 10 (C ONT.)"
+          },
+          {
+            "pdfPage": 20,
+            "printedSlide": 21,
+            "heading": "C LOCK P OLICY : R EAD PAGE 10 (C ONT.)"
+          },
+          {
+            "pdfPage": 21,
+            "printedSlide": 22,
+            "heading": "C LOCK P OLICY : R EAD PAGE 10 (C ONT.)"
+          },
+          {
+            "pdfPage": 22,
+            "printedSlide": 26,
+            "heading": "R EPLACEMENT P OLICIES C AN F AIL"
+          },
+          {
+            "pdfPage": 23,
+            "printedSlide": 27,
+            "heading": "R EPEATED S CAN (LRU)"
+          },
+          {
+            "pdfPage": 24,
+            "printedSlide": 28,
+            "heading": "R EPEATED S CAN (LRU)"
+          },
+          {
+            "pdfPage": 25,
+            "printedSlide": 29,
+            "heading": "R EPEATED S CAN (LRU)"
+          },
+          {
+            "pdfPage": 26,
+            "printedSlide": 30,
+            "heading": "R EPEATED S CAN (LRU)"
+          },
+          {
+            "pdfPage": 27,
+            "printedSlide": 31,
+            "heading": "R EPEATED S CAN (LRU)"
+          },
+          {
+            "pdfPage": 28,
+            "printedSlide": 32,
+            "heading": "R EPEATED S CAN (MRU)"
+          },
+          {
+            "pdfPage": 29,
+            "printedSlide": 33,
+            "heading": "R EPEATED S CAN (MRU)"
+          },
+          {
+            "pdfPage": 30,
+            "printedSlide": 34,
+            "heading": "R EPEATED S CAN (MRU)"
+          },
+          {
+            "pdfPage": 31,
+            "printedSlide": 35,
+            "heading": "B EST R EPLACEMENT P OLICY ?"
+          },
+          {
+            "pdfPage": 32,
+            "printedSlide": 36,
+            "heading": "B UFFER M ANAGEMENT IN P RACTICE"
+          },
+          {
+            "pdfPage": 33,
+            "printedSlide": 37,
+            "heading": "B UFFER M ANAGEMENT IN P RACTICE"
+          },
+          {
+            "pdfPage": 34,
+            "printedSlide": 38,
+            "heading": "W HY N OT U SE THE OS?"
+          },
+          {
+            "pdfPage": 35,
+            "printedSlide": 39,
+            "heading": "S UMMARY"
+          }
+        ],
+        "alternateVerified": true,
+        "alternatePdfPageCount": 9
+      },
+      "quizTopics": 6,
+      "questions": 30,
+      "reviewStatus": "assigned; pending editorial and integration review"
+    },
+    {
+      "id": "lecture-06",
+      "file": "course/lecture06.json",
+      "locale": "course/translations/lecture06.vi.json",
+      "title": "Files, pages, and records",
+      "goals": [
+        "Calculate offsets and capacity under explicit assumptions",
+        "Explain packed pages, bitmaps, free lists, and slotted pages",
+        "Distinguish a slot directory from a field-offset directory"
+      ],
+      "sections": [
+        {
+          "id": "l6-1",
+          "title": "Find a page, then locate its records",
+          "viTitle": "Tìm trang rồi xác định bản ghi",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf#page=5"
+          ]
+        },
+        {
+          "id": "l6-2",
+          "title": "An original exercise: calculating page capacity",
+          "viTitle": "Bài tập tự biên soạn: tính sức chứa của trang",
+          "sourceLinks": []
+        },
+        {
+          "id": "l6-3",
+          "title": "Moving bytes without changing the RID",
+          "viTitle": "Di chuyển byte mà không đổi RID",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf#page=12"
+          ]
+        },
+        {
+          "id": "l6-4",
+          "title": "Designing a record layout and representing NULL",
+          "viTitle": "Thiết kế bố trí bản ghi và biểu diễn NULL",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf#page=24"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf#page=4",
+          "label": "PDF pp. 4–9 / slides 4–9 · files and heaps"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf#page=11",
+          "label": "PDF pp. 11–22 / slides 11–22 · page layout"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf#page=24",
+          "label": "PDF pp. 24–29 / slides 24–29 · record bytes"
+        }
+      ],
+      "coverage": {
+        "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records.pdf",
+        "alternatePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture06-file-pages-records-2x2.pdf",
+        "verified": true,
+        "verifiedPages": "1–29",
+        "pdfPageCount": 29,
+        "topics": [
+          "Logical file/API",
+          "Heap linked list",
+          "Page directory",
+          "Packed records",
+          "Bitmap/free list",
+          "Slotted page",
+          "RID",
+          "Fixed fields",
+          "Variable fields",
+          "NULL bitmap"
+        ],
+        "limitations": [],
+        "week": 2,
+        "officialTitle": "Files, Pages & Records",
+        "weeklyPage": "https://opencourse.inf.ed.ac.uk/adbs/week-2",
+        "pageMap": [
+          {
+            "pdfPage": 1,
+            "printedSlide": null,
+            "heading": "Advanced Database Systems"
+          },
+          {
+            "pdfPage": 2,
+            "printedSlide": 2,
+            "heading": "O VERVIEW : R EPRESENTATIONS"
+          },
+          {
+            "pdfPage": 3,
+            "printedSlide": 3,
+            "heading": "O UTLINE"
+          },
+          {
+            "pdfPage": 4,
+            "printedSlide": 4,
+            "heading": "F ILES OF PAGES OF R ECORDS"
+          },
+          {
+            "pdfPage": 5,
+            "printedSlide": 5,
+            "heading": "F ILES OF PAGES OF R ECORDS"
+          },
+          {
+            "pdfPage": 6,
+            "printedSlide": 6,
+            "heading": "DB F ILE O RGANISATION"
+          },
+          {
+            "pdfPage": 7,
+            "printedSlide": 7,
+            "heading": "H EAP F ILE"
+          },
+          {
+            "pdfPage": 8,
+            "printedSlide": 8,
+            "heading": "H EAP F ILE : L INKED L IST"
+          },
+          {
+            "pdfPage": 9,
+            "printedSlide": 9,
+            "heading": "H EAP F ILE : PAGE D IRECTORY"
+          },
+          {
+            "pdfPage": 10,
+            "printedSlide": 10,
+            "heading": "O UTLINE"
+          },
+          {
+            "pdfPage": 11,
+            "printedSlide": 11,
+            "heading": "PAGE L AYOUT"
+          },
+          {
+            "pdfPage": 12,
+            "printedSlide": 12,
+            "heading": "F IXED -L ENGTH R ECORDS"
+          },
+          {
+            "pdfPage": 13,
+            "printedSlide": 13,
+            "heading": "F IXED -L ENGTH R ECORDS , P ACKED"
+          },
+          {
+            "pdfPage": 14,
+            "printedSlide": 14,
+            "heading": "F IXED -L ENGTH R ECORDS , P ACKED"
+          },
+          {
+            "pdfPage": 15,
+            "printedSlide": 15,
+            "heading": "F IXED -L ENGTH R ECORDS , P ACKED"
+          },
+          {
+            "pdfPage": 16,
+            "printedSlide": 16,
+            "heading": "F IXED -L ENGTH R ECORDS , P ACKED"
+          },
+          {
+            "pdfPage": 17,
+            "printedSlide": 17,
+            "heading": "F IXED -L ENGTH R ECORDS , U NPACKED (B ITMAP )"
+          },
+          {
+            "pdfPage": 18,
+            "printedSlide": 18,
+            "heading": "F IXED -L ENGTH R ECORDS , U NPACKED (F REE L IST )"
+          },
+          {
+            "pdfPage": 19,
+            "printedSlide": 19,
+            "heading": "F IXED -L ENGTH R ECORDS , U NPACKED (F REE L IST )"
+          },
+          {
+            "pdfPage": 20,
+            "printedSlide": 20,
+            "heading": "VARIABLE -L ENGTH R ECORDS"
+          },
+          {
+            "pdfPage": 21,
+            "printedSlide": 21,
+            "heading": "S LOTTED PAGES"
+          },
+          {
+            "pdfPage": 22,
+            "printedSlide": 22,
+            "heading": "S LOTTED PAGES"
+          },
+          {
+            "pdfPage": 23,
+            "printedSlide": 23,
+            "heading": "O UTLINE"
+          },
+          {
+            "pdfPage": 24,
+            "printedSlide": 24,
+            "heading": "R ECORD L AYOUT"
+          },
+          {
+            "pdfPage": 25,
+            "printedSlide": 25,
+            "heading": "R ECORD L AYOUT : F IXED -L ENGTH R ECORDS"
+          },
+          {
+            "pdfPage": 26,
+            "printedSlide": 26,
+            "heading": "VARIABLE -L ENGTH R ECORDS"
+          },
+          {
+            "pdfPage": 27,
+            "printedSlide": 27,
+            "heading": "VARIABLE -L ENGTH R ECORDS"
+          },
+          {
+            "pdfPage": 28,
+            "printedSlide": 28,
+            "heading": "VARIABLE -L ENGTH R ECORDS"
+          },
+          {
+            "pdfPage": 29,
+            "printedSlide": 29,
+            "heading": "S UMMARY"
+          }
+        ],
+        "alternateVerified": true,
+        "alternatePdfPageCount": 8
+      },
+      "quizTopics": 6,
+      "questions": 30,
+      "reviewStatus": "assigned; pending editorial and integration review"
+    },
+    {
+      "id": "lecture-07",
+      "file": "course/lecture07.json",
+      "locale": "course/translations/lecture07.vi.json",
+      "title": "Storage models and compression",
+      "goals": [
+        "Compare row, column, and PAX layouts by the bytes read",
+        "Encode and decode RLE, delta, and dictionary representations",
+        "Distinguish a teaching model from the actual Parquet format"
+      ],
+      "sections": [
+        {
+          "id": "l7-1",
+          "title": "Choose a layout for the fields a query reads",
+          "viTitle": "Chọn bố trí theo các trường truy vấn cần đọc",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf#page=7"
+          ]
+        },
+        {
+          "id": "l7-2",
+          "title": "An original exercise: which bytes enter RAM?",
+          "viTitle": "Bài tập tự biên soạn: byte nào đi vào RAM?",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf#page=7"
+          ]
+        },
+        {
+          "id": "l7-3",
+          "title": "Original encodings you can decode by hand",
+          "viTitle": "Các mã hóa có thể giải bằng tay",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf#page=21"
+          ]
+        },
+        {
+          "id": "l7-4",
+          "title": "Capacity practice and the limits of the model",
+          "viTitle": "Luyện tập sức chứa và giới hạn mô hình",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf#page=18",
+            "https://parquet.apache.org/docs/file-format/",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf#page=21"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf#page=2",
+          "label": "PDF pp. 2–16 / slides 2–17 · workloads and storage"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf#page=17",
+          "label": "PDF pp. 17–20 / slides 18–21 · PAX/Parquet"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf#page=21",
+          "label": "PDF pp. 21–28 / slides 22–29 · compression"
+        }
+      ],
+      "coverage": {
+        "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression.pdf",
+        "alternatePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture07-storage-models-compression-2x2.pdf",
+        "verified": true,
+        "verifiedPages": "1–28",
+        "pdfPageCount": 28,
+        "topics": [
+          "OLTP/OLAP/HTAP",
+          "Row store",
+          "Column store",
+          "PAX",
+          "Parquet hierarchy",
+          "Metadata pruning",
+          "Compression tradeoff",
+          "Generic codecs",
+          "RLE",
+          "Delta/min-delta",
+          "Bit packing",
+          "Dictionary"
+        ],
+        "limitations": [
+          "Parquet exercise is conceptual, not a specification-conformant implementation.",
+          "Printed slide 16 is absent; PDF page 16 is slide 17."
+        ],
+        "week": 3,
+        "officialTitle": "Storage Models & Compression",
+        "weeklyPage": "https://opencourse.inf.ed.ac.uk/adbs/week-3",
+        "pageMap": [
+          {
+            "pdfPage": 1,
+            "printedSlide": null,
+            "heading": "Advanced Database Systems"
+          },
+          {
+            "pdfPage": 2,
+            "printedSlide": 2,
+            "heading": "DATABASE W ORKLOADS"
+          },
+          {
+            "pdfPage": 3,
+            "printedSlide": 3,
+            "heading": "OLTP: ON-LINE TRANSACTIONAL PROCESSING"
+          },
+          {
+            "pdfPage": 4,
+            "printedSlide": 4,
+            "heading": "OLAP: O N -L INE A NALYTICAL P ROCESSING"
+          },
+          {
+            "pdfPage": 5,
+            "printedSlide": 5,
+            "heading": "O BSERVATION"
+          },
+          {
+            "pdfPage": 6,
+            "printedSlide": 6,
+            "heading": "S TORAGE M ODELS"
+          },
+          {
+            "pdfPage": 7,
+            "printedSlide": 7,
+            "heading": "R OW S TORAGE M ODEL"
+          },
+          {
+            "pdfPage": 8,
+            "printedSlide": 8,
+            "heading": "R OW S TORAGE M ODEL"
+          },
+          {
+            "pdfPage": 9,
+            "printedSlide": 9,
+            "heading": "R OW S TORAGE M ODEL"
+          },
+          {
+            "pdfPage": 10,
+            "printedSlide": 10,
+            "heading": "R OW S TORAGE M ODEL"
+          },
+          {
+            "pdfPage": 11,
+            "printedSlide": 11,
+            "heading": "R OW S TORAGE M ODEL"
+          },
+          {
+            "pdfPage": 12,
+            "printedSlide": 12,
+            "heading": "COLUMNAR S TORAGE M ODEL"
+          },
+          {
+            "pdfPage": 13,
+            "printedSlide": 13,
+            "heading": "COLUMNAR S TORAGE M ODEL"
+          },
+          {
+            "pdfPage": 14,
+            "printedSlide": 14,
+            "heading": "COLUMNAR S TORAGE M ODEL"
+          },
+          {
+            "pdfPage": 15,
+            "printedSlide": 15,
+            "heading": "COLUMNAR S TORAGE M ODEL"
+          },
+          {
+            "pdfPage": 16,
+            "printedSlide": 17,
+            "heading": "COLUMNAR S TORAGE M ODEL"
+          },
+          {
+            "pdfPage": 17,
+            "printedSlide": 18,
+            "heading": "H YBRID S TORAGE M ODEL (PAX)"
+          },
+          {
+            "pdfPage": 18,
+            "printedSlide": 19,
+            "heading": "H YBRID S TORAGE M ODEL                                              Col A      Col B      Col C"
+          },
+          {
+            "pdfPage": 19,
+            "printedSlide": 20,
+            "heading": "PARQUET F ILE F ORMAT"
+          },
+          {
+            "pdfPage": 20,
+            "printedSlide": 21,
+            "heading": "PARQUET F ILE F ORMAT"
+          },
+          {
+            "pdfPage": 21,
+            "printedSlide": 22,
+            "heading": "COMPRESSION IN DBMS"
+          },
+          {
+            "pdfPage": 22,
+            "printedSlide": 23,
+            "heading": "N AÏVE COMPRESSION"
+          },
+          {
+            "pdfPage": 23,
+            "printedSlide": 24,
+            "heading": "COLUMNAR COMPRESSION"
+          },
+          {
+            "pdfPage": 24,
+            "printedSlide": 25,
+            "heading": "D ELTA E NCODING IN PARQUET"
+          },
+          {
+            "pdfPage": 25,
+            "printedSlide": 26,
+            "heading": "D ELTA E NCODING IN PARQUET"
+          },
+          {
+            "pdfPage": 26,
+            "printedSlide": 27,
+            "heading": "D ELTA E NCODING IN PARQUET"
+          },
+          {
+            "pdfPage": 27,
+            "printedSlide": 28,
+            "heading": "D ICTIONARY E NCODING"
+          },
+          {
+            "pdfPage": 28,
+            "printedSlide": 29,
+            "heading": "CONCLUSION"
+          }
+        ],
+        "alternateVerified": true,
+        "alternatePdfPageCount": 7
+      },
+      "quizTopics": 9,
+      "questions": 45,
+      "reviewStatus": "assigned; pending editorial and integration review"
+    },
+    {
+      "id": "lecture-08",
+      "file": "course/lecture08.json",
+      "locale": "course/translations/lecture08.vi.json",
+      "title": "File organisations and index types",
+      "goals": [
+        "Compare heap and sorted-file costs under the same assumptions",
+        "Distinguish a search key, a primary key, and an index entry",
+        "Calculate the data-fetch costs of clustered and unclustered indexes"
+      ],
+      "sections": [
+        {
+          "id": "l8-1",
+          "title": "The conceptual framework",
+          "viTitle": "Khung khái niệm",
+          "sourceLinks": []
+        },
+        {
+          "id": "l8-2",
+          "title": "An original cost comparison",
+          "viTitle": "Ví dụ tự biên soạn: so sánh chi phí",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations.pdf#page=5"
+          ]
+        },
+        {
+          "id": "l8-3",
+          "title": "Original index entries and data locality",
+          "viTitle": "Mục chỉ mục và tính gần nhau của dữ liệu",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations.pdf#page=23"
+          ]
+        },
+        {
+          "id": "l8-4",
+          "title": "Practise choosing a design",
+          "viTitle": "Luyện tập chọn thiết kế",
+          "sourceLinks": []
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations.pdf#page=5",
+          "label": "PDF pp. 5–19 / slides 5–21 · cost model"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations.pdf#page=20",
+          "label": "PDF pp. 20–29 / slides 22–33 · index concepts"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations.pdf#page=30",
+          "label": "PDF pp. 30–34 / slides 36–49 · clustering"
+        }
+      ],
+      "coverage": {
+        "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations.pdf",
+        "alternatePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture08-file-organisations-2x2.pdf",
+        "verified": true,
+        "verifiedPages": "1–34",
+        "pdfPageCount": 34,
+        "topics": [
+          "P/R/D assumptions",
+          "Heap costs",
+          "Sorted costs",
+          "Range search",
+          "Insert/delete",
+          "Search key",
+          "Entry variants A/B/C",
+          "Tree/hash",
+          "Primary/secondary",
+          "Unique",
+          "Clustered/unclustered"
+        ],
+        "limitations": [
+          "Printed slide numbers have gaps; final PDF page 34 is printed slide 49.",
+          "Costs are simplified approximations under stated assumptions."
+        ],
+        "week": 3,
+        "officialTitle": "File Organisations",
+        "weeklyPage": "https://opencourse.inf.ed.ac.uk/adbs/week-3",
+        "pageMap": [
+          {
+            "pdfPage": 1,
+            "printedSlide": null,
+            "heading": "Advanced Database Systems"
+          },
+          {
+            "pdfPage": 2,
+            "printedSlide": 2,
+            "heading": "R ECAP : F ILE O RGANISATIONS"
+          },
+          {
+            "pdfPage": 3,
+            "printedSlide": 3,
+            "heading": "C OMPARING F ILE O RGANISATIONS"
+          },
+          {
+            "pdfPage": 4,
+            "printedSlide": 4,
+            "heading": "G OALS"
+          },
+          {
+            "pdfPage": 5,
+            "printedSlide": 5,
+            "heading": "C OST M ODEL FOR A NALYSIS"
+          },
+          {
+            "pdfPage": 6,
+            "printedSlide": 6,
+            "heading": "R ECORD O PERATIONS"
+          },
+          {
+            "pdfPage": 7,
+            "printedSlide": 7,
+            "heading": "H EAP F ILES"
+          },
+          {
+            "pdfPage": 8,
+            "printedSlide": 8,
+            "heading": "H EAP F ILE : S CAN A LL R ECORDS"
+          },
+          {
+            "pdfPage": 9,
+            "printedSlide": 9,
+            "heading": "H EAP F ILE : S EARCH ON K EY"
+          },
+          {
+            "pdfPage": 10,
+            "printedSlide": 10,
+            "heading": "H EAP F ILE : S EARCH ON N ON -K EY"
+          },
+          {
+            "pdfPage": 11,
+            "printedSlide": 11,
+            "heading": "H EAP F ILE : R ANGE S EARCH"
+          },
+          {
+            "pdfPage": 12,
+            "printedSlide": 12,
+            "heading": "H EAP F ILE : I NSERT & D ELETE"
+          },
+          {
+            "pdfPage": 13,
+            "printedSlide": 13,
+            "heading": "H EAP F ILE A NALYSIS"
+          },
+          {
+            "pdfPage": 14,
+            "printedSlide": 14,
+            "heading": "S ORTED F ILES"
+          },
+          {
+            "pdfPage": 15,
+            "printedSlide": 15,
+            "heading": "S ORTED F ILE : S EARCH"
+          },
+          {
+            "pdfPage": 16,
+            "printedSlide": 18,
+            "heading": "S ORTED F ILE : S EARCH"
+          },
+          {
+            "pdfPage": 17,
+            "printedSlide": 19,
+            "heading": "S ORTED F ILE : I NSERT & D ELETE"
+          },
+          {
+            "pdfPage": 18,
+            "printedSlide": 20,
+            "heading": "S ORTED F ILE A NALYSIS"
+          },
+          {
+            "pdfPage": 19,
+            "printedSlide": 21,
+            "heading": "H EAP F ILE VS . S ORTED F ILE"
+          },
+          {
+            "pdfPage": 20,
+            "printedSlide": 22,
+            "heading": "I NTRODUCTION TO I NDEXES"
+          },
+          {
+            "pdfPage": 21,
+            "printedSlide": 23,
+            "heading": "I NDEX"
+          },
+          {
+            "pdfPage": 22,
+            "printedSlide": 24,
+            "heading": "I NDEX U SAGE"
+          },
+          {
+            "pdfPage": 23,
+            "printedSlide": 25,
+            "heading": "I NDEX E NTRIES"
+          },
+          {
+            "pdfPage": 24,
+            "printedSlide": 26,
+            "heading": "I NDEX E NTRIES"
+          },
+          {
+            "pdfPage": 25,
+            "printedSlide": 27,
+            "heading": "I NDEXING BY R EFERENCE"
+          },
+          {
+            "pdfPage": 26,
+            "printedSlide": 29,
+            "heading": "I NDEX C LASSIFICATION"
+          },
+          {
+            "pdfPage": 27,
+            "printedSlide": 31,
+            "heading": "B+ T REE I NDEXES"
+          },
+          {
+            "pdfPage": 28,
+            "printedSlide": 32,
+            "heading": "E XAMPLE B+ T REE"
+          },
+          {
+            "pdfPage": 29,
+            "printedSlide": 33,
+            "heading": "H ASH -B ASED I NDEX"
+          },
+          {
+            "pdfPage": 30,
+            "printedSlide": 36,
+            "heading": "C LUSTERED VS . U NCLUSTERED I NDEX"
+          },
+          {
+            "pdfPage": 31,
+            "printedSlide": 37,
+            "heading": "C LUSTERED VS . U NCLUSTERED I NDEX"
+          },
+          {
+            "pdfPage": 32,
+            "printedSlide": 39,
+            "heading": "C LUSTERED VS . U NCLUSTERED I NDEX"
+          },
+          {
+            "pdfPage": 33,
+            "printedSlide": 40,
+            "heading": "C LUSTERED VS . U NCLUSTERED I NDEX"
+          },
+          {
+            "pdfPage": 34,
+            "printedSlide": 49,
+            "heading": "S UMMARY"
+          }
+        ],
+        "alternateVerified": true,
+        "alternatePdfPageCount": 9
+      },
+      "quizTopics": 6,
+      "questions": 30,
+      "reviewStatus": "assigned; pending editorial and integration review"
+    },
+    {
+      "id": "lecture-09",
+      "file": "course/lecture09.json",
+      "locale": "course/translations/lecture09.vi.json",
+      "title": "Tree indexing: ISAM and B+ trees",
+      "goals": [
+        "Use separators to find a leaf and scan a range",
+        "Simulate insertion and deletion using the order-d convention",
+        "Explain copy-up, push-up, and byte-based occupancy"
+      ],
+      "sections": [
+        {
+          "id": "l9-1",
+          "title": "The conceptual framework",
+          "viTitle": "Khung khái niệm",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf#page=13"
+          ]
+        },
+        {
+          "id": "l9-2",
+          "title": "An original insertion: copying a leaf key upwards",
+          "viTitle": "Ví dụ chèn: sao chép khóa lá lên trên",
+          "sourceLinks": []
+        },
+        {
+          "id": "l9-3",
+          "title": "An original deletion: redistribute, then merge",
+          "viTitle": "Ví dụ xóa: phân phối lại rồi gộp",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf#page=17"
+          ]
+        },
+        {
+          "id": "l9-4",
+          "title": "ISAM, byte capacity, and an open exercise",
+          "viTitle": "ISAM, sức chứa byte và bài tập mở",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf#page=6"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf#page=2",
+          "label": "PDF pp. 2–12 / slides 2–12 · ISAM/fanout"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf#page=13",
+          "label": "PDF pp. 13–20 / slides 13–20 · B+ tree search and insertion"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf#page=21",
+          "label": "PDF pp. 21–29 / slides 21–29 · deletion and optimisations"
+        }
+      ],
+      "coverage": {
+        "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing.pdf",
+        "alternatePdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture09-tree-indexing-2x2.pdf",
+        "verified": true,
+        "verifiedPages": "1–30",
+        "pdfPageCount": 30,
+        "topics": [
+          "Sorted/binary search",
+          "Multilevel index",
+          "ISAM overflow",
+          "Fanout",
+          "B+ invariants",
+          "Range leaf links",
+          "Leaf copy-up",
+          "Inner push-up",
+          "Redistribution",
+          "Merge/root collapse",
+          "Deletion in practice",
+          "Byte occupancy",
+          "Prefix/suffix compression"
+        ],
+        "limitations": [
+          "Order d is the lecture convention; other materials define order differently.",
+          "Tree simulator examples enforce textbook invariants, unlike some practical lazy-deletion policies."
+        ],
+        "week": 3,
+        "officialTitle": "Tree-Structured Indexing",
+        "weeklyPage": "https://opencourse.inf.ed.ac.uk/adbs/week-3",
+        "pageMap": [
+          {
+            "pdfPage": 1,
+            "printedSlide": null,
+            "heading": "Advanced Database Systems"
+          },
+          {
+            "pdfPage": 2,
+            "printedSlide": 2,
+            "heading": "S ORTED F ILES AND B INARY S EARCH"
+          },
+          {
+            "pdfPage": 3,
+            "printedSlide": 3,
+            "heading": "S ORTED F ILES AND B INARY S EARCH"
+          },
+          {
+            "pdfPage": 4,
+            "printedSlide": 4,
+            "heading": "T REE -S TRUCTURED I NDEXING"
+          },
+          {
+            "pdfPage": 5,
+            "printedSlide": 5,
+            "heading": "T REE -S TRUCTURED I NDEXING"
+          },
+          {
+            "pdfPage": 6,
+            "printedSlide": 6,
+            "heading": "ISAM: I NDEXED S EQUENTIAL A CCESS M ETHOD"
+          },
+          {
+            "pdfPage": 7,
+            "printedSlide": 7,
+            "heading": "ISAM: I NDEXED S EQUENTIAL A CCESS M ETHOD"
+          },
+          {
+            "pdfPage": 8,
+            "printedSlide": 8,
+            "heading": "E XAMPLE ISAM T REE"
+          },
+          {
+            "pdfPage": 9,
+            "printedSlide": 9,
+            "heading": "A FTER I NSERTING 23*, 48*, 41*, 42*…"
+          },
+          {
+            "pdfPage": 10,
+            "printedSlide": 10,
+            "heading": "… T HEN D ELETING 42*, 97*, 51*"
+          },
+          {
+            "pdfPage": 11,
+            "printedSlide": 11,
+            "heading": "C OMMENTS ON ISAM"
+          },
+          {
+            "pdfPage": 12,
+            "printedSlide": 12,
+            "heading": "ISAM VS . B INARY S EARCH"
+          },
+          {
+            "pdfPage": 13,
+            "printedSlide": 13,
+            "heading": "B+ T REE : M OST W IDELY U SED I NDEX"
+          },
+          {
+            "pdfPage": 14,
+            "printedSlide": 14,
+            "heading": "E XAMPLE B+ T REE"
+          },
+          {
+            "pdfPage": 15,
+            "printedSlide": 15,
+            "heading": "E XAMPLE B+ T REE"
+          },
+          {
+            "pdfPage": 16,
+            "printedSlide": 16,
+            "heading": "B+ T REES IN P RACTICE"
+          },
+          {
+            "pdfPage": 17,
+            "printedSlide": 17,
+            "heading": "I NSERTING A D ATA E NTRY"
+          },
+          {
+            "pdfPage": 18,
+            "printedSlide": 18,
+            "heading": "I NSERTING 8* INTO E XAMPLE B+ T REE"
+          },
+          {
+            "pdfPage": 19,
+            "printedSlide": 19,
+            "heading": "E XAMPLE B+ T REE A FTER I NSERTING 8*"
+          },
+          {
+            "pdfPage": 20,
+            "printedSlide": 20,
+            "heading": "R EDISTRIBUTION : I NSERTING 6*"
+          },
+          {
+            "pdfPage": 21,
+            "printedSlide": 21,
+            "heading": "D ELETING A D ATA E NTRY FROM A B+ T REE"
+          },
+          {
+            "pdfPage": 22,
+            "printedSlide": 22,
+            "heading": "D ELETING 19* AND 20*…"
+          },
+          {
+            "pdfPage": 23,
+            "printedSlide": 23,
+            "heading": "… A ND T HEN D ELETING 24*"
+          },
+          {
+            "pdfPage": 24,
+            "printedSlide": 24,
+            "heading": "… S TILL D ELETING 24* (M ERGE )"
+          },
+          {
+            "pdfPage": 25,
+            "printedSlide": 25,
+            "heading": "… S TILL D ELETING 24* (R EDISTRIBUTION )"
+          },
+          {
+            "pdfPage": 26,
+            "printedSlide": 26,
+            "heading": "B+ T REE : D ELETIONS"
+          },
+          {
+            "pdfPage": 27,
+            "printedSlide": 27,
+            "heading": "VARIABLE L ENGTH K EYS & R ECORDS"
+          },
+          {
+            "pdfPage": 28,
+            "printedSlide": 28,
+            "heading": "R EDEFINE O CCUPANCY I NVARIANT"
+          },
+          {
+            "pdfPage": 29,
+            "printedSlide": 29,
+            "heading": "O PTIMIZATIONS"
+          },
+          {
+            "pdfPage": 30,
+            "printedSlide": 30,
+            "heading": "S UMMARY"
+          }
+        ],
+        "alternateVerified": true,
+        "alternatePdfPageCount": 8
+      },
+      "quizTopics": 8,
+      "questions": 42,
+      "reviewStatus": "assigned; pending editorial and integration review"
+    },
+    {
+      "id": "lecture-10",
+      "file": "course/lecture10.json",
+      "locale": "course/translations/lecture10.vi.json",
+      "title": "Hash-Based Indexing",
+      "goals": [
+        "Explain in-memory hashing and collision resolution",
+        "Trace searches, insertions, deletions, and overflow in static chained hashing",
+        "Recognise skew and identify when rehashing is needed",
+        "Simulate global and local depth, bucket splits, and directory changes in extendible hashing"
+      ],
+      "sections": [
+        {
+          "id": "l10-s1",
+          "title": "Ask the right questions of a hash index",
+          "viTitle": "Đặt đúng câu hỏi về chỉ mục băm",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=2"
+          ]
+        },
+        {
+          "id": "l10-s2",
+          "title": "Static hashing: overflow determines the cost",
+          "viTitle": "Băm tĩnh: overflow quyết định chi phí",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=7",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=7"
+          ]
+        },
+        {
+          "id": "l10-s3",
+          "title": "Extendible hashing: grow where space is needed",
+          "viTitle": "Extendible hashing: mở rộng tại nơi cần chỗ",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=13",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=15"
+          ]
+        },
+        {
+          "id": "l10-s4",
+          "title": "Check your understanding with a trace",
+          "viTitle": "Tự kiểm tra bằng một mô phỏng",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=15"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=1",
+          "label": "Official PDF, pages 1–26"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=2",
+          "label": "PDF pages 2–12"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=13",
+          "label": "PDF pages 13–25"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf#page=26",
+          "label": "PDF pages 26–26"
+        }
+      ],
+      "coverage": {
+        "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture10-hash-indexing.pdf",
+        "verified": true,
+        "verifiedPages": "1–26",
+        "topics": [
+          "In-memory hashing and collision resolution",
+          "Static chained hashing: search, insertion, deletion, and overflow",
+          "Hash functions, skew, and rehashing",
+          "Extendible hashing: global/local depth, splitting, doubling, and shrinking"
+        ],
+        "limitations": []
+      },
+      "quizTopics": 9,
+      "questions": 45,
+      "reviewStatus": "assigned; pending editorial and integration review"
+    },
+    {
+      "id": "lecture-11",
+      "file": "course/lecture11.json",
+      "locale": "course/translations/lecture11.vi.json",
+      "title": "External Sorting & Aggregation",
+      "goals": [
+        "Connect query execution to the implementation of individual operators",
+        "Calculate the number of passes in two-way and multiway external merge sort",
+        "Compare reading through clustered and unclustered B+ trees",
+        "Use sorting to implement DISTINCT"
+      ],
+      "sections": [
+        {
+          "id": "l11-s1",
+          "title": "From ORDER BY to external merge sort",
+          "viTitle": "Từ ORDER BY đến external merge sort",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=2",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=4"
+          ]
+        },
+        {
+          "id": "l11-s2",
+          "title": "Count the passes and avoid unnecessary sorting",
+          "viTitle": "Đếm pass và tránh sắp xếp không cần thiết",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=12"
+          ]
+        },
+        {
+          "id": "l11-s3",
+          "title": "GROUP BY retains state, not necessarily every tuple",
+          "viTitle": "GROUP BY giữ state, không nhất thiết mọi tuple",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=19",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=19"
+          ]
+        },
+        {
+          "id": "l11-s4",
+          "title": "Exercise: sorting or hashing?",
+          "viTitle": "Bài tập: sắp xếp hay băm?",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=18"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=1",
+          "label": "Official PDF, pages 1–32"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=2",
+          "label": "PDF pages 2–14"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=15",
+          "label": "PDF pages 15–20"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=21",
+          "label": "PDF pages 21–32"
+        }
+      ],
+      "coverage": {
+        "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf",
+        "verified": true,
+        "verifiedPages": "1–32",
+        "topics": [
+          "Query execution and operator implementations",
+          "Lexicographic sorting, two-way and multiway external merge sort",
+          "B+ tree sorting: clustered/unclustered",
+          "Sort-based DISTINCT",
+          "External hashing, recursive partitioning, and skew",
+          "Hash aggregation, running state, and memory bounds"
+        ],
+        "limitations": []
+      },
+      "quizTopics": 10,
+      "questions": 50,
+      "reviewStatus": "assigned; pending editorial and integration review"
+    },
+    {
+      "id": "lecture-12",
+      "file": "course/lecture12.json",
+      "locale": "course/translations/lecture12.vi.json",
+      "title": "Joins",
+      "goals": [
+        "Identify join semantics and the assumptions behind I/O calculations",
+        "Calculate the costs of tuple, page, and block nested-loop joins",
+        "Calculate index nested-loop join costs with clustering",
+        "Handle duplicates and combine the final merge pass with a sort-merge join"
+      ],
+      "sections": [
+        {
+          "id": "l12-s1",
+          "title": "Nested loops: change the unit of iteration",
+          "viTitle": "Nested loops: thay đơn vị vòng lặp",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=4"
+          ]
+        },
+        {
+          "id": "l12-s2",
+          "title": "Index nested loops: find every match",
+          "viTitle": "Index nested loops: lấy đủ mọi kết quả khớp",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=12"
+          ]
+        },
+        {
+          "id": "l12-s3",
+          "title": "Sort-merge and hashing: two ways to bring matches together",
+          "viTitle": "Sort-merge và băm: hai cách đưa kết quả khớp lại gần",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=16",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=4",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture11-sorting-aggregation_0.pdf#page=22"
+          ]
+        },
+        {
+          "id": "l12-s4",
+          "title": "Fuse sorting, then compare join choices",
+          "viTitle": "Ghép sắp xếp rồi so lựa chọn join",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=31",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=16"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=1",
+          "label": "Official PDF, pages 1–43"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=2",
+          "label": "PDF pages 2–15"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=16",
+          "label": "PDF pages 16–33"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf#page=34",
+          "label": "PDF pages 34–43"
+        }
+      ],
+      "coverage": {
+        "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture12-joins.pdf",
+        "verified": true,
+        "verifiedPages": "1–43",
+        "topics": [
+          "Join semantics and I/O assumptions",
+          "Tuple/page/block nested loops",
+          "Index nested loops and clustering",
+          "Sort-merge, duplicates, and final-pass fusion",
+          "In-memory hash join and Grace hash join",
+          "Recursive partitioning and algorithm trade-offs"
+        ],
+        "limitations": []
+      },
+      "quizTopics": 9,
+      "questions": 47,
+      "reviewStatus": "assigned; pending editorial and integration review"
+    },
+    {
+      "id": "lecture-13",
+      "file": "course/lecture13.json",
+      "locale": "course/translations/lecture13.vi.json",
+      "title": "Query Evaluation: Processing Models",
+      "goals": [
+        "Trace open, next, and close calls in the iterator model",
+        "Explain the state maintained by a selection, heap scan, and nested-loop join",
+        "Identify blocking operations such as sorting and hash-table construction",
+        "Explain pipelining, LIMIT, and iterator overhead"
+      ],
+      "sections": [
+        {
+          "id": "l13-s1",
+          "title": "Iterators give operators a shared interface",
+          "viTitle": "Một giao diện chung để các toán tử làm việc cùng nhau",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=2"
+          ]
+        },
+        {
+          "id": "l13-s2",
+          "title": "State and blocking boundaries",
+          "viTitle": "Trạng thái lưu lại và ranh giới chặn dữ liệu",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=7"
+          ]
+        },
+        {
+          "id": "l13-s3",
+          "title": "Vectorization and materialization",
+          "viTitle": "Từ từng dòng đến từng lô và kết quả trung gian đầy đủ",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=14",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=13"
+          ]
+        },
+        {
+          "id": "l13-s4",
+          "title": "Exercise: identify the pipeline segments",
+          "viTitle": "Bài tập: chia kế hoạch thành các đoạn pipeline",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=9"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=1",
+          "label": "Official PDF, pages 1–18"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=2",
+          "label": "PDF pages 2–9"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=10",
+          "label": "PDF pages 10–14"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf#page=15",
+          "label": "PDF pages 15–18"
+        }
+      ],
+      "coverage": {
+        "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture13-query-evaluation-processing-models.pdf",
+        "verified": true,
+        "verifiedPages": "1–18",
+        "topics": [
+          "Iterator open/next/close and composability",
+          "Selection, heap scan, nested-loop state",
+          "Blocking sort and hash build",
+          "Pipelining, LIMIT and iterator overhead",
+          "Vectorised batch/SIMD model",
+          "Materialisation, execution direction and workload trade-offs"
+        ],
+        "limitations": []
+      },
+      "quizTopics": 7,
+      "questions": 36,
+      "reviewStatus": "assigned; pending editorial and integration review"
+    },
+    {
+      "id": "lecture-14",
+      "file": "course/lecture14.json",
+      "locale": "course/translations/lecture14.vi.json",
+      "title": "Query Optimisation: Plan Space",
+      "goals": [
+        "Distinguish the parser, rewriter, and cost-based optimizer",
+        "Describe query blocks and the System R approach",
+        "Apply logical equivalences and safe simplifications",
+        "Change join order while preserving predicates and handling cross products"
+      ],
+      "sections": [
+        {
+          "id": "l14-s1",
+          "title": "Three different optimization decisions",
+          "viTitle": "Ba câu hỏi khác nhau trong tối ưu hóa",
+          "sourceLinks": [
+            "#lecture-18",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf#page=1",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf#page=1"
+          ]
+        },
+        {
+          "id": "l14-s2",
+          "title": "Equivalence must preserve columns and predicates",
+          "viTitle": "Giữ đủ cột và điều kiện khi viết lại",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf#page=4"
+          ]
+        },
+        {
+          "id": "l14-s3",
+          "title": "Heuristics are useful, but do not guarantee the fastest plan",
+          "viTitle": "Heuristic hướng tìm kiếm, nhưng không bảo đảm nhanh nhất",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf#page=4"
+          ]
+        },
+        {
+          "id": "l14-s4",
+          "title": "Exercise: repair an invalid rewrite",
+          "viTitle": "Bài tập: sửa một phép đổi không tương đương",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf#page=4"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf#page=1",
+          "label": "Official PDF, pages 1–7 (2×2; slides 1–28, numbering contains gaps)"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf#page=1",
+          "label": "PDF pages 1–2"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf#page=3",
+          "label": "PDF pages 3–5"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf#page=6",
+          "label": "PDF pages 6–7"
+        }
+      ],
+      "coverage": {
+        "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture14-query-optimisation-plan-space-2x2.pdf",
+        "verified": true,
+        "verifiedPages": "1–7",
+        "topics": [
+          "Parser, rewriter, cost-based optimiser lifecycle",
+          "Query blocks and System R overview",
+          "Logical equivalences and safe simplifications",
+          "Join reorder, cross products, transitive predicates",
+          "Selection/projection pushdown heuristics",
+          "Physical implementation alternatives"
+        ],
+        "limitations": [
+          "The official 2×2 slide-layout PDF was used because the one-slide-per-page version was unavailable during source review."
+        ]
+      },
+      "quizTopics": 7,
+      "questions": 36,
+      "reviewStatus": "assigned; pending editorial and integration review"
+    },
+    {
+      "id": "lecture-15",
+      "file": "course/lecture15.json",
+      "locale": "course/translations/lecture15.vi.json",
+      "title": "Query Optimisation: Plan Space Example",
+      "goals": [
+        "Recalculate the cost after each plan refinement",
+        "Distinguish the effects of selection pushdown on the outer and inner inputs",
+        "Compare both choices of outer and inner join input",
+        "Include the cost of materializing a filtered inner input"
+      ],
+      "sections": [
+        {
+          "id": "l15-s1",
+          "title": "An original practice problem",
+          "viTitle": "Một bài thực hành với giả định rõ ràng",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=3"
+          ]
+        },
+        {
+          "id": "l15-s2",
+          "title": "Reverse the inputs, then materialize",
+          "viTitle": "Đổi hướng join, rồi lưu kết quả lọc để đọc lại",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=14"
+          ]
+        },
+        {
+          "id": "l15-s3",
+          "title": "Change the join algorithm and tuple width",
+          "viTitle": "Thay thuật toán và làm dòng hẹp hơn",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=25",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=25"
+          ]
+        },
+        {
+          "id": "l15-s4",
+          "title": "Exercise: check the assumptions",
+          "viTitle": "Bài tập: so sánh trên cùng đường truy cập",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=39",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=39"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=1",
+          "label": "Official PDF, pages 1–43"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=3",
+          "label": "PDF pages 3–13"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=14",
+          "label": "PDF pages 14–24"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=25",
+          "label": "PDF pages 25–38"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf#page=39",
+          "label": "PDF pages 39–43"
+        }
+      ],
+      "coverage": {
+        "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture15-query-optimisation-plan-space-example.pdf",
+        "verified": true,
+        "verifiedPages": "1–43",
+        "topics": [
+          "Repeated plan refinement",
+          "Selection pushdown inside/outside nested loops",
+          "Join orientation",
+          "Materialising filtered inner input",
+          "Sort-merge pass accounting",
+          "Block nested loops, projection width",
+          "Clustered outer lookup and indexed inner join"
+        ],
+        "limitations": []
+      },
+      "quizTopics": 7,
+      "questions": 37,
+      "reviewStatus": "assigned; pending editorial and integration review"
+    },
+    {
+      "id": "lecture-16",
+      "file": "course/lecture16.json",
+      "locale": "course/translations/lecture16.vi.json",
+      "title": "Access Methods",
+      "goals": [
+        "Distinguish sequential-scan cost from output selectivity",
+        "Check whether an index can support a predicate in key order",
+        "Apply the equality-prefix/range rule to a composite B+ tree",
+        "Compare index-only, clustered, and unclustered scans"
+      ],
+      "sections": [
+        {
+          "id": "l16-s1",
+          "title": "Access paths: ways to execute an operator",
+          "viTitle": "Đường truy cập là cách lấy dữ liệu cho toán tử",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=2"
+          ]
+        },
+        {
+          "id": "l16-s2",
+          "title": "Composite B+ trees: an equality prefix followed by a range",
+          "viTitle": "B+ tree nhiều cột: tiền tố bằng trước, khoảng sau",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=7",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=19",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=19"
+          ]
+        },
+        {
+          "id": "l16-s3",
+          "title": "Index-only access and multiple indexes",
+          "viTitle": "Index-only, clustering và phối hợp nhiều index",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=16",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=16"
+          ]
+        },
+        {
+          "id": "l16-s4",
+          "title": "Optional external PostgreSQL exercise",
+          "viTitle": "Thực hành PostgreSQL bổ sung ở ngoài trình chạy SQLite",
+          "sourceLinks": [
+            "https://www.postgresql.org/docs/current/using-explain.html",
+            "https://www.postgresql.org/docs/current/functions-srf.html",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=22"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=1",
+          "label": "Official PDF, pages 1–23"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=2",
+          "label": "PDF pages 2–7"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=8",
+          "label": "PDF pages 8–16"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf#page=17",
+          "label": "PDF pages 17–23"
+        }
+      ],
+      "coverage": {
+        "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture16-access-methods0.pdf",
+        "verified": true,
+        "verifiedPages": "1–23",
+        "topics": [
+          "Sequential scan and selectivity",
+          "Index eligibility and key ordering",
+          "Composite B+ tree prefix/range rule",
+          "Index-only, clustered, unclustered scans",
+          "Hash composite equality",
+          "Multi-index RID intersection/union",
+          "PostgreSQL EXPLAIN practical scope"
+        ],
+        "limitations": [
+          "The Learn practical and dataset require separate access and were not verified."
+        ]
+      },
+      "quizTopics": 9,
+      "questions": 46,
+      "reviewStatus": "assigned; pending editorial and integration review"
+    },
+    {
+      "id": "lecture-17",
+      "file": "course/lecture17.json",
+      "locale": "course/translations/lecture17.vi.json",
+      "title": "Query Optimisation: Costing",
+      "goals": [
+        "Estimate operator costs and the cardinalities passed between steps",
+        "Read catalog statistics and explain when they need updating",
+        "Identify uniformity and independence assumptions",
+        "Calculate selectivity for equality, range, NOT, AND, and OR conditions"
+      ],
+      "sections": [
+        {
+          "id": "l17-s1",
+          "title": "Wrong cardinalities lead to wrong costs",
+          "viTitle": "Số dòng ước lượng sai làm chi phí phía sau sai",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=2"
+          ]
+        },
+        {
+          "id": "l17-s2",
+          "title": "Formulas and their assumptions",
+          "viTitle": "Công thức cần đi cùng giả định",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=7",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=7"
+          ]
+        },
+        {
+          "id": "l17-s3",
+          "title": "Histograms: whole buckets and partial buckets",
+          "viTitle": "Histogram: mô tả phân bố chi tiết hơn",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=13",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=12"
+          ]
+        },
+        {
+          "id": "l17-s4",
+          "title": "Exercise: find the independence error",
+          "viTitle": "Bài tập: tìm sai số do giả định độc lập",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=26"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=1",
+          "label": "Official PDF, pages 1–26"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=2",
+          "label": "PDF pages 2–12"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=13",
+          "label": "PDF pages 13–20"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf#page=21",
+          "label": "PDF pages 21–26"
+        }
+      ],
+      "coverage": {
+        "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture17-query-optimisation-costing.pdf",
+        "verified": true,
+        "verifiedPages": "1–26",
+        "topics": [
+          "Operator costs and propagated cardinalities",
+          "Catalog statistics and refresh",
+          "Uniformity and independence",
+          "Equality/range/NOT/AND/OR selectivity",
+          "Key–foreign key and general equijoin size",
+          "Missing statistics defaults",
+          "Equi-width/equi-depth histogram equality/range estimates"
+        ],
+        "limitations": []
+      },
+      "quizTopics": 7,
+      "questions": 36,
+      "reviewStatus": "assigned; pending editorial and integration review"
+    },
+    {
+      "id": "lecture-18",
+      "file": "course/lecture18.json",
+      "locale": "course/translations/lecture18.vi.json",
+      "title": "Query Optimisation: Searching",
+      "goals": [
+        "Enumerate and cost access paths for a single table",
+        "Explain why the number of join trees grows rapidly",
+        "Distinguish left-deep, bushy, and right-deep join trees",
+        "Understand the benefits and limits of cross-product pruning"
+      ],
+      "sections": [
+        {
+          "id": "l18-s1",
+          "title": "The search starts with a single table",
+          "viTitle": "Tìm kiếm bắt đầu từ từng bảng",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=2"
+          ]
+        },
+        {
+          "id": "l18-s2",
+          "title": "Left-deep trees: one way to limit the plan space",
+          "viTitle": "Giới hạn không gian bằng cây left-deep",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=8",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=8",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=8"
+          ]
+        },
+        {
+          "id": "l18-s3",
+          "title": "Dynamic programming must remember physical properties",
+          "viTitle": "Quy hoạch động phải nhớ thuộc tính vật lý",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=13",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=8"
+          ]
+        },
+        {
+          "id": "l18-s4",
+          "title": "Exercise: build a DP table",
+          "viTitle": "Bài tập: đưa yêu cầu thứ tự cuối vào bảng DP",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=14"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=1",
+          "label": "Official PDF, pages 1–24"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=2",
+          "label": "PDF pages 2–7"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=8",
+          "label": "PDF pages 8–19"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf#page=20",
+          "label": "PDF pages 20–24"
+        }
+      ],
+      "coverage": {
+        "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture18-query-optimisation-searching.pdf",
+        "verified": true,
+        "verifiedPages": "1–24",
+        "topics": [
+          "Single-table access enumeration and cost",
+          "Join-tree combinatorial growth",
+          "Left-deep versus bushy/right-deep",
+          "Cross-product pruning",
+          "Dynamic programming and optimal substructure",
+          "Interesting orders and property-aware retention",
+          "Final grouping/sorting cost"
+        ],
+        "limitations": []
+      },
+      "quizTopics": 6,
+      "questions": 31,
+      "reviewStatus": "assigned; pending editorial and integration review"
+    },
+    {
+      "id": "lecture-19",
+      "file": "course/lecture19.json",
+      "locale": "course/translations/lecture19.vi.json",
+      "title": "Transactions: correctness under concurrency",
+      "goals": [
+        "Distinguish the four ACID properties",
+        "Construct a precedence graph from a read/write schedule",
+        "Distinguish conflict serializability from view serializability"
+      ],
+      "sections": [
+        {
+          "id": "l19-s1",
+          "title": "The conceptual map",
+          "viTitle": "Từ việc chuyển hàng đến bốn bảo đảm ACID",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=1",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=4"
+          ]
+        },
+        {
+          "id": "l19-s2",
+          "title": "Worked example: two warehouses",
+          "viTitle": "Ví dụ xuyên suốt: hai kho và một lần đọc tổng",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=18",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=24"
+          ]
+        },
+        {
+          "id": "l19-s3",
+          "title": "Build a conflict graph",
+          "viTitle": "Dựng đồ thị xung đột và tìm thứ tự tuần tự",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=27",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=24"
+          ]
+        },
+        {
+          "id": "l19-s4",
+          "title": "Recognize three anomalies",
+          "viTitle": "Ba bất thường và câu hỏi riêng về khả năng phục hồi",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=29",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=29",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=11"
+          ]
+        },
+        {
+          "id": "l19-s5",
+          "title": "View equivalence and its limits",
+          "viTitle": "Tương đương theo quan sát: nguồn đọc và người ghi cuối",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=43",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=43"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=1",
+          "label": "PDF pages 1–17"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=18",
+          "label": "PDF pages 18–26"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=27",
+          "label": "PDF pages 27–42"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=29",
+          "label": "PDF page 29 · slide 32 (dirty read); pages 28–30 (anomalies)"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf#page=43",
+          "label": "PDF pages 43–48"
+        }
+      ],
+      "coverage": {
+        "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture19-transactions.pdf",
+        "verified": true,
+        "verifiedPages": "1–48",
+        "topics": [
+          "ACID",
+          "transaction abstraction",
+          "schedules",
+          "RW/WR/WW anomalies",
+          "conflict equivalence",
+          "precedence graph",
+          "view equivalence",
+          "durability"
+        ],
+        "limitations": []
+      },
+      "quizTopics": 7,
+      "questions": 40,
+      "reviewStatus": "assigned; pending editorial and integration review"
+    },
+    {
+      "id": "lecture-20",
+      "file": "course/lecture20.json",
+      "locale": "course/translations/lecture20.vi.json",
+      "title": "Locking: from locks to correct schedules",
+      "goals": [
+        "Simulate shared/exclusive locks and the two locking phases",
+        "Explain why cascading aborts occur",
+        "Handle deadlocks through detection or timestamp-based prevention"
+      ],
+      "sections": [
+        {
+          "id": "l20-s1",
+          "title": "The essential rules",
+          "viTitle": "Khóa bảo vệ truy cập; giao thức ràng buộc thứ tự",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=2",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=2"
+          ]
+        },
+        {
+          "id": "l20-s2",
+          "title": "Worked example: updating an order",
+          "viTitle": "Theo việc sửa Order và Stock đến khi hoàn tất",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=3"
+          ]
+        },
+        {
+          "id": "l20-s3",
+          "title": "Deadlock and conflict cycles",
+          "viTitle": "Deadlock: ai đang chờ ai?",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=18",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=19"
+          ]
+        },
+        {
+          "id": "l20-s4",
+          "title": "Reasoning with timestamps",
+          "viTitle": "Timestamp quyết định ai được chờ",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=23",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=19"
+          ]
+        },
+        {
+          "id": "l20-s5",
+          "title": "Check your understanding",
+          "viTitle": "Tự kiểm tra ranh giới pha và khả năng tiến triển",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=7"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=2",
+          "label": "PDF pages 2–14"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=3",
+          "label": "PDF pages 3–17"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=18",
+          "label": "PDF pages 18–22"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=23",
+          "label": "PDF pages 23–27"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf#page=7",
+          "label": "PDF pages 7–28"
+        }
+      ],
+      "coverage": {
+        "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture20-locking.pdf",
+        "verified": true,
+        "verifiedPages": "1–28",
+        "topics": [
+          "lock compatibility",
+          "growing/shrinking phases",
+          "strict 2PL",
+          "cascading aborts",
+          "waits-for graph",
+          "victim selection",
+          "wait-die",
+          "wound-wait"
+        ],
+        "limitations": []
+      },
+      "quizTopics": 6,
+      "questions": 30,
+      "reviewStatus": "assigned; pending editorial and integration review"
+    },
+    {
+      "id": "lecture-21",
+      "file": "course/lecture21.json",
+      "locale": "course/translations/lecture21.vi.json",
+      "title": "Recovery: why the log must come first",
+      "goals": [
+        "Derive UNDO and REDO requirements from the buffer policy",
+        "Apply the two mandatory WAL ordering rules",
+        "Follow the analysis, redo, and undo phases"
+      ],
+      "sections": [
+        {
+          "id": "l21-s1",
+          "title": "Buffer policies: STEAL and FORCE",
+          "viTitle": "Từ trang trong RAM đến STEAL và FORCE",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=2"
+          ]
+        },
+        {
+          "id": "l21-s2",
+          "title": "Worked example: two products",
+          "viTitle": "Ví dụ: hai sản phẩm và hai hướng phục hồi",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=18"
+          ]
+        },
+        {
+          "id": "l21-s3",
+          "title": "The two WAL ordering rules",
+          "viTitle": "Hai ranh giới bắt buộc của write-ahead logging",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=18"
+          ]
+        },
+        {
+          "id": "l21-s4",
+          "title": "ARIES: repeat history, then undo",
+          "viTitle": "ARIES: tái dựng lịch sử rồi loại bỏ công việc chưa xong",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=25",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=19",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=49",
+            "https://cs.stanford.edu/people/chrismre/cs345/rl/aries.pdf#page=20",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=25"
+          ]
+        },
+        {
+          "id": "l21-s5",
+          "title": "Failure models and design questions",
+          "viTitle": "Xác định mô hình sự cố trước khi dùng lập luận phục hồi",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=3",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=3"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=2",
+          "label": "PDF pages 2–17"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=18",
+          "label": "PDF pages 18–24"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=18",
+          "label": "PDF pages 18–24"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=25",
+          "label": "PDF pages 25–27"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf#page=3",
+          "label": "PDF pages 3–5"
+        }
+      ],
+      "coverage": {
+        "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture21-recovery.pdf",
+        "verified": true,
+        "verifiedPages": "1–27",
+        "topics": [
+          "failure types",
+          "buffer policies",
+          "UNDO/REDO",
+          "logging",
+          "WAL ordering",
+          "commit durability",
+          "ARIES phases"
+        ],
+        "limitations": [
+          "The lecture introduces ARIES at a high level; it is not a complete implementation specification."
+        ]
+      },
+      "quizTopics": 5,
+      "questions": 25,
+      "reviewStatus": "assigned; pending editorial and integration review"
+    },
+    {
+      "id": "lecture-22",
+      "file": "course/lecture22.json",
+      "locale": "course/translations/lecture22.vi.json",
+      "title": "Distributed transactions: reaching one decision",
+      "goals": [
+        "Detect global deadlock by combining local graphs",
+        "Simulate prepare, vote, decision, and acknowledgement",
+        "Explain why a prepared participant can become blocked"
+      ],
+      "sections": [
+        {
+          "id": "l22-s1",
+          "title": "Two global problems",
+          "viTitle": "Khóa cục bộ, nhưng có hai vấn đề toàn cục",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=3",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=3"
+          ]
+        },
+        {
+          "id": "l22-s2",
+          "title": "Worked example: moving stock between regions",
+          "viTitle": "Chuyển 4 thùng hàng: từ bỏ phiếu đến quyết định bền vững",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=21",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=20",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=31"
+          ]
+        },
+        {
+          "id": "l22-s3",
+          "title": "Crash checklist: which log records matter?",
+          "viTitle": "Đọc log khi khởi động lại: PREPARE chưa giải quyết là một trạng thái riêng",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=32",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=49",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=49",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=55"
+          ]
+        },
+        {
+          "id": "l22-s4",
+          "title": "Why can a prepared participant not simply abort?",
+          "viTitle": "Vì sao participant đã prepare không thể tự abort?",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=47"
+          ]
+        },
+        {
+          "id": "l22-s5",
+          "title": "Exercise: combining 2PL and 2PC",
+          "viTitle": "Ghép đường thời gian của 2PL với đường thời gian của 2PC",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=55",
+            "https://dsf.berkeley.edu/cs286/papers/paxoscommit-tods2006.pdf#page=2",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=20"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=3",
+          "label": "PDF pages 3–20"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=21",
+          "label": "PDF pages 21–31"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=32",
+          "label": "PDF pages 32–54"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=47",
+          "label": "PDF pages 47–57"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf#page=55",
+          "label": "PDF pages 55–57"
+        }
+      ],
+      "coverage": {
+        "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture22-distributed-transactions.pdf",
+        "verified": true,
+        "verifiedPages": "1–57",
+        "topics": [
+          "partitioned locks",
+          "global deadlock",
+          "2PC unanimity",
+          "prepare logging",
+          "decision logging",
+          "recovery cases",
+          "strict 2PL integration",
+          "blocking"
+        ],
+        "limitations": [
+          "The lecture assumes partitioning without replication. Consensus-based improvements are mentioned but not developed in detail."
+        ]
+      },
+      "quizTopics": 7,
+      "questions": 40,
+      "reviewStatus": "assigned; pending editorial and integration review"
+    },
+    {
+      "id": "lecture-23",
+      "file": "course/lecture23.json",
+      "locale": "course/translations/lecture23.vi.json",
+      "title": "Conjunctive Queries: A Query Describes a Pattern",
+      "goals": [
+        "Translate SQL or relational algebra into a conjunctive query",
+        "Distinguish output variables from existentially quantified variables",
+        "Find homomorphisms and determine the result set"
+      ],
+      "sections": [
+        {
+          "id": "l23-s1",
+          "title": "A small language with precise meaning",
+          "viTitle": "Một ngôn ngữ nhỏ với ý nghĩa chính xác",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=1",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=2"
+          ]
+        },
+        {
+          "id": "l23-s2",
+          "title": "Worked example: who takes a course taught by Linh?",
+          "viTitle": "Ví dụ: ai học môn do Linh dạy?",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=20",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=2"
+          ]
+        },
+        {
+          "id": "l23-s3",
+          "title": "A homomorphism uses one consistent assignment",
+          "viTitle": "Đồng cấu cần một phép gán nhất quán",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=26",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=26"
+          ]
+        },
+        {
+          "id": "l23-s4",
+          "title": "Repeated variables and multiple witnesses",
+          "viTitle": "Biến lặp lại và nhiều nhân chứng",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=26"
+          ]
+        },
+        {
+          "id": "l23-s5",
+          "title": "Practice and worked solution",
+          "viTitle": "Bài tập và lời giải",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=19",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=26"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=1",
+          "label": "PDF pages 1–19"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=20",
+          "label": "PDF pages 20–25"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=26",
+          "label": "PDF pages 26–31"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=26",
+          "label": "PDF pages 26–33"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf#page=19",
+          "label": "PDF pages 19–33"
+        }
+      ],
+      "coverage": {
+        "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture23-cqs-syntax-and-semantics.pdf",
+        "verified": true,
+        "verifiedPages": "1–33",
+        "topics": [
+          "RA recap",
+          "relational calculus",
+          "Codd theorem context",
+          "CQ syntax",
+          "distinguished variables",
+          "homomorphism",
+          "constants",
+          "set semantics"
+        ],
+        "limitations": []
+      },
+      "quizTopics": 5,
+      "questions": 25,
+      "reviewStatus": "assigned; pending editorial and integration review"
+    },
+    {
+      "id": "lecture-24",
+      "file": "course/lecture24.json",
+      "locale": "course/translations/lecture24.vi.json",
+      "title": "Conjunctive Query Evaluation and Static Analysis",
+      "goals": [
+        "Distinguish data complexity from combined complexity",
+        "Use the correct homomorphism direction when checking containment",
+        "Remove redundant atoms while preserving the output variables"
+      ],
+      "sections": [
+        {
+          "id": "l24-s1",
+          "title": "Two ways to measure difficulty",
+          "viTitle": "Hai cách đo độ khó",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=10"
+          ]
+        },
+        {
+          "id": "l24-s2",
+          "title": "Worked example: count assignments and verify a witness",
+          "viTitle": "Ví dụ: đếm phép gán và kiểm tra nhân chứng",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=10"
+          ]
+        },
+        {
+          "id": "l24-s3",
+          "title": "Containment: check the direction of the mapping",
+          "viTitle": "Bao hàm: xác định chiều ánh xạ",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=19",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=19"
+          ]
+        },
+        {
+          "id": "l24-s4",
+          "title": "Canonical databases explain the proof",
+          "viTitle": "Cơ sở dữ liệu chuẩn tắc giải thích chứng minh",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=23",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=19"
+          ]
+        },
+        {
+          "id": "l24-s5",
+          "title": "Minimization through a worked example",
+          "viTitle": "Tối giản qua ví dụ",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=32",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=32"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=10",
+          "label": "PDF pages 10–18"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=10",
+          "label": "PDF pages 10–18"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=19",
+          "label": "PDF pages 19–29"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=23",
+          "label": "PDF pages 23–31"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf#page=32",
+          "label": "PDF pages 32–37"
+        }
+      ],
+      "coverage": {
+        "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture24-cqs-evaluation-and-static-analysis_0.pdf",
+        "verified": true,
+        "verifiedPages": "1–37",
+        "topics": [
+          "combined complexity",
+          "data complexity",
+          "NP witness",
+          "3-colorability reduction",
+          "canonical database",
+          "satisfiability",
+          "homomorphism theorem",
+          "containment/equivalence",
+          "minimization",
+          "core"
+        ],
+        "limitations": [
+          "These theoretical results apply to conjunctive queries under set semantics. They do not automatically apply to SQL bags, NULL values, or additional constraints."
+        ]
+      },
+      "quizTopics": 7,
+      "questions": 35,
+      "reviewStatus": "assigned; pending editorial and integration review"
+    },
+    {
+      "id": "lecture-25",
+      "file": "course/lecture25.json",
+      "locale": "course/translations/lecture25.vi.json",
+      "title": "Acyclic Conjunctive Queries: Use the Tree Structure",
+      "goals": [
+        "Build a hypergraph from the query atoms",
+        "Check the running-intersection property and apply GYO reduction",
+        "Use bottom-up semijoins to answer a Boolean conjunctive query"
+      ],
+      "sections": [
+        {
+          "id": "l25-s1",
+          "title": "From atoms to hyperedges",
+          "viTitle": "Từ nguyên tử tới siêu cạnh",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=1",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=3"
+          ]
+        },
+        {
+          "id": "l25-s2",
+          "title": "Worked example: a chain and a triangle",
+          "viTitle": "Ví dụ: chuỗi và tam giác",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=4"
+          ]
+        },
+        {
+          "id": "l25-s3",
+          "title": "Apply GYO reduction by hand",
+          "viTitle": "Thực hiện GYO bằng tay",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=14",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=3"
+          ]
+        },
+        {
+          "id": "l25-s4",
+          "title": "Yannakakis: remove tuples that cannot contribute to a result",
+          "viTitle": "Yannakakis: bỏ các bộ không thể góp vào kết quả",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=27",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=27"
+          ]
+        },
+        {
+          "id": "l25-s5",
+          "title": "Why the tree structure matters",
+          "viTitle": "Vì sao cấu trúc cây giúp ích",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=28",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=27"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=1",
+          "label": "PDF pages 1–13"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=4",
+          "label": "PDF pages 4–13"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=14",
+          "label": "PDF pages 14–26"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=27",
+          "label": "PDF pages 27–36"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf#page=28",
+          "label": "PDF pages 28–37"
+        }
+      ],
+      "coverage": {
+        "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture25-cqs-fast-evaluation.pdf",
+        "verified": true,
+        "verifiedPages": "1–37",
+        "topics": [
+          "graph/hypergraph",
+          "treewidth context",
+          "join tree",
+          "running intersection",
+          "GYO reduction",
+          "acyclicity",
+          "Yannakakis",
+          "semijoin",
+          "Boolean evaluation"
+        ],
+        "limitations": [
+          "The stated time bound does not include enumerating an arbitrarily large output. This lesson focuses on the decision problem."
+        ]
+      },
+      "quizTopics": 5,
+      "questions": 25,
+      "reviewStatus": "assigned; pending editorial and integration review"
+    },
+    {
+      "id": "lecture-26",
+      "file": "course/lecture26.json",
+      "locale": "course/translations/lecture26.vi.json",
+      "title": "Parallel query processing: bringing data to each operator",
+      "goals": [
+        "Compare shared-memory, shared-disk, and shared-nothing architectures.",
+        "Choose a partitioning strategy that fits the workload.",
+        "Estimate broadcast and shuffle costs, and identify bottlenecks."
+      ],
+      "sections": [
+        {
+          "id": "l26-s1",
+          "title": "What is shared, and where does parallelism happen?",
+          "viTitle": "Tài nguyên nào được chia sẻ, công việc nào chạy song song?",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=1",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=2"
+          ]
+        },
+        {
+          "id": "l26-s2",
+          "title": "Choosing a partitioning strategy",
+          "viTitle": "Chọn chiến lược phân hoạch",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=12",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=12"
+          ]
+        },
+        {
+          "id": "l26-s3",
+          "title": "Parallel scans, sorts, and hash joins",
+          "viTitle": "Quét, sắp xếp và nối băm song song",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=20",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=22"
+          ]
+        },
+        {
+          "id": "l26-s4",
+          "title": "Four join scenarios",
+          "viTitle": "Bốn tình huống nối",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=27"
+          ]
+        },
+        {
+          "id": "l26-s5",
+          "title": "The critical path and data skew",
+          "viTitle": "Đường găng và lệch dữ liệu",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=43"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=1",
+          "label": "PDF pages 1–11"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=12",
+          "label": "PDF pages 12–19"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=20",
+          "label": "PDF pages 20–26"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=27",
+          "label": "PDF pages 27–42"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf#page=43",
+          "label": "PDF pages 43–45"
+        }
+      ],
+      "coverage": {
+        "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture26-parallel-query-processing.pdf",
+        "verified": true,
+        "verifiedPages": "1–45",
+        "topics": [
+          "shared architectures",
+          "inter/intra-query parallelism",
+          "pipeline/bushy/partition parallelism",
+          "round-robin/hash/range",
+          "replication",
+          "parallel scan",
+          "parallel sort/hash join",
+          "broadcast/shuffle",
+          "network cost",
+          "skew"
+        ],
+        "limitations": []
+      },
+      "quizTopics": 23,
+      "questions": 120,
+      "reviewStatus": "assigned; pending editorial and integration review"
+    },
+    {
+      "id": "lecture-27",
+      "file": "course/lecture27.json",
+      "locale": "course/translations/lecture27.vi.json",
+      "title": "NoSQL: choosing a model for the system requirements",
+      "goals": [
+        "Distinguish sharding from replication.",
+        "Explain the trade-off during a network partition.",
+        "Compare key-value, document, column-family, and graph data models."
+      ],
+      "sections": [
+        {
+          "id": "l27-s1",
+          "title": "Separate two design decisions",
+          "viTitle": "Tách hai quyết định thiết kế",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=1",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=2"
+          ]
+        },
+        {
+          "id": "l27-s2",
+          "title": "A network partition and a stale read",
+          "viTitle": "Mạng bị chia cắt và lần đọc dữ liệu cũ",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=9",
+            "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer6.pdf#page=2",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=9",
+            "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer6.pdf#page=2"
+          ]
+        },
+        {
+          "id": "l27-s3",
+          "title": "BASE and application requirements",
+          "viTitle": "BASE và yêu cầu ứng dụng",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=11",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=8"
+          ]
+        },
+        {
+          "id": "l27-s4",
+          "title": "Four models and the questions they answer",
+          "viTitle": "Bốn mô hình và các câu hỏi chúng phục vụ",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=12",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=12",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=15",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=13"
+          ]
+        },
+        {
+          "id": "l27-s5",
+          "title": "Practice choosing a design",
+          "viTitle": "Thực hành chọn thiết kế",
+          "sourceLinks": [
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=18",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=13",
+            "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=20"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=1",
+          "label": "PDF pages 1–8"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=9",
+          "label": "PDF pages 9–11"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=11",
+          "label": "PDF pages 11–14"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=12",
+          "label": "PDF pages 12–19"
+        },
+        {
+          "url": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf#page=18",
+          "label": "PDF pages 18–21"
+        },
+        {
+          "url": "https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer6.pdf#page=2",
+          "label": "Gilbert & Lynch: CAP definitions and theorem, PDF pages 2–4"
+        }
+      ],
+      "coverage": {
+        "pdfUrl": "https://opencourse.inf.ed.ac.uk/sites/default/files/https/opencourse.inf.ed.ac.uk/adbs/2026/lecture27-nosql.pdf",
+        "verified": true,
+        "verifiedPages": "1–21",
+        "topics": [
+          "NoSQL motivation",
+          "sharding",
+          "replication",
+          "CAP",
+          "ACID versus CAP consistency",
+          "BASE",
+          "key-value",
+          "document/JSON",
+          "column-family",
+          "graph queries",
+          "workload choice"
+        ],
+        "limitations": [
+          "The PDF simplifies the CAP diagram and its description of availability; this lesson provides a more precise interpretation.",
+          "The popularity chart is a historical snapshot from the PDF and is not presented as current data."
+        ]
+      },
+      "quizTopics": 16,
+      "questions": 80,
+      "reviewStatus": "assigned; pending editorial and integration review"
+    },
+    {
+      "id": "supplement-28",
+      "file": "course/supplements/supplement28.json",
+      "locale": "course/translations/supplement28.vi.json",
+      "title": "Learned DBMS components: predictions need a systems contract",
+      "goals": [
+        "Locate learning at cardinality estimation, cost/ranking, indexing and configuration boundaries.",
+        "Calculate q-error and end-to-end break-even cost.",
+        "Design a leakage-resistant evaluation with a safe conventional fallback."
+      ],
+      "sections": [
+        {
+          "id": "supplement-28-status",
+          "title": "Start here: prerequisites and course status",
+          "viTitle": "Bắt đầu: kiến thức cần có và vị trí của bài học",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-28-s1",
+          "title": "Four places to introduce learning",
+          "viTitle": "Bốn vị trí có thể đưa học máy vào",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-28-s2",
+          "title": "Worked example: correlation and q-error",
+          "viTitle": "Ví dụ: tương quan giữa thuộc tính và q-error",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-28-s3",
+          "title": "Prediction quality versus end-to-end benefit",
+          "viTitle": "Chất lượng dự đoán có trở thành lợi ích toàn bộ quá trình không?",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-28-s4",
+          "title": "Read recent research as testable claims",
+          "viTitle": "Đọc nghiên cứu mới như những phát biểu có thể kiểm tra",
+          "sourceLinks": [
+            "https://www.vldb.org/pvldb/vol17/p1565-lehmann.pdf",
+            "https://www.vldb.org/pvldb/vol18/p2519-wu.pdf",
+            "https://arxiv.org/abs/2306.14075"
+          ]
+        },
+        {
+          "id": "supplement-28-s5",
+          "title": "Paper-first experiment: generalization without leakage",
+          "viTitle": "Thí nghiệm trên giấy: kiểm tra tổng quát hóa mà không rò rỉ",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-28-s6",
+          "title": "Seminar exercise and answer",
+          "viTitle": "Bài tập seminar và câu trả lời",
+          "sourceLinks": []
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.vldb.org/pvldb/vol17/p1565-lehmann.pdf",
+          "label": "Is Your Learned Query Optimizer Behaving As You Expect? A Machine Learning Perspective · Published peer-reviewed research / evaluation"
+        },
+        {
+          "url": "https://www.vldb.org/pvldb/vol18/p2519-wu.pdf",
+          "label": "Data-Agnostic Cardinality Learning from Imperfect Workloads · Published peer-reviewed research"
+        },
+        {
+          "url": "https://arxiv.org/abs/2306.14075",
+          "label": "Join Size Bounds using Lp-Norms on Degree Sequences · Accepted PODS 2024 paper; linked arXiv is an author manuscript first posted in 2023"
+        }
+      ],
+      "coverage": {
+        "verified": false,
+        "status": "Supplemental content with verified primary references; official Canvas reading alignment unverified",
+        "sourceEvidenceVerified": true,
+        "officialCourseMaterialVerified": false,
+        "module": 11,
+        "week": 11,
+        "syllabusTopics": [
+          "learned DBMS components",
+          "cardinality estimation",
+          "learned cost models and indexes",
+          "robust experimental design",
+          "recent SIGMOD/VLDB/ICDE/PODS reading"
+        ],
+        "topics": [
+          "learned DBMS components",
+          "cardinality estimation",
+          "learned cost models and indexes",
+          "robust experimental design",
+          "recent SIGMOD/VLDB/ICDE/PODS reading"
+        ],
+        "limitations": [
+          "Canvas-assigned paper list is unavailable.",
+          "Lesson is an original supplement, not a reconstructed official lecture.",
+          "No assessment rubric, deadline, presentation duration or submission format is asserted."
+        ],
+        "sourceKeys": [
+          "lqo",
+          "grasp",
+          "lp"
+        ]
+      },
+      "quizTopics": 1,
+      "questions": 5,
+      "reviewStatus": "assigned; pending editorial and integration review"
+    },
+    {
+      "id": "supplement-29",
+      "file": "course/supplements/supplement29.json",
+      "locale": "course/translations/supplement29.vi.json",
+      "title": "Vector databases: the recall, memory and latency contract",
+      "goals": [
+        "Define exact top-k and ANN recall using the same metric and filter.",
+        "Compare graph traversal, inverted-file pruning and vector compression.",
+        "Design a recall-matched single-GPU experiment and explain multi-GPU limits."
+      ],
+      "sections": [
+        {
+          "id": "supplement-29-status",
+          "title": "Start here: prerequisites and course status",
+          "viTitle": "Bắt đầu: kiến thức cần có và vị trí của bài học",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-29-s1",
+          "title": "Start with exact semantics",
+          "viTitle": "Bắt đầu từ ý nghĩa của kết quả chính xác",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-29-s2",
+          "title": "Three complementary design choices",
+          "viTitle": "Ba lựa chọn thiết kế có thể kết hợp",
+          "sourceLinks": [
+            "https://github.com/pgvector/pgvector"
+          ]
+        },
+        {
+          "id": "supplement-29-s3",
+          "title": "Worked example: recall and filtering",
+          "viTitle": "Ví dụ: recall thay đổi khi có bộ lọc",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-29-s4",
+          "title": "Read two recent approaches",
+          "viTitle": "Đọc hai hướng tiếp cận mới",
+          "sourceLinks": [
+            "https://arxiv.org/abs/2308.15136",
+            "https://arxiv.org/abs/2405.12497"
+          ]
+        },
+        {
+          "id": "supplement-29-s5",
+          "title": "H100-sized mini-experiment: one GPU first",
+          "viTitle": "Thí nghiệm nhỏ phù hợp H100: bắt đầu với một GPU",
+          "sourceLinks": [
+            "https://docs.nvidia.com/cuvs/user-guide/api-guides/indexing-guide/cagra",
+            "https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies",
+            "https://docs.nvidia.com/cuvs/installation"
+          ]
+        },
+        {
+          "id": "supplement-29-s6",
+          "title": "Exercises, failure cases and takeaways",
+          "viTitle": "Bài tập, trường hợp thất bại và điều cần nhớ",
+          "sourceLinks": []
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://arxiv.org/abs/2308.15136",
+          "label": "CAGRA: Highly Parallel Graph Construction and Approximate Nearest Neighbor Search for GPUs · Accepted ICDE 2024 paper; linked author manuscript v2 revised July 2024, first posted August 2023"
+        },
+        {
+          "url": "https://arxiv.org/abs/2405.12497",
+          "label": "RaBitQ: Quantizing High-Dimensional Vectors with a Theoretical Error Bound for Approximate Nearest Neighbor Search · Accepted SIGMOD 2024 paper; linked author manuscript explicitly confirms acceptance"
+        },
+        {
+          "url": "https://docs.nvidia.com/cuvs/user-guide/api-guides/indexing-guide/cagra",
+          "label": "NVIDIA cuVS: CAGRA guide · Official software documentation, checked 2026-10-11"
+        },
+        {
+          "url": "https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies",
+          "label": "NVIDIA cuVS: Benchmarking methodologies · Official software documentation, checked 2026-10-11"
+        },
+        {
+          "url": "https://docs.nvidia.com/cuvs/installation",
+          "label": "NVIDIA cuVS: Installation · Official software documentation, checked 2026-10-11; version-sensitive"
+        },
+        {
+          "url": "https://github.com/pgvector/pgvector",
+          "label": "pgvector official repository documentation · Official software documentation, checked 2026-10-11; version-sensitive"
+        }
+      ],
+      "coverage": {
+        "verified": false,
+        "status": "Supplemental content with verified primary references; official Canvas reading alignment unverified",
+        "sourceEvidenceVerified": true,
+        "officialCourseMaterialVerified": false,
+        "module": 11,
+        "week": 11,
+        "syllabusTopics": [
+          "vector databases and ANN search",
+          "GPU graph search",
+          "quantization",
+          "filtered search",
+          "H100 experiment design"
+        ],
+        "topics": [
+          "vector databases and ANN search",
+          "GPU graph search",
+          "quantization",
+          "filtered search",
+          "H100 experiment design"
+        ],
+        "limitations": [
+          "Canvas-assigned paper list is unavailable.",
+          "Lesson is an original supplement, not a reconstructed official lecture.",
+          "No assessment rubric, deadline, presentation duration or submission format is asserted."
+        ],
+        "sourceKeys": [
+          "cagra",
+          "rabitq",
+          "cuvs",
+          "cuvsbench",
+          "cuvsinstall",
+          "pgvector"
+        ]
+      },
+      "quizTopics": 1,
+      "questions": 5,
+      "reviewStatus": "assigned; pending editorial and integration review"
+    },
+    {
+      "id": "supplement-30",
+      "file": "course/supplements/supplement30.json",
+      "locale": "course/translations/supplement30.vi.json",
+      "title": "LLMs for data systems: semantic operators with measurable quality",
+      "goals": [
+        "Distinguish LLM-assisted database control from LLM-powered data processing.",
+        "Calculate filter/cascade costs without assuming quality is unchanged.",
+        "Evaluate semantic pipelines against human labels and reference algorithms separately."
+      ],
+      "sections": [
+        {
+          "id": "supplement-30-status",
+          "title": "Start here: prerequisites and course status",
+          "viTitle": "Bắt đầu: kiến thức cần có và vị trí của bài học",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-30-s1",
+          "title": "Two directions, two correctness problems",
+          "viTitle": "Hai hướng sử dụng, hai vấn đề về tính đúng",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-30-s2",
+          "title": "Worked example: push a cheap filter before an expensive operator",
+          "viTitle": "Ví dụ: đưa bộ lọc rẻ trước toán tử đắt",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-30-s3",
+          "title": "Recent systems and what their guarantees mean",
+          "viTitle": "Hệ thống mới và ý nghĩa của bảo đảm",
+          "sourceLinks": [
+            "https://www.vldb.org/pvldb/vol18/p4171-patel.pdf",
+            "https://www.vldb.org/pvldb/vol18/p3035-shankar.pdf"
+          ]
+        },
+        {
+          "id": "supplement-30-s4",
+          "title": "A complete quality and cost evaluation",
+          "viTitle": "Đánh giá đầy đủ cả chất lượng lẫn chi phí",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-30-s5",
+          "title": "H100-sized mini-experiment: semantic-filter batching and cascades",
+          "viTitle": "Thí nghiệm nhỏ phù hợp H100: batch và cascade cho lọc ngữ nghĩa",
+          "sourceLinks": [
+            "https://docs.vllm.ai/en/stable/configuration/optimization/"
+          ]
+        },
+        {
+          "id": "supplement-30-s6",
+          "title": "From a prototype to a safe research claim",
+          "viTitle": "Từ prototype đến phát biểu nghiên cứu có cơ sở",
+          "sourceLinks": []
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.vldb.org/pvldb/vol18/p4171-patel.pdf",
+          "label": "Semantic Operators and Their Optimization: Enabling LLM-Based Data Processing with Accuracy Guarantees in LOTUS · Published peer-reviewed research; use published title, not earlier preprint title"
+        },
+        {
+          "url": "https://www.vldb.org/pvldb/vol18/p3035-shankar.pdf",
+          "label": "DocETL: Agentic Query Rewriting and Evaluation for Complex Document Processing · Published peer-reviewed research"
+        },
+        {
+          "url": "https://docs.vllm.ai/en/stable/configuration/optimization/",
+          "label": "vLLM Optimization and Tuning · Official software documentation, checked 2026-10-11; version-sensitive"
+        }
+      ],
+      "coverage": {
+        "verified": false,
+        "status": "Supplemental content with verified primary references; official Canvas reading alignment unverified",
+        "sourceEvidenceVerified": true,
+        "officialCourseMaterialVerified": false,
+        "module": 11,
+        "week": 12,
+        "syllabusTopics": [
+          "LLMs for data systems",
+          "semantic operators",
+          "text-to-SQL validation",
+          "quality-cost trade-offs",
+          "H100 inference experiment design"
+        ],
+        "topics": [
+          "LLMs for data systems",
+          "semantic operators",
+          "text-to-SQL validation",
+          "quality-cost trade-offs",
+          "H100 inference experiment design"
+        ],
+        "limitations": [
+          "Canvas-assigned paper list is unavailable.",
+          "Lesson is an original supplement, not a reconstructed official lecture.",
+          "No assessment rubric, deadline, presentation duration or submission format is asserted."
+        ],
+        "sourceKeys": [
+          "lotus",
+          "docetl",
+          "vllm"
+        ]
+      },
+      "quizTopics": 1,
+      "questions": 5,
+      "reviewStatus": "assigned; pending editorial and integration review"
+    },
+    {
+      "id": "supplement-31",
+      "file": "course/supplements/supplement31.json",
+      "locale": "course/translations/supplement31.vi.json",
+      "title": "Cloud-native and disaggregated DBMSs: locality becomes a protocol",
+      "goals": [
+        "Compare shared-nothing, shared-storage and compute-memory-storage designs.",
+        "Trace page ownership, write-ahead logging and recovery responsibilities.",
+        "Estimate remote-access costs and design a workload/failure experiment."
+      ],
+      "sections": [
+        {
+          "id": "supplement-31-status",
+          "title": "Start here: prerequisites and course status",
+          "viTitle": "Bắt đầu: kiến thức cần có và vị trí của bài học",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-31-s1",
+          "title": "Draw the resource and responsibility boundaries",
+          "viTitle": "Vẽ ranh giới tài nguyên và trách nhiệm",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-31-s2",
+          "title": "Worked example: latency, bandwidth and caching",
+          "viTitle": "Ví dụ: độ trễ, băng thông và caching",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-31-s3",
+          "title": "Multi-primary writes and recovery",
+          "viTitle": "Nhiều primary ghi và trách nhiệm khôi phục",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-31-s4",
+          "title": "Read two concrete multi-primary designs",
+          "viTitle": "Đọc hai thiết kế multi-primary cụ thể",
+          "sourceLinks": [
+            "https://cighao.com/papers/polardb_mp.pdf",
+            "https://www.vldb.org/pvldb/vol17/p3786-li.pdf",
+            "https://neon.com/blog/architecture-decisions-in-neon"
+          ]
+        },
+        {
+          "id": "supplement-31-s5",
+          "title": "Mini-experiment: isolate the benefit and the network cost",
+          "viTitle": "Thí nghiệm nhỏ: tách lợi ích khỏi chi phí mạng",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-31-s6",
+          "title": "Exercises and synthesis",
+          "viTitle": "Bài tập và kết nối lại kiến thức nền",
+          "sourceLinks": []
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://cighao.com/papers/polardb_mp.pdf",
+          "label": "PolarDB-MP: A Multi-Primary Cloud-Native Database via Disaggregated Shared Memory · Published industrial paper; not a SIGMOD research-track or PODS paper"
+        },
+        {
+          "url": "https://www.vldb.org/pvldb/vol17/p3786-li.pdf",
+          "label": "GaussDB: A Cloud-Native Multi-Primary Database with Compute-Memory-Storage Disaggregation · Published industrial/system paper"
+        },
+        {
+          "url": "https://neon.com/blog/architecture-decisions-in-neon",
+          "label": "Architecture decisions in Neon · Official engineering design account; historical architecture example"
+        }
+      ],
+      "coverage": {
+        "verified": false,
+        "status": "Supplemental content with verified primary references; official Canvas reading alignment unverified",
+        "sourceEvidenceVerified": true,
+        "officialCourseMaterialVerified": false,
+        "module": 11,
+        "week": 12,
+        "syllabusTopics": [
+          "cloud-native DBMSs",
+          "disaggregated compute/memory/storage",
+          "multi-primary ownership",
+          "WAL and recovery",
+          "experimental scope"
+        ],
+        "topics": [
+          "cloud-native DBMSs",
+          "disaggregated compute/memory/storage",
+          "multi-primary ownership",
+          "WAL and recovery",
+          "experimental scope"
+        ],
+        "limitations": [
+          "Canvas-assigned paper list is unavailable.",
+          "Lesson is an original supplement, not a reconstructed official lecture.",
+          "No assessment rubric, deadline, presentation duration or submission format is asserted."
+        ],
+        "sourceKeys": [
+          "polar",
+          "gauss",
+          "neon"
+        ]
+      },
+      "quizTopics": 1,
+      "questions": 5,
+      "reviewStatus": "assigned; pending editorial and integration review"
+    },
+    {
+      "id": "supplement-32",
+      "file": "course/supplements/supplement32.json",
+      "locale": "course/translations/supplement32.vi.json",
+      "title": "Project clinic: turn a topic into a falsifiable research question",
+      "goals": [
+        "Write a bounded research claim with a falsification condition.",
+        "Connect a proposed mechanism to an observed bottleneck.",
+        "Prepare concrete evidence and decisions for an instructor consultation."
+      ],
+      "sections": [
+        {
+          "id": "supplement-32-status",
+          "title": "Start here: prerequisites and course status",
+          "viTitle": "Bắt đầu: kiến thức cần có và vị trí của bài học",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-32-s1",
+          "title": "The research-question contract",
+          "viTitle": "Câu hỏi nghiên cứu phải cam kết điều gì?",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-32-s2",
+          "title": "Use a causal chain to justify the mechanism",
+          "viTitle": "Dùng chuỗi nhân quả để giải thích cơ chế",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-32-s3",
+          "title": "Build a literature-and-evidence matrix",
+          "viTitle": "Lập bảng nối tài liệu với bằng chứng",
+          "sourceLinks": [
+            "https://www.vldb.org/pvldb/vol17/p1565-lehmann.pdf",
+            "https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies"
+          ]
+        },
+        {
+          "id": "supplement-32-s4",
+          "title": "Worked example: a one-page research charter",
+          "viTitle": "Ví dụ: bản đề cương nghiên cứu một trang",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-32-s5",
+          "title": "Prepare an instructor consultation that can change the project",
+          "viTitle": "Chuẩn bị buổi trao đổi có thể thay đổi đề tài",
+          "sourceLinks": []
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.vldb.org/pvldb/vol17/p1565-lehmann.pdf",
+          "label": "Is Your Learned Query Optimizer Behaving As You Expect? A Machine Learning Perspective · Published peer-reviewed research / evaluation"
+        },
+        {
+          "url": "https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies",
+          "label": "NVIDIA cuVS: Benchmarking methodologies · Official software documentation, checked 2026-10-11"
+        }
+      ],
+      "coverage": {
+        "verified": false,
+        "status": "Supplemental content with verified primary references; official Canvas reading alignment unverified",
+        "sourceEvidenceVerified": true,
+        "officialCourseMaterialVerified": false,
+        "module": 12,
+        "week": 13,
+        "syllabusTopics": [
+          "project clinic",
+          "supervised research",
+          "research question",
+          "literature review",
+          "instructor consultation"
+        ],
+        "topics": [
+          "project clinic",
+          "supervised research",
+          "research question",
+          "literature review",
+          "instructor consultation"
+        ],
+        "limitations": [
+          "Canvas-assigned paper list is unavailable.",
+          "Lesson is an original supplement, not a reconstructed official lecture.",
+          "No assessment rubric, deadline, presentation duration or submission format is asserted."
+        ],
+        "sourceKeys": [
+          "lqo",
+          "cuvsbench"
+        ]
+      },
+      "quizTopics": 1,
+      "questions": 5,
+      "reviewStatus": "assigned; pending editorial and integration review"
+    },
+    {
+      "id": "supplement-33",
+      "file": "course/supplements/supplement33.json",
+      "locale": "course/translations/supplement33.vi.json",
+      "title": "Project clinic: trustworthy baselines and measurements",
+      "goals": [
+        "Choose baselines that isolate the claimed improvement.",
+        "Distinguish workload-total, per-query and tail metrics.",
+        "Design repeatable timing, split and timeout policies."
+      ],
+      "sections": [
+        {
+          "id": "supplement-33-status",
+          "title": "Start here: prerequisites and course status",
+          "viTitle": "Bắt đầu: kiến thức cần có và vị trí của bài trong khóa học",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-33-s1",
+          "title": "Choose what the baseline is supposed to answer",
+          "viTitle": "Chọn phương án đối chứng theo câu hỏi cần trả lời",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-33-s2",
+          "title": "Worked example: aggregate speedup can reverse the story",
+          "viTitle": "Ví dụ có lời giải: speedup tổng hợp có thể kể câu chuyện ngược lại",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-33-s3",
+          "title": "Control the measurement boundary",
+          "viTitle": "Xác định rõ ranh giới của phép đo",
+          "sourceLinks": [
+            "https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies"
+          ]
+        },
+        {
+          "id": "supplement-33-s4",
+          "title": "Build a minimal evaluation matrix",
+          "viTitle": "Lập ma trận đánh giá tối thiểu",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-33-s5",
+          "title": "Report uncertainty and make the consultation useful",
+          "viTitle": "Báo độ bất định và chuẩn bị buổi tư vấn có ích",
+          "sourceLinks": []
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.vldb.org/pvldb/vol17/p1565-lehmann.pdf",
+          "label": "Is Your Learned Query Optimizer Behaving As You Expect? A Machine Learning Perspective · Published peer-reviewed research / evaluation"
+        },
+        {
+          "url": "https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies",
+          "label": "NVIDIA cuVS: Benchmarking methodologies · Official software documentation, checked 2026-10-11"
+        }
+      ],
+      "coverage": {
+        "verified": false,
+        "status": "Supplemental content with verified primary references; official Canvas reading alignment unverified",
+        "sourceEvidenceVerified": true,
+        "officialCourseMaterialVerified": false,
+        "module": 12,
+        "week": 13,
+        "syllabusTopics": [
+          "project clinic",
+          "baseline selection",
+          "measurement methodology",
+          "experimental design",
+          "uncertainty and timeouts"
+        ],
+        "topics": [
+          "project clinic",
+          "baseline selection",
+          "measurement methodology",
+          "experimental design",
+          "uncertainty and timeouts"
+        ],
+        "limitations": [
+          "Canvas-assigned paper list is unavailable.",
+          "Lesson is an original supplement, not a reconstructed official lecture.",
+          "No assessment rubric, deadline, presentation duration or submission format is asserted."
+        ],
+        "sourceKeys": [
+          "lqo",
+          "cuvsbench"
+        ]
+      },
+      "quizTopics": 1,
+      "questions": 5,
+      "reviewStatus": "assigned; pending editorial and integration review"
+    },
+    {
+      "id": "supplement-34",
+      "file": "course/supplements/supplement34.json",
+      "locale": "course/translations/supplement34.vi.json",
+      "title": "Project clinic: ablations, counterexamples and negative results",
+      "goals": [
+        "Design ablations that isolate mechanisms without quietly changing the task.",
+        "Interpret interacting components using a small factorial experiment.",
+        "Turn failures and negative results into bounded, useful conclusions."
+      ],
+      "sections": [
+        {
+          "id": "supplement-34-status",
+          "title": "Start here: prerequisites and course status",
+          "viTitle": "Bắt đầu: kiến thức cần có và vị trí của bài trong khóa học",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-34-s1",
+          "title": "From a system result to a mechanism claim",
+          "viTitle": "Từ kết quả của hệ thống đến tuyên bố về cơ chế",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-34-s2",
+          "title": "Worked example: interactions between cache and batching",
+          "viTitle": "Ví dụ có lời giải: cache và batching tương tác với nhau",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-34-s3",
+          "title": "Stress the assumptions deliberately",
+          "viTitle": "Chủ động thử điều kiện làm giả định không còn đúng",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-34-s4",
+          "title": "A negative result is a result after the controls are checked",
+          "viTitle": "Kết quả không cải thiện có giá trị sau khi kiểm tra điều kiện đối chứng",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-34-s5",
+          "title": "Revise the claim and consultation decisions",
+          "viTitle": "Điều chỉnh tuyên bố và ghi quyết định tư vấn",
+          "sourceLinks": []
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://www.vldb.org/pvldb/vol17/p1565-lehmann.pdf",
+          "label": "Is Your Learned Query Optimizer Behaving As You Expect? A Machine Learning Perspective · Published peer-reviewed research / evaluation"
+        },
+        {
+          "url": "https://www.vldb.org/pvldb/vol18/p2519-wu.pdf",
+          "label": "Data-Agnostic Cardinality Learning from Imperfect Workloads · Published peer-reviewed research"
+        },
+        {
+          "url": "https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies",
+          "label": "NVIDIA cuVS: Benchmarking methodologies · Official software documentation, checked 2026-10-11"
+        }
+      ],
+      "coverage": {
+        "verified": false,
+        "status": "Supplemental content with verified primary references; official Canvas reading alignment unverified",
+        "sourceEvidenceVerified": true,
+        "officialCourseMaterialVerified": false,
+        "module": 12,
+        "week": 14,
+        "syllabusTopics": [
+          "project clinic",
+          "ablation studies",
+          "mechanism analysis",
+          "negative results",
+          "research consultation"
+        ],
+        "topics": [
+          "project clinic",
+          "ablation studies",
+          "mechanism analysis",
+          "negative results",
+          "research consultation"
+        ],
+        "limitations": [
+          "Canvas-assigned paper list is unavailable.",
+          "Lesson is an original supplement, not a reconstructed official lecture.",
+          "No assessment rubric, deadline, presentation duration or submission format is asserted."
+        ],
+        "sourceKeys": [
+          "lqo",
+          "grasp",
+          "cuvsbench"
+        ]
+      },
+      "quizTopics": 1,
+      "questions": 5,
+      "reviewStatus": "assigned; pending editorial and integration review"
+    },
+    {
+      "id": "supplement-35",
+      "file": "course/supplements/supplement35.json",
+      "locale": "course/translations/supplement35.vi.json",
+      "title": "Project clinic: reproducible artifacts and defensible conclusions",
+      "goals": [
+        "Package the evidence required to rerun a result.",
+        "Separate a smoke test from a full scientific reproduction.",
+        "Audit cost, data permission, limitations and claims before presenting."
+      ],
+      "sections": [
+        {
+          "id": "supplement-35-status",
+          "title": "Start here: prerequisites and course status",
+          "viTitle": "Bắt đầu: kiến thức cần có và vị trí của bài trong khóa học",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-35-s1",
+          "title": "Define the artifact boundary",
+          "viTitle": "Xác định bộ hiện vật cần chứa những gì",
+          "sourceLinks": [
+            "https://sigsim.acm.org/conf/pads/2024/blog/artifact-evaluation/"
+          ]
+        },
+        {
+          "id": "supplement-35-s2",
+          "title": "Worked example: a minimal run manifest",
+          "viTitle": "Ví dụ có lời giải: hồ sơ tối thiểu cho một lượt chạy",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-35-s3",
+          "title": "A two-level execution path",
+          "viTitle": "Tách đường chạy thử cơ bản và đường chạy đầy đủ",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-35-s4",
+          "title": "Budget the experiment rather than only the final run",
+          "viTitle": "Tính ngân sách cho cả thí nghiệm, không chỉ lượt cuối",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-35-s5",
+          "title": "Assemble a report that does not overclaim",
+          "viTitle": "Ghép báo cáo mà không nói quá bằng chứng",
+          "sourceLinks": []
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://sigsim.acm.org/conf/pads/2024/blog/artifact-evaluation/",
+          "label": "ACM SIGSIM PADS 2024: Reproducibility and Artifact Evaluation · Official ACM conference guidance; used as a general example, not the course rubric"
+        },
+        {
+          "url": "https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies",
+          "label": "NVIDIA cuVS: Benchmarking methodologies · Official software documentation, checked 2026-10-11"
+        }
+      ],
+      "coverage": {
+        "verified": false,
+        "status": "Supplemental content with verified primary references; official Canvas reading alignment unverified",
+        "sourceEvidenceVerified": true,
+        "officialCourseMaterialVerified": false,
+        "module": 12,
+        "week": 14,
+        "syllabusTopics": [
+          "project clinic",
+          "reproducibility",
+          "artifact packaging",
+          "research reporting",
+          "resource planning"
+        ],
+        "topics": [
+          "project clinic",
+          "reproducibility",
+          "artifact packaging",
+          "research reporting",
+          "resource planning"
+        ],
+        "limitations": [
+          "Canvas-assigned paper list is unavailable.",
+          "Lesson is an original supplement, not a reconstructed official lecture.",
+          "No assessment rubric, deadline, presentation duration or submission format is asserted."
+        ],
+        "sourceKeys": [
+          "artifact",
+          "cuvsbench"
+        ]
+      },
+      "quizTopics": 1,
+      "questions": 5,
+      "reviewStatus": "assigned; pending editorial and integration review"
+    },
+    {
+      "id": "supplement-36",
+      "file": "course/supplements/supplement36.json",
+      "locale": "course/translations/supplement36.vi.json",
+      "title": "Research symposium: build a conference-style research story",
+      "goals": [
+        "Organize a talk around one supported claim.",
+        "Explain a mechanism with a small worked example before benchmarks.",
+        "Design readable evidence slides and coordinated group handoffs."
+      ],
+      "sections": [
+        {
+          "id": "supplement-36-status",
+          "title": "Start here: prerequisites and course status",
+          "viTitle": "Bắt đầu: kiến thức cần có và vị trí của bài trong khóa học",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-36-s1",
+          "title": "The research story in four questions",
+          "viTitle": "Dẫn câu chuyện nghiên cứu bằng bốn câu hỏi",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-36-s2",
+          "title": "An adaptable presentation outline",
+          "viTitle": "Dàn ý có thể điều chỉnh theo bài nói thực tế",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-36-s3",
+          "title": "Worked example: replace a headline with an argument",
+          "viTitle": "Ví dụ có lời giải: thay một khẩu hiệu bằng lập luận",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-36-s4",
+          "title": "Group presentation as one coherent explanation",
+          "viTitle": "Biến bài trình bày nhóm thành một lời giải thích liền mạch",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-36-s5",
+          "title": "Citations, backup evidence and rehearsal",
+          "viTitle": "Trích nguồn, bằng chứng dự phòng và tập trình bày",
+          "sourceLinks": []
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://sigsim.acm.org/conf/pads/2024/blog/artifact-evaluation/",
+          "label": "ACM SIGSIM PADS 2024: Reproducibility and Artifact Evaluation · Official ACM conference guidance; used as a general example, not the course rubric"
+        },
+        {
+          "url": "https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies",
+          "label": "NVIDIA cuVS: Benchmarking methodologies · Official software documentation, checked 2026-10-11"
+        }
+      ],
+      "coverage": {
+        "verified": false,
+        "status": "Supplemental content with verified primary references; official Canvas reading alignment unverified",
+        "sourceEvidenceVerified": true,
+        "officialCourseMaterialVerified": false,
+        "module": 13,
+        "week": 15,
+        "syllabusTopics": [
+          "research symposium",
+          "conference-style group presentation",
+          "presentation structure",
+          "evidence communication",
+          "research attribution"
+        ],
+        "topics": [
+          "research symposium",
+          "conference-style group presentation",
+          "presentation structure",
+          "evidence communication",
+          "research attribution"
+        ],
+        "limitations": [
+          "Canvas-assigned paper list is unavailable.",
+          "Lesson is an original supplement, not a reconstructed official lecture.",
+          "No assessment rubric, deadline, presentation duration or submission format is asserted."
+        ],
+        "sourceKeys": [
+          "artifact",
+          "cuvsbench"
+        ]
+      },
+      "quizTopics": 1,
+      "questions": 5,
+      "reviewStatus": "assigned; pending editorial and integration review"
+    },
+    {
+      "id": "supplement-37",
+      "file": "course/supplements/supplement37.json",
+      "locale": "course/translations/supplement37.vi.json",
+      "title": "Research symposium: defend, review and close the evidence loop",
+      "goals": [
+        "Answer critical questions with evidence and calibrated uncertainty.",
+        "Give actionable peer feedback without inventing a grading scheme.",
+        "Identify the next experiment and preserve the final artifact."
+      ],
+      "sections": [
+        {
+          "id": "supplement-37-status",
+          "title": "Start here: prerequisites and course status",
+          "viTitle": "Bắt đầu: kiến thức cần có và vị trí của bài trong khóa học",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-37-s1",
+          "title": "Prepare for four kinds of questions",
+          "viTitle": "Chuẩn bị cho bốn loại câu hỏi",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-37-s2",
+          "title": "Worked discussion: three strong responses",
+          "viTitle": "Ví dụ thảo luận: ba câu trả lời có cơ sở",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-37-s3",
+          "title": "Peer review that helps another group improve",
+          "viTitle": "Phản biện để giúp nhóm khác cải thiện",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-37-s4",
+          "title": "Synthesize the frontier themes with the core course",
+          "viTitle": "Nối các hướng nghiên cứu mới với kiến thức cốt lõi",
+          "sourceLinks": []
+        },
+        {
+          "id": "supplement-37-s5",
+          "title": "Close the project with an evidence handoff",
+          "viTitle": "Kết thúc dự án bằng bàn giao bằng chứng",
+          "sourceLinks": []
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://sigsim.acm.org/conf/pads/2024/blog/artifact-evaluation/",
+          "label": "ACM SIGSIM PADS 2024: Reproducibility and Artifact Evaluation · Official ACM conference guidance; used as a general example, not the course rubric"
+        },
+        {
+          "url": "https://docs.nvidia.com/cuvs/user-guide/benchmarking-guide/methodologies",
+          "label": "NVIDIA cuVS: Benchmarking methodologies · Official software documentation, checked 2026-10-11"
+        },
+        {
+          "url": "https://arxiv.org/abs/2306.14075",
+          "label": "Join Size Bounds using Lp-Norms on Degree Sequences · Accepted PODS 2024 paper; linked arXiv is an author manuscript first posted in 2023"
+        }
+      ],
+      "coverage": {
+        "verified": false,
+        "status": "Supplemental content with verified primary references; official Canvas reading alignment unverified",
+        "sourceEvidenceVerified": true,
+        "officialCourseMaterialVerified": false,
+        "module": 13,
+        "week": 15,
+        "syllabusTopics": [
+          "research symposium",
+          "group presentations",
+          "research defense",
+          "peer feedback",
+          "research synthesis"
+        ],
+        "topics": [
+          "research symposium",
+          "group presentations",
+          "research defense",
+          "peer feedback",
+          "research synthesis"
+        ],
+        "limitations": [
+          "Canvas-assigned paper list is unavailable.",
+          "Lesson is an original supplement, not a reconstructed official lecture.",
+          "No assessment rubric, deadline, presentation duration or submission format is asserted."
+        ],
+        "sourceKeys": [
+          "artifact",
+          "cuvsbench",
+          "lp"
+        ]
+      },
+      "quizTopics": 1,
+      "questions": 5,
+      "reviewStatus": "assigned; pending editorial and integration review"
+    }
+  ]
+}

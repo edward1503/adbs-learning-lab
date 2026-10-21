@@ -87,7 +87,7 @@
             "Không xác định khi đã cache",
             "true"
           ],
-          "explanation": "Cập nhật dùng OR. Đối số false không xóa sửa đổi trước đó."
+          "explanation": "Thả ghim cập nhật cờ bẩn bằng old_dirty OR modified_by_this_use. Ở đây true OR false vẫn true: lượt này không sửa thêm nhưng sửa đổi trước vẫn cần giữ. Số ghim giảm một độc lập với cờ bẩn."
         },
         {
           "id": "l05-pin-unpin-q3",
@@ -159,7 +159,7 @@
             "2",
             "4"
           ],
-          "explanation": "A/B miss; A lần hai hit và cập nhật recency; C miss thay B."
+          "explanation": "Theo thứ tự lâu nhất→mới nhất: A trượt cho [A]; B trượt cho [A,B]; A trúng đổi thành [B,A]; C trượt thay B, còn [A,C]. Yêu cầu 1,2,4 trượt: ba lần đọc khi trang sạch. Thả ghim ngay làm mọi trang còn lại đủ điều kiện ở yêu cầu tiếp."
         },
         {
           "id": "l05-lru-q4",

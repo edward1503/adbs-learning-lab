@@ -43,7 +43,7 @@
         },
         {
           "id": "l24-evaluation-complexity-q3",
-          "prompt": "Why does the lecture ask whether a tuple t belongs to Q(D), rather than always requiring the entire output to be printed?",
+          "prompt": "Why measure whether t belongs to Q(D), separately from printing every answer?",
           "options": [
             "A CQ cannot output more than one tuple",
             "Membership lets us count the entire output in constant time",
@@ -51,14 +51,14 @@
             "The output is always smaller than the query"
           ],
           "answer": 2,
-          "explanation": "This separates the cost of deciding membership from the size of the output. The query still has an output, but printing it is not the task being measured.",
+          "explanation": "A query can have a huge output even when one membership test is easy. The decision problem asks only YES or NO for t; printing the full result also pays for each output tuple.",
           "pages": [
             10
           ]
         },
         {
           "id": "l24-evaluation-complexity-q4",
-          "prompt": "Which complexity result does the lecture state for CQ evaluation?",
+          "prompt": "For general positive CQs under set semantics, how do combined and data complexity differ?",
           "options": [
             "PTIME combined complexity but undecidable data complexity",
             "NP-complete data complexity for every fixed Q",
@@ -66,7 +66,7 @@
             "NP-complete combined complexity and PTIME data complexity"
           ],
           "answer": 3,
-          "explanation": "The two statements use different complexity measures, so they do not conflict. The combined-complexity result does not make evaluation of every fixed query NP-complete.",
+          "explanation": "Combined complexity allows the query and its number of variables to grow; data complexity fixes the query. A fixed k makes n^k polynomial in n. General combined membership is NP-complete; that does not make every fixed query hard.",
           "pages": [
             12
           ]
@@ -250,7 +250,7 @@
         },
         {
           "id": "l24-static-analysis-q5",
-          "prompt": "According to the lecture, what is the general complexity of CQ-Containment and CQ-Equivalence?",
+          "prompt": "For unrestricted positive CQs supplied as input under set semantics, what is the complexity of containment and equivalence?",
           "options": [
             "Undecidable",
             "Always constant time",
@@ -258,7 +258,7 @@
             "PTIME simply because every CQ is satisfiable"
           ],
           "answer": 2,
-          "explanation": "Easy satisfiability does not imply easy containment. The homomorphism theorem leads to the NP-completeness of these two problems.",
+          "explanation": "Both are NP-complete in this model. A proposed head- and constant-preserving mapping can be verified in polynomial time; finding a suitable mapping can be hard. Easy satisfiability from a canonical database does not settle containment.",
           "pages": [
             30,
             31
@@ -307,7 +307,7 @@
         },
         {
           "id": "l24-canonical-q3",
-          "prompt": "Why is every pure positive CQ satisfiable in the lecture's setting?",
+          "prompt": "Why is every pure positive CQ satisfiable when no extra constraints or contradictory comparisons are imposed?",
           "options": [
             "It is true on every database, including the empty one",
             "Its own canonical database provides an immediate match",
@@ -315,7 +315,7 @@
             "Every relation must contain every possible tuple"
           ],
           "answer": 1,
-          "explanation": "The canonical database provides at least one suitable D. It does not imply that the query has an answer on every D.",
+          "explanation": "Replace each variable by a distinct fresh value and retain constants. Those constructed facts form a database matching the body, so at least one suitable database exists. This is not a claim of an answer on every database.",
           "pages": [
             24
           ]

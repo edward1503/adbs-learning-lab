@@ -20,7 +20,7 @@
             "The output is a relation that another operator can use"
           ],
           "answer": 3,
-          "explanation": "Returning relations enables composition. An operator such as projection can still change the schema.",
+          "explanation": "Selection returns a relation, so projection can consume it next. Closure makes that composition possible, but does not erase schema requirements: after projecting away price, an outer operator cannot refer to price unless another input supplies it.",
           "pages": [
             6
           ]

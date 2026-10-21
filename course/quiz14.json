@@ -489,7 +489,7 @@
             "It reduces the rows entering more expensive operators"
           ],
           "answer": 3,
-          "explanation": "Pushdown can reduce intermediate cardinalities. Reading a base heap may still require scanning every page.",
+          "explanation": "A selective filter can reduce the rows entering a join, so fewer candidate pairs need processing. A heap scan may still read every base page to find those rows; output cardinality and input page reads are different quantities.",
           "pages": [
             5,
             6

@@ -1,16 +1,68 @@
 {
   "lessonId": "supplement-33",
   "language": "vi",
-  "topics": [{
-    "id": "supplement-33-practice",
-    "title": "Thiết kế workload · tinh chỉnh công bằng · độ trễ · độ bất định",
-    "questions": [
-      {"id":"supplement-33-q1","prompt":"Báo cáo nào xử lý truy vấn timeout tốt nhất?","options":["Loại nó khỏi mọi cách tổng hợp.","Tính nó là không giây.","Báo ngưỡng timeout và số lỗi, đồng thời không giả vờ biết thời gian chạy chính xác.","Thay nó bằng trung vị thời gian các lượt thành công."],"explanation":"Timeout cho thông tin bị kiểm duyệt theo nghĩa thống kê: biết truy vấn chưa xong tại ngưỡng chờ, chưa biết thời gian hoàn thành chính xác. Bỏ mẫu ấy có thể che giấu có hệ thống những trường hợp bị chậm đi."},
-      {"id":"supplement-33-q2","prompt":"Thời gian hai truy vấn ở baseline là 1 s và 100 s; thời gian mới là 0.5 s và 110 s. Tổng thời gian workload cố định thay đổi thế nào?","options":["Tốt hơn vì một truy vấn nhanh hơn 2×.","Không thể tính.","Giữ nguyên hoàn toàn.","Tăng từ 101 s lên 110.5 s."],"explanation":"Cộng thời gian thật trả lời câu hỏi về workload cố định: baseline là 1+100=101 s, hệ thống mới là 0.5+110=110.5 s. Trung bình các tỷ số speedup trả lời câu hỏi khác và có thể che phần chậm thêm của truy vấn dài."},
-      {"id":"supplement-33-q3","prompt":"Vì sao phân biệt thời gian chỉ chạy kernel với độ trễ từ đầu đến cuối?","options":["Đo từ đầu đến cuối không bao giờ có ý nghĩa.","Đo kernel luôn gồm mọi yêu cầu mạng.","Để loại mọi chi phí bất tiện.","Truyền dữ liệu, xếp hàng, tiền xử lý và điều phối có thể chiếm phần lớn thời gian người dùng thấy."],"explanation":"Cải tiến trong một bước có thể không còn đáng kể tại ranh giới ứng dụng nếu các bước khác chiếm phần lớn thời gian. Hãy ghi rõ cả hai phạm vi đo để phân biệt lợi ích kernel với lợi ích toàn bộ yêu cầu."},
-      {"id":"supplement-33-q4","prompt":"Khi nhiều chunk đến từ cùng tài liệu, cách chia nào kiểm tra tốt nhất khả năng khái quát sang tài liệu mới?","options":["Đưa nhãn test vào mọi prompt.","Chia theo cấp tài liệu nguồn.","Chia ngẫu nhiên chunk của mỗi tài liệu vào cả train và test.","Chỉ đánh giá dữ liệu huấn luyện."],"explanation":"Chia theo tài liệu giảm rò rỉ qua các chunk gần trùng hoặc có liên hệ cùng nguồn. Đơn vị chia phải phù hợp điều cần khái quát: tài liệu mới cần được giữ ngoài train, thay vì chỉ giữ vài chunk của tài liệu đã biết."},
-      {"id":"supplement-33-q5","prompt":"Cải thiện tốc độ 2% xuất hiện trong mức biến thiên khoảng 5% giữa các lượt chạy. Kết luận nào có cơ sở?","options":["Báo thận trọng cùng độ bất định và đo lại với kiểm soát tốt hơn hoặc số lần lặp có căn cứ.","Bảo đảm thắng 2% trên mọi workload.","Xóa mọi lượt chạy chậm.","Tuyên bố mọi hệ thống bằng nhau."],"explanation":"Hai tỷ lệ này tự chúng chưa xác lập cũng chưa bác bỏ hiệu ứng. Cần xem số mẫu độc lập, chênh lệch theo cặp nếu phù hợp và độ bất định; sau đó đánh giá ý nghĩa thực tiễn của lợi ích."}
-    ]
-  }],
-  "reviewStatus":"All 5 original supplemental practice questions translated; all four source options retain original order. Author checked canonical selected options against fixed-workload arithmetic, timeout treatment, measurement boundaries and uncertainty caveats. No answer keys copied or altered. Existing packets only; external references not freshly reviewed; official Canvas assessment unverified."
+  "topics": [
+    {
+      "id": "supplement-33-practice",
+      "title": "Thiết kế workload · tinh chỉnh công bằng · độ trễ · độ bất định",
+      "questions": [
+        {
+          "id": "supplement-33-q1",
+          "prompt": "Báo cáo nào xử lý truy vấn timeout tốt nhất?",
+          "options": [
+            "Loại nó khỏi mọi cách tổng hợp.",
+            "Tính nó là không giây.",
+            "Báo ngưỡng timeout và số lỗi, đồng thời không giả vờ biết thời gian chạy chính xác.",
+            "Thay nó bằng trung vị thời gian các lượt thành công."
+          ],
+          "explanation": "Timeout cho thông tin bị kiểm duyệt theo nghĩa thống kê: biết truy vấn chưa xong tại ngưỡng chờ, chưa biết thời gian hoàn thành chính xác. Bỏ mẫu ấy có thể che giấu có hệ thống những trường hợp bị chậm đi."
+        },
+        {
+          "id": "supplement-33-q2",
+          "prompt": "Thời gian hai truy vấn ở baseline là 1 s và 100 s; thời gian mới là 0.5 s và 110 s. Tổng thời gian workload cố định thay đổi thế nào?",
+          "options": [
+            "Tốt hơn vì một truy vấn nhanh hơn 2×.",
+            "Không thể tính.",
+            "Giữ nguyên hoàn toàn.",
+            "Tăng từ 101 s lên 110.5 s."
+          ],
+          "explanation": "Tổng baseline=1+100=101 s; tổng mới=0.5+110=110.5 s nên tập cố định chậm thêm 9.5 s. Tăng tốc là 101/110.5≈0.914. Trung bình tỷ số từng truy vấn cân khác, có thể trên một dù tổng thời gian tăng."
+        },
+        {
+          "id": "supplement-33-q3",
+          "prompt": "Vì sao phân biệt thời gian chỉ chạy kernel với độ trễ từ đầu đến cuối?",
+          "options": [
+            "Đo từ đầu đến cuối không bao giờ có ý nghĩa.",
+            "Đo kernel luôn gồm mọi yêu cầu mạng.",
+            "Để loại mọi chi phí bất tiện.",
+            "Truyền dữ liệu, xếp hàng, tiền xử lý và điều phối có thể chiếm phần lớn thời gian người dùng thấy."
+          ],
+          "explanation": "Cải tiến trong một bước có thể không còn đáng kể tại ranh giới ứng dụng nếu các bước khác chiếm phần lớn thời gian. Hãy ghi rõ cả hai phạm vi đo để phân biệt lợi ích kernel với lợi ích toàn bộ yêu cầu."
+        },
+        {
+          "id": "supplement-33-q4",
+          "prompt": "Khi nhiều chunk đến từ cùng tài liệu, cách chia nào kiểm tra tốt nhất khả năng khái quát sang tài liệu mới?",
+          "options": [
+            "Đưa nhãn test vào mọi prompt.",
+            "Chia theo cấp tài liệu nguồn.",
+            "Chia ngẫu nhiên chunk của mỗi tài liệu vào cả train và test.",
+            "Chỉ đánh giá dữ liệu huấn luyện."
+          ],
+          "explanation": "Chia theo tài liệu giảm rò rỉ qua các chunk gần trùng hoặc có liên hệ cùng nguồn. Đơn vị chia phải phù hợp điều cần khái quát: tài liệu mới cần được giữ ngoài train, thay vì chỉ giữ vài chunk của tài liệu đã biết."
+        },
+        {
+          "id": "supplement-33-q5",
+          "prompt": "Cải thiện tốc độ 2% xuất hiện trong mức biến thiên khoảng 5% giữa các lượt chạy. Kết luận nào có cơ sở?",
+          "options": [
+            "Báo thận trọng cùng độ bất định và đo lại với kiểm soát tốt hơn hoặc số lần lặp có căn cứ.",
+            "Bảo đảm thắng 2% trên mọi workload.",
+            "Xóa mọi lượt chạy chậm.",
+            "Tuyên bố mọi hệ thống bằng nhau."
+          ],
+          "explanation": "Hai tỷ lệ này tự chúng chưa xác lập cũng chưa bác bỏ hiệu ứng. Cần xem số mẫu độc lập, chênh lệch theo cặp nếu phù hợp và độ bất định; sau đó đánh giá ý nghĩa thực tiễn của lợi ích."
+        }
+      ]
+    }
+  ],
+  "reviewStatus": "All five supplemental prompts, options and explanations checked against rewritten 21 October lesson; canonical IDs and option order preserved. Primary-source overview checked where relevant; course assessment status remains unverified."
 }

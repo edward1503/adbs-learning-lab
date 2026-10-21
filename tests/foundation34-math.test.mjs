@@ -68,8 +68,8 @@ test('dictionary payload includes the dictionary and external hashing includes s
   const expandedPartitionPages = 1.2 * 90 / (10 - 1);
   assert.equal(expandedPartitionPages, 12);
   assert.ok(expandedPartitionPages > 10);
-  assert.match(lesson(7).sections.find(s => s.id === 'l7-3').html, /140 payload bytes before metadata/);
-  assert.match(lesson(11).sections.find(s => s.id === 'l11-s3').html, /12 pages of state, exceeding 10/);
+  assert.match(lesson(7).sections.find(s => s.id === 'l7-3').html, /140 payload bytes/);
+  assert.match(lesson(11).sections.find(s => s.id === 'l11-s3').html, /12 state pages, already more than ten/);
 });
 
 test('duplicate join groups preserve all six pairs and cross-document quiz provenance', () => {

@@ -397,7 +397,7 @@
             "10"
           ],
           "answer": 3,
-          "explanation": "The right leaf's minimum changed from 12 to 10. Keeping separator 12 would send a search for 10 to the wrong leaf.",
+          "explanation": "After moving 10 into the right leaf, the minimum on that side is 10. A minimum-right boundary of 10 sends 10 right and 8 left. Keeping the old boundary 12 would send 10 left, so valid leaf counts alone would not make the update correct.",
           "pages": [
             20
           ]

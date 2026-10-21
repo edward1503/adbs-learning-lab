@@ -303,7 +303,7 @@
             "Nothing can be inferred, even with the valid foreign key"
           ],
           "answer": 0,
-          "explanation": "Every S row has exactly one matching R row. Uniqueness and a valid non-null foreign key establish that result.",
+          "explanation": "Each of the 900 S rows has a valid non-NULL reference, so a matching R row exists; uniqueness permits only one such match. Thus every S row contributes exactly one joined row: 900. Removing either assumption invalidates that exact count.",
           "pages": [
             10,
             11

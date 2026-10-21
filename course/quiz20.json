@@ -141,7 +141,7 @@
             "No; upgrading after the shrinking phase begins violates 2PL"
           ],
           "answer": 3,
-          "explanation": "Two-phase locking forbids both acquisition and upgrade after the growing phase. An existing S-lock does not permit a late upgrade.",
+          "explanation": "Releasing B ends the growing phase. Upgrading S(A) to X(A) asks for stronger permission and counts as an acquisition for this rule. Holding the weaker lock already does not allow the transaction to re-enter growing.",
           "pages": [
             8,
             9
@@ -339,7 +339,7 @@
             "No, because strict 2PL does not guarantee serializability"
           ],
           "answer": 2,
-          "explanation": "Strictness prevents dependencies on uncommitted data but does not itself solve deadlock. Strict 2PL still guarantees conflict serializability.",
+          "explanation": "T1 can hold X(A) while requesting X(B); T2 can hold X(B) while requesting X(A). Both retain locks strictly, but T1→T2→T1 is a waits-for cycle. The blocked operations have not executed, so this does not refute the conflict-serializability guarantee.",
           "pages": [
             13,
             18

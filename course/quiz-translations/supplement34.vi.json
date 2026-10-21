@@ -1,16 +1,68 @@
 {
   "lessonId": "supplement-34",
   "language": "vi",
-  "topics": [{
-    "id": "supplement-34-practice",
-    "title": "Cơ chế · thí nghiệm nhân tố · độ vững · tuyên bố",
-    "questions": [
-      {"id":"supplement-34-q1","prompt":"Thí nghiệm bốn cấu hình bật/tắt A và bật/tắt B cho thấy điều gì mà hai ablation riêng lẻ có thể bỏ sót?","options":["Tiêu chí chấm chính thức.","Bảo đảm khái quát sang mọi workload.","Tương tác giữa A và B.","Liệu mọi lỗi đã được sửa hết chưa."],"explanation":"Tác động của một thành phần có thể phụ thuộc sự hiện diện của thành phần kia. Bốn cấu hình cho phép so A khi có và không có B, như ví dụ cache/batching có khoản tiết kiệm kết hợp khác tổng tiết kiệm riêng."},
-      {"id":"supplement-34-q2","prompt":"Vì sao ablation được tinh chỉnh lại có thể hữu ích bên cạnh ablation giữ tham số cố định?","options":["Nó làm baseline không còn cần thiết.","Tinh chỉnh lại luôn chứng minh thành phần mới là cần thiết.","Nó cho phép tinh chỉnh bằng đáp án test cuối.","Bỏ một thành phần có thể làm thay đổi thiết lập phù hợp cho phần hệ thống còn lại."],"explanation":"Hai thiết kế trả lời hai câu hỏi: tác động cục bộ của thành phần trong cấu hình đang dùng, và hệ thống tốt nhất có thể đạt được khi không có thành phần ấy. Bỏ thành phần rồi giữ tham số không còn phù hợp có thể tạo phép so sánh thiếu công bằng."},
-      {"id":"supplement-34-q3","prompt":"Nếu chỉ workload ít tranh chấp được cải thiện, tuyên bố nên nói gì?","options":["Hệ thống luôn nhanh hơn.","Hệ thống cải thiện trong chế độ ít tranh chấp đã đo và có hạn chế được nêu ở chế độ tranh chấp cao.","Những trường hợp không cải thiện không thể là thật.","Nên giấu các lượt chạy tranh chấp cao."],"explanation":"Phạm vi vận hành có giới hạn là kết luận có cơ sở. Tuyên bố tổng quát bỏ qua thất bại liên quan thì không: nếu tranh chấp cao thuộc workload mục tiêu, phải giữ kết quả đó trong báo cáo."},
-      {"id":"supplement-34-q4","prompt":"Số lần tính khoảng cách giảm 30% nhưng độ trễ không đổi. Bước tiếp theo hợp lý là gì?","options":["Cho rằng đồng hồ sai mà không kiểm tra.","Ngừng báo độ trễ.","Đo phân rã thời gian để xem truyền dữ liệu hoặc điều phối có chiếm phần lớn không.","Bịa cải thiện độ trễ từ mức giảm phép tính."],"explanation":"Giảm công việc bên trong chưa chắc giảm thời gian từ đầu đến cuối. Phân rã thời gian kiểm tra lời giải thích về nút thắt: nếu truyền dữ liệu hay điều phối trên host chiếm phần lớn, giảm tính khoảng cách có thể ít ảnh hưởng tổng độ trễ."},
-      {"id":"supplement-34-q5","prompt":"Điều gì làm kết quả không cải thiện trở nên hữu ích?","options":["Giấu phép thử bất lợi.","Đổi chỉ số tới khi có một chỉ số tốt hơn.","Tuyên bố nghiên cứu bắt buộc phải có speedup dương.","Giả thuyết có ý nghĩa, triển khai/quy trình đã được kiểm tra và ranh giới vận hành được giải thích."],"explanation":"Bằng chứng không cải thiện được kiểm soát cẩn thận có thể bác bỏ giả định và hướng dẫn thí nghiệm tiếp theo. Trước hết cần loại trừ lỗi triển khai và phép đo, rồi giải thích điều kiện khiến cơ chế không tạo lợi ích."}
-    ]
-  }],
-  "reviewStatus":"All 5 original supplemental practice questions translated; all four source options retain original order. Author checked canonical selected options against factorial interaction, fixed/retuned ablation and host-bound negative-result examples. No answer keys copied or altered. Existing packets only; external references not freshly reviewed; official Canvas assessment unverified."
+  "topics": [
+    {
+      "id": "supplement-34-practice",
+      "title": "Cơ chế · thí nghiệm nhân tố · độ vững · tuyên bố",
+      "questions": [
+        {
+          "id": "supplement-34-q1",
+          "prompt": "Thí nghiệm bốn cấu hình bật/tắt A và bật/tắt B cho thấy điều gì mà hai ablation riêng lẻ có thể bỏ sót?",
+          "options": [
+            "Tiêu chí chấm chính thức.",
+            "Bảo đảm khái quát sang mọi workload.",
+            "Tương tác giữa A và B.",
+            "Liệu mọi lỗi đã được sửa hết chưa."
+          ],
+          "explanation": "Tính tác động khi giữ thành phần kia cố định. Trong bài, cache tiết kiệm 30 ms khi không gom lô và 40 ms khi có; gom lô tiết kiệm 20 hoặc 30 ms. Tương tác độ trễ có dấu là 40−70−80+100=−10 ms, tiết kiệm thêm so với cộng độc lập, cần xét bất định qua lặp đo."
+        },
+        {
+          "id": "supplement-34-q2",
+          "prompt": "Vì sao ablation được tinh chỉnh lại có thể hữu ích bên cạnh ablation giữ tham số cố định?",
+          "options": [
+            "Nó làm baseline không còn cần thiết.",
+            "Tinh chỉnh lại luôn chứng minh thành phần mới là cần thiết.",
+            "Nó cho phép tinh chỉnh bằng đáp án test cuối.",
+            "Bỏ một thành phần có thể làm thay đổi thiết lập phù hợp cho phần hệ thống còn lại."
+          ],
+          "explanation": "Hai thiết kế trả lời hai câu hỏi: tác động cục bộ của thành phần trong cấu hình đang dùng, và hệ thống tốt nhất có thể đạt được khi không có thành phần ấy. Bỏ thành phần rồi giữ tham số không còn phù hợp có thể tạo phép so sánh thiếu công bằng."
+        },
+        {
+          "id": "supplement-34-q3",
+          "prompt": "Nếu chỉ workload ít tranh chấp được cải thiện, tuyên bố nên nói gì?",
+          "options": [
+            "Hệ thống luôn nhanh hơn.",
+            "Hệ thống cải thiện trong chế độ ít tranh chấp đã đo và có hạn chế được nêu ở chế độ tranh chấp cao.",
+            "Những trường hợp không cải thiện không thể là thật.",
+            "Nên giấu các lượt chạy tranh chấp cao."
+          ],
+          "explanation": "Phạm vi vận hành có giới hạn là kết luận có cơ sở. Tuyên bố tổng quát bỏ qua thất bại liên quan thì không: nếu tranh chấp cao thuộc workload mục tiêu, phải giữ kết quả đó trong báo cáo."
+        },
+        {
+          "id": "supplement-34-q4",
+          "prompt": "Số lần tính khoảng cách giảm 30% nhưng độ trễ không đổi. Bước tiếp theo hợp lý là gì?",
+          "options": [
+            "Cho rằng đồng hồ sai mà không kiểm tra.",
+            "Ngừng báo độ trễ.",
+            "Đo phân rã thời gian để xem truyền dữ liệu hoặc điều phối có chiếm phần lớn không.",
+            "Bịa cải thiện độ trễ từ mức giảm phép tính."
+          ],
+          "explanation": "Giảm công việc bên trong chưa chắc giảm thời gian từ đầu đến cuối. Phân rã thời gian kiểm tra lời giải thích về nút thắt: nếu truyền dữ liệu hay điều phối trên host chiếm phần lớn, giảm tính khoảng cách có thể ít ảnh hưởng tổng độ trễ."
+        },
+        {
+          "id": "supplement-34-q5",
+          "prompt": "Điều gì làm kết quả không cải thiện trở nên hữu ích?",
+          "options": [
+            "Giấu phép thử bất lợi.",
+            "Đổi chỉ số tới khi có một chỉ số tốt hơn.",
+            "Tuyên bố nghiên cứu bắt buộc phải có speedup dương.",
+            "Giả thuyết có ý nghĩa, triển khai/quy trình đã được kiểm tra và ranh giới vận hành được giải thích."
+          ],
+          "explanation": "Bằng chứng không cải thiện được kiểm soát cẩn thận có thể bác bỏ giả định và hướng dẫn thí nghiệm tiếp theo. Trước hết cần loại trừ lỗi triển khai và phép đo, rồi giải thích điều kiện khiến cơ chế không tạo lợi ích."
+        }
+      ]
+    }
+  ],
+  "reviewStatus": "All five supplemental prompts, options and explanations checked against rewritten 21 October lesson; canonical IDs and option order preserved. Primary-source overview checked where relevant; course assessment status remains unverified."
 }

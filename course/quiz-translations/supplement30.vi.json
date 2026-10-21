@@ -1,16 +1,68 @@
 {
   "lessonId": "supplement-30",
   "language": "vi",
-  "topics": [{
-    "id": "supplement-30-practice",
-    "title": "Text-to-SQL · phân tích ngữ nghĩa · cascade · đánh giá",
-    "questions": [
-      {"id":"supplement-30-q1","prompt":"Mức đồng thuận với thuật toán tham chiếu theo cách LOTUS đo trực tiếp điều gì?","options":["Mức trung thành thống kê với hành vi tham chiếu đã chọn.","Tính đúng về sự thật được bảo đảm.","Mức cô lập giao dịch serializable.","Recall của tìm láng giềng gần nhất chính xác."],"explanation":"Tham chiếu xác định mục tiêu của phép so sánh. Đồng thuận với nó chưa chứng minh tính đúng về sự thật, vì hai hệ thống có thể cùng sai. Tính hợp lệ của tham chiếu và việc ghép các bước từ đầu đến cuối cần bằng chứng riêng."},
-      {"id":"supplement-30-q2","prompt":"Bộ lọc ngày xác định giữ 4,000 trong 20,000 ghi chú. Với giá giả định $0.002 mỗi lần gọi LLM, chi phí phân loại sau lọc là bao nhiêu nếu bỏ qua chi phí khác?","options":["$2","$40","$8","$4"],"explanation":"4,000×$0.002=$8. Đưa bộ lọc lên trước chỉ hợp lệ nếu vẫn giữ đúng tác vụ dự định; các chi phí khác phải tính riêng. Đây là phép tính theo giá giả định, không phải hóa đơn đo được."},
-      {"id":"supplement-30-q3","prompt":"Cách nào hợp lý để chọn ngưỡng cho cascade ngữ nghĩa?","options":["Chọn ngưỡng không chuyển yêu cầu nào tới mô hình đắt.","Dùng tập calibration để chọn ngưỡng, rồi đánh giá chất lượng và chi phí trên dữ liệu test độc lập.","Giả định độ tự tin của mô hình bằng tính đúng.","Tinh chỉnh bằng toàn bộ nhãn test cuối rồi báo điểm trên tập đó."],"explanation":"Chọn ngưỡng đã sử dụng thông tin từ dữ liệu, nên cần tập test độc lập để ước lượng hiệu năng sau lựa chọn ấy. Điểm tự tin không tự bảo đảm tính đúng; phải kiểm tra cả chất lượng lẫn chi phí."},
-      {"id":"supplement-30-q4","prompt":"Bộ phân loại có 400 dương đúng, 100 âm giả và 50 dương giả. Recall bằng bao nhiêu?","options":["400/450","400/500","450/500","500/550"],"explanation":"Recall là số dương đúng chia cho tất cả trường hợp thực sự dương: 400/(400+100)=400/500=0.8. 50 dương giả thuộc mẫu số của precision, không thuộc mẫu số recall."},
-      {"id":"supplement-30-q5","prompt":"Kiểm tra text-to-SQL nào đi xa hơn việc SQL chạy thành công?","options":["Xác nhận truy vấn diễn đạt đúng ý định về join, bộ lọc và ngữ nghĩa tổng hợp của người dùng.","Bỏ kiểm tra quyền để dễ thử hơn.","Chỉ kiểm tra SQL có dấu chấm phẩy không.","Giả định mọi con số trả về đều đúng."],"explanation":"SQL hợp cú pháp và chạy được vẫn có thể trả lời sai câu hỏi, chẳng hạn join nhân đôi dòng hoặc lọc sai ranh giới thời gian. Cần kiểm tra ý nghĩa, quyền và mức sử dụng tài nguyên, không chỉ khả năng thực thi."}
-    ]
-  }],
-  "reviewStatus":"All 5 original supplemental practice questions translated; all four source options retain original order. Author checked canonical selected options, reference-vs-truth distinction, hypothetical cost and recall arithmetic against lesson bodies. No answer keys copied or altered. Existing packets only; external references not freshly reviewed; official Canvas assessment unverified."
+  "topics": [
+    {
+      "id": "supplement-30-practice",
+      "title": "Text-to-SQL · phân tích ngữ nghĩa · cascade · đánh giá",
+      "questions": [
+        {
+          "id": "supplement-30-q1",
+          "prompt": "Mức đồng thuận với thuật toán tham chiếu theo cách LOTUS đo trực tiếp điều gì?",
+          "options": [
+            "Mức trung thành thống kê với hành vi tham chiếu đã chọn.",
+            "Tính đúng về sự thật được bảo đảm.",
+            "Mức cô lập giao dịch serializable.",
+            "Recall của tìm láng giềng gần nhất chính xác."
+          ],
+          "explanation": "Thuật toán tham chiếu định nghĩa mục tiêu đồng ý. Nếu tham chiếu và mô hình tối ưu cùng sai sự thật, chúng vẫn đồng ý. Vì vậy cần kiểm riêng sự thật/nhãn người và tác động khi ghép nhiều toán tử."
+        },
+        {
+          "id": "supplement-30-q2",
+          "prompt": "Bộ lọc ngày xác định giữ 4,000 trong 20,000 ghi chú. Với giá giả định $0.002 mỗi lần gọi LLM, chi phí phân loại sau lọc là bao nhiêu nếu bỏ qua chi phí khác?",
+          "options": [
+            "$2",
+            "$40",
+            "$8",
+            "$4"
+          ],
+          "explanation": "Sau lọc có 4,000 ghi chú, mỗi cái $0.002, thành $8. Phân loại cả 20,000 sẽ $40 theo cùng giả định. Tiết kiệm chỉ hợp lệ nếu lọc ngày giữ đúng câu hỏi; gán nhãn, tối ưu, thử lại và phí khác tính riêng."
+        },
+        {
+          "id": "supplement-30-q3",
+          "prompt": "Cách nào hợp lý để chọn ngưỡng cho cascade ngữ nghĩa?",
+          "options": [
+            "Chọn ngưỡng không chuyển yêu cầu nào tới mô hình đắt.",
+            "Dùng tập calibration để chọn ngưỡng, rồi đánh giá chất lượng và chi phí trên dữ liệu test độc lập.",
+            "Giả định độ tự tin của mô hình bằng tính đúng.",
+            "Tinh chỉnh bằng toàn bộ nhãn test cuối rồi báo điểm trên tập đó."
+          ],
+          "explanation": "Ngưỡng chuyển tiếp dùng bằng chứng để chọn, nên chỉnh trên tập hiệu chỉnh rồi đo tập kiểm thử độc lập. Âm giả tự tin của mô hình rẻ không được gửi tầng đắt. Kiểm recall cùng chi phí gọi; tự tin chưa chứng nhận chất lượng."
+        },
+        {
+          "id": "supplement-30-q4",
+          "prompt": "Bộ phân loại có 400 dương đúng, 100 âm giả và 50 dương giả. Recall bằng bao nhiêu?",
+          "options": [
+            "400/450",
+            "400/500",
+            "450/500",
+            "500/550"
+          ],
+          "explanation": "Dương thật gồm 400 tìm được cộng 100 bỏ sót: 500. Recall=400/500=0.8. Năm mươi dương giả thuộc precision: 400/(400+50)≈0.889. Hai chỉ số hỏi khác nhau về kết quả bỏ sót và nhận sai."
+        },
+        {
+          "id": "supplement-30-q5",
+          "prompt": "Kiểm tra text-to-SQL nào đi xa hơn việc SQL chạy thành công?",
+          "options": [
+            "Xác nhận truy vấn diễn đạt đúng ý định về join, bộ lọc và ngữ nghĩa tổng hợp của người dùng.",
+            "Bỏ kiểm tra quyền để dễ thử hơn.",
+            "Chỉ kiểm tra SQL có dấu chấm phẩy không.",
+            "Giả định mọi con số trả về đều đúng."
+          ],
+          "explanation": "DBMS có thể chạy SQL hợp lệ nhưng biểu diễn sai câu hỏi. Kiểm schema, ý định, nối/bản trùng, ranh giới ngày và nhóm; cũng kiểm quyền và tài nguyên. Chạy thành công tự nó không xác nhận các lựa chọn ngữ nghĩa ấy."
+        }
+      ]
+    }
+  ],
+  "reviewStatus": "All five supplemental prompts, options and explanations checked against rewritten 21 October lesson; canonical IDs and option order preserved. Primary-source overview checked where relevant; course assessment status remains unverified."
 }

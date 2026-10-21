@@ -270,7 +270,7 @@
             "16",
             "4"
           ],
-          "explanation": "Có 2^(g−d)=4 suffix mở rộng trỏ bucket; local depth không phải số con trỏ."
+          "explanation": "Hai bit thấp xác định bucket này, còn danh bạ xem bốn bit. Hai vị trí bit còn lại có thể là 00,01,10,11: bốn nhãn danh bạ trỏ cùng bucket. Vậy 2^(g−d)=2^(4−2)=4; độ sâu cục bộ đếm bit, không đếm con trỏ."
         },
         {
           "id": "l10-global-and-local-depth-q3",

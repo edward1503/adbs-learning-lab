@@ -114,7 +114,7 @@
         },
         {
           "id": "l26-shared-memory-q2",
-          "prompt": "Which advantage of shared memory is identified in the lecture?",
+          "prompt": "What direct advantage follows from processors sharing one memory address space?",
           "options": [
             "Each instance can operate without coordinating with other instances",
             "CPUs have a common view of in-memory structures",
@@ -122,7 +122,7 @@
             "All data access must use network messages between nodes"
           ],
           "answer": 1,
-          "explanation": "A shared address space supports efficient communication, but instances still need to be aware of one another.",
+          "explanation": "Processors can see common in-memory structures and coordinate through them. Shared bandwidth and synchronization can still bottleneck execution; common visibility does not remove concurrent-access rules.",
           "pages": [
             6
           ]
@@ -216,7 +216,7 @@
         },
         {
           "id": "l26-shared-disk-q3",
-          "prompt": "According to the lecture, which architecture lets the execution layer scale independently of the storage layer?",
+          "prompt": "Which architecture lets nodes with private RAM add execution capacity while using the same logical storage layer?",
           "options": [
             "Only shared nothing, because shared disk requires CPU and disk capacity to grow together",
             "Only shared memory, because shared disk cannot separate the execution layer",
@@ -224,7 +224,7 @@
             "No architecture allows compute and storage capacity to grow separately"
           ],
           "answer": 2,
-          "explanation": "A shared-disk architecture uses a common storage layer, so execution capacity can be added relatively independently.",
+          "explanation": "Shared disk separates private execution memory from common storage. Adding an execution node need not add a separate logical database, but storage contention and cache coordination remain costs.",
           "pages": [
             7
           ]
@@ -904,7 +904,7 @@
         },
         {
           "id": "l26-replication-q3",
-          "prompt": "According to the slide, what kind of table is generally best suited to table replication?",
+          "prompt": "A complete table will be copied to every worker for local joins. Which table is generally the most suitable candidate?",
           "options": [
             "A very large, constantly updated table, because synchronization is always free",
             "A small, read-only table",
@@ -912,7 +912,7 @@
             "A table requiring every write to synchronize with thousands of replicas at minimal latency"
           ],
           "answer": 1,
-          "explanation": "A small table that changes little reduces storage and synchronization costs; frequent writes make replication more expensive.",
+          "explanation": "A small, read-only table is cheap to copy and creates little update-propagation work. Replicating a very large or rapidly changing table consumes more memory, network capacity and coordination.",
           "pages": [
             17
           ]
@@ -1152,7 +1152,7 @@
         },
         {
           "id": "l26-lookup-q2",
-          "prompt": "There is no partitioning or routing mechanism for the lookup key. What basic approach does the slide use?",
+          "prompt": "Without partition-key routing, a directory or another usable lookup mechanism, how can a basic system find a key across all nodes?",
           "options": [
             "Choose a random node and interpret an empty result as proof that the row does not exist",
             "Ask only the node with the smallest key",
@@ -1160,7 +1160,7 @@
             "Broadcast the request to the nodes"
           ],
           "answer": 3,
-          "explanation": "If the row's location is unknown, checking only one node can miss it; the slide uses broadcasting.",
+          "explanation": "A broadcast asks every node because any of them could hold the row. Known placement can avoid this fan-out; a matching column name alone does not reveal physical location.",
           "pages": [
             21
           ]
@@ -1396,7 +1396,7 @@
       "questions": [
         {
           "id": "l26-sorting-q1",
-          "prompt": "How does the parallel-sorting slide distribute data among machines?",
+          "prompt": "To concatenate locally sorted outputs directly into one global ordering, how should keys be distributed?",
           "options": [
             "Round-robin, after which any concatenation of outputs gives global order",
             "Range partitioning",
@@ -1404,7 +1404,7 @@
             "Hash partitioning, after which concatenating buckets in hash order is sufficient"
           ],
           "answer": 1,
-          "explanation": "Machines hold different key ranges, so their locally sorted results can be concatenated in range order.",
+          "explanation": "Disjoint ordered key ranges ensure every key in an earlier partition precedes those in later partitions. Hash destinations do not establish that ordering, even after each destination sorts locally.",
           "pages": [
             24
           ]
@@ -1832,7 +1832,7 @@
       "questions": [
         {
           "id": "l26-scenario3-q1",
-          "prompt": "When R and S are partitioned on different keys and S is small, what do the slides propose?",
+          "prompt": "R and S have incompatible partitioning, S is small, and each worker can hold S. Which redistribution strategy can enable local joins?",
           "options": [
             "Broadcast the larger table because the smaller table is less worth moving",
             "Join the existing partitions immediately and treat that as the complete result",
@@ -1840,7 +1840,7 @@
             "Send only S's schema instead of its data"
           ],
           "answer": 2,
-          "explanation": "A small table is easier to distribute in full, allowing each portion of R to find every matching tuple in S.",
+          "explanation": "Broadcast S so each worker joins its own R partition against the complete S. Equal keys can then meet without moving all of R. The memory and update costs of copying S still matter.",
           "pages": [
             31,
             32,

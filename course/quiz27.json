@@ -12,7 +12,7 @@
       "questions": [
         {
           "id": "l27-motivation-q1",
-          "prompt": "According to the lecture, which Web 2.0 workload characteristic motivated NoSQL?",
+          "prompt": "Which growing web-application workload creates pressure for scale-out data systems?",
           "options": [
             "Large volumes of real-time operations with sudden spikes in demand",
             "Only offline OLAP queries with a stable workload",
@@ -20,7 +20,7 @@
             "Only one client writes sequentially on one machine"
           ],
           "answer": 0,
-          "explanation": "Large-scale applications need to handle heavy, variable OLTP workloads; this is not an assumption of a small, fixed workload.",
+          "explanation": "Heavy real-time operations and sudden traffic growth can exceed one machine. Distributing restricted operations or choosing weaker freshness may reduce coordination costs, but the required guarantees still need evaluation.",
           "pages": [
             2
           ]
@@ -271,7 +271,7 @@
       "questions": [
         {
           "id": "l27-principles-q1",
-          "prompt": "How is NoSQL understood in this lecture?",
+          "prompt": "Which interpretation of NoSQL avoids claiming that one family universally replaces relational systems?",
           "options": [
             "A ban on every query language with SQL syntax",
             "Eliminating durability requirements in every system",
@@ -279,7 +279,7 @@
             "Not Only SQL, complementing RDBMSs"
           ],
           "answer": 3,
-          "explanation": "The lecture emphasizes complementing RDBMSs rather than replacing them universally.",
+          "explanation": "Not Only SQL allows different models for different access patterns. The label does not determine transaction, scaling or freshness guarantees; inspect the actual system and configuration.",
           "pages": [
             5
           ]
@@ -731,7 +731,7 @@
         },
         {
           "id": "l27-taxonomy-q5",
-          "prompt": "What is the key distinction between document stores and basic key-value stores in the slide?",
+          "prompt": "What query capability distinguishes a document model from the basic opaque key-value interface?",
           "options": [
             "Document stores allow queries inside structured values",
             "Documents never use keys to identify data",
@@ -739,7 +739,7 @@
             "Documents require the same fixed schema as relational tables"
           ],
           "answer": 0,
-          "explanation": "Both can store objects, but a document engine understands the fields inside them.",
+          "explanation": "A document engine understands structured fields and can offer predicates on them. A basic get(key) retrieves the payload by key; storing a JSON string alone does not add a field-query API.",
           "pages": [
             12
           ]
@@ -757,7 +757,7 @@
       "questions": [
         {
           "id": "l27-taxonomy-cont-q1",
-          "prompt": "Which type does the slide associate with wide, sparse tables and column families?",
+          "prompt": "Which model organizes wide, sparse rows into named column families?",
           "options": [
             "Column-family stores",
             "Property graphs with directed edges",
@@ -765,7 +765,7 @@
             "Document stores, solely because documents can have optional fields"
           ],
           "answer": 0,
-          "explanation": "Cassandra and HBase are the slide's examples of wide-column or column-family systems.",
+          "explanation": "Column-family rows may have different named cells, as with devices recording different measurements. This is different from OLAP columnar storage grouping one attribute across many rows.",
           "pages": [
             13
           ]
@@ -843,7 +843,7 @@
       "questions": [
         {
           "id": "l27-key-value-q1",
-          "prompt": "Which basic operations does the lecture use for the key-value model?",
+          "prompt": "Which basic API retrieves, stores and removes an opaque value using its exact key?",
           "options": [
             "get(key), put(key,value), del(key)",
             "JOIN, GROUP BY, and path queries as mandatory basic operations",
@@ -851,7 +851,7 @@
             "Only nested-field queries, with no put operation for values"
           ],
           "answer": 0,
-          "explanation": "This is a simple key-value model; specific products may extend it, but those extensions should not be confused with the basic model.",
+          "explanation": "get retrieves the value, put stores/replaces it and del removes the key. A field predicate over many payloads needs an additional mechanism; these operations do not themselves search inside every value.",
           "pages": [
             14
           ]
@@ -1015,7 +1015,7 @@
       "questions": [
         {
           "id": "l27-json-q1",
-          "prompt": "What are the two core JSON structures in the slide?",
+          "prompt": "Which two JSON structures represent named fields and ordered sequences respectively?",
           "options": [
             "Tables and mandatory foreign keys",
             "Rows and pages with a fixed physical layout",
@@ -1023,7 +1023,7 @@
             "Nodes and edges with mandatory graph identifiers"
           ],
           "answer": 2,
-          "explanation": "JSON objects contain key-value pairs, while arrays are ordered lists.",
+          "explanation": "Objects associate field names with values; arrays preserve sequence order and can contain nested values. [a,b] and [b,a] have different order even with the same elements.",
           "pages": [
             16
           ]
@@ -1076,7 +1076,7 @@
         },
         {
           "id": "l27-json-q5",
-          "prompt": "According to the lecture, which statement about JSON and relational database systems is correct?",
+          "prompt": "Does using JSON force an application to abandon relational DBMSs? Which statement is correct?",
           "options": [
             "JSON can be stored only in NoSQL systems",
             "JSON data cannot be queried using SQL",
@@ -1084,7 +1084,7 @@
             "JSON itself forbids all join queries"
           ],
           "answer": 2,
-          "explanation": "The slide notes that RDBMSs support JSON; a data format does not uniquely determine the DBMS family.",
+          "explanation": "Relational products can support JSON through SQL facilities. Data representation and system guarantees are separate choices; nested JSON alone does not decide storage, indexes or transaction behavior.",
           "pages": [
             17,
             21
@@ -1133,7 +1133,7 @@
         },
         {
           "id": "l27-graphs-q3",
-          "prompt": "According to the slide, where can properties be stored?",
+          "prompt": "In a property graph, where may attributes such as a person name or a purchase date be stored?",
           "options": [
             "Only on nodes, never on edges",
             "On nodes and edges",
@@ -1141,14 +1141,14 @@
             "Only on the database-wide schema, never on individual entities"
           ],
           "answer": 1,
-          "explanation": "Properties can describe both entities and relationships, such as the time of a transaction.",
+          "explanation": "A name can be a node property, while a purchase date can describe the BOUGHT relationship itself. Both nodes and edges may carry properties; the application defines their meaning.",
           "pages": [
             18
           ]
         },
         {
           "id": "l27-graphs-q4",
-          "prompt": "What is the core strength of graph databases in the lecture?",
+          "prompt": "Which access pattern is a central strength of a graph data model?",
           "options": [
             "Always being optimal for every aggregate that scans all data",
             "Only looking up opaque values by key without considering relationships",
@@ -1156,7 +1156,7 @@
             "Storing only flat properties without supporting patterns"
           ],
           "answer": 2,
-          "explanation": "Graph databases optimize paths and relationship patterns; the lecture does not claim they are best for every workload.",
+          "explanation": "Traversal and pattern matching follow labeled relationships, such as exactly two outgoing FRIEND edges. This does not establish that a graph system is fastest for scans, aggregates or every workload.",
           "pages": [
             18
           ]
@@ -1290,7 +1290,7 @@
         },
         {
           "id": "l27-ranking-q2",
-          "prompt": "In the slide's March 2026 snapshot, which system ranks first?",
+          "prompt": "A historical March 2026 table places Oracle first. Which system can be described as first in that snapshot, without claiming current leadership or better performance?",
           "options": [
             "MongoDB",
             "Redis",
@@ -1298,7 +1298,7 @@
             "Apache Cassandra"
           ],
           "answer": 2,
-          "explanation": "This is a fact about the March 2026 snapshot, not a claim about the current ranking.",
+          "explanation": "Only the stated historical placement follows: Oracle is first in that snapshot. Popularity is not a benchmark, and the dated table supplies no evidence about today or this application's required guarantees.",
           "pages": [
             20
           ]

@@ -121,7 +121,7 @@
             "true"
           ],
           "answer": 3,
-          "explanation": "The update uses OR. A false argument cannot clear an earlier modification.",
+          "explanation": "Unpin updates dirty as old_dirty OR modified_by_this_use. Here true OR false is true: this caller made no new change, but an earlier change still needs preserving. Pin count falls by one independently of the dirty flag.",
           "pages": [
             10
           ]
@@ -222,7 +222,7 @@
             "4"
           ],
           "answer": 1,
-          "explanation": "A and B miss; the second A hits and updates recency; C misses and replaces B.",
+          "explanation": "Trace resident pages oldest→newest: A miss gives [A]; B miss gives [A,B]; A hits and refreshes order to [B,A]; C misses and replaces B, giving [A,C]. Thus requests 1,2,4 miss: three reads for these clean pages. Immediate unpin makes every resident page eligible at the next request.",
           "pages": [
             13
           ]

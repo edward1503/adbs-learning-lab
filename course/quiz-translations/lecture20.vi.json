@@ -98,7 +98,7 @@
             "Có, miễn chưa commit dù đã nhả khóa khác",
             "Không; nâng cấp sau khi pha giảm bắt đầu vi phạm 2PL"
           ],
-          "explanation": "Sau pha tăng, 2PL cấm cả xin khóa mới lẫn nâng cấp. S-lock hiện có không cho phép nâng cấp muộn sau lần nhả đầu tiên."
+          "explanation": "Nhả B kết thúc pha tăng trưởng. Nâng S(A) lên X(A) là xin quyền mạnh hơn và thuộc thao tác lấy khóa theo quy tắc này. Đã giữ khóa yếu hơn không cho giao dịch quay lại pha tăng trưởng."
         },
         {
           "id": "l20-two-phase-q4",
@@ -231,7 +231,7 @@
             "Không; deadlock vẫn có thể xảy ra",
             "Không, vì strict 2PL không bảo đảm serializability"
           ],
-          "explanation": "Strictness ngăn phụ thuộc vào dữ liệu chưa commit nhưng không tự giải quyết deadlock. Strict 2PL vẫn bảo đảm conflict serializability."
+          "explanation": "T1 có thể giữ X(A) rồi xin X(B); T2 giữ X(B) rồi xin X(A). Cả hai giữ khóa nghiêm ngặt nhưng T1→T2→T1 là chu trình chờ. Thao tác bị chặn chưa chạy nên không bác bỏ bảo đảm tuần tự hóa theo xung đột."
         },
         {
           "id": "l20-strict-q5",

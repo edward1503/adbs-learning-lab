@@ -500,7 +500,7 @@
             "5"
           ],
           "answer": 0,
-          "explanation": "The offset is 5×4096. The value 24576 belongs to page 6 or reflects a numbering mistake.",
+          "explanation": "With zero-based numbering, pages 0,1,2,3,4 precede page 5: five pages, each 4096 bytes. Their total is 5×4096=20480 bytes from the file start. There is no header to add; using six pages would locate page 6.",
           "pages": [
             28
           ]

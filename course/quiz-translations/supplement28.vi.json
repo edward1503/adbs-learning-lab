@@ -1,16 +1,68 @@
 {
   "lessonId": "supplement-28",
   "language": "vi",
-  "topics": [{
-    "id": "supplement-28-practice",
-    "title": "Số dòng · xếp hạng plan · chỉ mục học máy · đánh giá vững chắc",
-    "questions": [
-      {"id":"supplement-28-q1","prompt":"Bộ chọn học máy tiết kiệm 4 ms thực thi nhưng thêm 7 ms lập kế hoạch. Điều gì xảy ra?","options":["Độ trễ từ đầu đến cuối giảm 3 ms.","Q-error nhất định nhỏ hơn một.","Kết quả truy vấn nhất định sai.","Độ trễ từ đầu đến cuối tăng 3 ms, chưa tính chi phí huấn luyện được phân bổ."],"explanation":"Tiết kiệm 4 ms nhỏ hơn chi phí lập kế hoạch tăng thêm 7 ms, nên tổng thời gian tăng 7−4=3 ms trước khi phân bổ chi phí huấn luyện. Hiệu năng và tính đúng của kết quả SQL là hai câu hỏi riêng."},
-      {"id":"supplement-28-q2","prompt":"Bộ ước lượng dự đoán 500 dòng trong khi số dòng thực tế dương là 5,000. Q-error bằng bao nhiêu?","options":["5","4,500","10","0.1"],"explanation":"Với số dòng thực và ước lượng đều dương, q-error là max(ước lượng/thực tế, thực tế/ước lượng). Vì vậy max(500/5,000,5,000/500)=max(0.1,10)=10."},
-      {"id":"supplement-28-q3","prompt":"Vì sao giữ toàn bộ một số mẫu truy vấn ngoài quá trình huấn luyện để kiểm thử bộ tối ưu học máy?","options":["Để tránh đo độ trễ truy vấn.","Để kiểm tra khả năng khái quát sang cấu trúc khác các truy vấn huấn luyện tương tự nhau.","Để bảo đảm mọi ước lượng số dòng đều chính xác.","Để bảo đảm bộ tối ưu mới thắng."],"explanation":"Chia ngẫu nhiên từng truy vấn có thể để các cấu trúc gần như giống hệt xuất hiện ở cả train và test. Giữ riêng toàn bộ mẫu truy vấn kiểm tra một yêu cầu khái quát khác, thường khó hơn: xử lý cấu trúc chưa dùng trong huấn luyện."},
-      {"id":"supplement-28-q4","prompt":"Chỉ mục học máy dự đoán một vị trí. Cần thêm gì để tra cứu đúng?","options":["Điểm tương tự embedding.","Quy trình tìm kiếm/sửa vị trí đã được kiểm chứng, cùng cận sai số hoặc phương án dự phòng phù hợp.","Chỉ cần training loss trung bình thấp.","Trong mọi trường hợp đều cần GPU."],"explanation":"Độ chính xác dự đoán trung bình không bảo đảm tìm được một khóa cụ thể. Thuật toán tìm kiếm bao quanh mô hình phải kiểm tra và xử lý đúng sai số dự đoán cũng như cập nhật. Cận chỉ đo trên khóa huấn luyện chưa bảo đảm cho mọi khóa tương lai."},
-      {"id":"supplement-28-q5","prompt":"Cận trên số dòng khác ước lượng điểm như thế nào?","options":["Cận trên phải bằng đúng số dòng thực tế.","Khi các giả định của nó đúng, cận trên phải không thấp hơn giá trị thực; ước lượng điểm không nhất thiết thỏa điều đó.","Ước lượng điểm luôn tốn chi phí hơn.","Hai khái niệm giống nhau nếu ước lượng có sai số trung bình nhỏ."],"explanation":"Một bảo đảm toán học một phía có trách nhiệm khác độ chính xác dự đoán điển hình. Cận trên có thể lớn hơn số dòng thực mà vẫn hợp lệ, nhưng bảo đảm chỉ áp dụng khi các giả định của cận được giữ."}
-    ]
-  }],
-  "reviewStatus":"All 5 original supplemental practice questions translated; all four source options retain original order. Author checked each explanation against canonical selected option and associated lesson examples. No answer keys copied or altered. Existing course packets only; external papers not freshly reviewed; official Canvas assessment unverified."
+  "topics": [
+    {
+      "id": "supplement-28-practice",
+      "title": "Số dòng · xếp hạng plan · chỉ mục học máy · đánh giá vững chắc",
+      "questions": [
+        {
+          "id": "supplement-28-q1",
+          "prompt": "Bộ chọn học máy tiết kiệm 4 ms thực thi nhưng thêm 7 ms lập kế hoạch. Điều gì xảy ra?",
+          "options": [
+            "Độ trễ từ đầu đến cuối giảm 3 ms.",
+            "Q-error nhất định nhỏ hơn một.",
+            "Kết quả truy vấn nhất định sai.",
+            "Độ trễ từ đầu đến cuối tăng 3 ms, chưa tính chi phí huấn luyện được phân bổ."
+          ],
+          "explanation": "Lập kế hoạch thêm 7 ms, thực thi bớt 4 ms, nên tổng tăng 7−4=3 ms trước khi phân bổ huấn luyện. Kế hoạch hợp lệ vẫn có thể chậm hơn; thay đổi hiệu năng này tự nó không nói kết quả SQL sai."
+        },
+        {
+          "id": "supplement-28-q2",
+          "prompt": "Bộ ước lượng dự đoán 500 dòng trong khi số dòng thực tế dương là 5,000. Q-error bằng bao nhiêu?",
+          "options": [
+            "5",
+            "4,500",
+            "10",
+            "0.1"
+          ],
+          "explanation": "Tính hai chiều: ước lượng/thực=500/5,000=0.1 và thực/ước lượng=5,000/500=10. Q-error lấy số lớn hơn là 10. Đây là sai số theo hệ số, không phải chênh 4,500 dòng; với đầu vào dương nó không thể dưới một."
+        },
+        {
+          "id": "supplement-28-q3",
+          "prompt": "Vì sao giữ toàn bộ một số mẫu truy vấn ngoài quá trình huấn luyện để kiểm thử bộ tối ưu học máy?",
+          "options": [
+            "Để tránh đo độ trễ truy vấn.",
+            "Để kiểm tra khả năng khái quát sang cấu trúc khác các truy vấn huấn luyện tương tự nhau.",
+            "Để bảo đảm mọi ước lượng số dòng đều chính xác.",
+            "Để bảo đảm bộ tối ưu mới thắng."
+          ],
+          "explanation": "Truy vấn khác giá trị vẫn có thể chung cấu trúc như city=?. Chia ngẫu nhiên có thể đặt cấu trúc ấy vào cả huấn luyện và kiểm thử. Giữ nguyên mẫu ngoài huấn luyện thử cấu trúc mới; không bảo đảm ước lượng đúng hay thắng."
+        },
+        {
+          "id": "supplement-28-q4",
+          "prompt": "Chỉ mục học máy dự đoán một vị trí. Cần thêm gì để tra cứu đúng?",
+          "options": [
+            "Điểm tương tự embedding.",
+            "Quy trình tìm kiếm/sửa vị trí đã được kiểm chứng, cùng cận sai số hoặc phương án dự phòng phù hợp.",
+            "Chỉ cần training loss trung bình thấp.",
+            "Trong mọi trường hợp đều cần GPU."
+          ],
+          "explanation": "Dự đoán 420 với cận hợp lệ 6 thu đoạn tìm xuống 414–426; chưa biết đáp án nếu không so khóa thực. Cách tìm bao quanh hoặc dự phòng đúng phải xử lý sai số và cập nhật. Loss huấn luyện trung bình thấp không bảo đảm tìm đúng một khóa tương lai cụ thể."
+        },
+        {
+          "id": "supplement-28-q5",
+          "prompt": "Cận trên số dòng khác ước lượng điểm như thế nào?",
+          "options": [
+            "Cận trên phải bằng đúng số dòng thực tế.",
+            "Khi các giả định của nó đúng, cận trên phải không thấp hơn giá trị thực; ước lượng điểm không nhất thiết thỏa điều đó.",
+            "Ước lượng điểm luôn tốn chi phí hơn.",
+            "Hai khái niệm giống nhau nếu ước lượng có sai số trung bình nhỏ."
+          ],
+          "explanation": "Cận trên phải không thấp hơn số thật khi giả thiết đúng. Ước lượng điểm có thể thấp hoặc cao. Trong bài, số nối thật 8 bị chặn bởi √80≈8.94; dự đoán 7 khá gần nhưng không phải cận trên."
+        }
+      ]
+    }
+  ],
+  "reviewStatus": "All five supplemental prompts, options and explanations checked against rewritten 21 October lesson; canonical IDs and option order preserved. Primary-source overview checked where relevant; course assessment status remains unverified."
 }

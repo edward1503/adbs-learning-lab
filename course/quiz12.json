@@ -837,7 +837,7 @@
             "No; fusion is never possible for unequal relation sizes"
           ],
           "answer": 2,
-          "explanation": "Count the combined run inputs. Each separate sort fits its own merge, but their runs do not all fit simultaneously.",
+          "explanation": "Pass 0 creates ceil(120/12)=10 R-runs and ceil(40/12)=4 S-runs. Fusion needs all 14 run inputs simultaneously plus one output frame, but B=12 provides only 11 input frames. Each separate final sort merge fits; the combined merge does not. Additional merging or a different plan changes its cost.",
           "pages": [
             32
           ],

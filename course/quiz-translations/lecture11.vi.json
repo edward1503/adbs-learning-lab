@@ -220,7 +220,7 @@
             "728",
             "182"
           ],
-          "explanation": "16 run ban đầu qua hai lượt trộn tạo 4 rồi 1 run. Tính pass 0 được 3 pass, mỗi pass đọc/ghi 91 trang: 2×91×3=546. 364 bỏ pass 0."
+          "explanation": "Lượt 0 tạo 16 run, gồm lô cuối một trang. Trộn tối đa năm đường cho ceil(16/5)=4 run; trộn thêm một lượt thành một. Tính lượt 0 cộng hai lượt trộn: ba lượt × (91 đọc+91 ghi)=546 I/O. Đáp án 364 chỉ tính hai lượt."
         },
         {
           "id": "l11-external-merge-sort-q4",

@@ -138,7 +138,7 @@
             "Disk may contain changes from a transaction that later aborts"
           ],
           "answer": 3,
-          "explanation": "Uncommitted effects that reach disk must be removable. Missing committed changes are instead the REDO problem associated with NO-FORCE.",
+          "explanation": "For example B=7 changes to B=3 without commit, and STEAL flushes B=3. If the transaction aborts, the disk contains unfinished work. UNDO needs the information that restores 7; REDOing 3 would preserve the wrong effect.",
           "pages": [
             16
           ]
@@ -153,7 +153,7 @@
             "Only uncommitted dirty pages can be lost in a crash"
           ],
           "answer": 0,
-          "explanation": "Commit need not flush every data page, so the log must support reconstructing committed effects. UNDO addresses the different problem of removing effects that should not remain.",
+          "explanation": "For example T1 commits A=10 while disk still has A=12. Power loss removes RAM. Because T1 already committed, restoring 12 would lose accepted work; REDO uses the durable log to reconstruct 10. NO-FORCE does not waive durable-log requirements.",
           "pages": [
             16,
             17
@@ -346,7 +346,7 @@
             "Append log in RAM → flush update log → flush data page → flush COMMIT log → report success"
           ],
           "answer": 3,
-          "explanation": "The correct sequence keeps the log ahead of the data page and the durable COMMIT ahead of acknowledgement. The others leave crash windows that can lose recovery information or promised commits.",
+          "explanation": "Update-log durability comes before its data-page flush; durability of the transaction log through COMMIT comes before the success message. This option is one valid ordering, not a requirement that every data page always be flushed before commit: NO-FORCE may defer that page write.",
           "pages": [
             19,
             23
@@ -420,7 +420,7 @@
             "Transactions that had not committed before the crash"
           ],
           "answer": 3,
-          "explanation": "Undo removes effects of unfinished transactions. Removing committed work would violate durability.",
+          "explanation": "For the ordinary single-node transactions in this question, undo removes unfinished work while committed work is retained. Lecture 22 adds an important boundary: a distributed participant with durable PREPARE alone is in doubt and must resolve its shared decision before being treated as a loser.",
           "pages": [
             26
           ]

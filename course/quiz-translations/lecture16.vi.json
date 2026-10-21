@@ -8,92 +8,92 @@
       "questions": [
         {
           "id": "l16-sequential-scan-q1",
-          "prompt": "Heap có 100 page, predicate có selectivity 1%. Không bỏ qua page hay dùng cache, sequential scan đọc bao nhiêu page?",
+          "prompt": "tệp bảng có 100 trang, điều kiện có tỷ lệ giữ lại 1%. Không bỏ qua trang hay dùng bộ nhớ đệm, quét tuần tự đọc bao nhiêu trang?",
           "options": [
             "100",
             "1",
             "10",
             "0"
           ],
-          "explanation": "Scan phải xét toàn bộ heap để tìm dòng match. Đầu ra nhỏ không tự giảm số page đầu vào phải đọc."
+          "explanation": "quét phải xét toàn bộ tệp bảng để tìm dòng khớp. Đầu ra nhỏ không tự giảm số trang đầu vào phải đọc."
         },
         {
           "id": "l16-sequential-scan-q2",
-          "prompt": "Heap có 100 page, selectivity 20%. Nếu độ rộng dòng và cách đóng gói page không đổi, ước lượng bao nhiêu page đầu ra?",
+          "prompt": "tệp bảng có 100 trang, tỷ lệ giữ lại 20%. Nếu độ rộng dòng và cách đóng gói trang không đổi, ước lượng bao nhiêu trang đầu ra?",
           "options": [
             "200",
             "20",
             "100",
             "5"
           ],
-          "explanation": "100×0.2=20 page đầu ra. Đây khác 100 page đầu vào scan phải đọc."
+          "explanation": "100×0.2=20 trang đầu ra. Đây khác 100 trang đầu vào quét phải đọc."
         },
         {
           "id": "l16-sequential-scan-q3",
-          "prompt": "Sequential scan có kiểm tra predicate mà không dùng index được không?",
+          "prompt": "quét tuần tự có kiểm tra điều kiện mà không dùng chỉ mục được không?",
           "options": [
             "Chỉ equality trên unique key",
             "Chỉ khi đầu vào đã sắp xếp",
             "Có",
-            "Không; mọi predicate đều cần index"
+            "Không; mọi điều kiện đều cần chỉ mục"
           ],
-          "explanation": "Scan kiểm tra điều kiện trực tiếp trên dòng, không bị giới hạn ở predicate dùng được cho lookup index."
+          "explanation": "quét kiểm tra điều kiện trực tiếp trên dòng, không bị giới hạn ở điều kiện dùng được cho tra cứu chỉ mục."
         },
         {
           "id": "l16-sequential-scan-q4",
-          "prompt": "Cursor cần giữ gì để tiếp tục scan từ chỗ đã dừng?",
+          "prompt": "con trỏ cần giữ gì để tiếp tục quét từ chỗ đã dừng?",
           "options": [
-            "Chỉ số match đã trả, không giữ vị trí scan",
-            "Chỉ predicate, mỗi lần next lại bắt đầu từ đầu tệp",
-            "Chỉ page đầu, không theo dõi page sau",
-            "Vị trí trong các page và tuple đã xét"
+            "Chỉ số khớp đã trả, không giữ vị trí quét",
+            "Chỉ điều kiện, mỗi lần next lại bắt đầu từ đầu tệp",
+            "Chỉ trang đầu, không theo dõi trang sau",
+            "Vị trí trong các trang và dòng đã xét"
           ],
-          "explanation": "Page và tuple hiện tại là trạng thái thực thi, giúp tiếp tục không phải bắt đầu lại. Nó khác trạng thái lập kế hoạch."
+          "explanation": "trang và dòng hiện tại là trạng thái thực thi, giúp tiếp tục không phải bắt đầu lại. Nó khác trạng thái lập kế hoạch."
         },
         {
           "id": "l16-sequential-scan-q5",
-          "prompt": "Selection xử lý on-the-fly có phải ghi mọi tuple đạt điều kiện ra đĩa tạm không?",
+          "prompt": "phép chọn xử lý on-the-fly có phải ghi mọi dòng đạt điều kiện ra đĩa tạm không?",
           "options": [
             "Không",
-            "Có; mọi selection phải materialize kết quả",
-            "Có; đúng một lần ghi cho mỗi page gốc",
+            "Có; mọi phép chọn phải lưu đầy đủ kết quả",
+            "Có; đúng một lần ghi cho mỗi trang gốc",
             "Có, dù toán tử cha nhận được stream"
           ],
-          "explanation": "Pipeline có thể chuyển tuple trực tiếp cho cha. Ước lượng kích thước đầu ra không tự tạo chi phí ghi đĩa tương ứng."
+          "explanation": "đường ống xử lý có thể chuyển dòng trực tiếp cho cha. Ước lượng kích thước đầu ra không tự tạo chi phí ghi đĩa tương ứng."
         }
       ]
     },
     {
       "id": "l16-index-scan",
-      "title": "Quét index",
+      "title": "Quét chỉ mục",
       "questions": [
         {
           "id": "l16-index-scan-q1",
-          "prompt": "Cần gì để chọn giữa index age và dept cho điều kiện AND?",
+          "prompt": "Cần gì để chọn giữa chỉ mục age và dept cho điều kiện AND?",
           "options": [
-            "Chỉ index nào được tạo trước trong catalog",
-            "Selectivity cùng chi phí truy cập/lấy record của từng đường",
-            "Chỉ predicate nào đứng trước trong WHERE",
-            "Chỉ chiều cao index, bỏ số dòng và chi phí lấy dữ liệu"
+            "Chỉ chỉ mục nào được tạo trước trong catalog",
+            "tỷ lệ giữ lại cùng chi phí truy cập/lấy record của từng đường",
+            "Chỉ điều kiện nào đứng trước trong WHERE",
+            "Chỉ chiều cao chỉ mục, bỏ số dòng và chi phí lấy dữ liệu"
           ],
-          "explanation": "Số ứng viên và tính cục bộ quyết định công việc. Thứ tự viết predicate chưa đủ để chọn access path."
+          "explanation": "Số ứng viên và tính cục bộ quyết định công việc. Thứ tự viết điều kiện chưa đủ để chọn access path."
         },
         {
           "id": "l16-index-scan-q2",
-          "prompt": "Điều kiện age match 2 dòng, dept match 900. Nếu các chi phí khác tương đương, nên xét đường nào trước?",
+          "prompt": "Điều kiện age khớp 2 dòng, dept khớp 900. Nếu các chi phí khác tương đương, nên xét đường nào trước?",
           "options": [
-            "Luôn phải quét toàn bộ cả hai index",
+            "Luôn phải quét toàn bộ cả hai chỉ mục",
             "Không đường nào hợp lệ",
-            "Dùng index age, rồi kiểm tra dept như residual predicate",
-            "Dùng index dept vì match nhiều dòng hơn"
+            "Dùng chỉ mục age, rồi kiểm tra dept như còn lại cần kiểm tra điều kiện",
+            "Dùng chỉ mục dept vì khớp nhiều dòng hơn"
           ],
           "explanation": "Theo giả định chi phí tương đương, ít ứng viên thường cần ít lần lấy record hơn. Điều kiện dept vẫn phải được kiểm tra."
         },
         {
           "id": "l16-index-scan-q3",
-          "prompt": "Hash index trực tiếp hỗ trợ loại predicate nào?",
+          "prompt": "Hash chỉ mục trực tiếp hỗ trợ loại điều kiện nào?",
           "options": [
-            "Mọi range predicate",
+            "Mọi range điều kiện",
             "ORDER BY tăng dần",
             "Mọi tiền tố LIKE",
             "Equality trên toàn bộ hash key"
@@ -104,23 +104,23 @@
           "id": "l16-index-scan-q4",
           "prompt": "Với key phù hợp, B+ tree trực tiếp hỗ trợ gì ngoài equality?",
           "options": [
-            "Range predicate",
-            "Mọi predicate dùng hàm tùy ý, bất kể key",
+            "Range điều kiện",
+            "Mọi điều kiện dùng hàm tùy ý, bất kể key",
             "Mọi tích Descartes miễn phí",
             "Mọi aggregation mà không đọc entry"
           ],
-          "explanation": "Key có thứ tự hỗ trợ truy cập khoảng. Điều đó không làm mọi biểu thức thành điều kiện tìm kiếm index hợp lệ."
+          "explanation": "Key có thứ tự hỗ trợ truy cập khoảng. Điều đó không làm mọi biểu thức thành điều kiện tìm kiếm chỉ mục hợp lệ."
         },
         {
           "id": "l16-index-scan-q5",
-          "prompt": "Index age xử lý age<30, nhưng query còn cần country=UK. Cần làm gì nữa?",
+          "prompt": "chỉ mục age xử lý age<30, nhưng query còn cần country=UK. Cần làm gì nữa?",
           "options": [
-            "Tự chuyển index age thành hash index",
+            "Tự chuyển chỉ mục age thành hash chỉ mục",
             "Kiểm tra country từ dữ liệu hoặc cách truy cập phù hợp khác",
             "Bỏ điều kiện country",
             "Giả định mọi ứng viên có country đúng"
           ],
-          "explanation": "Ứng viên từ index chưa chứng minh toàn bộ WHERE đúng. Residual predicate country vẫn cần kiểm tra."
+          "explanation": "Ứng viên từ chỉ mục chưa chứng minh toàn bộ WHERE đúng. còn lại cần kiểm tra điều kiện country vẫn cần kiểm tra."
         }
       ]
     },
@@ -130,7 +130,7 @@
       "questions": [
         {
           "id": "l16-search-key-and-ordering-q1",
-          "prompt": "Với B+ tree (A,B), predicate nào có tiền tố equality rồi range?",
+          "prompt": "Với B+ tree (A,B), điều kiện nào có tiền tố equality rồi range?",
           "options": [
             "A>4 AND B=9, luôn là một khoảng chính xác",
             "A≠4 AND B=9, luôn là một khoảng liên tục",
@@ -152,34 +152,34 @@
         },
         {
           "id": "l16-search-key-and-ordering-q3",
-          "prompt": "Với index (A,B,C), A=2 AND B=3 AND C BETWEEN 5 AND 9 có theo quy tắc tiền tố/range không?",
+          "prompt": "Với chỉ mục (A,B,C), A=2 AND B=3 AND C BETWEEN 5 AND 9 có theo quy tắc tiền tố/range không?",
           "options": [
             "Có",
             "Không; chỉ cho phép một equality",
             "Không; C không phải cột đầu",
-            "Chỉ hash index xử lý được"
+            "Chỉ hash chỉ mục xử lý được"
           ],
           "explanation": "Equality cố định hai cột đầu, rồi range trên cột kế tiếp. Đây đúng quy tắc tiền tố/range."
         },
         {
           "id": "l16-search-key-and-ordering-q4",
-          "prompt": "Với A>2 AND B=7 trên index (A,B), sau khi range scan A cần làm gì?",
+          "prompt": "Với A>2 AND B=7 trên chỉ mục (A,B), sau khi range quét A cần làm gì?",
           "options": [
-            "Không bao giờ được đọc index cho query này",
+            "Không bao giờ được đọc chỉ mục cho query này",
             "Kiểm tra thêm B=7",
-            "Bỏ B vì B có trong index",
+            "Bỏ B vì B có trong chỉ mục",
             "Giả định mọi dòng đã thăm có B=7"
           ],
           "explanation": "Range A cho tập ứng viên rộng hơn. B=7 không tạo một khoảng chính xác liên tục qua mọi nhóm A đạt điều kiện, nên cần kiểm tra thêm."
         },
         {
           "id": "l16-search-key-and-ordering-q5",
-          "prompt": "Index (A,B), query chỉ có B=7: hạn chế trong mô hình lookup tiền tố cơ bản là gì?",
+          "prompt": "chỉ mục (A,B), query chỉ có B=7: hạn chế trong mô hình tra cứu tiền tố cơ bản là gì?",
           "options": [
             "Không thể so sánh B",
             "SQL không hợp lệ",
-            "Thiếu ràng buộc A đầu tiên để xác định khoảng lookup hẹp liên tục",
-            "B không có trong index"
+            "Thiếu ràng buộc A đầu tiên để xác định khoảng tra cứu hẹp liên tục",
+            "B không có trong chỉ mục"
           ],
           "explanation": "B có trong key nhưng thứ tự ưu tiên A. Thiếu ràng buộc tiền tố đầu, không phải thiếu cột B."
         }
@@ -187,60 +187,60 @@
     },
     {
       "id": "l16-index-only-scan",
-      "title": "Quét chỉ index",
+      "title": "Quét chỉ chỉ mục",
       "questions": [
         {
           "id": "l16-index-only-scan-q1",
-          "prompt": "Điều kiện cốt lõi để index-only scan trong mô hình bài giảng là gì?",
+          "prompt": "Điều kiện cốt lõi để quét chỉ đọc chỉ mục trong mô hình bài giảng là gì?",
           "options": [
-            "Index phải clustered",
+            "chỉ mục phải gom cụm",
             "Bảng chỉ có một dòng",
-            "Mọi predicate phải đúng",
-            "Index chứa các thuộc tính query cần"
+            "Mọi điều kiện phải đúng",
+            "chỉ mục chứa các thuộc tính query cần"
           ],
           "explanation": "Bao phủ các cột cần thiết có thể tránh đọc record đầy đủ. Không cần clustering để có lợi ích bao phủ cột này."
         },
         {
           "id": "l16-index-only-scan-q2",
-          "prompt": "Với index (dept,salary), SELECT dept,MIN(salary) GROUP BY dept lấy giá trị cần thiết ở đâu?",
+          "prompt": "Với chỉ mục (dept,salary), SELECT dept,MIN(salary) GROUP BY dept lấy giá trị cần thiết ở đâu?",
           "options": [
-            "Các entry index",
-            "Bắt buộc đọc mọi dòng heap đầy đủ",
-            "Chỉ key đầu của root cho mọi department",
-            "Hash index khác không chứa salary"
+            "Các entry chỉ mục",
+            "Bắt buộc đọc mọi dòng tệp bảng đầy đủ",
+            "Chỉ key đầu của gốc cho mọi department",
+            "Hash chỉ mục khác không chứa salary"
           ],
-          "explanation": "Index chứa cả dept và salary nên cung cấp giá trị theo mô hình. Một key đầu của root không đại diện mọi nhóm."
+          "explanation": "chỉ mục chứa cả dept và salary nên cung cấp giá trị theo mô hình. Một key đầu của gốc không đại diện mọi nhóm."
         },
         {
           "id": "l16-index-only-scan-q3",
-          "prompt": "Index (age,salary) có bao phủ SELECT name WHERE age=30 nếu thiếu name không?",
+          "prompt": "chỉ mục (age,salary) có bao phủ SELECT name WHERE age=30 nếu thiếu name không?",
           "options": [
             "Có, nếu name ngắn",
             "Không",
-            "Có, vì age match",
+            "Có, vì age khớp",
             "Có, vì salary đứng sau age"
           ],
-          "explanation": "Bao phủ predicate chưa đủ: cột đầu ra name còn phải lấy từ nguồn khác."
+          "explanation": "Khóa tuổi/lương xác định được age=30 nhưng không trường nào cung cấp tên. RID chỉ vị trí dòng bảng; lấy dòng ấy mới có tên còn thiếu, giống (P3, vị trí 2) dẫn tới Linh trong ví dụ bài học."
         },
         {
           "id": "l16-index-only-scan-q4",
-          "prompt": "Vì sao index-only unclustered vẫn có thể nhanh?",
+          "prompt": "Vì sao chỉ mục-only không gom cụm vẫn có thể nhanh?",
           "options": [
             "Nó tự đổi clustering vật lý của bảng",
-            "Nó không đọc page index nào",
+            "Nó không đọc trang chỉ mục nào",
             "Nó tránh theo RID để lấy dòng dữ liệu đầy đủ",
             "Nó chỉ xử lý được unique key"
           ],
-          "explanation": "Tránh fetch record loại phần phạt random I/O của bước đó. Đọc chính index vẫn có thể tốn I/O."
+          "explanation": "Tránh lấy bản ghi record loại phần phạt random I/O của bước đó. Đọc chính chỉ mục vẫn có thể tốn I/O."
         },
         {
           "id": "l16-index-only-scan-q5",
-          "prompt": "Query cần A và B, nhưng index chỉ chứa A. Thay đổi nào cung cấp đủ cột?",
+          "prompt": "Query cần A và B, nhưng chỉ mục chỉ chứa A. Thay đổi nào cung cấp đủ cột?",
           "options": [
-            "Tăng buffer nhưng vẫn không đưa B vào index",
-            "Chỉ thêm B vào WHERE, không vào index",
-            "Dùng index A và gọi index-only dù lấy B từ heap",
-            "Dùng index chứa cả A và B"
+            "Tăng buffer nhưng vẫn không đưa B vào chỉ mục",
+            "Chỉ thêm B vào WHERE, không vào chỉ mục",
+            "Dùng chỉ mục A và gọi chỉ mục-only dù lấy B từ tệp bảng",
+            "Dùng chỉ mục chứa cả A và B"
           ],
           "explanation": "Access path phải cung cấp cả B. Thêm RAM không tạo thuộc tính còn thiếu; bỏ B sẽ đổi query."
         }
@@ -248,66 +248,66 @@
     },
     {
       "id": "l16-clustered-b-tree-scan",
-      "title": "Quét B+ tree clustered",
+      "title": "Quét B+ tree gom cụm",
       "questions": [
         {
           "id": "l16-clustered-b-tree-scan-q1",
-          "prompt": "Đi xuống node trong trước quét lá tốn 3 I/O; selectivity 10%; index có 100 page lá, dữ liệu 1,000 page. Variant B cần dòng đầy đủ: ước lượng clustered scan là gì?",
+          "prompt": "Đi xuống node trong trước quét lá tốn 3 I/O; tỷ lệ giữ lại 10%; chỉ mục có 100 trang lá, dữ liệu 1,000 trang. Variant B cần dòng đầy đủ: ước lượng gom cụm quét là gì?",
           "options": [
             "113 I/O",
             "103 I/O",
             "1,103 I/O",
             "13 I/O"
           ],
-          "explanation": "3+0.1×100+0.1×1,000=113. Chi phí gồm page lá match và page dữ liệu match."
+          "explanation": "3+0.1×100+0.1×1,000=113. Chi phí gồm trang lá khớp và trang dữ liệu khớp."
         },
         {
           "id": "l16-clustered-b-tree-scan-q2",
-          "prompt": "Cùng số liệu, gồm 3 I/O node trong trước quét lá, query index-only có ước lượng gì trong mô hình này?",
+          "prompt": "Cùng số liệu, gồm 3 I/O node trong trước quét lá, query chỉ mục-only có ước lượng gì trong mô hình này?",
           "options": [
             "3 I/O",
             "13 I/O",
             "113 I/O",
             "103 I/O"
           ],
-          "explanation": "3 I/O đi xuống cộng 10 page lá, không thêm 100 page dữ liệu. Tới lá đầu chưa có nghĩa đã đọc mọi match."
+          "explanation": "3 I/O đi xuống cộng 10 trang lá, không thêm 100 trang dữ liệu. Tới lá đầu chưa có nghĩa đã đọc mọi khớp."
         },
         {
           "id": "l16-clustered-b-tree-scan-q3",
-          "prompt": "Dòng match đầy đủ nằm trên 40 page dữ liệu liên tiếp theo clustered key. Không cache và bỏ đọc index, fetch dữ liệu lý tưởng tốn bao nhiêu?",
+          "prompt": "Dòng khớp đầy đủ nằm trên 40 trang dữ liệu liên tiếp theo gom cụm key. Không bộ nhớ đệm và bỏ đọc chỉ mục, lấy bản ghi dữ liệu lý tưởng tốn bao nhiêu?",
           "options": [
-            "Một lần đọc mỗi tuple match, bất kể đóng gói",
+            "Một lần đọc mỗi dòng khớp, bất kể đóng gói",
             "1 lần đọc toàn khoảng",
             "40 lần đọc",
-            "0, vì clustered nghĩa là cached"
+            "0, vì gom cụm nghĩa là cached"
           ],
-          "explanation": "Clustering cho phép đọc mỗi page match một lần; tính cục bộ không có nghĩa dữ liệu đã ở RAM."
+          "explanation": "Clustering cho phép đọc mỗi trang khớp một lần; tính cục bộ không có nghĩa dữ liệu đã ở RAM."
         },
         {
           "id": "l16-clustered-b-tree-scan-q4",
-          "prompt": "Hai predicate giữ cùng 2,000 dòng đầy đủ. Một dùng clustered-key range, một dùng index unclustered với dòng rải rác. Lợi ích chính của clustered range là gì?",
+          "prompt": "Hai điều kiện giữ cùng 2,000 dòng đầy đủ. Một dùng gom cụm-key range, một dùng chỉ mục không gom cụm với dòng rải rác. Lợi ích chính của gom cụm range là gì?",
           "options": [
             "Giảm kết quả còn 1 dòng mỗi key",
             "Bảo đảm 0 I/O đi xuống cây",
-            "Loại mọi residual predicate ngoài search key",
-            "Có thể gom dòng match lên ít page dữ liệu hơn và truy cập tuần tự hơn"
+            "Loại mọi còn lại cần kiểm tra điều kiện ngoài search key",
+            "Có thể gom dòng khớp lên ít trang dữ liệu hơn và truy cập tuần tự hơn"
           ],
           "explanation": "Clustering đổi bố trí và kiểu truy cập, không đổi số dòng kết quả hay làm traversal miễn phí."
         },
         {
           "id": "l16-clustered-b-tree-scan-q5",
-          "prompt": "Clustered scan dùng variant B/C: khi nào còn phải đọc record sau entry lá match?",
+          "prompt": "gom cụm quét dùng variant B/C: khi nào còn phải đọc record sau entry lá khớp?",
           "options": [
-            "Khi query cần cột không có trong index",
-            "Luôn luôn, dù chỉ cần cột index",
-            "Không bao giờ; lá clustered mọi variant đều chứa dòng đầy đủ",
+            "Khi query cần cột không có trong chỉ mục",
+            "Luôn luôn, dù chỉ cần cột chỉ mục",
+            "Không bao giờ; lá gom cụm mọi variant đều chứa dòng đầy đủ",
             "Chỉ với equality, không với range"
           ],
-          "explanation": "B/C có thể chứa key và RID thay vì dòng đầy đủ. Cột thiếu cần fetch; không nhầm với variant A."
+          "explanation": "B/C có thể chứa key và RID thay vì dòng đầy đủ. Cột thiếu cần lấy bản ghi; không nhầm với variant A."
         },
         {
           "id": "ex16-costs-q1",
-          "prompt": "h=3 I/O node trong, L=120 page lá, N=900 page dữ liệu, s=0.05. Clustered full-row h+sL+sN bằng bao nhiêu?",
+          "prompt": "h=3 I/O node trong, L=120 trang lá, N=900 trang dữ liệu, s=0.05. gom cụm full-row h+sL+sN bằng bao nhiêu?",
           "options": [
             "9 I/O",
             "48 I/O",
@@ -320,72 +320,72 @@
     },
     {
       "id": "l16-hash-index-scan",
-      "title": "Quét hash index",
+      "title": "Quét hash chỉ mục",
       "questions": [
         {
           "id": "l16-hash-index-scan-q1",
-          "prompt": "Predicate nào trực tiếp match hash index (A,B)?",
+          "prompt": "điều kiện nào trực tiếp khớp hash chỉ mục (A,B)?",
           "options": [
             "A BETWEEN 2 AND 9",
             "A=2 AND B=9",
             "Chỉ A=2",
             "B>9"
           ],
-          "explanation": "Composite hash lookup cần equality trên toàn key, không có lookup tiền tố như B+ tree."
+          "explanation": "Composite hash tra cứu cần equality trên toàn key, không có tra cứu tiền tố như B+ tree."
         },
         {
           "id": "l16-hash-index-scan-q2",
-          "prompt": "Key không duy nhất: sau một match trong bucket, cần làm gì?",
+          "prompt": "Key không duy nhất: sau một khớp trong ngăn chứa, cần làm gì?",
           "options": [
-            "Dừng ngay như lookup unique key",
-            "Chỉ quét page chính dù có overflow",
-            "Tiếp tục tìm các match còn lại",
-            "Chỉ trả match có RID nhỏ nhất làm đại diện duplicate"
+            "Dừng ngay như tra cứu unique key",
+            "Chỉ quét trang chính dù có tràn",
+            "Tiếp tục tìm các khớp còn lại",
+            "Chỉ trả khớp có RID nhỏ nhất làm đại diện duplicate"
           ],
-          "explanation": "Query trên key không duy nhất có thể cần mọi dòng match. Một match chưa chứng minh đã tìm xong."
+          "explanation": "Query trên key không duy nhất có thể cần mọi dòng khớp. Một khớp chưa chứng minh đã tìm xong."
         },
         {
           "id": "l16-hash-index-scan-q3",
-          "prompt": "Key duy nhất và đã tìm được match: có thể dừng tìm trong bucket không?",
+          "prompt": "Key duy nhất và đã tìm được khớp: có thể dừng tìm trong ngăn chứa không?",
           "options": [
-            "Không; luôn quét toàn index dù key duy nhất",
+            "Không; luôn quét toàn chỉ mục dù key duy nhất",
             "Chỉ nếu query có ORDER BY",
             "Không; unique key luôn có duplicate",
             "Có"
           ],
-          "explanation": "Uniqueness bảo đảm không có match thứ hai. Key của entry tìm được vẫn phải kiểm tra chính xác."
+          "explanation": "Uniqueness bảo đảm không có khớp thứ hai. Key của entry tìm được vẫn phải kiểm tra chính xác."
         },
         {
           "id": "l16-hash-index-scan-q4",
-          "prompt": "Bucket có một page chính và 2 page overflow. Không cache, quét hết bucket đọc bao nhiêu page?",
+          "prompt": "ngăn chứa có một trang chính và 2 trang tràn. Không bộ nhớ đệm, quét hết ngăn chứa đọc bao nhiêu trang?",
           "options": [
             "3",
             "2",
             "1",
             "0"
           ],
-          "explanation": "Page chính cũng tính một page. Số overflow không phải tổng số page bucket."
+          "explanation": "trang chính cũng tính một trang. Số tràn không phải tổng số trang ngăn chứa."
         },
         {
           "id": "l16-hash-index-scan-q5",
-          "prompt": "Xác định bucket bằng hash có bỏ được bước so key chính xác không?",
+          "prompt": "Xác định ngăn chứa bằng hash có bỏ được bước so key chính xác không?",
           "options": [
             "Có, nếu hash nhanh",
             "Không",
-            "Có, nếu bucket nhiều entry",
+            "Có, nếu ngăn chứa nhiều entry",
             "Có, nếu key là số nguyên"
           ],
-          "explanation": "Hash collision có thể đưa key khác nhau vào cùng bucket. Vẫn phải kiểm tra điều kiện chính xác."
+          "explanation": "Hash collision có thể đưa key khác nhau vào cùng ngăn chứa. Vẫn phải kiểm tra điều kiện chính xác."
         }
       ]
     },
     {
       "id": "l16-multi-index-scan",
-      "title": "Quét nhiều index",
+      "title": "Quét nhiều chỉ mục",
       "questions": [
         {
           "id": "l16-multi-index-scan-q1",
-          "prompt": "Kết hợp tập RID cho hai predicate indexed nối bằng AND như thế nào?",
+          "prompt": "Kết hợp tập RID cho hai điều kiện indexed nối bằng AND như thế nào?",
           "options": [
             "Tích Descartes",
             "Nối danh sách, giữ mọi phần tử",
@@ -396,7 +396,7 @@
         },
         {
           "id": "l16-multi-index-scan-q2",
-          "prompt": "Kết hợp tập RID cho hai predicate indexed nối bằng OR như thế nào?",
+          "prompt": "Kết hợp tập RID cho hai điều kiện indexed nối bằng OR như thế nào?",
           "options": [
             "Giao",
             "Chọn tập nhỏ hơn",
@@ -418,25 +418,25 @@
         },
         {
           "id": "l16-multi-index-scan-q4",
-          "prompt": "Index xử lý age và dept, nhưng country chưa indexed. Sau kết hợp RID cần gì?",
+          "prompt": "chỉ mục xử lý age và dept, nhưng country chưa indexed. Sau kết hợp RID cần gì?",
           "options": [
             "Đổi AND thành OR",
-            "Fetch và kiểm tra residual country",
+            "lấy bản ghi và kiểm tra còn lại cần kiểm tra country",
             "Bỏ country",
             "Giả định country độc lập rồi bỏ kiểm tra"
           ],
-          "explanation": "Giả định độc lập để ước lượng không cho phép bỏ predicate thật của query."
+          "explanation": "Giả định độc lập để ước lượng không cho phép bỏ điều kiện thật của query."
         },
         {
           "id": "l16-multi-index-scan-q5",
-          "prompt": "Multi-index scan luôn rẻ hơn single-index scan không?",
+          "prompt": "Multi-chỉ mục quét luôn rẻ hơn single-chỉ mục quét không?",
           "options": [
             "Có, khi query dùng AND",
-            "Không, vì multi-index luôn trả kết quả sai",
-            "Không; công index thêm có thể lớn hơn tiết kiệm fetch",
-            "Có; thêm index luôn nhanh hơn"
+            "Không, vì multi-chỉ mục luôn trả kết quả sai",
+            "Không; công chỉ mục thêm có thể lớn hơn tiết kiệm lấy bản ghi",
+            "Có; thêm chỉ mục luôn nhanh hơn"
           ],
-          "explanation": "Phải cân chi phí phối hợp index với phần fetch tiết kiệm. Đường đúng chưa chắc là đường rẻ nhất."
+          "explanation": "Phải cân chi phí phối hợp chỉ mục với phần lấy bản ghi tiết kiệm. Đường đúng chưa chắc là đường rẻ nhất."
         }
       ]
     },
@@ -446,36 +446,36 @@
       "questions": [
         {
           "id": "l16-practical-exercise-with-postgresql-q1",
-          "prompt": "Bitmap Index Scan tạo gì theo mô tả bài giảng?",
+          "prompt": "Bitmap chỉ mục quét tạo gì theo mô tả bài giảng?",
           "options": [
-            "Dòng đã projection đầy đủ, không cần heap",
-            "Stream tuple sắp theo key đầu ra",
+            "Dòng đã phép chiếu đầy đủ, không cần tệp bảng",
+            "Stream dòng sắp theo key đầu ra",
             "Bitmap một bit mỗi giá trị search key phân biệt, thay vì vị trí dòng",
             "Bitmap chỉ vị trí dòng ứng viên"
           ],
-          "explanation": "Bước index xác định vị trí ứng viên; bước heap lấy dòng dữ liệu cần thiết."
+          "explanation": "Bước chỉ mục xác định vị trí ứng viên; bước tệp bảng lấy dòng dữ liệu cần thiết."
         },
         {
           "id": "l16-practical-exercise-with-postgresql-q2",
-          "prompt": "Bitmap Heap Scan dùng bitmap thế nào?",
+          "prompt": "Bitmap quét tệp bảng dùng bitmap thế nào?",
           "options": [
-            "Fetch page/dòng heap, recheck điều kiện khi cần",
-            "Duyệt root B+ tree để dựng lại bitmap",
+            "lấy bản ghi trang/dòng tệp bảng, recheck điều kiện khi cần",
+            "Duyệt gốc B+ tree để dựng lại bitmap",
             "Chỉ trả bitmap cho client mà không lấy cột cần",
-            "Fetch heap theo index key dù bitmap gom theo heap page"
+            "lấy bản ghi tệp bảng theo chỉ mục key dù bitmap gom theo tệp bảng trang"
           ],
-          "explanation": "Bitmap tổ chức truy cập quanh page liên quan. Nó chỉ nơi lấy dữ liệu, không thay dữ liệu."
+          "explanation": "Bitmap tổ chức truy cập quanh trang liên quan. Nó chỉ nơi lấy dữ liệu, không thay dữ liệu."
         },
         {
           "id": "l16-practical-exercise-with-postgresql-q3",
           "prompt": "Vì sao bitmap access có thể giảm random I/O?",
           "options": [
             "Thay đĩa bằng RAM vô hạn",
-            "Gom đọc theo heap page",
+            "Gom đọc theo tệp bảng trang",
             "Ép mọi dòng có cùng key",
-            "Không bao giờ cần page dữ liệu"
+            "Không bao giờ cần trang dữ liệu"
           ],
-          "explanation": "Fetch theo page tận dụng tính cục bộ, không bảo đảm bỏ mọi lượt đọc page dữ liệu."
+          "explanation": "lấy bản ghi theo trang tận dụng tính cục bộ, không bảo đảm bỏ mọi lượt đọc trang dữ liệu."
         },
         {
           "id": "l16-practical-exercise-with-postgresql-q4",
@@ -490,75 +490,75 @@
         },
         {
           "id": "l16-practical-exercise-with-postgresql-q5",
-          "prompt": "Planner chú trọng thông tin nào khi chọn sequential, index hoặc bitmap access?",
+          "prompt": "Planner chú trọng thông tin nào khi chọn sequential, chỉ mục hoặc bitmap access?",
           "options": [
-            "Chỉ việc index có tồn tại không",
-            "Chỉ chiều cao index, bỏ số dòng match",
-            "Chỉ độ rộng đầu ra, bỏ page bảng và selectivity",
-            "Kích thước bảng, số dòng, selectivity và chi phí ước lượng"
+            "Chỉ việc chỉ mục có tồn tại không",
+            "Chỉ chiều cao chỉ mục, bỏ số dòng khớp",
+            "Chỉ độ rộng đầu ra, bỏ trang bảng và tỷ lệ giữ lại",
+            "Kích thước bảng, số dòng, tỷ lệ giữ lại và chi phí ước lượng"
           ],
-          "explanation": "Có index không quyết định đường được chọn. Ước lượng dòng và chi phí là cơ sở so sánh."
+          "explanation": "Có chỉ mục không quyết định đường được chọn. Ước lượng dòng và chi phí là cơ sở so sánh."
         }
       ]
     },
     {
       "id": "l16-unclustered-b-tree-scan",
-      "title": "Quét B+ tree unclustered",
+      "title": "Quét B+ tree không gom cụm",
       "questions": [
         {
           "id": "l16-unclustered-b-tree-scan-q1",
-          "prompt": "Điều gì gây random data I/O trong index scan unclustered?",
+          "prompt": "Điều gì gây random data I/O trong chỉ mục quét không gom cụm?",
           "options": [
-            "RID gặp theo key có thể trỏ tới page dữ liệu rải rác",
+            "RID gặp theo key có thể trỏ tới trang dữ liệu rải rác",
             "Key lá chưa sắp xếp",
-            "Root chứa bản sao toàn bộ bảng",
+            "gốc chứa bản sao toàn bộ bảng",
             "B+ tree không hỗ trợ range"
           ],
-          "explanation": "Key index vẫn có thứ tự, nhưng bố trí dữ liệu vật lý không theo thứ tự ấy."
+          "explanation": "Key chỉ mục vẫn có thứ tự, nhưng bố trí dữ liệu vật lý không theo thứ tự ấy."
         },
         {
           "id": "l16-unclustered-b-tree-scan-q2",
-          "prompt": "Có 400 match, mỗi match cần một page khác chưa cached. Chỉ fetch dữ liệu tốn gì?",
+          "prompt": "Có 400 khớp, mỗi khớp cần một trang khác chưa cached. Chỉ lấy bản ghi dữ liệu tốn gì?",
           "options": [
             "0 lần đọc",
             "400 lần đọc",
             "1 lần đọc",
             "Số lần đọc bằng chiều cao cây"
           ],
-          "explanation": "Mỗi RID trỏ page khác nên cần 400 lần đọc. Traversal và page lá là chi phí thêm."
+          "explanation": "Mỗi RID trỏ trang khác nên cần 400 lần đọc. Traversal và trang lá là chi phí thêm."
         },
         {
           "id": "l16-unclustered-b-tree-scan-q3",
-          "prompt": "Có 400 match nhưng index bao phủ mọi cột cần. Bỏ chi tiết visibility, có cần 400 heap fetch không?",
+          "prompt": "Có 400 khớp nhưng chỉ mục bao phủ mọi cột cần. Bỏ chi tiết visibility, có cần 400 tệp bảng lấy bản ghi không?",
           "options": [
-            "Có, vì mỗi entry index là page dữ liệu",
-            "Không, vì query không còn predicate",
-            "Không; index-only scan có thể tránh chúng",
-            "Có; scan unclustered luôn phải fetch mọi RID"
+            "Có, vì mỗi entry chỉ mục là trang dữ liệu",
+            "Không, vì query không còn điều kiện",
+            "Không; quét chỉ đọc chỉ mục có thể tránh chúng",
+            "Có; quét không gom cụm luôn phải lấy bản ghi mọi RID"
           ],
-          "explanation": "Coverage tránh tìm cột thiếu trong record dữ liệu, không bỏ predicate của query."
+          "explanation": "Coverage tránh tìm cột thiếu trong record dữ liệu, không bỏ điều kiện của query."
         },
         {
           "id": "l16-unclustered-b-tree-scan-q4",
-          "prompt": "RID match trỏ page [8,2,8,3,2]. Gom yêu cầu theo page cần fetch bao nhiêu page khác nhau?",
+          "prompt": "RID khớp trỏ trang [8,2,8,3,2]. Gom yêu cầu theo trang cần lấy bản ghi bao nhiêu trang khác nhau?",
           "options": [
             "5",
             "2",
             "8",
             "3"
           ],
-          "explanation": "Ba page khác nhau là 2,3,8. Locality hoặc tái sử dụng tránh đọc lặp; 5 là số record match."
+          "explanation": "Ba trang khác nhau là 2,3,8. Locality hoặc tái sử dụng tránh đọc lặp; 5 là số record khớp."
         },
         {
           "id": "l16-unclustered-b-tree-scan-q5",
-          "prompt": "Vì sao heap scan có thể thắng index unclustered khi phần lớn dòng match?",
+          "prompt": "Vì sao quét tệp bảng có thể thắng chỉ mục không gom cụm khi phần lớn dòng khớp?",
           "options": [
-            "Nhiều fetch rải rác cộng công index có thể đắt hơn quét tuần tự",
+            "Nhiều lấy bản ghi rải rác cộng công chỉ mục có thể đắt hơn quét tuần tự",
             "Query trở nên không hợp lệ về logic",
-            "B+ tree mất thứ tự key khi nhiều dòng match",
-            "Index scan không bao giờ đọc quá một dòng"
+            "B+ tree mất thứ tự key khi nhiều dòng khớp",
+            "chỉ mục quét không bao giờ đọc quá một dòng"
           ],
-          "explanation": "Nhiều match làm mẫu truy cập đắt hơn, không làm cấu trúc index mất tính đúng."
+          "explanation": "Nhiều khớp làm mẫu truy cập đắt hơn, không làm cấu trúc chỉ mục mất tính đúng."
         }
       ]
     }

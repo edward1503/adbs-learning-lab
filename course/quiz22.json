@@ -228,7 +228,7 @@
             "Treat the NO participant as an unnecessary replica"
           ],
           "answer": 0,
-          "explanation": "Atomic commit requires unanimous YES votes. A NO may reflect a genuine constraint failure, and a majority is insufficient when all four transaction parts are required.",
+          "explanation": "Three YES votes establish readiness for only three transaction parts. The fourth NO may mean its required update violates a constraint. COMMIT would retain an incomplete transaction, so the outcome must be ABORT; 2PC uses unanimity, not majority approval.",
           "pages": [
             20,
             22
@@ -468,7 +468,7 @@
             "Delete the transaction without undo or redo"
           ],
           "answer": 0,
-          "explanation": "Prepared means the decision is still unknown locally; another node may already have committed. Neither independent commit nor independent abort has sufficient evidence.",
+          "explanation": "PREPARE records a promise, not an outcome. The same local log is consistent with a coordinator that has not decided and one that already committed elsewhere while its message was delayed. Ask for the permitted decision; timeout alone resolves neither possibility.",
           "pages": [
             49,
             51,
@@ -617,7 +617,7 @@
             "No; no transaction may ever abort"
           ],
           "answer": 1,
-          "explanation": "Strict 2PL allows undo without cascading dependencies, but does not authorize reversing atomic-commit decisions. A prepared participant must still query or wait under the recovery rules.",
+          "explanation": "Local undo without cascading readers is an isolation benefit, not authority to override the shared commit decision. After durable PREPARE, another participant may already have committed. Resolve the 2PC outcome first, then carry out the permitted local completion and release.",
           "pages": [
             49,
             54,

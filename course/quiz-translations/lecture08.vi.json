@@ -87,7 +87,7 @@
             "5",
             "4.5"
           ],
-          "explanation": "Trung bình vị trí 1–9 là (9+1)/2=5; P/2=4.5 chỉ xấp xỉ."
+          "explanation": "Khóa ở trang 1 thì đọc một trang, ở trang 2 thì hai trang, tiếp tục đến trang 9. Xác suất bằng nhau nên trung bình (1+2+3+4+5+6+7+8+9)/9=45/9=5. Đúng bằng (P+1)/2. P/2=4.5 là gần đúng tiện dùng; không có khóa sẽ cần chín lần đọc."
         },
         {
           "id": "l08-heap-cost-q3",

@@ -601,7 +601,7 @@
             "125"
           ],
           "answer": 1,
-          "explanation": "The payload is 1000×3=3000 bits. Dividing by 8 gives 375 bytes; 3000 is the bit count, not the byte count.",
+          "explanation": "Write the units at each step: 1000 values × 3 bits/value = 3000 bits; 3000 bits ÷ 8 bits/byte = 375 bytes. Headers, padding and any dictionary or delta metadata are excluded. The number 3000 counts bits rather than bytes.",
           "pages": [
             23
           ]

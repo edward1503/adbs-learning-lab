@@ -10,9 +10,9 @@
           "id": "l18-finding-the-best-query-plan-q1",
           "prompt": "Optimizer cần xét nhóm quyết định nào?",
           "options": [
-            "Chỉ thứ tự predicate WHERE, không toán tử vật lý",
-            "Chỉ sort cuối, mọi join có triển khai cố định",
-            "Thứ tự join, thuật toán, access path và tham số tài nguyên",
+            "Chỉ thứ tự điều kiện WHERE, không toán tử vật lý",
+            "Chỉ sắp xếp cuối, mọi nối có triển khai cố định",
+            "Thứ tự nối, thuật toán, access path và tham số tài nguyên",
             "Chỉ bảng nhỏ nhất, không kích thước trung gian"
           ],
           "explanation": "Lựa chọn logic và vật lý tương tác. Tối ưu cần phối hợp nhiều quyết định thay vì một lựa chọn riêng."
@@ -22,7 +22,7 @@
           "prompt": "Nếu liệt kê mọi plan quá đắt, cách thực tế là gì?",
           "options": [
             "Trả kết quả tùy ý",
-            "Bỏ mọi join khỏi query",
+            "Bỏ mọi nối khỏi query",
             "Giả định plan đầu luôn tối ưu toàn cục",
             "Giữ ứng viên triển vọng bằng chiến lược giới hạn tìm kiếm"
           ],
@@ -45,7 +45,7 @@
           "options": [
             "Buffer chỉ đổi CPU, không đổi số pass I/O ngoài",
             "Phân bổ buffer có thể đổi số pass/block và chi phí",
-            "Mọi join giả định buffer vô hạn",
+            "Mọi nối giả định buffer vô hạn",
             "Chỉ số dòng đầu ra quan trọng; memory không ảnh hưởng chi phí"
           ],
           "explanation": "Thuật toán bộ nhớ ngoài phụ thuộc ngưỡng memory, nên giả định tài nguyên khác nhau có thể đổi chi phí."
@@ -69,53 +69,53 @@
       "questions": [
         {
           "id": "l18-single-table-plans-cost-estimates-q1",
-          "prompt": "Bảng có 200 page, 20,000 tuple; index 20 page; selectivity 5%. Bỏ chi phí đi xuống cố định, clustered scan ước lượng bao nhiêu?",
+          "prompt": "Bảng có 200 trang, 20,000 dòng; chỉ mục 20 trang; tỷ lệ giữ lại 5%. Bỏ chi phí đi xuống cố định, gom cụm quét ước lượng bao nhiêu?",
           "options": [
             "1,001 I/O",
             "200 I/O",
             "10 I/O",
             "11 I/O"
           ],
-          "explanation": "0.05×(20+200)=11. Đáp án 10 bỏ phần đọc page index."
+          "explanation": "Năm phần trăm của 20 trang lá là 1; theo phân bố gom cụm đã giả định, năm phần trăm của 200 trang dữ liệu là 10. Tổng 1+10=11, đề bài đã loại phí đi cây cố định. 1.000 dòng phù hợp không phải 1.000 trang dữ liệu gom cụm."
         },
         {
           "id": "l18-single-table-plans-cost-estimates-q2",
-          "prompt": "Cùng số liệu, unclustered scan xấp xỉ bao nhiêu theo mô hình slide?",
+          "prompt": "Cùng số liệu, không gom cụm quét xấp xỉ bao nhiêu theo mô hình slide?",
           "options": [
             "1,001 I/O",
             "11 I/O",
             "200 I/O",
             "1,000 I/O"
           ],
-          "explanation": "0.05×(20+20,000)=1,001. Số tuple đại diện các fetch dữ liệu ngẫu nhiên có thể phải thực hiện; không phải số page khác nhau."
+          "explanation": "0.05×(20+20,000)=1,001. Số dòng đại diện các lấy bản ghi dữ liệu ngẫu nhiên có thể phải thực hiện; không phải số trang khác nhau."
         },
         {
           "id": "l18-single-table-plans-cost-estimates-q3",
-          "prompt": "Cùng mô hình, heap tốn 200, clustered 11, unclustered 1,001. Chọn gì?",
+          "prompt": "Cùng mô hình, tệp bảng tốn 200, gom cụm 11, không gom cụm 1,001. Chọn gì?",
           "options": [
             "Ba đường cùng chi phí",
-            "Clustered với chi phí 11",
-            "Unclustered vì lookup index luôn tốt hơn",
-            "Heap vì truy cập tuần tự luôn thắng"
+            "gom cụm với chi phí 11",
+            "không gom cụm vì tra cứu chỉ mục luôn tốt hơn",
+            "tệp bảng vì truy cập tuần tự luôn thắng"
           ],
-          "explanation": "So chi phí dưới cùng giả định. Quy tắc tuyệt đối như index luôn thắng không thay phép so sánh này."
+          "explanation": "So chi phí dưới cùng giả định. Quy tắc tuyệt đối như chỉ mục luôn thắng không thay phép so sánh này."
         },
         {
           "id": "l18-single-table-plans-cost-estimates-q4",
-          "prompt": "Index trên cột không giúp điều kiện hạn chế hiện tại có nhất thiết tốt hơn heap scan không?",
+          "prompt": "chỉ mục trên cột không giúp điều kiện hạn chế hiện tại có nhất thiết tốt hơn quét tệp bảng không?",
           "options": [
-            "Có, vì root chứa mọi cột",
-            "Không, vì quét index luôn trả sai",
-            "Không; nó có thể cần đọc index và quá nhiều fetch dữ liệu",
-            "Có, vì mọi index giảm số dòng"
+            "Có, vì gốc chứa mọi cột",
+            "Không, vì quét chỉ mục luôn trả sai",
+            "Không; nó có thể cần đọc chỉ mục và quá nhiều lấy bản ghi dữ liệu",
+            "Có, vì mọi chỉ mục giảm số dòng"
           ],
-          "explanation": "Đường không match điều kiện có thể không giảm công việc. Tính đúng và hiệu quả là hai vấn đề riêng."
+          "explanation": "Đường không khớp điều kiện có thể không giảm công việc. Tính đúng và hiệu quả là hai vấn đề riêng."
         },
         {
           "id": "l18-single-table-plans-cost-estimates-q5",
           "prompt": "Query cần DISTINCT nhưng access plan chưa bỏ duplicate. Chi phí cuối cần gì?",
           "options": [
-            "Bỏ DISTINCT vì đã dùng index",
+            "Bỏ DISTINCT vì đã dùng chỉ mục",
             "Giả định bảng không duplicate khi chưa có constraint hỗ trợ",
             "Chỉ coi số dòng đầu ra là I/O",
             "Công việc bỏ duplicate cần thiết"
@@ -126,14 +126,14 @@
     },
     {
       "id": "l18-left-deep-join-trees",
-      "title": "Cây join left-deep",
+      "title": "Cây nối left-deep",
       "questions": [
         {
           "id": "l18-left-deep-join-trees-q1",
-          "prompt": "Trong cây left-deep, con phải của mỗi join là gì?",
+          "prompt": "Trong cây left-deep, con phải của mỗi nối là gì?",
           "options": [
             "Quan hệ gốc hoặc access path một bảng",
-            "Luôn là join hai kết quả trung gian",
+            "Luôn là nối hai kết quả trung gian",
             "Luôn là kết quả toàn query",
             "Bắt buộc là quan hệ tạm đã sắp từ hai bảng"
           ],
@@ -141,36 +141,36 @@
         },
         {
           "id": "l18-left-deep-join-trees-q2",
-          "prompt": "Cây (R join S) join (T join U) có dạng gì?",
+          "prompt": "Cây (R nối S) nối (T nối U) có dạng gì?",
           "options": [
             "Luôn right-deep",
             "Bushy",
             "Left-deep",
             "Plan một bảng"
           ],
-          "explanation": "Cả hai con root đều là join, nên cây bushy chứ không left-deep."
+          "explanation": "Cả hai con gốc đều là nối, nên cây bushy chứ không left-deep."
         },
         {
           "id": "l18-left-deep-join-trees-q3",
-          "prompt": "Vì sao cây left-deep thuận tiện cho index nested-loop join?",
+          "prompt": "Vì sao cây left-deep thuận tiện cho nối vòng lặp tra chỉ mục?",
           "options": [
-            "Không cần predicate join",
-            "Bảo đảm outer vừa một page",
-            "Inner có thể là bảng gốc với index sẵn có",
-            "Mọi kết quả trung gian tự có index"
+            "Không cần điều kiện nối",
+            "Bảo đảm outer vừa một trang",
+            "Inner có thể là bảng gốc với chỉ mục sẵn có",
+            "Mọi kết quả trung gian tự có chỉ mục"
           ],
-          "explanation": "Join có thể probe index sẵn trên bảng inner. Hình left-deep không tự tạo index cho kết quả trung gian tùy ý."
+          "explanation": "nối có thể probe chỉ mục sẵn trên bảng inner. Hình left-deep không tự tạo chỉ mục cho kết quả trung gian tùy ý."
         },
         {
           "id": "l18-left-deep-join-trees-q4",
-          "prompt": "Hình left-deep có bảo đảm toàn plan pipeline được không?",
+          "prompt": "Hình left-deep có bảo đảm toàn plan đường ống xử lý được không?",
           "options": [
             "Có; hình cây làm mọi toán tử nonblocking",
-            "Có, dù sorted run phải materialize",
-            "Không, vì left-deep luôn materialize mọi kết quả",
-            "Không; toán tử chặn như sort vẫn có thể ngắt pipeline"
+            "Có, dù sorted run phải lưu đầy đủ",
+            "Không, vì left-deep luôn lưu đầy đủ mọi kết quả",
+            "Không; toán tử chặn như sắp xếp vẫn có thể ngắt đường ống xử lý"
           ],
-          "explanation": "Hình cây có thể hỗ trợ pipeline, nhưng triển khai blocking quyết định nơi phải dừng."
+          "explanation": "Hình cây có thể hỗ trợ đường ống xử lý, nhưng triển khai chặn quyết định nơi phải dừng."
         },
         {
           "id": "l18-left-deep-join-trees-q5",
@@ -181,7 +181,7 @@
             "{S,T}",
             "Cả ba"
           ],
-          "explanation": "R và T thiếu predicate join trực tiếp. Hai tập còn lại đều có cạnh, dưới chính sách tìm kiếm đã nêu."
+          "explanation": "R và T thiếu điều kiện nối trực tiếp. Hai tập còn lại đều có cạnh, dưới chính sách tìm kiếm đã nêu."
         }
       ]
     },
@@ -207,7 +207,7 @@
             "Luôn bằng tích Descartes cả ba bảng",
             "Chỉ từ plan một bảng của bảng lớn nhất",
             "Từ subplan 2 bảng tốt nhất tương thích, thêm bảng còn lại",
-            "Chỉ từ ba scan riêng không join"
+            "Chỉ từ ba quét riêng không nối"
           ],
           "explanation": "Công thức truy hồi mở rộng tập bằng một bảng. Phải tính cả chi phí mở rộng và chi phí con."
         },
@@ -228,16 +228,16 @@
           "options": [
             "Cha có thể tận dụng thuộc tính để giảm chi phí",
             "Thứ tự luôn đổi giá trị dòng logic",
-            "Đầu vào ordered bỏ nhu cầu kiểm tra join key",
+            "Đầu vào ordered bỏ nhu cầu kiểm tra nối key",
             "Thứ tự chỉ ảnh hưởng hiển thị, không thực thi"
           ],
-          "explanation": "Thứ tự ảnh hưởng merge và sort. Chỉ tập quan hệ chưa mô tả đủ giá trị sử dụng của con cho toán tử sau."
+          "explanation": "Thứ tự ảnh hưởng merge và sắp xếp. Chỉ tập quan hệ chưa mô tả đủ giá trị sử dụng của con cho toán tử sau."
         },
         {
           "id": "l18-the-principle-of-optimality-q5",
           "prompt": "DP tránh công việc lặp nào?",
           "options": [
-            "Giữ ước lượng cardinality",
+            "Giữ ước lượng số dòng",
             "Tính lại từ đầu cùng tập bảng/thuộc tính trong mọi plan hoàn chỉnh",
             "Đọc thống kê tại bất kỳ bước nào",
             "Liệt kê phương án cho một tập"
@@ -254,10 +254,10 @@
           "id": "l18-example-dynamic-programming-q1",
           "prompt": "Pass 1 của lập plan bằng DP thường xét gì?",
           "options": [
-            "Chỉ sort đầu ra cuối",
+            "Chỉ sắp xếp đầu ra cuối",
             "Chọn plan hoàn chỉnh rồi bỏ subplan",
             "Access plan cho từng quan hệ gốc",
-            "Join ngay mọi bảng"
+            "nối ngay mọi bảng"
           ],
           "explanation": "Plan một quan hệ là trường hợp cơ sở cho pass 2 và 3."
         },
@@ -265,10 +265,10 @@
           "id": "l18-example-dynamic-programming-q2",
           "prompt": "Ngoài chọn cặp bảng, pass 2 cần xét gì?",
           "options": [
-            "Chỉ số page gốc của cặp, không chọn triển khai",
+            "Chỉ số trang gốc của cặp, không chọn triển khai",
             "Chỉ số dòng cuối toàn query",
-            "Chỉ một hướng vì equality inner join đối xứng logic",
-            "Các hướng hợp lệ, access method và triển khai join"
+            "Chỉ một hướng vì equality inner nối đối xứng logic",
+            "Các hướng hợp lệ, access method và triển khai nối"
           ],
           "explanation": "Cùng cặp logic có thể có chi phí và thuộc tính vật lý khác. Đối xứng logic không bảo đảm chi phí hai hướng bằng nhau."
         },
@@ -281,7 +281,7 @@
             "{R,S}, {S,T}, {T,U}, {R,U}",
             "Chỉ {R,S} và {T,U}"
           ],
-          "explanation": "Pass 2 giữ cặp liên thông có predicate: RS, ST, TU. RU không có cạnh; chỉ giữ hai cặp rời nhau không thay được ST."
+          "explanation": "Pass 2 giữ cặp liên thông có điều kiện: RS, ST, TU. RU không có cạnh; chỉ giữ hai cặp rời nhau không thay được ST."
         },
         {
           "id": "l18-example-dynamic-programming-q4",
@@ -301,7 +301,7 @@
             "Bảng đã nằm trong tập, dùng lại cùng tham chiếu",
             "Luôn bảng FROM đầu dù đã trong tập",
             "Bảng chưa nằm trong tập",
-            "Bảng không có trong FROM nếu index rẻ hơn"
+            "Bảng không có trong FROM nếu chỉ mục rẻ hơn"
           ],
           "explanation": "Liệt kê phải bao phủ đúng các tham chiếu quan hệ của query, không thêm bảng ngoài hay lặp tham chiếu đã dùng."
         }
@@ -315,12 +315,12 @@
           "id": "l18-interesting-orders-q1",
           "prompt": "Interesting order là gì?",
           "options": [
-            "Thứ tự optimizer liệt kê cây join",
-            "Thứ tự index được tạo trong catalog",
-            "Thứ tự predicate WHERE",
-            "Thứ tự tuple có thể giúp join, grouping hoặc ordering về sau"
+            "Thứ tự optimizer liệt kê cây nối",
+            "Thứ tự chỉ mục được tạo trong catalog",
+            "Thứ tự điều kiện WHERE",
+            "Thứ tự dòng có thể giúp nối, grouping hoặc ordering về sau"
           ],
-          "explanation": "Đây là thứ tự vật lý hữu ích của tuple, không phải thứ tự tên hay tạo metadata."
+          "explanation": "Đây là thứ tự vật lý hữu ích của dòng, không phải thứ tự tên hay tạo metadata."
         },
         {
           "id": "l18-interesting-orders-q2",
@@ -335,7 +335,7 @@
         },
         {
           "id": "l18-interesting-orders-q3",
-          "prompt": "Con unordered tốn 100 và cần sort cuối 80. Con ordered tốn 125 không cần sort. Cái nào tốt hơn?",
+          "prompt": "Con unordered tốn 100 và cần sắp xếp cuối 80. Con ordered tốn 125 không cần sắp xếp. Cái nào tốt hơn?",
           "options": [
             "Cả hai tổng 125",
             "Plan ordered, tổng 125",
@@ -346,25 +346,25 @@
         },
         {
           "id": "l18-interesting-orders-q4",
-          "prompt": "Thuộc tính vật lý nào hữu ích cho cả ORDER BY k và join trên k?",
+          "prompt": "Thuộc tính vật lý nào hữu ích cho cả ORDER BY k và nối trên k?",
           "options": [
             "Đầu ra distinct bất kể query SQL",
             "Số hash partition bằng số bảng",
             "Đầu ra sắp theo k",
             "Đầu ra đồng thời sắp theo mọi cột"
           ],
-          "explanation": "Thứ tự k có thể hỗ trợ merge join và thứ tự cuối cần thiết, không ngụ ý DISTINCT."
+          "explanation": "Thứ tự k có thể hỗ trợ merge nối và thứ tự cuối cần thiết, không ngụ ý DISTINCT."
         },
         {
           "id": "l18-interesting-orders-q5",
-          "prompt": "Liệt kê join xong nhưng GROUP BY còn cần sort theo key khác. Trước khi chọn plan cuối phải làm gì?",
+          "prompt": "Liệt kê nối xong nhưng GROUP BY còn cần sắp xếp theo key khác. Trước khi chọn plan cuối phải làm gì?",
           "options": [
-            "Bỏ GROUP BY vì join xong",
-            "Giả định mọi join result đã có thứ tự cần",
-            "Chỉ so chi phí scan bảng gốc",
-            "Cộng công grouping và sorting còn lại"
+            "Bỏ GROUP BY vì nối xong",
+            "Giả định mọi nối result đã có thứ tự cần",
+            "Chỉ so chi phí quét bảng gốc",
+            "Cộng công grouping và sắp xếp còn lại"
           ],
-          "explanation": "Toàn query gồm yêu cầu sau join. Thứ tự sẵn chỉ giúp khi khớp key cần thiết."
+          "explanation": "Toàn query gồm yêu cầu sau nối. Thứ tự sẵn chỉ giúp khi khớp key cần thiết."
         },
         {
           "id": "ex18-enum-q1",

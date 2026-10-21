@@ -1,7 +1,7 @@
-> The reviewed EN/VI textbook update is released as v3.2.0 through the existing main → CI → deploy → Botkeep pipeline. The review below documents the pre-publication candidate.
+> v3.3.0 rewrites the teaching of all 37 EN/VI resources. Content review and local checks are recorded in [rewrite progress](docs/rewrite-2026-10-21/PROGRESS.md); the current live source identity is available in [release.json](https://adbs-learning-lab.bot-keep.xyz/release.json). Publication uses the existing main → CI → deploy → Botkeep pipeline.
 
 
-This isolated EN/VI candidate preserves remote v3.1 and adds complete Vietnamese main bodies for all 37 resources (181 sections), persistent language switching and all 1,167 translated bank questions. Some UI/lab messages remain English. No deployment was performed. See [REVIEW-EN-VI-V31.md](REVIEW-EN-VI-V31.md) for exact evidence, limits and resumable work.
+The 21 October rewrite starts from deployed v3.2.0 and replaces the teaching sequence of all 37 resources in English and Vietnamese. It keeps existing routes, saved answer meanings, SQL grading, labs and learner progress. Read the [source map](docs/rewrite-2026-10-21/source-map.md), [actual before/after excerpts](docs/rewrite-2026-10-21/before-after.md) and group reviews for content evidence.
 <p align="center">
   <img src="docs/assets/banner.svg" alt="ADBS Learning Lab — explore, practice, understand" width="100%">
 </p>
@@ -10,7 +10,7 @@ This isolated EN/VI candidate preserves remote v3.1 and adds complete Vietnamese
   <a href="https://github.com/edward1503/adbs-learning-lab/actions/workflows/ci.yml"><img src="https://github.com/edward1503/adbs-learning-lab/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI status"></a>
   &nbsp;
   <a href="https://adbs-learning-lab.bot-keep.xyz/"><strong>Live demo ↗</strong></a>
-  &nbsp; · &nbsp; EN / VI v3.2.0
+  &nbsp; · &nbsp; EN / VI v3.3.0
 </p>
 
 An independent bilingual **Advanced Database Systems learning companion**, aligned to the user-provided **13-module / 15-week / 30-session syllabus**. Its 27 core resources use Edinburgh Spring 2026 slides; ten original supplemental resources cover research frontiers, project clinics and a research symposium.

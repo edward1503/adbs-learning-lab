@@ -225,7 +225,7 @@
             "104",
             "26"
           ],
-          "explanation": "T2 đọc 26 và 70 nên nhận 96, thay vì tổng 100 trong cả hai thứ tự tuần tự. Trạng thái cuối đúng không sửa được câu trả lời sai đã gửi đi."
+          "explanation": "Đầu tiên A thành 30−4=26 trong khi B vẫn 70. T2 ghép 26+70=96. Phép cộng sau đó đưa B=74 và trả tổng dữ liệu về 100, nhưng không đổi được câu trả lời T2 đã gửi."
         },
         {
           "id": "l19-schedules-q5",
@@ -347,7 +347,7 @@
             "Không, vì hai lần đọc xung đột với nhau",
             "Không, vì R1 trước W2 và R2 trước W1 yêu cầu thứ tự ngược nhau"
           ],
-          "explanation": "R1 trước W2 yêu cầu T1 trước T2; R2 trước W1 yêu cầu T2 trước T1. Hai lần đọc không xung đột với nhau: chính xung đột của chúng với các lần ghi tạo mâu thuẫn."
+          "explanation": "Liệt kê từng cặp: R1(A) trước W2(A) tạo T1→T2; R2(A) trước W1(A) tạo T2→T1; W1(A) trước W2(A) lặp cạnh T1→T2. Chu trình không tránh được; riêng R1/R2 không thêm cạnh."
         },
         {
           "id": "l19-conflict-serializable-q5",
@@ -447,7 +447,7 @@
             "Chỉ T1, bỏ T2",
             "T2 rồi T1"
           ],
-          "explanation": "T1 là người ghi cuối và không có nguồn đọc cần giữ. T2 rồi T1 giữ người ghi cuối đó; T1 rồi T2 sẽ đổi người ghi cuối thành T2."
+          "explanation": "Trong lịch ban đầu không ai đọc A và T1 ghi A cuối. Trong thứ tự tuần tự T2,T1, hai điều kiện quan sát ấy vẫn giữ. Vì vậy chu trình xung đột bác bỏ tuần tự hóa theo xung đột, không bác bỏ thứ tự tuần tự tương đương theo quan sát này."
         },
         {
           "id": "l19-view-q3",

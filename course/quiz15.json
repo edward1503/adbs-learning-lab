@@ -257,7 +257,7 @@
             "800 I/Os"
           ],
           "answer": 1,
-          "explanation": "The cost is 100+200+50+10×50=850 I/Os. It includes both base scans, the 50-page temporary write, and ten temporary-file scans; 800 omits the write.",
+          "explanation": "Read R for 100, read S for 200, write its 50-page temporary result, then read that result once for each of 10 outer pages: 100+200+50+10×50=850. Omitting the temporary write gives an incomplete cost.",
           "pages": [
             18,
             19,

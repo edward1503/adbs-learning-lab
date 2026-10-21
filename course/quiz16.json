@@ -364,7 +364,7 @@
             "Yes, because salary follows age"
           ],
           "answer": 1,
-          "explanation": "Covering the predicate is not enough. The output column name still has to be obtained from another source.",
+          "explanation": "The age/salary key can establish age=30, but neither field supplies name. The RID locates the table row; fetching that row supplies the missing name, just as (P3, slot 2) leads to Linh in the lesson example.",
           "pages": [
             16
           ]
