@@ -1,0 +1,28 @@
+{
+  "base": "http://127.0.0.1:18335/",
+  "routes": 296,
+  "widths": [
+    320,
+    390,
+    768,
+    1440
+  ],
+  "languages": [
+    "en",
+    "vi"
+  ],
+  "contrastMinimum": 4.607518093747377,
+  "checks": [
+    "37 resources in both languages at four widths",
+    "no horizontal overflow",
+    "collapsed practice",
+    "direct quiz route and reload",
+    "same-lesson lab link",
+    "quiz answer and completion persistence",
+    "actual SQLite worker query",
+    "mobile drawer and Escape",
+    "search",
+    "console errors"
+  ],
+  "errors": []
+}

@@ -22,18 +22,23 @@ test('whole-course rewrite preserves resource identity, quiz answer meaning and 
   }
 });
 
-test('readability integration retains original subsection anchors and every cited URL', () => {
+test('slide rewrite retains subsection anchors and current mapping; supplements retain exact sources', () => {
   for (const record of baseline.records) {
     const packet = read(record.file);
     const lesson = Array.isArray(packet) ? packet[0] : packet.lesson;
     const html = lesson.sections.map(section => section.html).join('');
     const notes = [...html.matchAll(/<aside\b[^>]*class="[^"]*\bimportant-note\b[^"]*"[^>]*>[\s\S]*?<\/aside>/g)]
       .map(match => hash(match[0]));
-    assert.deepEqual(notes, record.importantNoteHTMLSHA256, `${record.file}: retain exact ordered Key takeaways`);
+    if(!lesson.lecture)assert.deepEqual(notes, record.importantNoteHTMLSHA256, `${record.file}: supplemental notes unchanged`);else assert.equal(notes.length,0,`${record.file}: requested plain prose`);
     const anchors = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
     const links = new Set([...html.matchAll(/href="([^"]+)"/g)].map(match => match[1]));
     assert.equal(new Set(anchors).size, anchors.length, `${record.file}: duplicate subsection anchor`);
     for (const anchor of record.subsectionAnchors) assert.ok(anchors.includes(anchor), `${record.file}: ${anchor}`);
+    if(lesson.lecture){
+      const mapping=read('docs/slide-textbook-2026-10-23/mapping.json').lectures.find(m=>m.lessonId===lesson.id);
+      for(const mapped of mapping.sections){const section=lesson.sections.find(s=>s.id===mapped.id);assert.ok(section.html.includes(mapping.pdfUrl+'#page='+mapped.physicalPages[0]),mapped.id);}
+      continue;
+    }
     for (const link of record.sourceLinks) assert.ok(links.has(link), `${record.file}: ${link}`);
     for (const section of lesson.sections) {
       const sectionLinks = new Set([...section.html.matchAll(/href="([^"]+)"/g)].map(match => match[1]));

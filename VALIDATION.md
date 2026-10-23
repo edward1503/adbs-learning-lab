@@ -1,3 +1,5 @@
+> Current v3.4.0 validation: [23 October slide-based reader](docs/slide-textbook-2026-10-23/README.md). The record below describes historical releases.
+
 > Historical validation of the earlier release. Current 21 October rewrite evidence: [progress and acceptance record](docs/rewrite-2026-10-21/PROGRESS.md).
 
 # Validation scope — English v3.1.0

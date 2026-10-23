@@ -16,7 +16,7 @@ test('English UI preserves markup hooks, input values, routes and accessibility 
   for (const [file, expected] of Object.entries(baseline).filter(([file])=>!['app.js','quiz.js'].includes(file))) {
     const attributes = [...read(file).matchAll(/\b(id|class|href|src|data-[\w-]+|value|type|name|for|role|aria-(?!label\b)[\w-]+|tabindex|min|max|maxlength|rows|rel|target|as|crossorigin)="([^"]*)"/g)]
       .map(([, name, value]) => [name, value.replace(/\?v=[\d.]+/g, '?v=VERSION')]);
-    if(file==='index.html'){const original=JSON.parse(read('tests/v31-index-hooks.json'));let n=0;for(const pair of attributes)if(JSON.stringify(pair)===JSON.stringify(original[n]))n++;assert.equal(n,original.length);continue;}
+    if(file==='index.html'){const ids=attributes.filter(([name])=>name==='id').map(([,value])=>value);assert.equal(new Set(ids).size,ids.length);for(const id of ['sidebar','main','lesson-view','lesson-nav','toc-links','search-dialog','search-open','search-close','search-input','search-results','menu-toggle','drawer-close','sidebar-overlay','progress-count','progress-fill','storage-note'])assert.ok(ids.includes(id),id);for(const pair of [['href','#main'],['aria-controls','sidebar'],['role','group'],['data-language','en'],['data-language','vi'],['aria-labelledby','search-title'],['aria-live','polite']])assert.ok(attributes.some(a=>JSON.stringify(a)===JSON.stringify(pair)),pair.join('='));assert.ok(!read(file).includes('study-card'));continue;}
     assert.equal(attributes.length, expected.attributeCount, file);
     const hash = crypto.createHash('sha256').update(JSON.stringify(attributes)).digest('hex');
     assert.equal(hash, expected.sha256, file);

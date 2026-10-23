@@ -68,8 +68,10 @@ test('dictionary payload includes the dictionary and external hashing includes s
   const expandedPartitionPages = 1.2 * 90 / (10 - 1);
   assert.equal(expandedPartitionPages, 12);
   assert.ok(expandedPartitionPages > 10);
-  assert.match(lesson(7).sections.find(s => s.id === 'l7-3').html, /140 payload bytes/);
-  assert.match(lesson(11).sections.find(s => s.id === 'l11-s3').html, /12 state pages, already more than ten/);
+  // Numerical oracle above remains useful for the unchanged practice bank.
+  // Main notes now explain the source mechanisms without the invented fixture.
+  assert.match(lesson(7).sections.find(s => s.id === 'l7-4').html, /reverse mapping/);
+  assert.match(lesson(11).sections.find(s => s.id === 'l11-s3').html, /hash table, rather than just the partition’s raw bytes/);
 });
 
 test('duplicate join groups preserve all six pairs and cross-document quiz provenance', () => {

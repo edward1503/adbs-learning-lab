@@ -1,7 +1,7 @@
-> v3.3.0 rewrites the teaching of all 37 EN/VI resources. Content review and local checks are recorded in [rewrite progress](docs/rewrite-2026-10-21/PROGRESS.md); the current live source identity is available in [release.json](https://adbs-learning-lab.bot-keep.xyz/release.json). Publication uses the existing main → CI → deploy → Botkeep pipeline.
+> v3.4.0 presents all 27 core lectures as direct EN/VI notes in the order of the Edinburgh slides. [Source mapping and validation](docs/slide-textbook-2026-10-23/README.md) cover 117 sections and 27 freshly checked PDFs. Publication uses the existing main → CI → deploy → Botkeep pipeline.
 
+The reader removes narrative introductions, custom worked stories and takeaway boxes from the core lectures. It presents definitions, mechanisms, algorithms and cost formulas with section-level PDF links. Source examples are retained where useful. Quiz and lab controls remain available in separate expandable sections; existing progress and quiz answer meanings are preserved.
 
-The 21 October rewrite starts from deployed v3.2.0 and replaces the teaching sequence of all 37 resources in English and Vietnamese. It keeps existing routes, saved answer meanings, SQL grading, labs and learner progress. Read the [source map](docs/rewrite-2026-10-21/source-map.md), [actual before/after excerpts](docs/rewrite-2026-10-21/before-after.md) and group reviews for content evidence.
 <p align="center">
   <img src="docs/assets/banner.svg" alt="ADBS Learning Lab — explore, practice, understand" width="100%">
 </p>
@@ -10,20 +10,20 @@ The 21 October rewrite starts from deployed v3.2.0 and replaces the teaching seq
   <a href="https://github.com/edward1503/adbs-learning-lab/actions/workflows/ci.yml"><img src="https://github.com/edward1503/adbs-learning-lab/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI status"></a>
   &nbsp;
   <a href="https://adbs-learning-lab.bot-keep.xyz/"><strong>Live demo ↗</strong></a>
-  &nbsp; · &nbsp; EN / VI v3.3.0
+  &nbsp; · &nbsp; EN / VI v3.4.0
 </p>
 
 An independent bilingual **Advanced Database Systems learning companion**, aligned to the user-provided **13-module / 15-week / 30-session syllabus**. Its 27 core resources use Edinburgh Spring 2026 slides; ten original supplemental resources cover research frontiers, project clinics and a research symposium.
 
-| Learning resources | Quiz topics | Practice questions | Key takeaways | Interactive labs | SQL exercises |
-| :---: | :---: | :---: | :---: | :---: | :---: |
-| **37** | **227** | **1,167** | **76** | **10** | **15** |
+| Learning resources | Quiz topics | Practice questions | Interactive labs | SQL exercises |
+| :---: | :---: | :---: | :---: | :---: |
+| **37** | **227** | **1,167** | **10** | **15** |
 
 ## Features
 
-- **Read with context.** Lessons combine learning objectives, worked examples, self-checks, and links to physical pages in the official lecture PDFs.
+- **Read with context.** Core lectures follow the source topic sequence, with definitions, mechanisms, formulas and links to physical pages in the official lecture PDFs.
 - **Practice by topic.** Quizzes give explanations and source references, with explicit retries, topic resets, and browser-local answer history. Choices are shuffled deterministically per question while saved source-option meanings remain stable. Quiz scores do not automatically mark a resource complete.
-- **Review key takeaways** beside the relevant explanation.
+- **Read without interruption.** Source details, practice questions and labs are expandable sections outside the main prose.
 - **Run real SQL.** SQLite runs in a Web Worker through vendored sql.js and WebAssembly, with clean-seed grading for 15 exercises.
 - **Explore algorithms.** Labs cover relational operations, buffer replacement, slotted pages, indexes, sorting, join costs, conflict graphs, recovery, quorums, and two-phase commit.
 - **Navigate your way.** Browse lessons, search course text and the glossary, and track core and supplemental completion separately in the EN/VI interface.
@@ -38,7 +38,7 @@ The **37 learning resources are not 37 timetabled sessions**. Modules 1–10 org
 
 The [audit record](docs/audit/README.md) preserves the pre-change findings, exact corrections, source evidence and integrated verification. All original 1,100 bank keys and 27 embedded checks remain correct; the release adds 17 targeted core questions and 50 supplemental questions. It does not reproduce source PDFs, slide images or textbook chapters.
 
-<p align="center"><img src="docs/assets/overview-desktop.png" alt="Actual EN / VI v3.2.0 curriculum overview showing 13 modules, 15 weeks, 30 timetabled sessions and 37 learning resources" width="100%"></p>
+<p align="center"><img src="docs/slide-textbook-2026-10-23/overview-vi.png" alt="Actual v3.4.0 plain lecture contents in Vietnamese" width="100%"></p>
 
 The screenshot is from the running application. [See a genuine mobile worked example](docs/assets/worked-example-mobile.png) from the project clinic.
 
@@ -82,7 +82,7 @@ GitHub Actions checks every pull request and push to `main`, running `npm ci`, `
 
 The check job has `contents: read`. Only the separate publication job has `contents: write`; it runs after successful checks on `main` and uses GitHub's temporary repository token. Pull requests cannot publish the deployment branch.
 
-The optional `tests/browser.cjs` and `tests/sql-browser.cjs` suites require Playwright and Chromium separately. They are not part of `npm test`. DOM and Node tests do not establish visual correctness; see [VALIDATION.md](VALIDATION.md) for the checked scope.
+The current optional `tests/slide-reader.cjs` acceptance suite requires Playwright and Chromium separately and accepts `BASE_URL`, `PLAYWRIGHT_MODULE` and `CHROMIUM_PATH`. Earlier browser suites describe historical interfaces. They are not part of `npm test`. DOM and Node tests do not establish visual correctness; see the [current reader validation](docs/slide-textbook-2026-10-23/README.md) and [historical validation](VALIDATION.md) for their checked scope.
 
 ## Deployment
 

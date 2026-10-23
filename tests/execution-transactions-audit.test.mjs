@@ -78,9 +78,9 @@ test('transaction additions distinguish conflict cycles, view reads and independ
 });
 
 test('integrated recovery language preserves the prepared-participant boundary and refined quiz citations',()=>{
-  assert.match(lesson(21).sections.find(s=>s.id==='l21-s4').html,/global decision must first be resolved/);
-  assert.match(lesson(21).sections.find(s=>s.id==='l21-s4').html,/undoNextLSN=10/);
-  assert.match(lesson(22).sections.find(s=>s.id==='l22-s5').html,/West's NO still prevents COMMIT/);
+  assert.match(lesson(21).sections.find(s=>s.id==='l21-s5').html,/including logged updates of transactions that may later be undone/);
+  assert.match(lesson(22).sections.find(s=>s.id==='l22-s5').html,/prepared participant without a final decision must inquire and wait/);
+  assert.match(lesson(22).sections.find(s=>s.id==='l22-s3').html,/Commit requires YES from all participants/);
   const q=(n,id)=>bank(n).topics.flatMap(t=>t.questions).find(q=>q.id===id);
   assert.deepEqual(q(16,'l16-index-scan-q3').pages,[4,5,6,19]);
   assert.equal(q(16,'l16-clustered-b-tree-scan-q1').answer,0);

@@ -114,7 +114,7 @@ test('previous and next routes cross the core/supplement boundary without invent
   assert.match(app.node('#lesson-view').innerHTML,/href="#supplement-28">Next resource: M11 · Session 1/);
   app.navigate('#supplement-28');
   const html=app.node('#lesson-view').innerHTML;
-  assert.match(html,/SUPPLEMENT · M11 · Session 1/);
+  assert.match(html,/Lectures<\/a> \/ M11 · Session 1/);
   assert.match(html,/href="#lecture-27">← Previous resource: Lecture 27/);
   assert.match(html,/href="#supplement-29">Next resource: M11 · Session 2/);
   assert.doesNotMatch(html,/LECTURE 28|Lecture null|FROM THE SOURCE SLIDES/);
@@ -158,7 +158,7 @@ test('search reaches supplements with source-kind labels and retains core glossa
 
 test('legacy bundles remain usable when new globals have not loaded',()=>{
   const app=start({hash:'#lecture-03',noNewGlobals:true});
-  assert.match(app.node('#lesson-view').innerHTML,/LECTURE 03/);
+  assert.match(app.node('#lesson-view').innerHTML,/Lecture 03/);
   assert.equal(app.node('#progress-count').textContent,'0 / 27');
   app.navigate('#overview');assert.match(app.node('#lesson-view').innerHTML,/27 slide-based lessons/);
   app.navigate('#lab-buffer');assert.equal(app.labs().mounted,1);
