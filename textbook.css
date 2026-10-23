@@ -1,6 +1,7 @@
 /* Plain book reader; existing component styles remain in their own files. */
 :root{--ink:#242424;--muted:#555;--green:#235a97;--lime:#eef3f9;--paper:#fff;--line:#ddd;--book-surface:#fff;--book-teal:#235a97;--book-serif:system-ui,-apple-system,"Segoe UI",sans-serif}
 body{background:#fff;color:var(--ink);font:16px/1.75 system-ui,-apple-system,"Segoe UI",sans-serif}
+html{scroll-padding-top:0}
 ::selection{background:#d9e8ff;color:#171717}
 a{color:#235a97;text-underline-offset:.16em}
 a:hover{text-decoration:underline}
@@ -35,8 +36,20 @@ h1{font:650 clamp(29px,3vw,39px)/1.3 system-ui,sans-serif;letter-spacing:-.025em
 .lesson-section{margin:36px 0;scroll-margin-top:88px}
 .lesson-section h2{font:600 25px/1.4 system-ui,sans-serif;color:#242424;letter-spacing:-.015em;margin-bottom:18px}
 .lesson-section h3{font:600 19px/1.5 system-ui,sans-serif;color:#333}
+.lesson-section h3[id]{scroll-margin-top:90px;margin:32px 0 15px}
+.data-table{max-width:100%;overflow-x:auto;margin:20px 0}
+.data-table table{width:max-content;min-width:100%;border-collapse:collapse}
+.data-table th,.data-table td{vertical-align:top;text-align:left;padding:9px 12px;border:1px solid #ddd;max-width:36em}
+.data-table th{background:#f5f5f5;font-weight:600}
+.lesson-outline{margin:24px 0 32px}
+.lesson-outline nav{margin-top:14px}
+.lesson-outline a{display:block;font-size:14px;line-height:1.6;margin:9px 0}
+.outline-group{margin-bottom:18px}
+.lesson-outline .outline-topic,#toc-links .outline-topic{padding-left:13px;border-left:1px solid #ddd;font-weight:400}
+#toc-links .outline-group>a:first-child{font-weight:600;color:#333}
+#toc-links .outline-topic{font-size:11px;line-height:1.6;margin:9px 0}
 .lesson-section p,.lesson-section ul,.lesson-section ol{font-size:16px;line-height:1.8;color:#2d2d2d;max-width:none}
-.lesson-section p{margin:0 0 17px}
+.lesson-section p{margin:0 0 17px;overflow-wrap:anywhere}
 .lesson-section strong{font-weight:650;color:#222}
 .lesson-section code{font-size:.86em;color:#333;background:#f1f1f1;white-space:normal;overflow-wrap:anywhere}
 .lesson-section pre{background:#f5f5f5;color:#222;border:1px solid #ddd;border-radius:3px;line-height:1.7}
