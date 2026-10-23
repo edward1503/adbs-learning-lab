@@ -1,4 +1,4 @@
-> v3.4.0 presents all 27 core lectures as direct EN/VI notes in the order of the Edinburgh slides. [Source mapping and validation](docs/slide-textbook-2026-10-23/README.md) cover 117 sections and 27 freshly checked PDFs. Publication uses the existing main → CI → deploy → Botkeep pipeline.
+> v3.5.0 expands all 27 EN/VI lectures into 245 teaching units following 845 physical source pages. The [full-slide audit](docs/full-slide-audit-2026-10-23/README.md) records ordered coverage, source examples, algorithms, intermediate states and proofs. The v3.4.0 range mapping was too compressed to teach all of that content. Publication uses main → CI → deploy → Botkeep.
 
 The reader removes narrative introductions, custom worked stories and takeaway boxes from the core lectures. It presents definitions, mechanisms, algorithms and cost formulas with section-level PDF links. Source examples are retained where useful. Quiz and lab controls remain available in separate expandable sections; existing progress and quiz answer meanings are preserved.
 
@@ -10,7 +10,7 @@ The reader removes narrative introductions, custom worked stories and takeaway b
   <a href="https://github.com/edward1503/adbs-learning-lab/actions/workflows/ci.yml"><img src="https://github.com/edward1503/adbs-learning-lab/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI status"></a>
   &nbsp;
   <a href="https://adbs-learning-lab.bot-keep.xyz/"><strong>Live demo ↗</strong></a>
-  &nbsp; · &nbsp; EN / VI v3.4.0
+  &nbsp; · &nbsp; EN / VI v3.5.0
 </p>
 
 An independent bilingual **Advanced Database Systems learning companion**, aligned to the user-provided **13-module / 15-week / 30-session syllabus**. Its 27 core resources use Edinburgh Spring 2026 slides; ten original supplemental resources cover research frontiers, project clinics and a research symposium.
@@ -38,7 +38,7 @@ The **37 learning resources are not 37 timetabled sessions**. Modules 1–10 org
 
 The [audit record](docs/audit/README.md) preserves the pre-change findings, exact corrections, source evidence and integrated verification. All original 1,100 bank keys and 27 embedded checks remain correct; the release adds 17 targeted core questions and 50 supplemental questions. It does not reproduce source PDFs, slide images or textbook chapters.
 
-<p align="center"><img src="docs/slide-textbook-2026-10-23/overview-vi.png" alt="Actual v3.4.0 plain lecture contents in Vietnamese" width="100%"></p>
+<p align="center"><img src="docs/full-slide-audit-2026-10-23/reader-desktop.png" alt="Actual v3.5.0 detailed lecture reader in Vietnamese" width="100%"></p>
 
 The screenshot is from the running application. [See a genuine mobile worked example](docs/assets/worked-example-mobile.png) from the project clinic.
 

@@ -11,7 +11,7 @@ const output=path.resolve(__dirname,'../output/playwright');fs.mkdirSync(output,
   await page.goto(base);await page.waitForSelector('h1');
   assert.equal(await page.locator('.catalog-lessons>a').count(),37);
   assert.equal(await page.locator('.study-card').count(),0);
-  const resources=await page.evaluate(()=>[...window.LESSONS,...window.SUPPLEMENTS].map(l=>({id:l.id,sections:l.sections.map(s=>s.id)})));
+  const resources=await page.evaluate(()=>[...window.LESSONS,...window.SUPPLEMENTS].map(l=>({id:l.id,sections:l.sections.map(s=>s.id),units:l.sections.flatMap(s=>[...s.html.matchAll(/<h3 id="([^"]+)">/g)].map(m=>m[1]))})));
   let routes=0;
   for(const width of [320,390,768,1440]){
    await page.setViewportSize({width,height:1000});
@@ -21,15 +21,27 @@ const output=path.resolve(__dirname,'../output/playwright');fs.mkdirSync(output,
      await page.goto(base+'#'+r.id);await page.waitForFunction(id=>document.querySelector('.lesson-section')?.id===id,r.sections[0]);
      assert.equal(await page.locator('.lesson-section').count(),r.sections.length);
      assert.equal(await page.locator('.lesson-section').first().getAttribute('lang'),language);
+     assert.deepEqual(await page.locator('.lesson-section h3[id]').evaluateAll(nodes=>nodes.map(n=>n.id)),r.units);
+     assert.equal(await page.locator('#toc-links .outline-topic').count(),r.units.length);
+     if(r.units.length){
+      assert.equal(await page.locator('#lesson-outline-links .outline-topic').count(),r.units.length);
+      const mismatches=await page.locator('#lesson-outline-links .outline-topic').evaluateAll(nodes=>nodes.filter(n=>n.textContent!==document.getElementById(n.hash.split('/')[1])?.textContent).map(n=>n.hash));
+      assert.deepEqual(mismatches,[],`${language} translated outline ${r.id}`);
+     }
      assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),`overflow ${width} ${language} ${r.id}`);
      assert.equal(await page.locator('.optional-practice[open]').count(),0);
      routes++;
     }
     await page.goto(base+'#overview');await page.waitForSelector('.catalog-lessons');
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),`overview overflow ${width} ${language}`);
+    console.log(JSON.stringify({width,language,routes}));
    }
   }
   await page.setViewportSize({width:1440,height:1000});
+  for(const [lesson,unit] of [['lecture-17','lecture-17-p17'],['lecture-25','lecture-25-p31']]){
+   await page.goto(base+'#'+lesson+'/'+unit);await page.waitForFunction(id=>Math.abs(document.getElementById(id).getBoundingClientRect().top-90)<5,unit);
+   assert.ok(await page.locator('#'+unit).isVisible());
+  }
   await page.goto(base+'#lecture-15');await page.click('[data-language="vi"]');await page.evaluate(()=>document.fonts.ready);
   await page.screenshot({path:path.join(output,'slide-reader-vi-desktop.png')});
   const contrast=await page.evaluate(()=>{
@@ -56,7 +68,7 @@ const output=path.resolve(__dirname,'../output/playwright');fs.mkdirSync(output,
   await page.setViewportSize({width:1440,height:1000});await page.goto(base+'#overview');
   await page.screenshot({path:path.join(output,'slide-reader-overview.png')});
   assert.deepEqual(errors,[]);
-  fs.writeFileSync(path.join(output,'slide-reader-results.json'),JSON.stringify({base,routes,widths:[320,390,768,1440],languages:['en','vi'],contrastMinimum:Math.min(...contrast.map(c=>c.ratio)),checks:['37 resources in both languages at four widths','no horizontal overflow','collapsed practice','direct quiz route and reload','same-lesson lab link','quiz answer and completion persistence','actual SQLite worker query','mobile drawer and Escape','search','console errors'],errors},null,2));
+  fs.writeFileSync(path.join(output,'slide-reader-results.json'),JSON.stringify({base,routes,teachingUnits:resources.reduce((n,r)=>n+r.units.length,0),widths:[320,390,768,1440],languages:['en','vi'],contrastMinimum:Math.min(...contrast.map(c=>c.ratio)),checks:['37 resources in both languages at four widths','all teaching-unit headings and bilingual outline links','direct deep links to histogram and semijoin','no horizontal overflow','collapsed practice','direct quiz route and reload','same-lesson lab link','quiz answer and completion persistence','actual SQLite worker query','mobile drawer and Escape','search','console errors'],errors},null,2));
   console.log(JSON.stringify({pass:true,routes,contrastMinimum:Math.min(...contrast.map(c=>c.ratio)),errors}));
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1});

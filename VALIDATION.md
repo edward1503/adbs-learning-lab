@@ -1,3 +1,5 @@
+> Current v3.5.0 validation: [full-slide teaching audit](docs/full-slide-audit-2026-10-23/README.md). Earlier release records below are historical.
+
 > Current v3.4.0 validation: [23 October slide-based reader](docs/slide-textbook-2026-10-23/README.md). The record below describes historical releases.
 
 > Historical validation of the earlier release. Current 21 October rewrite evidence: [progress and acceptance record](docs/rewrite-2026-10-21/PROGRESS.md).
